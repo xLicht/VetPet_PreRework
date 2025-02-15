@@ -35,9 +35,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(295, 129);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 32);
+            this.button1.Size = new System.Drawing.Size(222, 112);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Cambio";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // Menu_AtencionAlCliente
