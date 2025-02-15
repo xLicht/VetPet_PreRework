@@ -35,8 +35,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -141,17 +141,6 @@
             this.panel1.Size = new System.Drawing.Size(800, 65);
             this.panel1.TabIndex = 3;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(172, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 32);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Veterinaria";
-            // 
             // pictureBox7
             // 
             this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -162,6 +151,17 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 12;
             this.pictureBox7.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(172, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(182, 32);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Veterinaria";
             // 
             // pictureBox2
             // 
@@ -182,6 +182,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
