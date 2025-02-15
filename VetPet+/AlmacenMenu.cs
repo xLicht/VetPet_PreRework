@@ -1,47 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VetPet_
 {
     public partial class AlmacenMenu : Form
     {
+        private float originalWidth;
+        private float originalHeight;
+        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new();
+
         public AlmacenMenu()
         {
             InitializeComponent();
+            this.Load += AlmacenMenu_Load;       // Evento Load
+            this.Resize += AlmacenMenu_Resize;   // Evento Resize
             this.Controls.SetChildIndex(pictureBox8, 0); // Índice 0 = Capa superior
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void AlmacenMenu_Load(object sender, EventArgs e)
         {
+            // Guardar el tamaño original del formulario
+            originalWidth = this.ClientSize.Width;
+            originalHeight = this.ClientSize.Height;
 
+            // Guardar información original de cada control
+            foreach (Control control in this.Controls)
+            {
+                controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void AlmacenMenu_Resize(object sender, EventArgs e)
         {
+            // Calcular el factor de escala
+            float scaleX = this.ClientSize.Width / originalWidth;
+            float scaleY = this.ClientSize.Height / originalHeight;
 
-        }
+            foreach (Control control in this.Controls)
+            {
+                if (controlInfo.ContainsKey(control))
+                {
+                    var info = controlInfo[control];
 
-        private void iconPictureBox1_Click(object sender, EventArgs e)
-        {
-             //
-        }
+                    // Ajustar las dimensiones
+                    control.Width = (int)(info.width * scaleX);
+                    control.Height = (int)(info.height * scaleY);
+                    control.Left = (int)(info.left * scaleX);
+                    control.Top = (int)(info.top * scaleY);
 
-        private void btnProductos_Click(object sender, EventArgs e)
-        {
-
+                    // Ajustar el tamaño de la fuente
+                    control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
+                }
+            }
         }
     }
 }
