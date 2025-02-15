@@ -24,10 +24,10 @@ namespace VetPet_
             this.Load += AlmacenInventarioProductos_Load;       // Evento Load
             this.Resize += AlmacenInventarioProductos_Resize;   // Evento Resize
         }
-        public AlmacenMenu(Form1 parent)
+        public AlmacenInventarioProductos(Form1 parent)
         {
             InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia del formulario principal
+            parentForm = parent;  // Guardamos la referencia de Form1
         }
         private void txtProducto_TextChanged(object sender, EventArgs e)
         {
@@ -90,7 +90,7 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenAgregarProducto());
+            parentForm.formularioHijo(new AlmacenAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
 }

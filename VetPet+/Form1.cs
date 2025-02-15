@@ -55,6 +55,11 @@ namespace VetPet_
         {
 
         }
+        // Botón btnProductos
+        private void BtnProductos_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new AlmacenInventarioProductos(this)); // Pasamos la referencia de Form1
+        }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {

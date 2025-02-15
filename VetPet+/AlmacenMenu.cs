@@ -66,8 +66,7 @@ namespace VetPet_
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            // Cuando se presiona el botón btnProductos, cargamos el formulario FormProductos en el panel
-            parentForm.formularioHijo(new AlmacenInventarioProductos());
+            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
     }
 }
