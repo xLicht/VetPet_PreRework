@@ -11,12 +11,20 @@ namespace VetPet_
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
+        private Form1 parentForm;
+
         public AlmacenMenu()
         {
             InitializeComponent();
             this.Load += AlmacenMenu_Load;       // Evento Load
             this.Resize += AlmacenMenu_Resize;   // Evento Resize
             this.Controls.SetChildIndex(pictureBox8, 0); // Índice 0 = Capa superior
+        }
+
+        public AlmacenMenu(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia del formulario principal
         }
 
         private void AlmacenMenu_Load(object sender, EventArgs e)
@@ -54,6 +62,12 @@ namespace VetPet_
                     control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
                 }
             }
+        }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            // Cuando se presiona el botón btnProductos, cargamos el formulario FormProductos en el panel
+            parentForm.formularioHijo(new AlmacenInventarioProductos());
         }
     }
 }

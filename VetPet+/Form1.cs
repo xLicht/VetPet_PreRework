@@ -17,12 +17,14 @@ namespace VetPet_
         {
             InitializeComponent();
         }
+
         private Form formHijo;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             
         }
-        private void formularioHijo(Form hijo)
+        public void formularioHijo(Form hijo)
         {
             if (formHijo != null)
             {
@@ -37,12 +39,11 @@ namespace VetPet_
             pnlForms.Tag = hijo;
             hijo.BringToFront();
             hijo.Show();
-            //lblTitulo.Text = hijo.Text;
         }
 
         private void BtnAlmacen_Click(object sender, EventArgs e)
         {
-            formularioHijo(new AlmacenMenu());
+            formularioHijo(new AlmacenMenu(this));  // Aquí se pasa la referencia de Form1
         }
 
         private void BtnAtencionClient_Click(object sender, EventArgs e)
