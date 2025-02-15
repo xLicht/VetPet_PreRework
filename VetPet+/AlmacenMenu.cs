@@ -15,6 +15,8 @@ namespace VetPet_
         public AlmacenMenu()
         {
             InitializeComponent();
+            this.Controls.SetChildIndex(pictureBox8, 0); // Índice 0 = Capa superior
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -35,6 +37,11 @@ namespace VetPet_
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
              //
+        }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
