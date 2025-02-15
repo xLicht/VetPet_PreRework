@@ -29,19 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlForms = new System.Windows.Forms.Panel();
             this.BtnAlmacen = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnAtencionClient = new System.Windows.Forms.Button();
-            this.BtnVeterinaria = new System.Windows.Forms.Button();
-            this.BtnCortes = new System.Windows.Forms.Button();
-            this.BtnServicios = new System.Windows.Forms.Button();
             this.BtnEmpleados = new System.Windows.Forms.Button();
+            this.BtnServicios = new System.Windows.Forms.Button();
+            this.BtnCortes = new System.Windows.Forms.Button();
+            this.BtnVeterinaria = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -49,25 +47,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(133)))), ((int)(((byte)(244)))));
-            this.panel1.Controls.Add(this.pictureBox7);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 65);
             this.panel1.TabIndex = 3;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox7.Image = global::VetPet_.Properties.Resources.warehouse;
-            this.pictureBox7.Location = new System.Drawing.Point(42, 8);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(72, 51);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 12;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // label1
             // 
@@ -141,31 +126,18 @@
             this.BtnAtencionClient.UseVisualStyleBackColor = true;
             this.BtnAtencionClient.Click += new System.EventHandler(this.BtnAtencionClient_Click);
             // 
-            // BtnVeterinaria
+            // BtnEmpleados
             // 
-            this.BtnVeterinaria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnVeterinaria.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVeterinaria.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.BtnVeterinaria.Location = new System.Drawing.Point(0, 108);
-            this.BtnVeterinaria.Name = "BtnVeterinaria";
-            this.BtnVeterinaria.Size = new System.Drawing.Size(166, 54);
-            this.BtnVeterinaria.TabIndex = 6;
-            this.BtnVeterinaria.Text = "Veterinaria";
-            this.BtnVeterinaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnVeterinaria.UseVisualStyleBackColor = true;
-            // 
-            // BtnCortes
-            // 
-            this.BtnCortes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCortes.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCortes.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.BtnCortes.Location = new System.Drawing.Point(0, 162);
-            this.BtnCortes.Name = "BtnCortes";
-            this.BtnCortes.Size = new System.Drawing.Size(166, 54);
-            this.BtnCortes.TabIndex = 8;
-            this.BtnCortes.Text = "Cortes";
-            this.BtnCortes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnCortes.UseVisualStyleBackColor = true;
+            this.BtnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEmpleados.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEmpleados.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.BtnEmpleados.Location = new System.Drawing.Point(0, 270);
+            this.BtnEmpleados.Name = "BtnEmpleados";
+            this.BtnEmpleados.Size = new System.Drawing.Size(166, 54);
+            this.BtnEmpleados.TabIndex = 11;
+            this.BtnEmpleados.Text = "Empleados";
+            this.BtnEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnEmpleados.UseVisualStyleBackColor = true;
             // 
             // BtnServicios
             // 
@@ -180,18 +152,31 @@
             this.BtnServicios.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnServicios.UseVisualStyleBackColor = true;
             // 
-            // BtnEmpleados
+            // BtnCortes
             // 
-            this.BtnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEmpleados.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEmpleados.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.BtnEmpleados.Location = new System.Drawing.Point(0, 270);
-            this.BtnEmpleados.Name = "BtnEmpleados";
-            this.BtnEmpleados.Size = new System.Drawing.Size(166, 54);
-            this.BtnEmpleados.TabIndex = 11;
-            this.BtnEmpleados.Text = "Empleados";
-            this.BtnEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnEmpleados.UseVisualStyleBackColor = true;
+            this.BtnCortes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCortes.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCortes.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.BtnCortes.Location = new System.Drawing.Point(0, 162);
+            this.BtnCortes.Name = "BtnCortes";
+            this.BtnCortes.Size = new System.Drawing.Size(166, 54);
+            this.BtnCortes.TabIndex = 8;
+            this.BtnCortes.Text = "Cortes";
+            this.BtnCortes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnCortes.UseVisualStyleBackColor = true;
+            // 
+            // BtnVeterinaria
+            // 
+            this.BtnVeterinaria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVeterinaria.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVeterinaria.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.BtnVeterinaria.Location = new System.Drawing.Point(0, 108);
+            this.BtnVeterinaria.Name = "BtnVeterinaria";
+            this.BtnVeterinaria.Size = new System.Drawing.Size(166, 54);
+            this.BtnVeterinaria.TabIndex = 6;
+            this.BtnVeterinaria.Text = "Veterinaria";
+            this.BtnVeterinaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnVeterinaria.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -207,7 +192,6 @@
             this.Load += new System.EventHandler(this.Form1_Load_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -216,7 +200,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel pnlForms;
