@@ -18,7 +18,5 @@ namespace VetPet_
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
-    }
-
-    t
+    }   
 }
