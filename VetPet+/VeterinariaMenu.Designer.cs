@@ -1,6 +1,6 @@
 ﻿namespace VetPet_
 {
-    partial class Menu_AtencionAlCliente
+    partial class VeterinariaMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // VeterinariaMenu
             // 
-            this.button1.Location = new System.Drawing.Point(295, 129);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(222, 112);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cambio";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // Menu_AtencionAlCliente
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Aqua;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Name = "Menu_AtencionAlCliente";
-            this.Text = "Menu_AtencionAlCliente";
+            this.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.Name = "VeterinariaMenu";
+            this.Text = "VeterinariaMenu";
+            this.Load += new System.EventHandler(this.VeterinariaMenu_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
     }
 }

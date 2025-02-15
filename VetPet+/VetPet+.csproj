@@ -73,6 +73,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VeterinariaMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaMenu.Designer.cs">
+      <DependentUpon>VeterinariaMenu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AlmacenMenu.resx">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +98,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VeterinariaMenu.resx">
+      <DependentUpon>VeterinariaMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

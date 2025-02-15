@@ -250,7 +250,7 @@
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 119;
-            this.iconPictureBox1.Location = new System.Drawing.Point(358, 140);
+            this.iconPictureBox1.Location = new System.Drawing.Point(371, 125);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(168, 119);
             this.iconPictureBox1.TabIndex = 2;
