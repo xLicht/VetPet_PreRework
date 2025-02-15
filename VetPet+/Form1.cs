@@ -47,7 +47,7 @@ namespace VetPet_
 
         private void BtnAtencionClient_Click(object sender, EventArgs e)
         {
-
+           formularioHijo(new Menu_AtencionAlCliente());
         }
 
         private void Form1_Load_1(object sender, EventArgs e)

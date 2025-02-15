@@ -9,7 +9,7 @@ namespace VetPet_
     {
         private float originalWidth;
         private float originalHeight;
-        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new();
+        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
         public AlmacenMenu()
         {
