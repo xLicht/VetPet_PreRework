@@ -182,6 +182,7 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // pictureBox2
             // 
@@ -237,6 +238,8 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.Name = "AlmacenInventarioProductos";
             this.Text = "AlmacenInventarioProductos";
+            this.Load += new System.EventHandler(this.AlmacenInventarioProductos_Load);
+            this.Resize += new System.EventHandler(this.AlmacenInventarioProductos_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

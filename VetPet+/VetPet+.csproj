@@ -53,6 +53,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlmacenAgregarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenAgregarProducto.Designer.cs">
+      <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenInventarioProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="VeterinariaMenu.Designer.cs">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AlmacenAgregarProducto.resx">
+      <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenInventarioProductos.resx">
       <DependentUpon>AlmacenInventarioProductos.cs</DependentUpon>
     </EmbeddedResource>
