@@ -49,9 +49,10 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(133)))), ((int)(((byte)(244)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 65);
+            this.panel1.Size = new System.Drawing.Size(1264, 65);
             this.panel1.TabIndex = 3;
             // 
             // label1
@@ -69,7 +70,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.remove;
-            this.pictureBox2.Location = new System.Drawing.Point(750, 15);
+            this.pictureBox2.Location = new System.Drawing.Point(1203, 15);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(36, 36);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -78,9 +79,10 @@
             // 
             // pnlForms
             // 
+            this.pnlForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForms.Location = new System.Drawing.Point(166, 65);
             this.pnlForms.Name = "pnlForms";
-            this.pnlForms.Size = new System.Drawing.Size(634, 385);
+            this.pnlForms.Size = new System.Drawing.Size(1098, 616);
             this.pnlForms.TabIndex = 5;
             // 
             // BtnAlmacen
@@ -106,10 +108,11 @@
             this.panel2.Controls.Add(this.BtnCortes);
             this.panel2.Controls.Add(this.BtnVeterinaria);
             this.panel2.Controls.Add(this.BtnAlmacen);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 65);
             this.panel2.Name = "panel2";
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panel2.Size = new System.Drawing.Size(166, 385);
+            this.panel2.Size = new System.Drawing.Size(166, 616);
             this.panel2.TabIndex = 4;
             // 
             // BtnAtencionClient
@@ -182,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.pnlForms);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
