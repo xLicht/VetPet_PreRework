@@ -47,9 +47,9 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtProducto = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbDisponibilidad = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +65,7 @@
             this.txtDescripcion.Size = new System.Drawing.Size(398, 347);
             this.txtDescripcion.TabIndex = 43;
             this.txtDescripcion.Text = "Descripción de producto";
+            this.txtDescripcion.Enter += new System.EventHandler(this.txtDescripcion_Enter);
             // 
             // label8
             // 
@@ -170,6 +171,7 @@
             this.txtPrecioVenta.Size = new System.Drawing.Size(340, 40);
             this.txtPrecioVenta.TabIndex = 35;
             this.txtPrecioVenta.Text = "Precio de venta";
+            this.txtPrecioVenta.Enter += new System.EventHandler(this.txtPrecioVenta_Enter);
             // 
             // btnElegir
             // 
@@ -206,6 +208,7 @@
             this.txtProveedor.Size = new System.Drawing.Size(233, 40);
             this.txtProveedor.TabIndex = 32;
             this.txtProveedor.Text = "Proveedor";
+            this.txtProveedor.Enter += new System.EventHandler(this.txtProveedor_Enter);
             // 
             // label3
             // 
@@ -229,6 +232,7 @@
             this.txtCantidad.Size = new System.Drawing.Size(364, 40);
             this.txtCantidad.TabIndex = 30;
             this.txtCantidad.Text = "Cantidad de producto";
+            this.txtCantidad.Enter += new System.EventHandler(this.txtCantidad_Enter);
             // 
             // label1
             // 
@@ -252,6 +256,7 @@
             this.txtMarca.Size = new System.Drawing.Size(364, 40);
             this.txtMarca.TabIndex = 28;
             this.txtMarca.Text = "Marca de producto";
+            this.txtMarca.Enter += new System.EventHandler(this.txtMarca_Enter);
             // 
             // txtNombre
             // 
@@ -263,6 +268,7 @@
             this.txtNombre.Size = new System.Drawing.Size(364, 40);
             this.txtNombre.TabIndex = 27;
             this.txtNombre.Text = "Nombre de producto";
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             // 
             // label2
             // 
@@ -288,16 +294,17 @@
             this.label7.Text = "Precio compra";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // txtProducto
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.textBox1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox1.Location = new System.Drawing.Point(259, 307);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(340, 40);
-            this.textBox1.TabIndex = 44;
-            this.textBox1.Text = "Precio de producto";
+            this.txtProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtProducto.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtProducto.Location = new System.Drawing.Point(259, 307);
+            this.txtProducto.Name = "txtProducto";
+            this.txtProducto.Size = new System.Drawing.Size(340, 40);
+            this.txtProducto.TabIndex = 44;
+            this.txtProducto.Text = "Precio de compra";
+            this.txtProducto.Enter += new System.EventHandler(this.txtProducto_Enter);
             // 
             // label9
             // 
@@ -311,20 +318,20 @@
             this.label9.Text = "Disponibilidad";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // cmbDisponibilidad
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.comboBox1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbDisponibilidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.cmbDisponibilidad.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDisponibilidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.cmbDisponibilidad.FormattingEnabled = true;
+            this.cmbDisponibilidad.Items.AddRange(new object[] {
             "Disponible",
             "Agotado"});
-            this.comboBox1.Location = new System.Drawing.Point(259, 408);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(340, 40);
-            this.comboBox1.TabIndex = 48;
-            this.comboBox1.Text = "Disponible";
+            this.cmbDisponibilidad.Location = new System.Drawing.Point(259, 408);
+            this.cmbDisponibilidad.Name = "cmbDisponibilidad";
+            this.cmbDisponibilidad.Size = new System.Drawing.Size(340, 40);
+            this.cmbDisponibilidad.TabIndex = 48;
+            this.cmbDisponibilidad.Text = "Disponible";
             // 
             // AlmacenModificarProducto
             // 
@@ -332,10 +339,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbDisponibilidad);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtProducto);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox2);
@@ -387,8 +394,8 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtProducto;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbDisponibilidad;
     }
 }

@@ -63,5 +63,68 @@ namespace VetPet_
                 }
             }
         }
+
+        private void txtNombre_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtNombre.Text == "Nombre de producto") // Si el texto predeterminado está presente
+            {
+                txtNombre.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtMarca_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtMarca.Text == "Marca de producto") // Si el texto predeterminado está presente
+            {
+                txtMarca.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtCantidad_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtCantidad.Text == "Cantidad de producto") // Si el texto predeterminado está presente
+            {
+                txtCantidad.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtPrecioVenta_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtPrecioVenta.Text == "Precio de venta") // Si el texto predeterminado está presente
+            {
+                txtPrecioVenta.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtProducto_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtProducto.Text == "Precio de compra") // Si el texto predeterminado está presente
+            {
+                txtProducto.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtProveedor_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtProveedor.Text == "Proveedor") // Si el texto predeterminado está presente
+            {
+                txtProveedor.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtDescripcion_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtDescripcion.Text == "Descripción de producto") // Si el texto predeterminado está presente
+            {
+                txtDescripcion.Text = ""; // Limpia el TextBox
+            }
+        }
     }
 }
