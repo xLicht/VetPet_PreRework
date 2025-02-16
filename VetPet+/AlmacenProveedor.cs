@@ -27,6 +27,11 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+                                  // Hacer que el ComboBox sea "invisible"
+            comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
+            comboBox1.BackColor = this.BackColor;  // Igual que el fondo del formulario
+            comboBox1.ForeColor = this.BackColor;  // Oculta el texto
+            comboBox1.DropDownWidth = 150;         // Ancho del desplegable
         }
 
         private void txtProveedor_Enter(object sender, EventArgs e)
@@ -83,6 +88,21 @@ namespace VetPet_
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new AlmacenAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            comboBox1.ForeColor = Color.Black;
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            comboBox1.ForeColor = this.BackColor;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
