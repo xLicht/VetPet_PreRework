@@ -107,6 +107,7 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // pictureBox1
             // 
@@ -136,6 +137,7 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // label6
             // 
@@ -185,6 +187,7 @@
             this.btnElegir.TabIndex = 34;
             this.btnElegir.Text = "Elegir";
             this.btnElegir.UseVisualStyleBackColor = false;
+            this.btnElegir.Click += new System.EventHandler(this.btnElegir_Click);
             // 
             // label4
             // 

@@ -239,9 +239,9 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.label8.Location = new System.Drawing.Point(29, 24);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(404, 38);
+            this.label8.Size = new System.Drawing.Size(493, 38);
             this.label8.TabIndex = 24;
-            this.label8.Text = "Rellene los datos";
+            this.label8.Text = "Rellene los datos a agregar";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtDescripcion

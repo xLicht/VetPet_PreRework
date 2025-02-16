@@ -126,5 +126,20 @@ namespace VetPet_
                 txtDescripcion.Text = ""; // Limpia el TextBox
             }
         }
+
+        private void btnElegir_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }
