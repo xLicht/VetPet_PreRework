@@ -11,22 +11,22 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
-    public partial class VeterinariaMenu : Form
+    public partial class CitasMedicas : Form
     {
         private float anchoOriginal;
         private float alturaOriginal;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
-        public VeterinariaMenu(Form1 parent)
+        public CitasMedicas(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
-            this.Load += VeterinariaMenu_Load;       // Evento Load
-            this.Resize += VeterinariaMenu_Resize;   // Evento Resize
+            this.Load += CitasMedicas_Load;       // Evento Load
+            this.Resize += CitasMedicas_Resize;   // Evento Resize
             this.Controls.SetChildIndex(pictureBox1, 0); // Índice 0 = Capa superior
         }
 
-        private void VeterinariaMenu_Load(object sender, EventArgs e)
+        private void CitasMedicas_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             anchoOriginal = this.ClientSize.Width;
@@ -39,7 +39,7 @@ namespace VetPet_
             }
         }
 
-        private void VeterinariaMenu_Resize(object sender, EventArgs e)
+        private void CitasMedicas_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float escalaX = this.ClientSize.Width / anchoOriginal;
@@ -63,29 +63,10 @@ namespace VetPet_
             }
         }
 
-        private void btnHistorialMedico_Click(object sender, EventArgs e)
+        private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaHistorialMedico(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void btnHistorialMedico_Click_1(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VeterinariaHistorialMedico(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VeterinariaHistorialMedico(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new CitasMedicas(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void btnCitasMedicas_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new CitasMedicas(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VeterinariaMenu(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
+   
 }

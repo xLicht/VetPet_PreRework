@@ -30,9 +30,9 @@
         {
             this.btnCitasMedicas = new System.Windows.Forms.Button();
             this.btnHistorialMedico = new System.Windows.Forms.Button();
+            this.lblvet = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblvet = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +49,7 @@
             this.btnCitasMedicas.Text = "Citas Medicas";
             this.btnCitasMedicas.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCitasMedicas.UseVisualStyleBackColor = false;
+            this.btnCitasMedicas.Click += new System.EventHandler(this.btnCitasMedicas_Click);
             // 
             // btnHistorialMedico
             // 
@@ -64,6 +65,17 @@
             this.btnHistorialMedico.UseVisualStyleBackColor = false;
             this.btnHistorialMedico.Click += new System.EventHandler(this.btnHistorialMedico_Click_1);
             // 
+            // lblvet
+            // 
+            this.lblvet.AutoSize = true;
+            this.lblvet.Font = new System.Drawing.Font("Segoe UI Black", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblvet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.lblvet.Location = new System.Drawing.Point(366, 28);
+            this.lblvet.Name = "lblvet";
+            this.lblvet.Size = new System.Drawing.Size(392, 86);
+            this.lblvet.TabIndex = 4;
+            this.lblvet.Text = "Veterinaria";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
@@ -74,6 +86,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(153, 167);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -85,17 +98,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(153, 167);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
-            // 
-            // lblvet
-            // 
-            this.lblvet.AutoSize = true;
-            this.lblvet.Font = new System.Drawing.Font("Segoe UI Black", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblvet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.lblvet.Location = new System.Drawing.Point(366, 28);
-            this.lblvet.Name = "lblvet";
-            this.lblvet.Size = new System.Drawing.Size(392, 86);
-            this.lblvet.TabIndex = 4;
-            this.lblvet.Text = "Veterinaria";
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // VeterinariaMenu
             // 

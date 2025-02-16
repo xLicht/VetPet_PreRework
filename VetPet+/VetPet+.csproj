@@ -89,6 +89,12 @@
     <Compile Include="CitasMascota.Designer.cs">
       <DependentUpon>CitasMascota.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitasMedicas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitasMedicas.Designer.cs">
+      <DependentUpon>CitasMedicas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CitasMascota.resx">
       <DependentUpon>CitasMascota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitasMedicas.resx">
+      <DependentUpon>CitasMedicas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
