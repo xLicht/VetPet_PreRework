@@ -17,16 +17,20 @@ namespace VetPet_
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
+
         public AlmacenAgregarProducto()
         {
             InitializeComponent();
             this.Load += AlmacenAgregarProducto_Load;       // Evento Load
             this.Resize += AlmacenAgregarProducto_Resize;   // Evento Resize
+
         }
         public AlmacenAgregarProducto(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent; // Guardamos la referencia de Form1
+
+            
         }
         private void AlmacenAgregarProducto_Load(object sender, EventArgs e)
         {
