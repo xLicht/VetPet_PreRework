@@ -11,22 +11,22 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
-    public partial class VeterianiaGestionarHistorialM : Form
+    public partial class CitasMascota : Form
     {
         private float anchoOriginal;
         private float alturaOriginal;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
-        public VeterianiaGestionarHistorialM(Form1 parent)
+        public CitasMascota(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
-            this.Load += VeterianiaGestionarHistorialM_Load;       // Evento Load
-            this.Resize += VeterianiaGestionarHistorialM_Resize;   // Evento Resize
+            this.Load += CitasMascota_Load;       // Evento Load
+            this.Resize += CitasMascota_Resize;   // Evento Resize
             this.Controls.SetChildIndex(pictureBox1, 0); // Índice 0 = Capa superior
         }
 
-        private void VeterianiaGestionarHistorialM_Load(object sender, EventArgs e)
+        private void CitasMascota_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             anchoOriginal = this.ClientSize.Width;
@@ -39,7 +39,7 @@ namespace VetPet_
             }
         }
 
-        private void VeterianiaGestionarHistorialM_Resize(object sender, EventArgs e)
+        private void CitasMascota_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float escalaX = this.ClientSize.Width / anchoOriginal;
@@ -63,19 +63,9 @@ namespace VetPet_
             }
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VeterinariaModificarHistorial(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
-        }
-
-        private void btnCitas_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new CitasMascota(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
-        }
-
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new VeterianiaGestionarHistorialM(parentForm)); //regresar a Gestionar Historial Medico
         }
     }
 }

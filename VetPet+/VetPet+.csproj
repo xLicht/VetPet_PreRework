@@ -83,6 +83,12 @@
     <Compile Include="AlmacenProveedor.Designer.cs">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitasMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitasMascota.Designer.cs">
+      <DependentUpon>CitasMascota.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenProveedor.resx">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitasMascota.resx">
+      <DependentUpon>CitasMascota.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
