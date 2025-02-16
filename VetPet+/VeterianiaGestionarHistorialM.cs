@@ -62,5 +62,10 @@ namespace VetPet_
                 }
             }
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaModificarHistorial(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
     }
 }
