@@ -21,7 +21,7 @@ namespace VetPet_
 
         private void AlmacenAvisoVerOModificar_Load(object sender, EventArgs e)
         {
-
+            //xd
         }
 
         public AlmacenAvisoVerOModificar(string nombre)
