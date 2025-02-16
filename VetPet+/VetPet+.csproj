@@ -115,6 +115,12 @@
     <Compile Include="VeterinariaMenu.Designer.cs">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaModificarHistorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaModificarHistorial.Designer.cs">
+      <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AlmacenAgregarProducto.resx">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaMenu.resx">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaModificarHistorial.resx">
+      <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
