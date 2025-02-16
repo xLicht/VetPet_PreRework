@@ -134,10 +134,29 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a
+            // Llamar al formulario de opciones
+            using (var opcionesForm = new AlmacenAvisoEliminar())
+            {
+                if (opcionesForm.ShowDialog() == DialogResult.OK)
+                {
+                    if (opcionesForm.Resultado == "Si")
+                    {
+                        parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a 
+                    }
+                    else if (opcionesForm.Resultado == "No")
+                    {
+                        parentForm.formularioHijo(new AlmacenModificarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+                    }
+                }
+            }
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a 
         }

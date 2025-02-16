@@ -59,6 +59,12 @@
     <Compile Include="AlmacenAgregarProducto.Designer.cs">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlmacenAvisoEliminar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenAvisoEliminar.Designer.cs">
+      <DependentUpon>AlmacenAvisoEliminar.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenAvisoVerOModificar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="AlmacenAgregarProducto.resx">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenAvisoEliminar.resx">
+      <DependentUpon>AlmacenAvisoEliminar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAvisoVerOModificar.resx">
       <DependentUpon>AlmacenAvisoVerOModificar.cs</DependentUpon>
