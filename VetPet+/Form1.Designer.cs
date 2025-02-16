@@ -154,6 +154,7 @@
             this.BtnServicios.Text = "Servicios";
             this.BtnServicios.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnServicios.UseVisualStyleBackColor = true;
+            this.BtnServicios.Click += new System.EventHandler(this.BtnServicios_Click);
             // 
             // BtnCortes
             // 

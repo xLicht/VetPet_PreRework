@@ -75,6 +75,11 @@ namespace VetPet_
         {
             formularioHijo(new VeterinariaMenu(this));
         }
+
+        private void BtnServicios_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new MenuServicios(this));
+        }
     }
 }
 
