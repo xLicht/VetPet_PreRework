@@ -16,5 +16,10 @@ namespace VetPet_
         {
             InitializeComponent();
         }
+
+        private void ConsultarCita_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

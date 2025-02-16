@@ -67,6 +67,11 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VeterinariaMenu(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+        private void dtCitasMedicas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
    
 }
