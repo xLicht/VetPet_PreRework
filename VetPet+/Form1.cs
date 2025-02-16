@@ -71,7 +71,10 @@ namespace VetPet_
 
         }
 
-
+        private void BtnVeterinaria_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new VeterinariaMenu(this));
+        }
     }
 }
 
