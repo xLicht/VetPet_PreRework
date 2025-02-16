@@ -180,6 +180,7 @@
             this.BtnVeterinaria.Text = "Veterinaria";
             this.BtnVeterinaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnVeterinaria.UseVisualStyleBackColor = true;
+            this.BtnVeterinaria.Click += new System.EventHandler(this.BtnVeterinaria_Click);
             // 
             // Form1
             // 

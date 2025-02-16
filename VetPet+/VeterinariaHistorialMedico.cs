@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class Menu_AtencionAlCliente : Form
+    public partial class VeterinariaHistorialMedico : Form
     {
-        public Menu_AtencionAlCliente()
+        public VeterinariaHistorialMedico()
         {
             InitializeComponent();
         }
-
     }
 }
