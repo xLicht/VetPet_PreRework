@@ -77,6 +77,12 @@
     <Compile Include="AlmacenMenu.Designer.cs">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlmacenModificarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenModificarProducto.Designer.cs">
+      <DependentUpon>AlmacenModificarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenMenu.resx">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenModificarProducto.resx">
+      <DependentUpon>AlmacenModificarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenProveedor.resx">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
