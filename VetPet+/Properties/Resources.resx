@@ -121,6 +121,9 @@
   <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-flecha-izquierda-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-flecha-izquierda-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,11 +133,11 @@
   <data name="historia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\historia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="menu-bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\menu-bar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="products" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\products.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="supplier" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\supplier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="drugs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\drugs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,10 +166,10 @@
   <data name="cita2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cita2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="supplier" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\supplier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="menu-bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu-bar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-flecha-izquierda-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-flecha-izquierda-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Hoja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hoja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
