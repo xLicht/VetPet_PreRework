@@ -95,6 +95,12 @@
     <Compile Include="AlmacenProveedor.Designer.cs">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CortesMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CortesMenu.Designer.cs">
+      <DependentUpon>CortesMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
