@@ -14,18 +14,21 @@ namespace VetPet_
     public partial class MenuReportes : Form
     {
         private Form1 parentForm;
+        private float originalWidth;
+        private float originalHeight;
+        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         public MenuReportes()
         {
             InitializeComponent();
+            this.Load += menuReportes_Load;       // Evento Load
+            this.Resize += menuReportes_Resize;   // Evento Resize
         }
         public MenuReportes(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;
         }
-        private float originalWidth;
-        private float originalHeight;
-        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
+        
 
         private void menuReportes_Load(object sender, EventArgs e)
         {
