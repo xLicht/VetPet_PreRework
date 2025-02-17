@@ -95,6 +95,12 @@
     <Compile Include="CitasMedicas.Designer.cs">
       <DependentUpon>CitasMedicas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultaMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaMedica.Designer.cs">
+      <DependentUpon>ConsultaMedica.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsultarCita.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CitasMedicas.resx">
       <DependentUpon>CitasMedicas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaMedica.resx">
+      <DependentUpon>ConsultaMedica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsultarCita.resx">
       <DependentUpon>ConsultarCita.cs</DependentUpon>
