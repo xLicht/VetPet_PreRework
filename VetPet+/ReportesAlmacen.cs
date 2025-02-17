@@ -7,30 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
-    public partial class MenuReportes : Form
+    public partial class ReportesAlmacen : Form
     {
         private Form1 parentForm;
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        public MenuReportes()
+        public ReportesAlmacen()
         {
             InitializeComponent();
-            this.Load += menuReportes_Load;       // Evento Load
-            this.Resize += menuReportes_Resize;   // Evento Resize
+            this.Load += ReportesAlmacen_Load;       // Evento Load
+            this.Resize += ReportesAlmacen_Resize;   // Evento Resize
         }
-        public MenuReportes(Form1 parent)
+        public ReportesAlmacen(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;
         }
-        
 
-        private void menuReportes_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ReportesAlmacen_Load(object sender, EventArgs e)
         {
             originalWidth = this.Width;
             originalHeight = this.Height;
@@ -41,7 +44,7 @@ namespace VetPet_
             }
         }
 
-        private void menuReportes_Resize(object sender, EventArgs e)
+        private void ReportesAlmacen_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -65,9 +68,9 @@ namespace VetPet_
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnProdMasVend_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ReportesAlmacen(parentForm));
+
         }
     }
 }
