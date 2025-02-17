@@ -160,6 +160,9 @@
     <EmbeddedResource Include="AlmacenProveedor.resx">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CortesMenu.resx">
+      <DependentUpon>CortesMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

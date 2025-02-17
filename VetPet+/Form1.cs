@@ -85,9 +85,15 @@ namespace VetPet_
         {
             formularioHijo(new MenuReportes(this));
         }
+
+        private void BtnCortes_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new MenuReportes(this));
+        }
     }
 }
 
 // Me voy a chingar la master causas
+
 
 //MAFUFAFADA
