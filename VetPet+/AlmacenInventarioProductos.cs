@@ -111,12 +111,10 @@ namespace VetPet_
                     {
                         if (opcionesForm.Resultado == "Modificar")
                         {
-                            MessageBox.Show($"Abrir formulario de modificación para {nombre}");
-                            // Aquí puedes abrir el formulario de edición
+                            parentForm.formularioHijo(new AlmacenModificarProducto(parentForm)); // Pasamos la referencia de Form1 a 
                         }
                         else if (opcionesForm.Resultado == "Ver")
                         {
-                            MessageBox.Show($"Mostrar detalles de {nombre}");
                             // Aquí puedes abrir el formulario de visualización
                         }
                     }

@@ -59,6 +59,12 @@
     <Compile Include="AlmacenAgregarProducto.Designer.cs">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlmacenAvisoEliminar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenAvisoEliminar.Designer.cs">
+      <DependentUpon>AlmacenAvisoEliminar.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenAvisoVerOModificar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,12 @@
     </Compile>
     <Compile Include="AlmacenMenu.Designer.cs">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlmacenModificarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenModificarProducto.Designer.cs">
+      <DependentUpon>AlmacenModificarProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="AlmacenProveedor.cs">
       <SubType>Form</SubType>
@@ -113,6 +125,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuReportes.Designer.cs">
+      <DependentUpon>MenuReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuServicios.Designer.cs">
+      <DependentUpon>MenuServicios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu_AtencionAlCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +172,9 @@
     <EmbeddedResource Include="AlmacenAgregarProducto.resx">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenAvisoEliminar.resx">
+      <DependentUpon>AlmacenAvisoEliminar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAvisoVerOModificar.resx">
       <DependentUpon>AlmacenAvisoVerOModificar.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenMenu.resx">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenModificarProducto.resx">
+      <DependentUpon>AlmacenModificarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenProveedor.resx">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
@@ -174,6 +204,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuReportes.resx">
+      <DependentUpon>MenuReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuServicios.resx">
+      <DependentUpon>MenuServicios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_AtencionAlCliente.resx">
       <DependentUpon>Menu_AtencionAlCliente.cs</DependentUpon>
