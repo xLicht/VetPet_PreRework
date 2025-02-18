@@ -203,6 +203,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_medicina_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-medicina-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_perro_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-perro-100", resourceCulture);

@@ -151,6 +151,12 @@
     <Compile Include="VeterianiaGestionarHistorialM.Designer.cs">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaConsultar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultar.Designer.cs">
+      <DependentUpon>VeterinariaConsultar.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,12 @@
     </Compile>
     <Compile Include="VeterinariaMenu.Designer.cs">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaModificarConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaModificarConsulta.Designer.cs">
+      <DependentUpon>VeterinariaModificarConsulta.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterinariaModificarHistorial.cs">
       <SubType>Form</SubType>
@@ -227,11 +239,17 @@
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultar.resx">
+      <DependentUpon>VeterinariaConsultar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaMenu.resx">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaModificarConsulta.resx">
+      <DependentUpon>VeterinariaModificarConsulta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaModificarHistorial.resx">
       <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
@@ -318,6 +336,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-disquete-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-medicina-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
