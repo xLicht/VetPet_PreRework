@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class ModificarServicio : Form
+    public partial class AvisoCirugias : Form
     {
-        public ModificarServicio()
+        public AvisoCirugias()
         {
             InitializeComponent();
         }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class ListaUltrasonido : Form
+    public partial class OlvideContraseña : Form
     {
-        public ListaUltrasonido()
+        public OlvideContraseña()
         {
             InitializeComponent();
         }

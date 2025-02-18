@@ -1,6 +1,6 @@
 ﻿namespace VetPet_
 {
-    partial class ListaServicio
+    partial class AgregarServicios
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(629, 172);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 40);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // AgregarServicios
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ListaServicio";
+            this.Controls.Add(this.button1);
+            this.Name = "AgregarServicios";
+            this.Text = "AgregarServicios";
+            this.Load += new System.EventHandler(this.AgregarServicios_Load);
+            this.Resize += new System.EventHandler(this.AgregarServicios_Resize);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button button1;
     }
 }
