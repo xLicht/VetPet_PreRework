@@ -77,6 +77,7 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // pictureBox1
             // 
@@ -106,6 +107,7 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // label4
             // 
@@ -212,7 +214,7 @@
             this.txtProducto.Name = "txtProducto";
             this.txtProducto.Size = new System.Drawing.Size(891, 24);
             this.txtProducto.TabIndex = 12;
-            this.txtProducto.Text = "Buscar nombre de producto";
+            this.txtProducto.Text = "Buscar nombre de medicamento";
             // 
             // AlmacenInventarioMedicamentos
             // 
