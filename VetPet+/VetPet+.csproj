@@ -53,83 +53,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Servicios\AgregarCirugias.cs">
+    <Compile Include="AlmacenAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\AgregarCirugias.Designer.cs">
-      <DependentUpon>AgregarCirugias.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarPLab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarPLab.Designer.cs">
-      <DependentUpon>AgregarPLab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarProducto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarProducto.Designer.cs">
-      <DependentUpon>AgregarProducto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarRadiografia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarRadiografia.Designer.cs">
-      <DependentUpon>AgregarRadiografia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarRayosX.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarRayosX.Designer.cs">
-      <DependentUpon>AgregarRayosX.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoCirugia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoCirugia.Designer.cs">
-      <DependentUpon>AgregarTipoCirugia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoPLab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoPLab.Designer.cs">
-      <DependentUpon>AgregarTipoPLab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoRadiografia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoRadiografia.Designer.cs">
-      <DependentUpon>AgregarTipoRadiografia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoRayosX.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoRayosX.Designer.cs">
-      <DependentUpon>AgregarTipoRayosX.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoUltrasonido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoUltrasonido.Designer.cs">
-      <DependentUpon>AgregarTipoUltrasonido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoVacunas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarTipoVacunas.Designer.cs">
-      <DependentUpon>AgregarTipoVacunas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarUltrasonidos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarUltrasonidos.Designer.cs">
-      <DependentUpon>AgregarUltrasonidos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\AgregarVacunas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\AgregarVacunas.Designer.cs">
-      <DependentUpon>AgregarVacunas.cs</DependentUpon>
+    <Compile Include="AlmacenAgregarMedicamento.Designer.cs">
+      <DependentUpon>AlmacenAgregarMedicamento.cs</DependentUpon>
     </Compile>
     <Compile Include="AlmacenAgregarProducto.cs">
       <SubType>Form</SubType>
@@ -137,17 +65,41 @@
     <Compile Include="AlmacenAgregarProducto.Designer.cs">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlmacenAgregarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenAgregarProveedor.Designer.cs">
+      <DependentUpon>AlmacenAgregarProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenAvisoEliminar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AlmacenAvisoEliminar.Designer.cs">
       <DependentUpon>AlmacenAvisoEliminar.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlmacenAvisoVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenAvisoVer.Designer.cs">
+      <DependentUpon>AlmacenAvisoVer.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenAvisoVerOModificar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AlmacenAvisoVerOModificar.Designer.cs">
       <DependentUpon>AlmacenAvisoVerOModificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlmacenHistorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenHistorial.Designer.cs">
+      <DependentUpon>AlmacenHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlmacenInventarioMedicamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenInventarioMedicamentos.Designer.cs">
+      <DependentUpon>AlmacenInventarioMedicamentos.cs</DependentUpon>
     </Compile>
     <Compile Include="AlmacenInventarioProductos.cs">
       <SubType>Form</SubType>
@@ -161,11 +113,23 @@
     <Compile Include="AlmacenMenu.Designer.cs">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="AlmacenModificarMedicamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenModificarMedicamento.Designer.cs">
+      <DependentUpon>AlmacenModificarMedicamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlmacenModificarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AlmacenModificarProducto.Designer.cs">
       <DependentUpon>AlmacenModificarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlmacenModificarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlmacenModificarProveedor.Designer.cs">
+      <DependentUpon>AlmacenModificarProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="AlmacenProveedor.cs">
       <SubType>Form</SubType>
@@ -173,35 +137,131 @@
     <Compile Include="AlmacenProveedor.Designer.cs">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\AvisoPLab.cs">
+    <Compile Include="AlmacenRecibirPedido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\AvisoPLab.Designer.cs">
-      <DependentUpon>AvisoPLab.cs</DependentUpon>
+    <Compile Include="AlmacenRecibirPedido.Designer.cs">
+      <DependentUpon>AlmacenRecibirPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\AvisoRadiografia.cs">
+    <Compile Include="AlmacenVerMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\AvisoRadiografia.Designer.cs">
-      <DependentUpon>AvisoRadiografia.cs</DependentUpon>
+    <Compile Include="AlmacenVerMedicamento.Designer.cs">
+      <DependentUpon>AlmacenVerMedicamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\AvisoRayosX.cs">
+    <Compile Include="AlmacenVerProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\AvisoRayosX.Designer.cs">
-      <DependentUpon>AvisoRayosX.cs</DependentUpon>
+    <Compile Include="AlmacenVerProducto.Designer.cs">
+      <DependentUpon>AlmacenVerProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\AvisoUltrasonido.cs">
+    <Compile Include="AlmacenVerProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\AvisoUltrasonido.Designer.cs">
-      <DependentUpon>AvisoUltrasonido.cs</DependentUpon>
+    <Compile Include="AlmacenVerProveedor.Designer.cs">
+      <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\AvisoVacunas.cs">
+    <Compile Include="CitaAgendar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\AvisoVacunas.Designer.cs">
-      <DependentUpon>AvisoVacunas.cs</DependentUpon>
+    <Compile Include="CitaAgendar.Designer.cs">
+      <DependentUpon>CitaAgendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaAgregarRayosX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaAgregarRayosX.Designer.cs">
+      <DependentUpon>CitaAgregarRayosX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaAgregarServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaAgregarServicio.Designer.cs">
+      <DependentUpon>CitaAgregarServicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaConsultarCita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaConsultarCita.Designer.cs">
+      <DependentUpon>CitaConsultarCita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaConsultarServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaConsultarServicio.Designer.cs">
+      <DependentUpon>CitaConsultarServicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaDueños.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaDueños.Designer.cs">
+      <DependentUpon>CitaDueños.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaEmpleadosDisponibles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaEmpleadosDisponibles.Designer.cs">
+      <DependentUpon>CitaEmpleadosDisponibles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaEnlistado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaEnlistado.Designer.cs">
+      <DependentUpon>CitaEnlistado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaErrorRellenado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaErrorRellenado.Designer.cs">
+      <DependentUpon>CitaErrorRellenado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaGestionarServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaGestionarServicio.Designer.cs">
+      <DependentUpon>CitaGestionarServicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaListaCirugia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaListaCirugia.Designer.cs">
+      <DependentUpon>CitaListaCirugia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaListaRadiografia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaListaRadiografia.Designer.cs">
+      <DependentUpon>CitaListaRadiografia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaListaRayosX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaListaRayosX.Designer.cs">
+      <DependentUpon>CitaListaRayosX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaListaServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaListaServicio.Designer.cs">
+      <DependentUpon>CitaListaServicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaListaVacunas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaListaVacunas.Designer.cs">
+      <DependentUpon>CitaListaVacunas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaModificarCita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaModificarCita.Designer.cs">
+      <DependentUpon>CitaModificarCita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaReceta.Designer.cs">
+      <DependentUpon>CitaReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="CitasMascota.cs">
       <SubType>Form</SubType>
@@ -221,11 +281,29 @@
     <Compile Include="ConsultarCita.Designer.cs">
       <DependentUpon>ConsultarCita.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\ErrorTipoCirugia.cs">
+    <Compile Include="CortesCaja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\ErrorTipoCirugia.Designer.cs">
-      <DependentUpon>ErrorTipoCirugia.cs</DependentUpon>
+    <Compile Include="CortesCaja.Designer.cs">
+      <DependentUpon>CortesCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CortesConsultar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CortesConsultar.Designer.cs">
+      <DependentUpon>CortesConsultar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CortesHistorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CortesHistorial.Designer.cs">
+      <DependentUpon>CortesHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CortesMenus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CortesMenus.Designer.cs">
+      <DependentUpon>CortesMenus.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -233,58 +311,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\ListaCirugias.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaCirugias.Designer.cs">
-      <DependentUpon>ListaCirugias.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ListaPLab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaPLab.Designer.cs">
-      <DependentUpon>ListaPLab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ListaRadiografia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaRadiografia.Designer.cs">
-      <DependentUpon>ListaRadiografia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ListaRayosX.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaRayosX.Designer.cs">
-      <DependentUpon>ListaRayosX.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ListaServicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaServicio.Designer.cs">
-      <DependentUpon>ListaServicio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ListaUltrasonido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaUltrasonido.Designer.cs">
-      <DependentUpon>ListaUltrasonido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ListaVacunas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ListaVacunas.Designer.cs">
-      <DependentUpon>ListaVacunas.cs</DependentUpon>
-    </Compile>
     <Compile Include="MenuReportes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuReportes.Designer.cs">
       <DependentUpon>MenuReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\MenuServicios.cs">
+    <Compile Include="MenuServicios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Servicios\MenuServicios.Designer.cs">
+    <Compile Include="MenuServicios.Designer.cs">
       <DependentUpon>MenuServicios.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu_AtencionAlCliente.cs">
@@ -292,48 +328,6 @@
     </Compile>
     <Compile Include="Menu_AtencionAlCliente.Designer.cs">
       <DependentUpon>Menu_AtencionAlCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarCirugia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarCirugia.Designer.cs">
-      <DependentUpon>ModificarCirugia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarPLab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarPLab.Designer.cs">
-      <DependentUpon>ModificarPLab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarRadiografia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarRadiografia.Designer.cs">
-      <DependentUpon>ModificarRadiografia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarRayosX.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarRayosX.Designer.cs">
-      <DependentUpon>ModificarRayosX.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarServicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarServicio.Designer.cs">
-      <DependentUpon>ModificarServicio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarUltrasonido.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarUltrasonido.Designer.cs">
-      <DependentUpon>ModificarUltrasonido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Servicios\ModificarVacunas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Servicios\ModificarVacunas.Designer.cs">
-      <DependentUpon>ModificarVacunas.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -361,14 +355,29 @@
     <Compile Include="VeterinariaModificarHistorial.Designer.cs">
       <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AlmacenAgregarMedicamento.resx">
+      <DependentUpon>AlmacenAgregarMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAgregarProducto.resx">
       <DependentUpon>AlmacenAgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenAgregarProveedor.resx">
+      <DependentUpon>AlmacenAgregarProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAvisoEliminar.resx">
       <DependentUpon>AlmacenAvisoEliminar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenAvisoVer.resx">
+      <DependentUpon>AlmacenAvisoVer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAvisoVerOModificar.resx">
       <DependentUpon>AlmacenAvisoVerOModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenHistorial.resx">
+      <DependentUpon>AlmacenHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenInventarioMedicamentos.resx">
+      <DependentUpon>AlmacenInventarioMedicamentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenInventarioProductos.resx">
       <DependentUpon>AlmacenInventarioProductos.cs</DependentUpon>
@@ -376,11 +385,80 @@
     <EmbeddedResource Include="AlmacenMenu.resx">
       <DependentUpon>AlmacenMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenModificarMedicamento.resx">
+      <DependentUpon>AlmacenModificarMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenModificarProducto.resx">
       <DependentUpon>AlmacenModificarProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenModificarProveedor.resx">
+      <DependentUpon>AlmacenModificarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenProveedor.resx">
       <DependentUpon>AlmacenProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenRecibirPedido.resx">
+      <DependentUpon>AlmacenRecibirPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenVerMedicamento.resx">
+      <DependentUpon>AlmacenVerMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenVerProducto.resx">
+      <DependentUpon>AlmacenVerProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlmacenVerProveedor.resx">
+      <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaAgendar.resx">
+      <DependentUpon>CitaAgendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaAgregarRayosX.resx">
+      <DependentUpon>CitaAgregarRayosX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaAgregarServicio.resx">
+      <DependentUpon>CitaAgregarServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaConsultarCita.resx">
+      <DependentUpon>CitaConsultarCita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaConsultarServicio.resx">
+      <DependentUpon>CitaConsultarServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaDueños.resx">
+      <DependentUpon>CitaDueños.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaEmpleadosDisponibles.resx">
+      <DependentUpon>CitaEmpleadosDisponibles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaEnlistado.resx">
+      <DependentUpon>CitaEnlistado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaErrorRellenado.resx">
+      <DependentUpon>CitaErrorRellenado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaGestionarServicio.resx">
+      <DependentUpon>CitaGestionarServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaListaCirugia.resx">
+      <DependentUpon>CitaListaCirugia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaListaRadiografia.resx">
+      <DependentUpon>CitaListaRadiografia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaListaRayosX.resx">
+      <DependentUpon>CitaListaRayosX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaListaServicio.resx">
+      <DependentUpon>CitaListaServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaListaVacunas.resx">
+      <DependentUpon>CitaListaVacunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaModificarCita.resx">
+      <DependentUpon>CitaModificarCita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaReceta.resx">
+      <DependentUpon>CitaReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CitasMascota.resx">
       <DependentUpon>CitasMascota.cs</DependentUpon>
@@ -391,13 +469,25 @@
     <EmbeddedResource Include="ConsultarCita.resx">
       <DependentUpon>ConsultarCita.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CortesCaja.resx">
+      <DependentUpon>CortesCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CortesConsultar.resx">
+      <DependentUpon>CortesConsultar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CortesHistorial.resx">
+      <DependentUpon>CortesHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CortesMenus.resx">
+      <DependentUpon>CortesMenus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuReportes.resx">
       <DependentUpon>MenuReportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Servicios\MenuServicios.resx">
+    <EmbeddedResource Include="MenuServicios.resx">
       <DependentUpon>MenuServicios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_AtencionAlCliente.resx">
