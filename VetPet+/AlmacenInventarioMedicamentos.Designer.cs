@@ -118,7 +118,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(214, 35);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Marca";
+            this.label4.Text = "Precio";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -130,7 +130,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(214, 35);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Cantidad";
+            this.label3.Text = "Inventario";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -142,7 +142,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(212, 35);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Precio";
+            this.label2.Text = "Nombre";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -154,7 +154,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 35);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Producto";
+            this.label1.Text = "Presentación";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
@@ -173,6 +173,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(891, 319);
             this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Column1
             // 

@@ -196,7 +196,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label4.Location = new System.Drawing.Point(28, 358);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(186, 38);
+            this.label4.Size = new System.Drawing.Size(213, 38);
             this.label4.TabIndex = 58;
             this.label4.Text = "Proveedor";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

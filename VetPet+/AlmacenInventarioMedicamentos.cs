@@ -76,5 +76,33 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {         
+            if (e.RowIndex >= 0)
+            {
+                string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                // Llamar al formulario de opciones
+                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                {
+                    if (opcionesForm.ShowDialog() == DialogResult.OK)
+                    {
+                        if (opcionesForm.Resultado == "Modificar")
+                        {
+                            parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                        if (opcionesForm.Resultado == "Salir")
+                        {
+                            parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                        else if (opcionesForm.Resultado == "Ver")
+                        {
+                           parentForm.formularioHijo(new AlmacenVerMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                    }
+                }
+            }
+        }
     }
 }
