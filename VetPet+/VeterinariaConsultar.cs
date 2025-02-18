@@ -16,5 +16,10 @@ namespace VetPet_
         {
             InitializeComponent();
         }
+
+        private void VeterinariaConsultar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
