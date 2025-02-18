@@ -10,36 +10,29 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class ListadoMascotas : Form
+    public partial class ConsultarMascota : Form
     {
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
+
         private Form1 parentForm;
-
-
-        public ListadoMascotas()
+        public ConsultarMascota()
         {
             InitializeComponent();
-            this.Load += ListadoMascotas_Load;       // Evento Load
-            this.Resize += ListadoMascotas_Resize;   // Evento Resize
-
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 0, 128); // Azul oscuro
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255); // Blanco
-            dataGridView1.EnableHeadersVisualStyles = false; // Para que los cambios se apliquen
-
-
-
+            InitializeComponent();
+            this.Load += ConsultarMascota_Load;       // Evento Load
+            this.Resize += ConsultarMascota_Resize;   // Evento Resize
         }
-
-        public ListadoMascotas(Form1 parent)
-        {
+    
+      public ConsultarMascota(Form1 parent)
+      {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
-        }
+      }
 
-        private void ListadoMascotas_Load(object sender, EventArgs e)
+        private void ConsultarMascota_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -50,9 +43,10 @@ namespace VetPet_
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+
         }
- 
-        private void ListadoMascotas_Resize(object sender, EventArgs e)
+
+        private void ConsultarMascota_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -76,6 +70,6 @@ namespace VetPet_
             }
         }
 
-
     }
 }
+

@@ -63,5 +63,10 @@ namespace VetPet_
                 }
             }
         }
+
+        private void btnMascotas_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListadoMascotas(parentForm)); // Pasamos la referencia de Form1 a 
+         }
     }
 }
