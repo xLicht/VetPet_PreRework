@@ -38,6 +38,7 @@
             this.Name = "AlmacenAgregarMedicamento";
             this.Text = "AlmacenAgregarMedicamento";
             this.Load += new System.EventHandler(this.AlmacenAgregarMedicamento_Load);
+            this.Resize += new System.EventHandler(this.AlmacenAgregarMedicamento_Resize);
             this.ResumeLayout(false);
 
         }

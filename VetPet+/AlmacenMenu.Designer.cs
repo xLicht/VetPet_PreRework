@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnProductos = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnMedicamentos = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -69,26 +69,27 @@
             this.btnProductos.UseVisualStyleBackColor = false;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
-            // button5
+            // btnMedicamentos
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnMedicamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
-            this.button5.FlatAppearance.BorderSize = 2;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.button5.Location = new System.Drawing.Point(390, 174);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(317, 102);
-            this.button5.TabIndex = 12;
-            this.button5.Tag = "2";
-            this.button5.Text = "Medicamentos";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnMedicamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
+            this.btnMedicamentos.FlatAppearance.BorderSize = 2;
+            this.btnMedicamentos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnMedicamentos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMedicamentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMedicamentos.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMedicamentos.ForeColor = System.Drawing.Color.PaleVioletRed;
+            this.btnMedicamentos.Location = new System.Drawing.Point(390, 174);
+            this.btnMedicamentos.Name = "btnMedicamentos";
+            this.btnMedicamentos.Size = new System.Drawing.Size(317, 102);
+            this.btnMedicamentos.TabIndex = 12;
+            this.btnMedicamentos.Tag = "2";
+            this.btnMedicamentos.Text = "Medicamentos";
+            this.btnMedicamentos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMedicamentos.UseVisualStyleBackColor = false;
+            this.btnMedicamentos.Click += new System.EventHandler(this.btnMedicamentos_Click);
             // 
             // button6
             // 
@@ -244,7 +245,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnMedicamentos);
             this.Controls.Add(this.btnProductos);
             this.Name = "AlmacenMenu";
             this.Load += new System.EventHandler(this.AlmacenMenu_Load);
@@ -260,7 +261,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnProductos;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnMedicamentos;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
