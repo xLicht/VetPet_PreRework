@@ -78,7 +78,7 @@ namespace VetPet_
 
         private void BtnServicios_Click(object sender, EventArgs e)
         {
-            formularioHijo(new MenuServicios(this));
+            //formularioHijo(new MenuServicios(this));
         }
 
         private void BtnReportes_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace VetPet_
 
         private void BtnCortes_Click(object sender, EventArgs e)
         {
-            formularioHijo(new MenuReportes(this));
+            formularioHijo(new CortesMenus(this));
         }
     }
 }

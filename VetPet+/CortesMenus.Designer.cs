@@ -38,6 +38,7 @@
             this.Name = "CortesMenus";
             this.Text = "CortesMenus";
             this.Load += new System.EventHandler(this.CortesMenus_Load);
+            this.Resize += new System.EventHandler(this.CortesMenus_Resize);
             this.ResumeLayout(false);
 
         }

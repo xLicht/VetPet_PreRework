@@ -317,12 +317,6 @@
     <Compile Include="MenuReportes.Designer.cs">
       <DependentUpon>MenuReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuServicios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MenuServicios.Designer.cs">
-      <DependentUpon>MenuServicios.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu_AtencionAlCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -486,9 +480,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuReportes.resx">
       <DependentUpon>MenuReportes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MenuServicios.resx">
-      <DependentUpon>MenuServicios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_AtencionAlCliente.resx">
       <DependentUpon>Menu_AtencionAlCliente.cs</DependentUpon>
