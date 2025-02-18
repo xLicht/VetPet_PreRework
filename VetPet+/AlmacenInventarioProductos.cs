@@ -115,7 +115,7 @@ namespace VetPet_
                         }
                         else if (opcionesForm.Resultado == "Ver")
                         {
-                            parentForm.formularioHijo(new AlmacenVerProducto(parentForm)); // Pasamos la referencia de Form1 a 
+                            // Aquí puedes abrir el formulario de visualización
                         }
                     }
                 }
