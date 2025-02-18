@@ -78,16 +78,24 @@ namespace VetPet_
 
         private void BtnServicios_Click(object sender, EventArgs e)
         {
-            formularioHijo(new MenuServicios(this));
+            //formularioHijo(new MenuServicios(this));
         }
 
         private void BtnReportes_Click(object sender, EventArgs e)
         {
             formularioHijo(new MenuReportes(this));
         }
+
+        private void BtnCortes_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new CortesMenus(this));
+        }
     }
 }
+//SEXOO
+//PENE POLLA
 
 // Me voy a chingar la master causas
+
 
 //MAFUFAFADA
