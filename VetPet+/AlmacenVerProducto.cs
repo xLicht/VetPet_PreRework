@@ -69,5 +69,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
+
+        private void btnElegir_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+        }
     }
 }

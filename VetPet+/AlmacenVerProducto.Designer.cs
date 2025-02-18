@@ -39,7 +39,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrecioVenta = new System.Windows.Forms.TextBox();
-            this.btnElegir = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -190,19 +189,6 @@
             this.txtPrecioVenta.TabIndex = 60;
             this.txtPrecioVenta.Text = "Precio de venta";
             // 
-            // btnElegir
-            // 
-            this.btnElegir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
-            this.btnElegir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnElegir.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnElegir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnElegir.Location = new System.Drawing.Point(235, 358);
-            this.btnElegir.Name = "btnElegir";
-            this.btnElegir.Size = new System.Drawing.Size(125, 40);
-            this.btnElegir.TabIndex = 59;
-            this.btnElegir.Text = "Elegir";
-            this.btnElegir.UseVisualStyleBackColor = false;
-            // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
@@ -220,9 +206,9 @@
             this.txtProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtProveedor.Location = new System.Drawing.Point(366, 358);
+            this.txtProveedor.Location = new System.Drawing.Point(259, 358);
             this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(233, 40);
+            this.txtProveedor.Size = new System.Drawing.Size(340, 40);
             this.txtProveedor.TabIndex = 57;
             this.txtProveedor.Text = "Proveedor";
             // 
@@ -312,7 +298,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPrecioVenta);
-            this.Controls.Add(this.btnElegir);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtProveedor);
             this.Controls.Add(this.label3);
@@ -343,7 +328,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPrecioVenta;
-        private System.Windows.Forms.Button btnElegir;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtProveedor;
         private System.Windows.Forms.Label label3;
