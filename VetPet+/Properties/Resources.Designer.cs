@@ -133,6 +133,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_ajustes_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-ajustes-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_busca_mas_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-busca-mas-96", resourceCulture);
@@ -153,9 +163,49 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_disquete_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-disquete-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_flecha_izquierda_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-flecha-izquierda-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_hoja_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-hoja-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_hoja_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-hoja-1001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_perro_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-perro-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

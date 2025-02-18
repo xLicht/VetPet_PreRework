@@ -304,5 +304,20 @@
   <ItemGroup>
     <None Include="Resources\Hoja.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-ajustes-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-hoja-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-hoja-1001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-perro-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-disquete-100.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
