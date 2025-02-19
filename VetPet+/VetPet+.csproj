@@ -157,6 +157,12 @@
     <Compile Include="VeterinariaConsultar.Designer.cs">
       <DependentUpon>VeterinariaConsultar.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaCrearReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaCrearReceta.Designer.cs">
+      <DependentUpon>VeterinariaCrearReceta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultar.resx">
       <DependentUpon>VeterinariaConsultar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaCrearReceta.resx">
+      <DependentUpon>VeterinariaCrearReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>

@@ -867,6 +867,7 @@
             this.Name = "VeterinariaConsultar";
             this.Text = "VeterinariaConsultar";
             this.Load += new System.EventHandler(this.VeterinariaConsultar_Load);
+            this.Resize += new System.EventHandler(this.VeterinariaConsultar_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
