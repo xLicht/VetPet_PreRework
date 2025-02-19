@@ -10,27 +10,26 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class MenuServicios : Form
+    public partial class ListaServicios : Form
     {
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
         private Form1 parentForm;
-
-        public MenuServicios()
+        public ListaServicios()
         {
             InitializeComponent();
-            this.Load += MenuServicios_Load;       // Evento Load
-            this.Resize += MenuServicios_Resize;
+            this.Load += ListaServicios_Load;       // Evento Load
+            this.Resize += ListaServicios_Resize;
         }
-        public MenuServicios(Form1 parent)
+        public ListaServicios(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
         }
 
-        private void MenuServicios_Load(object sender, EventArgs e)
+        private void ListaServicios_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -43,7 +42,7 @@ namespace VetPet_
             }
         }
 
-        private void MenuServicios_Resize(object sender, EventArgs e)
+        private void ListaServicios_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -67,14 +66,9 @@ namespace VetPet_
             }
         }
 
-        private void BtnListaServicios_Click(object sender, EventArgs e)
+        private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
-        }
-
-        private void BtnAgregarServicios_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new AgregarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+            parentForm.formularioHijo(new MenuServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
     }
 }
