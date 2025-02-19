@@ -335,6 +335,12 @@
     <Compile Include="MenuReportes.Designer.cs">
       <DependentUpon>MenuReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuServicios.Designer.cs">
+      <DependentUpon>MenuServicios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu_AtencionAlCliente.cs">
       <SubType>Form</SubType>
     </Compile>
