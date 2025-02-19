@@ -11,23 +11,24 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
-    public partial class VeterinariaCrearReceta : Form
+    public partial class VeterinariaConsultarReceta : Form
     {
         private float anchoOriginal;
         private float alturaOriginal;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
-        public VeterinariaCrearReceta(Form1 parent)
+
+        public VeterinariaConsultarReceta(Form1 parent)
         {
             InitializeComponent();
 
             parentForm = parent;  // Guardamos la referencia del formulario principal
-            this.Load += VeterinariaCrearReceta_Load;       // Evento Load
-            this.Resize += VeterinariaCrearReceta_Resize;   // Evento Resize
+            this.Load += VeterinariaConsultarReceta_Load;       // Evento Load
+            this.Resize += VeterinariaConsultarReceta_Resize;   // Evento Resize
             this.Controls.SetChildIndex(pictureBox1, 0); // Índice 0 = Capa superior
         }
 
-        private void VeterinariaCrearReceta_Load(object sender, EventArgs e)
+        private void VeterinariaConsultarReceta_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             anchoOriginal = this.ClientSize.Width;
@@ -40,7 +41,7 @@ namespace VetPet_
             }
         }
 
-        private void VeterinariaCrearReceta_Resize(object sender, EventArgs e)
+        private void VeterinariaConsultarReceta_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float escalaX = this.ClientSize.Width / anchoOriginal;
