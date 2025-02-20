@@ -436,6 +436,102 @@
     <Compile Include="CortesMenus.Designer.cs">
       <DependentUpon>CortesMenus.cs</DependentUpon>
     </Compile>
+    <Compile Include="DueAgregarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueAgregarMascota.Designer.cs">
+      <DependentUpon>DueAgregarMascota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueAtencionAlCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueAtencionAlCliente.Designer.cs">
+      <DependentUpon>DueAtencionAlCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueConsultarDueño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueConsultarDueño.Designer.cs">
+      <DependentUpon>DueConsultarDueño.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueConsultarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueConsultarMascota.Designer.cs">
+      <DependentUpon>DueConsultarMascota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueGestionarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueGestionarMascota.Designer.cs">
+      <DependentUpon>DueGestionarMascota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueMascotadeDue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueMascotadeDue.Designer.cs">
+      <DependentUpon>DueMascotadeDue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueModificarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueModificarMascota.Designer.cs">
+      <DependentUpon>DueModificarMascota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAgregarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpAgregarEmpleado.Designer.cs">
+      <DependentUpon>EmpAgregarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpAgregarTipoEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpAgregarTipoEmpleado.Designer.cs">
+      <DependentUpon>EmpAgregarTipoEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpConsultarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpConsultarEmpleado.Designer.cs">
+      <DependentUpon>EmpConsultarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpConsultarTipoEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpConsultarTipoEmpleado.Designer.cs">
+      <DependentUpon>EmpConsultarTipoEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpListaEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpListaEmpleados.Designer.cs">
+      <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpMenuEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpMenuEmpleados.Designer.cs">
+      <DependentUpon>EmpMenuEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpModificarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpModificarEmpleado.Designer.cs">
+      <DependentUpon>EmpModificarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpModificarTipoEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpModificarTipoEmpleado.Designer.cs">
+      <DependentUpon>EmpModificarTipoEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpTiposEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpTiposEmpleados.Designer.cs">
+      <DependentUpon>EmpTiposEmpleados.cs</DependentUpon>
+    </Compile>
     <Compile Include="ErrorInicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -684,6 +780,18 @@
     <Compile Include="VeterianiaGestionarHistorialM.Designer.cs">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaConsultaM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultaM.Designer.cs">
+      <DependentUpon>VeterinariaConsultaM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaConsultaMed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultaMed.Designer.cs">
+      <DependentUpon>VeterinariaConsultaMed.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaConsultaMedica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -695,6 +803,12 @@
     </Compile>
     <Compile Include="VeterinariaConsultarM.Designer.cs">
       <DependentUpon>VeterinariaConsultarM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaConsultarRece.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultarRece.Designer.cs">
+      <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
@@ -708,11 +822,29 @@
     <Compile Include="VeterinariaMenu.Designer.cs">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaModificarConsultaM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaModificarConsultaM.Designer.cs">
+      <DependentUpon>VeterinariaModificarConsultaM.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaModificarHistorial.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VeterinariaModificarHistorial.Designer.cs">
       <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaModificarReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaModificarReceta.Designer.cs">
+      <DependentUpon>VeterinariaModificarReceta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaRecetar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaRecetar.Designer.cs">
+      <DependentUpon>VeterinariaRecetar.cs</DependentUpon>
     </Compile>
     <Compile Include="xd.cs">
       <SubType>Form</SubType>
@@ -849,6 +981,54 @@
     <EmbeddedResource Include="CortesMenus.resx">
       <DependentUpon>CortesMenus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DueAgregarMascota.resx">
+      <DependentUpon>DueAgregarMascota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueAtencionAlCliente.resx">
+      <DependentUpon>DueAtencionAlCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueConsultarDueño.resx">
+      <DependentUpon>DueConsultarDueño.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueConsultarMascota.resx">
+      <DependentUpon>DueConsultarMascota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueGestionarMascota.resx">
+      <DependentUpon>DueGestionarMascota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueMascotadeDue.resx">
+      <DependentUpon>DueMascotadeDue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueModificarMascota.resx">
+      <DependentUpon>DueModificarMascota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpAgregarEmpleado.resx">
+      <DependentUpon>EmpAgregarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpAgregarTipoEmpleado.resx">
+      <DependentUpon>EmpAgregarTipoEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpConsultarEmpleado.resx">
+      <DependentUpon>EmpConsultarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpConsultarTipoEmpleado.resx">
+      <DependentUpon>EmpConsultarTipoEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpListaEmpleados.resx">
+      <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpMenuEmpleados.resx">
+      <DependentUpon>EmpMenuEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpModificarEmpleado.resx">
+      <DependentUpon>EmpModificarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpModificarTipoEmpleado.resx">
+      <DependentUpon>EmpModificarTipoEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpTiposEmpleados.resx">
+      <DependentUpon>EmpTiposEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -897,11 +1077,17 @@
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultaMed.resx">
+      <DependentUpon>VeterinariaConsultaMed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultaMedica.resx">
       <DependentUpon>VeterinariaConsultaMedica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultarM.resx">
       <DependentUpon>VeterinariaConsultarM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultarRece.resx">
+      <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
@@ -909,13 +1095,25 @@
     <EmbeddedResource Include="VeterinariaMenu.resx">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaModificarConsultaM.resx">
+      <DependentUpon>VeterinariaModificarConsultaM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaModificarHistorial.resx">
       <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaModificarReceta.resx">
+      <DependentUpon>VeterinariaModificarReceta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaRecetar.resx">
+      <DependentUpon>VeterinariaRecetar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="libpdfium.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <Content Include="icudt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="PDF_ReportesAlmacen\A1. Escaner DML.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -990,9 +1188,6 @@
     <None Include="Resources\icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icudt.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

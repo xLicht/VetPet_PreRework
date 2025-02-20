@@ -31,8 +31,8 @@
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnMedicamentos = new System.Windows.Forms.Button();
             this.btnPedidos = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnHistorial = new System.Windows.Forms.Button();
+            this.btnProveedores = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -110,41 +110,43 @@
             this.btnPedidos.UseVisualStyleBackColor = false;
             this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
-            // button7
+            // btnHistorial
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
-            this.button7.FlatAppearance.BorderSize = 2;
-            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.button7.Location = new System.Drawing.Point(37, 326);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(335, 102);
-            this.button7.TabIndex = 19;
-            this.button7.Tag = "";
-            this.button7.Text = "Historial";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
+            this.btnHistorial.FlatAppearance.BorderSize = 2;
+            this.btnHistorial.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnHistorial.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistorial.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorial.ForeColor = System.Drawing.Color.PaleVioletRed;
+            this.btnHistorial.Location = new System.Drawing.Point(37, 326);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(335, 102);
+            this.btnHistorial.TabIndex = 19;
+            this.btnHistorial.Tag = "";
+            this.btnHistorial.Text = "Historial";
+            this.btnHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistorial.UseVisualStyleBackColor = false;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
-            // button8
+            // btnProveedores
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
-            this.button8.FlatAppearance.BorderSize = 2;
-            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.button8.Location = new System.Drawing.Point(390, 326);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(317, 102);
-            this.button8.TabIndex = 20;
-            this.button8.Tag = "";
-            this.button8.Text = "Proveedores";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = false;
+            this.btnProveedores.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
+            this.btnProveedores.FlatAppearance.BorderSize = 2;
+            this.btnProveedores.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnProveedores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnProveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProveedores.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProveedores.ForeColor = System.Drawing.Color.PaleVioletRed;
+            this.btnProveedores.Location = new System.Drawing.Point(390, 326);
+            this.btnProveedores.Name = "btnProveedores";
+            this.btnProveedores.Size = new System.Drawing.Size(317, 102);
+            this.btnProveedores.TabIndex = 20;
+            this.btnProveedores.Tag = "";
+            this.btnProveedores.Text = "Proveedores";
+            this.btnProveedores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProveedores.UseVisualStyleBackColor = false;
+            this.btnProveedores.Click += new System.EventHandler(this.btnProveedores_Click);
             // 
             // label1
             // 
@@ -241,8 +243,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.btnProveedores);
+            this.Controls.Add(this.btnHistorial);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnPedidos);
@@ -266,8 +268,8 @@
         private System.Windows.Forms.Button btnPedidos;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnHistorial;
+        private System.Windows.Forms.Button btnProveedores;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label1;
