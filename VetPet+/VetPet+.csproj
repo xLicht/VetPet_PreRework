@@ -1074,6 +1074,18 @@
     <EmbeddedResource Include="ReportesAlmacen.resx">
       <DependentUpon>ReportesAlmacen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportesCitas.resx">
+      <DependentUpon>ReportesCitas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesClientes.resx">
+      <DependentUpon>ReportesClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesServicios.resx">
+      <DependentUpon>ReportesServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesVenta.resx">
+      <DependentUpon>ReportesVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </EmbeddedResource>

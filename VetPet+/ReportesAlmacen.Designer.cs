@@ -52,7 +52,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(683, 85);
             this.label1.TabIndex = 24;
-            this.label1.Text = "Reportes: Almacen";
+            this.label1.Text = "Reportes: Almacén";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pdfViewAlma
@@ -68,7 +68,7 @@
             this.pdfViewAlma.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
             this.pdfViewAlma.Name = "pdfViewAlma";
             this.pdfViewAlma.OptimizedLoadThreshold = 1000;
-            this.pdfViewAlma.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pdfViewAlma.Padding = new System.Windows.Forms.Padding(10);
             this.pdfViewAlma.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.pdfViewAlma.PageAutoDispose = true;
             this.pdfViewAlma.PageBackColor = System.Drawing.Color.White;
@@ -94,7 +94,7 @@
             this.BtnProdMasVend.Font = new System.Drawing.Font("Cascadia Mono", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProdMasVend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnProdMasVend.Location = new System.Drawing.Point(40, 115);
-            this.BtnProdMasVend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnProdMasVend.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProdMasVend.Name = "BtnProdMasVend";
             this.BtnProdMasVend.Size = new System.Drawing.Size(262, 45);
             this.BtnProdMasVend.TabIndex = 36;
@@ -108,7 +108,7 @@
             this.button8.Font = new System.Drawing.Font("Cascadia Mono", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.button8.Location = new System.Drawing.Point(40, 171);
-            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(262, 45);
             this.button8.TabIndex = 37;
@@ -211,7 +211,7 @@
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.button7.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button7.Location = new System.Drawing.Point(895, 507);
+            this.button7.Location = new System.Drawing.Point(895, 504);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(164, 45);
@@ -251,7 +251,7 @@
             this.Controls.Add(this.BtnProdMasVend);
             this.Controls.Add(this.pdfViewAlma);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReportesAlmacen";
             this.Text = "ReportesAlmacen";
             this.ResumeLayout(false);
