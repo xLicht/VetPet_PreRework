@@ -66,9 +66,19 @@ namespace VetPet_
             }
         }
 
-        private void BtnRegresar_Click(object sender, EventArgs e)
+        private void BtnRegresar_Click_1(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new MenuServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AgregarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void BtnTipoDeServicios_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
     }
 }

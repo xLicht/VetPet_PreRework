@@ -742,6 +742,9 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListaCirugias.resx">
+      <DependentUpon>ListaCirugias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListadoMascotas.resx">
       <DependentUpon>ListadoMascotas.cs</DependentUpon>
     </EmbeddedResource>
@@ -759,6 +762,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_AtencionAlCliente.resx">
       <DependentUpon>Menu_AtencionAlCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarServicios.resx">
+      <DependentUpon>ModificarServicios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
