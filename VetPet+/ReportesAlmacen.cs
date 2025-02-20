@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace VetPet_
 {
@@ -71,6 +73,12 @@ namespace VetPet_
         private void BtnProdMasVend_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnDescargar_Click(object sender, EventArgs e)
+        {
+            string rutaTemporal = Path.Combine(Path.GetTempPath(), "A1. Escaner DML.pdf");
+            File.WriteAllBytes(rutaTemporal, Properties.Resources.);
         }
     }
 }

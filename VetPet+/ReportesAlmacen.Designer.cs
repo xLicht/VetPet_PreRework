@@ -37,7 +37,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.BtnDescargar = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
@@ -185,21 +185,22 @@
             this.button7.Text = "Proveedores con menos Venta";
             this.button7.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // BtnDescargar
             // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BtnDescargar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button8.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button8.Location = new System.Drawing.Point(1224, 413);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(206, 55);
-            this.button8.TabIndex = 21;
-            this.button8.Text = "Descargar";
-            this.button8.UseVisualStyleBackColor = false;
+            this.BtnDescargar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
+            this.BtnDescargar.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDescargar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.BtnDescargar.Location = new System.Drawing.Point(1224, 413);
+            this.BtnDescargar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnDescargar.Name = "BtnDescargar";
+            this.BtnDescargar.Size = new System.Drawing.Size(206, 55);
+            this.BtnDescargar.TabIndex = 21;
+            this.BtnDescargar.Text = "Descargar";
+            this.BtnDescargar.UseVisualStyleBackColor = false;
+            this.BtnDescargar.Click += new System.EventHandler(this.BtnDescargar_Click);
             // 
             // button9
             // 
@@ -233,7 +234,7 @@
             this.ClientSize = new System.Drawing.Size(1443, 710);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.BtnDescargar);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -263,7 +264,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button BtnDescargar;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.WebBrowser webBrowser1;
     }
