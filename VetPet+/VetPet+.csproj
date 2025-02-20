@@ -601,6 +601,36 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportesAlmacen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesAlmacen.Designer.cs">
+      <DependentUpon>ReportesAlmacen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesCitas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesCitas.Designer.cs">
+      <DependentUpon>ReportesCitas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesClientes.Designer.cs">
+      <DependentUpon>ReportesClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesServicios.Designer.cs">
+      <DependentUpon>ReportesServicios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesVenta.Designer.cs">
+      <DependentUpon>ReportesVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentasHistorialdeVentas.cs">
       <SubType>Form</SubType>
     </Compile>
