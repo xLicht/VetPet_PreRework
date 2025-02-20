@@ -684,6 +684,18 @@
     <Compile Include="VeterianiaGestionarHistorialM.Designer.cs">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaConsultaMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultaMedica.Designer.cs">
+      <DependentUpon>VeterinariaConsultaMedica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaConsultarM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultarM.Designer.cs">
+      <DependentUpon>VeterinariaConsultarM.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -880,6 +892,12 @@
     </Compile>
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultaMedica.resx">
+      <DependentUpon>VeterinariaConsultaMedica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultarM.resx">
+      <DependentUpon>VeterinariaConsultarM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
