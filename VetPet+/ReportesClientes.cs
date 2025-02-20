@@ -7,15 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class ReportesClientes : Form
+    public partial class ReportesClientes : FormPadre
     {
-        private Form1 parentForm;
-        private float originalWidth;
-        private float originalHeight;
-        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         public ReportesClientes()
         {
             InitializeComponent();
@@ -24,17 +21,6 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;
-        }
-
-        private void ReportesClientes_Load(object sender, EventArgs e)
-        {
-            originalWidth = this.Width;
-            originalHeight = this.Height;
-
-            foreach (Control control in this.Controls)
-            {
-                controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
-            }
         }
     }
 }

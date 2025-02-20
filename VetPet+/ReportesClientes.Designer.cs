@@ -1,6 +1,6 @@
 ﻿namespace VetPet_
 {
-    partial class ReportesClientes
+    partial class ReportesClientes: VetPet_.FormPadre
     {
         /// <summary>
         /// Required designer variable.
@@ -185,7 +185,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ReportesClientes";
             this.Text = "ReportesClientes";
-            this.Load += new System.EventHandler(this.ReportesClientes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
