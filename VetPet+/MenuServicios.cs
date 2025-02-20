@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
@@ -18,17 +17,30 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
         private Form1 parentForm;
+
         public MenuServicios()
         {
             InitializeComponent();
             this.Load += MenuServicios_Load;       // Evento Load
-            this.Resize += MenuServicios_Resize;   // Evento Resize
+            this.Resize += MenuServicios_Resize;
         }
-
         public MenuServicios(Form1 parent)
         {
             InitializeComponent();
-            parentForm = parent;
+            parentForm = parent;  // Guardamos la referencia del formulario principal
+        }
+
+        private void MenuServicios_Load(object sender, EventArgs e)
+        {
+            // Guardar el tamaño original del formulario
+            originalWidth = this.ClientSize.Width;
+            originalHeight = this.ClientSize.Height;
+
+            // Guardar información original de cada control
+            foreach (Control control in this.Controls)
+            {
+                controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
+            }
         }
 
         private void MenuServicios_Resize(object sender, EventArgs e)
@@ -55,22 +67,14 @@ namespace VetPet_
             }
         }
 
-        private void button1_Leave(object sender, EventArgs e)
+        private void BtnListaServicios_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new ListaServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
 
-        private void MenuServicios_Load(object sender, EventArgs e)
+        private void BtnAgregarServicios_Click(object sender, EventArgs e)
         {
-            // Guardar el tamaño original del formulario
-            originalWidth = this.ClientSize.Width;
-            originalHeight = this.ClientSize.Height;
-
-            // Guardar información original de cada control
-            foreach (Control control in this.Controls)
-            {
-                controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
-            }
+            parentForm.formularioHijo(new AgregarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
     }
 }

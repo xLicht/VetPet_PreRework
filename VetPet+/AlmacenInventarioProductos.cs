@@ -113,9 +113,13 @@ namespace VetPet_
                         {
                             parentForm.formularioHijo(new AlmacenModificarProducto(parentForm)); // Pasamos la referencia de Form1 a 
                         }
+                        if (opcionesForm.Resultado == "Salir")
+                        {
+                            parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a 
+                        }   
                         else if (opcionesForm.Resultado == "Ver")
                         {
-                            // Aquí puedes abrir el formulario de visualización
+                            parentForm.formularioHijo(new AlmacenVerProducto(parentForm)); // Pasamos la referencia de Form1 a 
                         }
                     }
                 }

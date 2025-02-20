@@ -91,7 +91,7 @@
             this.label1.Location = new System.Drawing.Point(211, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 56);
+            this.label1.Size = new System.Drawing.Size(207, 58);
             this.label1.TabIndex = 5;
             this.label1.Text = "VetPet+";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -297,6 +297,7 @@
             this.BtnCortes.Text = "Cortes";
             this.BtnCortes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCortes.UseVisualStyleBackColor = false;
+            this.BtnCortes.Click += new System.EventHandler(this.BtnCortes_Click);
             // 
             // BtnVeterinaria
             // 
@@ -312,7 +313,6 @@
             this.BtnVeterinaria.Text = "Veterinaria";
             this.BtnVeterinaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnVeterinaria.UseVisualStyleBackColor = false;
-            this.BtnVeterinaria.Click += new System.EventHandler(this.BtnVeterinaria_Click);
             // 
             // Form1
             // 

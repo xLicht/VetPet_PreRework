@@ -73,6 +73,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap buscar_ang {
+            get {
+                object obj = ResourceManager.GetObject("buscar-ang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cita {
             get {
                 object obj = ResourceManager.GetObject("cita", resourceCulture);
@@ -103,6 +113,26 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap filtrar_ang {
+            get {
+                object obj = ResourceManager.GetObject("filtrar-ang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flecha_ang {
+            get {
+                object obj = ResourceManager.GetObject("flecha-ang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap historia {
             get {
                 object obj = ResourceManager.GetObject("historia", resourceCulture);
@@ -123,99 +153,10 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Hoja {
+        internal static System.Drawing.Bitmap icons8_clínica_externa_veterinaria_y_mascotas_creatype_contorno_colorcreatype_3_64 {
             get {
-                object obj = ResourceManager.GetObject("Hoja", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_ajustes_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-ajustes-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_busca_mas_96 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-busca-mas-96", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_calendario_de_rasgar_las_hojas_100__1_ {
-            get {
-                object obj = ResourceManager.GetObject("icons8-calendario-de-rasgar-las-hojas-100 (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_disquete_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-disquete-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_flecha_izquierda_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-flecha-izquierda-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_hoja_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-hoja-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_hoja_1001 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-hoja-1001", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_medicina_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-medicina-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_perro_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-perro-100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-6" +
+                        "4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -286,6 +227,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap supplier {
             get {
                 object obj = ResourceManager.GetObject("supplier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap usuario_ang {
+            get {
+                object obj = ResourceManager.GetObject("usuario-ang", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
