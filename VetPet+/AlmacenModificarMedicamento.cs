@@ -96,7 +96,21 @@ namespace VetPet_
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a 
+            // Llamar al formulario de opciones
+            using (var opcionesForm = new AlmacenAvisoEliminar())
+            {
+                if (opcionesForm.ShowDialog() == DialogResult.OK)
+                {
+                    if (opcionesForm.Resultado == "Si")
+                    {
+                        parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a 
+                    }
+                    else if (opcionesForm.Resultado == "No")
+                    {
+                        parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+                    }
+                }
+            }
         }
     }
 }
