@@ -1208,6 +1208,9 @@
     <None Include="Resources\icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\checklist.png" />
+    <None Include="Resources\registration.png" />
+    <None Include="Resources\file.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
