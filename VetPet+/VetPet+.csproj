@@ -36,6 +36,15 @@
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Patagames.Pdf, Version=11.86.48.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pdfium.Net.SDK.4.97.2704\lib\net472\Patagames.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Patagames.Pdf.WinForms, Version=4.29.18.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pdfium.Net.SDK.4.97.2704\lib\net472\Patagames.Pdf.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Patagames.Pdf.Wpf, Version=4.29.20.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pdfium.Net.SDK.4.97.2704\lib\net472\Patagames.Pdf.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -856,6 +865,7 @@
     <EmbeddedResource Include="ModificarServicios.resx">
       <DependentUpon>ModificarServicios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -878,6 +888,7 @@
     <EmbeddedResource Include="VeterinariaModificarHistorial.resx">
       <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="libpdfium.dylib" />
     <None Include="packages.config" />
     <None Include="PDF_ReportesAlmacen\A1. Escaner DML.pdf" />
     <None Include="Properties\Settings.settings">
@@ -949,6 +960,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\pdfium.dll" />
+    <Content Include="x86\pdfium.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
