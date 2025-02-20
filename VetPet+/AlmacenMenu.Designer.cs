@@ -30,7 +30,7 @@
         {
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnMedicamentos = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnPedidos = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -91,23 +91,24 @@
             this.btnMedicamentos.UseVisualStyleBackColor = false;
             this.btnMedicamentos.Click += new System.EventHandler(this.btnMedicamentos_Click);
             // 
-            // button6
+            // btnPedidos
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
-            this.button6.FlatAppearance.BorderSize = 2;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.PaleVioletRed;
-            this.button6.Location = new System.Drawing.Point(727, 174);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(317, 102);
-            this.button6.TabIndex = 14;
-            this.button6.Tag = "2";
-            this.button6.Text = "Pedidos";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnPedidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
+            this.btnPedidos.FlatAppearance.BorderSize = 2;
+            this.btnPedidos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPedidos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPedidos.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidos.ForeColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPedidos.Location = new System.Drawing.Point(727, 174);
+            this.btnPedidos.Name = "btnPedidos";
+            this.btnPedidos.Size = new System.Drawing.Size(317, 102);
+            this.btnPedidos.TabIndex = 14;
+            this.btnPedidos.Tag = "2";
+            this.btnPedidos.Text = "Pedidos";
+            this.btnPedidos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPedidos.UseVisualStyleBackColor = false;
+            this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
             // button7
             // 
@@ -244,7 +245,7 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnPedidos);
             this.Controls.Add(this.btnMedicamentos);
             this.Controls.Add(this.btnProductos);
             this.Name = "AlmacenMenu";
@@ -262,7 +263,7 @@
         #endregion
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Button btnMedicamentos;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnPedidos;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button7;
