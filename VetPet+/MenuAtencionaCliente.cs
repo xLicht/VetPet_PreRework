@@ -68,5 +68,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new ListadoMascotas(parentForm)); // Pasamos la referencia de Form1 a 
          }
+
+        private void btnCitas_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CitaEnlistado(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }
