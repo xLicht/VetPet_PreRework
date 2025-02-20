@@ -78,5 +78,31 @@ namespace VetPet_
         {
 
         }
+
+        private void btnProveedor_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void btnProducto_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void btnMedicamento_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            //aqui creo q debo guardar un aviso de "quieres agregar otro pedido si dice si te devuelva al lugar o no al menu de almacen"
+            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
     }
 }

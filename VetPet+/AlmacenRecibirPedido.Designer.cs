@@ -38,7 +38,7 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
-            this.btnElegir = new System.Windows.Forms.Button();
+            this.btnMedicamento = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
@@ -49,9 +49,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnProveedor = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnProducto = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -73,7 +73,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(345, 49);
             this.textBox2.TabIndex = 81;
-            this.textBox2.Text = "Marca";
+            this.textBox2.Text = "Factura";
             // 
             // label12
             // 
@@ -171,6 +171,7 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // pictureBox1
             // 
@@ -202,20 +203,22 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // btnElegir
+            // btnMedicamento
             // 
-            this.btnElegir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
-            this.btnElegir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnElegir.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnElegir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnElegir.Location = new System.Drawing.Point(303, 380);
-            this.btnElegir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnElegir.Name = "btnElegir";
-            this.btnElegir.Size = new System.Drawing.Size(131, 49);
-            this.btnElegir.TabIndex = 65;
-            this.btnElegir.Text = "Elegir";
-            this.btnElegir.UseVisualStyleBackColor = false;
+            this.btnMedicamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
+            this.btnMedicamento.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMedicamento.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMedicamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
+            this.btnMedicamento.Location = new System.Drawing.Point(303, 380);
+            this.btnMedicamento.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMedicamento.Name = "btnMedicamento";
+            this.btnMedicamento.Size = new System.Drawing.Size(131, 49);
+            this.btnMedicamento.TabIndex = 65;
+            this.btnMedicamento.Text = "Elegir";
+            this.btnMedicamento.UseVisualStyleBackColor = false;
+            this.btnMedicamento.Click += new System.EventHandler(this.btnMedicamento_Click);
             // 
             // label4
             // 
@@ -240,7 +243,7 @@
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.Size = new System.Drawing.Size(345, 49);
             this.txtProveedor.TabIndex = 63;
-            this.txtProveedor.Text = "Proveedor";
+            this.txtProveedor.Text = "Medicamento";
             // 
             // txtCantidad
             // 
@@ -252,7 +255,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(484, 49);
             this.txtCantidad.TabIndex = 62;
-            this.txtCantidad.Text = "Fecha de recibido";
+            this.txtCantidad.Text = "Marca";
             // 
             // label1
             // 
@@ -277,7 +280,7 @@
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(347, 49);
             this.txtMarca.TabIndex = 60;
-            this.txtMarca.Text = "Precio de proveedor";
+            this.txtMarca.Text = "Cantidad";
             // 
             // txtNombre
             // 
@@ -314,7 +317,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(365, 49);
             this.textBox1.TabIndex = 85;
-            this.textBox1.Text = "Dosis recomendada";
+            this.textBox1.Text = "Fecha de recibido";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
@@ -343,19 +346,20 @@
             this.label5.Text = "Producto";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // btnProveedor
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.button1.Location = new System.Drawing.Point(303, 256);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 49);
-            this.button1.TabIndex = 91;
-            this.button1.Text = "Elegir";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
+            this.btnProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProveedor.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
+            this.btnProveedor.Location = new System.Drawing.Point(303, 256);
+            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnProveedor.Name = "btnProveedor";
+            this.btnProveedor.Size = new System.Drawing.Size(131, 49);
+            this.btnProveedor.TabIndex = 91;
+            this.btnProveedor.Text = "Elegir";
+            this.btnProveedor.UseVisualStyleBackColor = false;
+            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
             // 
             // textBox3
             // 
@@ -369,19 +373,20 @@
             this.textBox3.TabIndex = 90;
             this.textBox3.Text = "Proveedor";
             // 
-            // button2
+            // btnProducto
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.button2.Location = new System.Drawing.Point(303, 318);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(131, 49);
-            this.button2.TabIndex = 93;
-            this.button2.Text = "Elegir";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(185)))), ((int)(((byte)(201)))));
+            this.btnProducto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnProducto.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
+            this.btnProducto.Location = new System.Drawing.Point(303, 318);
+            this.btnProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.btnProducto.Name = "btnProducto";
+            this.btnProducto.Size = new System.Drawing.Size(131, 49);
+            this.btnProducto.TabIndex = 93;
+            this.btnProducto.Text = "Elegir";
+            this.btnProducto.UseVisualStyleBackColor = false;
+            this.btnProducto.Click += new System.EventHandler(this.btnProducto_Click);
             // 
             // textBox4
             // 
@@ -393,7 +398,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(345, 49);
             this.textBox4.TabIndex = 92;
-            this.textBox4.Text = "Proveedor";
+            this.textBox4.Text = "Producto";
             // 
             // label6
             // 
@@ -418,7 +423,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(347, 49);
             this.textBox5.TabIndex = 94;
-            this.textBox5.Text = "Precio de proveedor";
+            this.textBox5.Text = "Total";
             // 
             // label13
             // 
@@ -443,7 +448,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(347, 49);
             this.textBox6.TabIndex = 96;
-            this.textBox6.Text = "Precio de proveedor";
+            this.textBox6.Text = "Precio";
             // 
             // checkBox1
             // 
@@ -483,9 +488,9 @@
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnProducto);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnProveedor);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
@@ -500,7 +505,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRegresar);
-            this.Controls.Add(this.btnElegir);
+            this.Controls.Add(this.btnMedicamento);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtProveedor);
             this.Controls.Add(this.txtCantidad);
@@ -531,7 +536,7 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegresar;
-        private System.Windows.Forms.Button btnElegir;
+        private System.Windows.Forms.Button btnMedicamento;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtProveedor;
         private System.Windows.Forms.TextBox txtCantidad;
@@ -542,9 +547,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnProveedor;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnProducto;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox5;
