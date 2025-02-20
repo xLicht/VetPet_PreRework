@@ -44,5 +44,29 @@ namespace VetPet_
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
         }
+
+        private void AlmacenRecibirPedido_Resize(object sender, EventArgs e)
+        {
+            // Calcular el factor de escala
+            float scaleX = this.ClientSize.Width / originalWidth;
+            float scaleY = this.ClientSize.Height / originalHeight;
+
+            foreach (Control control in this.Controls)
+            {
+                if (controlInfo.ContainsKey(control))
+                {
+                    var info = controlInfo[control];
+
+                    // Ajustar las dimensiones
+                    control.Width = (int)(info.width * scaleX);
+                    control.Height = (int)(info.height * scaleY);
+                    control.Left = (int)(info.left * scaleX);
+                    control.Top = (int)(info.top * scaleY);
+
+                    // Ajustar el tamaño de la fuente
+                    control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
+                }
+            }
+        }
     }
 }
