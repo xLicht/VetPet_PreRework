@@ -70,7 +70,7 @@ namespace VetPet_
 
         private void dtCitasMedicas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
    

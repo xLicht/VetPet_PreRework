@@ -20,7 +20,6 @@ namespace VetPet_
         public VeterinariaHistorialMedico(Form1 parent)
         {
             InitializeComponent();
-            txtBuscar.Text = "Buscar";
             cbFliltrar.Text = "Filtrar";
 
             parentForm = parent;  // Guardamos la referencia del formulario principal
