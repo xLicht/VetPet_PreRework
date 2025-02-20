@@ -866,6 +866,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReportesAlmacen.resx">
+      <DependentUpon>ReportesAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </EmbeddedResource>
