@@ -82,12 +82,12 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new AlmacenAgregarProveedor(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void comboBox1_DropDown(object sender, EventArgs e)
