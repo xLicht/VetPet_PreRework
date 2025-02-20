@@ -33,7 +33,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnAlmacen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -113,21 +113,22 @@
             this.button2.Text = "Citas";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // BtnAlmacen
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BtnAlmacen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button1.Font = new System.Drawing.Font("Cascadia Mono", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button1.Location = new System.Drawing.Point(311, 193);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(343, 110);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Almacen";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnAlmacen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
+            this.BtnAlmacen.Font = new System.Drawing.Font("Cascadia Mono", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAlmacen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.BtnAlmacen.Location = new System.Drawing.Point(311, 193);
+            this.BtnAlmacen.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnAlmacen.Name = "BtnAlmacen";
+            this.BtnAlmacen.Size = new System.Drawing.Size(343, 110);
+            this.BtnAlmacen.TabIndex = 6;
+            this.BtnAlmacen.Text = "Almacen";
+            this.BtnAlmacen.UseVisualStyleBackColor = false;
+            this.BtnAlmacen.Click += new System.EventHandler(this.BtnAlmacen_Click);
             // 
             // MenuReportes
             // 
@@ -140,8 +141,8 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.BtnAlmacen);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MenuReportes";
             this.Text = "menuReportes";
             this.Load += new System.EventHandler(this.menuReportes_Load);
@@ -158,6 +159,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnAlmacen;
     }
 }

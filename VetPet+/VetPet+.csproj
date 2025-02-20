@@ -882,7 +882,9 @@
       <DependentUpon>VeterinariaModificarHistorial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="PDF_ReportesAlmacen\A1. Escaner DML.pdf" />
+    <Content Include="PDF_ReportesAlmacen\A1. Escaner DML.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

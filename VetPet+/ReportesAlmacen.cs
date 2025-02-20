@@ -77,8 +77,9 @@ namespace VetPet_
 
         private void BtnDescargar_Click(object sender, EventArgs e)
         {
-            string rutaTemporal = Path.Combine(Path.GetTempPath(), "A1. Escaner DML.pdf");
-            File.WriteAllBytes(rutaTemporal, );
+            string rutaPDF = Path.Combine(Application.StartupPath, "PDF_ReportesAlmacen", "A1. Escaner DML.pdf");
+            webBrowser1.Navigate(rutaPDF);
+
         }
     }
 }

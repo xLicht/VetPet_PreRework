@@ -64,5 +64,10 @@ namespace VetPet_
                 }
             }
         }
+
+        private void BtnAlmacen_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ReportesAlmacen(parentForm));
+        }
     }
 }
