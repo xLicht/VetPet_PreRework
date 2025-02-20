@@ -69,7 +69,7 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1685, 80);
             this.panel1.TabIndex = 3;
@@ -77,7 +77,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Location = new System.Drawing.Point(39, 14);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(129, 59);
             this.pictureBox9.TabIndex = 19;
@@ -91,7 +91,7 @@
             this.label1.Location = new System.Drawing.Point(211, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 58);
+            this.label1.Size = new System.Drawing.Size(199, 56);
             this.label1.TabIndex = 5;
             this.label1.Text = "VetPet+";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -100,7 +100,7 @@
             // 
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.remove;
             this.pictureBox2.Location = new System.Drawing.Point(1604, 18);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(48, 44);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -111,7 +111,7 @@
             // 
             this.pnlForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForms.Location = new System.Drawing.Point(221, 80);
-            this.pnlForms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlForms.Margin = new System.Windows.Forms.Padding(4);
             this.pnlForms.Name = "pnlForms";
             this.pnlForms.Size = new System.Drawing.Size(1464, 758);
             this.pnlForms.TabIndex = 5;
@@ -123,7 +123,7 @@
             this.BtnAlmacen.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAlmacen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnAlmacen.Location = new System.Drawing.Point(0, 66);
-            this.BtnAlmacen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnAlmacen.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAlmacen.Name = "BtnAlmacen";
             this.BtnAlmacen.Size = new System.Drawing.Size(221, 66);
             this.BtnAlmacen.TabIndex = 2;
@@ -151,7 +151,7 @@
             this.panel2.Controls.Add(this.BtnAlmacen);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 80);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel2.Size = new System.Drawing.Size(221, 758);
@@ -160,7 +160,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Location = new System.Drawing.Point(155, 406);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(53, 49);
             this.pictureBox8.TabIndex = 18;
@@ -169,7 +169,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Location = new System.Drawing.Point(155, 340);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(53, 49);
             this.pictureBox5.TabIndex = 17;
@@ -178,7 +178,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Location = new System.Drawing.Point(155, 276);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(53, 49);
             this.pictureBox6.TabIndex = 16;
@@ -187,7 +187,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Location = new System.Drawing.Point(155, 207);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(53, 49);
             this.pictureBox7.TabIndex = 15;
@@ -196,7 +196,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Location = new System.Drawing.Point(155, 140);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(53, 49);
             this.pictureBox4.TabIndex = 14;
@@ -205,7 +205,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Location = new System.Drawing.Point(155, 76);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(53, 49);
             this.pictureBox3.TabIndex = 13;
@@ -214,7 +214,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(155, 7);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(53, 49);
             this.pictureBox1.TabIndex = 0;
@@ -227,7 +227,7 @@
             this.BtnReportes.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnReportes.Location = new System.Drawing.Point(0, 399);
-            this.BtnReportes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnReportes.Margin = new System.Windows.Forms.Padding(4);
             this.BtnReportes.Name = "BtnReportes";
             this.BtnReportes.Size = new System.Drawing.Size(221, 66);
             this.BtnReportes.TabIndex = 12;
@@ -243,7 +243,7 @@
             this.BtnAtencionClient.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAtencionClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnAtencionClient.Location = new System.Drawing.Point(0, 0);
-            this.BtnAtencionClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnAtencionClient.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAtencionClient.Name = "BtnAtencionClient";
             this.BtnAtencionClient.Size = new System.Drawing.Size(221, 66);
             this.BtnAtencionClient.TabIndex = 4;
@@ -259,7 +259,7 @@
             this.BtnEmpleados.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEmpleados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnEmpleados.Location = new System.Drawing.Point(0, 332);
-            this.BtnEmpleados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnEmpleados.Margin = new System.Windows.Forms.Padding(4);
             this.BtnEmpleados.Name = "BtnEmpleados";
             this.BtnEmpleados.Size = new System.Drawing.Size(221, 66);
             this.BtnEmpleados.TabIndex = 11;
@@ -274,7 +274,7 @@
             this.BtnServicios.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnServicios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnServicios.Location = new System.Drawing.Point(0, 266);
-            this.BtnServicios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnServicios.Margin = new System.Windows.Forms.Padding(4);
             this.BtnServicios.Name = "BtnServicios";
             this.BtnServicios.Size = new System.Drawing.Size(221, 66);
             this.BtnServicios.TabIndex = 10;
@@ -290,7 +290,7 @@
             this.BtnCortes.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCortes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnCortes.Location = new System.Drawing.Point(0, 199);
-            this.BtnCortes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnCortes.Margin = new System.Windows.Forms.Padding(4);
             this.BtnCortes.Name = "BtnCortes";
             this.BtnCortes.Size = new System.Drawing.Size(221, 66);
             this.BtnCortes.TabIndex = 8;
@@ -306,13 +306,14 @@
             this.BtnVeterinaria.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVeterinaria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
             this.BtnVeterinaria.Location = new System.Drawing.Point(0, 133);
-            this.BtnVeterinaria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnVeterinaria.Margin = new System.Windows.Forms.Padding(4);
             this.BtnVeterinaria.Name = "BtnVeterinaria";
             this.BtnVeterinaria.Size = new System.Drawing.Size(221, 66);
             this.BtnVeterinaria.TabIndex = 6;
             this.BtnVeterinaria.Text = "Veterinaria";
             this.BtnVeterinaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnVeterinaria.UseVisualStyleBackColor = false;
+            this.BtnVeterinaria.Click += new System.EventHandler(this.BtnVeterinaria_Click_1);
             // 
             // Form1
             // 
@@ -322,7 +323,7 @@
             this.Controls.Add(this.pnlForms);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

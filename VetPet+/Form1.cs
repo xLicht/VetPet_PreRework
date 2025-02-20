@@ -90,6 +90,11 @@ namespace VetPet_
         {
             formularioHijo(new CortesMenus(this));
         }
+
+        private void BtnVeterinaria_Click_1(object sender, EventArgs e)
+        {
+            formularioHijo(new VeterinariaMenu(this));
+        }
     }
 }
 //SEXOO
