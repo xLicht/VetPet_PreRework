@@ -684,6 +684,18 @@
     <Compile Include="VeterianiaGestionarHistorialM.Designer.cs">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaConsultaMedica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultaMedica.Designer.cs">
+      <DependentUpon>VeterinariaConsultaMedica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaConsultarM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaConsultarM.Designer.cs">
+      <DependentUpon>VeterinariaConsultarM.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -868,6 +880,7 @@
       <DependentUpon>ModificarServicios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pdf.Net.SDK.licx" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -878,8 +891,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReportesAlmacen.resx">
+      <DependentUpon>ReportesAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultaMedica.resx">
+      <DependentUpon>VeterinariaConsultaMedica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaConsultarM.resx">
+      <DependentUpon>VeterinariaConsultarM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
@@ -894,7 +916,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="PDF_ReportesAlmacen\A1. Escaner DML.pdf" />
+    <Content Include="PDF_ReportesAlmacen\A1. Escaner DML.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
