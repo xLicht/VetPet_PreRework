@@ -503,6 +503,24 @@
     <Compile Include="ListaVacunas.Designer.cs">
       <DependentUpon>ListaVacunas.cs</DependentUpon>
     </Compile>
+    <Compile Include="MascotasAgregar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MascotasAgregar.Designer.cs">
+      <DependentUpon>MascotasAgregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MascotasConsultar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MascotasConsultar.Designer.cs">
+      <DependentUpon>MascotasConsultar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MascotasModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MascotasModificar.Designer.cs">
+      <DependentUpon>MascotasModificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuAtencionaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
