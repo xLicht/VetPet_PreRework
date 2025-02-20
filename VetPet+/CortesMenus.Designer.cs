@@ -50,7 +50,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label1.Location = new System.Drawing.Point(38, 39);
+            this.label1.Location = new System.Drawing.Point(48, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1007, 68);
             this.label1.TabIndex = 36;
@@ -99,6 +99,7 @@
             this.btnCorteDeCaja.Text = "Corte de caja";
             this.btnCorteDeCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCorteDeCaja.UseVisualStyleBackColor = false;
+            this.btnCorteDeCaja.Click += new System.EventHandler(this.btnCorteDeCaja_Click);
             // 
             // pictureBox1
             // 

@@ -70,5 +70,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new CortesHistorial(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProducto
         }
+
+        private void btnCorteDeCaja_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CortesCaja(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProducto
+        }
     }
 }
