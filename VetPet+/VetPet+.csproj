@@ -868,6 +868,7 @@
       <DependentUpon>ModificarServicios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pdf.Net.SDK.licx" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -78,8 +78,15 @@ namespace VetPet_
         private void BtnDescargar_Click(object sender, EventArgs e)
         {
             string rutaPDF = Path.Combine(Application.StartupPath, "PDF_ReportesAlmacen", "A1. Escaner DML.pdf");
-            webBrowser1.Navigate(rutaPDF);
 
+            if (File.Exists(rutaPDF))
+            {
+                pdfViewAlma.LoadDocument(rutaPDF); // Cargar el PDF en el visor
+            }
+            else
+            {
+                MessageBox.Show("El archivo PDF no se encontró en la ruta especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
