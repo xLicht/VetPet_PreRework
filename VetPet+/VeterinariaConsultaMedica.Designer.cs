@@ -609,6 +609,7 @@
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // pictureBox1
             // 
@@ -634,6 +635,7 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // textBox5
             // 

@@ -67,12 +67,17 @@ namespace VetPet_
 
         private void btnVerConsulta_Click(object sender, EventArgs e)
         {
-         
+            parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-        
+            parentForm.formularioHijo(new VeterinariaConsultarM(parentForm));
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CitasMedicas(parentForm));
         }
     }
 }

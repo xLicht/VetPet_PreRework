@@ -7,19 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
     public partial class VeterinariaConsultaMedica : Form
     {
-        public VeterinariaConsultaMedica()
+        private Form1 parentForm;
+        public VeterinariaConsultaMedica(Form1 parent)
         {
             InitializeComponent();
+            parentForm = parent;
         }
 
         private void VeterinariaConsultaMedica_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ConsultarCita(parentForm));
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaModificarConsultaM(parentForm));
         }
     }
 }
