@@ -31,7 +31,7 @@ namespace VetPet_
 
         private void btnMascota_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitasMascota(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            parentForm.formularioHijo(new CitaMascota(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
 
         private void btnDueño_Click(object sender, EventArgs e)
@@ -41,17 +41,17 @@ namespace VetPet_
 
         private void btnAgregarServicio_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new CitaAgregarServicio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new CitaEnlistado(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new CitaEnlistado(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
 }

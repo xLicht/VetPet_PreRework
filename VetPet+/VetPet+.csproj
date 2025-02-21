@@ -384,6 +384,12 @@
     <Compile Include="CitaListaVacunas.Designer.cs">
       <DependentUpon>CitaListaVacunas.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitaMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaMascota.Designer.cs">
+      <DependentUpon>CitaMascota.cs</DependentUpon>
+    </Compile>
     <Compile Include="CitaModificarCita.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -961,6 +967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CitaListaVacunas.resx">
       <DependentUpon>CitaListaVacunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaMascota.resx">
+      <DependentUpon>CitaMascota.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CitaModificarCita.resx">
       <DependentUpon>CitaModificarCita.cs</DependentUpon>

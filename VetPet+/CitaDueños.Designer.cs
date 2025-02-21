@@ -190,7 +190,7 @@
             // 
             this.pictureBox2.Enabled = false;
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.menu_bar;
-            this.pictureBox2.Location = new System.Drawing.Point(53, 101);
+            this.pictureBox2.Location = new System.Drawing.Point(53, 103);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(35, 37);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -200,6 +200,7 @@
             // comboBox1
             // 
             this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.DropDownWidth = 150;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
