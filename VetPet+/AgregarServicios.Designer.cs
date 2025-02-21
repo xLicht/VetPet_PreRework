@@ -41,12 +41,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.RbEstetico = new System.Windows.Forms.RadioButton();
             this.RbMédico = new System.Windows.Forms.RadioButton();
             this.RbSi = new System.Windows.Forms.RadioButton();
             this.RbNo = new System.Windows.Forms.RadioButton();
             this.BtnModificarServicios = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // BtnRegresar
@@ -185,16 +185,6 @@
             this.textBox3.Size = new System.Drawing.Size(241, 23);
             this.textBox3.TabIndex = 11;
             // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
-            this.textBox4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBox4.Location = new System.Drawing.Point(792, 241);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(241, 23);
-            this.textBox4.TabIndex = 12;
-            // 
             // RbEstetico
             // 
             this.RbEstetico.AutoSize = true;
@@ -257,17 +247,28 @@
             this.BtnModificarServicios.UseVisualStyleBackColor = false;
             this.BtnModificarServicios.Click += new System.EventHandler(this.BtnModificarServicios_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.richTextBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.richTextBox1.Location = new System.Drawing.Point(792, 238);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(241, 224);
+            this.richTextBox1.TabIndex = 17;
+            this.richTextBox1.Text = "";
+            // 
             // AgregarServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.RbNo);
             this.Controls.Add(this.RbSi);
             this.Controls.Add(this.RbMédico);
             this.Controls.Add(this.RbEstetico);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -306,11 +307,11 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.RadioButton RbEstetico;
         private System.Windows.Forms.RadioButton RbMédico;
         private System.Windows.Forms.RadioButton RbSi;
         private System.Windows.Forms.RadioButton RbNo;
         private System.Windows.Forms.Button BtnModificarServicios;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
