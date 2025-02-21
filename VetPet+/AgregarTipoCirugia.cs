@@ -7,14 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class AgregarTipoCirugia : Form
+    public partial class AgregarTipoCirugia : FormPadre
     {
         public AgregarTipoCirugia()
         {
             InitializeComponent();
+        }
+        public AgregarTipoCirugia(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;
+        }
+        private void AgregarTipoCirugia_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
