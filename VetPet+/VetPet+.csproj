@@ -878,6 +878,21 @@
     <EmbeddedResource Include="AgregarTipoCirugia.resx">
       <DependentUpon>AgregarTipoCirugia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoPLab.resx">
+      <DependentUpon>AgregarTipoPLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoRadiografias.resx">
+      <DependentUpon>AgregarTipoRadiografias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoRayosX.resx">
+      <DependentUpon>AgregarTipoRayosX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoUltrasonidos.resx">
+      <DependentUpon>AgregarTipoUltrasonidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoVacunas.resx">
+      <DependentUpon>AgregarTipoVacunas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAgregarMedicamento.resx">
       <DependentUpon>AlmacenAgregarMedicamento.cs</DependentUpon>
     </EmbeddedResource>

@@ -52,11 +52,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(343, 11);
+            this.label2.Location = new System.Drawing.Point(264, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(439, 55);
+            this.label2.Size = new System.Drawing.Size(599, 55);
             this.label2.TabIndex = 20;
-            this.label2.Text = "Modificar Cirugía ";
+            this.label2.Text = "Agregar Tipo de Cirugía ";
             // 
             // TxtNombre
             // 
