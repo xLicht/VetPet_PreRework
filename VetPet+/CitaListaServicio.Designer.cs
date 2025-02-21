@@ -28,56 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnAgendarCita = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnBuscar = new System.Windows.Forms.PictureBox();
-            this.txtProducto = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBuscar = new System.Windows.Forms.PictureBox();
+            this.txtProducto = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.pictureBox2.Enabled = false;
-            this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
-            this.pictureBox2.Location = new System.Drawing.Point(890, 501);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(43, 43);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 59;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnAgendarCita
-            // 
-            this.btnAgendarCita.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.btnAgendarCita.FlatAppearance.BorderSize = 2;
-            this.btnAgendarCita.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.btnAgendarCita.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.btnAgendarCita.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgendarCita.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgendarCita.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnAgendarCita.Location = new System.Drawing.Point(716, 492);
-            this.btnAgendarCita.Name = "btnAgendarCita";
-            this.btnAgendarCita.Size = new System.Drawing.Size(228, 60);
-            this.btnAgendarCita.TabIndex = 60;
-            this.btnAgendarCita.Text = "Mas servicios";
-            this.btnAgendarCita.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgendarCita.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -144,10 +112,28 @@
             this.Column1,
             this.Column2,
             this.Column3});
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
             this.dataGridView1.Location = new System.Drawing.Point(53, 141);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(891, 319);
             this.dataGridView1.TabIndex = 51;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SizeChanged += new System.EventHandler(this.dataGridView1_SizeChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Producto";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Precio";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Cantidad";
+            this.Column3.Name = "Column3";
             // 
             // btnBuscar
             // 
@@ -170,21 +156,6 @@
             this.txtProducto.Size = new System.Drawing.Size(891, 24);
             this.txtProducto.TabIndex = 49;
             this.txtProducto.Text = "Buscar nombre de servicio";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Producto";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Precio";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Cantidad";
-            this.Column3.Name = "Column3";
             // 
             // label3
             // 
@@ -235,8 +206,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.btnAgendarCita);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.label2);
@@ -247,7 +216,6 @@
             this.Name = "CitaListaServicio";
             this.Text = "CitaListaServicio";
             this.Load += new System.EventHandler(this.CitaListaServicio_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).EndInit();
@@ -258,8 +226,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button btnAgendarCita;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Label label2;
