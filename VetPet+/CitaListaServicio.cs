@@ -72,6 +72,12 @@ namespace VetPet_
             if (e.RowIndex >= 0)
             {
                 // Si la fila seleccionada es la primera (índice 0)
+                if (e.RowIndex == 0)
+                {
+                    //abrir lista de vacunas
+                    parentForm.formularioHijo(new CitaListaCirugia(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                }
+                // Si la fila seleccionada es la primera (índice 0)
                 if (e.RowIndex == 1)
                 {
                     //abrir lista de vacunas
