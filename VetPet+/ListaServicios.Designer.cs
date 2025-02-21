@@ -38,7 +38,10 @@
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnRegresar = new System.Windows.Forms.Button();
             this.BtnTipoDeServicios = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -49,9 +52,9 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dataGridView1.Location = new System.Drawing.Point(44, 97);
+            this.dataGridView1.Location = new System.Drawing.Point(44, 149);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(995, 369);
+            this.dataGridView1.Size = new System.Drawing.Size(995, 319);
             this.dataGridView1.TabIndex = 9;
             // 
             // Column1
@@ -82,7 +85,7 @@
             "Nombre del Serivicio",
             "Tipo",
             "Empleado"});
-            this.comboBox1.Location = new System.Drawing.Point(44, 42);
+            this.comboBox1.Location = new System.Drawing.Point(44, 94);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(174, 30);
             this.comboBox1.TabIndex = 8;
@@ -93,7 +96,7 @@
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
             this.textBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBox1.Location = new System.Drawing.Point(224, 44);
+            this.textBox1.Location = new System.Drawing.Point(224, 96);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(678, 29);
             this.textBox1.TabIndex = 7;
@@ -104,7 +107,7 @@
             this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnBuscar.Location = new System.Drawing.Point(935, 42);
+            this.BtnBuscar.Location = new System.Drawing.Point(935, 94);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(104, 35);
             this.BtnBuscar.TabIndex = 4;
@@ -145,13 +148,32 @@
             this.BtnTipoDeServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnTipoDeServicios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnTipoDeServicios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnTipoDeServicios.Location = new System.Drawing.Point(464, 486);
+            this.BtnTipoDeServicios.Location = new System.Drawing.Point(455, 486);
             this.BtnTipoDeServicios.Name = "BtnTipoDeServicios";
-            this.BtnTipoDeServicios.Size = new System.Drawing.Size(164, 49);
+            this.BtnTipoDeServicios.Size = new System.Drawing.Size(187, 49);
             this.BtnTipoDeServicios.TabIndex = 6;
-            this.BtnTipoDeServicios.Text = "Tipo de Serivcios";
+            this.BtnTipoDeServicios.Text = "Modificar Serivcios";
             this.BtnTipoDeServicios.UseVisualStyleBackColor = false;
             this.BtnTipoDeServicios.Click += new System.EventHandler(this.BtnTipoDeServicios_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.IndianRed;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(0, -5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1084, 85);
+            this.panel1.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(332, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(439, 55);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Lista de Servicios";
             // 
             // ListaServicios
             // 
@@ -159,6 +181,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
@@ -171,6 +194,8 @@
             this.Load += new System.EventHandler(this.ListaServicios_Load);
             this.Resize += new System.EventHandler(this.ListaServicios_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +212,7 @@
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnRegresar;
         private System.Windows.Forms.Button BtnTipoDeServicios;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
     }
 }

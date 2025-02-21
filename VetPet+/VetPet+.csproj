@@ -866,8 +866,17 @@
     <Compile Include="xd.Designer.cs">
       <DependentUpon>xd.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AgregarCirugias.resx">
+      <DependentUpon>AgregarCirugias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarRayosX.resx">
+      <DependentUpon>AgregarRayosX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarServicios.resx">
       <DependentUpon>AgregarServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoCirugia.resx">
+      <DependentUpon>AgregarTipoCirugia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAgregarMedicamento.resx">
       <DependentUpon>AlmacenAgregarMedicamento.cs</DependentUpon>
@@ -1072,6 +1081,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_AtencionAlCliente.resx">
       <DependentUpon>Menu_AtencionAlCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarCirugias.resx">
+      <DependentUpon>ModificarCirugias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificarServicios.resx">
       <DependentUpon>ModificarServicios.cs</DependentUpon>

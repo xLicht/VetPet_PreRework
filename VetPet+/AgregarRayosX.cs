@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class AgregarRayosX : Form
+    public partial class AgregarRayosX : FormPadre
     {
         public AgregarRayosX()
         {
             InitializeComponent();
         }
+        public AgregarRayosX(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;
+        }
+
     }
 }
