@@ -157,8 +157,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ReportesCitas";
             this.Text = "ReportesCitas";
-            this.Load += new System.EventHandler(this.ReportesCitas_Load);
-            this.Resize += new System.EventHandler(this.ReportesCitas_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
