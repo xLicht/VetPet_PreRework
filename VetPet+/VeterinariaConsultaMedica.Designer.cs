@@ -584,6 +584,7 @@
             this.btnRecetar.Text = "Ver Receta";
             this.btnRecetar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRecetar.UseVisualStyleBackColor = false;
+            this.btnRecetar.Click += new System.EventHandler(this.btnRecetar_Click);
             // 
             // pictureBox2
             // 

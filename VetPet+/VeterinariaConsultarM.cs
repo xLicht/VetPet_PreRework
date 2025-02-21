@@ -24,5 +24,10 @@ namespace VetPet_
         {
 
         }
+
+        private void btnRecetar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaRecetar(parentForm));
+        }
     }
 }

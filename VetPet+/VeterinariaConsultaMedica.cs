@@ -34,5 +34,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VeterinariaModificarConsultaM(parentForm));
         }
+
+        private void btnRecetar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
+        }
     }
 }
