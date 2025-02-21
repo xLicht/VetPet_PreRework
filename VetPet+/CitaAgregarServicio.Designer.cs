@@ -98,7 +98,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.label1.Location = new System.Drawing.Point(26, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 76);
+            this.label1.Size = new System.Drawing.Size(178, 76);
             this.label1.TabIndex = 102;
             this.label1.Text = "Clase de\r\nServicio\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,7 +232,7 @@
             this.btnPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPersonal.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPersonal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnPersonal.Location = new System.Drawing.Point(772, 220);
+            this.btnPersonal.Location = new System.Drawing.Point(766, 220);
             this.btnPersonal.Name = "btnPersonal";
             this.btnPersonal.Size = new System.Drawing.Size(261, 47);
             this.btnPersonal.TabIndex = 112;
@@ -246,7 +246,7 @@
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.textBox3.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox3.Location = new System.Drawing.Point(776, 280);
+            this.textBox3.Location = new System.Drawing.Point(766, 280);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(259, 44);

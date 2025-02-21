@@ -72,24 +72,24 @@ namespace VetPet_
             if (e.RowIndex >= 0)
             {
                 // Si la fila seleccionada es la primera (índice 0)
-                if (e.RowIndex == 2)
+                if (e.RowIndex == 1)
                 {
                     //abrir lista de vacunas
                     //parentForm.formularioHijo(new CitaListaVacunas(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
                 }
                 // Si la fila seleccionada es la primera (índice 0)
-                if (e.RowIndex == 4)
+                if (e.RowIndex == 3)
                 {
                     //abrir lista de rayosx
-                    //parentForm.formularioHijo(new CitaListaRayosX(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                    parentForm.formularioHijo(new CitaListaRayosX(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
                 }
                 // Si la fila seleccionada es la primera (índice 0)
-                if (e.RowIndex == 5)
+                if (e.RowIndex == 4)
                 {
                     //abrir lista de radiografias
                     //parentForm.formularioHijo(new CitaListaRadiografia(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
                 }
-                if (e.RowIndex == 7)
+                if (e.RowIndex == 6)
                 {
                     //abrir lista de pruebas de laboratorio
                 }
