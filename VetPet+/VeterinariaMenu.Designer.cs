@@ -79,7 +79,6 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(251, 196);
             this.pictureBox1.Name = "pictureBox1";
@@ -91,7 +90,6 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(703, 207);
             this.pictureBox2.Name = "pictureBox2";
@@ -114,7 +112,6 @@
             this.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.Name = "VeterinariaMenu";
             this.Text = "VeterinariaMenu";
-            this.Load += new System.EventHandler(this.VeterinariaMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
