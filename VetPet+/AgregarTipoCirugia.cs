@@ -26,5 +26,15 @@ namespace VetPet_
         {
 
         }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AgregarCirugias(parentForm));
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaCirugias(parentForm));
+        }
     }
 }

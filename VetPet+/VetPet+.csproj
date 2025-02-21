@@ -1073,6 +1073,9 @@
     <EmbeddedResource Include="Menu_AtencionAlCliente.resx">
       <DependentUpon>Menu_AtencionAlCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModificarCirugias.resx">
+      <DependentUpon>ModificarCirugias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModificarServicios.resx">
       <DependentUpon>ModificarServicios.cs</DependentUpon>
     </EmbeddedResource>

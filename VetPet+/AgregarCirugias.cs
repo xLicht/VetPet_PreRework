@@ -17,5 +17,20 @@ namespace VetPet_
         {
             InitializeComponent();
         }
+        public AgregarCirugias(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia del formulario principal
+        }
+
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaCirugias(parentForm));
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaCirugias(parentForm));
+        }
     }
 }
