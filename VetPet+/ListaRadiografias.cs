@@ -7,14 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class ListaRadiografias : Form
+    public partial class ListaRadiografias : FormPadre
     {
         public ListaRadiografias()
         {
             InitializeComponent();
+        }
+        public ListaRadiografias(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia del formulario principal
+        }
+
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
     }
 }
