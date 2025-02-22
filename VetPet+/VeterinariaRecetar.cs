@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using VetPet_;
 
 
 namespace VetPet_
 {
-    public partial class VeterinariaRecetar : Form
+    public partial class VeterinariaRecetar : FormPadre
     {
-        private Form1 parentForm;
+
         public VeterinariaRecetar(Form1 parent)
         {
             InitializeComponent();

@@ -11,9 +11,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
-    public partial class VeterinariaConsultarRece : Form
+    public partial class VeterinariaConsultarRece : FormPadre
     {
-        private Form1 parentForm;
         public VeterinariaConsultarRece(Form1 parent)
         {
             InitializeComponent();

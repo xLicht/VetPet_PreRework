@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class VeterinariaModificarConsultaM : Form
+    public partial class VeterinariaModificarConsultaM : FormPadre
     {
-        private Form1 parentForm;
         public VeterinariaModificarConsultaM(Form1 parent)
         {
             InitializeComponent();

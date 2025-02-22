@@ -419,8 +419,6 @@
             this.Controls.Add(this.txtBuscar);
             this.Name = "ConsultarCita";
             this.Text = "ConsultarCita";
-            this.Load += new System.EventHandler(this.ConsultarCita_Load);
-            this.Resize += new System.EventHandler(this.ConsultarCita_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

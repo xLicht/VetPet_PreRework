@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class VeterinariaConsultaMedica : Form
+    public partial class VeterinariaConsultaMedica : FormPadre
     {
-        private Form1 parentForm;
         public VeterinariaConsultaMedica(Form1 parent)
         {
             InitializeComponent();
