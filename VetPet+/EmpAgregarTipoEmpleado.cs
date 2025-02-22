@@ -27,7 +27,12 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
+            parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
+        }
 
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
         }
     }
 }
