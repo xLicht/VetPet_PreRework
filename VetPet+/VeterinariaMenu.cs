@@ -55,5 +55,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new CitasMedicas(parentForm)); 
         }
+
+        private void VeterinariaMenu_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

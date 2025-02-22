@@ -39,6 +39,11 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new ConsultarCita(parentForm));
         }
+
+        private void CitasMedicas_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
    
 }

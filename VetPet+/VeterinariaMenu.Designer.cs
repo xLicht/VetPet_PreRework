@@ -112,6 +112,7 @@
             this.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.Name = "VeterinariaMenu";
             this.Text = "VeterinariaMenu";
+            this.Load += new System.EventHandler(this.VeterinariaMenu_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

@@ -211,6 +211,7 @@
             this.Controls.Add(this.cbFliltrar);
             this.Name = "CitasMedicas";
             this.Text = "CitasMedicas";
+            this.Load += new System.EventHandler(this.CitasMedicas_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dtCitasMedicas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
