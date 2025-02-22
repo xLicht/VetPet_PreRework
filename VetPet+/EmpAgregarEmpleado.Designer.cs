@@ -315,7 +315,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(276, 341);
+            this.pictureBox2.Location = new System.Drawing.Point(271, 346);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(57, 47);
@@ -327,7 +327,7 @@
             this.btnSelecTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnSelecTipo.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelecTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnSelecTipo.Location = new System.Drawing.Point(31, 332);
+            this.btnSelecTipo.Location = new System.Drawing.Point(33, 331);
             this.btnSelecTipo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelecTipo.Name = "btnSelecTipo";
             this.btnSelecTipo.Size = new System.Drawing.Size(315, 62);

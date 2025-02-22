@@ -7,19 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class EmpConsultarEmpleado : Form
+    public partial class EmpConsultarEmpleado : FormPadre
     {
-        public EmpConsultarEmpleado()
+        public EmpConsultarEmpleado(Form1 parent)
         {
             InitializeComponent();
+            parentForm = parent;
         }
 
         private void EmpConsultarEmpleado_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpModificarEmpleado(parentForm));
         }
     }
 }
