@@ -23,5 +23,14 @@ namespace VetPet_
             parentForm = parent;
         }
 
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaRayosX(parentForm));
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaRayosX(parentForm));
+        }
     }
 }

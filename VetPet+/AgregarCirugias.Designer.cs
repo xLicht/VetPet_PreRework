@@ -47,7 +47,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(84, 224);
+            this.label5.Location = new System.Drawing.Point(84, 210);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 22);
             this.label5.TabIndex = 7;
@@ -67,11 +67,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(84, 302);
+            this.label1.Location = new System.Drawing.Point(84, 288);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 22);
+            this.label1.Size = new System.Drawing.Size(149, 22);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Tipo Cirugía";
+            this.label1.Text = "Tipo de Cirugía";
             // 
             // label7
             // 
@@ -86,9 +86,9 @@
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
-            this.richTextBox1.Location = new System.Drawing.Point(759, 127);
+            this.richTextBox1.Location = new System.Drawing.Point(726, 127);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(249, 330);
+            this.richTextBox1.Size = new System.Drawing.Size(282, 330);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -135,7 +135,7 @@
             this.TxtPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
             this.TxtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPrecio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtPrecio.Location = new System.Drawing.Point(321, 224);
+            this.TxtPrecio.Location = new System.Drawing.Point(321, 210);
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(155, 29);
             this.TxtPrecio.TabIndex = 12;
@@ -157,9 +157,9 @@
             "Sistema Urinario",
             "Sistema Respiratorio ",
             "Añadir Tipo Cirugía"});
-            this.comboBox1.Location = new System.Drawing.Point(233, 302);
+            this.comboBox1.Location = new System.Drawing.Point(239, 288);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(243, 26);
+            this.comboBox1.Size = new System.Drawing.Size(237, 26);
             this.comboBox1.TabIndex = 19;
             // 
             // label2
@@ -176,7 +176,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.IndianRed;
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(3, 0);
+            this.panel1.Location = new System.Drawing.Point(-1, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1084, 82);
             this.panel1.TabIndex = 21;
