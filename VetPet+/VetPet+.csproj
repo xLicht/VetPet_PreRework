@@ -1385,6 +1385,13 @@
     <None Include="Resources\dog.png" />
     <None Include="Resources\owner.png" />
     <None Include="Resources\top.png" />
+    <None Include="Resources\DueAgregarMascota.png" />
+    <None Include="Resources\DueEliminar.png" />
+    <None Include="Resources\Hoja1.png" />
+    <None Include="Resources\VeterinariaAtras.png" />
+    <None Include="Resources\VeterinariaBuscar.png" />
+    <None Include="Resources\VeterinariaCitas.png" />
+    <None Include="Resources\VeterinariaConsultar.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
