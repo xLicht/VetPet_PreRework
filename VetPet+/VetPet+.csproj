@@ -300,6 +300,12 @@
     <Compile Include="CitaAgendar.Designer.cs">
       <DependentUpon>CitaAgendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitaAgregarCirugia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaAgregarCirugia.Designer.cs">
+      <DependentUpon>CitaAgregarCirugia.cs</DependentUpon>
+    </Compile>
     <Compile Include="CitaAgregarRayosX.cs">
       <SubType>Form</SubType>
     </Compile>
