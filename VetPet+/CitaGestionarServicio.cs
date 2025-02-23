@@ -54,7 +54,7 @@ namespace VetPet_
             }
             else if (formularioAnterior == "OtroFormulario")
             {
-                
+                parentForm.formularioHijo(new CitaModificarCita(parentForm));
             }
 
             this.Close(); // Cierra el formulario actual
@@ -81,7 +81,13 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaModificarCita(parentForm)); // Pasamos la referencia de Form1 a 
+            if (formularioAnterior == "CitaModificarCita")
+            {
+                parentForm.formularioHijo(new CitaModificarCita(parentForm)); // Pasamos la referencia de Form1 a 
+            }
+            else if (formularioAnterior == "")
+            {
+            }
         }
 
         private void btnVerServicio_Click(object sender, EventArgs e)

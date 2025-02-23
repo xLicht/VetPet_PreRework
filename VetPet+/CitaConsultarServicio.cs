@@ -18,6 +18,10 @@ namespace VetPet_
         public CitaConsultarServicio()
         {
             InitializeComponent();
+            if (formularioAnterior == "CitaGestionarServicio")
+            {
+                btnAgregar.Enabled = false;
+            }
         }
         public CitaConsultarServicio(Form1 parent)
         {
