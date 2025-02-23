@@ -50,7 +50,6 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -287,16 +287,6 @@
             this.textBox7.Size = new System.Drawing.Size(86, 29);
             this.textBox7.TabIndex = 344;
             // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(208, 203);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(171, 29);
-            this.textBox6.TabIndex = 343;
-            // 
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -437,12 +427,23 @@
             this.txtBuscar.Size = new System.Drawing.Size(171, 29);
             this.txtBuscar.TabIndex = 330;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(210, 203);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(116, 27);
+            this.dateTimePicker1.TabIndex = 360;
+            // 
             // VeterinariaModificarReceta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.richTextBox2);
@@ -459,7 +460,6 @@
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label14);
@@ -508,7 +508,6 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label14;
@@ -522,5 +521,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
