@@ -197,7 +197,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(234, 76);
             this.label4.TabIndex = 68;
-            this.label4.Text = "Tipo de administración";
+            this.label4.Text = "Vía de administración";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBox1
