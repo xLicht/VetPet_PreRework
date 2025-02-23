@@ -24,5 +24,25 @@ namespace VetPet_
         {
 
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+        }
+
+        private void btnMostrarMascota_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+        }
     }
 }

@@ -51,11 +51,11 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnMostrarMascota = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -86,6 +86,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox2.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaAjustes;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(934, 420);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -107,6 +108,7 @@
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // textBox2
             // 
@@ -195,6 +197,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox1.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(227, 492);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -216,6 +219,7 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // textBox1
             // 
@@ -306,6 +310,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.EmpAceptar;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(934, 494);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -313,20 +318,6 @@
             this.pictureBox3.Size = new System.Drawing.Size(57, 43);
             this.pictureBox3.TabIndex = 570;
             this.pictureBox3.TabStop = false;
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnAceptar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnAceptar.Location = new System.Drawing.Point(776, 484);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(235, 62);
-            this.btnAceptar.TabIndex = 569;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.UseVisualStyleBackColor = false;
             // 
             // textBox4
             // 
@@ -351,6 +342,7 @@
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox4.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaMascota;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Location = new System.Drawing.Point(935, 328);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -359,19 +351,35 @@
             this.pictureBox4.TabIndex = 574;
             this.pictureBox4.TabStop = false;
             // 
-            // button1
+            // btnMostrarMascota
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.button1.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.button1.Location = new System.Drawing.Point(776, 309);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(235, 92);
-            this.button1.TabIndex = 573;
-            this.button1.Text = "Mostrar Mascotas";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnMostrarMascota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnMostrarMascota.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrarMascota.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnMostrarMascota.Location = new System.Drawing.Point(776, 309);
+            this.btnMostrarMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMostrarMascota.Name = "btnMostrarMascota";
+            this.btnMostrarMascota.Size = new System.Drawing.Size(235, 92);
+            this.btnMostrarMascota.TabIndex = 573;
+            this.btnMostrarMascota.Text = "Mostrar Mascotas";
+            this.btnMostrarMascota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrarMascota.UseVisualStyleBackColor = false;
+            this.btnMostrarMascota.Click += new System.EventHandler(this.btnMostrarMascota_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnAceptar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnAceptar.Location = new System.Drawing.Point(776, 484);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(235, 62);
+            this.btnAceptar.TabIndex = 569;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // DueConsultarDueño
             // 
@@ -380,7 +388,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnMostrarMascota);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.pictureBox3);
@@ -444,10 +452,10 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMostrarMascota;
+        private System.Windows.Forms.Button btnAceptar;
     }
 }

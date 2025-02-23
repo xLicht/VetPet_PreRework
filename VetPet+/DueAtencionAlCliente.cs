@@ -23,5 +23,21 @@ namespace VetPet_
         {
   
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new DueAgregarDueño(parentForm));
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            
+            parentForm.formularioHijo(new MenuAtencionaCliente(parentForm));
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            parentForm.formularioHijo(new DueConsultarDueño(parentForm));
+        }
     }
 }
