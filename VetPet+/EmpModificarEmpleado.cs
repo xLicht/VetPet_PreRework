@@ -16,11 +16,27 @@ namespace VetPet_
         public EmpModificarEmpleado(Form1 parent)
         {
             InitializeComponent();
+            parentForm = parent;
         }
 
         private void EmpModificarEmpleado_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
         }
     }
 }
