@@ -84,7 +84,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                                parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
@@ -110,7 +110,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                                parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
@@ -135,7 +135,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                                parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
@@ -160,7 +160,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                                parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
@@ -183,7 +183,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                                parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
@@ -198,7 +198,7 @@ namespace VetPet_
                 }
                 else if (e.RowIndex != 0 || e.RowIndex != 1 || e.RowIndex != 3 || e.RowIndex != 4 || e.RowIndex != 6)
                 {
-                    //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                    parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                 }
             }
         }
