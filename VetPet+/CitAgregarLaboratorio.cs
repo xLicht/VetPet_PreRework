@@ -7,19 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class CitAgregarLaboratorio : Form
+    public partial class CitAgregarLaboratorio : FormPadre
     {
         public CitAgregarLaboratorio()
         {
             InitializeComponent();
         }
+        public CitAgregarLaboratorio(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;
+        }
 
         private void CitAgregarLaboratorio_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CitaListaLaboratorio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CitaGestionarServicio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
 }

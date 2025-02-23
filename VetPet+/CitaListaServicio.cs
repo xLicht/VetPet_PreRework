@@ -75,32 +75,133 @@ namespace VetPet_
                 // Si la fila seleccionada es la primera (índice 0)
                 if (e.RowIndex == 0)
                 {
-                    //abrir lista de vacunas
-                    parentForm.formularioHijo(new CitaListaCirugia(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                    string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                    // Llamar al formulario de opciones
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    {
+                        if (opcionesForm.ShowDialog() == DialogResult.OK)
+                        {
+                            if (opcionesForm.Resultado == "Modificar")
+                            {
+                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                            }
+                            if (opcionesForm.Resultado == "Salir")
+                            {
+                                parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a 
+                            }
+                            else if (opcionesForm.Resultado == "Ver")
+                            {
+                                parentForm.formularioHijo(new CitaListaCirugia(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                            }
+                        }
+                    }
+
                 }
                 // Si la fila seleccionada es la primera (índice 0)
-                if (e.RowIndex == 1)
+                else if (e.RowIndex == 1)
                 {
-                    //abrir lista de vacunas
-                    parentForm.formularioHijo(new CitaListaVacunas(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                    string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                    // Llamar al formulario de opciones
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    {
+                        if (opcionesForm.ShowDialog() == DialogResult.OK)
+                        {
+                            if (opcionesForm.Resultado == "Modificar")
+                            {
+                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                            }
+                            if (opcionesForm.Resultado == "Salir")
+                            {
+                                parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a 
+                            }
+                            else if (opcionesForm.Resultado == "Ver")
+                            {
+                                parentForm.formularioHijo(new CitaListaVacunas(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                            }
+                        }
+                    }
                 }
                 // Si la fila seleccionada es la primera (índice 0)
-                if (e.RowIndex == 3)
+                else if (e.RowIndex == 3)
                 {
-                    //abrir lista de rayosx
-                    parentForm.formularioHijo(new CitaListaRayosX(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+
+                    string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    {
+                        if (opcionesForm.ShowDialog() == DialogResult.OK)
+                        {
+                            if (opcionesForm.Resultado == "Modificar")
+                            {
+                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                            }
+                            if (opcionesForm.Resultado == "Salir")
+                            {
+                                parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a 
+                            }
+                            else if (opcionesForm.Resultado == "Ver")
+                            {
+                                //abrir lista de rayosx
+                                parentForm.formularioHijo(new CitaListaRayosX(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                            }
+                        }
+                    }
                 }
                 // Si la fila seleccionada es la primera (índice 0)
-                if (e.RowIndex == 4)
+                else if (e.RowIndex == 4)
                 {
-                    //abrir lista de radiografias
-                    //parentForm.formularioHijo(new CitaListaRadiografia(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                    string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    {
+                        if (opcionesForm.ShowDialog() == DialogResult.OK)
+                        {
+                            if (opcionesForm.Resultado == "Modificar")
+                            {
+                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                            }
+                            if (opcionesForm.Resultado == "Salir")
+                            {
+                                parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a 
+                            }
+                            else if (opcionesForm.Resultado == "Ver")
+                            {
+                                parentForm.formularioHijo(new CitaListaRadiografia(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto                            }
+                            }
+                        }
+                    }
                 }
-                if (e.RowIndex == 6)
+                else if (e.RowIndex == 6)
                 {
-                    //abrir lista de pruebas de laboratorio
+                    string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    {
+                        if (opcionesForm.ShowDialog() == DialogResult.OK)
+                        {
+                            if (opcionesForm.Resultado == "Modificar")
+                            {
+                                //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
+                            }
+                            if (opcionesForm.Resultado == "Salir")
+                            {
+                                parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a 
+                            }
+                            else if (opcionesForm.Resultado == "Ver")
+                            {
+                                parentForm.formularioHijo(new CitaListaLaboratorio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+                            }
+                        }
+                    }
+                }
+                else if (e.RowIndex != 0 || e.RowIndex != 1 || e.RowIndex != 3 || e.RowIndex != 4 || e.RowIndex != 6)
+                {
+                    //parentForm.formularioHijo(new CitaModificarServicio(parentForm));
                 }
             }
         }
     }
 }
+

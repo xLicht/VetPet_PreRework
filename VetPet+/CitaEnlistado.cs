@@ -23,10 +23,10 @@ namespace VetPet_
             InitializeComponent();
             parentForm = parent;
         }
-
+         
         private void CitaEnlistado_Load(object sender, EventArgs e)
         {
-
+             
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
