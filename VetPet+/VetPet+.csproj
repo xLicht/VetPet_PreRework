@@ -444,6 +444,12 @@
     <Compile Include="CortesMenus.Designer.cs">
       <DependentUpon>CortesMenus.cs</DependentUpon>
     </Compile>
+    <Compile Include="DueAgregarDueño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueAgregarDueño.Designer.cs">
+      <DependentUpon>DueAgregarDueño.cs</DependentUpon>
+    </Compile>
     <Compile Include="DueAgregarMascota.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -474,11 +480,23 @@
     <Compile Include="DueGestionarMascota.Designer.cs">
       <DependentUpon>DueGestionarMascota.cs</DependentUpon>
     </Compile>
+    <Compile Include="DueListadoMascotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueListadoMascotas.Designer.cs">
+      <DependentUpon>DueListadoMascotas.cs</DependentUpon>
+    </Compile>
     <Compile Include="DueMascotadeDue.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DueMascotadeDue.Designer.cs">
       <DependentUpon>DueMascotadeDue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DueModificarDueño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DueModificarDueño.Designer.cs">
+      <DependentUpon>DueModificarDueño.cs</DependentUpon>
     </Compile>
     <Compile Include="DueModificarMascota.cs">
       <SubType>Form</SubType>
@@ -860,6 +878,12 @@
     <Compile Include="VeterinariaRecetar.Designer.cs">
       <DependentUpon>VeterinariaRecetar.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaVentaMedicamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaVentaMedicamentos.Designer.cs">
+      <DependentUpon>VeterinariaVentaMedicamentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="xd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1037,6 +1061,9 @@
     <EmbeddedResource Include="CortesMenus.resx">
       <DependentUpon>CortesMenus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DueAgregarDueño.resx">
+      <DependentUpon>DueAgregarDueño.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DueAgregarMascota.resx">
       <DependentUpon>DueAgregarMascota.cs</DependentUpon>
     </EmbeddedResource>
@@ -1052,8 +1079,14 @@
     <EmbeddedResource Include="DueGestionarMascota.resx">
       <DependentUpon>DueGestionarMascota.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DueListadoMascotas.resx">
+      <DependentUpon>DueListadoMascotas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DueMascotadeDue.resx">
       <DependentUpon>DueMascotadeDue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DueModificarDueño.resx">
+      <DependentUpon>DueModificarDueño.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DueModificarMascota.resx">
       <DependentUpon>DueModificarMascota.cs</DependentUpon>
@@ -1216,6 +1249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaRecetar.resx">
       <DependentUpon>VeterinariaRecetar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaVentaMedicamentos.resx">
+      <DependentUpon>VeterinariaVentaMedicamentos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="libpdfium.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
