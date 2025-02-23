@@ -360,11 +360,23 @@
     <Compile Include="CitaGestionarServicio.Designer.cs">
       <DependentUpon>CitaGestionarServicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitAgregarLaboratorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitAgregarLaboratorio.Designer.cs">
+      <DependentUpon>CitAgregarLaboratorio.cs</DependentUpon>
+    </Compile>
     <Compile Include="CitaListaCirugia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CitaListaCirugia.Designer.cs">
       <DependentUpon>CitaListaCirugia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitaListaLaboratorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaListaLaboratorio.Designer.cs">
+      <DependentUpon>CitaListaLaboratorio.cs</DependentUpon>
     </Compile>
     <Compile Include="CitaListaRadiografia.cs">
       <SubType>Form</SubType>
@@ -1025,8 +1037,14 @@
     <EmbeddedResource Include="CitaGestionarServicio.resx">
       <DependentUpon>CitaGestionarServicio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CitAgregarLaboratorio.resx">
+      <DependentUpon>CitAgregarLaboratorio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CitaListaCirugia.resx">
       <DependentUpon>CitaListaCirugia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaListaLaboratorio.resx">
+      <DependentUpon>CitaListaLaboratorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CitaListaRadiografia.resx">
       <DependentUpon>CitaListaRadiografia.cs</DependentUpon>
