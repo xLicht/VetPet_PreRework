@@ -1398,6 +1398,11 @@
     <None Include="Resources\VetrinariaMascota.png" />
     <None Include="Resources\VeterinariaLista.png" />
     <None Include="Resources\VetrinariaAjustes.png" />
+    <None Include="Resources\Agregar.png" />
+    <None Include="Resources\EmpAceptar.png" />
+    <None Include="Resources\EmpTipo.png" />
+    <None Include="Resources\EmpTipo2.png" />
+    <None Include="Resources\DueAgregarMascota2.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
