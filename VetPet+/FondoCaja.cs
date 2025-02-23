@@ -16,5 +16,10 @@ namespace VetPet_
         {
             InitializeComponent();
         }
+
+        private void BtnIngresar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
