@@ -235,7 +235,7 @@
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
             this.pictureBox2.Location = new System.Drawing.Point(579, 308);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 31);
+            this.pictureBox2.Size = new System.Drawing.Size(32, 30);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 94;
             this.pictureBox2.TabStop = false;

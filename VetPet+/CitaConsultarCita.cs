@@ -59,7 +59,7 @@ namespace VetPet_
 
         private void btnVerReceta_Click(object sender, EventArgs e)
         {
-            //parentForm.formularioHijo(new CitaReceta(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new CitaReceta(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }
