@@ -995,6 +995,9 @@
     <EmbeddedResource Include="CitaAgendar.resx">
       <DependentUpon>CitaAgendar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CitaAgregarCirugia.resx">
+      <DependentUpon>CitaAgregarCirugia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CitaAgregarRayosX.resx">
       <DependentUpon>CitaAgregarRayosX.cs</DependentUpon>
     </EmbeddedResource>

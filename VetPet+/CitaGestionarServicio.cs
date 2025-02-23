@@ -52,9 +52,9 @@ namespace VetPet_
                 parentForm.formularioHijo(new CitaModificarCita(parentForm));
 
             }
-            else if (formularioAnterior == "OtroFormulario")
+            else if (formularioAnterior == "CitaAgregarCirugia")
             {
-                parentForm.formularioHijo(new CitaModificarCita(parentForm));
+                parentForm.formularioHijo(new CitaAgregarCirugia(parentForm));
             }
 
             this.Close(); // Cierra el formulario actual
