@@ -185,7 +185,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ReportesServicios";
             this.Text = "ReportesServicios";
-            this.Load += new System.EventHandler(this.ReportesServicios_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

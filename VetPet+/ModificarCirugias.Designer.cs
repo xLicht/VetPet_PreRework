@@ -136,9 +136,9 @@
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
-            this.richTextBox1.Location = new System.Drawing.Point(755, 125);
+            this.richTextBox1.Location = new System.Drawing.Point(722, 125);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(249, 330);
+            this.richTextBox1.Size = new System.Drawing.Size(282, 330);
             this.richTextBox1.TabIndex = 26;
             this.richTextBox1.Text = "";
             // 

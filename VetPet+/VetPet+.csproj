@@ -869,6 +869,12 @@
     <EmbeddedResource Include="AgregarCirugias.resx">
       <DependentUpon>AgregarCirugias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AgregarPLab.resx">
+      <DependentUpon>AgregarPLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarRadiografias.resx">
+      <DependentUpon>AgregarRadiografias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarRayosX.resx">
       <DependentUpon>AgregarRayosX.cs</DependentUpon>
     </EmbeddedResource>
@@ -892,6 +898,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarTipoVacunas.resx">
       <DependentUpon>AgregarTipoVacunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarUltrasonidos.resx">
+      <DependentUpon>AgregarUltrasonidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarVacunas.resx">
+      <DependentUpon>AgregarVacunas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenAgregarMedicamento.resx">
       <DependentUpon>AlmacenAgregarMedicamento.cs</DependentUpon>
@@ -946,6 +958,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarContraseña.resx">
+      <DependentUpon>CambiarContraseña.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CitaAgendar.resx">
       <DependentUpon>CitaAgendar.cs</DependentUpon>
@@ -1070,11 +1085,17 @@
     <EmbeddedResource Include="EmpTiposEmpleados.resx">
       <DependentUpon>EmpTiposEmpleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FondoCaja.resx">
+      <DependentUpon>FondoCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InicioSesion.resx">
+      <DependentUpon>InicioSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaCirugias.resx">
       <DependentUpon>ListaCirugias.cs</DependentUpon>
@@ -1115,8 +1136,26 @@
     <EmbeddedResource Include="ModificarCirugias.resx">
       <DependentUpon>ModificarCirugias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModificarPLab.resx">
+      <DependentUpon>ModificarPLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarRadiografias.resx">
+      <DependentUpon>ModificarRadiografias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarRayosX.resx">
+      <DependentUpon>ModificarRayosX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModificarServicios.resx">
       <DependentUpon>ModificarServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarUltrasonidos.resx">
+      <DependentUpon>ModificarUltrasonidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarVacunas.resx">
+      <DependentUpon>ModificarVacunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OlvideConstraseña.resx">
+      <DependentUpon>OlvideConstraseña.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
