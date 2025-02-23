@@ -39,5 +39,10 @@ namespace VetPet_
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            parentForm.formularioHijo(new ConsultarCita(parentForm));
+        }
     }
 }

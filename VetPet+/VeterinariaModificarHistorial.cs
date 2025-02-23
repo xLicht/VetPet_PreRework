@@ -28,12 +28,17 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterianiaGestionarHistorialM(parentForm)); //regresar a Gestionar Historial Medico
+            parentForm.formularioHijo(new VeterianiaGestionarHistorialM(parentForm)); 
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterianiaGestionarHistorialM(parentForm)); // regresar a Gestionar Historial Medico
+            parentForm.formularioHijo(new VeterianiaGestionarHistorialM(parentForm)); 
+        }
+
+        private void VeterinariaModificarHistorial_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
