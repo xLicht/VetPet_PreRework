@@ -58,6 +58,7 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
+            CitaAgregarServicio.formularioAnterior = "CitaListaServicio";
             parentForm.formularioHijo(new CitaAgregarServicio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
 

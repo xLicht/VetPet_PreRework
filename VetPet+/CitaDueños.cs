@@ -13,6 +13,8 @@ namespace VetPet_
 {
     public partial class CitaDueños : FormPadre
     {
+        public static string formularioAnterior; // Guarda el nombre del formulario anterior
+
         public CitaDueños()
         {
             InitializeComponent();
@@ -30,7 +32,15 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            // Verifica de qué formulario vino
+            if (formularioAnterior == "CitaAgendar")
+            {
+                parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            }
+            else if (formularioAnterior == "CitaModificarCita")
+            {
+                parentForm.formularioHijo(new CitaModificarCita(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            }
         }
     }
 }
