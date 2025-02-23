@@ -143,6 +143,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DueAgregarMascota1 {
+            get {
+                object obj = ResourceManager.GetObject("DueAgregarMascota1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DueEliminar {
             get {
                 object obj = ResourceManager.GetObject("DueEliminar", resourceCulture);
@@ -367,6 +377,56 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap VeterinariaConsultar {
             get {
                 object obj = ResourceManager.GetObject("VeterinariaConsultar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VeterinariaGuardar {
+            get {
+                object obj = ResourceManager.GetObject("VeterinariaGuardar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VeterinariaLista {
+            get {
+                object obj = ResourceManager.GetObject("VeterinariaLista", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VeterinariaRecetar {
+            get {
+                object obj = ResourceManager.GetObject("VeterinariaRecetar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VetrinariaAjustes {
+            get {
+                object obj = ResourceManager.GetObject("VetrinariaAjustes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VetrinariaMascota {
+            get {
+                object obj = ResourceManager.GetObject("VetrinariaMascota", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

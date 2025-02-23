@@ -1392,6 +1392,12 @@
     <None Include="Resources\VeterinariaBuscar.png" />
     <None Include="Resources\VeterinariaCitas.png" />
     <None Include="Resources\VeterinariaConsultar.png" />
+    <None Include="Resources\DueAgregarMascota1.png" />
+    <None Include="Resources\VeterinariaRecetar.png" />
+    <None Include="Resources\VeterinariaGuardar.png" />
+    <None Include="Resources\VetrinariaMascota.png" />
+    <None Include="Resources\VeterinariaLista.png" />
+    <None Include="Resources\VetrinariaAjustes.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
