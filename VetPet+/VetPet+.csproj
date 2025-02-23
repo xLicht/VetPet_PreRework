@@ -420,6 +420,12 @@
     <Compile Include="CitaModificarCita.Designer.cs">
       <DependentUpon>CitaModificarCita.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitaModificarServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaModificarServicio.Designer.cs">
+      <DependentUpon>CitaModificarServicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="CitaReceta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1072,6 +1078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CitaModificarCita.resx">
       <DependentUpon>CitaModificarCita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaModificarServicio.resx">
+      <DependentUpon>CitaModificarServicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CitaReceta.resx">
       <DependentUpon>CitaReceta.cs</DependentUpon>
