@@ -32,7 +32,12 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-             
+            parentForm.formularioHijo(new EmpMenuEmpleados(parentForm));
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
         }
     }
 }
