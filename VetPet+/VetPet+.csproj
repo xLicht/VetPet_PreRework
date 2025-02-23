@@ -306,6 +306,12 @@
     <Compile Include="CitaAgregarCirugia.Designer.cs">
       <DependentUpon>CitaAgregarCirugia.cs</DependentUpon>
     </Compile>
+    <Compile Include="CitaAgregarRadiografia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CitaAgregarRadiografia.Designer.cs">
+      <DependentUpon>CitaAgregarRadiografia.cs</DependentUpon>
+    </Compile>
     <Compile Include="CitaAgregarRayosX.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -997,6 +1003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CitaAgregarCirugia.resx">
       <DependentUpon>CitaAgregarCirugia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitaAgregarRadiografia.resx">
+      <DependentUpon>CitaAgregarRadiografia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CitaAgregarRayosX.resx">
       <DependentUpon>CitaAgregarRayosX.cs</DependentUpon>

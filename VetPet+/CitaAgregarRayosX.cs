@@ -34,7 +34,7 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaListaRayosX(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
 }

@@ -50,6 +50,11 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             parentForm.formularioHijo(new CitaAgregarRayosX(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
