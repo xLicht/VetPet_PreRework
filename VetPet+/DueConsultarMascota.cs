@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class DueConsultarMascota : Form
+    public partial class DueConsultarMascota : FormPadre
     {
-        public DueConsultarMascota()
+        public DueConsultarMascota(Form1 parent)
         {
             InitializeComponent();
+            parentForm = parent;
         }
 
         private void DueConsultarMascota_Load(object sender, EventArgs e)

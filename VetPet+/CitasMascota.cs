@@ -34,5 +34,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VeterianiaGestionarHistorialM(parentForm));
         }
+
+        private void CitasMascota_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
