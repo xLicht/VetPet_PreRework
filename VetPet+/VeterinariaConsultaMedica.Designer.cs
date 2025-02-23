@@ -275,11 +275,6 @@
             this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox4.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
             this.comboBox4.Location = new System.Drawing.Point(666, 403);
             this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox4.Name = "comboBox4";
@@ -291,11 +286,6 @@
             this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
             this.comboBox3.Location = new System.Drawing.Point(789, 358);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox3.Name = "comboBox3";
@@ -307,11 +297,6 @@
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
             this.comboBox2.Location = new System.Drawing.Point(683, 315);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox2.Name = "comboBox2";
@@ -323,11 +308,6 @@
             this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
             this.comboBox1.Location = new System.Drawing.Point(666, 272);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
@@ -339,11 +319,6 @@
             this.cbFliltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.cbFliltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFliltrar.FormattingEnabled = true;
-            this.cbFliltrar.Items.AddRange(new object[] {
-            "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
             this.cbFliltrar.Location = new System.Drawing.Point(666, 232);
             this.cbFliltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbFliltrar.Name = "cbFliltrar";
