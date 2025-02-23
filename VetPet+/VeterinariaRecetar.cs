@@ -39,7 +39,7 @@ namespace VetPet_
 
         private void btnAgregarMedicamentos_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaRecetar"));
         }
     }
 }
