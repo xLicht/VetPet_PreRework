@@ -7,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class DueAgregarMascota : Form
+    public partial class DueAgregarMascota : FormPadre
     {
-        public DueAgregarMascota()
+        public DueAgregarMascota(Form1 parent)
         {
             InitializeComponent();
+            parentForm = parent;
         }
 
         private void DueAgregarMascota_Load(object sender, EventArgs e)

@@ -7,19 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class EmpAgregarEmpleado : Form
+    public partial class EmpAgregarEmpleado : FormPadre
     {
-        public EmpAgregarEmpleado()
+        public EmpAgregarEmpleado(Form1 parent)
         {
             InitializeComponent();
+            parentForm = parent;
         }
 
         private void EmpAgregarEmpleado_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+        }
+
+        private void btnSelecTipo_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpAgregarTipoEmpleado(parentForm));
         }
     }
 }
