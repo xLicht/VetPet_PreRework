@@ -51,7 +51,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1082, 116);
             this.panel1.TabIndex = 20;
@@ -74,7 +74,7 @@
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
             this.button5.Location = new System.Drawing.Point(607, 370);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(166, 91);
             this.button5.TabIndex = 16;
@@ -88,7 +88,7 @@
             this.btnCitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCitas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
             this.btnCitas.Location = new System.Drawing.Point(334, 370);
-            this.btnCitas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCitas.Margin = new System.Windows.Forms.Padding(2);
             this.btnCitas.Name = "btnCitas";
             this.btnCitas.Size = new System.Drawing.Size(166, 91);
             this.btnCitas.TabIndex = 17;
@@ -103,13 +103,14 @@
             this.btnDueños.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDueños.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
             this.btnDueños.Location = new System.Drawing.Point(607, 199);
-            this.btnDueños.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDueños.Margin = new System.Windows.Forms.Padding(2);
             this.btnDueños.Name = "btnDueños";
             this.btnDueños.Size = new System.Drawing.Size(166, 91);
             this.btnDueños.TabIndex = 18;
             this.btnDueños.Text = "    Dueños";
             this.btnDueños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDueños.UseVisualStyleBackColor = false;
+            this.btnDueños.Click += new System.EventHandler(this.btnDueños_Click);
             // 
             // btnMascotas
             // 
@@ -117,7 +118,7 @@
             this.btnMascotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMascotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
             this.btnMascotas.Location = new System.Drawing.Point(334, 199);
-            this.btnMascotas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMascotas.Margin = new System.Windows.Forms.Padding(2);
             this.btnMascotas.Name = "btnMascotas";
             this.btnMascotas.Size = new System.Drawing.Size(166, 91);
             this.btnMascotas.TabIndex = 19;
@@ -131,7 +132,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Location = new System.Drawing.Point(438, 383);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(56, 61);
             this.pictureBox4.TabIndex = 24;
@@ -142,7 +143,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(710, 383);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(56, 61);
             this.pictureBox3.TabIndex = 23;
@@ -153,7 +154,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(710, 214);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(56, 61);
             this.pictureBox2.TabIndex = 22;
@@ -164,7 +165,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(438, 214);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(56, 61);
             this.pictureBox1.TabIndex = 21;
@@ -185,7 +186,7 @@
             this.Controls.Add(this.btnCitas);
             this.Controls.Add(this.btnDueños);
             this.Controls.Add(this.btnMascotas);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuAtencionaCliente";
             this.Text = "MenuAtencionaCliente";
             this.Load += new System.EventHandler(this.MenuAtencionaCliente_Load);

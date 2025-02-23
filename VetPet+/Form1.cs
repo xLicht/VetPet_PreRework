@@ -95,6 +95,11 @@ namespace VetPet_
         {
             formularioHijo(new VeterinariaMenu(this));
         }
+
+        private void BtnEmpleados_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new EmpMenuEmpleados(this));
+        }
     }
 }
 //SEXOO
