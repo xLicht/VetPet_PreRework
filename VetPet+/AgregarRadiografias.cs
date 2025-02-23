@@ -7,14 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class AgregarRadiografias : Form
+    public partial class AgregarRadiografias : FormPadre
     {
         public AgregarRadiografias()
         {
             InitializeComponent();
+        }
+        public AgregarRadiografias(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia del formulario principal
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaRadiografias(parentForm));
+        }
+
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaRadiografias(parentForm));
         }
     }
 }

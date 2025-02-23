@@ -35,13 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnBuscar = new System.Windows.Forms.PictureBox();
-            this.txtProducto = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnBuscar = new System.Windows.Forms.PictureBox();
+            this.txtProducto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -144,28 +144,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(891, 319);
             this.dataGridView1.TabIndex = 25;
             // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = global::VetPet_.Properties.Resources.search;
-            this.btnBuscar.Location = new System.Drawing.Point(984, 24);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(46, 43);
-            this.btnBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnBuscar.TabIndex = 24;
-            this.btnBuscar.TabStop = false;
-            // 
-            // txtProducto
-            // 
-            this.txtProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtProducto.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtProducto.Location = new System.Drawing.Point(53, 33);
-            this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(891, 24);
-            this.txtProducto.TabIndex = 23;
-            this.txtProducto.Text = "Buscar nombre de producto";
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Producto";
@@ -190,6 +168,28 @@
             // 
             this.Column5.HeaderText = "Fecha recibido";
             this.Column5.Name = "Column5";
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Image = global::VetPet_.Properties.Resources.search;
+            this.btnBuscar.Location = new System.Drawing.Point(984, 24);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(46, 43);
+            this.btnBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnBuscar.TabIndex = 24;
+            this.btnBuscar.TabStop = false;
+            // 
+            // txtProducto
+            // 
+            this.txtProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtProducto.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtProducto.Location = new System.Drawing.Point(53, 33);
+            this.txtProducto.Name = "txtProducto";
+            this.txtProducto.Size = new System.Drawing.Size(891, 24);
+            this.txtProducto.TabIndex = 23;
+            this.txtProducto.Text = "Buscar nombre de producto";
             // 
             // label5
             // 

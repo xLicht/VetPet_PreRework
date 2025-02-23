@@ -7,14 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class AgregarPLab : Form
+    public partial class AgregarPLab : FormPadre
     {
         public AgregarPLab()
         {
             InitializeComponent();
+        }
+        public AgregarPLab(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia del formulario principal
+        }
+
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaPLab(parentForm));
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ListaPLab(parentForm));
         }
     }
 }

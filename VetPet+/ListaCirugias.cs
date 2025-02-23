@@ -69,18 +69,18 @@ namespace VetPet_
 
         private void BtnAgregarCirugía_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new AgregarCirugias(parentForm));
         }
 
         private void BtnEliminarCirugía_Click(object sender, EventArgs e)
         {
-
+            
         }
 
 
         private void BtnAgregarTipoDeCirugia_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new AgregarTipoCirugia(parentForm));
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
