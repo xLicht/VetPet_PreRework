@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnMostrarMascota = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -74,19 +74,20 @@
             this.pictureBox4.TabIndex = 602;
             this.pictureBox4.TabStop = false;
             // 
-            // button1
+            // btnMostrarMascota
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.button1.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.button1.Location = new System.Drawing.Point(781, 312);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(235, 92);
-            this.button1.TabIndex = 601;
-            this.button1.Text = "Mostrar Mascotas";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnMostrarMascota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnMostrarMascota.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrarMascota.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnMostrarMascota.Location = new System.Drawing.Point(781, 312);
+            this.btnMostrarMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMostrarMascota.Name = "btnMostrarMascota";
+            this.btnMostrarMascota.Size = new System.Drawing.Size(235, 92);
+            this.btnMostrarMascota.TabIndex = 601;
+            this.btnMostrarMascota.Text = "Mostrar Mascotas";
+            this.btnMostrarMascota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMostrarMascota.UseVisualStyleBackColor = false;
+            this.btnMostrarMascota.Click += new System.EventHandler(this.btnMostrarMascota_Click);
             // 
             // textBox5
             // 
@@ -133,6 +134,7 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label13
             // 
@@ -191,6 +193,7 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // textBox2
             // 
@@ -301,6 +304,7 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // textBox1
             // 
@@ -384,7 +388,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnMostrarMascota);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.pictureBox3);
@@ -426,7 +430,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMostrarMascota;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.PictureBox pictureBox3;

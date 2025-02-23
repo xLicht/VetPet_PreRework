@@ -27,7 +27,7 @@ namespace VetPet_
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -37,12 +37,12 @@ namespace VetPet_
 
         private void btnMostrarMascota_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new DueMascotadeDue(parentForm));
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+            parentForm.formularioHijo(new DueModificarDueño(parentForm));
         }
-    }
+    } 
 }
