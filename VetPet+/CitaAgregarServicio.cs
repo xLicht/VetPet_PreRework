@@ -13,6 +13,8 @@ namespace VetPet_
 {
     public partial class CitaAgregarServicio : FormPadre
     {
+        public static string formularioAnterior; // Guarda el nombre del formulario anterior
+
         public CitaAgregarServicio()
         {
             InitializeComponent();
@@ -35,7 +37,19 @@ namespace VetPet_
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            // Verifica de qué formulario vino
+            if (formularioAnterior == "CitaAgendar")
+            {
+                parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            }
+            else if (formularioAnterior == "CitaModificarCita")
+            {
+                parentForm.formularioHijo(new CitaModificarCita(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            }
+            else if (formularioAnterior == "CitaListaServicio")
+            {
+                parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            }
         }
 
         private void btnServicio_Click(object sender, EventArgs e)
@@ -45,6 +59,7 @@ namespace VetPet_
 
         private void btnPersonal_Click(object sender, EventArgs e)
         {
+            CitaEmpleadosDisponibles.formularioAnterior = "CitaAgregarServicio";
             parentForm.formularioHijo(new CitaEmpleadosDisponibles(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
