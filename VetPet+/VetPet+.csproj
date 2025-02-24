@@ -1407,6 +1407,9 @@
     <None Include="Resources\plus1.png" />
     <None Include="Resources\tool-and-utensils.png" />
     <None Include="Resources\back.png" />
+    <None Include="Resources\diskette.png" />
+    <None Include="Resources\clipboard.png" />
+    <None Include="Resources\list1.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
