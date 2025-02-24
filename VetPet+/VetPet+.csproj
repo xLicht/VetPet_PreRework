@@ -1304,6 +1304,11 @@
     <None Include="Resources\dog.png" />
     <None Include="Resources\owner.png" />
     <None Include="Resources\top.png" />
+    <None Include="Resources\plus1.png" />
+    <None Include="Resources\search1.png" />
+    <None Include="Resources\tool-and-utensils.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\diskette.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

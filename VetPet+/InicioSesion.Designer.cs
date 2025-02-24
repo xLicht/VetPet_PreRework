@@ -56,9 +56,9 @@
             // 
             this.BtnOlvideMiContraseña.BackColor = System.Drawing.Color.LightCoral;
             this.BtnOlvideMiContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOlvideMiContraseña.Location = new System.Drawing.Point(170, 213);
+            this.BtnOlvideMiContraseña.Location = new System.Drawing.Point(180, 213);
             this.BtnOlvideMiContraseña.Name = "BtnOlvideMiContraseña";
-            this.BtnOlvideMiContraseña.Size = new System.Drawing.Size(186, 31);
+            this.BtnOlvideMiContraseña.Size = new System.Drawing.Size(190, 31);
             this.BtnOlvideMiContraseña.TabIndex = 4;
             this.BtnOlvideMiContraseña.Text = "Olvide mi Contraseña";
             this.BtnOlvideMiContraseña.UseVisualStyleBackColor = false;
@@ -72,7 +72,7 @@
             this.BtnIngresar.Name = "BtnIngresar";
             this.BtnIngresar.Size = new System.Drawing.Size(198, 46);
             this.BtnIngresar.TabIndex = 3;
-            this.BtnIngresar.Text = "Ingresar";
+            this.BtnIngresar.Text = "Ingresar           ";
             this.BtnIngresar.UseVisualStyleBackColor = false;
             this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
             // 
