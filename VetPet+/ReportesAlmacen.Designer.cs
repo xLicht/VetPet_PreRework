@@ -41,6 +41,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -96,7 +98,7 @@
             this.BtnProdMasVend.Location = new System.Drawing.Point(40, 115);
             this.BtnProdMasVend.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProdMasVend.Name = "BtnProdMasVend";
-            this.BtnProdMasVend.Size = new System.Drawing.Size(262, 45);
+            this.BtnProdMasVend.Size = new System.Drawing.Size(289, 45);
             this.BtnProdMasVend.TabIndex = 36;
             this.BtnProdMasVend.Text = "Productos más Vendidos";
             this.BtnProdMasVend.UseVisualStyleBackColor = false;
@@ -110,7 +112,7 @@
             this.button8.Location = new System.Drawing.Point(40, 171);
             this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(262, 45);
+            this.button8.Size = new System.Drawing.Size(289, 45);
             this.button8.TabIndex = 37;
             this.button8.Text = "Productos menos Vendidos";
             this.button8.UseVisualStyleBackColor = false;
@@ -123,7 +125,7 @@
             this.button1.Location = new System.Drawing.Point(40, 227);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(262, 45);
+            this.button1.Size = new System.Drawing.Size(289, 45);
             this.button1.TabIndex = 38;
             this.button1.Text = "Medicamentos más Vendidos";
             this.button1.UseVisualStyleBackColor = false;
@@ -136,7 +138,7 @@
             this.button10.Location = new System.Drawing.Point(40, 283);
             this.button10.Margin = new System.Windows.Forms.Padding(2);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(262, 45);
+            this.button10.Size = new System.Drawing.Size(289, 45);
             this.button10.TabIndex = 39;
             this.button10.Text = "Medicamentos menos Vendidos";
             this.button10.UseVisualStyleBackColor = false;
@@ -149,7 +151,7 @@
             this.button2.Location = new System.Drawing.Point(40, 339);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(262, 45);
+            this.button2.Size = new System.Drawing.Size(289, 45);
             this.button2.TabIndex = 40;
             this.button2.Text = "Productos con Bajo Stock";
             this.button2.UseVisualStyleBackColor = false;
@@ -162,7 +164,7 @@
             this.button3.Location = new System.Drawing.Point(40, 395);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(262, 45);
+            this.button3.Size = new System.Drawing.Size(289, 45);
             this.button3.TabIndex = 41;
             this.button3.Text = "Medicamentos con Bajo Stock";
             this.button3.UseVisualStyleBackColor = false;
@@ -175,7 +177,7 @@
             this.button4.Location = new System.Drawing.Point(40, 451);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(262, 45);
+            this.button4.Size = new System.Drawing.Size(289, 45);
             this.button4.TabIndex = 42;
             this.button4.Text = "Proveedores con mas Venta";
             this.button4.UseVisualStyleBackColor = false;
@@ -183,12 +185,12 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button5.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.button5.Location = new System.Drawing.Point(40, 507);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(262, 45);
+            this.button5.Size = new System.Drawing.Size(289, 45);
             this.button5.TabIndex = 43;
             this.button5.Text = "Proveedores con menos Venta";
             this.button5.UseVisualStyleBackColor = false;
@@ -232,12 +234,36 @@
             this.label2.Text = "Vista Previa";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(704, 507);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(120, 23);
+            this.dateTimePicker1.TabIndex = 47;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
+            this.label3.Location = new System.Drawing.Point(722, 540);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 28);
+            this.label3.TabIndex = 48;
+            this.label3.Text = "Fecha";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // ReportesAlmacen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -273,5 +299,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label3;
     }
 }
