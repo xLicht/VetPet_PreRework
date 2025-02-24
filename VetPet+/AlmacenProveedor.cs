@@ -82,12 +82,12 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new AlmacenAgregarProveedor(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void comboBox1_DropDown(object sender, EventArgs e)
@@ -103,6 +103,34 @@ namespace VetPet_
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+
+                // Llamar al formulario de opciones
+                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                {
+                    if (opcionesForm.ShowDialog() == DialogResult.OK)
+                    {
+                        if (opcionesForm.Resultado == "Modificar")
+                        {
+                            parentForm.formularioHijo(new AlmacenModificarProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                        if (opcionesForm.Resultado == "Salir")
+                        {
+                            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                        else if (opcionesForm.Resultado == "Ver")
+                        {
+                            parentForm.formularioHijo(new AlmacenVerProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                    }
+                }
+            }
         }
     }
 }

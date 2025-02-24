@@ -48,12 +48,12 @@ namespace VetPet_
 
         private void BtnAtencionClient_Click(object sender, EventArgs e)
         {
-           formularioHijo(new Menu_AtencionAlCliente());
+            formularioHijo(new MenuAtencionaCliente(this)); // Pasamos la referencia de Form1
         }
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-
+            formularioHijo(new MainMenu(this));
         }
         // Botón btnProductos
         private void BtnProductos_Click(object sender, EventArgs e)
@@ -85,9 +85,32 @@ namespace VetPet_
         {
             formularioHijo(new MenuReportes(this));
         }
+
+        private void BtnCortes_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new CortesMenus(this));
+        }
+
+        private void BtnVeterinaria_Click_1(object sender, EventArgs e)
+        {
+            formularioHijo(new VeterinariaMenu(this));
+        }
+
+        private void BtnEmpleados_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new EmpMenuEmpleados(this));
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            formularioHijo(new MainMenu(this));
+        }
     }
 }
+//SEXOO
+//PENE POLLA
 
 // Me voy a chingar la master causas
+
 
 //MAFUFAFADA

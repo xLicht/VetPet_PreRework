@@ -44,5 +44,12 @@ namespace VetPet_
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Resultado = "Salir";
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

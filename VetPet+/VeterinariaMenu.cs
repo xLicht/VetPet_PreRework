@@ -8,18 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class VeterinariaMenu : Form
+    public partial class VeterinariaMenu : FormPadre
     {
-        private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        private Form1 parentForm;
         public VeterinariaMenu(Form1 parent)
         {
             InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia del formulario principal
-            
+            parentForm = parent; 
+         
         }
 
         private void VeterinariaMenu_Load(object sender, EventArgs e)
@@ -27,6 +26,39 @@ namespace VetPet_
 
         }
 
-       
+        private void VeterinariaMenu_Resize(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnHistorialMedico_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaHistorialMedico(parentForm)); 
+        }
+
+        private void btnHistorialMedico_Click_1(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaHistorialMedico(parentForm)); 
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VeterinariaHistorialMedico(parentForm)); 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CitasMedicas(parentForm)); 
+        }
+
+        private void btnCitasMedicas_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new CitasMedicas(parentForm)); 
+        }
+
+        private void VeterinariaMenu_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
