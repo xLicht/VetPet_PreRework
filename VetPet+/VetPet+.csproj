@@ -672,6 +672,12 @@
     <Compile Include="ListaVacunas.Designer.cs">
       <DependentUpon>ListaVacunas.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="MascotasAgregar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1199,6 +1205,9 @@
     <EmbeddedResource Include="ListaVacunas.resx">
       <DependentUpon>ListaVacunas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuAtencionaCliente.resx">
       <DependentUpon>MenuAtencionaCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -1410,6 +1419,20 @@
     <None Include="Resources\diskette.png" />
     <None Include="Resources\clipboard.png" />
     <None Include="Resources\list1.png" />
+    <None Include="Resources\VetPet_Logo.png" />
+    <None Include="Resources\VetPet_Logo1.png" />
+    <None Include="Resources\usuario.png" />
+    <None Include="Resources\quitar-caja.png" />
+    <None Include="Resources\veterinario.png" />
+    <None Include="Resources\caja-registradora.png" />
+    <None Include="Resources\cuidado-de-la-salud.png" />
+    <None Include="Resources\papel-de-empresario-de-la-solicitud-de-empleo.png" />
+    <None Include="Resources\reporte-de-negocios.png" />
+    <None Include="Resources\caja-del-paquete.png" />
+    <None Include="Resources\kit-de-primeros-auxilios %281%29.png" />
+    <None Include="Resources\anadir-cuenta.png" />
+    <None Include="Resources\hospital.png" />
+    <None Include="Resources\salario.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
