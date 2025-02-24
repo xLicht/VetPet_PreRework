@@ -156,7 +156,7 @@
             this.rt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rt.Location = new System.Drawing.Point(715, 281);
             this.rt.Name = "rt";
-            this.rt.Size = new System.Drawing.Size(287, 104);
+            this.rt.Size = new System.Drawing.Size(287, 134);
             this.rt.TabIndex = 534;
             this.rt.Text = "";
             // 
