@@ -59,7 +59,6 @@ namespace VetPet_
 
         private void btnVeterinario_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaListaVeterinario(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
     }
 }

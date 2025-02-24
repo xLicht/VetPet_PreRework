@@ -69,15 +69,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.btnVeterinario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -392,10 +389,10 @@
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label15.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label15.Location = new System.Drawing.Point(1039, 377);
+            this.label15.Location = new System.Drawing.Point(945, 377);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(111, 43);
+            this.label15.Size = new System.Drawing.Size(205, 43);
             this.label15.TabIndex = 55;
             this.label15.Text = "Total";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -425,9 +422,9 @@
             this.btnAgregarServicio.Location = new System.Drawing.Point(631, 377);
             this.btnAgregarServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregarServicio.Name = "btnAgregarServicio";
-            this.btnAgregarServicio.Size = new System.Drawing.Size(179, 43);
+            this.btnAgregarServicio.Size = new System.Drawing.Size(306, 43);
             this.btnAgregarServicio.TabIndex = 58;
-            this.btnAgregarServicio.Text = "Servicio";
+            this.btnAgregarServicio.Text = "Agregar servicio";
             this.btnAgregarServicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregarServicio.UseVisualStyleBackColor = false;
             this.btnAgregarServicio.Click += new System.EventHandler(this.btnAgregarServicio_Click);
@@ -545,7 +542,7 @@
             this.pictureBox5.Enabled = false;
             this.pictureBox5.Image = global::VetPet_.Properties.Resources.owner;
             this.pictureBox5.Location = new System.Drawing.Point(525, 501);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(57, 53);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -558,7 +555,7 @@
             this.pictureBox4.Enabled = false;
             this.pictureBox4.Image = global::VetPet_.Properties.Resources.dog;
             this.pictureBox4.Location = new System.Drawing.Point(197, 501);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(57, 53);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -571,7 +568,7 @@
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.plus;
             this.pictureBox1.Location = new System.Drawing.Point(1343, 626);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 53);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -584,7 +581,7 @@
             this.pictureBox3.Enabled = false;
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.arrow;
             this.pictureBox3.Location = new System.Drawing.Point(267, 626);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(57, 53);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -596,45 +593,13 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
             this.pictureBox2.Enabled = false;
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
-            this.pictureBox2.Location = new System.Drawing.Point(759, 380);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(882, 380);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(43, 38);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 57;
             this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.pictureBox6.Enabled = false;
-            this.pictureBox6.Image = global::VetPet_.Properties.Resources.plus;
-            this.pictureBox6.Location = new System.Drawing.Point(989, 379);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(43, 38);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 70;
-            this.pictureBox6.TabStop = false;
-            // 
-            // btnVeterinario
-            // 
-            this.btnVeterinario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.btnVeterinario.FlatAppearance.BorderSize = 2;
-            this.btnVeterinario.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.btnVeterinario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.btnVeterinario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVeterinario.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVeterinario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnVeterinario.Location = new System.Drawing.Point(818, 376);
-            this.btnVeterinario.Margin = new System.Windows.Forms.Padding(4);
-            this.btnVeterinario.Name = "btnVeterinario";
-            this.btnVeterinario.Size = new System.Drawing.Size(220, 43);
-            this.btnVeterinario.TabIndex = 71;
-            this.btnVeterinario.Text = "Veterinario";
-            this.btnVeterinario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVeterinario.UseVisualStyleBackColor = false;
-            this.btnVeterinario.Click += new System.EventHandler(this.btnVeterinario_Click);
             // 
             // CitaAgendar
             // 
@@ -642,8 +607,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.btnVeterinario);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.pictureBox5);
@@ -691,7 +654,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -740,7 +702,5 @@
         private System.Windows.Forms.Button btnDueño;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Button btnVeterinario;
     }
 }
