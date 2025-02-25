@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie;
 
 namespace VetPet_
 {
@@ -70,5 +71,10 @@ namespace VetPet_
             }
         }
 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }

@@ -393,6 +393,26 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_aceptar_504 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-aceptar-504", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_button_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-button-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_cancelar_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancelar-50", resourceCulture);
@@ -454,6 +474,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_informe_gráfico_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-informe-gráfico-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_pasado_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-pasado-24", resourceCulture);
@@ -467,6 +497,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap icons8_pasado_241 {
             get {
                 object obj = ResourceManager.GetObject("icons8-pasado-241", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_pasado_242 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-pasado-242", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

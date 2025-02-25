@@ -131,6 +131,7 @@
             this.textBox14.TabIndex = 165;
             this.textBox14.Text = "Tarjeta";
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox14.Click += new System.EventHandler(this.textBox14_Click);
             // 
             // textBox13
             // 
@@ -141,6 +142,7 @@
             this.textBox13.TabIndex = 164;
             this.textBox13.Text = "Efectivo";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox13.Click += new System.EventHandler(this.textBox13_Click);
             // 
             // textBox12
             // 
@@ -153,6 +155,7 @@
             this.textBox12.TabIndex = 163;
             this.textBox12.Text = "Agregar Productos";
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox12.Click += new System.EventHandler(this.textBox12_Click);
             // 
             // textBox11
             // 
@@ -165,6 +168,7 @@
             this.textBox11.TabIndex = 162;
             this.textBox11.Text = "Agregar Medicamentos";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox11.Click += new System.EventHandler(this.textBox11_Click);
             // 
             // textBox10
             // 
@@ -350,6 +354,7 @@
             this.button1.Text = "Regresar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
             // 

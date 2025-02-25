@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie;
 
 namespace VetPet_
 {
@@ -74,22 +75,27 @@ namespace VetPet_
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VentasAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new PagoEfectivo(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VentasConfirmacionEfectivo(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasVentanaTarjeta(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VentasConfirmacionTarjeta(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }
