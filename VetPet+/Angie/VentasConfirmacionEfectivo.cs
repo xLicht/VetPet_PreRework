@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VetPet_
+namespace VetPet_.Angie
 {
-    public partial class MascotasAgregar : Form
+    public partial class VentasConfirmacionEfectivo : Form
     {
-        public MascotasAgregar()
+        public VentasConfirmacionEfectivo()
         {
             InitializeComponent();
         }

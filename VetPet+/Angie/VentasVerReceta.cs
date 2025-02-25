@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VetPet_
+namespace VetPet_.Angie
 {
-    public partial class VentasTicket : Form
+    public partial class VentasVerReceta : Form
     {
-        public VentasTicket()
+        public VentasVerReceta()
         {
             InitializeComponent();
         }
