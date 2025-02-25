@@ -1067,6 +1067,9 @@
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\MascotasListado.resx">
+      <DependentUpon>MascotasListado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseña.resx">
       <DependentUpon>CambiarContraseña.cs</DependentUpon>
     </EmbeddedResource>
