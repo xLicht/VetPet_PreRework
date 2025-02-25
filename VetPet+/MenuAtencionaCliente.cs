@@ -79,5 +79,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasListado(parentForm));
+        }
     }
 }
