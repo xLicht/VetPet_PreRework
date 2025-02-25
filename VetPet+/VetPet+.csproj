@@ -252,6 +252,60 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\MascotasListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\MascotasListado.Designer.cs">
+      <DependentUpon>MascotasListado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasAgregarMedicamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasAgregarMedicamento.Designer.cs">
+      <DependentUpon>VentasAgregarMedicamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasAgregarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasAgregarProducto.Designer.cs">
+      <DependentUpon>VentasAgregarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasConfirmacionEfectivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasConfirmacionEfectivo.Designer.cs">
+      <DependentUpon>VentasConfirmacionEfectivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasConfirmacionTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasConfirmacionTarjeta.Designer.cs">
+      <DependentUpon>VentasConfirmacionTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasConsultarCita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasConsultarCita.Designer.cs">
+      <DependentUpon>VentasConsultarCita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasDeseaAgregarMedicamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasDeseaAgregarMedicamento.Designer.cs">
+      <DependentUpon>VentasDeseaAgregarMedicamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasDeseaAgregarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasDeseaAgregarProducto.Designer.cs">
+      <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\VentasVerReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\VentasVerReceta.Designer.cs">
+      <DependentUpon>VentasVerReceta.cs</DependentUpon>
+    </Compile>
     <Compile Include="AvisoCirugia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -684,28 +738,22 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="MascotasAgregar.cs">
+    <Compile Include="Angie\MascotasConsultar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MascotasAgregar.Designer.cs">
-      <DependentUpon>MascotasAgregar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MascotasConsultar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MascotasConsultar.Designer.cs">
+    <Compile Include="Angie\MascotasConsultar.Designer.cs">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
     </Compile>
-    <Compile Include="MascotasEliminarConfirm.cs">
+    <Compile Include="Angie\MascotasEliminarConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MascotasEliminarConfirm.Designer.cs">
+    <Compile Include="Angie\MascotasEliminarConfirm.Designer.cs">
       <DependentUpon>MascotasEliminarConfirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MascotasModificar.cs">
+    <Compile Include="Angie\MascotasModificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MascotasModificar.Designer.cs">
+    <Compile Include="Angie\MascotasModificar.Designer.cs">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuAtencionaCliente.cs">
@@ -812,40 +860,34 @@
     <Compile Include="ReportesVenta.Designer.cs">
       <DependentUpon>ReportesVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasHistorialdeVentas.cs">
+    <Compile Include="Angie\VentasHistorialdeVentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentasHistorialdeVentas.Designer.cs">
+    <Compile Include="Angie\VentasHistorialdeVentas.Designer.cs">
       <DependentUpon>VentasHistorialdeVentas.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasListado.cs">
+    <Compile Include="Angie\VentasListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentasListado.Designer.cs">
+    <Compile Include="Angie\VentasListado.Designer.cs">
       <DependentUpon>VentasListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasNuevaVenta.cs">
+    <Compile Include="Angie\VentasNuevaVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentasNuevaVenta.Designer.cs">
+    <Compile Include="Angie\VentasNuevaVenta.Designer.cs">
       <DependentUpon>VentasNuevaVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasTicket.cs">
+    <Compile Include="Angie\VentasVentanadePago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentasTicket.Designer.cs">
-      <DependentUpon>VentasTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VentasVentanadePago.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VentasVentanadePago.Designer.cs">
+    <Compile Include="Angie\VentasVentanadePago.Designer.cs">
       <DependentUpon>VentasVentanadePago.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasVentanadePagoNueva.cs">
+    <Compile Include="Angie\VentasVentanadePagoNueva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentasVentanadePagoNueva.Designer.cs">
+    <Compile Include="Angie\VentasVentanadePagoNueva.Designer.cs">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterianiaGestionarHistorialM.cs">
