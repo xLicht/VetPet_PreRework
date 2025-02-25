@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -41,9 +43,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnGenerar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -88,12 +88,22 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.dgv3BajarPrecio = new System.Windows.Forms.PictureBox();
+            this.dgv3SubirPrecio = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dgv2BajarPrecio = new System.Windows.Forms.PictureBox();
+            this.dgv2SubirPrecio = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3BajarPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3SubirPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv2BajarPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv2SubirPrecio)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox8
@@ -239,18 +249,6 @@
             this.textBox2.TabIndex = 98;
             this.textBox2.Text = "1000 mxn";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.pictureBox2.Enabled = false;
-            this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
-            this.pictureBox2.Location = new System.Drawing.Point(1009, 517);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(43, 43);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 96;
-            this.pictureBox2.TabStop = false;
-            // 
             // btnGenerar
             // 
             this.btnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
@@ -268,18 +266,6 @@
             this.btnGenerar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGenerar.UseVisualStyleBackColor = false;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
-            this.pictureBox1.Enabled = false;
-            this.pictureBox1.Image = global::VetPet_.Properties.Resources.arrow;
-            this.pictureBox1.Location = new System.Drawing.Point(202, 517);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(43, 43);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 94;
-            this.pictureBox1.TabStop = false;
             // 
             // btnRegresar
             // 
@@ -529,6 +515,14 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView3.Location = new System.Drawing.Point(502, 111);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(279, 252);
@@ -566,7 +560,7 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label6.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label6.Location = new System.Drawing.Point(322, 73);
+            this.label6.Location = new System.Drawing.Point(324, 73);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 35);
             this.label6.TabIndex = 74;
@@ -596,6 +590,14 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.Column3});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Location = new System.Drawing.Point(217, 111);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(279, 252);
@@ -734,12 +736,89 @@
             this.textBox9.TabIndex = 114;
             this.textBox9.Text = "$1000";
             // 
+            // dgv3BajarPrecio
+            // 
+            this.dgv3BajarPrecio.BackColor = System.Drawing.Color.White;
+            this.dgv3BajarPrecio.Enabled = false;
+            this.dgv3BajarPrecio.Image = global::VetPet_.Properties.Resources.down;
+            this.dgv3BajarPrecio.Location = new System.Drawing.Point(624, 115);
+            this.dgv3BajarPrecio.Name = "dgv3BajarPrecio";
+            this.dgv3BajarPrecio.Size = new System.Drawing.Size(21, 19);
+            this.dgv3BajarPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dgv3BajarPrecio.TabIndex = 116;
+            this.dgv3BajarPrecio.TabStop = false;
+            // 
+            // dgv3SubirPrecio
+            // 
+            this.dgv3SubirPrecio.BackColor = System.Drawing.Color.White;
+            this.dgv3SubirPrecio.Enabled = false;
+            this.dgv3SubirPrecio.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.dgv3SubirPrecio.Location = new System.Drawing.Point(678, 114);
+            this.dgv3SubirPrecio.Name = "dgv3SubirPrecio";
+            this.dgv3SubirPrecio.Size = new System.Drawing.Size(21, 20);
+            this.dgv3SubirPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dgv3SubirPrecio.TabIndex = 115;
+            this.dgv3SubirPrecio.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
+            this.pictureBox2.Enabled = false;
+            this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
+            this.pictureBox2.Location = new System.Drawing.Point(1009, 517);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(43, 43);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 96;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Image = global::VetPet_.Properties.Resources.arrow;
+            this.pictureBox1.Location = new System.Drawing.Point(202, 517);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(43, 43);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 94;
+            this.pictureBox1.TabStop = false;
+            // 
+            // dgv2BajarPrecio
+            // 
+            this.dgv2BajarPrecio.BackColor = System.Drawing.Color.White;
+            this.dgv2BajarPrecio.Enabled = false;
+            this.dgv2BajarPrecio.Image = global::VetPet_.Properties.Resources.down;
+            this.dgv2BajarPrecio.Location = new System.Drawing.Point(340, 114);
+            this.dgv2BajarPrecio.Name = "dgv2BajarPrecio";
+            this.dgv2BajarPrecio.Size = new System.Drawing.Size(19, 20);
+            this.dgv2BajarPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dgv2BajarPrecio.TabIndex = 118;
+            this.dgv2BajarPrecio.TabStop = false;
+            this.dgv2BajarPrecio.Click += new System.EventHandler(this.dgv2BajarPrecio_Click);
+            // 
+            // dgv2SubirPrecio
+            // 
+            this.dgv2SubirPrecio.BackColor = System.Drawing.Color.White;
+            this.dgv2SubirPrecio.Enabled = false;
+            this.dgv2SubirPrecio.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.dgv2SubirPrecio.Location = new System.Drawing.Point(395, 114);
+            this.dgv2SubirPrecio.Name = "dgv2SubirPrecio";
+            this.dgv2SubirPrecio.Size = new System.Drawing.Size(19, 20);
+            this.dgv2SubirPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dgv2SubirPrecio.TabIndex = 117;
+            this.dgv2SubirPrecio.TabStop = false;
+            // 
             // CortesCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.dgv2BajarPrecio);
+            this.Controls.Add(this.dgv2SubirPrecio);
+            this.Controls.Add(this.dgv3BajarPrecio);
+            this.Controls.Add(this.dgv3SubirPrecio);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.textBox8);
@@ -791,12 +870,16 @@
             this.Name = "CortesCaja";
             this.Text = "CortesCaja";
             this.Load += new System.EventHandler(this.CortesCaja_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3BajarPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3SubirPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv2BajarPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv2SubirPrecio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -864,5 +947,9 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.PictureBox dgv3SubirPrecio;
+        private System.Windows.Forms.PictureBox dgv3BajarPrecio;
+        private System.Windows.Forms.PictureBox dgv2BajarPrecio;
+        private System.Windows.Forms.PictureBox dgv2SubirPrecio;
     }
 }
