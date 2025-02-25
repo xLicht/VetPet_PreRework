@@ -1067,8 +1067,56 @@
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\MascotasConsultar.resx">
+      <DependentUpon>MascotasConsultar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\MascotasEliminarConfirm.resx">
+      <DependentUpon>MascotasEliminarConfirm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\MascotasListado.resx">
       <DependentUpon>MascotasListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\MascotasModificar.resx">
+      <DependentUpon>MascotasModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasAgregarMedicamento.resx">
+      <DependentUpon>VentasAgregarMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasAgregarProducto.resx">
+      <DependentUpon>VentasAgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasConfirmacionEfectivo.resx">
+      <DependentUpon>VentasConfirmacionEfectivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasConfirmacionTarjeta.resx">
+      <DependentUpon>VentasConfirmacionTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasConsultarCita.resx">
+      <DependentUpon>VentasConsultarCita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasDeseaAgregarMedicamento.resx">
+      <DependentUpon>VentasDeseaAgregarMedicamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasDeseaAgregarProducto.resx">
+      <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasHistorialdeVentas.resx">
+      <DependentUpon>VentasHistorialdeVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasListado.resx">
+      <DependentUpon>VentasListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasNuevaVenta.resx">
+      <DependentUpon>VentasNuevaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasVentanadePago.resx">
+      <DependentUpon>VentasVentanadePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasVentanadePagoNueva.resx">
+      <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\VentasVerReceta.resx">
+      <DependentUpon>VentasVerReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseña.resx">
       <DependentUpon>CambiarContraseña.cs</DependentUpon>
