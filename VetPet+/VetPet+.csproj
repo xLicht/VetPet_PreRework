@@ -1540,6 +1540,10 @@
     <None Include="Resources\icons8-aceptar-50.png" />
     <None Include="Resources\icons8-factura-50.png" />
     <None Include="Resources\icons8-factura-501.png" />
+    <None Include="Resources\icons8-pasado-24.png" />
+    <None Include="Resources\icons8-veterinario-50.png" />
+    <None Include="Resources\icons8-receta-50.png" />
+    <None Include="Resources\icons8-pasado-241.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

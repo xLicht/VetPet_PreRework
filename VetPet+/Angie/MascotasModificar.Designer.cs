@@ -137,6 +137,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_pasado_241;
             this.pictureBox2.Location = new System.Drawing.Point(1016, 639);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(58, 57);
