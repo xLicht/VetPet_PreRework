@@ -1535,6 +1535,11 @@
     <None Include="Resources\anadir-cuenta.png" />
     <None Include="Resources\hospital.png" />
     <None Include="Resources\salario.png" />
+    <None Include="Resources\icons8-cancelar-50.png" />
+    <None Include="Resources\icons8-cancelar-501.png" />
+    <None Include="Resources\icons8-aceptar-50.png" />
+    <None Include="Resources\icons8-factura-50.png" />
+    <None Include="Resources\icons8-factura-501.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

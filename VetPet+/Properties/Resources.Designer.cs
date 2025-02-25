@@ -363,6 +363,36 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_aceptar_501 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-aceptar-501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_aceptar_502 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-aceptar-502", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_aceptar_503 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-aceptar-503", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_cancelar_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancelar-50", resourceCulture);
@@ -387,6 +417,36 @@ namespace VetPet_.Properties {
             get {
                 object obj = ResourceManager.GetObject("icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-6" +
                         "4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_factura_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-factura-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_factura_501 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-factura-501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_factura_502 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-factura-502", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
