@@ -43,13 +43,13 @@
             // 
             this.BtnListaServicios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.BtnListaServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnListaServicios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnListaServicios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnListaServicios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnListaServicios.Location = new System.Drawing.Point(595, 220);
+            this.BtnListaServicios.Location = new System.Drawing.Point(599, 220);
             this.BtnListaServicios.Name = "BtnListaServicios";
-            this.BtnListaServicios.Size = new System.Drawing.Size(240, 155);
+            this.BtnListaServicios.Size = new System.Drawing.Size(319, 155);
             this.BtnListaServicios.TabIndex = 0;
-            this.BtnListaServicios.Text = "Lista Servicios";
+            this.BtnListaServicios.Text = "Lista de Servicios           ";
             this.BtnListaServicios.UseVisualStyleBackColor = false;
             this.BtnListaServicios.Click += new System.EventHandler(this.BtnListaServicios_Click);
             // 
@@ -57,13 +57,13 @@
             // 
             this.BtnAgregarServicios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.BtnAgregarServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAgregarServicios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgregarServicios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregarServicios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnAgregarServicios.Location = new System.Drawing.Point(233, 220);
+            this.BtnAgregarServicios.Location = new System.Drawing.Point(206, 220);
             this.BtnAgregarServicios.Name = "BtnAgregarServicios";
-            this.BtnAgregarServicios.Size = new System.Drawing.Size(240, 155);
+            this.BtnAgregarServicios.Size = new System.Drawing.Size(330, 155);
             this.BtnAgregarServicios.TabIndex = 1;
-            this.BtnAgregarServicios.Text = "Agregar Servicios";
+            this.BtnAgregarServicios.Text = "Agregar Servicios          ";
             this.BtnAgregarServicios.UseVisualStyleBackColor = false;
             this.BtnAgregarServicios.Click += new System.EventHandler(this.BtnAgregarServicios_Click);
             // 
@@ -90,7 +90,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.plus1;
-            this.pictureBox1.Location = new System.Drawing.Point(320, 310);
+            this.pictureBox1.Location = new System.Drawing.Point(460, 269);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(68, 59);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -101,7 +101,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.clipboard;
-            this.pictureBox2.Location = new System.Drawing.Point(680, 312);
+            this.pictureBox2.Location = new System.Drawing.Point(838, 269);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(70, 57);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
