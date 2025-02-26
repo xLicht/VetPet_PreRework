@@ -684,6 +684,12 @@
     <Compile Include="InicioSesion.Designer.cs">
       <DependentUpon>InicioSesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="InicioSesionRFC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InicioSesionRFC.Designer.cs">
+      <DependentUpon>InicioSesionRFC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaCirugias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1283,6 +1289,9 @@
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InicioSesionRFC.resx">
+      <DependentUpon>InicioSesionRFC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListaCirugias.resx">
       <DependentUpon>ListaCirugias.cs</DependentUpon>
     </EmbeddedResource>
@@ -1550,6 +1559,7 @@
     <None Include="Resources\icons8-aceptar-504.png" />
     <None Include="Resources\down.png" />
     <None Include="Resources\arrow %281%29.png" />
+    <None Include="Resources\people.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnIngresar = new System.Windows.Forms.Button();
-            this.TxtConfirmarContraseña = new System.Windows.Forms.TextBox();
-            this.TxtCambiarContraseña = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.BtnOlvideMiContraseña = new System.Windows.Forms.Button();
@@ -43,10 +37,18 @@
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BtnIngresar = new System.Windows.Forms.Button();
+            this.TxtConfirmarContraseña = new System.Windows.Forms.TextBox();
+            this.TxtCambiarContraseña = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -64,66 +66,9 @@
             this.panel1.Size = new System.Drawing.Size(451, 553);
             this.panel1.TabIndex = 2;
             // 
-            // BtnIngresar
-            // 
-            this.BtnIngresar.BackColor = System.Drawing.Color.LightCoral;
-            this.BtnIngresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIngresar.Location = new System.Drawing.Point(130, 287);
-            this.BtnIngresar.Name = "BtnIngresar";
-            this.BtnIngresar.Size = new System.Drawing.Size(198, 46);
-            this.BtnIngresar.TabIndex = 3;
-            this.BtnIngresar.Text = "Ingresar";
-            this.BtnIngresar.UseVisualStyleBackColor = false;
-            this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
-            // 
-            // TxtConfirmarContraseña
-            // 
-            this.TxtConfirmarContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtConfirmarContraseña.Location = new System.Drawing.Point(83, 240);
-            this.TxtConfirmarContraseña.Name = "TxtConfirmarContraseña";
-            this.TxtConfirmarContraseña.Size = new System.Drawing.Size(297, 29);
-            this.TxtConfirmarContraseña.TabIndex = 2;
-            // 
-            // TxtCambiarContraseña
-            // 
-            this.TxtCambiarContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCambiarContraseña.Location = new System.Drawing.Point(79, 149);
-            this.TxtCambiarContraseña.Name = "TxtCambiarContraseña";
-            this.TxtCambiarContraseña.Size = new System.Drawing.Size(301, 29);
-            this.TxtCambiarContraseña.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(78, 209);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(270, 28);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Confirmar Contraseña";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(77, 118);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cambiar Contraseña";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::VetPet_.Properties.Resources.VetPet_Logo1;
-            this.pictureBox1.Location = new System.Drawing.Point(95, 339);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(260, 188);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Controls.Add(this.BtnOlvideMiContraseña);
             this.groupBox1.Controls.Add(this.button1);
@@ -131,9 +76,9 @@
             this.groupBox1.Controls.Add(this.TxtUsuario);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(25, 26);
+            this.groupBox1.Location = new System.Drawing.Point(25, 17);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 500);
+            this.groupBox1.Size = new System.Drawing.Size(401, 522);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -205,6 +150,74 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Usuario";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::VetPet_.Properties.Resources.VetPet_Logo1;
+            this.pictureBox1.Location = new System.Drawing.Point(95, 339);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(260, 188);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // BtnIngresar
+            // 
+            this.BtnIngresar.BackColor = System.Drawing.Color.LightCoral;
+            this.BtnIngresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnIngresar.Location = new System.Drawing.Point(130, 287);
+            this.BtnIngresar.Name = "BtnIngresar";
+            this.BtnIngresar.Size = new System.Drawing.Size(198, 46);
+            this.BtnIngresar.TabIndex = 3;
+            this.BtnIngresar.Text = "Ingresar";
+            this.BtnIngresar.UseVisualStyleBackColor = false;
+            this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
+            // 
+            // TxtConfirmarContraseña
+            // 
+            this.TxtConfirmarContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtConfirmarContraseña.Location = new System.Drawing.Point(83, 240);
+            this.TxtConfirmarContraseña.Name = "TxtConfirmarContraseña";
+            this.TxtConfirmarContraseña.Size = new System.Drawing.Size(297, 29);
+            this.TxtConfirmarContraseña.TabIndex = 2;
+            // 
+            // TxtCambiarContraseña
+            // 
+            this.TxtCambiarContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCambiarContraseña.Location = new System.Drawing.Point(79, 149);
+            this.TxtCambiarContraseña.Name = "TxtCambiarContraseña";
+            this.TxtCambiarContraseña.Size = new System.Drawing.Size(301, 29);
+            this.TxtCambiarContraseña.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(78, 209);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(270, 28);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Confirmar Contraseña";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(77, 118);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 28);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cambiar Contraseña";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::VetPet_.Properties.Resources.people;
+            this.pictureBox3.Location = new System.Drawing.Point(169, 8);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(74, 61);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.TabStop = false;
+            // 
             // CambiarContraseña
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,10 +229,11 @@
             this.Text = "CambiarContraseña";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,5 +255,6 @@
         private System.Windows.Forms.TextBox TxtUsuario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
