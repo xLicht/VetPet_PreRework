@@ -1548,6 +1548,8 @@
     <None Include="Resources\icons8-pasado-242.png" />
     <None Include="Resources\icons8-informe-gráfico-50.png" />
     <None Include="Resources\icons8-aceptar-504.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\arrow %281%29.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
