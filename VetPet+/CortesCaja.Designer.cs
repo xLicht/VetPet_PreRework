@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -88,44 +88,22 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.dgv3BajarPrecio = new System.Windows.Forms.PictureBox();
+            this.dgv3SubirPrecio = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgv2BajarPrecio = new System.Windows.Forms.PictureBox();
             this.dgv2SubirPrecio = new System.Windows.Forms.PictureBox();
-            this.btnAumentar1000 = new System.Windows.Forms.Button();
-            this.btnDisminuir1000 = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.btnAumentar500 = new System.Windows.Forms.Button();
-            this.btnDisminuir500 = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.btnAumentar200 = new System.Windows.Forms.Button();
-            this.btnDisminuir200 = new System.Windows.Forms.Button();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3BajarPrecio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3SubirPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2BajarPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2SubirPrecio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox8
@@ -537,15 +515,15 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView3.Location = new System.Drawing.Point(506, 111);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView3.Location = new System.Drawing.Point(502, 111);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(279, 252);
             this.dataGridView3.TabIndex = 76;
@@ -612,19 +590,18 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.Column3});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Location = new System.Drawing.Point(217, 111);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(279, 252);
             this.dataGridView2.TabIndex = 72;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -759,6 +736,30 @@
             this.textBox9.TabIndex = 114;
             this.textBox9.Text = "$1000";
             // 
+            // dgv3BajarPrecio
+            // 
+            this.dgv3BajarPrecio.BackColor = System.Drawing.Color.White;
+            this.dgv3BajarPrecio.Enabled = false;
+            this.dgv3BajarPrecio.Image = global::VetPet_.Properties.Resources.down;
+            this.dgv3BajarPrecio.Location = new System.Drawing.Point(624, 115);
+            this.dgv3BajarPrecio.Name = "dgv3BajarPrecio";
+            this.dgv3BajarPrecio.Size = new System.Drawing.Size(21, 19);
+            this.dgv3BajarPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dgv3BajarPrecio.TabIndex = 116;
+            this.dgv3BajarPrecio.TabStop = false;
+            // 
+            // dgv3SubirPrecio
+            // 
+            this.dgv3SubirPrecio.BackColor = System.Drawing.Color.White;
+            this.dgv3SubirPrecio.Enabled = false;
+            this.dgv3SubirPrecio.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.dgv3SubirPrecio.Location = new System.Drawing.Point(678, 114);
+            this.dgv3SubirPrecio.Name = "dgv3SubirPrecio";
+            this.dgv3SubirPrecio.Size = new System.Drawing.Size(21, 20);
+            this.dgv3SubirPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dgv3SubirPrecio.TabIndex = 115;
+            this.dgv3SubirPrecio.TabStop = false;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
@@ -788,7 +789,7 @@
             this.dgv2BajarPrecio.BackColor = System.Drawing.Color.White;
             this.dgv2BajarPrecio.Enabled = false;
             this.dgv2BajarPrecio.Image = global::VetPet_.Properties.Resources.down;
-            this.dgv2BajarPrecio.Location = new System.Drawing.Point(343, 114);
+            this.dgv2BajarPrecio.Location = new System.Drawing.Point(340, 114);
             this.dgv2BajarPrecio.Name = "dgv2BajarPrecio";
             this.dgv2BajarPrecio.Size = new System.Drawing.Size(19, 20);
             this.dgv2BajarPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -801,225 +802,12 @@
             this.dgv2SubirPrecio.BackColor = System.Drawing.Color.White;
             this.dgv2SubirPrecio.Enabled = false;
             this.dgv2SubirPrecio.Image = global::VetPet_.Properties.Resources.arrow__1_;
-            this.dgv2SubirPrecio.Location = new System.Drawing.Point(392, 114);
+            this.dgv2SubirPrecio.Location = new System.Drawing.Point(395, 114);
             this.dgv2SubirPrecio.Name = "dgv2SubirPrecio";
             this.dgv2SubirPrecio.Size = new System.Drawing.Size(19, 20);
             this.dgv2SubirPrecio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.dgv2SubirPrecio.TabIndex = 117;
             this.dgv2SubirPrecio.TabStop = false;
-            this.dgv2SubirPrecio.Click += new System.EventHandler(this.dgv2SubirPrecio_Click);
-            // 
-            // btnAumentar1000
-            // 
-            this.btnAumentar1000.BackColor = System.Drawing.Color.White;
-            this.btnAumentar1000.FlatAppearance.BorderSize = 0;
-            this.btnAumentar1000.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAumentar1000.Location = new System.Drawing.Point(392, 114);
-            this.btnAumentar1000.Name = "btnAumentar1000";
-            this.btnAumentar1000.Size = new System.Drawing.Size(19, 21);
-            this.btnAumentar1000.TabIndex = 119;
-            this.btnAumentar1000.UseVisualStyleBackColor = false;
-            this.btnAumentar1000.Click += new System.EventHandler(this.btnAumentar1000_Click);
-            // 
-            // btnDisminuir1000
-            // 
-            this.btnDisminuir1000.BackColor = System.Drawing.Color.White;
-            this.btnDisminuir1000.FlatAppearance.BorderSize = 0;
-            this.btnDisminuir1000.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisminuir1000.Location = new System.Drawing.Point(343, 114);
-            this.btnDisminuir1000.Name = "btnDisminuir1000";
-            this.btnDisminuir1000.Size = new System.Drawing.Size(19, 21);
-            this.btnDisminuir1000.TabIndex = 120;
-            this.btnDisminuir1000.UseVisualStyleBackColor = false;
-            this.btnDisminuir1000.Click += new System.EventHandler(this.btnDisminuir1000_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Enabled = false;
-            this.pictureBox3.Image = global::VetPet_.Properties.Resources.arrow__1_;
-            this.pictureBox3.Location = new System.Drawing.Point(392, 143);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 121;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.Enabled = false;
-            this.pictureBox4.Image = global::VetPet_.Properties.Resources.down;
-            this.pictureBox4.Location = new System.Drawing.Point(343, 142);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 122;
-            this.pictureBox4.TabStop = false;
-            // 
-            // btnAumentar500
-            // 
-            this.btnAumentar500.BackColor = System.Drawing.Color.White;
-            this.btnAumentar500.FlatAppearance.BorderSize = 0;
-            this.btnAumentar500.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAumentar500.Location = new System.Drawing.Point(392, 142);
-            this.btnAumentar500.Name = "btnAumentar500";
-            this.btnAumentar500.Size = new System.Drawing.Size(19, 21);
-            this.btnAumentar500.TabIndex = 123;
-            this.btnAumentar500.UseVisualStyleBackColor = false;
-            this.btnAumentar500.Click += new System.EventHandler(this.btnAumentar500_Click);
-            // 
-            // btnDisminuir500
-            // 
-            this.btnDisminuir500.BackColor = System.Drawing.Color.White;
-            this.btnDisminuir500.FlatAppearance.BorderSize = 0;
-            this.btnDisminuir500.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisminuir500.Location = new System.Drawing.Point(343, 141);
-            this.btnDisminuir500.Name = "btnDisminuir500";
-            this.btnDisminuir500.Size = new System.Drawing.Size(19, 21);
-            this.btnDisminuir500.TabIndex = 124;
-            this.btnDisminuir500.UseVisualStyleBackColor = false;
-            this.btnDisminuir500.Click += new System.EventHandler(this.btnDisminuir500_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.White;
-            this.pictureBox5.Enabled = false;
-            this.pictureBox5.Image = global::VetPet_.Properties.Resources.arrow__1_;
-            this.pictureBox5.Location = new System.Drawing.Point(392, 173);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 125;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.White;
-            this.pictureBox6.Enabled = false;
-            this.pictureBox6.Image = global::VetPet_.Properties.Resources.down;
-            this.pictureBox6.Location = new System.Drawing.Point(343, 172);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 126;
-            this.pictureBox6.TabStop = false;
-            // 
-            // btnAumentar200
-            // 
-            this.btnAumentar200.BackColor = System.Drawing.Color.White;
-            this.btnAumentar200.FlatAppearance.BorderSize = 0;
-            this.btnAumentar200.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAumentar200.Location = new System.Drawing.Point(392, 172);
-            this.btnAumentar200.Name = "btnAumentar200";
-            this.btnAumentar200.Size = new System.Drawing.Size(19, 21);
-            this.btnAumentar200.TabIndex = 127;
-            this.btnAumentar200.UseVisualStyleBackColor = false;
-            this.btnAumentar200.Click += new System.EventHandler(this.btnAumentar200_Click);
-            // 
-            // btnDisminuir200
-            // 
-            this.btnDisminuir200.BackColor = System.Drawing.Color.White;
-            this.btnDisminuir200.FlatAppearance.BorderSize = 0;
-            this.btnDisminuir200.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisminuir200.Location = new System.Drawing.Point(343, 171);
-            this.btnDisminuir200.Name = "btnDisminuir200";
-            this.btnDisminuir200.Size = new System.Drawing.Size(19, 21);
-            this.btnDisminuir200.TabIndex = 128;
-            this.btnDisminuir200.UseVisualStyleBackColor = false;
-            this.btnDisminuir200.Click += new System.EventHandler(this.btnDisminuir200_Click);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.White;
-            this.pictureBox7.Enabled = false;
-            this.pictureBox7.Image = global::VetPet_.Properties.Resources.arrow__1_;
-            this.pictureBox7.Location = new System.Drawing.Point(392, 202);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 129;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackColor = System.Drawing.Color.White;
-            this.pictureBox8.Enabled = false;
-            this.pictureBox8.Image = global::VetPet_.Properties.Resources.down;
-            this.pictureBox8.Location = new System.Drawing.Point(343, 201);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 130;
-            this.pictureBox8.TabStop = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(392, 201);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(19, 21);
-            this.button3.TabIndex = 131;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(343, 200);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(19, 21);
-            this.button4.TabIndex = 132;
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.White;
-            this.pictureBox9.Enabled = false;
-            this.pictureBox9.Image = global::VetPet_.Properties.Resources.arrow__1_;
-            this.pictureBox9.Location = new System.Drawing.Point(392, 233);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 133;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackColor = System.Drawing.Color.White;
-            this.pictureBox10.Enabled = false;
-            this.pictureBox10.Image = global::VetPet_.Properties.Resources.down;
-            this.pictureBox10.Location = new System.Drawing.Point(343, 232);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 134;
-            this.pictureBox10.TabStop = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(392, 232);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(19, 21);
-            this.button5.TabIndex = 135;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.White;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(343, 231);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(19, 21);
-            this.button6.TabIndex = 136;
-            this.button6.UseVisualStyleBackColor = false;
             // 
             // CortesCaja
             // 
@@ -1027,24 +815,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox10);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.btnAumentar200);
-            this.Controls.Add(this.btnDisminuir200);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.btnAumentar500);
-            this.Controls.Add(this.btnDisminuir500);
-            this.Controls.Add(this.dgv2SubirPrecio);
             this.Controls.Add(this.dgv2BajarPrecio);
+            this.Controls.Add(this.dgv2SubirPrecio);
+            this.Controls.Add(this.dgv3BajarPrecio);
+            this.Controls.Add(this.dgv3SubirPrecio);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.textBox8);
@@ -1085,6 +859,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
@@ -1092,9 +867,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.btnAumentar1000);
-            this.Controls.Add(this.btnDisminuir1000);
-            this.Controls.Add(this.dataGridView2);
             this.Name = "CortesCaja";
             this.Text = "CortesCaja";
             this.Load += new System.EventHandler(this.CortesCaja_Load);
@@ -1102,18 +874,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3BajarPrecio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv3SubirPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2BajarPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv2SubirPrecio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1181,25 +947,9 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.PictureBox dgv3SubirPrecio;
+        private System.Windows.Forms.PictureBox dgv3BajarPrecio;
         private System.Windows.Forms.PictureBox dgv2BajarPrecio;
         private System.Windows.Forms.PictureBox dgv2SubirPrecio;
-        private System.Windows.Forms.Button btnAumentar1000;
-        private System.Windows.Forms.Button btnDisminuir1000;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button btnAumentar500;
-        private System.Windows.Forms.Button btnDisminuir500;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Button btnAumentar200;
-        private System.Windows.Forms.Button btnDisminuir200;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
     }
 }
