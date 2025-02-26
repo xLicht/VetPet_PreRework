@@ -218,38 +218,10 @@ namespace VetPet_
 
         private void btnDisminuir200_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio200 -= 1;
-            dgv1totalprecio200 -= 200;
-            ActualizarTablas();
+
         }
 
         private void btnAumentar200_Click(object sender, EventArgs e)
-        {
-            dgv1subirprecio200 += 1;
-            dgv1totalprecio200 += 200;
-            ActualizarTablas();
-        }
-
-        private void btnDisminuir100_Click(object sender, EventArgs e)
-        {
-            dgv1subirprecio100 -= 1;
-            dgv1totalprecio100 -= 100;
-            ActualizarTablas();
-        }
-
-        private void btnAumentar100_Click(object sender, EventArgs e)
-        {
-            dgv1subirprecio100 += 1;
-            dgv1totalprecio100 += 100;
-            ActualizarTablas();
-        }
-
-        private void btnDisminuir50_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAumentar50_Click(object sender, EventArgs e)
         {
 
         }
