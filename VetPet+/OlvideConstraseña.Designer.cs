@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnOlvideMiContraseña = new System.Windows.Forms.Button();
             this.BtnIngresar = new System.Windows.Forms.Button();
             this.TxtOlvideMiContraseña = new System.Windows.Forms.TextBox();
@@ -37,10 +38,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnRegresar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -51,6 +53,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(451, 553);
             this.panel1.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.BtnOlvideMiContraseña);
+            this.groupBox1.Controls.Add(this.BtnIngresar);
+            this.groupBox1.Controls.Add(this.TxtOlvideMiContraseña);
+            this.groupBox1.Controls.Add(this.TxtUsuario);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(27, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(401, 522);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
             // 
             // BtnOlvideMiContraseña
             // 
@@ -133,20 +151,15 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // groupBox1
+            // pictureBox3
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.BtnOlvideMiContraseña);
-            this.groupBox1.Controls.Add(this.BtnIngresar);
-            this.groupBox1.Controls.Add(this.TxtOlvideMiContraseña);
-            this.groupBox1.Controls.Add(this.TxtUsuario);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(27, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 500);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
+            this.pictureBox3.Image = global::VetPet_.Properties.Resources.people;
+            this.pictureBox3.Location = new System.Drawing.Point(171, 10);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(73, 56);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.TabStop = false;
             // 
             // OlvideConstraseña
             // 
@@ -159,9 +172,10 @@
             this.Name = "OlvideConstraseña";
             this.Text = "OlvideConstraseña";
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -178,5 +192,6 @@
         private System.Windows.Forms.Button BtnRegresar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
