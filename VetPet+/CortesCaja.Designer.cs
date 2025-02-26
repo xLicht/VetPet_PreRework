@@ -71,10 +71,16 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -89,12 +95,17 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnsubir1000 = new System.Windows.Forms.PictureBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnbajar1000 = new System.Windows.Forms.PictureBox();
+            this.btnbajar500 = new System.Windows.Forms.PictureBox();
+            this.btnsubir500 = new System.Windows.Forms.PictureBox();
+            this.btnbajar200 = new System.Windows.Forms.PictureBox();
+            this.btnsubir200 = new System.Windows.Forms.PictureBox();
+            this.btnbajar100 = new System.Windows.Forms.PictureBox();
+            this.btnsubir100 = new System.Windows.Forms.PictureBox();
+            this.btnbajar50 = new System.Windows.Forms.PictureBox();
+            this.btnsubir50 = new System.Windows.Forms.PictureBox();
+            this.btnbajar20 = new System.Windows.Forms.PictureBox();
+            this.btnsubir20 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -102,6 +113,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnsubir1000)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar1000)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar500)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir500)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar200)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir200)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar100)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir100)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir20)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox8
@@ -513,10 +535,31 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dataGridView3.Location = new System.Drawing.Point(502, 114);
+            this.dataGridView3.Location = new System.Drawing.Point(502, 111);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(279, 252);
             this.dataGridView3.TabIndex = 76;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Billete";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Total";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // label7
             // 
@@ -569,6 +612,27 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(279, 252);
             this.dataGridView2.TabIndex = 72;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Billete";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // Column3
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Column3.HeaderText = "Total";
+            this.Column3.Name = "Column3";
             // 
             // label5
             // 
@@ -724,47 +788,137 @@
             this.btnsubir1000.TabStop = false;
             this.btnsubir1000.Click += new System.EventHandler(this.btnsubir1000_Click);
             // 
-            // dataGridViewTextBoxColumn1
+            // btnbajar1000
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Billete";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.btnbajar1000.BackColor = System.Drawing.Color.White;
+            this.btnbajar1000.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar1000.Location = new System.Drawing.Point(340, 115);
+            this.btnbajar1000.Name = "btnbajar1000";
+            this.btnbajar1000.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar1000.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar1000.TabIndex = 117;
+            this.btnbajar1000.TabStop = false;
+            this.btnbajar1000.Click += new System.EventHandler(this.btnbajar1000_Click);
             // 
-            // dataGridViewTextBoxColumn2
+            // btnbajar500
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.btnbajar500.BackColor = System.Drawing.Color.White;
+            this.btnbajar500.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar500.Location = new System.Drawing.Point(340, 135);
+            this.btnbajar500.Name = "btnbajar500";
+            this.btnbajar500.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar500.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar500.TabIndex = 119;
+            this.btnbajar500.TabStop = false;
+            this.btnbajar500.Click += new System.EventHandler(this.btnbajar500_Click);
             // 
-            // Column3
+            // btnsubir500
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Column3.HeaderText = "Total";
-            this.Column3.Name = "Column3";
+            this.btnsubir500.BackColor = System.Drawing.Color.White;
+            this.btnsubir500.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir500.Location = new System.Drawing.Point(394, 135);
+            this.btnsubir500.Name = "btnsubir500";
+            this.btnsubir500.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir500.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir500.TabIndex = 118;
+            this.btnsubir500.TabStop = false;
+            this.btnsubir500.Click += new System.EventHandler(this.btnsubir500_Click);
             // 
-            // dataGridViewTextBoxColumn3
+            // btnbajar200
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Billete";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.btnbajar200.BackColor = System.Drawing.Color.White;
+            this.btnbajar200.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar200.Location = new System.Drawing.Point(340, 155);
+            this.btnbajar200.Name = "btnbajar200";
+            this.btnbajar200.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar200.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar200.TabIndex = 121;
+            this.btnbajar200.TabStop = false;
+            this.btnbajar200.Click += new System.EventHandler(this.btnbajar200_Click);
             // 
-            // dataGridViewTextBoxColumn4
+            // btnsubir200
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.btnsubir200.BackColor = System.Drawing.Color.White;
+            this.btnsubir200.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir200.Location = new System.Drawing.Point(394, 155);
+            this.btnsubir200.Name = "btnsubir200";
+            this.btnsubir200.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir200.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir200.TabIndex = 120;
+            this.btnsubir200.TabStop = false;
+            this.btnsubir200.Click += new System.EventHandler(this.btnsubir200_Click);
             // 
-            // dataGridViewTextBoxColumn5
+            // btnbajar100
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Total";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.btnbajar100.BackColor = System.Drawing.Color.White;
+            this.btnbajar100.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar100.Location = new System.Drawing.Point(340, 175);
+            this.btnbajar100.Name = "btnbajar100";
+            this.btnbajar100.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar100.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar100.TabIndex = 123;
+            this.btnbajar100.TabStop = false;
+            this.btnbajar100.Click += new System.EventHandler(this.btnbajar100_Click);
+            // 
+            // btnsubir100
+            // 
+            this.btnsubir100.BackColor = System.Drawing.Color.White;
+            this.btnsubir100.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir100.Location = new System.Drawing.Point(394, 175);
+            this.btnsubir100.Name = "btnsubir100";
+            this.btnsubir100.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir100.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir100.TabIndex = 122;
+            this.btnsubir100.TabStop = false;
+            this.btnsubir100.Click += new System.EventHandler(this.btnsubir100_Click);
+            // 
+            // btnbajar50
+            // 
+            this.btnbajar50.BackColor = System.Drawing.Color.White;
+            this.btnbajar50.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar50.Location = new System.Drawing.Point(340, 195);
+            this.btnbajar50.Name = "btnbajar50";
+            this.btnbajar50.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar50.TabIndex = 125;
+            this.btnbajar50.TabStop = false;
+            this.btnbajar50.Click += new System.EventHandler(this.btnbajar50_Click);
+            // 
+            // btnsubir50
+            // 
+            this.btnsubir50.BackColor = System.Drawing.Color.White;
+            this.btnsubir50.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir50.Location = new System.Drawing.Point(394, 195);
+            this.btnsubir50.Name = "btnsubir50";
+            this.btnsubir50.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir50.TabIndex = 124;
+            this.btnsubir50.TabStop = false;
+            this.btnsubir50.Click += new System.EventHandler(this.btnsubir50_Click);
+            // 
+            // btnbajar20
+            // 
+            this.btnbajar20.BackColor = System.Drawing.Color.White;
+            this.btnbajar20.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar20.Location = new System.Drawing.Point(340, 217);
+            this.btnbajar20.Name = "btnbajar20";
+            this.btnbajar20.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar20.TabIndex = 127;
+            this.btnbajar20.TabStop = false;
+            this.btnbajar20.Click += new System.EventHandler(this.btnbajar20_Click);
+            // 
+            // btnsubir20
+            // 
+            this.btnsubir20.BackColor = System.Drawing.Color.White;
+            this.btnsubir20.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir20.Location = new System.Drawing.Point(394, 217);
+            this.btnsubir20.Name = "btnsubir20";
+            this.btnsubir20.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir20.TabIndex = 126;
+            this.btnsubir20.TabStop = false;
+            this.btnsubir20.Click += new System.EventHandler(this.btnsubir20_Click);
             // 
             // CortesCaja
             // 
@@ -772,6 +926,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.btnbajar20);
+            this.Controls.Add(this.btnsubir20);
+            this.Controls.Add(this.btnbajar50);
+            this.Controls.Add(this.btnsubir50);
+            this.Controls.Add(this.btnbajar100);
+            this.Controls.Add(this.btnsubir100);
+            this.Controls.Add(this.btnbajar200);
+            this.Controls.Add(this.btnsubir200);
+            this.Controls.Add(this.btnbajar500);
+            this.Controls.Add(this.btnsubir500);
+            this.Controls.Add(this.btnbajar1000);
             this.Controls.Add(this.btnsubir1000);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.label26);
@@ -831,6 +996,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnsubir1000)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar1000)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar500)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir500)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar200)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir200)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar100)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir100)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -896,8 +1072,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.PictureBox btnbajar1000;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.PictureBox btnbajar500;
+        private System.Windows.Forms.PictureBox btnsubir500;
+        private System.Windows.Forms.PictureBox btnbajar200;
+        private System.Windows.Forms.PictureBox btnsubir200;
+        private System.Windows.Forms.PictureBox btnbajar100;
+        private System.Windows.Forms.PictureBox btnsubir100;
+        private System.Windows.Forms.PictureBox btnbajar50;
+        private System.Windows.Forms.PictureBox btnsubir50;
+        private System.Windows.Forms.PictureBox btnbajar20;
+        private System.Windows.Forms.PictureBox btnsubir20;
     }
 }
