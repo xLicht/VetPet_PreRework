@@ -20,47 +20,53 @@ namespace VetPet_
         }
         //Variables
         // Variables para almacenar los valores de los precios
-        private int dgv1subirprecio1000 = 0;
-        private int dgv1totalprecio1000 = 0;
+        private double dgv1subirprecio1000 = 0;
+        private double dgv1totalprecio1000 = 0;
 
-        private int dgv1subirprecio500 = 0;
-        private int dgv1totalprecio500 = 0;
+        private double dgv1subirprecio500 = 0;
+        private double dgv1totalprecio500 = 0;
 
-        private int dgv1subirprecio200 = 0;
-        private int dgv1totalprecio200 = 0;
+        private double dgv1subirprecio200 = 0;
+        private double dgv1totalprecio200 = 0;
 
-        private int dgv1subirprecio100 = 0;
-        private int dgv1totalprecio100 = 0;
+        private double dgv1subirprecio100 = 0;
+        private double dgv1totalprecio100 = 0;
 
-        private int dgv1subirprecio50 = 0;
-        private int dgv1totalprecio50 = 0;
+        private double dgv1subirprecio50 = 0;
+        private double dgv1totalprecio50 = 0;
 
-        private int dgv1subirprecio20 = 0;
-        private int dgv1totalprecio20 = 0;
+        private double dgv1subirprecio20 = 0;
+        private double dgv1totalprecio20 = 0;
 
-        private int dgv2subirprecio20 = 0;
-        private int dgv2totalprecio20 = 0;
+        private double dgv2subirprecio20 = 0;
+        private double dgv2totalprecio20 = 0;
 
-        private int dgv2subirprecio10 = 0;
-        private int dgv2totalprecio10 = 0;
+        private double dgv2subirprecio10 = 0;
+        private double dgv2totalprecio10 = 0;
 
-        private int dgv2subirprecio5 = 0;
-        private int dgv2totalprecio5 = 0;
+        private double dgv2subirprecio5 = 0;
+        private double dgv2totalprecio5 = 0;
 
-        private int dgv2subirprecio2 = 0;
-        private int dgv2totalprecio2 = 0;
+        private double dgv2subirprecio2 = 0;
+        private double dgv2totalprecio2 = 0;
 
-        private int dgv2subirprecio1 = 0;
-        private int dgv2totalprecio1 = 0;
+        private double dgv2subirprecio1 = 0;
+        private double dgv2totalprecio1 = 0;
 
-        private int dgv2subirprecio50 = 0;
-        private int dgv2totalprecio50 = 0;
+        private double dgv2subirprecio50 = 0;
+        private double dgv2totalprecio50 = 0;
 
-        private int dgv1cantidad = 0;
-        private int dgv1total = 0;
 
-        private int dgv2cantidad = 0;
-        private int dgv2total = 0;
+        private double dgv2subirpreciocentavos = 0;
+        private double dgv2totalpreciocentavos = 0;
+
+
+        private double dgv1cantidad = 0;
+        private double dgv1total = 0;
+
+
+        private double dgv2cantidad = 0;
+        private double dgv2total = 0;
 
         public CortesCaja(Form1 parent)
         {
@@ -90,6 +96,8 @@ namespace VetPet_
         private void ActualizarTablas()
         {
             dgv1total = dgv1totalprecio1000 + dgv1totalprecio500 + dgv1totalprecio200 + dgv1totalprecio100 + dgv1totalprecio50 + dgv1totalprecio20;
+
+            
             // Verificar que DataGridView2 tenga suficientes filas antes de actualizar
             if (dataGridView2.Rows.Count >= 0)
             {
@@ -114,8 +122,10 @@ namespace VetPet_
                 dataGridView2.Rows[6].Cells[1].Value = dgv1cantidad; // Total
                 dataGridView2.Rows[6].Cells[2].Value = dgv1total + " MXN"; // Total
             }
-
+            dgv2total = dgv2totalprecio20 + dgv2totalprecio10 + dgv2totalprecio5 + dgv2totalprecio2 + dgv2totalprecio1 + dgv2totalpreciocentavos;
             // Verificar que DataGridView3 tenga suficientes filas antes de actualizar
+
+            txtTotalDinero.Text = (dgv1total + dgv2total).ToString() + "MXN";
             if (dataGridView3.Rows.Count >= 0)
             {
                 dataGridView3.Rows[0].Cells[1].Value = dgv2subirprecio20;
@@ -133,8 +143,8 @@ namespace VetPet_
                 dataGridView3.Rows[4].Cells[1].Value = dgv2subirprecio1;
                 dataGridView3.Rows[4].Cells[2].Value = dgv2totalprecio1 + " MXN";
 
-                dataGridView3.Rows[5].Cells[1].Value = dgv2subirprecio50;
-                dataGridView3.Rows[5].Cells[2].Value = dgv2totalprecio50 + " MXN";
+                dataGridView3.Rows[5].Cells[1].Value = dgv2subirpreciocentavos;
+                dataGridView3.Rows[5].Cells[2].Value = dgv2totalpreciocentavos + " MXN";
 
                 dataGridView3.Rows[6].Cells[1].Value = dgv2cantidad; // Total
                 dataGridView3.Rows[6].Cells[2].Value = dgv2total + " MXN"; // Total
@@ -256,6 +266,114 @@ namespace VetPet_
             dgv1totalprecio20 -= 20;
 
             dgv1cantidad -= 1;
+            ActualizarTablas();
+        }
+
+        private void btn2subir20_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio20 += 1;
+            dgv2totalprecio20 += 20;
+
+            dgv2cantidad += 1;
+            ActualizarTablas();
+        }
+
+        private void btn2bajar20_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio20 -= 1;
+            dgv2totalprecio20 -= 20;
+
+            dgv2cantidad -= 1;
+            ActualizarTablas();
+        }
+
+        private void btnsubir10_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio10 += 1;
+            dgv2totalprecio10 += 10;
+
+            dgv2cantidad += 1;
+            ActualizarTablas();
+        }
+
+        private void btnbajar10_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio10 -= 1;
+            dgv2totalprecio10 -= 10;
+
+            dgv2cantidad -= 1;
+            ActualizarTablas();
+        }
+
+        private void btnsubir5_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio5 += 1;
+            dgv2totalprecio5 += 5;
+
+            dgv2cantidad += 1;
+            ActualizarTablas();
+        }
+
+        private void btnbajar5_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio5 -= 1;
+            dgv2totalprecio5 -= 5;
+
+            dgv2cantidad -= 1;
+            ActualizarTablas();
+        }
+
+        private void btnsubir2_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio2 += 1;
+            dgv2totalprecio2 += 2;
+
+            dgv2cantidad += 1;
+            ActualizarTablas();
+        }
+
+        private void btnbajar2_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio2 -= 1;
+            dgv2totalprecio2 -= 2;
+
+            dgv2cantidad -= 1;
+            ActualizarTablas();
+        }
+
+        private void btnsubir1_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio1 += 1;
+            dgv2totalprecio1 += 1;
+
+            dgv2cantidad += 1;
+            ActualizarTablas();
+        }
+
+        private void btnbajar1_Click(object sender, EventArgs e)
+        {
+            dgv2subirprecio1 -= 1;
+            dgv2totalprecio1 -= 1;
+
+            dgv2cantidad -= 1;
+            ActualizarTablas();
+        }
+
+        private void btnsubircentavos_Click(object sender, EventArgs e)
+        {
+            dgv2subirpreciocentavos += 1;
+            dgv2totalpreciocentavos += .50;
+
+            dgv2cantidad += 1;
+            ActualizarTablas();
+        }
+
+        private void btnbajarcentavos_Click(object sender, EventArgs e)
+        {
+            dgv2subirpreciocentavos -= 1;
+            dgv2totalpreciocentavos -= .50;
+
+            dgv2cantidad -= 1;
             ActualizarTablas();
         }
     }

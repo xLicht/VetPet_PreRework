@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -106,6 +106,20 @@
             this.btnsubir50 = new System.Windows.Forms.PictureBox();
             this.btnbajar20 = new System.Windows.Forms.PictureBox();
             this.btnsubir20 = new System.Windows.Forms.PictureBox();
+            this.btnbajarcentavos = new System.Windows.Forms.PictureBox();
+            this.btnsubircentavos = new System.Windows.Forms.PictureBox();
+            this.btnbajar1 = new System.Windows.Forms.PictureBox();
+            this.btnsubir1 = new System.Windows.Forms.PictureBox();
+            this.btnbajar2 = new System.Windows.Forms.PictureBox();
+            this.btnsubir2 = new System.Windows.Forms.PictureBox();
+            this.btnbajar5 = new System.Windows.Forms.PictureBox();
+            this.btnsubir5 = new System.Windows.Forms.PictureBox();
+            this.btnbajar10 = new System.Windows.Forms.PictureBox();
+            this.btnsubir10 = new System.Windows.Forms.PictureBox();
+            this.btn2bajar20 = new System.Windows.Forms.PictureBox();
+            this.btn2subir20 = new System.Windows.Forms.PictureBox();
+            this.txtTotalDinero = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -124,6 +138,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnsubir50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnbajar20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnsubir20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajarcentavos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubircentavos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn2bajar20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn2subir20)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox8
@@ -132,7 +158,7 @@
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox8.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox8.Location = new System.Drawing.Point(547, 527);
+            this.textBox8.Location = new System.Drawing.Point(946, 425);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(107, 24);
             this.textBox8.TabIndex = 112;
@@ -142,9 +168,9 @@
             // 
             this.label25.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label25.Location = new System.Drawing.Point(332, 522);
+            this.label25.Location = new System.Drawing.Point(928, 380);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(198, 30);
+            this.label25.Size = new System.Drawing.Size(138, 30);
             this.label25.TabIndex = 111;
             this.label25.Text = "Diferencia";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -155,7 +181,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox5.Location = new System.Drawing.Point(782, 469);
+            this.textBox5.Location = new System.Drawing.Point(777, 423);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(107, 24);
             this.textBox5.TabIndex = 110;
@@ -167,7 +193,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox6.Location = new System.Drawing.Point(782, 404);
+            this.textBox6.Location = new System.Drawing.Point(777, 358);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(107, 24);
             this.textBox6.TabIndex = 107;
@@ -176,7 +202,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel3.Location = new System.Drawing.Point(774, 399);
+            this.panel3.Location = new System.Drawing.Point(769, 353);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(4, 100);
             this.panel3.TabIndex = 106;
@@ -184,7 +210,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel4.Location = new System.Drawing.Point(599, 459);
+            this.panel4.Location = new System.Drawing.Point(594, 413);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(290, 4);
             this.panel4.TabIndex = 105;
@@ -193,7 +219,7 @@
             // 
             this.label21.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label21.Location = new System.Drawing.Point(580, 429);
+            this.label21.Location = new System.Drawing.Point(575, 383);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(198, 30);
             this.label21.TabIndex = 104;
@@ -204,7 +230,7 @@
             // 
             this.label22.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label22.Location = new System.Drawing.Point(547, 399);
+            this.label22.Location = new System.Drawing.Point(542, 353);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(231, 30);
             this.label22.TabIndex = 103;
@@ -215,7 +241,7 @@
             // 
             this.label23.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label23.Location = new System.Drawing.Point(594, 369);
+            this.label23.Location = new System.Drawing.Point(589, 323);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(198, 30);
             this.label23.TabIndex = 102;
@@ -228,7 +254,7 @@
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox7.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox7.Location = new System.Drawing.Point(782, 432);
+            this.textBox7.Location = new System.Drawing.Point(777, 386);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(107, 24);
             this.textBox7.TabIndex = 108;
@@ -238,7 +264,7 @@
             // 
             this.label24.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label24.Location = new System.Drawing.Point(580, 466);
+            this.label24.Location = new System.Drawing.Point(575, 420);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(198, 30);
             this.label24.TabIndex = 109;
@@ -251,7 +277,7 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox4.Location = new System.Drawing.Point(423, 469);
+            this.textBox4.Location = new System.Drawing.Point(418, 424);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(107, 24);
             this.textBox4.TabIndex = 101;
@@ -263,7 +289,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox2.Location = new System.Drawing.Point(423, 404);
+            this.textBox2.Location = new System.Drawing.Point(418, 359);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(107, 24);
             this.textBox2.TabIndex = 98;
@@ -308,7 +334,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel1.Location = new System.Drawing.Point(415, 399);
+            this.panel1.Location = new System.Drawing.Point(410, 354);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(4, 100);
             this.panel1.TabIndex = 93;
@@ -316,7 +342,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel2.Location = new System.Drawing.Point(240, 459);
+            this.panel2.Location = new System.Drawing.Point(235, 414);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(290, 4);
             this.panel2.TabIndex = 92;
@@ -325,7 +351,7 @@
             // 
             this.label19.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label19.Location = new System.Drawing.Point(221, 429);
+            this.label19.Location = new System.Drawing.Point(216, 384);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(198, 30);
             this.label19.TabIndex = 91;
@@ -336,7 +362,7 @@
             // 
             this.label18.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label18.Location = new System.Drawing.Point(221, 399);
+            this.label18.Location = new System.Drawing.Point(216, 354);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(198, 30);
             this.label18.TabIndex = 90;
@@ -347,7 +373,7 @@
             // 
             this.label17.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label17.Location = new System.Drawing.Point(221, 369);
+            this.label17.Location = new System.Drawing.Point(216, 324);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(198, 30);
             this.label17.TabIndex = 89;
@@ -461,7 +487,7 @@
             this.dataGridViewTextBoxColumn8});
             this.dataGridView4.Location = new System.Drawing.Point(787, 111);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(279, 252);
+            this.dataGridView4.Size = new System.Drawing.Size(279, 189);
             this.dataGridView4.TabIndex = 80;
             // 
             // dataGridViewTextBoxColumn6
@@ -537,27 +563,27 @@
             this.dataGridViewTextBoxColumn5});
             this.dataGridView3.Location = new System.Drawing.Point(502, 111);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(279, 252);
+            this.dataGridView3.Size = new System.Drawing.Size(279, 189);
             this.dataGridView3.TabIndex = 76;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn3.HeaderText = "Billete";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn5.HeaderText = "Total";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
@@ -610,27 +636,27 @@
             this.Column3});
             this.dataGridView2.Location = new System.Drawing.Point(217, 111);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(279, 252);
+            this.dataGridView2.Size = new System.Drawing.Size(279, 189);
             this.dataGridView2.TabIndex = 72;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn1.HeaderText = "Billete";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // Column3
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column3.HeaderText = "Total";
             this.Column3.Name = "Column3";
             // 
@@ -693,7 +719,7 @@
             this.Column2});
             this.dataGridView1.Location = new System.Drawing.Point(12, 169);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(199, 194);
+            this.dataGridView1.Size = new System.Drawing.Size(199, 131);
             this.dataGridView1.TabIndex = 67;
             // 
             // Column1
@@ -712,7 +738,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox3.Location = new System.Drawing.Point(423, 432);
+            this.textBox3.Location = new System.Drawing.Point(418, 387);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(107, 24);
             this.textBox3.TabIndex = 99;
@@ -722,7 +748,7 @@
             // 
             this.label20.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label20.Location = new System.Drawing.Point(221, 466);
+            this.label20.Location = new System.Drawing.Point(216, 421);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(198, 30);
             this.label20.TabIndex = 100;
@@ -920,12 +946,193 @@
             this.btnsubir20.TabStop = false;
             this.btnsubir20.Click += new System.EventHandler(this.btnsubir20_Click);
             // 
+            // btnbajarcentavos
+            // 
+            this.btnbajarcentavos.BackColor = System.Drawing.Color.White;
+            this.btnbajarcentavos.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajarcentavos.Location = new System.Drawing.Point(625, 217);
+            this.btnbajarcentavos.Name = "btnbajarcentavos";
+            this.btnbajarcentavos.Size = new System.Drawing.Size(18, 18);
+            this.btnbajarcentavos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajarcentavos.TabIndex = 139;
+            this.btnbajarcentavos.TabStop = false;
+            this.btnbajarcentavos.Click += new System.EventHandler(this.btnbajarcentavos_Click);
+            // 
+            // btnsubircentavos
+            // 
+            this.btnsubircentavos.BackColor = System.Drawing.Color.White;
+            this.btnsubircentavos.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubircentavos.Location = new System.Drawing.Point(679, 217);
+            this.btnsubircentavos.Name = "btnsubircentavos";
+            this.btnsubircentavos.Size = new System.Drawing.Size(18, 18);
+            this.btnsubircentavos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubircentavos.TabIndex = 138;
+            this.btnsubircentavos.TabStop = false;
+            this.btnsubircentavos.Click += new System.EventHandler(this.btnsubircentavos_Click);
+            // 
+            // btnbajar1
+            // 
+            this.btnbajar1.BackColor = System.Drawing.Color.White;
+            this.btnbajar1.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar1.Location = new System.Drawing.Point(625, 195);
+            this.btnbajar1.Name = "btnbajar1";
+            this.btnbajar1.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar1.TabIndex = 137;
+            this.btnbajar1.TabStop = false;
+            this.btnbajar1.Click += new System.EventHandler(this.btnbajar1_Click);
+            // 
+            // btnsubir1
+            // 
+            this.btnsubir1.BackColor = System.Drawing.Color.White;
+            this.btnsubir1.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir1.Location = new System.Drawing.Point(679, 195);
+            this.btnsubir1.Name = "btnsubir1";
+            this.btnsubir1.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir1.TabIndex = 136;
+            this.btnsubir1.TabStop = false;
+            this.btnsubir1.Click += new System.EventHandler(this.btnsubir1_Click);
+            // 
+            // btnbajar2
+            // 
+            this.btnbajar2.BackColor = System.Drawing.Color.White;
+            this.btnbajar2.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar2.Location = new System.Drawing.Point(625, 175);
+            this.btnbajar2.Name = "btnbajar2";
+            this.btnbajar2.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar2.TabIndex = 135;
+            this.btnbajar2.TabStop = false;
+            this.btnbajar2.Click += new System.EventHandler(this.btnbajar2_Click);
+            // 
+            // btnsubir2
+            // 
+            this.btnsubir2.BackColor = System.Drawing.Color.White;
+            this.btnsubir2.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir2.Location = new System.Drawing.Point(679, 175);
+            this.btnsubir2.Name = "btnsubir2";
+            this.btnsubir2.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir2.TabIndex = 134;
+            this.btnsubir2.TabStop = false;
+            this.btnsubir2.Click += new System.EventHandler(this.btnsubir2_Click);
+            // 
+            // btnbajar5
+            // 
+            this.btnbajar5.BackColor = System.Drawing.Color.White;
+            this.btnbajar5.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar5.Location = new System.Drawing.Point(625, 155);
+            this.btnbajar5.Name = "btnbajar5";
+            this.btnbajar5.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar5.TabIndex = 133;
+            this.btnbajar5.TabStop = false;
+            this.btnbajar5.Click += new System.EventHandler(this.btnbajar5_Click);
+            // 
+            // btnsubir5
+            // 
+            this.btnsubir5.BackColor = System.Drawing.Color.White;
+            this.btnsubir5.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir5.Location = new System.Drawing.Point(679, 155);
+            this.btnsubir5.Name = "btnsubir5";
+            this.btnsubir5.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir5.TabIndex = 132;
+            this.btnsubir5.TabStop = false;
+            this.btnsubir5.Click += new System.EventHandler(this.btnsubir5_Click);
+            // 
+            // btnbajar10
+            // 
+            this.btnbajar10.BackColor = System.Drawing.Color.White;
+            this.btnbajar10.Image = global::VetPet_.Properties.Resources.down;
+            this.btnbajar10.Location = new System.Drawing.Point(625, 135);
+            this.btnbajar10.Name = "btnbajar10";
+            this.btnbajar10.Size = new System.Drawing.Size(18, 18);
+            this.btnbajar10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnbajar10.TabIndex = 131;
+            this.btnbajar10.TabStop = false;
+            this.btnbajar10.Click += new System.EventHandler(this.btnbajar10_Click);
+            // 
+            // btnsubir10
+            // 
+            this.btnsubir10.BackColor = System.Drawing.Color.White;
+            this.btnsubir10.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btnsubir10.Location = new System.Drawing.Point(679, 135);
+            this.btnsubir10.Name = "btnsubir10";
+            this.btnsubir10.Size = new System.Drawing.Size(18, 18);
+            this.btnsubir10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnsubir10.TabIndex = 130;
+            this.btnsubir10.TabStop = false;
+            this.btnsubir10.Click += new System.EventHandler(this.btnsubir10_Click);
+            // 
+            // btn2bajar20
+            // 
+            this.btn2bajar20.BackColor = System.Drawing.Color.White;
+            this.btn2bajar20.Image = global::VetPet_.Properties.Resources.down;
+            this.btn2bajar20.Location = new System.Drawing.Point(625, 115);
+            this.btn2bajar20.Name = "btn2bajar20";
+            this.btn2bajar20.Size = new System.Drawing.Size(18, 18);
+            this.btn2bajar20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btn2bajar20.TabIndex = 129;
+            this.btn2bajar20.TabStop = false;
+            this.btn2bajar20.Click += new System.EventHandler(this.btn2bajar20_Click);
+            // 
+            // btn2subir20
+            // 
+            this.btn2subir20.BackColor = System.Drawing.Color.White;
+            this.btn2subir20.Image = global::VetPet_.Properties.Resources.arrow__1_;
+            this.btn2subir20.Location = new System.Drawing.Point(679, 115);
+            this.btn2subir20.Name = "btn2subir20";
+            this.btn2subir20.Size = new System.Drawing.Size(18, 18);
+            this.btn2subir20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btn2subir20.TabIndex = 128;
+            this.btn2subir20.TabStop = false;
+            this.btn2subir20.Click += new System.EventHandler(this.btn2subir20_Click);
+            // 
+            // txtTotalDinero
+            // 
+            this.txtTotalDinero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtTotalDinero.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalDinero.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalDinero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtTotalDinero.Location = new System.Drawing.Point(86, 324);
+            this.txtTotalDinero.Name = "txtTotalDinero";
+            this.txtTotalDinero.Size = new System.Drawing.Size(125, 24);
+            this.txtTotalDinero.TabIndex = 141;
+            this.txtTotalDinero.Text = "0.0 mxn";
+            // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.label27.Location = new System.Drawing.Point(11, 319);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(86, 30);
+            this.label27.TabIndex = 140;
+            this.label27.Text = "Total";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // CortesCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(168)))), ((int)(((byte)(197)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.txtTotalDinero);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.btnbajarcentavos);
+            this.Controls.Add(this.btnsubircentavos);
+            this.Controls.Add(this.btnbajar1);
+            this.Controls.Add(this.btnsubir1);
+            this.Controls.Add(this.btnbajar2);
+            this.Controls.Add(this.btnsubir2);
+            this.Controls.Add(this.btnbajar5);
+            this.Controls.Add(this.btnsubir5);
+            this.Controls.Add(this.btnbajar10);
+            this.Controls.Add(this.btnsubir10);
+            this.Controls.Add(this.btn2bajar20);
+            this.Controls.Add(this.btn2subir20);
             this.Controls.Add(this.btnbajar20);
             this.Controls.Add(this.btnsubir20);
             this.Controls.Add(this.btnbajar50);
@@ -1007,6 +1214,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnsubir50)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnbajar20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnsubir20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajarcentavos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubircentavos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnbajar10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsubir10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn2bajar20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn2subir20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1086,5 +1305,19 @@
         private System.Windows.Forms.PictureBox btnsubir50;
         private System.Windows.Forms.PictureBox btnbajar20;
         private System.Windows.Forms.PictureBox btnsubir20;
+        private System.Windows.Forms.PictureBox btnbajarcentavos;
+        private System.Windows.Forms.PictureBox btnsubircentavos;
+        private System.Windows.Forms.PictureBox btnbajar1;
+        private System.Windows.Forms.PictureBox btnsubir1;
+        private System.Windows.Forms.PictureBox btnbajar2;
+        private System.Windows.Forms.PictureBox btnsubir2;
+        private System.Windows.Forms.PictureBox btnbajar5;
+        private System.Windows.Forms.PictureBox btnsubir5;
+        private System.Windows.Forms.PictureBox btnbajar10;
+        private System.Windows.Forms.PictureBox btnsubir10;
+        private System.Windows.Forms.PictureBox btn2bajar20;
+        private System.Windows.Forms.PictureBox btn2subir20;
+        private System.Windows.Forms.TextBox txtTotalDinero;
+        private System.Windows.Forms.Label label27;
     }
 }
