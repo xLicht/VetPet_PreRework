@@ -75,5 +75,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }

@@ -66,6 +66,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -87,6 +89,7 @@
             this.textBox15.TabIndex = 200;
             this.textBox15.Text = "Ver Datos de Cita ";
             this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox15.Click += new System.EventHandler(this.textBox15_Click);
             // 
             // label10
             // 
@@ -158,6 +161,7 @@
             this.textBox14.TabIndex = 193;
             this.textBox14.Text = "Tarjeta";
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox14.Click += new System.EventHandler(this.textBox14_Click);
             // 
             // textBox13
             // 
@@ -168,6 +172,7 @@
             this.textBox13.TabIndex = 192;
             this.textBox13.Text = "Efectivo";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox13.Click += new System.EventHandler(this.textBox13_Click);
             // 
             // textBox10
             // 
@@ -199,7 +204,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(360, 22);
             this.textBox7.TabIndex = 188;
-            this.textBox7.Text = "Estado Pagado/NoPagado";
+            this.textBox7.Text = "NoPagado";
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox6
@@ -387,9 +392,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-13, 7);
+            this.panel1.Location = new System.Drawing.Point(-13, -3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1469, 117);
+            this.panel1.Size = new System.Drawing.Size(1469, 127);
             this.panel1.TabIndex = 174;
             // 
             // pictureBox5
@@ -469,12 +474,40 @@
             this.pictureBox1.TabIndex = 175;
             this.pictureBox1.TabStop = false;
             // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox12.Location = new System.Drawing.Point(45, 358);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(254, 22);
+            this.textBox12.TabIndex = 202;
+            this.textBox12.Text = "Agregar Productos";
+            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox12.Click += new System.EventHandler(this.textBox12_Click);
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox11.Location = new System.Drawing.Point(305, 358);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(254, 22);
+            this.textBox11.TabIndex = 201;
+            this.textBox11.Text = "Agregar Medicamentos";
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox11.Click += new System.EventHandler(this.textBox11_Click);
+            // 
             // VentasVentanadePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(224)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox15);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -558,5 +591,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox11;
     }
 }

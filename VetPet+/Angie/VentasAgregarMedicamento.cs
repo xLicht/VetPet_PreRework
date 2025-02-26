@@ -18,6 +18,8 @@ namespace VetPet_.Angie
 
         private Form1 parentForm;
 
+        public string FormularioOrigen {get;set;}
+
 
         public VentasAgregarMedicamento()
         {
@@ -72,7 +74,14 @@ namespace VetPet_.Angie
 
         private void button4_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            if (FormularioOrigen == "VentasNuevaVenta")
+            {
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            }
+            if (FormularioOrigen == "VentasVentanadePago")
+            {
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+            }
         }
     }
 }

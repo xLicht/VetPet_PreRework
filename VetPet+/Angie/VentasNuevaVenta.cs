@@ -70,13 +70,13 @@ namespace VetPet_
                 }
             }
         }
-
-
-
         private void textBox11_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm);
+            ventasAgregarMedicamento.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
+
 
         private void textBox12_Click(object sender, EventArgs e)
         {
