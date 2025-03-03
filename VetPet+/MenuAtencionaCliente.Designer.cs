@@ -70,12 +70,12 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.button5.Location = new System.Drawing.Point(809, 455);
+            this.button5.Location = new System.Drawing.Point(771, 458);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(221, 112);
+            this.button5.Size = new System.Drawing.Size(409, 206);
             this.button5.TabIndex = 16;
             this.button5.Text = "    Ventas";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,14 +85,14 @@
             // btnCitas
             // 
             this.btnCitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
-            this.btnCitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCitas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.btnCitas.Location = new System.Drawing.Point(445, 455);
+            this.btnCitas.Location = new System.Drawing.Point(312, 458);
             this.btnCitas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCitas.Name = "btnCitas";
-            this.btnCitas.Size = new System.Drawing.Size(221, 112);
+            this.btnCitas.Size = new System.Drawing.Size(409, 206);
             this.btnCitas.TabIndex = 17;
-            this.btnCitas.Text = "     Citas";
+            this.btnCitas.Text = "   Citas";
             this.btnCitas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCitas.UseVisualStyleBackColor = false;
             this.btnCitas.Click += new System.EventHandler(this.btnCitas_Click);
@@ -100,12 +100,12 @@
             // btnDueños
             // 
             this.btnDueños.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
-            this.btnDueños.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDueños.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDueños.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.btnDueños.Location = new System.Drawing.Point(809, 245);
+            this.btnDueños.Location = new System.Drawing.Point(771, 201);
             this.btnDueños.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDueños.Name = "btnDueños";
-            this.btnDueños.Size = new System.Drawing.Size(221, 112);
+            this.btnDueños.Size = new System.Drawing.Size(409, 206);
             this.btnDueños.TabIndex = 18;
             this.btnDueños.Text = "    Dueños";
             this.btnDueños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -115,12 +115,12 @@
             // btnMascotas
             // 
             this.btnMascotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
-            this.btnMascotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMascotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMascotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.btnMascotas.Location = new System.Drawing.Point(445, 245);
+            this.btnMascotas.Location = new System.Drawing.Point(312, 201);
             this.btnMascotas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMascotas.Name = "btnMascotas";
-            this.btnMascotas.Size = new System.Drawing.Size(221, 112);
+            this.btnMascotas.Size = new System.Drawing.Size(409, 206);
             this.btnMascotas.TabIndex = 19;
             this.btnMascotas.Text = "  Mascotas";
             this.btnMascotas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,10 +131,12 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(584, 471);
+            this.pictureBox4.Image = global::VetPet_.Properties.Resources.icons8_medical_file_48;
+            this.pictureBox4.Location = new System.Drawing.Point(510, 500);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(75, 75);
+            this.pictureBox4.Size = new System.Drawing.Size(167, 141);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 24;
             this.pictureBox4.TabStop = false;
             // 
@@ -142,10 +144,12 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(947, 471);
+            this.pictureBox3.Image = global::VetPet_.Properties.Resources.icons8_dinero_64;
+            this.pictureBox3.Location = new System.Drawing.Point(964, 500);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(75, 75);
+            this.pictureBox3.Size = new System.Drawing.Size(167, 141);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 23;
             this.pictureBox3.TabStop = false;
             // 
@@ -153,10 +157,12 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(947, 263);
+            this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_fursona_64;
+            this.pictureBox2.Location = new System.Drawing.Point(964, 237);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(75, 75);
+            this.pictureBox2.Size = new System.Drawing.Size(167, 141);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 
@@ -164,10 +170,12 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(584, 263);
+            this.pictureBox1.Image = global::VetPet_.Properties.Resources.icons8_mascotas_64;
+            this.pictureBox1.Location = new System.Drawing.Point(520, 237);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
+            this.pictureBox1.Size = new System.Drawing.Size(167, 141);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 

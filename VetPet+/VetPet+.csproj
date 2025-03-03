@@ -1578,6 +1578,10 @@
     <None Include="Resources\down.png" />
     <None Include="Resources\arrow %281%29.png" />
     <None Include="Resources\people.png" />
+    <None Include="Resources\icons8-mascotas-64.png" />
+    <None Include="Resources\icons8-medical-file-48.png" />
+    <None Include="Resources\icons8-fursona-64.png" />
+    <None Include="Resources\icons8-dinero-64.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

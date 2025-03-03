@@ -70,5 +70,9 @@ namespace VetPet_.Angie
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }
