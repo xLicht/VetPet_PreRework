@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 
 namespace VetPet_
 {
-    public partial class VeterinariaGenerarReceta : Form
+    public partial class VeterinariaGenerarReceta : FormPadre
     {
         public VeterinariaGenerarReceta()
         {
@@ -19,7 +20,7 @@ namespace VetPet_
 
         private void VeterinariaGenerarReceta_Load(object sender, EventArgs e)
         {
-
+        
         }
     }
 }

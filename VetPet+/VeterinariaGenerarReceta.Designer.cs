@@ -34,7 +34,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
+            this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Name = "VeterinariaGenerarReceta";
             this.Text = "VeterinariaGenerarReceta";
             this.Load += new System.EventHandler(this.VeterinariaGenerarReceta_Load);
