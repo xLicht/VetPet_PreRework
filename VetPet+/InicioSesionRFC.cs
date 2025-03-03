@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class MascotasConsultar : Form
+    public partial class InicioSesionRFC : Form
     {
-        public MascotasConsultar()
+        public InicioSesionRFC()
         {
             InitializeComponent();
         }

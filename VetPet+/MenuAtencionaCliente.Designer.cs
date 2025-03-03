@@ -51,9 +51,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1082, 116);
+            this.panel1.Size = new System.Drawing.Size(1443, 143);
             this.panel1.TabIndex = 20;
             // 
             // label1
@@ -61,10 +61,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(239)))), ((int)(((byte)(216)))));
-            this.label1.Location = new System.Drawing.Point(389, 32);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(519, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(355, 44);
+            this.label1.Size = new System.Drawing.Size(429, 54);
             this.label1.TabIndex = 1;
             this.label1.Text = "Atención al Cliente";
             // 
@@ -73,24 +72,25 @@
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.button5.Location = new System.Drawing.Point(607, 370);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Location = new System.Drawing.Point(809, 455);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(166, 91);
+            this.button5.Size = new System.Drawing.Size(221, 112);
             this.button5.TabIndex = 16;
             this.button5.Text = "    Ventas";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnCitas
             // 
             this.btnCitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.btnCitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCitas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.btnCitas.Location = new System.Drawing.Point(334, 370);
-            this.btnCitas.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCitas.Location = new System.Drawing.Point(445, 455);
+            this.btnCitas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCitas.Name = "btnCitas";
-            this.btnCitas.Size = new System.Drawing.Size(166, 91);
+            this.btnCitas.Size = new System.Drawing.Size(221, 112);
             this.btnCitas.TabIndex = 17;
             this.btnCitas.Text = "     Citas";
             this.btnCitas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,10 +102,10 @@
             this.btnDueños.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.btnDueños.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDueños.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.btnDueños.Location = new System.Drawing.Point(607, 199);
-            this.btnDueños.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDueños.Location = new System.Drawing.Point(809, 245);
+            this.btnDueños.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDueños.Name = "btnDueños";
-            this.btnDueños.Size = new System.Drawing.Size(166, 91);
+            this.btnDueños.Size = new System.Drawing.Size(221, 112);
             this.btnDueños.TabIndex = 18;
             this.btnDueños.Text = "    Dueños";
             this.btnDueños.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,10 +117,10 @@
             this.btnMascotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.btnMascotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMascotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(83)))), ((int)(((byte)(25)))));
-            this.btnMascotas.Location = new System.Drawing.Point(334, 199);
-            this.btnMascotas.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMascotas.Location = new System.Drawing.Point(445, 245);
+            this.btnMascotas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMascotas.Name = "btnMascotas";
-            this.btnMascotas.Size = new System.Drawing.Size(166, 91);
+            this.btnMascotas.Size = new System.Drawing.Size(221, 112);
             this.btnMascotas.TabIndex = 19;
             this.btnMascotas.Text = "  Mascotas";
             this.btnMascotas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,10 +131,10 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(438, 383);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox4.Location = new System.Drawing.Point(584, 471);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(56, 61);
+            this.pictureBox4.Size = new System.Drawing.Size(75, 75);
             this.pictureBox4.TabIndex = 24;
             this.pictureBox4.TabStop = false;
             // 
@@ -142,10 +142,10 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(710, 383);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Location = new System.Drawing.Point(947, 471);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(56, 61);
+            this.pictureBox3.Size = new System.Drawing.Size(75, 75);
             this.pictureBox3.TabIndex = 23;
             this.pictureBox3.TabStop = false;
             // 
@@ -153,10 +153,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(710, 214);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(947, 263);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(56, 61);
+            this.pictureBox2.Size = new System.Drawing.Size(75, 75);
             this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 
@@ -164,19 +164,19 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(438, 214);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(584, 263);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(56, 61);
+            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
             // MenuAtencionaCliente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.ClientSize = new System.Drawing.Size(1443, 710);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -186,7 +186,7 @@
             this.Controls.Add(this.btnCitas);
             this.Controls.Add(this.btnDueños);
             this.Controls.Add(this.btnMascotas);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MenuAtencionaCliente";
             this.Text = "MenuAtencionaCliente";
             this.Load += new System.EventHandler(this.MenuAtencionaCliente_Load);

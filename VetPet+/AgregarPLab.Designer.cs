@@ -42,6 +42,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.TxtEstudioSagre = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtEstudioHeces = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -77,7 +81,7 @@
             "Sangre",
             "Heces",
             "Biopsia"});
-            this.comboBox1.Location = new System.Drawing.Point(321, 288);
+            this.comboBox1.Location = new System.Drawing.Point(321, 275);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(155, 26);
             this.comboBox1.TabIndex = 31;
@@ -87,7 +91,7 @@
             this.TxtPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
             this.TxtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPrecio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtPrecio.Location = new System.Drawing.Point(321, 210);
+            this.TxtPrecio.Location = new System.Drawing.Point(321, 200);
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(155, 29);
             this.TxtPrecio.TabIndex = 29;
@@ -153,7 +157,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(84, 288);
+            this.label1.Location = new System.Drawing.Point(84, 275);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 22);
             this.label1.TabIndex = 23;
@@ -163,7 +167,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(84, 210);
+            this.label5.Location = new System.Drawing.Point(84, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 22);
             this.label5.TabIndex = 24;
@@ -201,12 +205,56 @@
             this.pictureBox3.TabIndex = 46;
             this.pictureBox3.TabStop = false;
             // 
+            // TxtEstudioSagre
+            // 
+            this.TxtEstudioSagre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtEstudioSagre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstudioSagre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtEstudioSagre.Location = new System.Drawing.Point(321, 347);
+            this.TxtEstudioSagre.Name = "TxtEstudioSagre";
+            this.TxtEstudioSagre.Size = new System.Drawing.Size(155, 29);
+            this.TxtEstudioSagre.TabIndex = 48;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(84, 347);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(182, 22);
+            this.label3.TabIndex = 47;
+            this.label3.Text = "Estudio en Sangre ";
+            // 
+            // TxtEstudioHeces
+            // 
+            this.TxtEstudioHeces.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtEstudioHeces.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstudioHeces.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtEstudioHeces.Location = new System.Drawing.Point(321, 418);
+            this.TxtEstudioHeces.Name = "TxtEstudioHeces";
+            this.TxtEstudioHeces.Size = new System.Drawing.Size(155, 29);
+            this.TxtEstudioHeces.TabIndex = 50;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(84, 418);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(168, 22);
+            this.label6.TabIndex = 49;
+            this.label6.Text = "Estudio en Heces";
+            // 
             // AgregarPLab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.TxtEstudioHeces);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TxtEstudioSagre);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
@@ -247,5 +295,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TextBox TxtEstudioSagre;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtEstudioHeces;
+        private System.Windows.Forms.Label label6;
     }
 }

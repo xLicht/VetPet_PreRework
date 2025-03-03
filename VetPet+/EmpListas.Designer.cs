@@ -1,6 +1,6 @@
 ﻿namespace VetPet_
 {
-    partial class MascotasModificar
+    partial class EmpListas
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // MascotasModificar
+            // EmpListas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(224)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(1443, 710);
-            this.Name = "MascotasModificar";
-            this.Text = "MascotasModificar";
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "EmpListas";
+            this.Text = "EmpListas";
+            this.Load += new System.EventHandler(this.EmpListas_Load);
             this.ResumeLayout(false);
 
         }

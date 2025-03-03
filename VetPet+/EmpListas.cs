@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VetPet_.Angie
+namespace VetPet_
 {
-    public partial class MascotasListado : Form
+    public partial class EmpListas : Form
     {
-        public MascotasListado()
+        public EmpListas()
         {
             InitializeComponent();
+        }
+
+        private void EmpListas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

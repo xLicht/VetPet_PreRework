@@ -252,10 +252,10 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\MascotasListado.cs">
+    <Compile Include="Angie\Mascotas\MascotasListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\MascotasListado.Designer.cs">
+    <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\VentasAgregarMedicamento.cs">
@@ -624,6 +624,12 @@
     <Compile Include="EmpListaEmpleados.Designer.cs">
       <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmpListas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpListas.Designer.cs">
+      <DependentUpon>EmpListas.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmpMenuEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -684,6 +690,12 @@
     <Compile Include="InicioSesion.Designer.cs">
       <DependentUpon>InicioSesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="InicioSesionRFC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InicioSesionRFC.Designer.cs">
+      <DependentUpon>InicioSesionRFC.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaCirugias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -738,22 +750,22 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\MascotasConsultar.cs">
+    <Compile Include="Angie\Mascotas\MascotasConsultar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\MascotasConsultar.Designer.cs">
+    <Compile Include="Angie\Mascotas\MascotasConsultar.Designer.cs">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\MascotasEliminarConfirm.cs">
+    <Compile Include="Angie\Mascotas\MascotasEliminarConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\MascotasEliminarConfirm.Designer.cs">
+    <Compile Include="Angie\Mascotas\MascotasEliminarConfirm.Designer.cs">
       <DependentUpon>MascotasEliminarConfirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\MascotasModificar.cs">
+    <Compile Include="Angie\Mascotas\MascotasModificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\MascotasModificar.Designer.cs">
+    <Compile Include="Angie\Mascotas\MascotasModificar.Designer.cs">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuAtencionaCliente.cs">
@@ -926,6 +938,12 @@
     <Compile Include="VeterinariaConsultarRece.Designer.cs">
       <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaGenerarReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaGenerarReceta.Designer.cs">
+      <DependentUpon>VeterinariaGenerarReceta.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1067,16 +1085,16 @@
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\MascotasConsultar.resx">
+    <EmbeddedResource Include="Angie\Mascotas\MascotasConsultar.resx">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\MascotasEliminarConfirm.resx">
+    <EmbeddedResource Include="Angie\Mascotas\MascotasEliminarConfirm.resx">
       <DependentUpon>MascotasEliminarConfirm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\MascotasListado.resx">
+    <EmbeddedResource Include="Angie\Mascotas\MascotasListado.resx">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\MascotasModificar.resx">
+    <EmbeddedResource Include="Angie\Mascotas\MascotasModificar.resx">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\VentasAgregarMedicamento.resx">
@@ -1259,6 +1277,9 @@
     <EmbeddedResource Include="EmpListaEmpleados.resx">
       <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmpListas.resx">
+      <DependentUpon>EmpListas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmpMenuEmpleados.resx">
       <DependentUpon>EmpMenuEmpleados.cs</DependentUpon>
     </EmbeddedResource>
@@ -1282,6 +1303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InicioSesionRFC.resx">
+      <DependentUpon>InicioSesionRFC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaCirugias.resx">
       <DependentUpon>ListaCirugias.cs</DependentUpon>
@@ -1387,6 +1411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultarRece.resx">
       <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaGenerarReceta.resx">
+      <DependentUpon>VeterinariaGenerarReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
@@ -1535,6 +1562,22 @@
     <None Include="Resources\anadir-cuenta.png" />
     <None Include="Resources\hospital.png" />
     <None Include="Resources\salario.png" />
+    <None Include="Resources\icons8-cancelar-50.png" />
+    <None Include="Resources\icons8-cancelar-501.png" />
+    <None Include="Resources\icons8-aceptar-50.png" />
+    <None Include="Resources\icons8-factura-50.png" />
+    <None Include="Resources\icons8-factura-501.png" />
+    <None Include="Resources\icons8-pasado-24.png" />
+    <None Include="Resources\icons8-veterinario-50.png" />
+    <None Include="Resources\icons8-receta-50.png" />
+    <None Include="Resources\icons8-pasado-241.png" />
+    <None Include="Resources\icons8-add-button-25.png" />
+    <None Include="Resources\icons8-pasado-242.png" />
+    <None Include="Resources\icons8-informe-gráfico-50.png" />
+    <None Include="Resources\icons8-aceptar-504.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\arrow %281%29.png" />
+    <None Include="Resources\people.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    public partial class MascotasModificar : Form
+    public partial class VeterinariaGenerarReceta : Form
     {
-        public MascotasModificar()
+        public VeterinariaGenerarReceta()
         {
             InitializeComponent();
+        }
+
+        private void VeterinariaGenerarReceta_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
