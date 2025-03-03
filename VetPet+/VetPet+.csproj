@@ -624,6 +624,12 @@
     <Compile Include="EmpListaEmpleados.Designer.cs">
       <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmpListas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpListas.Designer.cs">
+      <DependentUpon>EmpListas.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmpMenuEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -931,6 +937,12 @@
     </Compile>
     <Compile Include="VeterinariaConsultarRece.Designer.cs">
       <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaGenerarReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaGenerarReceta.Designer.cs">
+      <DependentUpon>VeterinariaGenerarReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
@@ -1265,6 +1277,9 @@
     <EmbeddedResource Include="EmpListaEmpleados.resx">
       <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmpListas.resx">
+      <DependentUpon>EmpListas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmpMenuEmpleados.resx">
       <DependentUpon>EmpMenuEmpleados.cs</DependentUpon>
     </EmbeddedResource>
@@ -1396,6 +1411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultarRece.resx">
       <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaGenerarReceta.resx">
+      <DependentUpon>VeterinariaGenerarReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
