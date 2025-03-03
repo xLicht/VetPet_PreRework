@@ -200,7 +200,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(360, 22);
             this.textBox7.TabIndex = 158;
-            this.textBox7.Text = "Estado Pagado/NoPagado";
+            this.textBox7.Text = "NoPagado";
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox6
@@ -410,9 +410,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-13, 9);
+            this.panel1.Location = new System.Drawing.Point(-13, -6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1469, 123);
+            this.panel1.Size = new System.Drawing.Size(1494, 128);
             this.panel1.TabIndex = 144;
             // 
             // pictureBox5

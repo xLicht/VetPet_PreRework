@@ -144,9 +144,9 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button2.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(271, 616);
+            this.button2.Location = new System.Drawing.Point(305, 616);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 88);
+            this.button2.Size = new System.Drawing.Size(204, 88);
             this.button2.TabIndex = 195;
             this.button2.Text = "Factura";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -316,9 +316,9 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button4.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(51, 616);
+            this.button4.Location = new System.Drawing.Point(45, 616);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(188, 88);
+            this.button4.Size = new System.Drawing.Size(200, 88);
             this.button4.TabIndex = 179;
             this.button4.Text = "Ticket";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -329,9 +329,9 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(1227, 616);
+            this.button1.Location = new System.Drawing.Point(1207, 616);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(202, 88);
+            this.button1.Size = new System.Drawing.Size(222, 88);
             this.button1.TabIndex = 177;
             this.button1.Text = "Regresar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -445,7 +445,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_factura_502;
-            this.pictureBox2.Location = new System.Drawing.Point(383, 632);
+            this.pictureBox2.Location = new System.Drawing.Point(433, 632);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(58, 61);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
