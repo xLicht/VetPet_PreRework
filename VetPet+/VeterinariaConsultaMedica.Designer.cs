@@ -96,44 +96,48 @@
             // 
             // rtObCirugia
             // 
-            this.rtObCirugia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtObCirugia.BackColor = System.Drawing.Color.Silver;
             this.rtObCirugia.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtObCirugia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObCirugia.Location = new System.Drawing.Point(779, 403);
             this.rtObCirugia.Name = "rtObCirugia";
+            this.rtObCirugia.ReadOnly = true;
             this.rtObCirugia.Size = new System.Drawing.Size(223, 33);
             this.rtObCirugia.TabIndex = 364;
             this.rtObCirugia.Text = "Observaciones";
             // 
             // rtObEstudio
             // 
-            this.rtObEstudio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtObEstudio.BackColor = System.Drawing.Color.Silver;
             this.rtObEstudio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtObEstudio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObEstudio.Location = new System.Drawing.Point(898, 356);
             this.rtObEstudio.Name = "rtObEstudio";
+            this.rtObEstudio.ReadOnly = true;
             this.rtObEstudio.Size = new System.Drawing.Size(161, 33);
             this.rtObEstudio.TabIndex = 363;
             this.rtObEstudio.Text = "Observaciones";
             // 
             // rtObUltrasonido
             // 
-            this.rtObUltrasonido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtObUltrasonido.BackColor = System.Drawing.Color.Silver;
             this.rtObUltrasonido.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtObUltrasonido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObUltrasonido.Location = new System.Drawing.Point(792, 314);
             this.rtObUltrasonido.Name = "rtObUltrasonido";
+            this.rtObUltrasonido.ReadOnly = true;
             this.rtObUltrasonido.Size = new System.Drawing.Size(223, 33);
             this.rtObUltrasonido.TabIndex = 362;
             this.rtObUltrasonido.Text = "Observaciones";
             // 
             // rtObRayosX
             // 
-            this.rtObRayosX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtObRayosX.BackColor = System.Drawing.Color.Silver;
             this.rtObRayosX.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtObRayosX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObRayosX.Location = new System.Drawing.Point(779, 274);
             this.rtObRayosX.Name = "rtObRayosX";
+            this.rtObRayosX.ReadOnly = true;
             this.rtObRayosX.Size = new System.Drawing.Size(223, 33);
             this.rtObRayosX.TabIndex = 361;
             this.rtObRayosX.Text = "Observaciones";
@@ -148,26 +152,28 @@
             this.btnSubirCirugia.Name = "btnSubirCirugia";
             this.btnSubirCirugia.Size = new System.Drawing.Size(91, 37);
             this.btnSubirCirugia.TabIndex = 360;
-            this.btnSubirCirugia.Text = "Subir";
+            this.btnSubirCirugia.Text = "Ver";
             this.btnSubirCirugia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubirCirugia.UseVisualStyleBackColor = false;
             // 
             // rtObVacuna
             // 
-            this.rtObVacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtObVacuna.BackColor = System.Drawing.Color.Silver;
             this.rtObVacuna.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtObVacuna.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObVacuna.Location = new System.Drawing.Point(779, 232);
             this.rtObVacuna.Name = "rtObVacuna";
+            this.rtObVacuna.ReadOnly = true;
             this.rtObVacuna.Size = new System.Drawing.Size(223, 33);
             this.rtObVacuna.TabIndex = 359;
             this.rtObVacuna.Text = "Observaciones";
             // 
             // rtEstudioEspecial
             // 
-            this.rtEstudioEspecial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtEstudioEspecial.BackColor = System.Drawing.Color.Silver;
             this.rtEstudioEspecial.Location = new System.Drawing.Point(190, 450);
             this.rtEstudioEspecial.Name = "rtEstudioEspecial";
+            this.rtEstudioEspecial.ReadOnly = true;
             this.rtEstudioEspecial.Size = new System.Drawing.Size(258, 38);
             this.rtEstudioEspecial.TabIndex = 358;
             this.rtEstudioEspecial.Text = "";
@@ -212,61 +218,67 @@
             // 
             // txtTratamiento
             // 
-            this.txtTratamiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtTratamiento.BackColor = System.Drawing.Color.Silver;
             this.txtTratamiento.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTratamiento.Location = new System.Drawing.Point(160, 407);
             this.txtTratamiento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTratamiento.Name = "txtTratamiento";
+            this.txtTratamiento.ReadOnly = true;
             this.txtTratamiento.Size = new System.Drawing.Size(171, 29);
             this.txtTratamiento.TabIndex = 353;
             // 
             // txtDiagnostico
             // 
-            this.txtDiagnostico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtDiagnostico.BackColor = System.Drawing.Color.Silver;
             this.txtDiagnostico.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiagnostico.Location = new System.Drawing.Point(156, 357);
             this.txtDiagnostico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDiagnostico.Name = "txtDiagnostico";
+            this.txtDiagnostico.ReadOnly = true;
             this.txtDiagnostico.Size = new System.Drawing.Size(171, 29);
             this.txtDiagnostico.TabIndex = 352;
             // 
             // txtMotivo
             // 
-            this.txtMotivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtMotivo.BackColor = System.Drawing.Color.Silver;
             this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMotivo.Location = new System.Drawing.Point(229, 314);
             this.txtMotivo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.ReadOnly = true;
             this.txtMotivo.Size = new System.Drawing.Size(171, 29);
             this.txtMotivo.TabIndex = 351;
             // 
             // txtTemperatura
             // 
-            this.txtTemperatura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtTemperatura.BackColor = System.Drawing.Color.Silver;
             this.txtTemperatura.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTemperatura.Location = new System.Drawing.Point(331, 267);
             this.txtTemperatura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTemperatura.Name = "txtTemperatura";
+            this.txtTemperatura.ReadOnly = true;
             this.txtTemperatura.Size = new System.Drawing.Size(99, 29);
             this.txtTemperatura.TabIndex = 350;
             // 
             // txtPeso
             // 
-            this.txtPeso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtPeso.BackColor = System.Drawing.Color.Silver;
             this.txtPeso.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPeso.Location = new System.Drawing.Point(89, 267);
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPeso.Name = "txtPeso";
+            this.txtPeso.ReadOnly = true;
             this.txtPeso.Size = new System.Drawing.Size(86, 29);
             this.txtPeso.TabIndex = 349;
             // 
             // txtFechaActual
             // 
-            this.txtFechaActual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtFechaActual.BackColor = System.Drawing.Color.Silver;
             this.txtFechaActual.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFechaActual.Location = new System.Drawing.Point(182, 220);
             this.txtFechaActual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFechaActual.Name = "txtFechaActual";
+            this.txtFechaActual.ReadOnly = true;
             this.txtFechaActual.Size = new System.Drawing.Size(171, 29);
             this.txtFechaActual.TabIndex = 348;
             // 
@@ -423,7 +435,7 @@
             this.btnSubirEstudio.Name = "btnSubirEstudio";
             this.btnSubirEstudio.Size = new System.Drawing.Size(91, 37);
             this.btnSubirEstudio.TabIndex = 334;
-            this.btnSubirEstudio.Text = "Subir";
+            this.btnSubirEstudio.Text = "Ver";
             this.btnSubirEstudio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubirEstudio.UseVisualStyleBackColor = false;
             // 
@@ -437,7 +449,7 @@
             this.btnSubirUltrasonido.Name = "btnSubirUltrasonido";
             this.btnSubirUltrasonido.Size = new System.Drawing.Size(91, 37);
             this.btnSubirUltrasonido.TabIndex = 333;
-            this.btnSubirUltrasonido.Text = "Subir";
+            this.btnSubirUltrasonido.Text = "Ver";
             this.btnSubirUltrasonido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubirUltrasonido.UseVisualStyleBackColor = false;
             // 
@@ -451,7 +463,7 @@
             this.btnSubirRayosX.Name = "btnSubirRayosX";
             this.btnSubirRayosX.Size = new System.Drawing.Size(91, 37);
             this.btnSubirRayosX.TabIndex = 332;
-            this.btnSubirRayosX.Text = "Subir";
+            this.btnSubirRayosX.Text = "Ver";
             this.btnSubirRayosX.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubirRayosX.UseVisualStyleBackColor = false;
             // 
@@ -465,7 +477,7 @@
             this.btnSubirVacuna.Name = "btnSubirVacuna";
             this.btnSubirVacuna.Size = new System.Drawing.Size(91, 37);
             this.btnSubirVacuna.TabIndex = 331;
-            this.btnSubirVacuna.Text = "Subir";
+            this.btnSubirVacuna.Text = "Ver";
             this.btnSubirVacuna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSubirVacuna.UseVisualStyleBackColor = false;
             // 
