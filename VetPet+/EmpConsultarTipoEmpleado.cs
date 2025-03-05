@@ -17,6 +17,12 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;
+            cbInventario.AutoCheck = false;
+            cbVentas.AutoCheck = false;
+            cbReceta.AutoCheck = false;
+            cbConsulta.AutoCheck = false;
+            cbAdministracion.AutoCheck = false;
+            cbHistorialMedico.AutoCheck = false;
         }
 
         private void EmpConsultarTipoEmpleado_Load(object sender, EventArgs e)
