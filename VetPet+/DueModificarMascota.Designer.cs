@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rt = new System.Windows.Forms.RichTextBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.rtSensibilidades = new System.Windows.Forms.RichTextBox();
+            this.cbNo = new System.Windows.Forms.CheckBox();
+            this.cbSi = new System.Windows.Forms.CheckBox();
+            this.cbHembra = new System.Windows.Forms.CheckBox();
+            this.cbMacho = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtPeso = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -48,84 +48,84 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.cbNoMuerto = new System.Windows.Forms.CheckBox();
+            this.cbSiMuerto = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtEdad = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtAlergias = new System.Windows.Forms.RichTextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.fechaNac = new System.Windows.Forms.DateTimePicker();
+            this.cbEspecie = new System.Windows.Forms.ComboBox();
+            this.cbRaza = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // rt
+            // rtSensibilidades
             // 
-            this.rt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.rt.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.rt.Location = new System.Drawing.Point(676, 300);
-            this.rt.Name = "rt";
-            this.rt.Size = new System.Drawing.Size(336, 157);
-            this.rt.TabIndex = 503;
-            this.rt.Text = "";
+            this.rtSensibilidades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtSensibilidades.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtSensibilidades.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.rtSensibilidades.Location = new System.Drawing.Point(676, 300);
+            this.rtSensibilidades.Name = "rtSensibilidades";
+            this.rtSensibilidades.Size = new System.Drawing.Size(336, 157);
+            this.rtSensibilidades.TabIndex = 503;
+            this.rtSensibilidades.Text = "";
             // 
-            // checkBox4
+            // cbNo
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.checkBox4.Location = new System.Drawing.Point(915, 180);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(49, 24);
-            this.checkBox4.TabIndex = 502;
-            this.checkBox4.Text = "No";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.cbNo.AutoSize = true;
+            this.cbNo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbNo.Location = new System.Drawing.Point(915, 180);
+            this.cbNo.Name = "cbNo";
+            this.cbNo.Size = new System.Drawing.Size(49, 24);
+            this.cbNo.TabIndex = 502;
+            this.cbNo.Text = "No";
+            this.cbNo.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // cbSi
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.checkBox3.Location = new System.Drawing.Point(824, 180);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(40, 24);
-            this.checkBox3.TabIndex = 501;
-            this.checkBox3.Text = "Si";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cbSi.AutoSize = true;
+            this.cbSi.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbSi.Location = new System.Drawing.Point(824, 180);
+            this.cbSi.Name = "cbSi";
+            this.cbSi.Size = new System.Drawing.Size(40, 24);
+            this.cbSi.TabIndex = 501;
+            this.cbSi.Text = "Si";
+            this.cbSi.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // cbHembra
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.checkBox2.Location = new System.Drawing.Point(915, 128);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(84, 24);
-            this.checkBox2.TabIndex = 500;
-            this.checkBox2.Text = "Hembra";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbHembra.AutoSize = true;
+            this.cbHembra.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHembra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbHembra.Location = new System.Drawing.Point(915, 128);
+            this.cbHembra.Name = "cbHembra";
+            this.cbHembra.Size = new System.Drawing.Size(84, 24);
+            this.cbHembra.TabIndex = 500;
+            this.cbHembra.Text = "Hembra";
+            this.cbHembra.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // cbMacho
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.checkBox1.Location = new System.Drawing.Point(824, 128);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(75, 24);
-            this.checkBox1.TabIndex = 499;
-            this.checkBox1.Text = "Macho";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbMacho.AutoSize = true;
+            this.cbMacho.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMacho.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbMacho.Location = new System.Drawing.Point(824, 128);
+            this.cbMacho.Name = "cbMacho";
+            this.cbMacho.Size = new System.Drawing.Size(75, 24);
+            this.cbMacho.TabIndex = 499;
+            this.cbMacho.Text = "Macho";
+            this.cbMacho.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -138,15 +138,15 @@
             this.label10.TabIndex = 497;
             this.label10.Text = "Raza";
             // 
-            // textBox7
+            // txtPeso
             // 
-            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(395, 182);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(81, 29);
-            this.textBox7.TabIndex = 496;
+            this.txtPeso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtPeso.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPeso.Location = new System.Drawing.Point(395, 182);
+            this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPeso.Name = "txtPeso";
+            this.txtPeso.Size = new System.Drawing.Size(81, 29);
+            this.txtPeso.TabIndex = 496;
             // 
             // label9
             // 
@@ -301,39 +301,39 @@
             this.label4.TabIndex = 481;
             this.label4.Text = " Informacion de la Mascota";
             // 
-            // txtBuscar
+            // txtNombre
             // 
-            this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(143, 128);
-            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(171, 29);
-            this.txtBuscar.TabIndex = 480;
+            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(143, 128);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(171, 29);
+            this.txtNombre.TabIndex = 480;
             // 
-            // checkBox5
+            // cbNoMuerto
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.checkBox5.Location = new System.Drawing.Point(915, 231);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(49, 24);
-            this.checkBox5.TabIndex = 506;
-            this.checkBox5.Text = "No";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.cbNoMuerto.AutoSize = true;
+            this.cbNoMuerto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbNoMuerto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbNoMuerto.Location = new System.Drawing.Point(915, 231);
+            this.cbNoMuerto.Name = "cbNoMuerto";
+            this.cbNoMuerto.Size = new System.Drawing.Size(49, 24);
+            this.cbNoMuerto.TabIndex = 506;
+            this.cbNoMuerto.Text = "No";
+            this.cbNoMuerto.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // cbSiMuerto
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.checkBox6.Location = new System.Drawing.Point(824, 231);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(40, 24);
-            this.checkBox6.TabIndex = 505;
-            this.checkBox6.Text = "Si";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.cbSiMuerto.AutoSize = true;
+            this.cbSiMuerto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSiMuerto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbSiMuerto.Location = new System.Drawing.Point(824, 231);
+            this.cbSiMuerto.Name = "cbSiMuerto";
+            this.cbSiMuerto.Size = new System.Drawing.Size(40, 24);
+            this.cbSiMuerto.TabIndex = 505;
+            this.cbSiMuerto.Text = "Si";
+            this.cbSiMuerto.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -346,15 +346,15 @@
             this.label5.TabIndex = 504;
             this.label5.Text = "Muerto";
             // 
-            // textBox2
+            // txtEdad
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(384, 128);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(153, 29);
-            this.textBox2.TabIndex = 508;
+            this.txtEdad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtEdad.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEdad.Location = new System.Drawing.Point(384, 128);
+            this.txtEdad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEdad.Name = "txtEdad";
+            this.txtEdad.Size = new System.Drawing.Size(102, 29);
+            this.txtEdad.TabIndex = 508;
             // 
             // label11
             // 
@@ -405,16 +405,16 @@
             this.label12.TabIndex = 511;
             this.label12.Text = "Alergias";
             // 
-            // richTextBox1
+            // rtAlergias
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.richTextBox1.Location = new System.Drawing.Point(150, 300);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(336, 157);
-            this.richTextBox1.TabIndex = 512;
-            this.richTextBox1.Text = "";
+            this.rtAlergias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtAlergias.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtAlergias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.rtAlergias.Location = new System.Drawing.Point(150, 300);
+            this.rtAlergias.Name = "rtAlergias";
+            this.rtAlergias.Size = new System.Drawing.Size(336, 157);
+            this.rtAlergias.TabIndex = 512;
+            this.rtAlergias.Text = "";
             // 
             // pictureBox3
             // 
@@ -425,23 +425,23 @@
             this.pictureBox3.TabIndex = 513;
             this.pictureBox3.TabStop = false;
             // 
-            // dateTimePicker1
+            // fechaNac
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(526, 233);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(100, 25);
-            this.dateTimePicker1.TabIndex = 514;
+            this.fechaNac.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaNac.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fechaNac.Location = new System.Drawing.Point(526, 233);
+            this.fechaNac.Name = "fechaNac";
+            this.fechaNac.Size = new System.Drawing.Size(100, 25);
+            this.fechaNac.TabIndex = 514;
             // 
-            // comboBox1
+            // cbEspecie
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbEspecie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.cbEspecie.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbEspecie.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbEspecie.FormattingEnabled = true;
+            this.cbEspecie.Items.AddRange(new object[] {
             "Perro",
             "Gato",
             "Conejo",
@@ -455,21 +455,21 @@
             "Perico",
             "Canario",
             "Loro"});
-            this.comboBox1.Location = new System.Drawing.Point(139, 176);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(164, 28);
-            this.comboBox1.TabIndex = 515;
+            this.cbEspecie.Location = new System.Drawing.Point(139, 176);
+            this.cbEspecie.Name = "cbEspecie";
+            this.cbEspecie.Size = new System.Drawing.Size(164, 28);
+            this.cbEspecie.TabIndex = 515;
             // 
-            // comboBox2
+            // cbRaza
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(129, 231);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(164, 28);
-            this.comboBox2.TabIndex = 516;
+            this.cbRaza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.cbRaza.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRaza.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.cbRaza.FormattingEnabled = true;
+            this.cbRaza.Location = new System.Drawing.Point(129, 231);
+            this.cbRaza.Name = "cbRaza";
+            this.cbRaza.Size = new System.Drawing.Size(164, 28);
+            this.cbRaza.TabIndex = 516;
             // 
             // DueModificarMascota
             // 
@@ -477,25 +477,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.cbRaza);
+            this.Controls.Add(this.cbEspecie);
+            this.Controls.Add(this.fechaNac);
+            this.Controls.Add(this.rtAlergias);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtEdad);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox6);
+            this.Controls.Add(this.cbNoMuerto);
+            this.Controls.Add(this.cbSiMuerto);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.rt);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.rtSensibilidades);
+            this.Controls.Add(this.cbNo);
+            this.Controls.Add(this.cbSi);
+            this.Controls.Add(this.cbHembra);
+            this.Controls.Add(this.cbMacho);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtPeso);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox1);
@@ -509,7 +509,7 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtBuscar);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.pictureBox3);
             this.Name = "DueModificarMascota";
             this.Text = "DueModificarMascota";
@@ -525,13 +525,13 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox rt;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.RichTextBox rtSensibilidades;
+        private System.Windows.Forms.CheckBox cbNo;
+        private System.Windows.Forms.CheckBox cbSi;
+        private System.Windows.Forms.CheckBox cbHembra;
+        private System.Windows.Forms.CheckBox cbMacho;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtPeso;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -545,19 +545,19 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.CheckBox cbNoMuerto;
+        private System.Windows.Forms.CheckBox cbSiMuerto;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtEdad;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtAlergias;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DateTimePicker fechaNac;
+        private System.Windows.Forms.ComboBox cbEspecie;
+        private System.Windows.Forms.ComboBox cbRaza;
     }
 }
