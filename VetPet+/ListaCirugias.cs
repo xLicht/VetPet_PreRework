@@ -92,5 +92,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new ModificarServicios(parentForm));
         }
+
+        private void BtnModificar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarCirugias(parentForm));
+        }
     }
 }

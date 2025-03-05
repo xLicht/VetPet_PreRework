@@ -29,7 +29,32 @@ namespace VetPet_
 
         private void BtnAgregarTipoDeUltrasonidos_Click(object sender, EventArgs e)
         {
+            parentForm.formularioHijo(new AgregarTipoUltrasonidos(parentForm));
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarUltrasonidos(parentForm));
+        }
+
+        private void BtnModificar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarUltrasonidos(parentForm));
+        }
+
+        private void BtnRegresar_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarServicios(parentForm));
+        }
+
+        private void BtnAgregarCirugía_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AgregarUltrasonidos(parentForm));
+        }
+
+        private void BtnAgregarUltrasonidos_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new AgregarUltrasonidos(parentForm));
         }
     }
 }
