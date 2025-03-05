@@ -432,7 +432,7 @@
             this.fechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.fechaNac.Location = new System.Drawing.Point(526, 233);
             this.fechaNac.Name = "fechaNac";
-            this.fechaNac.Size = new System.Drawing.Size(100, 25);
+            this.fechaNac.Size = new System.Drawing.Size(132, 25);
             this.fechaNac.TabIndex = 514;
             // 
             // cbEspecie

@@ -45,8 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.cbRaza = new System.Windows.Forms.ComboBox();
-            this.cbEspecie = new System.Windows.Forms.ComboBox();
             this.fechaNac = new System.Windows.Forms.DateTimePicker();
             this.rtAlergias = new System.Windows.Forms.RichTextBox();
             this.txtEdad = new System.Windows.Forms.TextBox();
@@ -64,6 +62,8 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtDueño = new System.Windows.Forms.TextBox();
+            this.txtEspecie = new System.Windows.Forms.TextBox();
+            this.txtRaza = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -222,7 +222,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(322, 206);
+            this.label8.Location = new System.Drawing.Point(340, 206);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(206, 25);
             this.label8.TabIndex = 552;
@@ -233,7 +233,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label6.Location = new System.Drawing.Point(505, 309);
+            this.label6.Location = new System.Drawing.Point(499, 308);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(146, 25);
             this.label6.TabIndex = 549;
@@ -266,56 +266,20 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(60, 52);
+            this.label13.Location = new System.Drawing.Point(63, 53);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(292, 30);
             this.label13.TabIndex = 545;
             this.label13.Text = " Informacion de la Mascota";
-            // 
-            // cbRaza
-            // 
-            this.cbRaza.BackColor = System.Drawing.Color.Silver;
-            this.cbRaza.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRaza.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.cbRaza.FormattingEnabled = true;
-            this.cbRaza.Location = new System.Drawing.Point(136, 209);
-            this.cbRaza.Name = "cbRaza";
-            this.cbRaza.Size = new System.Drawing.Size(164, 28);
-            this.cbRaza.TabIndex = 588;
-            // 
-            // cbEspecie
-            // 
-            this.cbEspecie.BackColor = System.Drawing.Color.Silver;
-            this.cbEspecie.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbEspecie.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.cbEspecie.FormattingEnabled = true;
-            this.cbEspecie.Items.AddRange(new object[] {
-            "Perro",
-            "Gato",
-            "Conejo",
-            "Cobaya (Cuy)",
-            "Hámster",
-            "Chinchilla",
-            "Rata doméstica",
-            "Ratón doméstico",
-            "Hurón",
-            "Tortuga",
-            "Perico",
-            "Canario",
-            "Loro"});
-            this.cbEspecie.Location = new System.Drawing.Point(146, 154);
-            this.cbEspecie.Name = "cbEspecie";
-            this.cbEspecie.Size = new System.Drawing.Size(164, 28);
-            this.cbEspecie.TabIndex = 587;
             // 
             // fechaNac
             // 
             this.fechaNac.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaNac.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fechaNac.Location = new System.Drawing.Point(534, 212);
+            this.fechaNac.Location = new System.Drawing.Point(550, 209);
             this.fechaNac.Name = "fechaNac";
-            this.fechaNac.Size = new System.Drawing.Size(100, 25);
+            this.fechaNac.Size = new System.Drawing.Size(127, 25);
             this.fechaNac.TabIndex = 586;
             // 
             // rtAlergias
@@ -337,6 +301,7 @@
             this.txtEdad.Location = new System.Drawing.Point(391, 106);
             this.txtEdad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEdad.Name = "txtEdad";
+            this.txtEdad.ReadOnly = true;
             this.txtEdad.Size = new System.Drawing.Size(102, 29);
             this.txtEdad.TabIndex = 583;
             // 
@@ -442,6 +407,7 @@
             this.txtPeso.Location = new System.Drawing.Point(402, 160);
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPeso.Name = "txtPeso";
+            this.txtPeso.ReadOnly = true;
             this.txtPeso.Size = new System.Drawing.Size(81, 29);
             this.txtPeso.TabIndex = 574;
             // 
@@ -493,8 +459,31 @@
             this.txtDueño.Location = new System.Drawing.Point(146, 255);
             this.txtDueño.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDueño.Name = "txtDueño";
+            this.txtDueño.ReadOnly = true;
             this.txtDueño.Size = new System.Drawing.Size(171, 29);
             this.txtDueño.TabIndex = 589;
+            // 
+            // txtEspecie
+            // 
+            this.txtEspecie.BackColor = System.Drawing.Color.Silver;
+            this.txtEspecie.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEspecie.Location = new System.Drawing.Point(146, 148);
+            this.txtEspecie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtEspecie.Name = "txtEspecie";
+            this.txtEspecie.ReadOnly = true;
+            this.txtEspecie.Size = new System.Drawing.Size(171, 29);
+            this.txtEspecie.TabIndex = 590;
+            // 
+            // txtRaza
+            // 
+            this.txtRaza.BackColor = System.Drawing.Color.Silver;
+            this.txtRaza.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRaza.Location = new System.Drawing.Point(150, 202);
+            this.txtRaza.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRaza.Name = "txtRaza";
+            this.txtRaza.ReadOnly = true;
+            this.txtRaza.Size = new System.Drawing.Size(171, 29);
+            this.txtRaza.TabIndex = 591;
             // 
             // DueConsultarMascota
             // 
@@ -502,9 +491,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.txtRaza);
+            this.Controls.Add(this.txtEspecie);
             this.Controls.Add(this.txtDueño);
-            this.Controls.Add(this.cbRaza);
-            this.Controls.Add(this.cbEspecie);
             this.Controls.Add(this.fechaNac);
             this.Controls.Add(this.rtAlergias);
             this.Controls.Add(this.txtEdad);
@@ -569,8 +558,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cbRaza;
-        private System.Windows.Forms.ComboBox cbEspecie;
         private System.Windows.Forms.DateTimePicker fechaNac;
         private System.Windows.Forms.RichTextBox rtAlergias;
         private System.Windows.Forms.TextBox txtEdad;
@@ -588,5 +575,7 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox txtDueño;
+        private System.Windows.Forms.TextBox txtEspecie;
+        private System.Windows.Forms.TextBox txtRaza;
     }
 }
