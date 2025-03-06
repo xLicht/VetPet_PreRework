@@ -133,7 +133,12 @@ namespace VetPet_
             }
         }
 
-        private void btnElegir_Click(object sender, EventArgs e)
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnElegir_Click_1(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
