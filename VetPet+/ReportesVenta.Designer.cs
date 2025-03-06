@@ -37,6 +37,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -44,9 +46,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cascadia Mono", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(645, 85);
+            this.label1.Size = new System.Drawing.Size(797, 106);
             this.label1.TabIndex = 25;
             this.label1.Text = "Reportes: Ventas";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -56,9 +59,10 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.button1.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button1.Location = new System.Drawing.Point(40, 115);
+            this.button1.Location = new System.Drawing.Point(53, 142);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(262, 45);
+            this.button1.Size = new System.Drawing.Size(349, 55);
             this.button1.TabIndex = 26;
             this.button1.Text = "Ventas más Altas";
             this.button1.UseVisualStyleBackColor = false;
@@ -72,11 +76,12 @@
             this.pdfViewVent.FormHighlightColor = System.Drawing.Color.Transparent;
             this.pdfViewVent.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
             this.pdfViewVent.LoadingIconText = "Loading...";
-            this.pdfViewVent.Location = new System.Drawing.Point(441, 115);
+            this.pdfViewVent.Location = new System.Drawing.Point(588, 142);
+            this.pdfViewVent.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pdfViewVent.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
             this.pdfViewVent.Name = "pdfViewVent";
             this.pdfViewVent.OptimizedLoadThreshold = 1000;
-            this.pdfViewVent.Padding = new System.Windows.Forms.Padding(10);
+            this.pdfViewVent.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.pdfViewVent.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.pdfViewVent.PageAutoDispose = true;
             this.pdfViewVent.PageBackColor = System.Drawing.Color.White;
@@ -87,7 +92,7 @@
             this.pdfViewVent.ShowCurrentPageHighlight = true;
             this.pdfViewVent.ShowLoadingIcon = true;
             this.pdfViewVent.ShowPageSeparator = true;
-            this.pdfViewVent.Size = new System.Drawing.Size(618, 381);
+            this.pdfViewVent.Size = new System.Drawing.Size(824, 469);
             this.pdfViewVent.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
             this.pdfViewVent.TabIndex = 37;
             this.pdfViewVent.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
@@ -101,9 +106,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.label2.Location = new System.Drawing.Point(903, 84);
+            this.label2.Location = new System.Drawing.Point(1204, 103);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 28);
+            this.label2.Size = new System.Drawing.Size(207, 35);
             this.label2.TabIndex = 49;
             this.label2.Text = "Vista Previa";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -113,9 +119,10 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.button2.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button2.Location = new System.Drawing.Point(40, 192);
+            this.button2.Location = new System.Drawing.Point(53, 236);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(262, 45);
+            this.button2.Size = new System.Drawing.Size(349, 55);
             this.button2.TabIndex = 50;
             this.button2.Text = "Ventas más Bajas";
             this.button2.UseVisualStyleBackColor = false;
@@ -123,11 +130,12 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button3.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button3.Location = new System.Drawing.Point(441, 504);
+            this.button3.Location = new System.Drawing.Point(588, 620);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(164, 45);
+            this.button3.Size = new System.Drawing.Size(219, 55);
             this.button3.TabIndex = 51;
             this.button3.Text = "Imprimir";
             this.button3.UseVisualStyleBackColor = false;
@@ -137,9 +145,10 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.button4.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button4.Location = new System.Drawing.Point(895, 504);
+            this.button4.Location = new System.Drawing.Point(1193, 620);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(164, 45);
+            this.button4.Size = new System.Drawing.Size(219, 55);
             this.button4.TabIndex = 52;
             this.button4.Text = "Descargar";
             this.button4.UseVisualStyleBackColor = false;
@@ -149,9 +158,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.label3.Location = new System.Drawing.Point(722, 540);
+            this.label3.Location = new System.Drawing.Point(963, 665);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 28);
+            this.label3.Size = new System.Drawing.Size(95, 35);
             this.label3.TabIndex = 54;
             this.label3.Text = "Fecha";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -161,17 +171,44 @@
             this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.dateTimePicker1.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(704, 507);
+            this.dateTimePicker1.Location = new System.Drawing.Point(815, 635);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(120, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(159, 26);
             this.dateTimePicker1.TabIndex = 53;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.dateTimePicker2.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(1026, 635);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(159, 26);
+            this.dateTimePicker2.TabIndex = 55;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
+            this.label4.Location = new System.Drawing.Point(985, 628);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 35);
+            this.label4.TabIndex = 56;
+            this.label4.Text = "a";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ReportesVenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button4);
@@ -181,6 +218,7 @@
             this.Controls.Add(this.pdfViewVent);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReportesVenta";
             this.Text = "ReportesVenta";
             this.ResumeLayout(false);
@@ -199,5 +237,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label4;
     }
 }
