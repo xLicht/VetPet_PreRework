@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace VetPet_.Angie
 {
-    public partial class VentasVerReceta : Form
+    public partial class VentasAgregarProducto : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -18,22 +18,22 @@ namespace VetPet_.Angie
 
         private Form1 parentForm;
 
-
-        public VentasVerReceta()
+        public string FormularioOrigen { get; set; }
+        public VentasAgregarProducto()
         {
             InitializeComponent();
-            this.Load += VentasVerReceta_Load;       // Evento Load
-            this.Resize += VentasVerReceta_Resize;   // Evento Resize
+            this.Load += VentasAgregarProducto_Load;       // Evento Load
+            this.Resize += VentasAgregarProducto_Resize;   // Evento Resize
 
         }
 
-        public VentasVerReceta(Form1 parent)
+        public VentasAgregarProducto(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 
-        private void VentasVerReceta_Load(object sender, EventArgs e)
+        private void VentasAgregarProducto_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -46,7 +46,7 @@ namespace VetPet_.Angie
             }
         }
 
-        private void VentasVerReceta_Resize(object sender, EventArgs e)
+        private void VentasAgregarProducto_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -70,5 +70,28 @@ namespace VetPet_.Angie
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (FormularioOrigen == "VentasNuevaVenta")
+            {
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            }
+            if (FormularioOrigen == "VentasVentanadePago")
+            {
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (FormularioOrigen == "VentasNuevaVenta")
+            {
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            }
+            if (FormularioOrigen == "VentasVentanadePago")
+            {
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+            }
+        }
     }
 }

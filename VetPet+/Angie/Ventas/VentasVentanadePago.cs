@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie;
 
-namespace VetPet_.Angie
+namespace VetPet_
 {
-    public partial class VentasAgregarProducto : Form
+    public partial class VentasVentanadePago : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -19,21 +20,21 @@ namespace VetPet_.Angie
         private Form1 parentForm;
 
 
-        public VentasAgregarProducto()
+        public VentasVentanadePago()
         {
             InitializeComponent();
-            this.Load += VentasAgregarProducto_Load;       // Evento Load
-            this.Resize += VentasAgregarProducto_Resize;   // Evento Resize
+            this.Load += VentasVentanadePago_Load;       // Evento Load
+            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
 
         }
 
-        public VentasAgregarProducto(Form1 parent)
+        public VentasVentanadePago(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 
-        private void VentasAgregarProducto_Load(object sender, EventArgs e)
+        private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -46,7 +47,7 @@ namespace VetPet_.Angie
             }
         }
 
-        private void VentasAgregarProducto_Resize(object sender, EventArgs e)
+        private void VentasVentanadePago_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -70,5 +71,38 @@ namespace VetPet_.Angie
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void textBox15_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void textBox13_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasConfirmacionEfectivo(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void textBox14_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasConfirmacionTarjeta(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void textBox12_Click(object sender, EventArgs e)
+        {
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm);
+            VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
+        }
+
+        private void textBox11_Click(object sender, EventArgs e)
+        {
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm);
+            ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
+        }
     }
 }

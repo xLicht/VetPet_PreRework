@@ -258,52 +258,52 @@
     <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasAgregarMedicamento.cs">
+    <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasAgregarMedicamento.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasAgregarMedicamento.Designer.cs">
       <DependentUpon>VentasAgregarMedicamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasAgregarProducto.cs">
+    <Compile Include="Angie\Ventas\VentasAgregarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasAgregarProducto.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasAgregarProducto.Designer.cs">
       <DependentUpon>VentasAgregarProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasConfirmacionEfectivo.cs">
+    <Compile Include="Angie\Ventas\VentasConfirmacionEfectivo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasConfirmacionEfectivo.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasConfirmacionEfectivo.Designer.cs">
       <DependentUpon>VentasConfirmacionEfectivo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasConfirmacionTarjeta.cs">
+    <Compile Include="Angie\Ventas\VentasConfirmacionTarjeta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasConfirmacionTarjeta.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasConfirmacionTarjeta.Designer.cs">
       <DependentUpon>VentasConfirmacionTarjeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasConsultarCita.cs">
+    <Compile Include="Angie\Ventas\VentasConsultarCita.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasConsultarCita.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasConsultarCita.Designer.cs">
       <DependentUpon>VentasConsultarCita.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasDeseaAgregarMedicamento.cs">
+    <Compile Include="Angie\Ventas\VentasDeseaAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasDeseaAgregarMedicamento.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasDeseaAgregarMedicamento.Designer.cs">
       <DependentUpon>VentasDeseaAgregarMedicamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasDeseaAgregarProducto.cs">
+    <Compile Include="Angie\Ventas\VentasDeseaAgregarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasDeseaAgregarProducto.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasDeseaAgregarProducto.Designer.cs">
       <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasVerReceta.cs">
+    <Compile Include="Angie\Ventas\VentasVerReceta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasVerReceta.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasVerReceta.Designer.cs">
       <DependentUpon>VentasVerReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="AvisoCirugia.cs">
@@ -624,6 +624,12 @@
     <Compile Include="EmpListaEmpleados.Designer.cs">
       <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmpListas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpListas.Designer.cs">
+      <DependentUpon>EmpListas.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmpMenuEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -683,6 +689,12 @@
     </Compile>
     <Compile Include="InicioSesion.Designer.cs">
       <DependentUpon>InicioSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InicioSesionRFC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InicioSesionRFC.Designer.cs">
+      <DependentUpon>InicioSesionRFC.cs</DependentUpon>
     </Compile>
     <Compile Include="ListaCirugias.cs">
       <SubType>Form</SubType>
@@ -860,34 +872,34 @@
     <Compile Include="ReportesVenta.Designer.cs">
       <DependentUpon>ReportesVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasHistorialdeVentas.cs">
+    <Compile Include="Angie\Ventas\VentasHistorialdeVentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasHistorialdeVentas.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasHistorialdeVentas.Designer.cs">
       <DependentUpon>VentasHistorialdeVentas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasListado.cs">
+    <Compile Include="Angie\Ventas\VentasListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasListado.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasListado.Designer.cs">
       <DependentUpon>VentasListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasNuevaVenta.cs">
+    <Compile Include="Angie\Ventas\VentasNuevaVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasNuevaVenta.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasNuevaVenta.Designer.cs">
       <DependentUpon>VentasNuevaVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasVentanadePago.cs">
+    <Compile Include="Angie\Ventas\VentasVentanadePago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasVentanadePago.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasVentanadePago.Designer.cs">
       <DependentUpon>VentasVentanadePago.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\VentasVentanadePagoNueva.cs">
+    <Compile Include="Angie\Ventas\VentasVentanadePagoNueva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\VentasVentanadePagoNueva.Designer.cs">
+    <Compile Include="Angie\Ventas\VentasVentanadePagoNueva.Designer.cs">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterianiaGestionarHistorialM.cs">
@@ -925,6 +937,12 @@
     </Compile>
     <Compile Include="VeterinariaConsultarRece.Designer.cs">
       <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeterinariaGenerarReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaGenerarReceta.Designer.cs">
+      <DependentUpon>VeterinariaGenerarReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterinariaHistorialMedico.cs">
       <SubType>Form</SubType>
@@ -1079,43 +1097,43 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasModificar.resx">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasAgregarMedicamento.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasAgregarMedicamento.resx">
       <DependentUpon>VentasAgregarMedicamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasAgregarProducto.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasAgregarProducto.resx">
       <DependentUpon>VentasAgregarProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasConfirmacionEfectivo.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasConfirmacionEfectivo.resx">
       <DependentUpon>VentasConfirmacionEfectivo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasConfirmacionTarjeta.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasConfirmacionTarjeta.resx">
       <DependentUpon>VentasConfirmacionTarjeta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasConsultarCita.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasConsultarCita.resx">
       <DependentUpon>VentasConsultarCita.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasDeseaAgregarMedicamento.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasDeseaAgregarMedicamento.resx">
       <DependentUpon>VentasDeseaAgregarMedicamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasDeseaAgregarProducto.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasDeseaAgregarProducto.resx">
       <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasHistorialdeVentas.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasHistorialdeVentas.resx">
       <DependentUpon>VentasHistorialdeVentas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasListado.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasListado.resx">
       <DependentUpon>VentasListado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasNuevaVenta.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasNuevaVenta.resx">
       <DependentUpon>VentasNuevaVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasVentanadePago.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasVentanadePago.resx">
       <DependentUpon>VentasVentanadePago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasVentanadePagoNueva.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasVentanadePagoNueva.resx">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\VentasVerReceta.resx">
+    <EmbeddedResource Include="Angie\Ventas\VentasVerReceta.resx">
       <DependentUpon>VentasVerReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseña.resx">
@@ -1259,6 +1277,9 @@
     <EmbeddedResource Include="EmpListaEmpleados.resx">
       <DependentUpon>EmpListaEmpleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmpListas.resx">
+      <DependentUpon>EmpListas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmpMenuEmpleados.resx">
       <DependentUpon>EmpMenuEmpleados.cs</DependentUpon>
     </EmbeddedResource>
@@ -1282,6 +1303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InicioSesionRFC.resx">
+      <DependentUpon>InicioSesionRFC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaCirugias.resx">
       <DependentUpon>ListaCirugias.cs</DependentUpon>
@@ -1387,6 +1411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultarRece.resx">
       <DependentUpon>VeterinariaConsultarRece.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaGenerarReceta.resx">
+      <DependentUpon>VeterinariaGenerarReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaHistorialMedico.resx">
       <DependentUpon>VeterinariaHistorialMedico.cs</DependentUpon>
@@ -1548,6 +1575,13 @@
     <None Include="Resources\icons8-pasado-242.png" />
     <None Include="Resources\icons8-informe-gráfico-50.png" />
     <None Include="Resources\icons8-aceptar-504.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\arrow %281%29.png" />
+    <None Include="Resources\people.png" />
+    <None Include="Resources\icons8-mascotas-64.png" />
+    <None Include="Resources\icons8-medical-file-48.png" />
+    <None Include="Resources\icons8-fursona-64.png" />
+    <None Include="Resources\icons8-dinero-64.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -37,19 +37,22 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.BtnBuscar = new System.Windows.Forms.Button();
-            this.BtnEliminarCirugía = new System.Windows.Forms.Button();
-            this.BtnAgregarCirugía = new System.Windows.Forms.Button();
+            this.BtnEliminarRadiografia = new System.Windows.Forms.Button();
+            this.BtnAgregarRadiografia = new System.Windows.Forms.Button();
             this.BtnAgregarTipoDeRadiografía = new System.Windows.Forms.Button();
             this.BtnRegresar = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.BtnModificar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -138,31 +141,32 @@
             this.BtnBuscar.Text = "Buscar             ";
             this.BtnBuscar.UseVisualStyleBackColor = false;
             // 
-            // BtnEliminarCirugía
+            // BtnEliminarRadiografia
             // 
-            this.BtnEliminarCirugía.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
-            this.BtnEliminarCirugía.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminarCirugía.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminarCirugía.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnEliminarCirugía.Location = new System.Drawing.Point(874, 439);
-            this.BtnEliminarCirugía.Name = "BtnEliminarCirugía";
-            this.BtnEliminarCirugía.Size = new System.Drawing.Size(162, 54);
-            this.BtnEliminarCirugía.TabIndex = 27;
-            this.BtnEliminarCirugía.Text = "Eliminar Radiografía";
-            this.BtnEliminarCirugía.UseVisualStyleBackColor = false;
+            this.BtnEliminarRadiografia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
+            this.BtnEliminarRadiografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEliminarRadiografia.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminarRadiografia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BtnEliminarRadiografia.Location = new System.Drawing.Point(874, 439);
+            this.BtnEliminarRadiografia.Name = "BtnEliminarRadiografia";
+            this.BtnEliminarRadiografia.Size = new System.Drawing.Size(162, 54);
+            this.BtnEliminarRadiografia.TabIndex = 27;
+            this.BtnEliminarRadiografia.Text = "Eliminar Radiografía";
+            this.BtnEliminarRadiografia.UseVisualStyleBackColor = false;
             // 
-            // BtnAgregarCirugía
+            // BtnAgregarRadiografia
             // 
-            this.BtnAgregarCirugía.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
-            this.BtnAgregarCirugía.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAgregarCirugía.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAgregarCirugía.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnAgregarCirugía.Location = new System.Drawing.Point(665, 439);
-            this.BtnAgregarCirugía.Name = "BtnAgregarCirugía";
-            this.BtnAgregarCirugía.Size = new System.Drawing.Size(203, 54);
-            this.BtnAgregarCirugía.TabIndex = 28;
-            this.BtnAgregarCirugía.Text = "Agregar Nueva Radiografía";
-            this.BtnAgregarCirugía.UseVisualStyleBackColor = false;
+            this.BtnAgregarRadiografia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
+            this.BtnAgregarRadiografia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgregarRadiografia.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgregarRadiografia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BtnAgregarRadiografia.Location = new System.Drawing.Point(665, 439);
+            this.BtnAgregarRadiografia.Name = "BtnAgregarRadiografia";
+            this.BtnAgregarRadiografia.Size = new System.Drawing.Size(203, 54);
+            this.BtnAgregarRadiografia.TabIndex = 28;
+            this.BtnAgregarRadiografia.Text = "Agregar Nueva Radiografía";
+            this.BtnAgregarRadiografia.UseVisualStyleBackColor = false;
+            this.BtnAgregarRadiografia.Click += new System.EventHandler(this.BtnAgregarRadiografia_Click);
             // 
             // BtnAgregarTipoDeRadiografía
             // 
@@ -176,6 +180,7 @@
             this.BtnAgregarTipoDeRadiografía.TabIndex = 29;
             this.BtnAgregarTipoDeRadiografía.Text = "Agregar Tipo de Radiografía";
             this.BtnAgregarTipoDeRadiografía.UseVisualStyleBackColor = false;
+            this.BtnAgregarTipoDeRadiografía.Click += new System.EventHandler(this.BtnAgregarTipoDeRadiografía_Click);
             // 
             // BtnRegresar
             // 
@@ -183,7 +188,7 @@
             this.BtnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRegresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnRegresar.Location = new System.Drawing.Point(42, 495);
+            this.BtnRegresar.Location = new System.Drawing.Point(41, 504);
             this.BtnRegresar.Name = "BtnRegresar";
             this.BtnRegresar.Size = new System.Drawing.Size(139, 49);
             this.BtnRegresar.TabIndex = 30;
@@ -217,12 +222,37 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.back;
-            this.pictureBox1.Location = new System.Drawing.Point(137, 502);
+            this.pictureBox1.Location = new System.Drawing.Point(136, 511);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 35);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 47;
             this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
+            this.pictureBox4.Image = global::VetPet_.Properties.Resources.tool_and_utensils;
+            this.pictureBox4.Location = new System.Drawing.Point(993, 514);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(30, 32);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 49;
+            this.pictureBox4.TabStop = false;
+            // 
+            // BtnModificar
+            // 
+            this.BtnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
+            this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnModificar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BtnModificar.Location = new System.Drawing.Point(893, 504);
+            this.BtnModificar.Name = "BtnModificar";
+            this.BtnModificar.Size = new System.Drawing.Size(143, 49);
+            this.BtnModificar.TabIndex = 48;
+            this.BtnModificar.Text = "Modificar          ";
+            this.BtnModificar.UseVisualStyleBackColor = false;
+            this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
             // 
             // ListaRadiografias
             // 
@@ -230,6 +260,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.BtnModificar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -239,8 +271,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.BtnBuscar);
-            this.Controls.Add(this.BtnEliminarCirugía);
-            this.Controls.Add(this.BtnAgregarCirugía);
+            this.Controls.Add(this.BtnEliminarRadiografia);
+            this.Controls.Add(this.BtnAgregarRadiografia);
             this.Controls.Add(this.BtnAgregarTipoDeRadiografía);
             this.Controls.Add(this.BtnRegresar);
             this.Name = "ListaRadiografias";
@@ -252,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,8 +299,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button BtnBuscar;
-        private System.Windows.Forms.Button BtnEliminarCirugía;
-        private System.Windows.Forms.Button BtnAgregarCirugía;
+        private System.Windows.Forms.Button BtnEliminarRadiografia;
+        private System.Windows.Forms.Button BtnAgregarRadiografia;
         private System.Windows.Forms.Button BtnAgregarTipoDeRadiografía;
         private System.Windows.Forms.Button BtnRegresar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -275,5 +308,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button BtnModificar;
     }
 }

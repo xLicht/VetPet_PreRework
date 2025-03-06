@@ -11,7 +11,7 @@ using VetPet_.Angie;
 
 namespace VetPet_
 {
-    public partial class VentasVentanadePago : Form
+    public partial class VentasHistorialdeVentas : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -20,21 +20,21 @@ namespace VetPet_
         private Form1 parentForm;
 
 
-        public VentasVentanadePago()
+        public VentasHistorialdeVentas()
         {
             InitializeComponent();
-            this.Load += VentasVentanadePago_Load;       // Evento Load
-            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            this.Load += VentasHistorialdeVentas_Load;       // Evento Load
+            this.Resize += VentasHistorialdeVentas_Resize;   // Evento Resize
 
         }
 
-        public VentasVentanadePago(Form1 parent)
+        public VentasHistorialdeVentas(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 
-        private void VentasVentanadePago_Load(object sender, EventArgs e)
+        private void VentasHistorialdeVentas_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -47,7 +47,7 @@ namespace VetPet_
             }
         }
 
-        private void VentasVentanadePago_Resize(object sender, EventArgs e)
+        private void VentasHistorialdeVentas_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -74,6 +74,11 @@ namespace VetPet_
         private void button1_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }

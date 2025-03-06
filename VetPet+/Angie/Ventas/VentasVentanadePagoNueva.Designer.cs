@@ -85,6 +85,7 @@
             this.textBox11.TabIndex = 222;
             this.textBox11.Text = "Ver Datos de Cita ";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox11.Click += new System.EventHandler(this.textBox11_Click);
             // 
             // pictureBox2
             // 
