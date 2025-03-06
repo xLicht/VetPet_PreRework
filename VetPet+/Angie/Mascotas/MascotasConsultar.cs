@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_
 {
@@ -16,7 +19,7 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        private Mismetodos metodos = new Mismetodos();
 
         private Form1 parentForm;
         public MascotasConsultar()
@@ -25,6 +28,8 @@ namespace VetPet_
             InitializeComponent();
             this.Load += MascotasConsultar_Load;       // Evento Load
             this.Resize += MascotasConsultar_Resize;   // Evento Resize
+            //comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBox1.KeyDown += comboBox1_KeyDown;
         }
 
         public MascotasConsultar(Form1 parent)
@@ -82,7 +87,73 @@ namespace VetPet_
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaAgendar (parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verificar si la tecla presionada es "Enter"
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Obtener el texto ingresado por el usuario
+                string nuevaEspecie = comboBox1.Text;
+
+                // Verificar si la especie ya existe en la base de datos
+                if (!metodos.Existe ("SELECT COUNT(*) FROM especie WHERE nombre = @nombre",nuevaEspecie))
+                {
+                    // Preguntar al usuario si desea crear la nueva especie
+                    DialogResult result = MessageBox.Show(
+                        $"La especie '{nuevaEspecie}' no existe. ¿Desea crearla?",
+                        "Crear nueva especie",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
+                    if (result == DialogResult.Yes)
+                    {
+                        metodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
+                        MessageBox.Show("Especie creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        metodos.ActualizarComboBox(comboBox1,"SELECT nombre FROM especie", "nombre");   
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La especie ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verificar si la tecla presionada es "Enter"
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Obtener el texto ingresado por el usuario
+                string nuevaRaza = comboBox1.Text;
+
+                // Verificar si la especie ya existe en la base de datos
+                if (!metodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
+                {
+                    // Preguntar al usuario si desea crear la nueva especie
+                    DialogResult result = MessageBox.Show(
+                        $"La raza '{nuevaRaza}' no existe. ¿Desea crearla?",
+                        "Crear nueva raza",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
+                    if (result == DialogResult.Yes)
+                    {
+                        metodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
+                        MessageBox.Show("Raza creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        metodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM raza", "nombre");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La raza ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

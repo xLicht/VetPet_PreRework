@@ -258,6 +258,7 @@
     <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\Mismetodos.cs" />
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,12 +283,6 @@
     <Compile Include="Angie\Ventas\VentasConfirmacionTarjeta.Designer.cs">
       <DependentUpon>VentasConfirmacionTarjeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\Ventas\VentasConsultarCita.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Angie\Ventas\VentasConsultarCita.Designer.cs">
-      <DependentUpon>VentasConsultarCita.cs</DependentUpon>
-    </Compile>
     <Compile Include="Angie\Ventas\VentasDeseaAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,12 +294,6 @@
     </Compile>
     <Compile Include="Angie\Ventas\VentasDeseaAgregarProducto.Designer.cs">
       <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Angie\Ventas\VentasVerReceta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Angie\Ventas\VentasVerReceta.Designer.cs">
-      <DependentUpon>VentasVerReceta.cs</DependentUpon>
     </Compile>
     <Compile Include="AvisoCirugia.cs">
       <SubType>Form</SubType>
@@ -1109,9 +1098,6 @@
     <EmbeddedResource Include="Angie\Ventas\VentasConfirmacionTarjeta.resx">
       <DependentUpon>VentasConfirmacionTarjeta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\Ventas\VentasConsultarCita.resx">
-      <DependentUpon>VentasConsultarCita.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasDeseaAgregarMedicamento.resx">
       <DependentUpon>VentasDeseaAgregarMedicamento.cs</DependentUpon>
     </EmbeddedResource>
@@ -1132,9 +1118,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasVentanadePagoNueva.resx">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Angie\Ventas\VentasVerReceta.resx">
-      <DependentUpon>VentasVerReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseña.resx">
       <DependentUpon>CambiarContraseña.cs</DependentUpon>
