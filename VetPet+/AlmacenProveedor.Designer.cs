@@ -62,7 +62,7 @@
             this.btnAgregar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
             this.btnAgregar.Location = new System.Drawing.Point(973, 607);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(304, 74);
             this.btnAgregar.TabIndex = 29;
@@ -81,7 +81,7 @@
             this.btnRegresar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
             this.btnRegresar.Location = new System.Drawing.Point(89, 607);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(304, 74);
             this.btnRegresar.TabIndex = 27;
@@ -101,7 +101,7 @@
             this.Column2,
             this.Column3});
             this.dataGridView1.Location = new System.Drawing.Point(89, 170);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1188, 393);
@@ -132,7 +132,7 @@
             this.pictureBox3.Enabled = false;
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.plus;
             this.pictureBox3.Location = new System.Drawing.Point(1205, 618);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(57, 53);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -145,7 +145,7 @@
             this.pictureBox4.Enabled = false;
             this.pictureBox4.Image = global::VetPet_.Properties.Resources.arrow;
             this.pictureBox4.Location = new System.Drawing.Point(321, 618);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(57, 53);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -177,7 +177,7 @@
             // 
             this.pictureBox2.Enabled = false;
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.menu_bar;
-            this.pictureBox2.Location = new System.Drawing.Point(88, 123);
+            this.pictureBox2.Location = new System.Drawing.Point(86, 123);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(47, 46);
@@ -201,6 +201,8 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(45, 31);
             this.comboBox1.TabIndex = 39;
+            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // pictureBox1
             // 
@@ -225,6 +227,7 @@
             this.txtProveedor.Size = new System.Drawing.Size(799, 29);
             this.txtProveedor.TabIndex = 36;
             this.txtProveedor.Text = "Buscar nombre de proveedor";
+            this.txtProveedor.Enter += new System.EventHandler(this.txtProveedor_Enter);
             // 
             // label3
             // 
@@ -285,7 +288,7 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlmacenProveedor";
             this.Text = "AlmacenProveedor";
             this.Load += new System.EventHandler(this.AlmacenProveedor_Load);
