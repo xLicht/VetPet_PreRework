@@ -42,6 +42,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TxtEstado = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtOrtopedicas = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtDentales = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtOculares = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TxtGastrointestinal = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -51,7 +61,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(84, 210);
+            this.label5.Location = new System.Drawing.Point(84, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 22);
             this.label5.TabIndex = 7;
@@ -71,7 +81,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(84, 288);
+            this.label1.Location = new System.Drawing.Point(84, 213);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 22);
             this.label1.TabIndex = 7;
@@ -139,7 +149,7 @@
             this.TxtPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
             this.TxtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPrecio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtPrecio.Location = new System.Drawing.Point(321, 210);
+            this.TxtPrecio.Location = new System.Drawing.Point(321, 169);
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(155, 29);
             this.TxtPrecio.TabIndex = 12;
@@ -161,9 +171,9 @@
             "Sistema Urinario",
             "Sistema Respiratorio ",
             "Añadir Tipo Cirugía"});
-            this.comboBox1.Location = new System.Drawing.Point(239, 288);
+            this.comboBox1.Location = new System.Drawing.Point(257, 213);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(237, 26);
+            this.comboBox1.Size = new System.Drawing.Size(219, 26);
             this.comboBox1.TabIndex = 19;
             // 
             // label2
@@ -207,12 +217,122 @@
             this.pictureBox1.TabIndex = 44;
             this.pictureBox1.TabStop = false;
             // 
+            // TxtEstado
+            // 
+            this.TxtEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtEstado.Location = new System.Drawing.Point(321, 251);
+            this.TxtEstado.Name = "TxtEstado";
+            this.TxtEstado.Size = new System.Drawing.Size(155, 29);
+            this.TxtEstado.TabIndex = 46;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(84, 251);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 22);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Cirugia Reproductiva";
+            // 
+            // TxtOrtopedicas
+            // 
+            this.TxtOrtopedicas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtOrtopedicas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtOrtopedicas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtOrtopedicas.Location = new System.Drawing.Point(321, 296);
+            this.TxtOrtopedicas.Name = "TxtOrtopedicas";
+            this.TxtOrtopedicas.Size = new System.Drawing.Size(155, 29);
+            this.TxtOrtopedicas.TabIndex = 48;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(84, 296);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(194, 22);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Cirugia Ortopédicas";
+            // 
+            // TxtDentales
+            // 
+            this.TxtDentales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtDentales.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDentales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtDentales.Location = new System.Drawing.Point(321, 340);
+            this.TxtDentales.Name = "TxtDentales";
+            this.TxtDentales.Size = new System.Drawing.Size(155, 29);
+            this.TxtDentales.TabIndex = 50;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(84, 340);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(161, 22);
+            this.label8.TabIndex = 49;
+            this.label8.Text = "Cirugia Dentales";
+            // 
+            // TxtOculares
+            // 
+            this.TxtOculares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtOculares.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtOculares.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtOculares.Location = new System.Drawing.Point(321, 384);
+            this.TxtOculares.Name = "TxtOculares";
+            this.TxtOculares.Size = new System.Drawing.Size(155, 29);
+            this.TxtOculares.TabIndex = 52;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(84, 384);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(163, 22);
+            this.label9.TabIndex = 51;
+            this.label9.Text = "Cirugia Oculares";
+            // 
+            // TxtGastrointestinal
+            // 
+            this.TxtGastrointestinal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtGastrointestinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtGastrointestinal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtGastrointestinal.Location = new System.Drawing.Point(321, 428);
+            this.TxtGastrointestinal.Name = "TxtGastrointestinal";
+            this.TxtGastrointestinal.Size = new System.Drawing.Size(155, 29);
+            this.TxtGastrointestinal.TabIndex = 54;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(84, 428);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(226, 22);
+            this.label10.TabIndex = 53;
+            this.label10.Text = "Cirugia Gastrointestinal";
+            // 
             // AgregarCirugias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.TxtGastrointestinal);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.TxtOculares);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.TxtDentales);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.TxtOrtopedicas);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TxtEstado);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel1);
@@ -253,5 +373,15 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox TxtEstado;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtOrtopedicas;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TxtDentales;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TxtOculares;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox TxtGastrointestinal;
+        private System.Windows.Forms.Label label10;
     }
 }

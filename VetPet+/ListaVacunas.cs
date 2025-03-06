@@ -26,17 +26,22 @@ namespace VetPet_
 
         private void BtnAgregarTipoDeVacunas_Click(object sender, EventArgs e)
         {
-            
+            parentForm.formularioHijo(new AgregarTipoVacunas(parentForm));
         }
 
         private void BtnAgregarVacunas_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new AgregarVacunas(parentForm));
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ModificarVacunas(parentForm));
         }
     }
 }
