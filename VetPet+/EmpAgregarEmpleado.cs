@@ -32,12 +32,80 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+            DialogResult resultado = MessageBox.Show("Se borrarán todos los datos ingresados. ¿Desea continuar?","Advertencia",MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK)
+            {
+                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+            }
+            else
+            {
+                // Aquí puedes poner código si el usuario decide cancelar
+                MessageBox.Show("La operación ha sido cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnSelecTipo_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new EmpAgregarTipoEmpleado(parentForm));
+        }
+
+        private void r_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Se borrarán todos los datos ingresados. ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK)
+            {
+                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+            }
+            else
+            {
+                // Aquí puedes poner código si el usuario decide cancelar
+                MessageBox.Show("La operación ha sido cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void a_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+        }
+
+        private void txtCP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Bloquea cualquier otro carácter
+            }
+        }
+
+        private void txtApellidoPat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; //solo una plabra
+            }
+        }
+
+        private void txtApellidoMat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; //solo una plabra
+            }
+        }
+
+        private void txtNumContacto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
