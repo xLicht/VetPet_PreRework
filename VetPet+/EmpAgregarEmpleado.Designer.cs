@@ -113,7 +113,7 @@
             this.r.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.r.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
             this.r.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.r.Location = new System.Drawing.Point(693, 509);
+            this.r.Location = new System.Drawing.Point(218, 509);
             this.r.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.r.Name = "r";
             this.r.Size = new System.Drawing.Size(57, 47);
@@ -126,7 +126,7 @@
             this.btnRegresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnRegresar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnRegresar.Location = new System.Drawing.Point(535, 501);
+            this.btnRegresar.Location = new System.Drawing.Point(60, 501);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(235, 62);
@@ -168,7 +168,7 @@
             // 
             this.txtContraseña.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtContraseña.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(810, 212);
+            this.txtContraseña.Location = new System.Drawing.Point(810, 237);
             this.txtContraseña.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(171, 29);
@@ -178,7 +178,7 @@
             // 
             this.txtPalabraClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtPalabraClave.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPalabraClave.Location = new System.Drawing.Point(810, 266);
+            this.txtPalabraClave.Location = new System.Drawing.Point(810, 291);
             this.txtPalabraClave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPalabraClave.Name = "txtPalabraClave";
             this.txtPalabraClave.Size = new System.Drawing.Size(171, 29);
@@ -188,7 +188,7 @@
             // 
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(810, 167);
+            this.txtUsuario.Location = new System.Drawing.Point(810, 198);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(171, 29);
@@ -210,7 +210,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label7.Location = new System.Drawing.Point(682, 216);
+            this.label7.Location = new System.Drawing.Point(682, 241);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 25);
             this.label7.TabIndex = 371;
@@ -221,7 +221,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label6.Location = new System.Drawing.Point(663, 270);
+            this.label6.Location = new System.Drawing.Point(663, 295);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 25);
             this.label6.TabIndex = 370;
@@ -232,7 +232,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label3.Location = new System.Drawing.Point(716, 167);
+            this.label3.Location = new System.Drawing.Point(716, 198);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 25);
             this.label3.TabIndex = 368;
@@ -346,7 +346,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(302, 465);
+            this.label5.Location = new System.Drawing.Point(691, 418);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 25);
             this.label5.TabIndex = 432;
@@ -356,7 +356,7 @@
             // 
             this.txtCP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtCP.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCP.Location = new System.Drawing.Point(252, 389);
+            this.txtCP.Location = new System.Drawing.Point(218, 414);
             this.txtCP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCP.Name = "txtCP";
             this.txtCP.Size = new System.Drawing.Size(171, 29);
@@ -368,7 +368,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label11.Location = new System.Drawing.Point(89, 388);
+            this.label11.Location = new System.Drawing.Point(79, 414);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(141, 25);
             this.label11.TabIndex = 430;
@@ -379,7 +379,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label12.Location = new System.Drawing.Point(60, 468);
+            this.label12.Location = new System.Drawing.Point(449, 421);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 25);
             this.label12.TabIndex = 428;
@@ -390,7 +390,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(60, 431);
+            this.label13.Location = new System.Drawing.Point(449, 384);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 25);
             this.label13.TabIndex = 434;
@@ -401,7 +401,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label14.Location = new System.Drawing.Point(302, 431);
+            this.label14.Location = new System.Drawing.Point(691, 384);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 25);
             this.label14.TabIndex = 436;
@@ -428,7 +428,7 @@
             "Medico",
             "Administrador",
             "Recepcionista"});
-            this.cbPais.Location = new System.Drawing.Point(121, 435);
+            this.cbPais.Location = new System.Drawing.Point(510, 388);
             this.cbPais.Name = "cbPais";
             this.cbPais.Size = new System.Drawing.Size(156, 29);
             this.cbPais.TabIndex = 439;
@@ -443,7 +443,7 @@
             "Medico",
             "Administrador",
             "Recepcionista"});
-            this.cbCalle.Location = new System.Drawing.Point(121, 470);
+            this.cbCalle.Location = new System.Drawing.Point(510, 423);
             this.cbCalle.Name = "cbCalle";
             this.cbCalle.Size = new System.Drawing.Size(156, 29);
             this.cbCalle.TabIndex = 440;
@@ -458,7 +458,7 @@
             "Medico",
             "Administrador",
             "Recepcionista"});
-            this.cbCiudad.Location = new System.Drawing.Point(377, 435);
+            this.cbCiudad.Location = new System.Drawing.Point(786, 388);
             this.cbCiudad.Name = "cbCiudad";
             this.cbCiudad.Size = new System.Drawing.Size(156, 29);
             this.cbCiudad.TabIndex = 441;
@@ -473,7 +473,7 @@
             "Medico",
             "Administrador",
             "Recepcionista"});
-            this.cbColonia.Location = new System.Drawing.Point(377, 470);
+            this.cbColonia.Location = new System.Drawing.Point(786, 423);
             this.cbColonia.Name = "cbColonia";
             this.cbColonia.Size = new System.Drawing.Size(156, 29);
             this.cbColonia.TabIndex = 442;
@@ -482,7 +482,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.pictureBox2.Location = new System.Drawing.Point(60, 76);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(329, 46);
             this.pictureBox2.TabIndex = 443;
@@ -492,7 +492,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.pictureBox3.Location = new System.Drawing.Point(64, 341);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(129, 46);
             this.pictureBox3.TabIndex = 444;
@@ -502,7 +502,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.pictureBox4.Location = new System.Drawing.Point(705, 83);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(312, 46);
             this.pictureBox4.TabIndex = 445;
@@ -512,7 +512,7 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.pictureBox6.Location = new System.Drawing.Point(393, 10);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(294, 58);
             this.pictureBox6.TabIndex = 446;

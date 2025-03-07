@@ -185,7 +185,7 @@
             this.rtObUltrasonido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObUltrasonido.Location = new System.Drawing.Point(793, 317);
             this.rtObUltrasonido.Name = "rtObUltrasonido";
-            this.rtObUltrasonido.Size = new System.Drawing.Size(223, 33);
+            this.rtObUltrasonido.Size = new System.Drawing.Size(244, 33);
             this.rtObUltrasonido.TabIndex = 416;
             this.rtObUltrasonido.Text = "Observaciones";
             // 
@@ -196,7 +196,7 @@
             this.rtObRayosX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObRayosX.Location = new System.Drawing.Point(780, 277);
             this.rtObRayosX.Name = "rtObRayosX";
-            this.rtObRayosX.Size = new System.Drawing.Size(223, 33);
+            this.rtObRayosX.Size = new System.Drawing.Size(257, 33);
             this.rtObRayosX.TabIndex = 415;
             this.rtObRayosX.Text = "Observaciones";
             // 
@@ -221,7 +221,7 @@
             this.rtObVacuna.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.rtObVacuna.Location = new System.Drawing.Point(780, 235);
             this.rtObVacuna.Name = "rtObVacuna";
-            this.rtObVacuna.Size = new System.Drawing.Size(223, 33);
+            this.rtObVacuna.Size = new System.Drawing.Size(257, 33);
             this.rtObVacuna.TabIndex = 413;
             this.rtObVacuna.Text = "Observaciones";
             // 
@@ -230,7 +230,7 @@
             this.rtEstudioEspecial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.rtEstudioEspecial.Location = new System.Drawing.Point(191, 453);
             this.rtEstudioEspecial.Name = "rtEstudioEspecial";
-            this.rtEstudioEspecial.Size = new System.Drawing.Size(258, 38);
+            this.rtEstudioEspecial.Size = new System.Drawing.Size(258, 83);
             this.rtEstudioEspecial.TabIndex = 412;
             this.rtEstudioEspecial.Text = "";
             // 
@@ -326,7 +326,7 @@
             // 
             this.txtFechaActual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtFechaActual.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaActual.Location = new System.Drawing.Point(183, 223);
+            this.txtFechaActual.Location = new System.Drawing.Point(126, 223);
             this.txtFechaActual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFechaActual.Name = "txtFechaActual";
             this.txtFechaActual.Size = new System.Drawing.Size(171, 29);
@@ -591,11 +591,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(27, 223);
+            this.label8.Location = new System.Drawing.Point(31, 223);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(130, 25);
+            this.label8.Size = new System.Drawing.Size(70, 25);
             this.label8.TabIndex = 379;
-            this.label8.Text = "Fecha Actual";
+            this.label8.Text = "Fecha ";
             // 
             // txtRaza
             // 
