@@ -44,5 +44,20 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new EmpModificarTipoEmpleado(parentForm));
         }
+
+        private void r_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
+        }
+
+        private void m_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpModificarTipoEmpleado(parentForm));
+        }
+
+        private void e_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
+        }
     }
 }

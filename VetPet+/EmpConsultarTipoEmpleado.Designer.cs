@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.label16 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.r = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.e = new System.Windows.Forms.PictureBox();
+            this.m = new System.Windows.Forms.PictureBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.cbHistorialMedico = new System.Windows.Forms.CheckBox();
             this.cbAdministracion = new System.Windows.Forms.CheckBox();
@@ -54,9 +54,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,23 +65,24 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(320, 28);
+            this.label16.Location = new System.Drawing.Point(341, 48);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(415, 37);
             this.label16.TabIndex = 418;
             this.label16.Text = "Detalles del Tipo de Empleado";
             // 
-            // pictureBox1
+            // r
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox1.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(197, 498);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(53, 42);
-            this.pictureBox1.TabIndex = 416;
-            this.pictureBox1.TabStop = false;
+            this.r.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.r.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
+            this.r.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.r.Location = new System.Drawing.Point(197, 498);
+            this.r.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.r.Name = "r";
+            this.r.Size = new System.Drawing.Size(53, 42);
+            this.r.TabIndex = 416;
+            this.r.TabStop = false;
+            this.r.Click += new System.EventHandler(this.r_Click);
             // 
             // btnRegresar
             // 
@@ -113,29 +114,31 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // pictureBox3
+            // e
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.DueEliminar;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(972, 506);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(43, 42);
-            this.pictureBox3.TabIndex = 437;
-            this.pictureBox3.TabStop = false;
+            this.e.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.e.BackgroundImage = global::VetPet_.Properties.Resources.DueEliminar;
+            this.e.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.e.Location = new System.Drawing.Point(972, 506);
+            this.e.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.e.Name = "e";
+            this.e.Size = new System.Drawing.Size(43, 42);
+            this.e.TabIndex = 437;
+            this.e.TabStop = false;
+            this.e.Click += new System.EventHandler(this.e_Click);
             // 
-            // pictureBox4
+            // m
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox4.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaAjustes;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(744, 506);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(43, 42);
-            this.pictureBox4.TabIndex = 439;
-            this.pictureBox4.TabStop = false;
+            this.m.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.m.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaAjustes;
+            this.m.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.m.Location = new System.Drawing.Point(744, 509);
+            this.m.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.m.Name = "m";
+            this.m.Size = new System.Drawing.Size(43, 42);
+            this.m.TabIndex = 439;
+            this.m.TabStop = false;
+            this.m.Click += new System.EventHandler(this.m_Click);
             // 
             // btnModificar
             // 
@@ -154,6 +157,7 @@
             // 
             // cbHistorialMedico
             // 
+            this.cbHistorialMedico.AutoCheck = false;
             this.cbHistorialMedico.AutoSize = true;
             this.cbHistorialMedico.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbHistorialMedico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
@@ -166,6 +170,7 @@
             // 
             // cbAdministracion
             // 
+            this.cbAdministracion.AutoCheck = false;
             this.cbAdministracion.AutoSize = true;
             this.cbAdministracion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
@@ -178,6 +183,7 @@
             // 
             // cbConsulta
             // 
+            this.cbConsulta.AutoCheck = false;
             this.cbConsulta.AutoSize = true;
             this.cbConsulta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbConsulta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
@@ -190,6 +196,7 @@
             // 
             // cbReceta
             // 
+            this.cbReceta.AutoCheck = false;
             this.cbReceta.AutoSize = true;
             this.cbReceta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbReceta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
@@ -202,6 +209,7 @@
             // 
             // cbVentas
             // 
+            this.cbVentas.AutoCheck = false;
             this.cbVentas.AutoSize = true;
             this.cbVentas.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
@@ -214,6 +222,7 @@
             // 
             // cbInventario
             // 
+            this.cbInventario.AutoCheck = false;
             this.cbInventario.AutoSize = true;
             this.cbInventario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbInventario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
@@ -391,19 +400,19 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.m);
             this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.e);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.r);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.btnEliminar);
             this.Name = "EmpConsultarTipoEmpleado";
             this.Text = "EmpConsultarTipoEmpleado";
             this.Load += new System.EventHandler(this.EmpConsultarTipoEmpleado_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.r)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -412,11 +421,11 @@
 
         #endregion
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox r;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox e;
+        private System.Windows.Forms.PictureBox m;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.CheckBox cbHistorialMedico;
         private System.Windows.Forms.CheckBox cbAdministracion;
