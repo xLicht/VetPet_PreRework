@@ -29,8 +29,6 @@ namespace VetPet_
             parentForm = parent;  // Guardamos la referencia de Form1
                                   // Hacer que el ComboBox sea "invisible"
             comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
-            comboBox1.BackColor = this.BackColor;  // Igual que el fondo del formulario
-            comboBox1.ForeColor = this.BackColor;  // Oculta el texto
             comboBox1.DropDownWidth = 150;         // Ancho del desplegable
         }
 
@@ -92,7 +90,7 @@ namespace VetPet_
 
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
-            comboBox1.ForeColor = Color.Black;
+
         }
 
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
@@ -131,6 +129,11 @@ namespace VetPet_
                     }
                 }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,6 +28,9 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+
+            comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
+            comboBox1.DropDownWidth = 150;         // Ancho del desplegable
         }
 
         private void AlmacenInventarioMedicamentos_Load(object sender, EventArgs e)

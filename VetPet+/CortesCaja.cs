@@ -19,6 +19,7 @@ namespace VetPet_
             InitializeComponent();
         }
         //Variables
+        //
         // Variables para almacenar los valores de los precios
         private double dgv1subirprecio1000 = 0;
         private double dgv1totalprecio1000 = 0;
