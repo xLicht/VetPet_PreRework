@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using VetPet_;
 
 namespace VetPet_
-{
+{//
     public partial class CortesConsultar : FormPadre
     {
         public CortesConsultar()
