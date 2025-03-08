@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,10 @@ namespace VetPet_
 
         private Form1 parentForm;
 
+
+        //conexion
+        private conexionBrandon conexionBrandon = new conexionBrandon(); // Instancia de la clase conexión
+
         public AlmacenInventarioMedicamentos()
         {
             InitializeComponent();
@@ -31,6 +36,25 @@ namespace VetPet_
 
             comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
             comboBox1.DropDownWidth = 150;         // Ancho del desplegable
+
+            //conexion
+            try
+            {
+                conexionBrandon.AbrirConexion();
+                string query = "SELECT * FROM Clientes"; // Cambia "Clientes" por tu tabla real
+
+                SqlCommand comando = new SqlCommand(query, conexionBrandon.GetConexion());
+                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                adaptador.Fill(dt);
+
+                dataGridView1.DataSource = dt; // Mostrar los datos en el DataGridView
+                conexionBrandon.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void AlmacenInventarioMedicamentos_Load(object sender, EventArgs e)
