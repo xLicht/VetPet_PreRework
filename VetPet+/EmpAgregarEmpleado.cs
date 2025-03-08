@@ -39,8 +39,8 @@ namespace VetPet_
             }
             else
             {
-                // Aquí puedes poner código si el usuario decide cancelar
-                MessageBox.Show("La operación ha sido cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           
+               
             }
         }
 
@@ -58,8 +58,8 @@ namespace VetPet_
             }
             else
             {
-                // Aquí puedes poner código si el usuario decide cancelar
-                MessageBox.Show("La operación ha sido cancelada.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              
+                
             }
         }
 

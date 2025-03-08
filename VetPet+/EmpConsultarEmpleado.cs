@@ -32,12 +32,39 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+            advertencia();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+            advertenciaEliminar();
+        }
+
+        private void advertencia()
+        { 
+                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+        }
+        private void advertenciaEliminar()
+        {
+            DialogResult resultado = MessageBox.Show("El Empleado se ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK)
+            {
+                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+            }
+            else
+            {
+
+            }
+        }
+
+        private void r_Click(object sender, EventArgs e)
+        {
+            advertencia();
+        }
+
+        private void e_Click(object sender, EventArgs e)
+        {
+            advertenciaEliminar();
         }
     }
 }

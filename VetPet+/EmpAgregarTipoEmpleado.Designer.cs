@@ -62,7 +62,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(333, 26);
+            this.label16.Location = new System.Drawing.Point(329, 37);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(467, 37);
             this.label16.TabIndex = 129;
@@ -160,8 +160,9 @@
             this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(172, 154);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNombre.MaxLength = 40;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(171, 29);
+            this.txtNombre.Size = new System.Drawing.Size(172, 29);
             this.txtNombre.TabIndex = 374;
             // 
             // rtDescripcion

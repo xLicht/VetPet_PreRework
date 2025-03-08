@@ -26,7 +26,7 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+            advertencia();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -37,6 +37,25 @@ namespace VetPet_
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            advertencia();
+        }
+
+        private void advertencia()
+        {
+            DialogResult resultado = MessageBox.Show("Se borrarán todos los datos ingresados. ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK)
+            {
+                parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+            }
+            else
+            {
+
+
+            }
         }
     }
 }
