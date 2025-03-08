@@ -20,6 +20,7 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;
+            //CargarDatos();
         }
 
         private void EmpListaEmpleados_Load(object sender, EventArgs e)
@@ -70,8 +71,24 @@ namespace VetPet_
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dtEmpleados.DataSource = dt; 
+                    //dtEmpleados.DataSource = dt;
+                    // Limpiar el DataGridView antes de cargar nuevos datos
+                    dtEmpleados.Rows.Clear();
+
+                    // Llenar manualmente cada fila con los valores de la consulta
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dtEmpleados.Rows.Add(
+                            row["idEmpleado"],
+                            row["nombre"],
+                            row["apellidoP"],
+                            row["apellidoM"],
+                            row["tipoEmpleado"],
+                            row["celular"]
+                        );
+                    }
                 }
+
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: No se pudo Conectar la BD " + ex.Message);
