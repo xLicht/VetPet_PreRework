@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using VetPet_;
+using System.Data.SqlClient;
 
 namespace VetPet_
 {
     public partial class EmpListaEmpleados : FormPadre
     {
+        private string connectionString = "Server=DESKTOP-7PPM2OB\\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
         public EmpListaEmpleados(Form1 parent)
         {
             InitializeComponent();
@@ -43,6 +45,38 @@ namespace VetPet_
         private void btnListaEmpleados_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new EmpListas(parentForm));
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            CargarDatos();
+        }
+
+        private void CargarDatos()
+        {
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conexion.Open();
+                    string query = @"SELECT  e.idEmpleado,p.nombre, p.apellidoP,
+                    p.apellidoM, t.nombre AS tipoEmpleado, p.Celular
+                    FROM Empleado e
+                    JOIN Persona p ON e.idPersona = p.idPersona
+                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado;";
+
+                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dtEmpleados.DataSource = dt; 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: No se pudo Conectar la BD " + ex.Message);
+                }
+            }
         }
     }
 }
