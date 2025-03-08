@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,14 +70,14 @@
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -89,7 +89,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(25, 280);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(576, 220);
+            this.dataGridView1.Size = new System.Drawing.Size(576, 238);
             this.dataGridView1.TabIndex = 359;
             // 
             // Column1
@@ -253,7 +253,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(24, 207);
+            this.label8.Location = new System.Drawing.Point(21, 226);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(180, 25);
             this.label8.TabIndex = 335;
@@ -286,7 +286,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(408, 13);
+            this.label16.Location = new System.Drawing.Point(420, 20);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(239, 37);
             this.label16.TabIndex = 332;
@@ -308,14 +308,14 @@
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(203, 217);
+            this.dateTimePicker1.Location = new System.Drawing.Point(207, 226);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(116, 27);
             this.dateTimePicker1.TabIndex = 370;
             // 
             // rtDiagnostico
             // 
-            this.rtDiagnostico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtDiagnostico.BackColor = System.Drawing.Color.Silver;
             this.rtDiagnostico.Location = new System.Drawing.Point(745, 189);
             this.rtDiagnostico.Name = "rtDiagnostico";
             this.rtDiagnostico.Size = new System.Drawing.Size(309, 129);
@@ -324,7 +324,7 @@
             // 
             // rtMotivoConsulta
             // 
-            this.rtMotivoConsulta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtMotivoConsulta.BackColor = System.Drawing.Color.Silver;
             this.rtMotivoConsulta.Location = new System.Drawing.Point(745, 70);
             this.rtMotivoConsulta.Name = "rtMotivoConsulta";
             this.rtMotivoConsulta.Size = new System.Drawing.Size(308, 78);
@@ -333,7 +333,7 @@
             // 
             // txtRaza
             // 
-            this.txtRaza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtRaza.BackColor = System.Drawing.Color.Silver;
             this.txtRaza.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRaza.Location = new System.Drawing.Point(379, 125);
             this.txtRaza.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -343,7 +343,7 @@
             // 
             // rtIndicaciones
             // 
-            this.rtIndicaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtIndicaciones.BackColor = System.Drawing.Color.Silver;
             this.rtIndicaciones.Location = new System.Drawing.Point(745, 341);
             this.rtIndicaciones.Name = "rtIndicaciones";
             this.rtIndicaciones.Size = new System.Drawing.Size(309, 78);
@@ -352,7 +352,7 @@
             // 
             // txtDuracion
             // 
-            this.txtDuracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtDuracion.BackColor = System.Drawing.Color.Silver;
             this.txtDuracion.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDuracion.Location = new System.Drawing.Point(884, 442);
             this.txtDuracion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -362,7 +362,7 @@
             // 
             // txtTemperatura
             // 
-            this.txtTemperatura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtTemperatura.BackColor = System.Drawing.Color.Silver;
             this.txtTemperatura.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTemperatura.Location = new System.Drawing.Point(379, 171);
             this.txtTemperatura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -372,7 +372,7 @@
             // 
             // txtTexto
             // 
-            this.txtTexto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtTexto.BackColor = System.Drawing.Color.Silver;
             this.txtTexto.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTexto.Location = new System.Drawing.Point(108, 171);
             this.txtTexto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -382,7 +382,7 @@
             // 
             // txtEspecie
             // 
-            this.txtEspecie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtEspecie.BackColor = System.Drawing.Color.Silver;
             this.txtEspecie.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEspecie.Location = new System.Drawing.Point(108, 129);
             this.txtEspecie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -392,7 +392,7 @@
             // 
             // txtDueño
             // 
-            this.txtDueño.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtDueño.BackColor = System.Drawing.Color.Silver;
             this.txtDueño.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDueño.Location = new System.Drawing.Point(379, 80);
             this.txtDueño.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -402,7 +402,7 @@
             // 
             // txtMascota
             // 
-            this.txtMascota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtMascota.BackColor = System.Drawing.Color.Silver;
             this.txtMascota.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMascota.Location = new System.Drawing.Point(108, 80);
             this.txtMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
