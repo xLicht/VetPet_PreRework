@@ -15,7 +15,7 @@ namespace VetPet_
 {
     public partial class EmpListaEmpleados : FormPadre
     {
-        private string connectionString = "Server=DESKTOP-7PPM2OB\\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
+        private conexionDaniel conexionDB = new conexionDaniel();
         public EmpListaEmpleados(Form1 parent)
         {
             InitializeComponent();
@@ -52,26 +52,21 @@ namespace VetPet_
         {
             CargarDatos();
         }
-
-        private void CargarDatos()
+          private void CargarDatos()
         {
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conexion.Open();
-                    string query = @"SELECT  e.idEmpleado,p.nombre, p.apellidoP,
+                conexionDB.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(@"SELECT  e.idEmpleado, p.nombre, p.apellidoP,
                     p.apellidoM, t.nombre AS tipoEmpleado, p.Celular
                     FROM Empleado e
                     JOIN Persona p ON e.idPersona = p.idPersona
-                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado;";
-
-                    SqlCommand cmd = new SqlCommand(query, conexion);
+                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado;", conexionDB.GetConexion()))
+                {
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    //dtEmpleados.DataSource = dt;
                     // Limpiar el DataGridView antes de cargar nuevos datos
                     dtEmpleados.Rows.Clear();
 
@@ -88,12 +83,16 @@ namespace VetPet_
                         );
                     }
                 }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: No se pudo Conectar la BD " + ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: No se pudo Conectar la BD " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
             }
         }
+    
     }
 }

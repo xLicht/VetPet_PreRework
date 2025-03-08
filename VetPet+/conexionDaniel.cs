@@ -9,7 +9,7 @@ namespace VetPet_
 {
     internal class conexionDaniel
     {
-        private readonly string cadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\BDatos\VetPet+\VetPetPlus_.mdf;Integrated Security=True;Connect Timeout=30";
+        private readonly string cadenaConexion = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
         // Constructor
