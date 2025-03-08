@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
+
+        //Variables SQL
+        public SqlConnection conexion;
+        public SqlCommand comando;
+        public SqlDataReader Lector;
+        public string q;
+        public string mensaje;
 
         private Form1 parentForm;
         public ListaServicios()
@@ -34,12 +42,27 @@ namespace VetPet_
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
             originalHeight = this.ClientSize.Height;
-            dataGridView1.Rows.Add("Cirugias", "Medico", "Veterinario");
+            //Consultas SQL
+            string todo = "*";
+            conexion = new SqlConnection(@"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=Servicio;Integrated Security=True;");
+            conexion.Open();
+
+            q = "SELECT "+todo+" FROM ListaServicios";
+            comando = new SqlCommand(q, conexion);
+            Lector = comando.ExecuteReader();
+
+            DataTable dt = new DataTable();
+            dt.Load(Lector);
+            dataGridView1.DataSource = dt;
+            
+
+            conexion.Close();
+            /*dataGridView1.Rows.Add("Cirugias", "Medico", "Veterinario");
             dataGridView1.Rows.Add("Rayos X", "Medico", "Veterinario");
             dataGridView1.Rows.Add("Pruebas de Laboratorio", "Medico", "Veterinario");
             dataGridView1.Rows.Add("Ultrasonidos", "Medico", "Veterinario");
             dataGridView1.Rows.Add("Vacunas", "Medico", "Veterinario");
-            dataGridView1.Rows.Add("Radiografías", "Medico", "Veterinario");
+            dataGridView1.Rows.Add("Radiografías", "Medico", "Veterinario");*/
             // Guardar información original de cada control
             foreach (Control control in this.Controls)
             {
