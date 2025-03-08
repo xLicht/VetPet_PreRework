@@ -17,7 +17,7 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
 
-        public AlmacenVerMedicamento()
+        public AlmacenVerMedicamento(string idProducto)
         {
             this.Load += AlmacenVerMedicamento_Load;       // Evento Load
             this.Resize += AlmacenVerMedicamento_Resize;   // Evento Resize

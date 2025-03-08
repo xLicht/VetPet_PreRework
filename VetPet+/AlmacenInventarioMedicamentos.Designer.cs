@@ -33,10 +33,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuscar = new System.Windows.Forms.PictureBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,10 +55,9 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
             this.pictureBox2.Enabled = false;
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
-            this.pictureBox2.Location = new System.Drawing.Point(1207, 615);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(905, 500);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(57, 53);
+            this.pictureBox2.Size = new System.Drawing.Size(43, 43);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
@@ -77,10 +72,9 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnAgregar.Location = new System.Drawing.Point(975, 604);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Location = new System.Drawing.Point(731, 491);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(304, 74);
+            this.btnAgregar.Size = new System.Drawing.Size(228, 60);
             this.btnAgregar.TabIndex = 22;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,10 +86,9 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.arrow;
-            this.pictureBox1.Location = new System.Drawing.Point(323, 615);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(242, 500);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(57, 53);
+            this.pictureBox1.Size = new System.Drawing.Size(43, 43);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
@@ -109,10 +102,9 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnRegresar.Location = new System.Drawing.Point(91, 604);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegresar.Location = new System.Drawing.Point(68, 491);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(304, 74);
+            this.btnRegresar.Size = new System.Drawing.Size(228, 60);
             this.btnRegresar.TabIndex = 20;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,61 +118,30 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
-            this.dataGridView1.Location = new System.Drawing.Point(91, 172);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(68, 140);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1188, 393);
+            this.dataGridView1.Size = new System.Drawing.Size(891, 319);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Precio";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Cantidad";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Marca";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
             // 
             // btnBuscar
             // 
             this.btnBuscar.Image = global::VetPet_.Properties.Resources.search;
-            this.btnBuscar.Location = new System.Drawing.Point(1332, 28);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Location = new System.Drawing.Point(999, 23);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(61, 53);
+            this.btnBuscar.Size = new System.Drawing.Size(46, 43);
             this.btnBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnBuscar.TabIndex = 13;
             this.btnBuscar.TabStop = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.dateTimePicker1.Location = new System.Drawing.Point(1010, 45);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(758, 37);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(265, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 43;
             // 
             // label5
@@ -188,10 +149,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label5.Location = new System.Drawing.Point(895, 38);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(671, 31);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 32);
+            this.label5.Size = new System.Drawing.Size(73, 25);
             this.label5.TabIndex = 42;
             this.label5.Text = "Fecha";
             // 
@@ -199,10 +159,9 @@
             // 
             this.pictureBox3.Enabled = false;
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.menu_bar;
-            this.pictureBox3.Location = new System.Drawing.Point(89, 125);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Location = new System.Drawing.Point(67, 100);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(47, 46);
+            this.pictureBox3.Size = new System.Drawing.Size(35, 37);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 40;
             this.pictureBox3.TabStop = false;
@@ -215,26 +174,30 @@
             this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Antibiotico",
+            "Antibiótico",
             "Antiparasito",
-            "Analgesico",
-            "Suplementos",
-            "Vacuna"});
-            this.comboBox1.Location = new System.Drawing.Point(89, 129);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            "Analgésico",
+            "Suplemento",
+            "Vacuna",
+            "Desparasitante",
+            "Antiiflamatorio",
+            "Sedante",
+            "Antidiarreico",
+            "Antihistamínico"});
+            this.comboBox1.Location = new System.Drawing.Point(67, 105);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(45, 31);
+            this.comboBox1.Size = new System.Drawing.Size(35, 26);
             this.comboBox1.TabIndex = 41;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label4.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(991, 125);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(743, 102);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(285, 43);
+            this.label4.Size = new System.Drawing.Size(214, 35);
             this.label4.TabIndex = 39;
             this.label4.Text = "Precio";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -244,10 +207,9 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label3.Location = new System.Drawing.Point(707, 125);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(530, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(285, 43);
+            this.label3.Size = new System.Drawing.Size(214, 35);
             this.label3.TabIndex = 38;
             this.label3.Text = "Inventario";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,10 +219,9 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label2.Location = new System.Drawing.Point(426, 125);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(320, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(283, 43);
+            this.label2.Size = new System.Drawing.Size(212, 35);
             this.label2.TabIndex = 37;
             this.label2.Text = "Nombre";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -270,10 +231,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label1.Location = new System.Drawing.Point(143, 125);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(107, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 43);
+            this.label1.Size = new System.Drawing.Size(212, 35);
             this.label1.TabIndex = 36;
             this.label1.Text = "Presentación";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -284,19 +244,18 @@
             this.txtProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProducto.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtProducto.Location = new System.Drawing.Point(89, 38);
-            this.txtProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtProducto.Location = new System.Drawing.Point(67, 31);
             this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(799, 29);
+            this.txtProducto.Size = new System.Drawing.Size(599, 24);
             this.txtProducto.TabIndex = 35;
             this.txtProducto.Text = "Buscar nombre de medicamento";
             // 
             // AlmacenInventarioMedicamentos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
-            this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox3);
@@ -312,7 +271,6 @@
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnBuscar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AlmacenInventarioMedicamentos";
             this.Text = "AlmacenInventarioMedicamentos";
             this.Load += new System.EventHandler(this.AlmacenInventarioMedicamentos_Load);
@@ -334,10 +292,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.PictureBox btnBuscar;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
