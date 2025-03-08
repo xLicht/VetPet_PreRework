@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie;
 
-namespace VetPet_.Angie
+namespace VetPet_
 {
-    public partial class VentasVerReceta : Form
+    public partial class VentasNuevaVenta : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -19,21 +20,21 @@ namespace VetPet_.Angie
         private Form1 parentForm;
 
 
-        public VentasVerReceta()
+        public VentasNuevaVenta()
         {
             InitializeComponent();
-            this.Load += VentasVerReceta_Load;       // Evento Load
-            this.Resize += VentasVerReceta_Resize;   // Evento Resize
+            this.Load += VentasNuevaVenta_Load;       // Evento Load
+            this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
 
         }
 
-        public VentasVerReceta(Form1 parent)
+        public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 
-        private void VentasVerReceta_Load(object sender, EventArgs e)
+        private void VentasNuevaVenta_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -46,7 +47,7 @@ namespace VetPet_.Angie
             }
         }
 
-        private void VentasVerReceta_Resize(object sender, EventArgs e)
+        private void VentasNuevaVenta_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -69,6 +70,34 @@ namespace VetPet_.Angie
                 }
             }
         }
+        private void textBox11_Click(object sender, EventArgs e)
+        {
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm);
+            ventasAgregarMedicamento.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
+        }
 
+
+        private void textBox12_Click(object sender, EventArgs e)
+        {
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm);
+            VentasAgregarProducto.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOri
+            parentForm.formularioHijo(VentasAgregarProducto); // Pasamos la referencia de Form1 a 
+        }
+
+        private void textBox13_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasConfirmacionEfectivo(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void textBox14_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasConfirmacionTarjeta(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }

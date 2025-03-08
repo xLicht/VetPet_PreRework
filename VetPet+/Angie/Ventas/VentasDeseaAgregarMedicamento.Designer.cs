@@ -1,6 +1,6 @@
 ﻿namespace VetPet_.Angie
 {
-    partial class VentasDeseaAgregarProducto
+    partial class VentasDeseaAgregarMedicamento
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasDeseaAgregarProducto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasDeseaAgregarMedicamento));
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@
             this.textBox4.Location = new System.Drawing.Point(705, 441);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(397, 70);
-            this.textBox4.TabIndex = 122;
+            this.textBox4.TabIndex = 112;
             // 
             // textBox3
             // 
@@ -66,8 +66,8 @@
             this.textBox3.Location = new System.Drawing.Point(387, 323);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(321, 70);
-            this.textBox3.TabIndex = 121;
-            this.textBox3.Text = "Producto   ";
+            this.textBox3.TabIndex = 111;
+            this.textBox3.Text = "Medicamento   ";
             // 
             // textBox2
             // 
@@ -77,7 +77,7 @@
             this.textBox2.Location = new System.Drawing.Point(387, 441);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(553, 70);
-            this.textBox2.TabIndex = 120;
+            this.textBox2.TabIndex = 110;
             this.textBox2.Text = "Cantidad";
             // 
             // textBox1
@@ -88,7 +88,7 @@
             this.textBox1.Location = new System.Drawing.Point(206, 180);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(1074, 87);
-            this.textBox1.TabIndex = 119;
+            this.textBox1.TabIndex = 109;
             this.textBox1.Text = "¿Cuántos desea agregar?";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -102,7 +102,7 @@
             this.panel1.Location = new System.Drawing.Point(-13, 7);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1469, 117);
-            this.panel1.TabIndex = 118;
+            this.panel1.TabIndex = 108;
             // 
             // pictureBox5
             // 
@@ -145,9 +145,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(312, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(737, 101);
+            this.label1.Size = new System.Drawing.Size(918, 101);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Agregar Producto";
+            this.label1.Text = "Agregar Medicamento";
             // 
             // pictureBox2
             // 
@@ -157,7 +157,7 @@
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 100);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 116;
+            this.pictureBox2.TabIndex = 106;
             this.pictureBox2.TabStop = false;
             // 
             // button2
@@ -168,10 +168,11 @@
             this.button2.Location = new System.Drawing.Point(1003, 572);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(277, 120);
-            this.button2.TabIndex = 117;
+            this.button2.TabIndex = 107;
             this.button2.Text = "Aceptar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox1
             // 
@@ -181,7 +182,7 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 114;
+            this.pictureBox1.TabIndex = 104;
             this.pictureBox1.TabStop = false;
             // 
             // button1
@@ -192,10 +193,11 @@
             this.button1.Location = new System.Drawing.Point(206, 584);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(277, 120);
-            this.button1.TabIndex = 115;
+            this.button1.TabIndex = 105;
             this.button1.Text = "Cancelar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox5
             // 
@@ -203,9 +205,9 @@
             this.textBox5.Location = new System.Drawing.Point(631, 323);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(471, 70);
-            this.textBox5.TabIndex = 123;
+            this.textBox5.TabIndex = 113;
             // 
-            // VentasDeseaAgregarProducto
+            // VentasDeseaAgregarMedicamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,8 +223,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox5);
-            this.Name = "VentasDeseaAgregarProducto";
-            this.Text = "VentasDeseaAgregarProducto";
+            this.Name = "VentasDeseaAgregarMedicamento";
+            this.Text = "VentasDeseaAgregarMedicamento";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

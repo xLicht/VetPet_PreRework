@@ -82,7 +82,7 @@ namespace VetPet_
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            parentForm.formularioHijo(new CitaAgendar (parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }

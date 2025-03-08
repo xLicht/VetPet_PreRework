@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VetPet_.Angie;
 
-namespace VetPet_
+namespace VetPet_.Angie
 {
-    public partial class VentasVentanadePago : Form
+    public partial class VentasAgregarProducto : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -19,22 +18,22 @@ namespace VetPet_
 
         private Form1 parentForm;
 
-
-        public VentasVentanadePago()
+        public string FormularioOrigen { get; set; }
+        public VentasAgregarProducto()
         {
             InitializeComponent();
-            this.Load += VentasVentanadePago_Load;       // Evento Load
-            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            this.Load += VentasAgregarProducto_Load;       // Evento Load
+            this.Resize += VentasAgregarProducto_Resize;   // Evento Resize
 
         }
 
-        public VentasVentanadePago(Form1 parent)
+        public VentasAgregarProducto(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 
-        private void VentasVentanadePago_Load(object sender, EventArgs e)
+        private void VentasAgregarProducto_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -47,7 +46,7 @@ namespace VetPet_
             }
         }
 
-        private void VentasVentanadePago_Resize(object sender, EventArgs e)
+        private void VentasAgregarProducto_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -73,34 +72,26 @@ namespace VetPet_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            if (FormularioOrigen == "VentasNuevaVenta")
+            {
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            }
+            if (FormularioOrigen == "VentasVentanadePago")
+            {
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+            }
         }
 
-        private void textBox15_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void textBox13_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VentasConfirmacionEfectivo(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void textBox14_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VentasConfirmacionTarjeta(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void textBox12_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VentasAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a 
-        }
-
-        private void textBox11_Click(object sender, EventArgs e)
-        {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm);
-            ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
-            parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
+            if (FormularioOrigen == "VentasNuevaVenta")
+            {
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            }
+            if (FormularioOrigen == "VentasVentanadePago")
+            {
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+            }
         }
     }
 }

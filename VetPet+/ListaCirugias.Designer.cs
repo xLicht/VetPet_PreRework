@@ -44,7 +44,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnModificar = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -130,7 +130,7 @@
             this.BtnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRegresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnRegresar.Location = new System.Drawing.Point(44, 486);
+            this.BtnRegresar.Location = new System.Drawing.Point(44, 499);
             this.BtnRegresar.Name = "BtnRegresar";
             this.BtnRegresar.Size = new System.Drawing.Size(143, 49);
             this.BtnRegresar.TabIndex = 13;
@@ -192,7 +192,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(369, 19);
+            this.label2.Location = new System.Drawing.Point(313, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(418, 55);
             this.label2.TabIndex = 20;
@@ -213,7 +213,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.back;
-            this.pictureBox1.Location = new System.Drawing.Point(144, 493);
+            this.pictureBox1.Location = new System.Drawing.Point(144, 506);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 35);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -231,24 +231,25 @@
             this.pictureBox2.TabIndex = 43;
             this.pictureBox2.TabStop = false;
             // 
-            // button1
+            // BtnModificar
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(908, 493);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 49);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "Modificar          ";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
+            this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnModificar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BtnModificar.Location = new System.Drawing.Point(908, 499);
+            this.BtnModificar.Name = "BtnModificar";
+            this.BtnModificar.Size = new System.Drawing.Size(143, 49);
+            this.BtnModificar.TabIndex = 44;
+            this.BtnModificar.Text = "Modificar          ";
+            this.BtnModificar.UseVisualStyleBackColor = false;
+            this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
             this.pictureBox4.Image = global::VetPet_.Properties.Resources.tool_and_utensils;
-            this.pictureBox4.Location = new System.Drawing.Point(1008, 503);
+            this.pictureBox4.Location = new System.Drawing.Point(1008, 509);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(30, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -262,7 +263,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnModificar);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
@@ -311,7 +312,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnModificar;
         private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

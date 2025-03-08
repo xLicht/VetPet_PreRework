@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VetPet_.Angie;
 
-namespace VetPet_
+namespace VetPet_.Angie
 {
-    public partial class VentasVentanadePagoNueva : Form
+    public partial class VentasDeseaAgregarMedicamento : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -20,21 +19,21 @@ namespace VetPet_
         private Form1 parentForm;
 
 
-        public VentasVentanadePagoNueva()
+        public VentasDeseaAgregarMedicamento()
         {
             InitializeComponent();
-            this.Load += VentasVentanadePagoNueva_Load;       // Evento Load
-            this.Resize += VentasVentanadePagoNueva_Resize;   // Evento Resize
+            this.Load += VentasDeseaAgregarMedicamento_Load;       // Evento Load
+            this.Resize += VentasDeseaAgregarMedicamento_Resize;   // Evento Resize
 
         }
 
-        public VentasVentanadePagoNueva(Form1 parent)
+        public VentasDeseaAgregarMedicamento(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 
-        private void VentasVentanadePagoNueva_Load(object sender, EventArgs e)
+        private void VentasDeseaAgregarMedicamento_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -47,7 +46,7 @@ namespace VetPet_
             }
         }
 
-        private void VentasVentanadePagoNueva_Resize(object sender, EventArgs e)
+        private void VentasDeseaAgregarMedicamento_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -71,12 +70,15 @@ namespace VetPet_
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasHistorialdeVentas(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a
         }
-
-  
     }
+    
 }

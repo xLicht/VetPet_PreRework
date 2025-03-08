@@ -1,6 +1,6 @@
 ﻿namespace VetPet_
 {
-    partial class VentasNuevaVenta
+    partial class VentasVentanadePago
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.textBox15 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -51,9 +51,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,14 +63,33 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // textBox15
+            // 
+            this.textBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.textBox15.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox15.ForeColor = System.Drawing.Color.Navy;
+            this.textBox15.Location = new System.Drawing.Point(694, 351);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(254, 34);
+            this.textBox15.TabIndex = 200;
+            this.textBox15.Text = "Ver Datos de Cita ";
+            this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox15.Click += new System.EventHandler(this.textBox15_Click);
             // 
             // label10
             // 
@@ -80,10 +97,10 @@
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label10.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(1004, 497);
+            this.label10.Location = new System.Drawing.Point(1010, 500);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 25);
-            this.label10.TabIndex = 169;
+            this.label10.TabIndex = 199;
             this.label10.Text = "Tarjeta";
             // 
             // label9
@@ -92,10 +109,10 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label9.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(1004, 423);
+            this.label9.Location = new System.Drawing.Point(1010, 426);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 25);
-            this.label9.TabIndex = 168;
+            this.label9.TabIndex = 198;
             this.label9.Text = "Efectivo";
             // 
             // label4
@@ -104,10 +121,10 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(1004, 310);
+            this.label4.Location = new System.Drawing.Point(1010, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 25);
-            this.label4.TabIndex = 167;
+            this.label4.TabIndex = 197;
             this.label4.Text = "Mascota";
             // 
             // label8
@@ -116,19 +133,32 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label8.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(1004, 248);
+            this.label8.Location = new System.Drawing.Point(1010, 251);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(183, 25);
-            this.label8.TabIndex = 166;
+            this.label8.TabIndex = 196;
             this.label8.Text = "Apellido Materno";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.button2.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(305, 616);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(204, 88);
+            this.button2.TabIndex = 195;
+            this.button2.Text = "Factura";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // textBox14
             // 
             this.textBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox14.Location = new System.Drawing.Point(1241, 528);
+            this.textBox14.Location = new System.Drawing.Point(1247, 531);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(128, 22);
-            this.textBox14.TabIndex = 165;
+            this.textBox14.TabIndex = 193;
             this.textBox14.Text = "Tarjeta";
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox14.Click += new System.EventHandler(this.textBox14_Click);
@@ -136,104 +166,78 @@
             // textBox13
             // 
             this.textBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox13.Location = new System.Drawing.Point(1241, 454);
+            this.textBox13.Location = new System.Drawing.Point(1247, 457);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(128, 22);
-            this.textBox13.TabIndex = 164;
+            this.textBox13.TabIndex = 192;
             this.textBox13.Text = "Efectivo";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox13.Click += new System.EventHandler(this.textBox13_Click);
             // 
-            // textBox12
-            // 
-            this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox12.Location = new System.Drawing.Point(39, 570);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(254, 22);
-            this.textBox12.TabIndex = 163;
-            this.textBox12.Text = "Agregar Productos";
-            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox12.Click += new System.EventHandler(this.textBox12_Click);
-            // 
-            // textBox11
-            // 
-            this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox11.Location = new System.Drawing.Point(299, 570);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(254, 22);
-            this.textBox11.TabIndex = 162;
-            this.textBox11.Text = "Agregar Medicamentos";
-            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox11.Click += new System.EventHandler(this.textBox11_Click);
-            // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(1156, 497);
+            this.textBox10.Location = new System.Drawing.Point(1162, 500);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(213, 22);
-            this.textBox10.TabIndex = 161;
+            this.textBox10.TabIndex = 191;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(1156, 423);
+            this.textBox9.Location = new System.Drawing.Point(1162, 426);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(213, 22);
-            this.textBox9.TabIndex = 160;
+            this.textBox9.TabIndex = 190;
             // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox8.Location = new System.Drawing.Point(688, 570);
+            this.textBox8.Location = new System.Drawing.Point(694, 586);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(254, 22);
-            this.textBox8.TabIndex = 159;
+            this.textBox8.TabIndex = 189;
             this.textBox8.Text = "Subtotal:   ";
             // 
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox7.Location = new System.Drawing.Point(1009, 570);
+            this.textBox7.Location = new System.Drawing.Point(1015, 573);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(360, 22);
-            this.textBox7.TabIndex = 158;
-            this.textBox7.Text = "Estado Pagado/NoPagado";
+            this.textBox7.TabIndex = 188;
+            this.textBox7.Text = "NoPagado";
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox6.Location = new System.Drawing.Point(1009, 379);
+            this.textBox6.Location = new System.Drawing.Point(1015, 382);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(360, 22);
-            this.textBox6.TabIndex = 157;
+            this.textBox6.TabIndex = 187;
             this.textBox6.Text = "Pago";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(1213, 314);
+            this.textBox5.Location = new System.Drawing.Point(1219, 317);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(156, 22);
-            this.textBox5.TabIndex = 156;
+            this.textBox5.TabIndex = 186;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(1213, 248);
+            this.textBox4.Location = new System.Drawing.Point(1219, 251);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(156, 22);
-            this.textBox4.TabIndex = 155;
+            this.textBox4.TabIndex = 185;
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(1213, 180);
+            this.textBox3.Location = new System.Drawing.Point(1219, 183);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(156, 34);
-            this.textBox3.TabIndex = 154;
+            this.textBox3.TabIndex = 184;
             // 
             // label3
             // 
@@ -241,30 +245,30 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(1004, 183);
+            this.label3.Location = new System.Drawing.Point(1010, 186);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 25);
-            this.label3.TabIndex = 153;
+            this.label3.TabIndex = 183;
             this.label3.Text = "Nombre";
             // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox2.Location = new System.Drawing.Point(39, 158);
+            this.textBox2.Location = new System.Drawing.Point(45, 161);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(903, 22);
-            this.textBox2.TabIndex = 152;
+            this.textBox2.TabIndex = 182;
             this.textBox2.Text = "Servicios";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox1.Location = new System.Drawing.Point(39, 379);
+            this.textBox1.Location = new System.Drawing.Point(45, 395);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(903, 22);
-            this.textBox1.TabIndex = 151;
-            this.textBox1.Text = "Productos/Medicamentos";
+            this.textBox1.TabIndex = 181;
+            this.textBox1.Text = "Accesorios/Medicamentos";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dataGridView2
@@ -281,13 +285,13 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
             this.dataGridView2.GridColor = System.Drawing.Color.Blue;
-            this.dataGridView2.Location = new System.Drawing.Point(39, 410);
+            this.dataGridView2.Location = new System.Drawing.Point(45, 426);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 60;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(903, 154);
-            this.dataGridView2.TabIndex = 150;
+            this.dataGridView2.TabIndex = 180;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -307,50 +311,28 @@
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.pictureBox7.Image = global::VetPet_.Properties.Resources.icons8_aceptar_502;
-            this.pictureBox7.Location = new System.Drawing.Point(157, 629);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(58, 61);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 148;
-            this.pictureBox7.TabStop = false;
-            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button4.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(45, 613);
+            this.button4.Location = new System.Drawing.Point(45, 616);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(188, 88);
-            this.button4.TabIndex = 149;
+            this.button4.Size = new System.Drawing.Size(200, 88);
+            this.button4.TabIndex = 179;
             this.button4.Text = "Ticket";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.pictureBox1.Image = global::VetPet_.Properties.Resources.flecha_ang;
-            this.pictureBox1.Location = new System.Drawing.Point(1353, 629);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 61);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 145;
-            this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(1221, 613);
+            this.button1.Location = new System.Drawing.Point(1207, 616);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(202, 88);
-            this.button1.TabIndex = 147;
+            this.button1.Size = new System.Drawing.Size(222, 88);
+            this.button1.TabIndex = 177;
             this.button1.Text = "Regresar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
@@ -371,13 +353,13 @@
             this.Especie,
             this.FechaNac});
             this.dataGridView1.GridColor = System.Drawing.Color.Blue;
-            this.dataGridView1.Location = new System.Drawing.Point(39, 188);
+            this.dataGridView1.Location = new System.Drawing.Point(45, 191);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 60;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(903, 154);
-            this.dataGridView1.TabIndex = 146;
+            this.dataGridView1.TabIndex = 176;
             // 
             // Nombre
             // 
@@ -410,10 +392,10 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-13, 9);
+            this.panel1.Location = new System.Drawing.Point(-13, -3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1469, 123);
-            this.panel1.TabIndex = 144;
+            this.panel1.Size = new System.Drawing.Size(1469, 127);
+            this.panel1.TabIndex = 174;
             // 
             // pictureBox5
             // 
@@ -455,24 +437,86 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(474, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(540, 101);
+            this.label1.Size = new System.Drawing.Size(701, 101);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nueva Venta";
+            this.label1.Text = "Ventana de Pago";
             // 
-            // VentasNuevaVenta
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_factura_502;
+            this.pictureBox2.Location = new System.Drawing.Point(433, 632);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(58, 61);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 194;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.pictureBox7.Image = global::VetPet_.Properties.Resources.icons8_aceptar_503;
+            this.pictureBox7.Location = new System.Drawing.Point(163, 632);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(58, 61);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 178;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.pictureBox1.Image = global::VetPet_.Properties.Resources.flecha_ang;
+            this.pictureBox1.Location = new System.Drawing.Point(1359, 632);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(58, 61);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 175;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox12.Location = new System.Drawing.Point(45, 358);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(254, 22);
+            this.textBox12.TabIndex = 202;
+            this.textBox12.Text = "Agregar Productos";
+            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox12.Click += new System.EventHandler(this.textBox12_Click);
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
+            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox11.Location = new System.Drawing.Point(305, 358);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(254, 22);
+            this.textBox11.TabIndex = 201;
+            this.textBox11.Text = "Agregar Medicamentos";
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox11.Click += new System.EventHandler(this.textBox11_Click);
+            // 
+            // VentasVentanadePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(224)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.textBox15);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox14);
             this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
@@ -491,16 +535,17 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
-            this.Name = "VentasNuevaVenta";
-            this.Text = "VentasNuevaVenta";
+            this.Name = "VentasVentanadePago";
+            this.Text = "VentasVentanadePago";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,14 +553,15 @@
 
         #endregion
 
+        private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
@@ -545,5 +591,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox11;
     }
 }
