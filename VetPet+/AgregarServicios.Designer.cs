@@ -52,10 +52,14 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnRegresar
@@ -190,7 +194,7 @@
             // 
             this.RbEstetico.AutoSize = true;
             this.RbEstetico.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbEstetico.Location = new System.Drawing.Point(347, 315);
+            this.RbEstetico.Location = new System.Drawing.Point(29, 18);
             this.RbEstetico.Name = "RbEstetico";
             this.RbEstetico.Size = new System.Drawing.Size(92, 22);
             this.RbEstetico.TabIndex = 13;
@@ -202,7 +206,7 @@
             // 
             this.RbMédico.AutoSize = true;
             this.RbMédico.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbMédico.Location = new System.Drawing.Point(493, 315);
+            this.RbMédico.Location = new System.Drawing.Point(175, 18);
             this.RbMédico.Name = "RbMédico";
             this.RbMédico.Size = new System.Drawing.Size(83, 22);
             this.RbMédico.TabIndex = 14;
@@ -214,7 +218,7 @@
             // 
             this.RbSi.AutoSize = true;
             this.RbSi.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbSi.Location = new System.Drawing.Point(347, 390);
+            this.RbSi.Location = new System.Drawing.Point(27, 11);
             this.RbSi.Name = "RbSi";
             this.RbSi.Size = new System.Drawing.Size(41, 22);
             this.RbSi.TabIndex = 15;
@@ -226,7 +230,7 @@
             // 
             this.RbNo.AutoSize = true;
             this.RbNo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbNo.Location = new System.Drawing.Point(493, 390);
+            this.RbNo.Location = new System.Drawing.Point(173, 11);
             this.RbNo.Name = "RbNo";
             this.RbNo.Size = new System.Drawing.Size(48, 22);
             this.RbNo.TabIndex = 16;
@@ -323,22 +327,40 @@
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RbMédico);
+            this.groupBox1.Controls.Add(this.RbEstetico);
+            this.groupBox1.Location = new System.Drawing.Point(318, 297);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(267, 54);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.RbNo);
+            this.groupBox2.Controls.Add(this.RbSi);
+            this.groupBox2.Location = new System.Drawing.Point(318, 379);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(267, 51);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            // 
             // AgregarServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.RbNo);
-            this.Controls.Add(this.RbSi);
-            this.Controls.Add(this.RbMédico);
-            this.Controls.Add(this.RbEstetico);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label8);
@@ -361,6 +383,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +418,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
