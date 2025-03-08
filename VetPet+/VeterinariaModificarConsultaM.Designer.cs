@@ -49,7 +49,6 @@
             this.txtMotivo = new System.Windows.Forms.TextBox();
             this.txtTemperatura = new System.Windows.Forms.TextBox();
             this.txtPeso = new System.Windows.Forms.TextBox();
-            this.txtFechaActual = new System.Windows.Forms.TextBox();
             this.cbCirugia = new System.Windows.Forms.ComboBox();
             this.cbEstudio = new System.Windows.Forms.ComboBox();
             this.cbUltrasonido = new System.Windows.Forms.ComboBox();
@@ -87,6 +86,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNombreDueño = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
@@ -321,16 +321,6 @@
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Size = new System.Drawing.Size(86, 29);
             this.txtPeso.TabIndex = 403;
-            // 
-            // txtFechaActual
-            // 
-            this.txtFechaActual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.txtFechaActual.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaActual.Location = new System.Drawing.Point(126, 223);
-            this.txtFechaActual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtFechaActual.Name = "txtFechaActual";
-            this.txtFechaActual.Size = new System.Drawing.Size(171, 29);
-            this.txtFechaActual.TabIndex = 402;
             // 
             // cbCirugia
             // 
@@ -745,12 +735,23 @@
             this.txtNombreDueño.Size = new System.Drawing.Size(171, 29);
             this.txtNombreDueño.TabIndex = 365;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(107, 223);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(116, 27);
+            this.dateTimePicker1.TabIndex = 419;
+            // 
             // VeterinariaModificarConsultaM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.rtObCirugia);
             this.Controls.Add(this.rtObEstudio);
             this.Controls.Add(this.rtObUltrasonido);
@@ -767,7 +768,6 @@
             this.Controls.Add(this.txtMotivo);
             this.Controls.Add(this.txtTemperatura);
             this.Controls.Add(this.txtPeso);
-            this.Controls.Add(this.txtFechaActual);
             this.Controls.Add(this.cbCirugia);
             this.Controls.Add(this.cbEstudio);
             this.Controls.Add(this.cbUltrasonido);
@@ -842,7 +842,6 @@
         private System.Windows.Forms.TextBox txtMotivo;
         private System.Windows.Forms.TextBox txtTemperatura;
         private System.Windows.Forms.TextBox txtPeso;
-        private System.Windows.Forms.TextBox txtFechaActual;
         private System.Windows.Forms.ComboBox cbCirugia;
         private System.Windows.Forms.ComboBox cbEstudio;
         private System.Windows.Forms.ComboBox cbUltrasonido;
@@ -880,5 +879,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNombreDueño;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
