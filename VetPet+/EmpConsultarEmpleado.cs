@@ -14,6 +14,7 @@ namespace VetPet_
 {
     public partial class EmpConsultarEmpleado : FormPadre
     {
+        public object DatoEmpleado { get; set; }
         public EmpConsultarEmpleado(Form1 parent)
         {
             InitializeComponent();
@@ -56,7 +57,11 @@ namespace VetPet_
 
             }
         }
-
+        public void MostrarDato()
+        {
+            //MessageBox.Show("Dato recibido: " + DatoEmpleado.ToString());
+            //label1.Text = "Dato recibido: " + DatoEmpleado.ToString();
+        }
         private void r_Click(object sender, EventArgs e)
         {
             advertencia();

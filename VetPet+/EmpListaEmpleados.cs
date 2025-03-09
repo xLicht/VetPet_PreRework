@@ -41,7 +41,7 @@ namespace VetPet_
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+           // parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
         }
 
         private void btnListaEmpleados_Click(object sender, EventArgs e)
@@ -59,7 +59,6 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                // Determinar el criterio de ordenamiento
                 string ordenColumna = "idEmpleado"; // Valor por defecto
                 if (cbFliltrar.SelectedItem != null)
                 {
@@ -77,10 +76,8 @@ namespace VetPet_
                     }
                 }
 
-                // Filtro para el nombre
-                string filtroNombre = txtBuscar.Text.Trim(); // Obtener el texto del TextBox
+                string filtroNombre = txtBuscar.Text; 
 
-                // Consulta SQL con búsqueda y ordenamiento
                 string query = $@"
                     SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
                            t.nombre AS tipoEmpleado, p.Celular
@@ -92,7 +89,6 @@ namespace VetPet_
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
-                    // Agregar el parámetro para el filtro de búsqueda
                     cmd.Parameters.AddWithValue("@nombreFiltro", "%" + filtroNombre + "%");
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -133,7 +129,29 @@ namespace VetPet_
             CargarDatos();
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
             {
-                e.Handled = true; //solo una plabra
+                e.Handled = true; 
+            }
+        }
+
+        private void dtEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dtEmpleados.Rows[e.RowIndex];
+                var dato = row.Cells[0].Value;
+
+                // Creamos una instancia del formulario hijo
+                EmpConsultarEmpleado formularioHijo = new EmpConsultarEmpleado(parentForm);
+
+                // Pasamos el dato a la propiedad del formulario hijo
+                formularioHijo.DatoEmpleado = dato;
+
+                // Mostrar el formulario hijo
+                parentForm.formularioHijo(formularioHijo);
+
+                // Llamamos al método MostrarDato para mostrar el dato en el formulario hijo
+                formularioHijo.MostrarDato();
+
             }
         }
     }
