@@ -83,11 +83,16 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasConfirmacionEfectivo(parentForm)); // Pasamos la referencia de Form1 a 
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm);
+            VentasConfirmacionEfectivo.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm);
+            VentasConfirmacionTarjeta.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
             parentForm.formularioHijo(new VentasConfirmacionTarjeta(parentForm)); // Pasamos la referencia de Form1 a 
         }
 

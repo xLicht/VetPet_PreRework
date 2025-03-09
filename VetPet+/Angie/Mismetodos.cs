@@ -10,12 +10,39 @@ namespace VetPet_.Angie.Mascotas
 {
     internal class Mismetodos
     {
+        public readonly string cadenaConexion = @"Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus";
+        private SqlConnection conexion;
 
+        public Mismetodos()
+        {
+            conexion = new SqlConnection(cadenaConexion);
+        }
+
+        public void AbrirConexion()
+        {
+            if (conexion.State == System.Data.ConnectionState.Closed)
+            {
+                conexion.Open();
+            }
+        }
+
+        public void CerrarConexion()
+        {
+            if (conexion.State == System.Data.ConnectionState.Open)
+            {
+                conexion.Close();
+            }
+        }
+
+        public SqlConnection GetConexion()
+        {
+            return conexion;
+        }
         public bool Existe(string query, string nombreEspecie)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=Master"))
+                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus"))
                 {
                     connection.Open();
 
@@ -41,7 +68,7 @@ namespace VetPet_.Angie.Mascotas
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=Master"))
+                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus"))
                 {
                     connection.Open();
 
@@ -62,7 +89,7 @@ namespace VetPet_.Angie.Mascotas
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=Master"))
+                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus"))
                 {
                     connection.Open();
 

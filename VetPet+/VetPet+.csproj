@@ -45,13 +45,13 @@
       <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Patagames.Pdf, Version=11.86.48.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pdfium.Net.SDK.4.97.2704\lib\net472\Patagames.Pdf.dll</HintPath>
+      <HintPath>..\packages\Pdfium.Net.SDK.4.98.2704\lib\net472\Patagames.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="Patagames.Pdf.WinForms, Version=4.29.18.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pdfium.Net.SDK.4.97.2704\lib\net472\Patagames.Pdf.WinForms.dll</HintPath>
+      <HintPath>..\packages\Pdfium.Net.SDK.4.98.2704\lib\net472\Patagames.Pdf.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Patagames.Pdf.Wpf, Version=4.29.20.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pdfium.Net.SDK.4.97.2704\lib\net472\Patagames.Pdf.Wpf.dll</HintPath>
+      <HintPath>..\packages\Pdfium.Net.SDK.4.98.2704\lib\net472\Patagames.Pdf.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -264,7 +264,7 @@
     <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\Mascotas\Mismetodos.cs" />
+    <Compile Include="Angie\Mismetodos.cs" />
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1434,9 +1434,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <Content Include="icudt.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1573,6 +1570,9 @@
     <None Include="Resources\icons8-medical-file-48.png" />
     <None Include="Resources\icons8-fursona-64.png" />
     <None Include="Resources\icons8-dinero-64.png" />
+    <Content Include="icudt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1584,11 +1584,11 @@
     <Folder Include="Reportes-Arch\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Pdfium.Net.SDK.4.97.2704\build\Pdfium.Net.SDK.targets" Condition="Exists('..\packages\Pdfium.Net.SDK.4.97.2704\build\Pdfium.Net.SDK.targets')" />
+  <Import Project="..\packages\Pdfium.Net.SDK.4.98.2704\build\Pdfium.Net.SDK.targets" Condition="Exists('..\packages\Pdfium.Net.SDK.4.98.2704\build\Pdfium.Net.SDK.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Pdfium.Net.SDK.4.97.2704\build\Pdfium.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Pdfium.Net.SDK.4.97.2704\build\Pdfium.Net.SDK.targets'))" />
+    <Error Condition="!Exists('..\packages\Pdfium.Net.SDK.4.98.2704\build\Pdfium.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Pdfium.Net.SDK.4.98.2704\build\Pdfium.Net.SDK.targets'))" />
   </Target>
 </Project>
