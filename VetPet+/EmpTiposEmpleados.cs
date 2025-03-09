@@ -14,16 +14,20 @@ namespace VetPet_
 {
     public partial class EmpTiposEmpleados : FormPadre
     {
+        private conexionDaniel conexionDB = new conexionDaniel();
         public EmpTiposEmpleados(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;
+          
         }
 
         private void EmpTiposEmpleados_Load(object sender, EventArgs e)
         {
 
         }
+
+
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
