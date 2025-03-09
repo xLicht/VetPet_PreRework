@@ -47,6 +47,11 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new ReportesVenta(parentForm));
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new ReportesAlmacen(parentForm));
+        }
     }
 }
  // Me chingue la master

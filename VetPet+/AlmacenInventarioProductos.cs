@@ -23,11 +23,17 @@ namespace VetPet_
             InitializeComponent();
             this.Load += AlmacenInventarioProductos_Load;       // Evento Load
             this.Resize += AlmacenInventarioProductos_Resize;   // Evento Resize
+
+            comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
+            comboBox1.DropDownWidth = 150;         // Ancho del desplegable
         }
         public AlmacenInventarioProductos(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+
+            comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
+            comboBox1.DropDownWidth = 150;         // Ancho del desplegable
         }
         private void txtProducto_TextChanged(object sender, EventArgs e)
         {
@@ -124,6 +130,11 @@ namespace VetPet_
                     }
                 }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
