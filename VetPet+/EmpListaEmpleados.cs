@@ -135,23 +135,50 @@ namespace VetPet_
 
         private void dtEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //if (e.RowIndex >= 0)
+            //{
+            //    DataGridViewRow row = dtEmpleados.Rows[e.RowIndex];
+            //    var dato = row.Cells[0].Value;
+
+            //    // Creamos una instancia del formulario hijo
+            //    EmpConsultarEmpleado formularioHijo = new EmpConsultarEmpleado(parentForm);
+
+            //    // Pasamos el dato a la propiedad del formulario hijo
+            //    formularioHijo.DatoEmpleado = dato;
+
+            //    // Mostrar el formulario hijo
+            //    parentForm.formularioHijo(formularioHijo);
+
+            //    // Llamamos al método MostrarDato para mostrar el dato en el formulario hijo
+            //    formularioHijo.MostrarDato();
+
+            //}
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dtEmpleados.Rows[e.RowIndex];
-                var dato = row.Cells[0].Value;
 
-                // Creamos una instancia del formulario hijo
-                EmpConsultarEmpleado formularioHijo = new EmpConsultarEmpleado(parentForm);
+                // Verifica que el valor no sea nulo
+                if (row.Cells[0].Value != null)
+                {
+                    // Guardamos el ID del empleado
+                    int idEmpleadoSeleccionado = Convert.ToInt32(row.Cells[0].Value);
 
-                // Pasamos el dato a la propiedad del formulario hijo
-                formularioHijo.DatoEmpleado = dato;
+                    // Creamos una instancia del formulario hijo
+                    EmpConsultarEmpleado formularioHijo = new EmpConsultarEmpleado(parentForm);
 
-                // Mostrar el formulario hijo
-                parentForm.formularioHijo(formularioHijo);
+                    // Pasamos el ID del empleado a la propiedad del formulario hijo
+                    formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
 
-                // Llamamos al método MostrarDato para mostrar el dato en el formulario hijo
-                formularioHijo.MostrarDato();
+                    // Mostrar el formulario hijo
+                    parentForm.formularioHijo(formularioHijo);
 
+                    // Llamamos al método MostrarDato() para cargar los datos
+                    formularioHijo.MostrarDato();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener el ID del empleado.");
+                }
             }
         }
     }
