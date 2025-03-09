@@ -510,6 +510,7 @@
     <Compile Include="CitasMedicas.Designer.cs">
       <DependentUpon>CitasMedicas.cs</DependentUpon>
     </Compile>
+    <Compile Include="conexionAlex.cs" />
     <Compile Include="conexionBrandon.cs" />
     <Compile Include="conexionDaniel.cs" />
     <Compile Include="ConsultarCita.cs">
