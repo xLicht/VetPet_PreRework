@@ -41,8 +41,157 @@ namespace VetPet_
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
 
-            txtProveedor.Text = ProveedorSeleccionado;
+            // Cargar las presentaciones (ya lo hemos hecho)
+            CargarComboBoxPresentacion();
+
+            // Cargar las vías de administración
+            CargarComboBoxViaAdministracion();
+
+            // Cargar los laboratorios
+            CargarComboBoxLaboratorio();
+
+            // Cargar los productos
+            CargarComboBoxProducto();
         }
+        private void CargarComboBoxPresentacion()
+        {
+            // Crear la instancia de la clase conexionBrandon
+            conexionBrandon conexion = new conexionBrandon();
+            conexion.AbrirConexion();
+
+            // Crear la consulta para obtener los nombres de las presentaciones
+            string query = "SELECT idPresentacion, nombre FROM Presentacion";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Limpiar cualquier valor previo del ComboBox
+                    cmbPresentacion.Items.Clear();
+
+                    // Llenar el ComboBox con los nombres de las presentaciones
+                    while (reader.Read())
+                    {
+                        // Agregar solo el nombre al ComboBox
+                        cmbPresentacion.Items.Add(reader["nombre"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.GetConexion().Close(); // Cerrar la conexión
+                }
+            }
+        }
+
+        private void CargarComboBoxViaAdministracion()
+        {
+            // Crear la instancia de la clase conexionBrandon
+            conexionBrandon conexion = new conexionBrandon();
+            conexion.AbrirConexion();
+
+            // Crear la consulta para obtener los nombres de las vías de administración
+            string query = "SELECT idViaAdministracion, nombre FROM ViaAdministracion";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Limpiar cualquier valor previo del ComboBox
+                    cmbViaAdministracion.Items.Clear();
+
+                    // Llenar el ComboBox con los nombres de las vías de administración
+                    while (reader.Read())
+                    {
+                        // Agregar solo el nombre al ComboBox
+                        cmbViaAdministracion.Items.Add(reader["nombre"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las vías de administración: " + ex.Message);
+                }
+            }
+        }
+        private void CargarComboBoxLaboratorio()
+        {
+            // Crear la instancia de la clase conexionBrandon
+            conexionBrandon conexion = new conexionBrandon();
+            conexion.AbrirConexion();
+
+            // Crear la consulta para obtener los nombres de los laboratorios
+            string query = "SELECT idLaboratorio, nombre FROM Laboratorio";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Limpiar cualquier valor previo del ComboBox
+                    cmbLaboratorio.Items.Clear();
+
+                    // Llenar el ComboBox con los nombres de los laboratorios
+                    while (reader.Read())
+                    {
+                        // Agregar solo el nombre al ComboBox
+                        cmbLaboratorio.Items.Add(reader["nombre"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar los laboratorios: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.GetConexion().Close(); // Cerrar la conexión
+                }
+            }
+        }
+
+        private void CargarComboBoxProducto()
+        {
+            // Crear la instancia de la clase conexionBrandon
+            conexionBrandon conexion = new conexionBrandon();
+            conexion.AbrirConexion();
+
+            // Crear la consulta para obtener los nombres de los productos
+            string query = "SELECT idProducto, nombre FROM Producto";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Limpiar cualquier valor previo del ComboBox
+                    cmbProducto.Items.Clear();
+
+                    // Llenar el ComboBox con los nombres de los productos
+                    while (reader.Read())
+                    {
+                        // Agregar solo el nombre al ComboBox
+                        cmbProducto.Items.Add(reader["nombre"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar los productos: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.GetConexion().Close(); // Cerrar la conexión
+                }
+            }
+        }
+
 
         private void AlmacenAgregarMedicamento_Resize(object sender, EventArgs e)
         {
@@ -72,7 +221,7 @@ namespace VetPet_
 
         public void SetProveedorSeleccionado(string proveedor)
         {
-            txtProveedor.Text = proveedor;
+            txtIdPresentacion.Text = proveedor;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -88,68 +237,233 @@ namespace VetPet_
             // Abrir la conexión usando el método de la clase conexionBrandon
             conexion.AbrirConexion();
 
+            // Verificar que todos los campos están completos
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtPrecioVenta.Text) ||
-                string.IsNullOrWhiteSpace(txtPrecioProveedor.Text) ||
                 string.IsNullOrWhiteSpace(txtDosis.Text) ||
-                string.IsNullOrWhiteSpace(cmbPresentacion.Text) ||
-                string.IsNullOrWhiteSpace(cmbViaAdministracion.Text) ||
-                string.IsNullOrWhiteSpace(txtLaboratorio.Text) ||
-                string.IsNullOrWhiteSpace(txtMarca.Text) ||
-                string.IsNullOrWhiteSpace(txtProveedor.Text) ||
-                string.IsNullOrWhiteSpace(txtDescripcion.Text))
+                string.IsNullOrWhiteSpace(txtIntervalo.Text) ||
+                string.IsNullOrWhiteSpace(txtIdPresentacion.Text) ||
+                string.IsNullOrWhiteSpace(txtIdLaboratorio.Text) ||
+                string.IsNullOrWhiteSpace(txtIdViaAdministracion.Text) ||
+                string.IsNullOrWhiteSpace(txtIdProducto.Text))
             {
                 MessageBox.Show("Todos los campos son obligatorios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!decimal.TryParse(txtPrecioVenta.Text, out decimal precioVenta) ||
-                !decimal.TryParse(txtPrecioProveedor.Text, out decimal precioProveedor))
+            // Intentar convertir los campos de texto a enteros
+            if (!int.TryParse(txtIdPresentacion.Text, out int IdPresentacion) ||
+                !int.TryParse(txtIdLaboratorio.Text, out int IdLaboratorio) ||
+                !int.TryParse(txtIdViaAdministracion.Text, out int IdViaAdministracion) ||
+                !int.TryParse(txtIdProducto.Text, out int IdProducto))
             {
-                MessageBox.Show("Los precios deben ser valores numéricos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Los campos de ID deben ser valores numéricos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string query = "INSERT INTO Medicamentos (Nombre, PrecioVenta, PrecioProveedor, Dosis, ViaAdministracion, Marca, Laboratorio, Presentacion, Proveedor, Descripcion) " +
-                           "VALUES (@Nombre, @PrecioVenta, @PrecioProveedor, @Dosis, @ViaAdministracion, @Marca, @Laboratorio, @Presentacion, @Proveedor, @Descripcion)";
+            string query = "INSERT INTO Medicamento (nombreGenérico, dosisRecomendada, intervalo, idPresentacion, idLaboratorio, idViaAdministracion, idProducto) " +
+                           "VALUES (@NombreGen, @Dosis, @Intervalo, @IdPres, @IdLab, @IdVia, @IdProd)";
 
             // Usa la conexión ya abierta de conexionBrandon
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
                 {
-                    // No es necesario abrir de nuevo la conexión aquí, ya está abierta en conexionBrandon
-                    cmd.Parameters.AddWithValue("@Nombre", txtNombre.Text);
-                    cmd.Parameters.AddWithValue("@PrecioVenta", precioVenta);
-                    cmd.Parameters.AddWithValue("@PrecioProveedor", precioProveedor);
-                    cmd.Parameters.AddWithValue("@Dosis", txtDosis.Text);
-                    cmd.Parameters.AddWithValue("@ViaAdministracion", cmbViaAdministracion.Text);
-                    cmd.Parameters.AddWithValue("@Marca", txtPrecioProveedor.Text);
-                    cmd.Parameters.AddWithValue("@Laboratorio", txtLaboratorio.Text);
-                    cmd.Parameters.AddWithValue("@Presentacion", cmbPresentacion.Text);
-                    cmd.Parameters.AddWithValue("@Proveedor", txtProveedor.Text);
-                    cmd.Parameters.AddWithValue("@Descripcion", txtDescripcion.Text);
+                    // Recuperamos los valores de los TextBox
+                    string NombreGenerico = txtNombre.Text;
+                    string DosisRecomendada = txtDosis.Text;
+                    string Intervalo = txtIntervalo.Text;
 
-                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    // Agregar los parámetros a la consulta
+                    cmd.Parameters.AddWithValue("@NombreGen", NombreGenerico);
+                    cmd.Parameters.AddWithValue("@Dosis", DosisRecomendada);
+                    cmd.Parameters.AddWithValue("@Intervalo", Intervalo);
+                    cmd.Parameters.AddWithValue("@IdPres", IdPresentacion);
+                    cmd.Parameters.AddWithValue("@IdLab", IdLaboratorio);
+                    cmd.Parameters.AddWithValue("@IdVia", IdViaAdministracion);
+                    cmd.Parameters.AddWithValue("@IdProd", IdProducto);
 
-                    if (filasAfectadas > 0)
-                    {
-                        MessageBox.Show("Medicamento agregado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm));
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo agregar el medicamento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    // Ejecutar la consulta
+                    cmd.ExecuteNonQuery();
+                    conexion.GetConexion().Close();
+
+                    // Mensaje de éxito
+                    MessageBox.Show("Datos insertados correctamente en 'Medicamento'.");
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
-                    MessageBox.Show($"Error al guardar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Manejo de errores
+                    MessageBox.Show("Error al insertar datos: " + ex.Message);
                 }
                 finally
                 {
-                    // Cerrar la conexión una vez terminado el trabajo
-                    conexion.CerrarConexion();
+                    // Cerrar la conexión en el bloque finally por seguridad
+                    conexion.GetConexion().Close();
+                }
+            }
+        }
+
+        private void txtIdPresentacion_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void cmbPresentacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificar que se haya seleccionado un ítem
+            if (cmbPresentacion.SelectedIndex != -1)
+            {
+                // Obtener el nombre de la presentación seleccionada
+                string nombrePresentacion = cmbPresentacion.SelectedItem.ToString();
+
+                // Crear la consulta para obtener el idPresentacion correspondiente
+                string query = "SELECT idPresentacion FROM Presentacion WHERE nombre = @Nombre";
+
+                // Crear la instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+                conexion.AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Nombre", nombrePresentacion);
+
+                    try
+                    {
+                        // Ejecutar la consulta y obtener el idPresentacion
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            // Mostrar el id en el TextBox correspondiente
+                            txtIdPresentacion.Text = result.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el id para la presentación seleccionada.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al obtener el id de la presentación: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conexion.GetConexion().Close(); // Cerrar la conexión
+                    }
+                }
+            }
+        }
+
+        private void cmbViaAdministracion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbViaAdministracion.SelectedIndex != -1)
+            {
+                string nombreVia = cmbViaAdministracion.SelectedItem.ToString();
+
+                string query = "SELECT idViaAdministracion FROM ViaAdministracion WHERE nombre = @Nombre";
+
+                conexionBrandon conexion = new conexionBrandon();
+                conexion.AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Nombre", nombreVia);
+
+                    try
+                    {
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            txtIdViaAdministracion.Text = result.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el id para la vía de administración seleccionada.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al obtener el id de la vía de administración: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conexion.GetConexion().Close();
+                    }
+                }
+            }
+        }
+
+        private void cmbLaboratorio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbLaboratorio.SelectedIndex != -1)
+            {
+                string nombreLaboratorio = cmbLaboratorio.SelectedItem.ToString();
+
+                string query = "SELECT idLaboratorio FROM Laboratorio WHERE nombre = @Nombre";
+
+                conexionBrandon conexion = new conexionBrandon();
+                conexion.AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Nombre", nombreLaboratorio);
+
+                    try
+                    {
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            txtIdLaboratorio.Text = result.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el id para el laboratorio seleccionado.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al obtener el id del laboratorio: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conexion.GetConexion().Close();
+                    }
+                }
+            }
+        }
+
+        private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbProducto.SelectedIndex != -1)
+            {
+                string nombreProducto = cmbProducto.SelectedItem.ToString();
+
+                string query = "SELECT idProducto FROM Producto WHERE nombre = @Nombre";
+
+                conexionBrandon conexion = new conexionBrandon();
+                conexion.AbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Nombre", nombreProducto);
+
+                    try
+                    {
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            txtIdProducto.Text = result.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el id para el producto seleccionado.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al obtener el id del producto: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conexion.GetConexion().Close();
+                    }
                 }
             }
         }
