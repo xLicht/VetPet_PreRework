@@ -170,7 +170,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label15.Location = new System.Drawing.Point(60, 347);
+            this.label15.Location = new System.Drawing.Point(57, 358);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(115, 30);
             this.label15.TabIndex = 478;

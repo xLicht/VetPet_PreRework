@@ -39,7 +39,18 @@ namespace VetPet_
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+            
+            DialogResult resultado = MessageBox.Show("Los datos no se han guardado. ¿Desea continuar sin guardar?","Advertencia",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+           
+            if (resultado == DialogResult.OK)
+            {
+                EmpConsultarEmpleado consultarEmpleadoForm = new EmpConsultarEmpleado(parentForm);
+                consultarEmpleadoForm.DatoEmpleado = idregreso;
+                parentForm.formularioHijo(consultarEmpleadoForm);
+            }
+            else
+            {  }
+            //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

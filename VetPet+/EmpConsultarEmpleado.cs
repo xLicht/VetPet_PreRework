@@ -51,18 +51,7 @@ namespace VetPet_
         { 
                 parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
         }
-        private void advertenciaEliminar()
-        {
-            DialogResult resultado = MessageBox.Show("El Empleado se ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (resultado == DialogResult.OK)
-            {
-                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
-            }
-            else
-            {
-
-            }
-        }
+     
         public void MostrarDato()
         {
             try
@@ -129,6 +118,22 @@ namespace VetPet_
         private void e_Click(object sender, EventArgs e)
         {
             advertenciaEliminar();
+        }
+
+
+
+        private void EliminarEmpleado(int idEmpleado)
+        {
+           
+        }
+
+        private void advertenciaEliminar()
+        {
+            DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar este empleado?","Advertencia",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK)
+            {
+                EliminarEmpleado(DatoEmpleado);
+            }
         }
     }
 }

@@ -110,6 +110,7 @@
             this.pictureBox5.Size = new System.Drawing.Size(46, 43);
             this.pictureBox5.TabIndex = 440;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnAceptar
             // 
@@ -148,6 +149,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(57, 47);
             this.pictureBox2.TabIndex = 453;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnGuardar
             // 
@@ -501,7 +503,7 @@
             // 
             this.txtCorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(153, 343);
+            this.txtCorreo.Location = new System.Drawing.Point(136, 343);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(284, 29);
@@ -513,7 +515,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label17.Location = new System.Drawing.Point(71, 343);
+            this.label17.Location = new System.Drawing.Point(54, 343);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 25);
             this.label17.TabIndex = 490;
