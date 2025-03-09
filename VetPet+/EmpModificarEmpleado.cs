@@ -127,6 +127,7 @@ namespace VetPet_
                         txtCP.Text = reader["cp"].ToString();
                         cbCiudad.SelectedItem = reader["ciudad"].ToString();
                         cbColonia.SelectedItem = reader["colonia"].ToString();
+                        
                     }
                 }
             }
@@ -149,6 +150,7 @@ namespace VetPet_
                 MostrarCB("SELECT nombre FROM Colonia", cbColonia);
                 MostrarCB("SELECT nombre FROM Calle", cbCalle);
                 MostrarCB("SELECT nombre FROM TipoEmpleado", cbTipo);
+                MostrarCB("SELECT nombre FROM Estado", cbEstado);
             }
             catch (Exception ex)
             {
@@ -226,7 +228,8 @@ namespace VetPet_
                 int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);  
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idTipoEmpleado = ObtenerIdPorNombre("TipoEmpleado", cbTipo.Text);
-
+                int idEstado = ObtenerORegistrarIdEstado( cbEstado.Text);
+                
                 string query = @"
                     UPDATE Empleado
                     SET usuario = @usuario, 
@@ -248,7 +251,8 @@ namespace VetPet_
                         idCalle = @idCalle,
                         idCp = @idCp,
                         idCiudad = @idCiudad,
-                        idColonia = @idColonia
+                        idColonia = @idColonia,
+                        idEstado = @idEstado 
                     WHERE idPersona = (SELECT idPersona FROM Empleado WHERE idEmpleado = @idEmpleado);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
@@ -268,6 +272,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@idCp", idCp);
                     cmd.Parameters.AddWithValue("@idCiudad", idCiudad);
                     cmd.Parameters.AddWithValue("@idColonia", idColonia);
+                    cmd.Parameters.AddWithValue("@idEstado", idEstado);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -427,6 +432,21 @@ namespace VetPet_
                 }
             }
             return idCp;
+        }
+        private int ObtenerORegistrarIdEstado(string estado)
+        {
+            int idEstado = ObtenerIdPorNombre("Estado", estado);
+            if (idEstado == 0)
+            {
+                string queryInsert = "INSERT INTO Estado (nombre) VALUES (@estado); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@estado", estado);
+                    object result = cmd.ExecuteScalar();
+                    idEstado = Convert.ToInt32(result);
+                }
+            }
+            return idEstado;
         }
     }
 }
