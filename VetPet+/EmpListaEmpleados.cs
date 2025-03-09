@@ -39,5 +39,10 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
         }
+
+        private void btnListaEmpleados_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpListas(parentForm));
+        }
     }
 }

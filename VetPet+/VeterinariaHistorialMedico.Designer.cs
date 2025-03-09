@@ -179,7 +179,7 @@
             this.cbFliltrar.Location = new System.Drawing.Point(45, 77);
             this.cbFliltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbFliltrar.Name = "cbFliltrar";
-            this.cbFliltrar.Size = new System.Drawing.Size(182, 33);
+            this.cbFliltrar.Size = new System.Drawing.Size(142, 33);
             this.cbFliltrar.TabIndex = 10;
             // 
             // pictureBox2

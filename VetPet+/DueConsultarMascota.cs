@@ -18,6 +18,18 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;
+
+            //Desactivacion de las Modificaciones
+
+            fechaNac.ShowCheckBox = true;
+            fechaNac.Checked = false;
+
+            cbMacho.AutoCheck = false;
+            cbHembra.AutoCheck = false;
+            cbSi.AutoCheck = false;
+            cbNo.AutoCheck = false;
+            cbSiMuerto.AutoCheck = false;
+            cbNoMuerto.AutoCheck = false;
         }
 
         private void DueConsultarMascota_Load(object sender, EventArgs e)
@@ -38,6 +50,11 @@ namespace VetPet_
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new DueMascotadeDue(parentForm));
+        }
+
+        private void cbEspecie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

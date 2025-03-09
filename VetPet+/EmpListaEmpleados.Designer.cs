@@ -45,10 +45,13 @@
             this.cbFliltrar = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btnListaEmpleados = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // label16
@@ -235,12 +238,41 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox4.BackgroundImage = global::VetPet_.Properties.Resources.EmpTipo;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Location = new System.Drawing.Point(773, 511);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(50, 47);
+            this.pictureBox4.TabIndex = 125;
+            this.pictureBox4.TabStop = false;
+            // 
+            // btnListaEmpleados
+            // 
+            this.btnListaEmpleados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnListaEmpleados.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListaEmpleados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnListaEmpleados.Location = new System.Drawing.Point(526, 502);
+            this.btnListaEmpleados.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnListaEmpleados.Name = "btnListaEmpleados";
+            this.btnListaEmpleados.Size = new System.Drawing.Size(311, 63);
+            this.btnListaEmpleados.TabIndex = 124;
+            this.btnListaEmpleados.Text = "Lista Empleados";
+            this.btnListaEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListaEmpleados.UseVisualStyleBackColor = false;
+            this.btnListaEmpleados.Click += new System.EventHandler(this.btnListaEmpleados_Click);
+            // 
             // EmpListaEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.btnListaEmpleados);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cbFliltrar);
@@ -259,6 +291,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +315,7 @@
         private System.Windows.Forms.ComboBox cbFliltrar;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button btnListaEmpleados;
     }
 }

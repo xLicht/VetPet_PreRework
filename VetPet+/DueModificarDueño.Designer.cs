@@ -30,32 +30,32 @@
         {
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnMostrarMascota = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.FechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.txtCodigoPostal = new System.Windows.Forms.TextBox();
+            this.txtColonia = new System.Windows.Forms.TextBox();
+            this.txtCalle = new System.Windows.Forms.TextBox();
+            this.txtNumContacto = new System.Windows.Forms.TextBox();
+            this.txtApellidoMat = new System.Windows.Forms.TextBox();
+            this.txtCorreoElec = new System.Windows.Forms.TextBox();
+            this.txtApellidoPat = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -89,26 +89,6 @@
             this.btnMostrarMascota.UseVisualStyleBackColor = false;
             this.btnMostrarMascota.Click += new System.EventHandler(this.btnMostrarMascota_Click);
             // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(735, 193);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(153, 29);
-            this.textBox5.TabIndex = 600;
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(735, 139);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(153, 29);
-            this.textBox4.TabIndex = 599;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
@@ -141,28 +121,18 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(407, 24);
+            this.label13.Location = new System.Drawing.Point(434, 24);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(240, 37);
             this.label13.TabIndex = 596;
             this.label13.Text = "Modificar Dueño";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(735, 84);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(153, 29);
-            this.textBox3.TabIndex = 595;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label12.Location = new System.Drawing.Point(640, 84);
+            this.label12.Location = new System.Drawing.Point(647, 117);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 25);
             this.label12.TabIndex = 594;
@@ -195,74 +165,34 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(285, 321);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(153, 29);
-            this.textBox2.TabIndex = 591;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label11.Location = new System.Drawing.Point(72, 321);
+            this.label11.Location = new System.Drawing.Point(72, 345);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(205, 25);
             this.label11.TabIndex = 590;
             this.label11.Text = "Numero de Contacto";
-            // 
-            // textBox12
-            // 
-            this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox12.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(256, 213);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(171, 29);
-            this.textBox12.TabIndex = 589;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label10.Location = new System.Drawing.Point(72, 217);
+            this.label10.Location = new System.Drawing.Point(72, 230);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(177, 25);
             this.label10.TabIndex = 588;
             this.label10.Text = "Apellido Materno";
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(268, 375);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(221, 29);
-            this.textBox7.TabIndex = 587;
-            // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(280, 270);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(153, 29);
-            this.textBox6.TabIndex = 586;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label9.Location = new System.Drawing.Point(78, 375);
+            this.label9.Location = new System.Drawing.Point(72, 400);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(183, 25);
             this.label9.TabIndex = 585;
@@ -273,7 +203,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(67, 270);
+            this.label8.Location = new System.Drawing.Point(72, 287);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(206, 25);
             this.label8.TabIndex = 584;
@@ -306,22 +236,12 @@
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(243, 164);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(171, 29);
-            this.textBox1.TabIndex = 581;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label7.Location = new System.Drawing.Point(577, 193);
+            this.label7.Location = new System.Drawing.Point(584, 226);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(141, 25);
             this.label7.TabIndex = 580;
@@ -332,7 +252,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label3.Location = new System.Drawing.Point(615, 139);
+            this.label3.Location = new System.Drawing.Point(622, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 25);
             this.label3.TabIndex = 579;
@@ -343,7 +263,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(69, 162);
+            this.label1.Location = new System.Drawing.Point(72, 171);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 25);
             this.label1.TabIndex = 578;
@@ -371,15 +291,96 @@
             this.label4.TabIndex = 576;
             this.label4.Text = " Informacion del Dueño";
             // 
-            // txtBuscar
+            // FechaNacimiento
             // 
-            this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.txtBuscar.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(267, 117);
-            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(171, 29);
-            this.txtBuscar.TabIndex = 575;
+            this.FechaNacimiento.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaNacimiento.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.FechaNacimiento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.FechaNacimiento.Location = new System.Drawing.Point(298, 283);
+            this.FechaNacimiento.Name = "FechaNacimiento";
+            this.FechaNacimiento.Size = new System.Drawing.Size(105, 29);
+            this.FechaNacimiento.TabIndex = 611;
+            // 
+            // txtCodigoPostal
+            // 
+            this.txtCodigoPostal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtCodigoPostal.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoPostal.Location = new System.Drawing.Point(748, 224);
+            this.txtCodigoPostal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCodigoPostal.Name = "txtCodigoPostal";
+            this.txtCodigoPostal.Size = new System.Drawing.Size(153, 29);
+            this.txtCodigoPostal.TabIndex = 610;
+            // 
+            // txtColonia
+            // 
+            this.txtColonia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtColonia.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColonia.Location = new System.Drawing.Point(748, 165);
+            this.txtColonia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtColonia.Name = "txtColonia";
+            this.txtColonia.Size = new System.Drawing.Size(153, 29);
+            this.txtColonia.TabIndex = 609;
+            // 
+            // txtCalle
+            // 
+            this.txtCalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtCalle.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCalle.Location = new System.Drawing.Point(748, 106);
+            this.txtCalle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCalle.Name = "txtCalle";
+            this.txtCalle.Size = new System.Drawing.Size(153, 29);
+            this.txtCalle.TabIndex = 608;
+            // 
+            // txtNumContacto
+            // 
+            this.txtNumContacto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtNumContacto.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumContacto.Location = new System.Drawing.Point(298, 341);
+            this.txtNumContacto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNumContacto.Name = "txtNumContacto";
+            this.txtNumContacto.Size = new System.Drawing.Size(153, 29);
+            this.txtNumContacto.TabIndex = 607;
+            // 
+            // txtApellidoMat
+            // 
+            this.txtApellidoMat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtApellidoMat.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidoMat.Location = new System.Drawing.Point(269, 226);
+            this.txtApellidoMat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtApellidoMat.Name = "txtApellidoMat";
+            this.txtApellidoMat.Size = new System.Drawing.Size(171, 29);
+            this.txtApellidoMat.TabIndex = 606;
+            // 
+            // txtCorreoElec
+            // 
+            this.txtCorreoElec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtCorreoElec.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreoElec.Location = new System.Drawing.Point(281, 397);
+            this.txtCorreoElec.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCorreoElec.Name = "txtCorreoElec";
+            this.txtCorreoElec.Size = new System.Drawing.Size(221, 29);
+            this.txtCorreoElec.TabIndex = 605;
+            // 
+            // txtApellidoPat
+            // 
+            this.txtApellidoPat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtApellidoPat.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidoPat.Location = new System.Drawing.Point(256, 172);
+            this.txtApellidoPat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtApellidoPat.Name = "txtApellidoPat";
+            this.txtApellidoPat.Size = new System.Drawing.Size(171, 29);
+            this.txtApellidoPat.TabIndex = 604;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(280, 117);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(171, 29);
+            this.txtNombre.TabIndex = 603;
             // 
             // DueModificarDueño
             // 
@@ -387,34 +388,34 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.FechaNacimiento);
+            this.Controls.Add(this.txtCodigoPostal);
+            this.Controls.Add(this.txtColonia);
+            this.Controls.Add(this.txtCalle);
+            this.Controls.Add(this.txtNumContacto);
+            this.Controls.Add(this.txtApellidoMat);
+            this.Controls.Add(this.txtCorreoElec);
+            this.Controls.Add(this.txtApellidoPat);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.btnMostrarMascota);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox12);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRegresar);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtBuscar);
             this.Name = "DueModificarDueño";
             this.Text = "DueModificarDueño";
             this.Load += new System.EventHandler(this.DueModificarDueño_Load);
@@ -431,31 +432,31 @@
 
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btnMostrarMascota;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegresar;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.DateTimePicker FechaNacimiento;
+        private System.Windows.Forms.TextBox txtCodigoPostal;
+        private System.Windows.Forms.TextBox txtColonia;
+        private System.Windows.Forms.TextBox txtCalle;
+        private System.Windows.Forms.TextBox txtNumContacto;
+        private System.Windows.Forms.TextBox txtApellidoMat;
+        private System.Windows.Forms.TextBox txtCorreoElec;
+        private System.Windows.Forms.TextBox txtApellidoPat;
+        private System.Windows.Forms.TextBox txtNombre;
     }
 }
