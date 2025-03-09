@@ -42,8 +42,13 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            ActualizarEmpleado();
-            parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+            //ActualizarEmpleado();
+            //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+            if (ValidarCampos())
+            {
+                ActualizarEmpleado();
+                parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -56,8 +61,8 @@ namespace VetPet_
             DialogResult resultado = MessageBox.Show("Se borrarán todos los datos ingresados. ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (resultado == DialogResult.OK)
             {
-                pasarDato();
-                //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+                //pasarDato();
+                parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
             }
             else
             { }
@@ -102,7 +107,7 @@ namespace VetPet_
                         txtApellidoM.Text = reader["apellidoM"].ToString();
                         txtCelular.Text = reader["celular"].ToString();
                         txtCorreo.Text = reader["correoElectronico"].ToString();
-                        cbTipo.SelectedItem = reader["tipoEmpleado"].ToString();
+                        cbTipo.Text = reader["tipoEmpleado"].ToString();
                         cbPais.SelectedItem = reader["pais"].ToString();
                         cbCalle.SelectedItem = reader["calle"].ToString();
                         txtCP.Text = reader["cp"].ToString();
@@ -201,17 +206,19 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                int idPais = ObtenerIdPorNombre("Pais", cbPais.Text);
-                int idCalle = ObtenerIdPorNombre("Calle", cbCalle.Text);
-                int idCp = ObtenerIdPorCodigoPostal(txtCP.Text);
-                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
-                int idColonia = ObtenerIdPorNombre("Colonia", cbColonia.Text);
+                int idPais = ObtenerORegistrarIdPais(cbPais.Text);
+                int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
+                int idCp = ObtenerORegistrarIdCp(txtCP.Text);
+                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);  // Esto se asume que no requiere inserción, ya que es un combo predefinido
+                int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
+                int idTipoEmpleado = ObtenerIdPorNombre("TipoEmpleado", cbTipo.Text);
 
                 string query = @"
                     UPDATE Empleado
                     SET usuario = @usuario, 
                         contraseña = @contraseña, 
-                        palabraClave = @palabraClave
+                        palabraClave = @palabraClave,
+                        idTipoEmpleado = @idTipoEmpleado  
                     WHERE idEmpleado = @idEmpleado;
 
                     UPDATE Persona
@@ -236,6 +243,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
                     cmd.Parameters.AddWithValue("@contraseña", txtContraseña.Text);
                     cmd.Parameters.AddWithValue("@palabraClave", txtPalabraClave.Text);
+                    cmd.Parameters.AddWithValue("@idTipoEmpleado", idTipoEmpleado);
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@apellidoP", txtApellidoP.Text);
                     cmd.Parameters.AddWithValue("@apellidoM", txtApellidoM.Text);
@@ -289,6 +297,122 @@ namespace VetPet_
                 object result = cmd.ExecuteScalar();
                 return result != null ? Convert.ToInt32(result) : 0;
             }
+        }
+
+        private void cbCalle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cbColonia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool ValidarCampos()
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellidoP.Text) ||
+                string.IsNullOrWhiteSpace(txtApellidoM.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreo.Text) ||string.IsNullOrWhiteSpace(txtCP.Text) ||
+                string.IsNullOrWhiteSpace(cbPais.Text) || string.IsNullOrWhiteSpace(cbCalle.Text) ||
+                string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text) ||
+                string.IsNullOrWhiteSpace(txtContraseña.Text) ||  string.IsNullOrWhiteSpace(txtPalabraClave.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.");
+                return false;
+            }
+         
+            if (!ValidarCorreo(txtCorreo.Text))
+            {
+                MessageBox.Show("Correo electronico invalido, Por favor, ingrese un correo electrónico válido.");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidarCorreo(string correo)
+        {
+            string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(correo, patronCorreo);
+        }
+
+        private void txtPalabraClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        private int ObtenerORegistrarIdPais(string pais)
+        {
+            int idPais = ObtenerIdPorNombre("Pais", pais);
+            if (idPais == 0)  
+            {
+                string queryInsert = "INSERT INTO Pais (nombre) VALUES (@pais); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@pais", pais);
+                    object result = cmd.ExecuteScalar();
+                    idPais = Convert.ToInt32(result);
+                }
+            }
+            return idPais;
+        }
+
+        private int ObtenerORegistrarIdCalle(string calle)
+        {
+            int idCalle = ObtenerIdPorNombre("Calle", calle);
+            if (idCalle == 0) 
+            {
+                string queryInsert = "INSERT INTO Calle (nombre) VALUES (@calle); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@calle", calle);
+                    object result = cmd.ExecuteScalar();
+                    idCalle = Convert.ToInt32(result);
+                }
+            }
+            return idCalle;
+        }
+
+        private int ObtenerORegistrarIdColonia(string colonia)
+        {
+            int idColonia = ObtenerIdPorNombre("Colonia", colonia);
+            if (idColonia == 0)  
+            {
+                string queryInsert = "INSERT INTO Colonia (nombre) VALUES (@colonia); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@colonia", colonia);
+                    object result = cmd.ExecuteScalar();
+                    idColonia = Convert.ToInt32(result);
+                }
+            }
+            return idColonia;
+        }
+
+        private int ObtenerORegistrarIdCp(string cp)
+        {
+            int idCp = ObtenerIdPorCodigoPostal(cp);
+            if (idCp == 0)  
+            {
+                string queryInsert = "INSERT INTO Cp (cp) VALUES (@cp); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@cp", cp);
+                    object result = cmd.ExecuteScalar();
+                    idCp = Convert.ToInt32(result);
+                }
+            }
+            return idCp;
         }
     }
 }
