@@ -25,7 +25,8 @@ namespace VetPet_
 
         private void EmpAgregarEmpleado_Load(object sender, EventArgs e)
         {
-
+            CargarCB();
+            txtContraseña.Text = "123456789";
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace VetPet_
             if (ValidarCampos())
             {
                 AgregarEmpleado();
-                parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
             }
             //parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
         }
@@ -46,10 +47,7 @@ namespace VetPet_
                 parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
             }
             else
-            {
-           
-               
-            }
+            {}
         }
 
         private void btnSelecTipo_Click(object sender, EventArgs e)
@@ -84,12 +82,13 @@ namespace VetPet_
                 int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idTipoEmpleado = ObtenerIdPorNombre("TipoEmpleado", cbTipo.Text);
+                int idEstado = ObtenerIdPorNombre("Estado", cbEstado.Text);
 
                 // Insertar nuevo empleado
                 string query = @"
-            INSERT INTO Persona (nombre, apellidoP, apellidoM, celular, correoElectronico)
-            VALUES (@nombre, @apellidoP, @apellidoM, @celular, @correo);
-            SELECT SCOPE_IDENTITY();"; // Obtener el ID de la persona insertada
+                    INSERT INTO Persona (nombre, apellidoP, apellidoM, celular, correoElectronico)
+                    VALUES (@nombre, @apellidoP, @apellidoM, @celular, @correo);
+                    SELECT SCOPE_IDENTITY();"; // Obtener el ID de la persona insertada
 
                 int idPersona = 0;
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
@@ -103,9 +102,9 @@ namespace VetPet_
                 }
 
                 // Insertar nuevo empleado
-                query = @"
-            INSERT INTO Empleado (usuario, contraseña, palabraClave, idTipoEmpleado, idPersona)
-            VALUES (@usuario, @contraseña, @palabraClave, @idTipoEmpleado, @idPersona);";
+                        query = @"
+                    INSERT INTO Empleado (usuario, contraseña, palabraClave, idTipoEmpleado, idPersona)
+                    VALUES (@usuario, @contraseña, @palabraClave, @idTipoEmpleado, @idPersona);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -118,9 +117,8 @@ namespace VetPet_
                 }
 
                 // Insertar dirección
-                query = @"
-            INSERT INTO Direccion (idPersona, idPais, idCalle, idCp, idCiudad, idColonia)
-            VALUES (@idPersona, @idPais, @idCalle, @idCp, @idCiudad, @idColonia);";
+                query = @"INSERT INTO Direccion (idPersona, idPais, idCalle, idCp, idCiudad, idColonia, idEstado)
+                 VALUES (@idPersona, @idPais, @idCalle, @idCp, @idCiudad, @idColonia, @idEstado);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -130,10 +128,11 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@idCp", idCp);
                     cmd.Parameters.AddWithValue("@idCiudad", idCiudad);
                     cmd.Parameters.AddWithValue("@idColonia", idColonia);
+                    cmd.Parameters.AddWithValue("@idEstado", idEstado); // Insertar el ID del estado
                     cmd.ExecuteNonQuery();
                 }
 
-                MessageBox.Show("Empleado agregado correctamente.");
+                    MessageBox.Show("Empleado agregado correctamente.");
             }
             catch (Exception ex)
             {
@@ -167,10 +166,142 @@ namespace VetPet_
             return true;
         }
 
+        private int ObtenerORegistrarIdPais(string pais)
+        {
+            int idPais = ObtenerIdPorNombre("Pais", pais);
+            if (idPais == 0)
+            {
+                string queryInsert = "INSERT INTO Pais (nombre) VALUES (@pais); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@pais", pais);
+                    object result = cmd.ExecuteScalar();
+                    idPais = Convert.ToInt32(result);
+                }
+            }
+            return idPais;
+        }
+
+        private int ObtenerORegistrarIdCalle(string calle)
+        {
+            int idCalle = ObtenerIdPorNombre("Calle", calle);
+            if (idCalle == 0)
+            {
+                string queryInsert = "INSERT INTO Calle (nombre) VALUES (@calle); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@calle", calle);
+                    object result = cmd.ExecuteScalar();
+                    idCalle = Convert.ToInt32(result);
+                }
+            }
+            return idCalle;
+        }
+
+        private int ObtenerORegistrarIdColonia(string colonia)
+        {
+            int idColonia = ObtenerIdPorNombre("Colonia", colonia);
+            if (idColonia == 0)
+            {
+                string queryInsert = "INSERT INTO Colonia (nombre) VALUES (@colonia); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@colonia", colonia);
+                    object result = cmd.ExecuteScalar();
+                    idColonia = Convert.ToInt32(result);
+                }
+            }
+            return idColonia;
+        }
+
+        private int ObtenerORegistrarIdCp(string cp)
+        {
+            int idCp = ObtenerIdPorCodigoPostal(cp);
+            if (idCp == 0)
+            {
+                string queryInsert = "INSERT INTO Cp (cp) VALUES (@cp); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@cp", cp);
+                    object result = cmd.ExecuteScalar();
+                    idCp = Convert.ToInt32(result);
+                }
+            }
+            return idCp;
+        }
+
+        private int ObtenerIdPorNombre(string tabla, string nombre)
+        {
+            string query = $"SELECT id{tabla} FROM {tabla} WHERE nombre = @nombre";
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+        }
+
+        private int ObtenerIdPorCodigoPostal(string cp)
+        {
+            string query = "SELECT idCp FROM Cp WHERE cp = @cp";
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@cp", cp);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+        }
+
         private bool ValidarCorreo(string correo)
         {
             string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
             return Regex.IsMatch(correo, patronCorreo);
+        }
+
+        private void CargarCB()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                MostrarCB("SELECT nombre FROM Pais", cbPais);
+                MostrarCB("SELECT nombre FROM Ciudad", cbCiudad);
+                MostrarCB("SELECT nombre FROM Colonia", cbColonia);
+                MostrarCB("SELECT nombre FROM Calle", cbCalle);
+                MostrarCB("SELECT nombre FROM TipoEmpleado", cbTipo);
+                MostrarCB("SELECT nombre FROM Estado", cbEstado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al Cargar los datos" + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void MostrarCB(string query, ComboBox comboBox)
+        {
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox.Items.Add(reader[0].ToString());
+                }
+                reader.Close();
+            }
+        }
+
+        private void GenerarUsuario()
+        {
+            string nombre = txtNombre.Text.Trim();
+            string apellido1 = txtApellidoP.Text.Trim();
+            string apellido2 = txtApellidoM.Text.Trim();
+            string usuario = nombre.Length >= 3 ? nombre.Substring(0, 3).ToLower() : nombre.ToLower();
+            if (!string.IsNullOrEmpty(apellido1)) usuario += "." + apellido1[0].ToString().ToLower();
+            if (!string.IsNullOrEmpty(apellido2)) usuario += apellido2[0].ToString().ToLower();
+            txtUsuario.Text = usuario;
         }
 
         private void a_Click(object sender, EventArgs e)
@@ -192,6 +323,7 @@ namespace VetPet_
             {
                 e.Handled = true; // Bloquea cualquier otro carácter
             }
+            GenerarUsuario();
         }
 
         private void txtApellidoPat_KeyPress(object sender, KeyPressEventArgs e)
@@ -200,6 +332,7 @@ namespace VetPet_
             {
                 e.Handled = true; //solo una plabra
             }
+            GenerarUsuario();
         }
 
         private void txtApellidoMat_KeyPress(object sender, KeyPressEventArgs e)
@@ -208,6 +341,7 @@ namespace VetPet_
             {
                 e.Handled = true; //solo una plabra
             }
+            GenerarUsuario();
         }
 
         private void txtNumContacto_KeyPress(object sender, KeyPressEventArgs e)
@@ -221,6 +355,14 @@ namespace VetPet_
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void cbColonia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != ' ' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.r = new System.Windows.Forms.PictureBox();
-            this.btnRegresar = new System.Windows.Forms.Button();
-            this.e = new System.Windows.Forms.PictureBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnModificar = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtColonia = new System.Windows.Forms.TextBox();
+            this.txtCiudad = new System.Windows.Forms.TextBox();
+            this.txtCalle = new System.Windows.Forms.TextBox();
+            this.txtPais = new System.Windows.Forms.TextBox();
+            this.txtTipoEmpleado = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -59,111 +61,116 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtTipoEmpleado = new System.Windows.Forms.TextBox();
-            this.txtPais = new System.Windows.Forms.TextBox();
-            this.txtCalle = new System.Windows.Forms.TextBox();
-            this.txtCiudad = new System.Windows.Forms.TextBox();
-            this.txtColonia = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.r = new System.Windows.Forms.PictureBox();
+            this.btnRegresar = new System.Windows.Forms.Button();
+            this.e = new System.Windows.Forms.PictureBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // r
+            // label18
             // 
-            this.r.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.r.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
-            this.r.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.r.Location = new System.Drawing.Point(444, 509);
-            this.r.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.r.Name = "r";
-            this.r.Size = new System.Drawing.Size(57, 47);
-            this.r.TabIndex = 442;
-            this.r.TabStop = false;
-            this.r.Click += new System.EventHandler(this.r_Click);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label18.Location = new System.Drawing.Point(405, 397);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 25);
+            this.label18.TabIndex = 491;
+            this.label18.Text = "Estado";
             // 
-            // btnRegresar
+            // textBox1
             // 
-            this.btnRegresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnRegresar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnRegresar.Location = new System.Drawing.Point(286, 501);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(235, 62);
-            this.btnRegresar.TabIndex = 441;
-            this.btnRegresar.Text = "Regresar";
-            this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegresar.UseVisualStyleBackColor = false;
-            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
+            this.textBox1.BackColor = System.Drawing.Color.Silver;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(486, 393);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(214, 29);
+            this.textBox1.TabIndex = 490;
             // 
-            // e
+            // txtCorreo
             // 
-            this.e.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.e.BackgroundImage = global::VetPet_.Properties.Resources.EmpAceptar;
-            this.e.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.e.Location = new System.Drawing.Point(966, 511);
-            this.e.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.e.Name = "e";
-            this.e.Size = new System.Drawing.Size(47, 43);
-            this.e.TabIndex = 440;
-            this.e.TabStop = false;
-            this.e.Click += new System.EventHandler(this.e_Click);
+            this.txtCorreo.BackColor = System.Drawing.Color.Silver;
+            this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.Location = new System.Drawing.Point(139, 308);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.ReadOnly = true;
+            this.txtCorreo.Size = new System.Drawing.Size(284, 29);
+            this.txtCorreo.TabIndex = 489;
             // 
-            // btnEliminar
+            // label17
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnEliminar.Location = new System.Drawing.Point(812, 501);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(235, 62);
-            this.btnEliminar.TabIndex = 439;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label17.Location = new System.Drawing.Point(57, 308);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(75, 25);
+            this.label17.TabIndex = 488;
+            this.label17.Text = "Correo";
             // 
-            // label16
+            // txtColonia
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(412, 25);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(282, 37);
-            this.label16.TabIndex = 430;
-            this.label16.Text = "Consultar Empleado";
+            this.txtColonia.BackColor = System.Drawing.Color.Silver;
+            this.txtColonia.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColonia.Location = new System.Drawing.Point(798, 436);
+            this.txtColonia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtColonia.Name = "txtColonia";
+            this.txtColonia.ReadOnly = true;
+            this.txtColonia.Size = new System.Drawing.Size(154, 29);
+            this.txtColonia.TabIndex = 487;
             // 
-            // pictureBox3
+            // txtCiudad
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaAjustes;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(705, 511);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(57, 43);
-            this.pictureBox3.TabIndex = 453;
-            this.pictureBox3.TabStop = false;
+            this.txtCiudad.BackColor = System.Drawing.Color.Silver;
+            this.txtCiudad.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCiudad.Location = new System.Drawing.Point(798, 397);
+            this.txtCiudad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCiudad.Name = "txtCiudad";
+            this.txtCiudad.ReadOnly = true;
+            this.txtCiudad.Size = new System.Drawing.Size(154, 29);
+            this.txtCiudad.TabIndex = 486;
             // 
-            // btnModificar
+            // txtCalle
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnModificar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnModificar.Location = new System.Drawing.Point(545, 501);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(235, 62);
-            this.btnModificar.TabIndex = 452;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.button1_Click);
+            this.txtCalle.BackColor = System.Drawing.Color.Silver;
+            this.txtCalle.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCalle.Location = new System.Drawing.Point(486, 432);
+            this.txtCalle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCalle.Name = "txtCalle";
+            this.txtCalle.ReadOnly = true;
+            this.txtCalle.Size = new System.Drawing.Size(214, 29);
+            this.txtCalle.TabIndex = 485;
+            // 
+            // txtPais
+            // 
+            this.txtPais.BackColor = System.Drawing.Color.Silver;
+            this.txtPais.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPais.Location = new System.Drawing.Point(203, 432);
+            this.txtPais.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPais.Name = "txtPais";
+            this.txtPais.ReadOnly = true;
+            this.txtPais.Size = new System.Drawing.Size(173, 29);
+            this.txtPais.TabIndex = 484;
+            // 
+            // txtTipoEmpleado
+            // 
+            this.txtTipoEmpleado.BackColor = System.Drawing.Color.Silver;
+            this.txtTipoEmpleado.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipoEmpleado.Location = new System.Drawing.Point(252, 267);
+            this.txtTipoEmpleado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTipoEmpleado.Name = "txtTipoEmpleado";
+            this.txtTipoEmpleado.ReadOnly = true;
+            this.txtTipoEmpleado.Size = new System.Drawing.Size(171, 29);
+            this.txtTipoEmpleado.TabIndex = 483;
             // 
             // label15
             // 
@@ -181,7 +188,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label14.Location = new System.Drawing.Point(700, 389);
+            this.label14.Location = new System.Drawing.Point(714, 397);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 25);
             this.label14.TabIndex = 477;
@@ -192,7 +199,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(422, 386);
+            this.label13.Location = new System.Drawing.Point(146, 432);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 25);
             this.label13.TabIndex = 476;
@@ -203,7 +210,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(700, 423);
+            this.label5.Location = new System.Drawing.Point(714, 431);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 25);
             this.label5.TabIndex = 475;
@@ -213,7 +220,7 @@
             // 
             this.txtCp.BackColor = System.Drawing.Color.Silver;
             this.txtCp.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCp.Location = new System.Drawing.Point(205, 416);
+            this.txtCp.Location = new System.Drawing.Point(205, 393);
             this.txtCp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCp.Name = "txtCp";
             this.txtCp.ReadOnly = true;
@@ -225,7 +232,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label11.Location = new System.Drawing.Point(48, 416);
+            this.label11.Location = new System.Drawing.Point(48, 393);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(141, 25);
             this.label11.TabIndex = 473;
@@ -236,7 +243,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label12.Location = new System.Drawing.Point(414, 423);
+            this.label12.Location = new System.Drawing.Point(414, 432);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 25);
             this.label12.TabIndex = 472;
@@ -430,82 +437,99 @@
             this.txtNombre.Size = new System.Drawing.Size(171, 29);
             this.txtNombre.TabIndex = 454;
             // 
-            // txtTipoEmpleado
+            // pictureBox3
             // 
-            this.txtTipoEmpleado.BackColor = System.Drawing.Color.Silver;
-            this.txtTipoEmpleado.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoEmpleado.Location = new System.Drawing.Point(252, 267);
-            this.txtTipoEmpleado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTipoEmpleado.Name = "txtTipoEmpleado";
-            this.txtTipoEmpleado.ReadOnly = true;
-            this.txtTipoEmpleado.Size = new System.Drawing.Size(171, 29);
-            this.txtTipoEmpleado.TabIndex = 483;
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaAjustes;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(705, 511);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(57, 43);
+            this.pictureBox3.TabIndex = 453;
+            this.pictureBox3.TabStop = false;
             // 
-            // txtPais
+            // btnModificar
             // 
-            this.txtPais.BackColor = System.Drawing.Color.Silver;
-            this.txtPais.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPais.Location = new System.Drawing.Point(479, 386);
-            this.txtPais.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtPais.Name = "txtPais";
-            this.txtPais.ReadOnly = true;
-            this.txtPais.Size = new System.Drawing.Size(160, 29);
-            this.txtPais.TabIndex = 484;
+            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnModificar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnModificar.Location = new System.Drawing.Point(545, 501);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(235, 62);
+            this.btnModificar.TabIndex = 452;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtCalle
+            // r
             // 
-            this.txtCalle.BackColor = System.Drawing.Color.Silver;
-            this.txtCalle.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalle.Location = new System.Drawing.Point(479, 423);
-            this.txtCalle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCalle.Name = "txtCalle";
-            this.txtCalle.ReadOnly = true;
-            this.txtCalle.Size = new System.Drawing.Size(214, 29);
-            this.txtCalle.TabIndex = 485;
+            this.r.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.r.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
+            this.r.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.r.Location = new System.Drawing.Point(444, 509);
+            this.r.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.r.Name = "r";
+            this.r.Size = new System.Drawing.Size(57, 47);
+            this.r.TabIndex = 442;
+            this.r.TabStop = false;
+            this.r.Click += new System.EventHandler(this.r_Click);
             // 
-            // txtCiudad
+            // btnRegresar
             // 
-            this.txtCiudad.BackColor = System.Drawing.Color.Silver;
-            this.txtCiudad.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCiudad.Location = new System.Drawing.Point(784, 389);
-            this.txtCiudad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.ReadOnly = true;
-            this.txtCiudad.Size = new System.Drawing.Size(154, 29);
-            this.txtCiudad.TabIndex = 486;
+            this.btnRegresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnRegresar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnRegresar.Location = new System.Drawing.Point(286, 501);
+            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRegresar.Name = "btnRegresar";
+            this.btnRegresar.Size = new System.Drawing.Size(235, 62);
+            this.btnRegresar.TabIndex = 441;
+            this.btnRegresar.Text = "Regresar";
+            this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // txtColonia
+            // e
             // 
-            this.txtColonia.BackColor = System.Drawing.Color.Silver;
-            this.txtColonia.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColonia.Location = new System.Drawing.Point(784, 428);
-            this.txtColonia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtColonia.Name = "txtColonia";
-            this.txtColonia.ReadOnly = true;
-            this.txtColonia.Size = new System.Drawing.Size(154, 29);
-            this.txtColonia.TabIndex = 487;
+            this.e.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.e.BackgroundImage = global::VetPet_.Properties.Resources.EmpAceptar;
+            this.e.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.e.Location = new System.Drawing.Point(966, 511);
+            this.e.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.e.Name = "e";
+            this.e.Size = new System.Drawing.Size(47, 43);
+            this.e.TabIndex = 440;
+            this.e.TabStop = false;
+            this.e.Click += new System.EventHandler(this.e_Click);
             // 
-            // label17
+            // btnEliminar
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label17.Location = new System.Drawing.Point(57, 308);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(75, 25);
-            this.label17.TabIndex = 488;
-            this.label17.Text = "Correo";
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnEliminar.Location = new System.Drawing.Point(812, 501);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(235, 62);
+            this.btnEliminar.TabIndex = 439;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // txtCorreo
+            // label16
             // 
-            this.txtCorreo.BackColor = System.Drawing.Color.Silver;
-            this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(139, 308);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.ReadOnly = true;
-            this.txtCorreo.Size = new System.Drawing.Size(284, 29);
-            this.txtCorreo.TabIndex = 489;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label16.Location = new System.Drawing.Point(412, 25);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(282, 37);
+            this.label16.TabIndex = 430;
+            this.label16.Text = "Consultar Empleado";
             // 
             // EmpConsultarEmpleado
             // 
@@ -513,6 +537,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.txtColonia);
@@ -554,9 +580,9 @@
             this.Name = "EmpConsultarEmpleado";
             this.Text = "EmpConsultarEmpleado";
             this.Load += new System.EventHandler(this.EmpConsultarEmpleado_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.r)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -601,5 +627,7 @@
         private System.Windows.Forms.TextBox txtColonia;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label18;
     }
 }

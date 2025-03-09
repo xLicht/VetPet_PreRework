@@ -50,17 +50,13 @@ namespace VetPet_
             }
             else
             {  }
-            //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //ActualizarEmpleado();
-            //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
             if (ValidarCampos())
             {
                 ActualizarEmpleado();
-                //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
                 EmpConsultarEmpleado consultarEmpleadoForm = new EmpConsultarEmpleado(parentForm);
                 consultarEmpleadoForm.DatoEmpleado = idregreso; 
                 parentForm.formularioHijo(consultarEmpleadoForm);
@@ -78,7 +74,9 @@ namespace VetPet_
             if (resultado == DialogResult.OK)
             {
                 //pasarDato();
-                parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+                EmpConsultarEmpleado consultarEmpleadoForm = new EmpConsultarEmpleado(parentForm);
+                consultarEmpleadoForm.DatoEmpleado = idregreso;
+                parentForm.formularioHijo(consultarEmpleadoForm);
             }
             else
             { }
