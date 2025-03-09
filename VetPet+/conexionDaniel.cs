@@ -12,13 +12,13 @@ namespace VetPet_
         private readonly string cadenaConexion = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
-        // Constructor
+       
         public conexionDaniel()
         {
             conexion = new SqlConnection(cadenaConexion);
         }
 
-        // Método para abrir la conexión
+       
         public void AbrirConexion()
         {
             try
@@ -34,7 +34,7 @@ namespace VetPet_
             }
         }
 
-        // Método para cerrar la conexión
+    
         public void CerrarConexion()
         {
             try
@@ -50,7 +50,7 @@ namespace VetPet_
             }
         }
 
-        // Método para obtener la conexión
+       
         public SqlConnection GetConexion()
         {
             return conexion;
