@@ -266,7 +266,7 @@
             this.txtCP.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCP.Location = new System.Drawing.Point(203, 442);
             this.txtCP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCP.MaxLength = 9;
+            this.txtCP.MaxLength = 6;
             this.txtCP.Name = "txtCP";
             this.txtCP.Size = new System.Drawing.Size(158, 29);
             this.txtCP.TabIndex = 474;
@@ -380,6 +380,7 @@
             this.txtContraseña.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContraseña.Location = new System.Drawing.Point(801, 221);
             this.txtContraseña.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtContraseña.MaxLength = 10;
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(171, 29);
             this.txtContraseña.TabIndex = 464;
@@ -503,6 +504,7 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(284, 29);
             this.txtCorreo.TabIndex = 491;
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             // 
             // label17
             // 
