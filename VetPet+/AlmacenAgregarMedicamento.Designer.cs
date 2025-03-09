@@ -35,13 +35,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtDosis = new System.Windows.Forms.TextBox();
             this.btnElegir = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtProveedor = new System.Windows.Forms.TextBox();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.txtPrecioVenta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.txtPrecioProveedor = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -51,11 +51,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.txtLaboratorio = new System.Windows.Forms.TextBox();
+            this.txtFecha = new System.Windows.Forms.TextBox();
+            this.cmbPresentacion = new System.Windows.Forms.ComboBox();
+            this.cmbViaAdministracion = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -156,16 +156,16 @@
             this.label6.Text = "Informacion de medicamento";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtPrecio
+            // txtDosis
             // 
-            this.txtPrecio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtPrecio.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPrecio.Location = new System.Drawing.Point(308, 246);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(275, 40);
-            this.txtPrecio.TabIndex = 35;
-            this.txtPrecio.Text = "Dosis recomendada";
+            this.txtDosis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtDosis.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDosis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtDosis.Location = new System.Drawing.Point(308, 246);
+            this.txtDosis.Name = "txtDosis";
+            this.txtDosis.Size = new System.Drawing.Size(275, 40);
+            this.txtDosis.TabIndex = 35;
+            this.txtDosis.Text = "Dosis recomendada";
             // 
             // btnElegir
             // 
@@ -204,16 +204,16 @@
             this.txtProveedor.TabIndex = 32;
             this.txtProveedor.Text = "Proveedor";
             // 
-            // txtCantidad
+            // txtPrecioVenta
             // 
-            this.txtCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtCantidad.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtCantidad.Location = new System.Drawing.Point(219, 145);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(364, 40);
-            this.txtCantidad.TabIndex = 30;
-            this.txtCantidad.Text = "Precio de venta";
+            this.txtPrecioVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtPrecioVenta.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtPrecioVenta.Location = new System.Drawing.Point(219, 145);
+            this.txtPrecioVenta.Name = "txtPrecioVenta";
+            this.txtPrecioVenta.Size = new System.Drawing.Size(364, 40);
+            this.txtPrecioVenta.TabIndex = 30;
+            this.txtPrecioVenta.Text = "Precio de venta";
             // 
             // label1
             // 
@@ -227,16 +227,16 @@
             this.label1.Text = "Precio Proveedor";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtMarca
+            // txtPrecioProveedor
             // 
-            this.txtMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtMarca.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtMarca.Location = new System.Drawing.Point(271, 195);
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(312, 40);
-            this.txtMarca.TabIndex = 28;
-            this.txtMarca.Text = "Precio de proveedor";
+            this.txtPrecioProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtPrecioProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecioProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtPrecioProveedor.Location = new System.Drawing.Point(271, 195);
+            this.txtPrecioProveedor.Name = "txtPrecioProveedor";
+            this.txtPrecioProveedor.Size = new System.Drawing.Size(312, 40);
+            this.txtPrecioProveedor.TabIndex = 28;
+            this.txtPrecioProveedor.Text = "Precio de proveedor";
             // 
             // txtNombre
             // 
@@ -345,46 +345,46 @@
             this.label13.Text = "Fecha vencimiento";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // txtMarca
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.textBox2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox2.Location = new System.Drawing.Point(794, 146);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(260, 40);
-            this.textBox2.TabIndex = 52;
-            this.textBox2.Text = "Marca";
+            this.txtMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtMarca.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtMarca.Location = new System.Drawing.Point(794, 146);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(260, 40);
+            this.txtMarca.TabIndex = 52;
+            this.txtMarca.Text = "Marca";
             // 
-            // textBox3
+            // txtLaboratorio
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.textBox3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox3.Location = new System.Drawing.Point(794, 194);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(260, 40);
-            this.textBox3.TabIndex = 53;
-            this.textBox3.Text = "Laboratorio";
+            this.txtLaboratorio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtLaboratorio.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLaboratorio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtLaboratorio.Location = new System.Drawing.Point(794, 194);
+            this.txtLaboratorio.Name = "txtLaboratorio";
+            this.txtLaboratorio.Size = new System.Drawing.Size(260, 40);
+            this.txtLaboratorio.TabIndex = 53;
+            this.txtLaboratorio.Text = "Laboratorio";
             // 
-            // textBox5
+            // txtFecha
             // 
-            this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.textBox5.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.textBox5.Location = new System.Drawing.Point(891, 296);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(163, 40);
-            this.textBox5.TabIndex = 55;
-            this.textBox5.Text = "Fecha";
+            this.txtFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtFecha.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtFecha.Location = new System.Drawing.Point(891, 296);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(163, 40);
+            this.txtFecha.TabIndex = 55;
+            this.txtFecha.Text = "Fecha";
             // 
-            // comboBox1
+            // cmbPresentacion
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.comboBox1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic);
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbPresentacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.cmbPresentacion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic);
+            this.cmbPresentacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.cmbPresentacion.FormattingEnabled = true;
+            this.cmbPresentacion.Items.AddRange(new object[] {
             "Comprimido",
             "Cápsulas",
             "Líquidos",
@@ -394,28 +394,28 @@
             "Masticables",
             "Sprays",
             "Inyectables"});
-            this.comboBox1.Location = new System.Drawing.Point(811, 246);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(243, 40);
-            this.comboBox1.TabIndex = 56;
+            this.cmbPresentacion.Location = new System.Drawing.Point(811, 246);
+            this.cmbPresentacion.Name = "cmbPresentacion";
+            this.cmbPresentacion.Size = new System.Drawing.Size(243, 40);
+            this.cmbPresentacion.TabIndex = 56;
             // 
-            // comboBox2
+            // cmbViaAdministracion
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.comboBox2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic);
-            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cmbViaAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.cmbViaAdministracion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic);
+            this.cmbViaAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.cmbViaAdministracion.FormattingEnabled = true;
+            this.cmbViaAdministracion.Items.AddRange(new object[] {
             "Oral",
             "Tópica",
             "Inyectable",
             "Inhalatoria",
             "Ocular",
             "Auditiva"});
-            this.comboBox2.Location = new System.Drawing.Point(308, 298);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(275, 40);
-            this.comboBox2.TabIndex = 57;
+            this.cmbViaAdministracion.Location = new System.Drawing.Point(308, 298);
+            this.cmbViaAdministracion.Name = "cmbViaAdministracion";
+            this.cmbViaAdministracion.Size = new System.Drawing.Size(275, 40);
+            this.cmbViaAdministracion.TabIndex = 57;
             // 
             // AlmacenAgregarMedicamento
             // 
@@ -423,11 +423,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.cmbViaAdministracion);
+            this.Controls.Add(this.cmbPresentacion);
+            this.Controls.Add(this.txtFecha);
+            this.Controls.Add(this.txtLaboratorio);
+            this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -442,13 +442,13 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtDosis);
             this.Controls.Add(this.btnElegir);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtProveedor);
-            this.Controls.Add(this.txtCantidad);
+            this.Controls.Add(this.txtPrecioVenta);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtPrecioProveedor);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label2);
             this.Name = "AlmacenAgregarMedicamento";
@@ -471,13 +471,13 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtDosis;
         private System.Windows.Forms.Button btnElegir;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtProveedor;
-        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.TextBox txtPrecioVenta;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtPrecioProveedor;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
@@ -487,10 +487,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtLaboratorio;
+        private System.Windows.Forms.TextBox txtFecha;
+        private System.Windows.Forms.ComboBox cmbPresentacion;
+        private System.Windows.Forms.ComboBox cmbViaAdministracion;
     }
 }

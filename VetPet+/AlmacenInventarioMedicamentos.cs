@@ -54,8 +54,6 @@ namespace VetPet_
                 // Asegurarse de que las columnas se generen correctamente
                 dataGridView1.AutoGenerateColumns = true; // Esta propiedad debería estar en true por defecto
 
-                // Ajustar el ancho de las columnas para que se adapten al contenido
-                dataGridView1.AutoResizeColumns();
 
                 // Cerrar la conexión
                 conexion.CerrarConexion();
@@ -77,12 +75,9 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
-
             comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
             comboBox1.DropDownWidth = 150;         // Ancho del desplegable
-
             CargarDatos();
-
         }
 
         private void AlmacenInventarioMedicamentos_Load(object sender, EventArgs e)
@@ -129,33 +124,38 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                string idProducto = dataGridView1.Rows[e.RowIndex].Cells["idproducto"].Value?.ToString(); // Asegúrate de que el DataGridView tenga la columna "idproducto"
+                string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString(); // Obtiene el nombre del medicamento
 
-                if (!string.IsNullOrEmpty(idProducto))
+                // Llamar al formulario de opciones
+                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
                 {
-                    // Llamar al formulario de opciones
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(idProducto))
+                    if (opcionesForm.ShowDialog() == DialogResult.OK)
                     {
-                        if (opcionesForm.ShowDialog() == DialogResult.OK)
+                        if (opcionesForm.Resultado == "Modificar")
                         {
-                            if (opcionesForm.Resultado == "Ver")
-                            {
-                                // Crear y mostrar el formulario de ver con el idProducto
-                                var formVer = new AlmacenVerMedicamento(idProducto);
-                                formVer.ShowDialog(); // Muestra el formulario con la información
-                            }
+                            parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                        else if (opcionesForm.Resultado == "Salir")
+                        {
+                            parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a 
+                        }
+                        else if (opcionesForm.Resultado == "Ver")
+                        {
+                            // Llamar al formulario AlmacenVerMedicamento y pasarle el nombre del medicamento seleccionado
+                            parentForm.formularioHijo(new AlmacenVerMedicamento(parentForm, nombre)); // Pasamos el nombre del medicamento a AlmacenVerMedicamento
                         }
                     }
                 }
             }
         }
+
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -232,6 +232,9 @@ namespace VetPet_
             // Asignar el filtro según la selección en el ComboBox
             switch (seleccion)
             {
+                case "Eliminar Filtro":
+                    filtro = "Eliminar Filtro";
+                    break;
                 case "Antibiótico":
                     filtro = "Antibiótico";
                     break;
@@ -272,16 +275,21 @@ namespace VetPet_
         }
         private void BuscarMedicamentosPorCategoria(string filtro)
         {
-            try
+            if (filtro == "Eliminar Filtro")
+                CargarDatos();
+            else
             {
-                // Crear una instancia de la clase conexionBrandon
-                conexionBrandon conexion = new conexionBrandon();
 
-                // Abrir la conexión
-                conexion.AbrirConexion();
+                try
+                {
+                    // Crear una instancia de la clase conexionBrandon
+                    conexionBrandon conexion = new conexionBrandon();
 
-                // Definir la consulta básica
-                string query = @"
+                    // Abrir la conexión
+                    conexion.AbrirConexion();
+
+                    // Definir la consulta básica
+                    string query = @"
             SELECT 
                 p.nombre AS Presentacion,
                 m.nombreGenérico AS Nombre,
@@ -291,39 +299,47 @@ namespace VetPet_
             JOIN presentacion p ON m.idpresentacion = p.idpresentacion
             JOIN producto pr ON m.idproducto = pr.idproducto";
 
-                // Si hay un filtro, agregar la cláusula WHERE
-                if (!string.IsNullOrEmpty(filtro))
-                {
-                    query += " WHERE pr.nombre LIKE @filtro";  // Filtrar por el nombre en la tabla 'producto'
+                    // Si hay un filtro, agregar la cláusula WHERE
+                    if (!string.IsNullOrEmpty(filtro))
+                    {
+                        query += " WHERE pr.nombre LIKE @filtro";  // Filtrar por el nombre en la tabla 'producto'
+                    }
+
+                    // Crear un SqlDataAdapter con la conexión obtenida de la clase conexionBrandon
+                    SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                    // Agregar el parámetro para el filtro
+                    da.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                    DataTable dt = new DataTable();
+
+                    // Llenar el DataTable con los resultados de la consulta
+                    da.Fill(dt);
+
+                    // Asignar el DataTable al DataGridView
+                    dataGridView1.DataSource = dt;
+
+                    // Asegurarse de que las columnas se generen correctamente
+                    dataGridView1.AutoGenerateColumns = true;
+
+                    // Cerrar la conexión
+                    conexion.CerrarConexion();
                 }
-
-                // Crear un SqlDataAdapter con la conexión obtenida de la clase conexionBrandon
-                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
-
-                // Agregar el parámetro para el filtro
-                da.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
-
-                DataTable dt = new DataTable();
-
-                // Llenar el DataTable con los resultados de la consulta
-                da.Fill(dt);
-
-                // Asignar el DataTable al DataGridView
-                dataGridView1.DataSource = dt;
-
-                // Asegurarse de que las columnas se generen correctamente
-                dataGridView1.AutoGenerateColumns = true;
-
-                // Cerrar la conexión
-                conexion.CerrarConexion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
             }
         }
 
-
+        private void txtProducto_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtProducto.Text == "Buscar nombre de medicamento") // Si el texto predeterminado está presente
+            {
+                txtProducto.Text = ""; // Limpia el TextBox
+            }
+        }
     }
 }
 

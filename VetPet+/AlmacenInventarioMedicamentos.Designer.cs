@@ -174,6 +174,7 @@
             this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "Eliminar Filtro",
             "Antibiótico",
             "Antiparasito",
             "Analgésico",
@@ -249,6 +250,7 @@
             this.txtProducto.Size = new System.Drawing.Size(599, 24);
             this.txtProducto.TabIndex = 35;
             this.txtProducto.Text = "Buscar nombre de medicamento";
+            this.txtProducto.Enter += new System.EventHandler(this.txtProducto_Enter);
             // 
             // AlmacenInventarioMedicamentos
             // 
