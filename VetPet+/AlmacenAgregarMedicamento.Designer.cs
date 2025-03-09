@@ -158,7 +158,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label4.Location = new System.Drawing.Point(12, 254);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(225, 38);
+            this.label4.Size = new System.Drawing.Size(250, 38);
             this.label4.TabIndex = 33;
             this.label4.Text = "Id Presentacion";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -311,9 +311,9 @@
             this.cmbPresentacion.Items.AddRange(new object[] {
             "Esencial",
             "No Esencial"});
-            this.cmbPresentacion.Location = new System.Drawing.Point(256, 252);
+            this.cmbPresentacion.Location = new System.Drawing.Point(281, 252);
             this.cmbPresentacion.Name = "cmbPresentacion";
-            this.cmbPresentacion.Size = new System.Drawing.Size(327, 40);
+            this.cmbPresentacion.Size = new System.Drawing.Size(302, 40);
             this.cmbPresentacion.TabIndex = 70;
             this.cmbPresentacion.SelectedIndexChanged += new System.EventHandler(this.cmbPresentacion_SelectedIndexChanged);
             // 
