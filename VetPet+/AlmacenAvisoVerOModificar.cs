@@ -7,27 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
 {
-    public partial class AlmacenAvisoVerOModificar : Form
+    public partial class AlmacenAvisoVerOModificar : FormPadre
     {
         public string Resultado { get; private set; }
-
-        public AlmacenAvisoVerOModificar()
-        {
-            InitializeComponent();
-        }
+        public static string formularioAnterior; // Guarda el nombre del formulario anterior
 
         private void AlmacenAvisoVerOModificar_Load(object sender, EventArgs e)
         {
-            //xd
         }
 
-        public AlmacenAvisoVerOModificar(string nombre)
+        public AlmacenAvisoVerOModificar(string nombre, Form1 parent)
         {
             InitializeComponent();
-            label2.Text = $"¿Qué deseas hacer con {nombre}?";
+            label2.Text = nombre;
+            parentForm = parent;
         }
 
 
@@ -49,7 +46,23 @@ namespace VetPet_
         {
             Resultado = "Salir";
             this.DialogResult = DialogResult.OK;
-            this.Close();
+
+            // Verifica de qué formulario vino
+            if (formularioAnterior == "AlmacenInventarioMedicamentos")
+            {
+                parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm));
+
+            }
+            else if (formularioAnterior == "AlmacenInventarioProductos")
+            {
+                parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm));
+            }
+            else if (formularioAnterior == "AlmacenProveedor")
+            {
+                parentForm.formularioHijo(new AlmacenProveedor(parentForm));
+            }
+
+            this.Close(); // Cierra el formulario actual
         }
     }
 }

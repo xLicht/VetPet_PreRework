@@ -383,7 +383,7 @@ namespace VetPet_
                     }
                     else if (opcionesForm.Resultado == "No")
                     {
-                        parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm)); // Regresar a la modificación
+                        parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm, nombreMedicamento)); // Regresar a la modificación
                     }
                 }
             }
@@ -548,6 +548,29 @@ namespace VetPet_
                         conexion.GetConexion().Close();
                     }
                 }
+            }
+        }
+
+        private void txtDosis_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtDosis.Text == "Dosis Recomendada") // Si el texto predeterminado está presente
+            {
+                txtDosis.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void cmbPresentacion_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombre_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtNombre.Text == "Nombre de medicamento") // Si el texto predeterminado está presente
+            {
+                txtNombre.Text = ""; // Limpia el TextBox
             }
         }
     }

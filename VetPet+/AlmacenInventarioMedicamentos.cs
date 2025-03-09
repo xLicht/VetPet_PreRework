@@ -134,7 +134,7 @@ namespace VetPet_
                 string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString(); // Obtiene el nombre del medicamento
 
                 // Llamar al formulario de opciones
-                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                 {
                     if (opcionesForm.ShowDialog() == DialogResult.OK)
                     {
@@ -290,14 +290,14 @@ namespace VetPet_
 
                     // Definir la consulta básica
                     string query = @"
-            SELECT 
-                p.nombre AS Presentacion,
-                m.nombreGenérico AS Nombre,
-                pr.stock AS Inventario,
-                pr.precioventa AS Precio
-            FROM Medicamento m
-            JOIN presentacion p ON m.idpresentacion = p.idpresentacion
-            JOIN producto pr ON m.idproducto = pr.idproducto";
+                    SELECT 
+                        p.nombre AS Presentacion,
+                        m.nombreGenérico AS Nombre,
+                        pr.stock AS Inventario,
+                        pr.precioventa AS Precio
+                    FROM Medicamento m
+                    JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+                    JOIN producto pr ON m.idproducto = pr.idproducto";
 
                     // Si hay un filtro, agregar la cláusula WHERE
                     if (!string.IsNullOrEmpty(filtro))
