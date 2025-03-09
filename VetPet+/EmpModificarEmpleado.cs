@@ -18,6 +18,7 @@ namespace VetPet_
     {
         public int DatoEmpleado { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
+        int idregreso;
         public EmpModificarEmpleado(Form1 parent)
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace VetPet_
         {
             CargarCB();
             MostrarDato();
+            idregreso = DatoEmpleado;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -47,7 +49,10 @@ namespace VetPet_
             if (ValidarCampos())
             {
                 ActualizarEmpleado();
-                parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+                //parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+                EmpConsultarEmpleado consultarEmpleadoForm = new EmpConsultarEmpleado(parentForm);
+                consultarEmpleadoForm.DatoEmpleado = idregreso; 
+                parentForm.formularioHijo(consultarEmpleadoForm);
             }
         }
 
@@ -209,7 +214,7 @@ namespace VetPet_
                 int idPais = ObtenerORegistrarIdPais(cbPais.Text);
                 int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
                 int idCp = ObtenerORegistrarIdCp(txtCP.Text);
-                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);  // Esto se asume que no requiere inserción, ya que es un combo predefinido
+                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);  
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idTipoEmpleado = ObtenerIdPorNombre("TipoEmpleado", cbTipo.Text);
 

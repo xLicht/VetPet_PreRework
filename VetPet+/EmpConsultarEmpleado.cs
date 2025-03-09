@@ -21,12 +21,12 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;
-            MostrarDato();
+          
         }
 
         private void EmpConsultarEmpleado_Load(object sender, EventArgs e)
         {
-
+            MostrarDato();
         }
 
         private void button1_Click(object sender, EventArgs e)
