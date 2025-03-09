@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using iTextSharp.text;
@@ -96,6 +97,24 @@ namespace Pruebas_PDF
         }
 
         protected abstract void AgregarContenido();
+
+        public virtual SqlConnection ConexionSQL()
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-DESKTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
+                //MessageBox.Show("Conexión establecida correctamente");
+                return conexion;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        protected abstract string[,] Consulta(SqlConnection conex);
 
         protected virtual void AgregarPiePagina()
         {
