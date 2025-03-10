@@ -76,20 +76,6 @@ namespace VetPet_
                     comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
                     SqlDataReader lectorSQL = comandoSQL.ExecuteReader();
 
-                    //cbVentas.Checked = false;
-                    //cbHistorialMedico.Checked = false;
-                    //cbMascotas.Checked = false;
-                    //cbDueños.Checked = false;
-                    //cbCitas.Checked = false;
-                    //cbCitasMedicas.Checked = false;
-                    //cbMedicamentos.Checked = false;
-                    //cbServicios.Checked = false;
-                    //cbCortes.Checked = false;
-                    //cbProvedores.Checked = false;
-                    //cbPedidos.Checked = false;
-                    //cbProductos.Checked = false;
-                    //cbEmpleados.Checked = false;
-
                     while (lectorSQL.Read())
                     {
                         string nombreModulo = lectorSQL["nombre"].ToString();
@@ -159,14 +145,247 @@ namespace VetPet_
             }
         }
 
+
+        //private void ActualizarTipoEmpleado()
+        //{
+        //    try
+        //    {
+        //        conexionDB.AbrirConexion();
+
+        //        // 1️⃣ Actualizar el nombre del tipo de empleado
+        //        string actualizarNombreQuery = @"
+        //    UPDATE TipoEmpleado 
+        //    SET nombre = @nombre
+        //    WHERE idTipoEmpleado = @idTipoEmpleado";
+
+        //        using (SqlCommand comandoSQL = new SqlCommand(actualizarNombreQuery, conexionDB.GetConexion()))
+        //        {
+        //            comandoSQL.Parameters.AddWithValue("@nombre", txtNombre.Text);
+        //            comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+        //            comandoSQL.ExecuteNonQuery();
+        //        }
+
+        //        // 2️⃣ Obtener los módulos actualmente asignados
+        //        Dictionary<string, bool> modulosAsignados = new Dictionary<string, bool>();
+
+        //        string obtenerModulosQuery = @"
+        //    SELECT Modulo.nombre 
+        //    FROM TipoEmpleado_Modulo
+        //    INNER JOIN Modulo ON TipoEmpleado_Modulo.idModulo = Modulo.idModulo
+        //    WHERE TipoEmpleado_Modulo.idTipoEmpleado = @idTipoEmpleado";
+
+        //        using (SqlCommand comandoSQL = new SqlCommand(obtenerModulosQuery, conexionDB.GetConexion()))
+        //        {
+        //            comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+        //            SqlDataReader lectorSQL = comandoSQL.ExecuteReader();
+
+        //            while (lectorSQL.Read())
+        //            {
+        //                modulosAsignados[lectorSQL["nombre"].ToString()] = true;
+        //            }
+
+        //            lectorSQL.Close();
+        //        }
+
+        //        // 3️⃣ Validar qué módulos se deben agregar o eliminar
+        //        Dictionary<string, CheckBox> modulosCheckBox = new Dictionary<string, CheckBox>()
+        //            {
+        //                { "Ventas", cbVentas },
+        //                { "Historial Médico", cbHistorialMedico },
+        //                { "Mascotas", cbMascotas },
+        //                { "Dueños", cbDueños },
+        //                { "Citas", cbCitas },
+        //                { "Citas Médicas", cbCitasMedicas },
+        //                { "Medicamentos", cbMedicamentos },
+        //                { "Servicios", cbServicios },
+        //                { "Cortes", cbCortes },
+        //                { "Proveedores", cbProvedores },
+        //                { "Pedidos", cbPedidos },
+        //                { "Productos", cbProductos },
+        //                { "Empleados", cbEmpleados }
+        //            };
+
+        //        foreach (var modulo in modulosCheckBox)
+        //        {
+        //            bool estaMarcado = modulo.Value.Checked;
+        //            bool yaAsignado = modulosAsignados.ContainsKey(modulo.Key);
+
+        //            if (estaMarcado && !yaAsignado)  // Insertar si está marcado y no está asignado
+        //            {
+        //                string insertarModuloQuery = @"
+        //            INSERT INTO TipoEmpleado_Modulo (idTipoEmpleado, idModulo) 
+        //            VALUES (@idTipoEmpleado, (SELECT idModulo FROM Modulo WHERE nombre = @nombreModulo))";
+
+        //                using (SqlCommand comandoSQL = new SqlCommand(insertarModuloQuery, conexionDB.GetConexion()))
+        //                {
+        //                    comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+        //                    comandoSQL.Parameters.AddWithValue("@nombreModulo", modulo.Key);
+        //                    comandoSQL.ExecuteNonQuery();
+        //                }
+        //            }
+        //            else if (!estaMarcado && yaAsignado)  // Eliminar si NO está marcado pero está asignado
+        //            {
+        //                string eliminarModuloQuery = @"
+        //            DELETE FROM TipoEmpleado_Modulo 
+        //            WHERE idTipoEmpleado = @idTipoEmpleado 
+        //            AND idModulo = (SELECT idModulo FROM Modulo WHERE nombre = @nombreModulo)";
+
+        //                using (SqlCommand comandoSQL = new SqlCommand(eliminarModuloQuery, conexionDB.GetConexion()))
+        //                {
+        //                    comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+        //                    comandoSQL.Parameters.AddWithValue("@nombreModulo", modulo.Key);
+        //                    comandoSQL.ExecuteNonQuery();
+        //                }
+        //            }
+        //        }
+
+        //        MessageBox.Show("Tipo de empleado actualizado correctamente.");
+        //    }
+        //    catch (Exception error)
+        //    {
+        //        MessageBox.Show("Error al actualizar el tipo de empleado: " + error.Message);
+        //    }
+        //    finally
+        //    {
+        //        conexionDB.CerrarConexion();
+        //    }
+        //}
+
+        private void ActualizarTipoEmpleado()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string actualizarNombreQuery = @"UPDATE TipoEmpleado 
+                SET nombre = @nombre
+                WHERE idTipoEmpleado = @idTipoEmpleado";
+
+                using (SqlCommand comandoSQL = new SqlCommand(actualizarNombreQuery, conexionDB.GetConexion()))
+                {
+                    comandoSQL.Parameters.AddWithValue("@nombre", txtNombre.Text);
+                    comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+                    comandoSQL.ExecuteNonQuery();
+                }
+
+
+                Dictionary<string, bool> modulosAsignados = new Dictionary<string, bool>();
+
+                string obtenerModulosQuery = @"SELECT Modulo.nombre 
+                FROM TipoEmpleado_Modulo
+                INNER JOIN Modulo ON TipoEmpleado_Modulo.idModulo = Modulo.idModulo
+                WHERE TipoEmpleado_Modulo.idTipoEmpleado = @idTipoEmpleado";
+
+                using (SqlCommand comandoSQL = new SqlCommand(obtenerModulosQuery, conexionDB.GetConexion()))
+                {
+                    comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+                    SqlDataReader lectorSQL = comandoSQL.ExecuteReader();
+
+                    while (lectorSQL.Read())
+                    {
+                        modulosAsignados[lectorSQL["nombre"].ToString()] = true;
+                    }
+
+                    lectorSQL.Close();
+                }
+
+                Dictionary<string, CheckBox> modulosCheckBox = new Dictionary<string, CheckBox>()
+                {
+                    { "Ventas", cbVentas },
+                    { "Historial Médico", cbHistorialMedico },
+                    { "Mascotas", cbMascotas },
+                    { "Dueños", cbDueños },
+                    { "Citas", cbCitas },
+                    { "Citas Médicas", cbCitasMedicas },
+                    { "Medicamentos", cbMedicamentos },
+                    { "Servicios", cbServicios },
+                    { "Cortes", cbCortes },
+                    { "Proveedores", cbProvedores },
+                    { "Pedidos", cbPedidos },
+                    { "Productos", cbProductos },
+                    { "Empleados", cbEmpleados }
+                };
+
+                foreach (var modulo in modulosCheckBox)
+                {
+                    bool estaMarcado = modulo.Value.Checked;
+                    bool yaAsignado = modulosAsignados.ContainsKey(modulo.Key);
+
+                    if (estaMarcado && !yaAsignado)  // Insertar si está marcado y no está asignado
+                    {
+                        // Obtener idModulo antes de insertar
+                        string obtenerIdModuloQuery = "SELECT idModulo FROM Modulo WHERE nombre = @nombreModulo";
+                        int? idModulo = null;
+
+                        using (SqlCommand comandoSQL = new SqlCommand(obtenerIdModuloQuery, conexionDB.GetConexion()))
+                        {
+                            comandoSQL.Parameters.AddWithValue("@nombreModulo", modulo.Key);
+                            object resultado = comandoSQL.ExecuteScalar();
+                            if (resultado != null)
+                            {
+                                idModulo = Convert.ToInt32(resultado);
+                            }
+                        }
+
+                        if (idModulo.HasValue) // Solo insertar si encontró un idModulo válido
+                        {
+                            string insertarModuloQuery = @"INTO TipoEmpleado_Modulo (idTipoEmpleado, idModulo) 
+                            VALUES (@idTipoEmpleado, @idModulo)";
+
+                            using (SqlCommand comandoSQL = new SqlCommand(insertarModuloQuery, conexionDB.GetConexion()))
+                            {
+                                comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+                                comandoSQL.Parameters.AddWithValue("@idModulo", idModulo.Value);
+                                comandoSQL.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                    else if (!estaMarcado && yaAsignado)  // Eliminar si NO está marcado pero está asignado
+                    {
+                        string eliminarModuloQuery = @"
+                        DELETE FROM TipoEmpleado_Modulo 
+                        WHERE idTipoEmpleado = @idTipoEmpleado 
+                        AND idModulo = (SELECT idModulo FROM Modulo WHERE nombre = @nombreModulo)";
+
+                        using (SqlCommand comandoSQL = new SqlCommand(eliminarModuloQuery, conexionDB.GetConexion()))
+                        {
+                            comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+                            comandoSQL.Parameters.AddWithValue("@nombreModulo", modulo.Key);
+                            comandoSQL.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                MessageBox.Show("Tipo de empleado actualizado correctamente.");
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error al actualizar el tipo de empleado: " + error.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpConsultarTipoEmpleado(parentForm));
+            ActualizarTipoEmpleado();
+            int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+            EmpConsultarTipoEmpleado formularioHijo = new EmpConsultarTipoEmpleado(parentForm);
+            formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+            parentForm.formularioHijo(formularioHijo);
+
+            //parentForm.formularioHijo(new EmpConsultarTipoEmpleado(parentForm));
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpConsultarTipoEmpleado(parentForm));
+            int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+            EmpConsultarTipoEmpleado formularioHijo = new EmpConsultarTipoEmpleado(parentForm);
+            formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+            parentForm.formularioHijo(formularioHijo);
+            //parentForm.formularioHijo(new EmpConsultarTipoEmpleado(parentForm));
         }
     }
 }
