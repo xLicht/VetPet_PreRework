@@ -17,7 +17,7 @@ namespace VetPet_
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
-
+        private string nombreMascota;
         private Form1 parentForm;
         public MascotasEliminarConfirm()
         {
@@ -27,10 +27,11 @@ namespace VetPet_
             this.Resize += MascotasEliminarConfirm_Resize;   // Evento Resize
         }
 
-        public MascotasEliminarConfirm(Form1 parent)
+        public MascotasEliminarConfirm(Form1 parent, string nombreMascota)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+            textBox4.Text = nombreMascota;
         }
 
         private void MascotasEliminarConfirm_Load(object sender, EventArgs e)
@@ -72,7 +73,8 @@ namespace VetPet_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm)); // Pasamos la referencia de Form1 a 
+            string nombreMascota = textBox4.Text;  
+            parentForm.formularioHijo(new MascotasModificar(parentForm, nombreMascota)); // Pasamos la referencia de Form1 a 
         }
 
         private void button2_Click(object sender, EventArgs e)

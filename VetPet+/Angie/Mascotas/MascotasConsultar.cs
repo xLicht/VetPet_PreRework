@@ -19,9 +19,10 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        private Mismetodos metodos = new Mismetodos();
+        private Mismetodos mismetodos = new Mismetodos();
 
         private Form1 parentForm;
+        private string nombreMascota;
         public MascotasConsultar()
         {
             InitializeComponent();
@@ -29,14 +30,109 @@ namespace VetPet_
             this.Load += MascotasConsultar_Load;       // Evento Load
             this.Resize += MascotasConsultar_Resize;   // Evento Resize
             //comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
-            comboBox1.KeyDown += comboBox1_KeyDown;
         }
 
-        public MascotasConsultar(Form1 parent)
+        public MascotasConsultar(Form1 parent, string nombreMascota)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+            mismetodos = new Mismetodos();
+            this.nombreMascota = nombreMascota;
+            CargarDetallesMascota();
+
         }
+
+        private void CargarDetallesMascota()
+        {
+                    string query = @"
+          SELECT 
+               Mascota.nombre AS Nombre,
+               Especie.nombre AS Especie,
+               Raza.nombre AS Raza,
+               Mascota.fechaNacimiento AS FechaNacimiento,
+               Mascota.peso AS Peso,
+               Mascota.sexo AS Sexo,
+               Mascota.esterilizado AS Esterilizado,
+               STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
+           FROM 
+               Mascota
+           INNER JOIN 
+               Especie ON Mascota.idEspecie = Especie.idEspecie
+           INNER JOIN 
+               Raza ON Mascota.idRaza = Raza.idRaza
+           LEFT JOIN 
+               Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
+           LEFT JOIN 
+               Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+           WHERE 
+               Mascota.nombre = @nombreMascota
+           GROUP BY 
+               Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
+           ";
+            try
+            {
+                // Abrir la conexión
+                mismetodos.AbrirConexion();
+
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    comando.Parameters.AddWithValue("@nombreMascota", nombreMascota);
+
+                    // Ejecutar la consulta y leer los datos
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            DateTime fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
+
+                            // Calcular la edad de la mascota
+                            int edad = DateTime.Now.Year - fechaNacimiento.Year;
+                            if (DateTime.Now < fechaNacimiento.AddYears(edad)) edad--;
+
+                            // Asignar valores a los controles del formulario
+                            textBox1.Text = reader["Nombre"].ToString();
+                            textBox2.Text = reader["Especie"].ToString();
+                            textBox3.Text = reader["Raza"].ToString();
+                            textBox5.Text = reader["FechaNacimiento"].ToString();
+                            textBox6.Text = $"{reader["Peso"]} kg"; 
+                            textBox4.Text = $"{edad} años";
+
+                            // Sexo
+                            string sexo = reader["Sexo"].ToString();
+                            if (sexo == "M") radioButton1.Checked = true; // Masculino
+                            if (sexo == "F") radioButton2.Checked = true; // Femenino
+
+                            // Esterilizado
+                            string esterilizado = reader["Esterilizado"].ToString();
+                            if (esterilizado == "S") radioButton6.Checked = true; // Sí
+                            if (esterilizado == "N") radioButton5.Checked = true; // No
+
+                            // Sensibilidades
+                            string sensibilidades = reader["Sensibilidades"].ToString();
+                            richTextBox1.Text = string.IsNullOrEmpty(sensibilidades)
+                                ? "Sin sensibilidades registradas"
+                                : sensibilidades;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron detalles para esta mascota.", "Información");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
+        }
+
+
 
         private void MascotasConsultar_Load(object sender, EventArgs e)
         {
@@ -77,7 +173,7 @@ namespace VetPet_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasModificar(parentForm, nombreMascota)); // Pasamos la referencia de Form1 a 
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -90,70 +186,6 @@ namespace VetPet_
             parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
-        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Verificar si la tecla presionada es "Enter"
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Obtener el texto ingresado por el usuario
-                string nuevaEspecie = comboBox1.Text;
-
-                // Verificar si la especie ya existe en la base de datos
-                if (!metodos.Existe ("SELECT COUNT(*) FROM especie WHERE nombre = @nombre",nuevaEspecie))
-                {
-                    // Preguntar al usuario si desea crear la nueva especie
-                    DialogResult result = MessageBox.Show(
-                        $"La especie '{nuevaEspecie}' no existe. ¿Desea crearla?",
-                        "Crear nueva especie",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
-                    if (result == DialogResult.Yes)
-                    {
-                        metodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
-                        MessageBox.Show("Especie creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        metodos.ActualizarComboBox(comboBox1,"SELECT nombre FROM especie", "nombre");   
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La especie ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Verificar si la tecla presionada es "Enter"
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Obtener el texto ingresado por el usuario
-                string nuevaRaza = comboBox1.Text;
-
-                // Verificar si la especie ya existe en la base de datos
-                if (!metodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
-                {
-                    // Preguntar al usuario si desea crear la nueva especie
-                    DialogResult result = MessageBox.Show(
-                        $"La raza '{nuevaRaza}' no existe. ¿Desea crearla?",
-                        "Crear nueva raza",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
-                    if (result == DialogResult.Yes)
-                    {
-                        metodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
-                        MessageBox.Show("Raza creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        metodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM raza", "nombre");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La raza ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
+       
     }
 }

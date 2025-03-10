@@ -31,10 +31,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dueño = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Especie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -92,11 +88,6 @@
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
-            this.Dueño,
-            this.Especie,
-            this.FechaNac});
             this.dataGridView1.GridColor = System.Drawing.Color.Blue;
             this.dataGridView1.Location = new System.Drawing.Point(101, 207);
             this.dataGridView1.Name = "dataGridView1";
@@ -106,30 +97,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1205, 395);
             this.dataGridView1.TabIndex = 69;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Dueño";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            // 
-            // Dueño
-            // 
-            this.Dueño.HeaderText = "Nombre";
-            this.Dueño.MinimumWidth = 6;
-            this.Dueño.Name = "Dueño";
-            // 
-            // Especie
-            // 
-            this.Especie.HeaderText = "Especie";
-            this.Especie.MinimumWidth = 6;
-            this.Especie.Name = "Especie";
-            // 
-            // FechaNac
-            // 
-            this.FechaNac.HeaderText = "Fecha de Nacimiento";
-            this.FechaNac.MinimumWidth = 6;
-            this.FechaNac.Name = "FechaNac";
             // 
             // button2
             // 
@@ -276,10 +243,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dueño;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Especie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaNac;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox2;

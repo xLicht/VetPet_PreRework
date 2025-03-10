@@ -10,8 +10,8 @@ namespace VetPet_.Angie.Mascotas
 {
     internal class Mismetodos
     {
-        public readonly string cadenaConexion = @"Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus";
-        private SqlConnection conexion;
+        public readonly string cadenaConexion = @"Data Source=127.0.0.1;Initial Catalog=VetPetPlus;Integrated Security=True;";
+        public SqlConnection conexion;
 
         public Mismetodos()
         {
@@ -20,12 +20,26 @@ namespace VetPet_.Angie.Mascotas
 
         public void AbrirConexion()
         {
-            if (conexion.State == System.Data.ConnectionState.Closed)
+            try
             {
-                conexion.Open();
+                if (conexion == null)
+                {
+                    throw new InvalidOperationException("La conexión no está inicializada.");
+                }
+
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                {
+                    conexion.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
+                throw;
             }
         }
 
+     
         public void CerrarConexion()
         {
             if (conexion.State == System.Data.ConnectionState.Open)
