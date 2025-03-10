@@ -433,6 +433,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_button_251 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-button-251", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_cancelar_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancelar-50", resourceCulture);

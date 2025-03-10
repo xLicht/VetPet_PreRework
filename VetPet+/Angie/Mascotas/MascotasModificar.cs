@@ -228,7 +228,7 @@ namespace VetPet_
                     comando.Parameters.AddWithValue("@especie", comboBox1.Text);
                     comando.Parameters.AddWithValue("@raza", comboBox2.Text);
                     comando.Parameters.AddWithValue("@fechaNacimiento", dateTimePicker1.Value);
-                    comando.Parameters.AddWithValue("@peso", decimal.Parse(textBox6.Text.Replace(" kg", "")));
+                    comando.Parameters.AddWithValue("@peso", decimal.Parse(textBox6.Text.Replace("kg", "")));
                     comando.Parameters.AddWithValue("@sexo", radioButton1.Checked ? "M" : "F");
                     comando.Parameters.AddWithValue("@esterilizado", radioButton6.Checked ? "S" : "N");
 
