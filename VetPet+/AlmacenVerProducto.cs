@@ -57,7 +57,9 @@ namespace VetPet_
                     pr.descripcion AS Descripcion,
                     ma.idMarca AS idMarca,
                     tp.idTipoProducto AS idTipoProducto,
-                    pro.idProveedor AS idProveedor
+                    pro.idProveedor AS idProveedor,
+                    pr.fechaRegistro AS fechaRegistro,
+                    pr.estado AS estado
                 FROM Producto pr
                 JOIN Marca ma ON pr.idMarca = ma.idMarca
                 JOIN TipoProducto tp ON pr.idTipoProducto = tp.idTipoProducto
@@ -78,11 +80,9 @@ namespace VetPet_
                     txtPrecioProveedor.Text = reader["PrecioProveedor"].ToString();
                     txtCantidad.Text = reader["Cantidad"].ToString();
                     txtStock.Text = reader["Stock"].ToString();
-                    cmbIdMarca.Text = reader["Marca"].ToString();
-                    cmbIdTipoProducto.Text = reader["TipoProducto"].ToString();
-                    cmbIdProveedor.Text = reader["Proveedor"].ToString();
                     txtDescripcion.Text = reader["Descripcion"].ToString();
-
+                    cmbEstado.Text = reader["estado"].ToString();
+                    txtFechaRegistro.Text = reader["fechaRegistro"].ToString();
                     txtIdMarca.Text = reader["idMarca"].ToString();
                     txtIdProveedor.Text = reader["idTipoProducto"].ToString();
                     txtIdTipoProducto.Text = reader["idProveedor"].ToString();

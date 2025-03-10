@@ -359,14 +359,14 @@ namespace VetPet_
 
                 // Consulta SQL para filtrar productos por fechaRegistro
                 string query = @"
-            SELECT 
-                p.nombre AS Nombre,
-                p.precioVenta AS Precio,
-                p.cantidad AS Cantidad,
-                m.nombre AS Marca
-            FROM Producto p
-            JOIN Marca m ON p.idMarca = m.idMarca
-            WHERE CAST(p.fechaRegistro AS DATE) = @fechaSeleccionada;";
+                SELECT 
+                    p.nombre AS Nombre,
+                    p.precioVenta AS Precio,
+                    p.cantidad AS Cantidad,
+                    m.nombre AS Marca
+                FROM Producto p
+                JOIN Marca m ON p.idMarca = m.idMarca
+                WHERE CAST(p.fechaRegistro AS DATE) = @fechaSeleccionada;";
 
                 // Crear un SqlDataAdapter con la conexión
                 SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
