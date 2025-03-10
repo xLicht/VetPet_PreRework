@@ -81,31 +81,31 @@ namespace VetPet_
                             }
                         }
                     }
-                
-
-                // Consulta para obtener detalles de la mascota
                 string query = @"
-            SELECT 
-                Mascota.nombre AS Nombre,
-                Especie.nombre AS Especie,
-                Raza.nombre AS Raza,
-                Mascota.fechaNacimiento AS FechaNacimiento,
-                Mascota.peso AS Peso,
-                Mascota.sexo AS Sexo,
-                Mascota.esterilizado AS Esterilizado,
-                STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
-            FROM 
-                Mascota
-            INNER JOIN 
-                Especie ON Mascota.idEspecie = Especie.idEspecie
-            INNER JOIN 
-                Raza ON Mascota.idRaza = Raza.idRaza
-            LEFT JOIN 
-                Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
-            WHERE 
-                Mascota.nombre = @nombreMascota
-            GROUP BY 
-                Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado";
+          SELECT 
+               Mascota.nombre AS Nombre,
+               Especie.nombre AS Especie,
+               Raza.nombre AS Raza,
+               Mascota.fechaNacimiento AS FechaNacimiento,
+               Mascota.peso AS Peso,
+               Mascota.sexo AS Sexo,
+               Mascota.esterilizado AS Esterilizado,
+               STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
+           FROM 
+               Mascota
+           INNER JOIN 
+               Especie ON Mascota.idEspecie = Especie.idEspecie
+           INNER JOIN 
+               Raza ON Mascota.idRaza = Raza.idRaza
+           LEFT JOIN 
+               Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
+           LEFT JOIN 
+               Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+           WHERE 
+               Mascota.nombre = @nombreMascota
+           GROUP BY 
+               Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
+           ";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
