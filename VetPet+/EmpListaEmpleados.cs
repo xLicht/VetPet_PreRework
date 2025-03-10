@@ -76,15 +76,22 @@ namespace VetPet_
                     }
                 }
 
-                string filtroNombre = txtBuscar.Text; 
+                string filtroNombre = txtBuscar.Text;
 
-                string query = $@"
-                    SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
-                           t.nombre AS tipoEmpleado, p.Celular
+                //string query = $@"
+                //    SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
+                //           t.nombre AS tipoEmpleado, p.Celular
+                //    FROM Empleado e
+                //    JOIN Persona p ON e.idPersona = p.idPersona
+                //    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
+                //    WHERE p.nombre LIKE @nombreFiltro
+                //    ORDER BY {ordenColumna};";
+                string query = $@"SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
+                    t.nombre AS tipoEmpleado, p.Celular
                     FROM Empleado e
                     JOIN Persona p ON e.idPersona = p.idPersona
                     JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                    WHERE p.nombre LIKE @nombreFiltro
+                    WHERE p.nombre LIKE @nombreFiltro AND p.estado = 'A' 
                     ORDER BY {ordenColumna};";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))

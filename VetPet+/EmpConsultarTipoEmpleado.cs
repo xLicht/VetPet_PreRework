@@ -176,6 +176,41 @@ namespace VetPet_
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("¿Está seguro de que desea eliminar este Tipo de Empleado?","Confirmar Eliminación",MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                try
+                {
+                    conexionDB.AbrirConexion();
+
+                    string query = @"UPDATE TipoEmpleado 
+                             SET estado = 'I' 
+                             WHERE idTipoEmpleado = @idTipoEmpleado";
+
+                    using (SqlCommand comandoSQL = new SqlCommand(query, conexionDB.GetConexion()))
+                    {
+                        comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+                        int filasAfectadas = comandoSQL.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Tipo de Empleado eliminado correctamente.");
+                            parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el Tipo de Empleado o ya estaba eliminado.");
+                        }
+                    }
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Error al eliminar el Tipo de Empleado: " + error.Message);
+                }
+                finally
+                {
+                    conexionDB.CerrarConexion();
+                }
+            }
             parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
         }
 
