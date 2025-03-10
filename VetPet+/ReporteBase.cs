@@ -102,7 +102,7 @@ namespace Pruebas_PDF
         {
             try
             {
-                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-DESKTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
+                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-LAPTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
                 //MessageBox.Show("Conexión establecida correctamente");
                 return conexion;
 

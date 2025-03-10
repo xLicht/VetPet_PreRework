@@ -56,15 +56,15 @@ namespace VetPet_
             Documento.Add(new Paragraph("\n"));
             Documento.Add(new Paragraph("\n"));
 
-           
 
+            PdfPTable tabla = null;
             string[,] datos;
             // ESTO ES REDUCIBLE CON UN METODO
             if (tipoReporte == "01")
             {
                 datos = ConsultaRep01(ConexionSQL());
                 // 🔹 Crear tabla con dos columnas (Razón - Veces)
-                PdfPTable tabla = new PdfPTable(5);
+                tabla = new PdfPTable(5);
                 tabla.WidthPercentage = 80;
                 tabla.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabla.SetWidths(new float[] { 1, 1 });
@@ -109,7 +109,7 @@ namespace VetPet_
             else if (tipoReporte == "02")
             {
                 // 🔹 Crear tabla con dos columnas (Razón - Veces)
-                PdfPTable tabla = new PdfPTable(5);
+                tabla = new PdfPTable(5);
                 tabla.WidthPercentage = 80;
                 tabla.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabla.SetWidths(new float[] { 1, 1 });
@@ -155,7 +155,7 @@ namespace VetPet_
             else if (tipoReporte == "03")
             {
                 // 🔹 Crear tabla con dos columnas (Razón - Veces)
-                PdfPTable tabla = new PdfPTable(6);
+                tabla = new PdfPTable(6);
                 tabla.WidthPercentage = 80;
                 tabla.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabla.SetWidths(new float[] { 1, 1 });
@@ -208,7 +208,7 @@ namespace VetPet_
             else if (tipoReporte == "04")
             {
                 // 🔹 Crear tabla con dos columnas (Razón - Veces)
-                PdfPTable tabla = new PdfPTable(6);
+                tabla = new PdfPTable(6);
                 tabla.WidthPercentage = 80;
                 tabla.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabla.SetWidths(new float[] { 1, 1 });
@@ -257,14 +257,14 @@ namespace VetPet_
                     }
                 }
             }
-            else if (tipoReporte == "05")
-                datos = ConsultaRep05(ConexionSQL());
-            else if (tipoReporte == "06")
-                datos = ConsultaRep06(ConexionSQL());
-            else if (tipoReporte == "07")
-                datos = ConsultaRep07(ConexionSQL());
-            else if (tipoReporte == "08")
-                datos = ConsultaRep08(ConexionSQL());
+            //else if (tipoReporte == "05")
+            //    datos = ConsultaRep05(ConexionSQL());
+            //else if (tipoReporte == "06")
+            //    datos = ConsultaRep06(ConexionSQL());
+            //else if (tipoReporte == "07")
+            //    datos = ConsultaRep07(ConexionSQL());
+            //else if (tipoReporte == "08")
+            //    datos = ConsultaRep08(ConexionSQL());
 
             
 
