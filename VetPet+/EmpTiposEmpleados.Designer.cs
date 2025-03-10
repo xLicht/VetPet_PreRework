@@ -36,10 +36,10 @@
             this.r = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.dtTipoEmpleado = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.a)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTipoEmpleado)).BeginInit();
@@ -81,7 +81,7 @@
             this.a.Size = new System.Drawing.Size(50, 47);
             this.a.TabIndex = 129;
             this.a.TabStop = false;
-            this.a.Click += new System.EventHandler(this.a_Click);
+            this.a.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnAgregar
             // 
@@ -151,17 +151,6 @@
             this.dtTipoEmpleado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtTipoEmpleado_CellClick);
             this.dtTipoEmpleado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(68, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 30);
-            this.label5.TabIndex = 124;
-            this.label5.Text = "Filtrar";
-            // 
             // Column3
             // 
             this.Column3.HeaderText = "IdTipo";
@@ -176,6 +165,17 @@
             // 
             this.Column2.HeaderText = "Modulos de Acceso";
             this.Column2.Name = "Column2";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label5.Location = new System.Drawing.Point(68, 84);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 30);
+            this.label5.TabIndex = 124;
+            this.label5.Text = "Filtrar";
             // 
             // EmpTiposEmpleados
             // 

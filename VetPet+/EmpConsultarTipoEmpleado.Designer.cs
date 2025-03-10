@@ -79,7 +79,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(341, 40);
+            this.label16.Location = new System.Drawing.Point(338, 30);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(415, 37);
             this.label16.TabIndex = 418;
@@ -96,7 +96,7 @@
             this.r.Size = new System.Drawing.Size(53, 42);
             this.r.TabIndex = 416;
             this.r.TabStop = false;
-            this.r.Click += new System.EventHandler(this.r_Click);
+            this.r.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnRegresar
             // 
@@ -133,13 +133,13 @@
             this.e.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.e.BackgroundImage = global::VetPet_.Properties.Resources.DueEliminar;
             this.e.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.e.Location = new System.Drawing.Point(972, 506);
+            this.e.Location = new System.Drawing.Point(972, 509);
             this.e.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.e.Name = "e";
             this.e.Size = new System.Drawing.Size(43, 42);
             this.e.TabIndex = 437;
             this.e.TabStop = false;
-            this.e.Click += new System.EventHandler(this.e_Click);
+            this.e.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // m
             // 
@@ -152,7 +152,7 @@
             this.m.Size = new System.Drawing.Size(43, 42);
             this.m.TabIndex = 439;
             this.m.TabStop = false;
-            this.m.Click += new System.EventHandler(this.m_Click);
+            this.m.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnModificar
             // 
