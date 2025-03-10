@@ -39,20 +39,23 @@ namespace VetPet_.Angie
                 // Abrir conexión
                 mismetodos.AbrirConexion();
 
-                // Consulta SQL
                 string query = @"
-                    SELECT 
-                        Mascota.nombre AS Mascota,
-                        Persona.nombre AS Dueño,
-                        Especie.nombre AS Especie,
-                        Mascota.fechaNacimiento AS Fecha_Nacimiento
-                    FROM 
-                        Mascota
-                    INNER JOIN 
-                        Persona ON Mascota.idPersona = Persona.idPersona
-                    INNER JOIN 
-                        Especie ON Mascota.idEspecie = Especie.idEspecie;
-                    ";
+                SELECT 
+                    Mascota.idMascota, 
+                    Mascota.nombre AS Mascota,
+                    Persona.nombre AS Dueño,
+                    Especie.nombre AS Especie,
+                    Mascota.fechaNacimiento AS Fecha_Nacimiento
+                FROM 
+                    Mascota
+                INNER JOIN 
+                    Persona ON Mascota.idPersona = Persona.idPersona
+                INNER JOIN 
+                    Especie ON Mascota.idEspecie = Especie.idEspecie
+                WHERE 
+                    Mascota.estado <> 'D'; 
+                ";
+
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -64,6 +67,8 @@ namespace VetPet_.Angie
 
                     // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
+                    dataGridView1.Columns["idMascota"].Visible = false; // Oculta la columna
+
                 }
             }
             catch (Exception ex)
@@ -119,17 +124,17 @@ namespace VetPet_.Angie
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {            
+        {
             try
             {
                 if (e.RowIndex >= 0)
                 {
-                    // Obtener el nombre de la mascota de la fila seleccionada
+                    // Obtener el idMascota y nombre de la mascota seleccionada
+                    int idMascota = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idMascota"].Value);
                     string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
-                    // Abrir el formulario de detalles de la mascota
-                    parentForm.formularioHijo(new MascotasConsultar(parentForm,nombreMascota));
-      
+                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
                 }
             }
             catch (Exception ex)
@@ -137,6 +142,7 @@ namespace VetPet_.Angie
                 MessageBox.Show("Error: " + ex.Message, "Error");
             }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

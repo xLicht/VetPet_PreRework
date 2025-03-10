@@ -20,8 +20,8 @@ namespace VetPet_
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Mismetodos mismetodos = new Mismetodos();
-
         private Form1 parentForm;
+        private int idMascota;
         private string nombreMascota;
         public MascotasConsultar()
         {
@@ -32,43 +32,42 @@ namespace VetPet_
             //comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
-        public MascotasConsultar(Form1 parent, string nombreMascota)
+        public MascotasConsultar(Form1 parent, int idMascota, string nombreMascota)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
             mismetodos = new Mismetodos();
+            this.idMascota = idMascota;
             this.nombreMascota = nombreMascota;
             CargarDetallesMascota();
-
         }
 
         private void CargarDetallesMascota()
         {
-                    string query = @"
-          SELECT 
-               Mascota.nombre AS Nombre,
-               Especie.nombre AS Especie,
-               Raza.nombre AS Raza,
-               Mascota.fechaNacimiento AS FechaNacimiento,
-               Mascota.peso AS Peso,
-               Mascota.sexo AS Sexo,
-               Mascota.esterilizado AS Esterilizado,
-               STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
-           FROM 
-               Mascota
-           INNER JOIN 
-               Especie ON Mascota.idEspecie = Especie.idEspecie
-           INNER JOIN 
-               Raza ON Mascota.idRaza = Raza.idRaza
-           LEFT JOIN 
-               Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
-           LEFT JOIN 
-               Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
-           WHERE 
-               Mascota.nombre = @nombreMascota
-           GROUP BY 
-               Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
-           ";
+            string query = @"
+                      SELECT 
+                 Mascota.nombre AS Nombre,
+                 Especie.nombre AS Especie,
+                 Raza.nombre AS Raza,
+                 Mascota.fechaNacimiento AS FechaNacimiento,
+                 Mascota.peso AS Peso,
+                 Mascota.sexo AS Sexo,
+                 Mascota.esterilizado AS Esterilizado,
+                 STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
+             FROM 
+                 Mascota
+             INNER JOIN 
+                 Especie ON Mascota.idEspecie = Especie.idEspecie
+             INNER JOIN 
+                 Raza ON Mascota.idRaza = Raza.idRaza
+             LEFT JOIN 
+                 Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
+             LEFT JOIN 
+                 Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+            WHERE Mascota.idMascota = @idMascota
+             GROUP BY 
+                 Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
+            ";
             try
             {
                 // Abrir la conexión
@@ -76,7 +75,7 @@ namespace VetPet_
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
-                    comando.Parameters.AddWithValue("@nombreMascota", nombreMascota);
+                    comando.Parameters.AddWithValue("@idMascota", idMascota);
 
                     // Ejecutar la consulta y leer los datos
                     using (SqlDataReader reader = comando.ExecuteReader())
@@ -132,8 +131,6 @@ namespace VetPet_
             }
         }
 
-
-
         private void MascotasConsultar_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -173,7 +170,7 @@ namespace VetPet_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm, nombreMascota)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasModificar(parentForm,idMascota, nombreMascota)); // Pasamos la referencia de Form1 a 
         }
 
         private void button3_Click(object sender, EventArgs e)

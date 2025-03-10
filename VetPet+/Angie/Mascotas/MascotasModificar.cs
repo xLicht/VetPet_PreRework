@@ -26,28 +26,23 @@ namespace VetPet_
 
         private Form1 parentForm;
 
-        public MascotasModificar()
+        public MascotasModificar(Form1 parent, int idMascota, string nombreMascota)
         {
-            InitializeComponent();
             InitializeComponent();
             this.Load += MascotasModificar_Load;       // Evento Load
             this.Resize += MascotasModificar_Resize;   // Evento Resize
-
             comboBox1.KeyDown += comboBox1_KeyDown;
-        }
-
-        public MascotasModificar(Form1 parent, string nombreMascota)
-        {
-            InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nombreMascota = nombreMascota;
+            this.idMascota = idMascota;
             CargarMascota();
         }
+
+    
         private void CargarMascota()
         {
             try
             {
-                // Abrir la conexión una vez
                 mismetodos.AbrirConexion();
 
                 // Cargar las especies
@@ -66,46 +61,48 @@ namespace VetPet_
                     }
                 }
 
-                    // Consulta para obtener razas según la especie seleccionada
-                    string queryRazas = @"
-                SELECT nombre FROM Raza ORDER BY nombre";
+                // Consulta para obtener razas según la especie seleccionada
+                string queryRazas = @"
+        SELECT nombre FROM Raza ORDER BY nombre";
 
-                    using (SqlCommand comandoRazas = new SqlCommand(queryRazas, mismetodos.GetConexion()))
+                using (SqlCommand comandoRazas = new SqlCommand(queryRazas, mismetodos.GetConexion()))
+                {
+
+                    using (SqlDataReader readerRazas = comandoRazas.ExecuteReader())
                     {
-
-                        using (SqlDataReader readerRazas = comandoRazas.ExecuteReader())
+                        while (readerRazas.Read())
                         {
-                            while (readerRazas.Read())
-                            {
-                                comboBox2.Items.Add(readerRazas["nombre"].ToString());
-                            }
+                            comboBox2.Items.Add(readerRazas["nombre"].ToString());
                         }
                     }
+                }
+
                 string query = @"
-          SELECT 
-               Mascota.nombre AS Nombre,
-               Especie.nombre AS Especie,
-               Raza.nombre AS Raza,
-               Mascota.fechaNacimiento AS FechaNacimiento,
-               Mascota.peso AS Peso,
-               Mascota.sexo AS Sexo,
-               Mascota.esterilizado AS Esterilizado,
-               STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
-           FROM 
-               Mascota
-           INNER JOIN 
-               Especie ON Mascota.idEspecie = Especie.idEspecie
-           INNER JOIN 
-               Raza ON Mascota.idRaza = Raza.idRaza
-           LEFT JOIN 
-               Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
-           LEFT JOIN 
-               Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
-           WHERE 
-               Mascota.nombre = @nombreMascota
-           GROUP BY 
-               Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
-           ";
+        SELECT 
+            Mascota.idMascota,
+            Mascota.nombre AS Nombre,
+            Especie.nombre AS Especie,
+            Raza.nombre AS Raza,
+            Mascota.fechaNacimiento AS FechaNacimiento,
+            Mascota.peso AS Peso,
+            Mascota.sexo AS Sexo,
+            Mascota.esterilizado AS Esterilizado,
+            STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
+        FROM 
+            Mascota
+        INNER JOIN 
+            Especie ON Mascota.idEspecie = Especie.idEspecie
+        INNER JOIN 
+            Raza ON Mascota.idRaza = Raza.idRaza
+        LEFT JOIN 
+            Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
+        LEFT JOIN 
+            Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+        WHERE 
+            Mascota.nombre = @nombreMascota
+        GROUP BY 
+            Mascota.idMascota, Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
+        ";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
@@ -115,36 +112,29 @@ namespace VetPet_
                     {
                         if (reader.Read())
                         {
+                            // Almacenar el idMascota
+                            idMascota = Convert.ToInt32(reader["idMascota"]);
+
                             DateTime fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
-
-                            // Calcular la diferencia de años entre la fecha actual y la fecha de nacimiento
                             int edad = DateTime.Now.Year - fechaNacimiento.Year;
+                            if (DateTime.Now < fechaNacimiento.AddYears(edad)) edad--;
 
-                            // Ajustar si aún no ha cumplido años este año
-                            if (DateTime.Now < fechaNacimiento.AddYears(edad))
-                            {
-                                edad--;
-                            }
-
-                            // Mostrar los datos en controles del formulario
+                            // Mostrar los datos en los controles
                             textBox1.Text = reader["Nombre"].ToString();
                             comboBox1.Text = reader["Especie"].ToString();
                             comboBox2.Text = reader["Raza"].ToString();
                             textBox6.Text = $"{reader["Peso"]} kg";
-                            textBox4.Text = $"{edad} años"; // Muestra la edad calculada en el textBox7
+                            textBox4.Text = $"{edad} años";
                             dateTimePicker1.Value = fechaNacimiento;
 
-                            // Sexo
                             string sexo = reader["Sexo"].ToString();
-                            if (sexo == "M") radioButton1.Checked = true; // Masculino
-                            if (sexo == "F") radioButton2.Checked = true; // Femenino
+                            if (sexo == "M") radioButton1.Checked = true;
+                            if (sexo == "F") radioButton2.Checked = true;
 
-                            // Esterilizado
                             string esterilizado = reader["Esterilizado"].ToString();
-                            if (esterilizado == "S") radioButton6.Checked = true; // SI
-                            if (esterilizado == "N") radioButton5.Checked = true; // NO
+                            if (esterilizado == "S") radioButton6.Checked = true;
+                            if (esterilizado == "N") radioButton5.Checked = true;
 
-                            // Sensibilidades
                             string sensibilidades = reader["Sensibilidades"].ToString();
                             richTextBox1.Text = string.IsNullOrEmpty(sensibilidades)
                                 ? "Sin sensibilidades registradas"
@@ -165,6 +155,7 @@ namespace VetPet_
             {
                 mismetodos.CerrarConexion();
             }
+
         }
 
 
@@ -207,65 +198,102 @@ namespace VetPet_
 
         private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasEliminarConfirm(parentForm, nombreMascota)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasEliminarConfirm(parentForm,idMascota, nombreMascota)); // Pasamos la referencia de Form1 a 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                // Abrir la conexión
                 mismetodos.AbrirConexion();
 
-                // Obtener los valores de los controles del formulario
-                string nombreMascota = textBox1.Text;
-                string especie = comboBox1.SelectedItem?.ToString();
-                string raza = comboBox2.SelectedItem?.ToString();
-                decimal peso = decimal.Parse(textBox6.Text.Replace(" kg", ""));
-                string sexo = radioButton1.Checked ? "M" : "F";
-                string esterilizado = radioButton6.Checked ? "S" : "N";
-                DateTime fechaNacimiento = dateTimePicker1.Value; // Obtener la fecha del DateTimePicker
-                string sensibilidades = richTextBox1.Text;
+                // Actualizar los datos básicos de la mascota
+                string query = @"
+                UPDATE Mascota
+                SET 
+                    nombre = @nombre,
+                    idEspecie = (SELECT idEspecie FROM Especie WHERE nombre = @especie),
+                    idRaza = (SELECT idRaza FROM Raza WHERE nombre = @raza),
+                    fechaNacimiento = @fechaNacimiento,
+                    peso = @peso,
+                    sexo = @sexo,
+                    esterilizado = @esterilizado
+                WHERE 
+                    idMascota = @idMascota;";
 
-                // Actualizar los datos de la mascota en la tabla Mascota
-                string queryUpdateMascota = @"
-        UPDATE Mascota
-        SET 
-            nombre = @nombre,
-            idEspecie = (SELECT idEspecie FROM Especie WHERE nombre = @especie),
-            idRaza = (SELECT idRaza FROM Raza WHERE nombre = @raza),
-            fechaNacimiento = @fechaNacimiento,
-            peso = @peso,
-            sexo = @sexo,
-            esterilizado = @esterilizado"; 
-
-                using (SqlCommand comando = new SqlCommand(queryUpdateMascota, mismetodos.GetConexion()))
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
-                    comando.Parameters.AddWithValue("@nombre", nombreMascota);
-                    comando.Parameters.AddWithValue("@especie", especie); // Asegúrate de que el nombre del parámetro coincida
-                    comando.Parameters.AddWithValue("@raza", raza);
-                    comando.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
-                    comando.Parameters.AddWithValue("@peso", peso);
-                    comando.Parameters.AddWithValue("@sexo", sexo);
-                    comando.Parameters.AddWithValue("@esterilizado", esterilizado);
+                    comando.Parameters.AddWithValue("@idMascota", idMascota);
+                    comando.Parameters.AddWithValue("@nombre", textBox1.Text); // Nuevo nombre de la mascota
+                    comando.Parameters.AddWithValue("@especie", comboBox1.Text);
+                    comando.Parameters.AddWithValue("@raza", comboBox2.Text);
+                    comando.Parameters.AddWithValue("@fechaNacimiento", dateTimePicker1.Value);
+                    comando.Parameters.AddWithValue("@peso", decimal.Parse(textBox6.Text.Replace(" kg", "")));
+                    comando.Parameters.AddWithValue("@sexo", radioButton1.Checked ? "M" : "F");
+                    comando.Parameters.AddWithValue("@esterilizado", radioButton6.Checked ? "S" : "N");
 
                     int rowsAffected = comando.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Datos de la mascota actualizados correctamente.", "Éxito");
-                        parentForm.formularioHijo(new MascotasConsultar(parentForm, nombreMascota)); // Actualizar la referencia si el nombre cambió
+                        // Eliminar las sensibilidades antiguas
+                        string deleteQuery = "DELETE FROM Mascota_Sensibilidad WHERE idMascota = @idMascota;";
+                        using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, mismetodos.GetConexion()))
+                        {
+                            deleteCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                            deleteCommand.ExecuteNonQuery();
+                        }
+
+                        // Insertar las nuevas sensibilidades
+                        string[] sensibilidades = richTextBox1.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (string sensibilidad in sensibilidades)
+                        {
+                            string sensibilidadTrim = sensibilidad.Trim();
+
+                            // Verificar si la sensibilidad existe y obtener su id
+                            string getIdQuery = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @sensibilidad;";
+                            int idSensibilidad;
+
+                            using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, mismetodos.GetConexion()))
+                            {
+                                getIdCommand.Parameters.AddWithValue("@sensibilidad", sensibilidadTrim);
+                                var result = getIdCommand.ExecuteScalar();
+                                idSensibilidad = result != null ? Convert.ToInt32(result) : -1;
+                            }
+
+                            // Si la sensibilidad no existe, insertarla y obtener su nuevo id
+                            if (idSensibilidad == -1)
+                            {
+                                string insertSensQuery = "INSERT INTO Sensibilidad (nombre) OUTPUT INSERTED.idSensibilidad VALUES (@sensibilidad);";
+                                using (SqlCommand insertSensCommand = new SqlCommand(insertSensQuery, mismetodos.GetConexion()))
+                                {
+                                    insertSensCommand.Parameters.AddWithValue("@sensibilidad", sensibilidadTrim);
+                                    idSensibilidad = (int)insertSensCommand.ExecuteScalar();
+                                }
+                            }
+
+                            // Insertar en Mascota_Sensibilidad
+                            string insertMascotaSensQuery = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad);";
+                            using (SqlCommand insertMascotaSensCommand = new SqlCommand(insertMascotaSensQuery, mismetodos.GetConexion()))
+                            {
+                                insertMascotaSensCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                                insertMascotaSensCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
+                                insertMascotaSensCommand.ExecuteNonQuery();
+                            }
+                        }
+
+                        MessageBox.Show("Datos de la mascota y sensibilidades actualizados correctamente.", "Éxito");
+                        parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró la mascota para actualizar.", "Advertencia");
+                        MessageBox.Show("No se encontró la mascota para actualizar.", "Información");
                     }
-                }
 
-                // Actualizar las sensibilidades (código anterior)
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar las modificaciones: " + ex.Message, "Error");
+                MessageBox.Show("Error: " + ex.Message, "Error");
             }
             finally
             {
@@ -273,9 +301,10 @@ namespace VetPet_
             }
         }
 
+
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasConsultar(parentForm, nombreMascota)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota)); // Pasamos la referencia de Form1 a 
         }
         public string ValidarYFormatearTexto(string texto)
         {
