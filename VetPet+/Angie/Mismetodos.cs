@@ -56,16 +56,13 @@ namespace VetPet_.Angie.Mascotas
         {
             try
             {
-                using (conexion)
+                AbrirConexion();
+                using (SqlCommand comandoEsp = new SqlCommand(query, GetConexion()))
                 {
-                    AbrirConexion();
+;
+                    comandoEsp.Parameters.AddWithValue("@nombre", nombreEspecie);
 
-                    // Consulta para verificar si la especie existe
-
-                    SqlCommand command = new SqlCommand(query, conexion);
-                    command.Parameters.AddWithValue("@nombre", nombreEspecie);
-
-                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    int count = Convert.ToInt32(comandoEsp.ExecuteScalar());
 
                     // Si count es mayor que 0, la especie existe
                     return count > 0;
@@ -76,40 +73,40 @@ namespace VetPet_.Angie.Mascotas
                 MessageBox.Show("Ocurrió un error al verificar la especie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            finally 
+                { CerrarConexion(); }
         }
 
         public void Insertar(string query, string nombreEspecie)
         {
             try
             {
-                using (conexion)
+                AbrirConexion();
+                using (SqlCommand comandoEsp = new SqlCommand(query, GetConexion()))
                 {
-                    AbrirConexion();
 
-                    // Consulta para insertar la nueva especie
-                    SqlCommand command = new SqlCommand(query, conexion);
-                    command.Parameters.AddWithValue("@nombre", nombreEspecie);
+                    comandoEsp.Parameters.AddWithValue("@nombre", nombreEspecie);
 
-                    command.ExecuteNonQuery();
+                    comandoEsp.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al insertar la especie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            { CerrarConexion(); }
         }
 
         public void ActualizarComboBox(ComboBox comboBox1, string query, string campo)
         {
             try
             {
-                using (conexion)
+                AbrirConexion();
+                using (SqlCommand comandoEsp = new SqlCommand(query, GetConexion()))
                 {
-                    AbrirConexion();
 
-                    // Consulta para obtener todas las especies
-                    SqlCommand command = new SqlCommand(query, conexion);
-                    SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader reader = comandoEsp.ExecuteReader();
 
                     // Limpiar los elementos actuales del ComboBox
                     comboBox1.Items.Clear();
@@ -125,6 +122,8 @@ namespace VetPet_.Angie.Mascotas
             {
                 MessageBox.Show("Ocurrió un error al actualizar el ComboBox: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            { CerrarConexion(); }
         }
     }
 }
