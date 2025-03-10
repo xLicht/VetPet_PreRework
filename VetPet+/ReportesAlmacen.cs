@@ -24,11 +24,6 @@ namespace VetPet_
             parentForm = parent;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnProdMasVend_Click(object sender, EventArgs e)
         {
 

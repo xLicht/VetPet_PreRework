@@ -2,6 +2,7 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Pruebas_PDF
@@ -22,18 +23,23 @@ namespace Pruebas_PDF
 
         protected override void AgregarContenido(string tipoReporte)
         {
+            string tituloString = "";
             Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
             Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
             Font tablaHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
             Font tablaFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
 
             // 🔹 Agregar el título del reporte
-            Paragraph titulo = new Paragraph("Reporte de Razón de Cita más Frecuentes", tituloFont);
+            if (tipoReporte == "01") tituloString = "Reporte de Razón de Cita más Frecuentes";
+            else if (tipoReporte == "02") tituloString = "Reporte de Razón de Cita menos Frecuentes";
+
+            Paragraph titulo = new Paragraph(tituloString, tituloFont);
             titulo.Alignment = Element.ALIGN_LEFT;
             Documento.Add(titulo);
-
+            string fechaEmi1 = fecha1.Reverse().ToString().Replace("-", "/");
+            string fechaEmi2 = fecha2.Reverse().ToString().Replace("-", "/");
             // 🔹 Agregar las fechas y el módulo
-            Documento.Add(new Paragraph("Desde: 01/01/2025 – 01/02/2025", textoFont) { Alignment = Element.ALIGN_LEFT });
+            Documento.Add(new Paragraph("Desde: " + fechaEmi1+" – "+fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Módulo: Citas", textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Emisión: " + DateTime.Now));
 
@@ -82,8 +88,10 @@ namespace Pruebas_PDF
             try
             {
                 conex.Open();
-                string q = "SELECT TOP 10 m.nombre AS Razon, COUNT(c.idMotivo) AS cantidad\r\nFROM Cita c\r\nJOIN Motivo m ON c.idMotivo = m.idMotivo\r\nWHERE c.fechaRegistro BETWEEN '2025-03-01' AND '2025-03-08'\r\nGROUP BY m.nombre\r\nORDER BY cantidad DESC;";
+                string q = @"SELECT TOP 10 m.nombre AS Razon, COUNT(c.idMotivo) AS cantidad\r\nFROM Cita c\r\nJOIN Motivo m ON c.idMotivo = m.idMotivo\r\nWHERE c.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY m.nombre\r\nORDER BY cantidad DESC;";
                 SqlCommand comando = new SqlCommand(q, conex);
+                comando.Parameters.AddWithValue("@fechaInicio", fecha1);
+                comando.Parameters.AddWithValue("@fechaFin", fecha2);
                 SqlDataReader lector = comando.ExecuteReader();
                 int i = 0;
                 while (lector.Read())
@@ -111,8 +119,10 @@ namespace Pruebas_PDF
             try
             {
                 conex.Open();
-                string q = "SELECT TOP 10 m.nombre AS Razon, COUNT(c.idMotivo) AS cantidad\r\nFROM Cita c\r\nJOIN Motivo m ON c.idMotivo = m.idMotivo\r\nWHERE c.fechaRegistro BETWEEN '2025-03-01' AND '2025-03-08'\r\nGROUP BY m.nombre\r\nORDER BY cantidad ASC;";
+                string q = @"SELECT TOP 10 m.nombre AS Razon, COUNT(c.idMotivo) AS cantidad\r\nFROM Cita c\r\nJOIN Motivo m ON c.idMotivo = m.idMotivo\r\nWHERE c.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY m.nombre\r\nORDER BY cantidad ASC;";
                 SqlCommand comando = new SqlCommand(q, conex);
+                comando.Parameters.AddWithValue("@fechaInicio", fecha1);
+                comando.Parameters.AddWithValue("@fechaFin", fecha2);
                 SqlDataReader lector = comando.ExecuteReader();
                 int i = 0;
                 while (lector.Read())
