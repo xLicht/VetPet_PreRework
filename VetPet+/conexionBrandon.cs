@@ -9,48 +9,30 @@ namespace VetPet_
 {
     internal class conexionBrandon
     {
-        private readonly string cadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\BDatos\VetPet+\VetPetPlus_.mdf;Integrated Security=True;Connect Timeout=30";
+        public readonly string cadenaConexion = @"Data Source=DESKTOP-0434B1E;Initial Catalog=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
-        // Constructor
         public conexionBrandon()
         {
             conexion = new SqlConnection(cadenaConexion);
         }
 
-        // Método para abrir la conexión
         public void AbrirConexion()
         {
-            try
+            if (conexion.State == System.Data.ConnectionState.Closed)
             {
-                if (conexion.State == System.Data.ConnectionState.Closed)
-                {
-                    conexion.Open();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al abrir la conexión: " + ex.Message);
+                conexion.Open();
             }
         }
 
-        // Método para cerrar la conexión
         public void CerrarConexion()
         {
-            try
+            if (conexion.State == System.Data.ConnectionState.Open)
             {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al cerrar la conexión: " + ex.Message);
+                conexion.Close();
             }
         }
 
-        // Método para obtener la conexión
         public SqlConnection GetConexion()
         {
             return conexion;

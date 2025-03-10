@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using iTextSharp.text;
@@ -13,7 +14,7 @@ namespace Pruebas_PDF
         protected string RutaPDF { get; private set; }
         protected string DirectorioProyecto { get; private set; }
 
-        public ReporteBase(string nombreReporte, string idReporte)
+        public ReporteBase(string nombreReporte)
         {
             DirectorioProyecto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
             string carpetaReportes = Path.Combine(DirectorioProyecto, "Reportes-Arch");
@@ -24,12 +25,12 @@ namespace Pruebas_PDF
             }
 
             // Genera el nombre dinámico del PDF
-            RutaPDF = Path.Combine(carpetaReportes, $"{nombreReporte}_{idReporte}.pdf");
+            RutaPDF = Path.Combine(carpetaReportes, nombreReporte+".pdf");
 
             Documento = new Document(PageSize.A4.Rotate());
         }
 
-        public void GenerarReporte()
+        public void GenerarReporte(string tipoReporte)
         {
             try
             {
@@ -37,7 +38,7 @@ namespace Pruebas_PDF
                 Documento.Open();
 
                 AgregarEncabezado();
-                AgregarContenido();
+                AgregarContenido(tipoReporte);
                 AgregarPiePagina();
 
                 MessageBox.Show($"PDF generado correctamente en:\n{RutaPDF}");
@@ -95,7 +96,24 @@ namespace Pruebas_PDF
             }
         }
 
-        protected abstract void AgregarContenido();
+        protected abstract void AgregarContenido(string tipoReporte);
+
+        public virtual SqlConnection ConexionSQL()
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-DESKTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
+                //MessageBox.Show("Conexión establecida correctamente");
+                return conexion;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
 
         protected virtual void AgregarPiePagina()
         {

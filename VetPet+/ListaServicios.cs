@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +17,7 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+    
         private Form1 parentForm;
         public ListaServicios()
         {
@@ -34,19 +36,41 @@ namespace VetPet_
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
             originalHeight = this.ClientSize.Height;
-            dataGridView1.Rows.Add("Cirugias", "Medico", "Veterinario");
-            dataGridView1.Rows.Add("Rayos X", "Medico", "Veterinario");
-            dataGridView1.Rows.Add("Pruebas de Laboratorio", "Medico", "Veterinario");
-            dataGridView1.Rows.Add("Ultrasonidos", "Medico", "Veterinario");
-            dataGridView1.Rows.Add("Vacunas", "Medico", "Veterinario");
-            dataGridView1.Rows.Add("Radiografías", "Medico", "Veterinario");
-            // Guardar información original de cada control
+            CargarServicios();
             foreach (Control control in this.Controls)
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
         }
-
+        private void CargarServicios()
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT \r\n    sp.nombre AS NombreServicio, \r\n    cs.nombre AS ClaseServicio, \r\n    " +
+                "te.nombre AS TipoEmpleado\r\nFROM ServicioPadre sp\r\nINNER JOIN TipoEmpleado te ON sp.idtipoempleado = " +
+                "te.idtipoempleado\r\nINNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio;";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
         private void ListaServicios_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
@@ -83,12 +107,62 @@ namespace VetPet_
 
         private void BtnTipoDeServicios_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+             // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
+            if (e.ColumnIndex == 1) // La columna 2 tiene índice 1
+            {
+                var valorSeleccionadoColumna2 = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                // Obtener el valor de la celda seleccionada de la columna 1 (primera columna)
+                var valorSeleccionadoColumna1 = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                // Guardar el valor de la primera columna en una variable
+                string primeraColumna = valorSeleccionadoColumna1;
+
+                // Ahora puedes usar la variable 'primeraColumna' como lo necesites
+                conexionAlex conexion = new conexionAlex();
+                conexion.AbrirConexion();
+
+
+                string queryIdServicio = "SELECT idServicioPadre FROM ServicioPadre WHERE nombre = @NombreServicio";
+
+                // Crear el comando para obtener el idServicioEspecificoHijo
+                using (SqlCommand cmd = new SqlCommand(queryIdServicio, conexion.GetConexion()))
+                {
+                    try
+                    {
+                        // Agregar el parámetro del nombre del ServicioEspecificoHijo
+                        cmd.Parameters.AddWithValue("@NombreServicio", primeraColumna);
+
+                        // Ejecutar la consulta y obtener el id
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            // Convertir el resultado a int (si el id es entero)
+                            int idServicioEspecificoNieto = Convert.ToInt32(result);
+                            parentForm.formularioHijo(new ModificarServicios(parentForm, idServicioEspecificoNieto));
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el Servicio Especificado.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                    }
+                    finally
+                    {
+                        conexion.CerrarConexion();
+                    }
+                }
+            }
+           else if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
             {
                 DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
@@ -101,10 +175,22 @@ namespace VetPet_
                     case "Cirugias":
                         parentForm.formularioHijo(new ListaCirugias(parentForm));
                         break;
+                    case "Acicalamiento":
+                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        break;
+                    case "Consulta General":
+                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        break;
+                    case "Cremacion":
+                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        break;
+                    case "Masaje":
+                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        break;
                     case "Rayos X":
                         parentForm.formularioHijo(new ListaRayosX(parentForm));
                         break;
-                    case "Pruebas de Laboratorio":
+                    case "Estudios de Laboratorio":
                         parentForm.formularioHijo(new ListaPLab(parentForm));
                         break;
                     case "Ultrasonidos":
@@ -120,6 +206,41 @@ namespace VetPet_
                     default:
                         MessageBox.Show("No se encontró formulario para este servicio.");
                         break;
+                }
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string patron = TxtBuscar.Text;
+            string query = "SELECT     sp.nombre AS NombreServicio,cs.nombre AS ClaseServicio,\r\n  " +
+                "te.nombre AS TipoEmpleado FROM ServicioPadre sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n" +
+                "te.idtipoempleado INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio" +
+                " WHERE sp.nombre LIKE '%"+ patron + "%'";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
                 }
             }
         }

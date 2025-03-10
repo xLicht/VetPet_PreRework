@@ -19,9 +19,51 @@ namespace VetPet_
 
         private Form1 parentForm;
 
+        //CONEXION
+        private void CargarDatos()
+        {
+            try
+            {
 
-        //conexion
-        private conexionBrandon conexionBrandon = new conexionBrandon(); // Instancia de la clase conexión
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Definir la consulta
+                string query = @"SELECT 
+                            p.nombre AS Presentacion,
+                            m.nombreGenérico AS Nombre,
+                            pr.stock AS Inventario,
+                            pr.precioventa AS Precio
+                        FROM Medicamento m
+                        JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+                        JOIN producto pr ON m.idproducto = pr.idproducto;";
+
+                // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados de la consulta
+                da.Fill(dt);
+
+                // Asignar el DataTable al DataGridView
+                dataGridView1.DataSource = dt;
+
+                // Asegurarse de que las columnas se generen correctamente
+                dataGridView1.AutoGenerateColumns = true; // Esta propiedad debería estar en true por defecto
+
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
 
         public AlmacenInventarioMedicamentos()
         {
@@ -33,28 +75,9 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
-
             comboBox1.FlatStyle = FlatStyle.Flat;  // Quita bordes
             comboBox1.DropDownWidth = 150;         // Ancho del desplegable
-
-            //conexion
-            try
-            {
-                conexionBrandon.AbrirConexion();
-                string query = "SELECT * FROM Clientes"; // Cambia "Clientes" por tu tabla real
-
-                SqlCommand comando = new SqlCommand(query, conexionBrandon.GetConexion());
-                SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                adaptador.Fill(dt);
-
-                dataGridView1.DataSource = dt; // Mostrar los datos en el DataGridView
-                conexionBrandon.CerrarConexion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+            CargarDatos();
         }
 
         private void AlmacenInventarioMedicamentos_Load(object sender, EventArgs e)
@@ -101,40 +124,273 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {         
+        {
             if (e.RowIndex >= 0)
             {
-                string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
+                string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString(); // Obtiene el nombre del medicamento
 
                 // Llamar al formulario de opciones
-                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                 {
                     if (opcionesForm.ShowDialog() == DialogResult.OK)
                     {
                         if (opcionesForm.Resultado == "Modificar")
                         {
-                            parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+                            parentForm.formularioHijo(new AlmacenModificarMedicamento(parentForm, nombre)); // Pasamos la referencia de Form1 a 
                         }
-                        if (opcionesForm.Resultado == "Salir")
+                        else if (opcionesForm.Resultado == "Salir")
                         {
                             parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm)); // Pasamos la referencia de Form1 a 
                         }
                         else if (opcionesForm.Resultado == "Ver")
                         {
-                           parentForm.formularioHijo(new AlmacenVerMedicamento(parentForm)); // Pasamos la referencia de Form1 a 
+                            // Llamar al formulario AlmacenVerMedicamento y pasarle el nombre del medicamento seleccionado
+                            parentForm.formularioHijo(new AlmacenVerMedicamento(parentForm, nombre)); // Pasamos el nombre del medicamento a AlmacenVerMedicamento
                         }
                     }
                 }
             }
         }
 
+
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            // Obtener el texto del TextBox (nombre del medicamento a buscar)
+            string nombreMedicamento = txtProducto.Text.Trim();
+
+            // Validar que no esté vacío
+            if (string.IsNullOrEmpty(nombreMedicamento))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre de medicamento para buscar.");
+                return;
+            }
+
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Definir la consulta con un filtro de búsqueda
+                string query = @"SELECT 
+                            p.nombre AS Presentacion,
+                            m.nombreGenérico AS Nombre,
+                            pr.stock AS Inventario,
+                            pr.precioventa AS Precio
+                        FROM Medicamento m
+                        JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+                        JOIN producto pr ON m.idproducto = pr.idproducto
+                        WHERE m.nombreGenérico LIKE @nombreMedicamento"; // Usar LIKE para hacer la búsqueda
+
+                // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                // Agregar el parámetro para la búsqueda
+                da.SelectCommand.Parameters.AddWithValue("@nombreMedicamento", "%" + nombreMedicamento + "%");
+
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados de la consulta
+                da.Fill(dt);
+
+                // Asignar el DataTable al DataGridView
+                dataGridView1.DataSource = dt;
+
+                // Asegurarse de que las columnas se generen correctamente
+                dataGridView1.AutoGenerateColumns = true; // Esta propiedad debería estar en true por defecto
+
+
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtener el texto seleccionado del ComboBox
+            string seleccion = comboBox1.SelectedItem.ToString();
+
+            // Definir el filtro de búsqueda basado en la selección
+            string filtro = "";
+
+            // Asignar el filtro según la selección en el ComboBox
+            switch (seleccion)
+            {
+                case "Eliminar Filtro":
+                    filtro = "Eliminar Filtro";
+                    break;
+                case "Antibiótico":
+                    filtro = "Antibiótico";
+                    break;
+                case "Antiparasito":
+                    filtro = "Antiparasito";
+                    break;
+                case "Analgésico":
+                    filtro = "Analgésico";
+                    break;
+                case "Suplemento":
+                    filtro = "Suplemento";
+                    break;
+                case "Vacuna":
+                    filtro = "Vacuna";
+                    break;
+                case "Desparasitante":
+                    filtro = "Desparasitante";
+                    break;
+                case "Antiiflamatorio":
+                    filtro = "Antiiflamatorio";
+                    break;
+                case "Sedante":
+                    filtro = "Sedante";
+                    break;
+                case "Antidiarreico":
+                    filtro = "Antidiarreico";
+                    break;
+                case "Antihistamínico":
+                    filtro = "Antihistamínico";
+                    break;
+                default:
+                    filtro = ""; // Si no se selecciona nada, no filtrar
+                    break;
+            }
+
+            // Llamar a la función de búsqueda con el filtro
+            BuscarMedicamentosPorCategoria(filtro);
+        }
+        private void BuscarMedicamentosPorCategoria(string filtro)
+        {
+            if (filtro == "Eliminar Filtro")
+                CargarDatos();
+            else
+            {
+
+                try
+                {
+                    // Crear una instancia de la clase conexionBrandon
+                    conexionBrandon conexion = new conexionBrandon();
+
+                    // Abrir la conexión
+                    conexion.AbrirConexion();
+
+                    // Definir la consulta básica
+                    string query = @"
+                    SELECT 
+                        p.nombre AS Presentacion,
+                        m.nombreGenérico AS Nombre,
+                        pr.stock AS Inventario,
+                        pr.precioventa AS Precio
+                    FROM Medicamento m
+                    JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+                    JOIN producto pr ON m.idproducto = pr.idproducto";
+
+                    // Si hay un filtro, agregar la cláusula WHERE
+                    if (!string.IsNullOrEmpty(filtro))
+                    {
+                        query += " WHERE pr.nombre LIKE @filtro";  // Filtrar por el nombre en la tabla 'producto'
+                    }
+
+                    // Crear un SqlDataAdapter con la conexión obtenida de la clase conexionBrandon
+                    SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                    // Agregar el parámetro para el filtro
+                    da.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+
+                    DataTable dt = new DataTable();
+
+                    // Llenar el DataTable con los resultados de la consulta
+                    da.Fill(dt);
+
+                    // Asignar el DataTable al DataGridView
+                    dataGridView1.DataSource = dt;
+
+                    // Asegurarse de que las columnas se generen correctamente
+                    dataGridView1.AutoGenerateColumns = true;
+
+                    // Cerrar la conexión
+                    conexion.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void txtProducto_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtProducto.Text == "Buscar nombre de medicamento") // Si el texto predeterminado está presente
+            {
+                txtProducto.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void FiltrarMedicamentosPorFecha(DateTime fechaSeleccionada)
+        {
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Consulta SQL para filtrar medicamentos por fecha de registro
+                string query = @"
+            SELECT 
+                p.nombre AS Presentacion,
+                m.nombreGenérico AS Nombre,
+                pr.stock AS Inventario,
+                pr.precioventa AS Precio
+            FROM Medicamento m
+            JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+            JOIN producto pr ON m.idproducto = pr.idproducto
+            WHERE CAST(pr.fechaRegistro AS DATE) = @fechaSeleccionada;";
+
+                // Crear un SqlDataAdapter con la conexión
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                // Agregar el parámetro de fecha
+                da.SelectCommand.Parameters.AddWithValue("@fechaSeleccionada", fechaSeleccionada.Date);
+
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados
+                da.Fill(dt);
+
+                // Asignar el DataTable al DataGridView
+                dataGridView1.DataSource = dt;
+                dataGridView1.AutoGenerateColumns = true;
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            FiltrarMedicamentosPorFecha(dateTimePicker1.Value);
+        }
     }
 }
+
