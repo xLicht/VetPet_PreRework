@@ -56,13 +56,13 @@ namespace VetPet_.Angie.Mascotas
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus"))
+                using (conexion)
                 {
-                    connection.Open();
+                    AbrirConexion();
 
                     // Consulta para verificar si la especie existe
 
-                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand(query, conexion);
                     command.Parameters.AddWithValue("@nombre", nombreEspecie);
 
                     int count = Convert.ToInt32(command.ExecuteScalar());
@@ -82,12 +82,12 @@ namespace VetPet_.Angie.Mascotas
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus"))
+                using (conexion)
                 {
-                    connection.Open();
+                    AbrirConexion();
 
                     // Consulta para insertar la nueva especie
-                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand(query, conexion);
                     command.Parameters.AddWithValue("@nombre", nombreEspecie);
 
                     command.ExecuteNonQuery();
@@ -103,12 +103,12 @@ namespace VetPet_.Angie.Mascotas
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=127.0.0.1;Integrated Security=SSPI;Initial Catalog=VetPetPlus"))
+                using (conexion)
                 {
-                    connection.Open();
+                    AbrirConexion();
 
                     // Consulta para obtener todas las especies
-                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand(query, conexion);
                     SqlDataReader reader = command.ExecuteReader();
 
                     // Limpiar los elementos actuales del ComboBox
