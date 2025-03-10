@@ -88,7 +88,7 @@ namespace Pruebas_PDF
             try
             {
                 conex.Open();
-                string q = @"SELECT TOP 10 m.nombre AS Razon, COUNT(c.idMotivo) AS cantidad\r\nFROM Cita c\r\nJOIN Motivo m ON c.idMotivo = m.idMotivo\r\nWHERE c.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY m.nombre\r\nORDER BY cantidad DESC;";
+                string q = @"SELECT TOP 10 m.nombre AS Razon, COUNT(c.idMotivo) AS cantidad FROM Cita c JOIN Motivo m ON c.idMotivo = m.idMotivo WHERE c.fechaRegistro BETWEEN @fechaInicio AND @fechaFin GROUP BY m.nombre ORDER BY cantidad DESC;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
