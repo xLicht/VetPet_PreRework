@@ -52,7 +52,7 @@ namespace VetPet_
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ModificarServicios(parentForm));
+            parentForm.formularioHijo(new ListaServicios(parentForm));
         }
 
         private void BtnAgregarCirugía_Click(object sender, EventArgs e)

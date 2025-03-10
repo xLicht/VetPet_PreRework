@@ -14,12 +14,7 @@ namespace VetPet_
 {
     public partial class AgregarTipoPLab : FormPadre
     {
-        //Variables SQL
-        public SqlConnection conexion;
-        public SqlCommand comando;
-        public SqlDataReader Lector;
-        public string q;
-        public string mensaje;
+        
         public AgregarTipoPLab()
         {
             InitializeComponent();
@@ -37,41 +32,41 @@ namespace VetPet_
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            try
+
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "INSERT INTO ServicioEspecificoHijo (nombre, descripcion, idServicioPadre) VALUES (@NOM, @DES, @ISP);";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
-                conexion = new SqlConnection(@"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=Servicio;Integrated Security=True;");
-                conexion.Open();
+                try
+                {
+                    // Primero obtenemos los valores
+                    string Nombre = TxtNombre.Text;
+                    string Descripcion = richTextBox1.Text.Replace("\r", "").Replace("\n", "");
+                    int idServicio = 8;
 
-                int provicional = 2;
-                string Nombre = TxtNombre.Text;
-                string Descripcion = richTextBox1.Text;
-                int ServicioPadre = 2;
-                string tabla = "EstudioLaboratorio";
+                    // Agregamos los parámetros
+                    cmd.Parameters.AddWithValue("@NOM", Nombre);
+                    cmd.Parameters.AddWithValue("@DES", Descripcion);
+                    cmd.Parameters.AddWithValue("@ISP", idServicio);
 
-                q = "INSERT INTO "+ tabla + " (IdServicioEspecificoHijo,nombre, descripcion,SegundaID) VALUES (@SEE, @NOM, @DES,@SEP);";
-                comando = new SqlCommand(q, conexion);
-                comando.Parameters.AddWithValue("@SEE", provicional);
-                comando.Parameters.AddWithValue("@NOM", Nombre);
-                comando.Parameters.AddWithValue("@DES", Descripcion);
-                comando.Parameters.AddWithValue("@SEP", ServicioPadre);
+                    // Ejecutamos la consulta
+                    cmd.ExecuteNonQuery();  // Cambié ExecuteReader por ExecuteNonQuery
 
-
-                comando.ExecuteNonQuery();
-                conexion.Close();
-
-                mensaje = "Datos insertados correctamente en 'General'.";
-                parentForm.formularioHijo(new ListaPLab(parentForm));
-            }
-            catch (System.Exception ex)
-            {
-                mensaje = "Error al insertar datos: " + ex.Message;
-            }
-            finally
-            {
-                MessageBox.Show(mensaje);
+                    MessageBox.Show("Nuevo Tipo de Servicio Registrado");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
             }
 
-            
+
         }
     }
 }

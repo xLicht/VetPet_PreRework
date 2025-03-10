@@ -30,22 +30,19 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnRegresar = new System.Windows.Forms.Button();
-            this.BtnTipoDeServicios = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,15 +73,15 @@
             this.comboBox1.TabIndex = 8;
             this.comboBox1.Text = "Filtrar";
             // 
-            // textBox1
+            // TxtBuscar
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
-            this.textBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBox1.Location = new System.Drawing.Point(224, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(678, 29);
-            this.textBox1.TabIndex = 7;
+            this.TxtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtBuscar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtBuscar.Location = new System.Drawing.Point(224, 96);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(678, 29);
+            this.TxtBuscar.TabIndex = 7;
             // 
             // BtnBuscar
             // 
@@ -98,6 +95,7 @@
             this.BtnBuscar.TabIndex = 4;
             this.BtnBuscar.Text = "Buscar            ";
             this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // BtnAgregar
             // 
@@ -126,20 +124,6 @@
             this.BtnRegresar.Text = "Regresar            ";
             this.BtnRegresar.UseVisualStyleBackColor = false;
             this.BtnRegresar.Click += new System.EventHandler(this.BtnRegresar_Click_1);
-            // 
-            // BtnTipoDeServicios
-            // 
-            this.BtnTipoDeServicios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
-            this.BtnTipoDeServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnTipoDeServicios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnTipoDeServicios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BtnTipoDeServicios.Location = new System.Drawing.Point(448, 486);
-            this.BtnTipoDeServicios.Name = "BtnTipoDeServicios";
-            this.BtnTipoDeServicios.Size = new System.Drawing.Size(216, 49);
-            this.BtnTipoDeServicios.TabIndex = 6;
-            this.BtnTipoDeServicios.Text = "Modificar Serivcios          ";
-            this.BtnTipoDeServicios.UseVisualStyleBackColor = false;
-            this.BtnTipoDeServicios.Click += new System.EventHandler(this.BtnTipoDeServicios_Click);
             // 
             // panel1
             // 
@@ -182,17 +166,6 @@
             this.pictureBox3.TabIndex = 23;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
-            this.pictureBox2.Image = global::VetPet_.Properties.Resources.tool_and_utensils;
-            this.pictureBox2.Location = new System.Drawing.Point(616, 493);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(38, 35);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 23;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(190)))), ((int)(((byte)(149)))));
@@ -212,15 +185,13 @@
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnAgregar);
-            this.Controls.Add(this.BtnTipoDeServicios);
             this.Controls.Add(this.BtnRegresar);
             this.Name = "ListaServicios";
             this.Text = "ListaServicios";
@@ -231,7 +202,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -241,15 +211,13 @@
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnRegresar;
-        private System.Windows.Forms.Button BtnTipoDeServicios;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
     }

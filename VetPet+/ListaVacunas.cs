@@ -44,7 +44,7 @@ namespace VetPet_
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+            parentForm.formularioHijo(new ListaServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
 
         private void BtnModificar_Click(object sender, EventArgs e)
