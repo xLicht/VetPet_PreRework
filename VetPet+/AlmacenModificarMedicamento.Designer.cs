@@ -312,7 +312,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label9.Location = new System.Drawing.Point(25, 142);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(280, 40);
+            this.label9.Size = new System.Drawing.Size(303, 40);
             this.label9.TabIndex = 95;
             this.label9.Text = "Dosis recomendada";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -346,9 +346,9 @@
             this.txtDosis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtDosis.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDosis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtDosis.Location = new System.Drawing.Point(321, 142);
+            this.txtDosis.Location = new System.Drawing.Point(342, 142);
             this.txtDosis.Name = "txtDosis";
-            this.txtDosis.Size = new System.Drawing.Size(275, 40);
+            this.txtDosis.Size = new System.Drawing.Size(254, 40);
             this.txtDosis.TabIndex = 92;
             this.txtDosis.Text = "Dosis recomendada";
             this.txtDosis.Enter += new System.EventHandler(this.txtDosis_Enter);

@@ -62,9 +62,9 @@
             this.txtFecha.Enabled = false;
             this.txtFecha.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtFecha.Location = new System.Drawing.Point(899, 296);
+            this.txtFecha.Location = new System.Drawing.Point(893, 296);
             this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(163, 40);
+            this.txtFecha.Size = new System.Drawing.Size(169, 40);
             this.txtFecha.TabIndex = 83;
             this.txtFecha.Text = "Fecha";
             // 
@@ -99,9 +99,9 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label13.Location = new System.Drawing.Point(627, 296);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(266, 40);
+            this.label13.Size = new System.Drawing.Size(260, 40);
             this.label13.TabIndex = 80;
-            this.label13.Text = "Fecha vencimiento";
+            this.label13.Text = "Fecha Registro";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12

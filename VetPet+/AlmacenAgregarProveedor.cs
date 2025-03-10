@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -44,8 +45,55 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //deberia aver aviso si quiere seguir agregando o no
-            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProducto
+            conexionBrandon conexion = new conexionBrandon();
+            conexion.AbrirConexion();
+
+            // Verificar que todos los campos están completos
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreo.Text) ||
+                string.IsNullOrWhiteSpace(txtNombreContacto.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefonoContacto.Text))
+            {
+                MessageBox.Show("Todos los campos son obligatorios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Intentar convertir los campos de texto a valores numéricos
+            if (!int.TryParse(txtTelefono.Text, out int Telefono) ||
+                !int.TryParse(txtTelefonoContacto.Text, out int TelefonoContacto))
+            {
+                MessageBox.Show("Los campos numéricos deben tener valores válidos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string query = "INSERT INTO Proveedor (nombre, celular, correoElectronico, nombreContacto, celularContacto) " +
+                           "VALUES (@Nombre, @Telefono, @Correo, @NombreContacto, @TelefonoContacto)";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("@Nombre", txtNombre.Text);
+                    cmd.Parameters.AddWithValue("@Telefono", Telefono);
+                    cmd.Parameters.AddWithValue("@Correo", txtCorreo.Text);
+                    cmd.Parameters.AddWithValue("@NombreContacto", txtNombreContacto.Text);
+                    cmd.Parameters.AddWithValue("@TelefonoContacto", TelefonoContacto);
+
+                    cmd.ExecuteNonQuery();
+                    conexion.GetConexion().Close();
+
+                    MessageBox.Show("Datos insertados correctamente en 'Proveedor'.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al insertar datos: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.GetConexion().Close();
+                }
+            }
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
