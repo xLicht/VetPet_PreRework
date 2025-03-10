@@ -79,7 +79,7 @@ namespace VetPet_
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }

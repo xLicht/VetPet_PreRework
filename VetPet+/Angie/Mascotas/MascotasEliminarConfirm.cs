@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_
 {
@@ -16,21 +18,19 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
-
+        private int idMascota;
+        private string nombreMascota;
         private Form1 parentForm;
-        public MascotasEliminarConfirm()
+        private Mismetodos mismetodos = new Mismetodos();
+        public MascotasEliminarConfirm(Form1 parent, int idMascota,string nombreMascota)
         {
-            InitializeComponent();
             InitializeComponent();
             this.Load += MascotasEliminarConfirm_Load;       // Evento Load
             this.Resize += MascotasEliminarConfirm_Resize;   // Evento Resize
-        }
-
-        public MascotasEliminarConfirm(Form1 parent)
-        {
-            InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+            textBox4.Text = nombreMascota;
+            this.idMascota = idMascota;
+            this.nombreMascota = nombreMascota;
         }
 
         private void MascotasEliminarConfirm_Load(object sender, EventArgs e)
@@ -72,12 +72,53 @@ namespace VetPet_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+           
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                // Consulta SQL para actualizar el campo estado a "D" (eliminación lógica)
+                string query = @"
+                UPDATE Mascota
+                SET 
+                    estado = 'D'
+                WHERE 
+                    idMascota = @idMascota;"
+                ;
+
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    // Agregar el parámetro para el ID de la mascota
+                    comando.Parameters.AddWithValue("@idMascota", idMascota);
+
+                    // Ejecutar la consulta
+                    int rowsAffected = comando.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Mascota eliminada lógicamente correctamente.", "Éxito");
+                        // Redirigir al formulario de consulta o cualquier otra acción necesaria
+                        parentForm.formularioHijo(new MascotasListado(parentForm));
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la mascota para eliminar.", "Información");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
         }
     }
 }
