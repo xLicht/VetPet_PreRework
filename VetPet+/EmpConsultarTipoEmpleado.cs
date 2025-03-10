@@ -39,10 +39,42 @@ namespace VetPet_
 
         private void EmpConsultarTipoEmpleado_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Dato Recibido: " + DatoEmpleado);
+            //MessageBox.Show("Dato Recibido: " + DatoEmpleado);
+            CargarDatosTipoEmpleado();
             CargarModulosTipoEmpleado();
         }
 
+        private void CargarDatosTipoEmpleado()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string query = @"SELECT nombre
+                    FROM TipoEmpleado
+                    WHERE idTipoEmpleado = @idTipoEmpleado";
+
+                using (SqlCommand comandoSQL = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
+                    SqlDataReader lectorSQL = comandoSQL.ExecuteReader();
+
+                    if (lectorSQL.Read())
+                    {
+                        txtNombre.Text = lectorSQL["nombre"].ToString();
+                        // rtDescripcion.Text = lectorSQL["descripcion"].ToString(); // Comentado por ahora
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error al obtener el tipo de empleado: " + error.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
 
         private void CargarModulosTipoEmpleado()
         {
@@ -50,8 +82,7 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"
-                    SELECT Modulo.nombre 
+                string query = @"SELECT Modulo.nombre 
                     FROM TipoEmpleado_Modulo
                     INNER JOIN Modulo ON TipoEmpleado_Modulo.idModulo = Modulo.idModulo
                     WHERE TipoEmpleado_Modulo.idTipoEmpleado = @idTipoEmpleado";
@@ -155,7 +186,13 @@ namespace VetPet_
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new EmpModificarTipoEmpleado(parentForm));
+            int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+            EmpModificarTipoEmpleado formularioHijo = new EmpModificarTipoEmpleado(parentForm);
+            formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+            parentForm.formularioHijo(formularioHijo);
+
+
+            //parentForm.formularioHijo(new EmpModificarTipoEmpleado(parentForm));
         }
 
         private void r_Click(object sender, EventArgs e)
