@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_.Angie
 {
@@ -15,22 +17,72 @@ namespace VetPet_.Angie
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        private Mismetodos mismetodos;
 
         private Form1 parentForm;
         public MascotasListado()
         {
             InitializeComponent();
-            InitializeComponent();
             this.Load += MascotasListado_Load;       // Evento Load
             this.Resize += MascotasListado_Resize;   // Evento Resize
         }
-
         public MascotasListado(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+
+            try
+            {
+                // Crear instancia de Mismetodos
+                mismetodos = new Mismetodos();
+
+                // Abrir conexión
+                mismetodos.AbrirConexion();
+
+                string query = @"
+                SELECT 
+                    Mascota.idMascota, 
+                    Mascota.nombre AS Mascota,
+                    Persona.nombre AS Dueño,
+                    Especie.nombre AS Especie,
+                    Mascota.fechaNacimiento AS Fecha_Nacimiento
+                FROM 
+                    Mascota
+                INNER JOIN 
+                    Persona ON Mascota.idPersona = Persona.idPersona
+                INNER JOIN 
+                    Especie ON Mascota.idEspecie = Especie.idEspecie
+                WHERE 
+                    Mascota.estado <> 'D'; 
+                ";
+
+
+                // Usar `using` para asegurar la correcta liberación de recursos
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                {
+                    // Crear un DataTable y llenar los datos
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    // Asignar el DataTable al DataGridView
+                    dataGridView1.DataSource = tabla;
+                    dataGridView1.Columns["idMascota"].Visible = false; // Oculta la columna
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
         }
+
 
         private void MascotasListado_Load(object sender, EventArgs e)
         {
@@ -43,6 +95,8 @@ namespace VetPet_.Angie
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+
+           
         }
 
         private void MascotasListado_Resize(object sender, EventArgs e)
@@ -71,8 +125,24 @@ namespace VetPet_.Angie
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            parentForm.formularioHijo(new MascotasConsultar(parentForm)); // Pasamos la referencia de Form1 a 
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    // Obtener el idMascota y nombre de la mascota seleccionada
+                    int idMascota = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idMascota"].Value);
+                    string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
+
+                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

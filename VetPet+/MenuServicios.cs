@@ -76,5 +76,6 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new AgregarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
+
     }
 }
