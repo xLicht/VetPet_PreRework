@@ -29,17 +29,17 @@ namespace Pruebas_PDF
             Font tablaHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
             Font tablaFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
 
-            // 🔹 Agregar el título del reporte
             if (tipoReporte == "01") tituloString = "Reporte de Razón de Cita más Frecuentes";
             else if (tipoReporte == "02") tituloString = "Reporte de Razón de Cita menos Frecuentes";
 
+            // 🔹 Agregar el título del reporte
             Paragraph titulo = new Paragraph(tituloString, tituloFont);
             titulo.Alignment = Element.ALIGN_LEFT;
             Documento.Add(titulo);
             string fechaEmi1 = fecha1.Reverse().ToString().Replace("-", "/");
             string fechaEmi2 = fecha2.Reverse().ToString().Replace("-", "/");
             // 🔹 Agregar las fechas y el módulo
-            Documento.Add(new Paragraph("Desde: " + fechaEmi1+" – "+fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
+            Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Módulo: Citas", textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Emisión: " + DateTime.Now));
 
@@ -81,7 +81,7 @@ namespace Pruebas_PDF
 
             Documento.Add(tabla);
         }
-        
+
         public string[,] ConsultaRep01(SqlConnection conex)
         {
             string[,] datos = new string[10, 2];
