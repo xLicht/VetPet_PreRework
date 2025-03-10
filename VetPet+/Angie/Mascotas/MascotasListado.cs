@@ -148,5 +148,79 @@ namespace VetPet_.Angie
         {
             parentForm.formularioHijo(new MenuAtencionaCliente(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarDatos();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FiltrarDatos();
+        }
+
+        private void FiltrarDatos()
+        {
+            try
+            {
+                mismetodos.AbrirConexion(); // Abre la conexión usando Mismetodos
+                string filtroTexto = textBox1.Text.Trim();
+                string columnaSeleccionada = comboBox1.SelectedItem?.ToString(); // Verifica que el ComboBox tenga un valor seleccionado
+
+                if (string.IsNullOrEmpty(columnaSeleccionada) || string.IsNullOrEmpty(filtroTexto))
+                {
+                    return; // No hace nada si el campo está vacío
+                }
+                // Construcción de la consulta según la columna seleccionada
+                string query;
+                if (columnaSeleccionada == "Fecha_Nacimiento")
+                {
+                    query = @"
+                    SELECT 
+                    Mascota.nombre AS Mascota,
+                    Persona.nombre AS Dueño,
+                    Especie.nombre AS Especie,
+                    Mascota.fechaNacimiento AS Fecha_Nacimiento
+                FROM 
+                    Mascota
+                INNER JOIN 
+                    Persona ON Mascota.idPersona = Persona.idPersona
+                INNER JOIN 
+                    Especie ON Mascota.idEspecie = Especie.idEspecie
+                    WHERE CONVERT(VARCHAR, Fecha_Nacimiento, 103) LIKE @filtro";
+                }
+                else
+                {
+                    query = $@"
+                   SELECT 
+                    Mascota.nombre AS Mascota,
+                    Persona.nombre AS Dueño,
+                    Especie.nombre AS Especie,
+                    Mascota.fechaNacimiento AS Fecha_Nacimiento
+                FROM 
+                    Mascota
+                INNER JOIN 
+                    Persona ON Mascota.idPersona = Persona.idPersona
+                INNER JOIN 
+                    Especie ON Mascota.idEspecie = Especie.idEspecie
+                    WHERE {columnaSeleccionada} LIKE @filtro";
+                }
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(query, mismetodos.GetConexion());
+                adaptador.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtroTexto + "%");
+
+                DataTable dt = new DataTable();
+                adaptador.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                mismetodos.CerrarConexion(); // Cierra la conexión para evitar bloqueos en la base de datos
+            }
+        }
     }
 }
+

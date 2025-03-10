@@ -72,7 +72,7 @@
             "Mascota",
             "Dueño",
             "Especie",
-            "Fecha de Nacimiento"});
+            "Fecha_Nacimiento"});
             this.comboBox1.Location = new System.Drawing.Point(101, 152);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(320, 43);
@@ -110,6 +110,7 @@
             this.button2.Text = "Buscar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
@@ -118,6 +119,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(521, 43);
             this.textBox1.TabIndex = 66;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // panel1
             // 
