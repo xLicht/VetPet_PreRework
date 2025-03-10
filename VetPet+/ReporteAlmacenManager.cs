@@ -62,95 +62,12 @@ namespace VetPet_
             // ESTO ES REDUCIBLE CON UN METODO
             if (tipoReporte == "01")
             {
-                datos = ConsultaRep01(ConexionSQL());
-                // 🔹 Crear tabla con dos columnas (Razón - Veces)
-                tabla = new PdfPTable(5);
-                tabla.WidthPercentage = 80;
-                tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-                tabla.SetWidths(new float[] { 1, 1 });
-                // Encabezados de la tabla
-                PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
-                PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
-                PdfPCell header3 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
-                PdfPCell header4 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
-                PdfPCell header5 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
-                header1.HorizontalAlignment = Element.ALIGN_CENTER;
-                header2.HorizontalAlignment = Element.ALIGN_CENTER;
-                header3.HorizontalAlignment = Element.ALIGN_CENTER;
-                header4.HorizontalAlignment = Element.ALIGN_CENTER;
-                header5.HorizontalAlignment = Element.ALIGN_CENTER;
-                tabla.AddCell(header1);
-                tabla.AddCell(header2);
-                tabla.AddCell(header3);
-                tabla.AddCell(header4);
-                tabla.AddCell(header5);
-                for (int i = 0; i < datos.GetLength(0); i++)
-                {
-                    if (datos[i, 0] != null || datos[i, 1] != null)
-                    {
-                        PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
-                        PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
-                        PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
-                        PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
-                        PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
-                        celda1.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda2.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda3.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda4.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda5.HorizontalAlignment = Element.ALIGN_CENTER;
-                        tabla.AddCell(celda1);
-                        tabla.AddCell(celda2);
-                        tabla.AddCell(celda3);
-                        tabla.AddCell(celda4);
-                        tabla.AddCell(celda5);
-                    }
-                }
+                CrearTablas01_02(ConsultaRep01(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                
             }
             else if (tipoReporte == "02")
             {
-                // 🔹 Crear tabla con dos columnas (Razón - Veces)
-                tabla = new PdfPTable(5);
-                tabla.WidthPercentage = 80;
-                tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-                tabla.SetWidths(new float[] { 1, 1 });
-                datos = ConsultaRep02(ConexionSQL());
-                // Encabezados de la tabla
-                PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
-                PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
-                PdfPCell header3 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
-                PdfPCell header4 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
-                PdfPCell header5 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
-                header1.HorizontalAlignment = Element.ALIGN_CENTER;
-                header2.HorizontalAlignment = Element.ALIGN_CENTER;
-                header3.HorizontalAlignment = Element.ALIGN_CENTER;
-                header4.HorizontalAlignment = Element.ALIGN_CENTER;
-                header5.HorizontalAlignment = Element.ALIGN_CENTER;
-                tabla.AddCell(header1);
-                tabla.AddCell(header2);
-                tabla.AddCell(header3);
-                tabla.AddCell(header4);
-                tabla.AddCell(header5);
-                for (int i = 0; i < datos.GetLength(0); i++)
-                {
-                    if (datos[i, 0] != null || datos[i, 1] != null)
-                    {
-                        PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
-                        PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
-                        PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
-                        PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
-                        PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
-                        celda1.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda2.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda3.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda4.HorizontalAlignment = Element.ALIGN_CENTER;
-                        celda5.HorizontalAlignment = Element.ALIGN_CENTER;
-                        tabla.AddCell(celda1);
-                        tabla.AddCell(celda2);
-                        tabla.AddCell(celda3);
-                        tabla.AddCell(celda4);
-                        tabla.AddCell(celda5);
-                    }
-                }
+                CrearTablas01_02(ConsultaRep02(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
             }
             else if (tipoReporte == "03")
             {
@@ -276,7 +193,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT TOP 10 P.nombre AS Nombre,P.descripcion AS Descripcion, P.precioProveedor AS [Precio del proveedor], P.precioVenta AS [Precio a la Venta], COUNT(VP.idProducto) AS [Cantidad vendida]\r\nFROM Producto P JOIN Venta_Producto VP ON P.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta\r\nWHERE P.idTipoProducto <> 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY P.nombre, P.descripcion, P.precioProveedor, P.precioVenta ORDER BY [Cantidad vendida] DESC;";
+                string q = @"SELECT TOP 10 P.nombre AS Nombre,P.descripcion AS Descripcion, P.precioProveedor AS [Precio del proveedor], P.precioVenta AS [Precio a la Venta], COUNT(VP.idProducto) AS [Cantidad vendida] FROM Producto P JOIN Venta_Producto VP ON P.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta WHERE P.idTipoProducto <> 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin GROUP BY P.nombre, P.descripcion, P.precioProveedor, P.precioVenta ORDER BY [Cantidad vendida] DESC;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -315,7 +232,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT TOP 10 P.nombre AS Nombre,P.descripcion AS Descripcion, P.precioProveedor AS [Precio del proveedor], P.precioVenta AS [Precio a la Venta], COUNT(VP.idProducto) AS [Cantidad vendida]\r\nFROM Producto P JOIN Venta_Producto VP ON P.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta\r\nWHERE P.idTipoProducto <> 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY P.nombre, P.descripcion, P.precioProveedor, P.precioVenta ORDER BY [Cantidad vendida] ASC;";
+                string q = @"SELECT TOP 10 P.nombre AS Nombre,P.descripcion AS Descripcion, P.precioProveedor AS [Precio del proveedor], P.precioVenta AS [Precio a la Venta], COUNT(VP.idProducto) AS [Cantidad vendida] FROM Producto P JOIN Venta_Producto VP ON P.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta WHERE P.idTipoProducto <> 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin GROUP BY P.nombre, P.descripcion, P.precioProveedor, P.precioVenta ORDER BY [Cantidad vendida] ASC;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -427,6 +344,96 @@ namespace VetPet_
                 return datos;
             }
         }
+        #region CreacionDeTablas
+        public void CrearTablas01_02(string[,] datos, PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        {
+            // 🔹 Crear tabla con dos columnas (Razón - Veces)
+            tabla.WidthPercentage = 80;
+            tabla.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.SetWidths(new float[] { 1, 1 });
+            // Encabezados de la tabla
+            PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
+            PdfPCell header5 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
+            header1.HorizontalAlignment = Element.ALIGN_CENTER;
+            header2.HorizontalAlignment = Element.ALIGN_CENTER;
+            header3.HorizontalAlignment = Element.ALIGN_CENTER;
+            header4.HorizontalAlignment = Element.ALIGN_CENTER;
+            header5.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.AddCell(header1);
+            tabla.AddCell(header2);
+            tabla.AddCell(header3);
+            tabla.AddCell(header4);
+            tabla.AddCell(header5);
+            for (int i = 0; i < datos.GetLength(0); i++)
+            {
+                if (datos[i, 0] != null || datos[i, 1] != null)
+                {
+                    PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
+                    PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
+                    PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
+                    PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
+                    PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
+                    celda1.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda2.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda3.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda4.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda5.HorizontalAlignment = Element.ALIGN_CENTER;
+                    tabla.AddCell(celda1);
+                    tabla.AddCell(celda2);
+                    tabla.AddCell(celda3);
+                    tabla.AddCell(celda4);
+                    tabla.AddCell(celda5);
+                }
+            }
+        }
+        public void CrearTablas03_04(string[,] datos, PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        {
+            // 🔹 Crear tabla con dos columnas (Razón - Veces)
+            tabla.WidthPercentage = 80;
+            tabla.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.SetWidths(new float[] { 1, 1 });
+            // Encabezados de la tabla
+            PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
+            PdfPCell header5 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
+            header1.HorizontalAlignment = Element.ALIGN_CENTER;
+            header2.HorizontalAlignment = Element.ALIGN_CENTER;
+            header3.HorizontalAlignment = Element.ALIGN_CENTER;
+            header4.HorizontalAlignment = Element.ALIGN_CENTER;
+            header5.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.AddCell(header1);
+            tabla.AddCell(header2);
+            tabla.AddCell(header3);
+            tabla.AddCell(header4);
+            tabla.AddCell(header5);
+            for (int i = 0; i < datos.GetLength(0); i++)
+            {
+                if (datos[i, 0] != null || datos[i, 1] != null)
+                {
+                    PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
+                    PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
+                    PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
+                    PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
+                    PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
+                    celda1.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda2.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda3.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda4.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda5.HorizontalAlignment = Element.ALIGN_CENTER;
+                    tabla.AddCell(celda1);
+                    tabla.AddCell(celda2);
+                    tabla.AddCell(celda3);
+                    tabla.AddCell(celda4);
+                    tabla.AddCell(celda5);
+                }
+            }
+        }
+        #endregion
 
     }
 }
