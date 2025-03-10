@@ -30,7 +30,7 @@
         {
             this.RbMédico = new System.Windows.Forms.RadioButton();
             this.RbEstetico = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -80,15 +80,15 @@
             this.RbEstetico.Text = "Estetico";
             this.RbEstetico.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // TxtNombre
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBox1.Location = new System.Drawing.Point(154, 185);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(281, 26);
-            this.textBox1.TabIndex = 28;
+            this.TxtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtNombre.Location = new System.Drawing.Point(154, 185);
+            this.TxtNombre.Name = "TxtNombre";
+            this.TxtNombre.Size = new System.Drawing.Size(281, 26);
+            this.TxtNombre.TabIndex = 28;
             // 
             // label8
             // 
@@ -186,6 +186,7 @@
             this.BtnAgregar.TabIndex = 19;
             this.BtnAgregar.Text = "Guardar          ";
             this.BtnAgregar.UseVisualStyleBackColor = false;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // BtnRegresar
             // 
@@ -313,7 +314,7 @@
             this.Controls.Add(this.RbSi);
             this.Controls.Add(this.RbMédico);
             this.Controls.Add(this.RbEstetico);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -341,7 +342,7 @@
         #endregion
         private System.Windows.Forms.RadioButton RbMédico;
         private System.Windows.Forms.RadioButton RbEstetico;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;

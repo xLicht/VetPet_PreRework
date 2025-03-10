@@ -10,7 +10,7 @@ namespace VetPet_
 {
     internal class conexionAlex
     {
-        public readonly string cadenaConexion = @"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=master;Integrated Security=True;";
+        public readonly string cadenaConexion = @"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
         public conexionAlex()

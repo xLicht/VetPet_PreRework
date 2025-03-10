@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,7 @@ namespace VetPet_
 
         private void AgregarServicios_Load(object sender, EventArgs e)
         {
+            cargarCombobox();
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
             originalHeight = this.ClientSize.Height;
@@ -65,7 +67,39 @@ namespace VetPet_
                 }
             }
         }
+        private void cargarCombobox()
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT nombre FROM TipoEmpleado";
 
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    // Crear un SqlDataAdapter con la conexión correcta
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+
+                    DataTable dt = new DataTable();
+                    dataAdapter.Fill(dt);
+
+                    // Asignar el DataTable como fuente de datos
+                    comboBox1.DataSource = dt;
+
+                    // Asegúrate de que DisplayMember coincida con el nombre exacto de la columna en tu DataTable
+                    comboBox1.DisplayMember = "nombre";  // Nombre de la columna que quieres mostrar en el ComboBox
+                    comboBox1.ValueMember = "nombre";    // El valor del ComboBox será el mismo campo
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new MenuServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
@@ -73,12 +107,88 @@ namespace VetPet_
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            //Logica de Agregado
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idTipoServicio;
+
+            DataRowView selectedRow = comboBox1.SelectedItem as DataRowView;
+
+            string nombreServicio = selectedRow["nombre"].ToString();
+
+            string queryIdServicio = "SELECT idTipoEmpleado FROM TipoEmpleado WHERE nombre = @NombreServicio";
+
+            // Crear el comando para obtener el idServicioEspecificoHijo
+            using (SqlCommand cmd = new SqlCommand(queryIdServicio, conexion.GetConexion()))
+            {
+                try
+                {
+                    // Agregar el parámetro del nombre del ServicioEspecificoHijo
+                    cmd.Parameters.AddWithValue("@NombreServicio", nombreServicio);
+
+                    // Ejecutar la consulta y obtener el id
+                    object result = cmd.ExecuteScalar(); // ExecuteScalar retorna el primer valor de la consulta (idServicioEspecificoHijo)
+
+                    if (result != null)
+                    {
+                        // Convertir el resultado a int (si el id es entero)
+                        int idTipoEmpleado = Convert.ToInt32(result);
+
+                        // Ahora podemos proceder con la inserción de los otros datos en ServicioEspecificoNieto
+                        string queryInsert = "INSERT INTO ServicioPadre (nombre, descripcion,idClaseServicio,idTipoEmpleado) " +
+                            "VALUES (@NOM, @DES,@CSR,@ISP);";
+
+                        using (SqlCommand insertCmd = new SqlCommand(queryInsert, conexion.GetConexion()))
+                        {
+                            // Obtener los valores de los controles
+                            string Nombre = TxtNombre.Text;
+                            string Descripcion = richTextBox1.Text.Replace("\r", "").Replace("\n", "");
+
+                            
+                            if (RbMédico.Checked)
+                            {
+                                idTipoServicio = 1; // Si el primer radio button está seleccionado
+                            }
+                            else if (RbEstetico.Checked)
+                            {
+                                idTipoServicio = 2; // Si el segundo radio button está seleccionado
+                            }
+                            else
+                            {
+                                idTipoServicio = 0; // Ningún radio button seleccionado
+                                MessageBox.Show("Por favor, seleccione una opción.");
+                            }
+
+                            // Agregar los parámetros para la inserción
+                            insertCmd.Parameters.AddWithValue("@NOM", Nombre);
+                            insertCmd.Parameters.AddWithValue("@DES", Descripcion);
+                            insertCmd.Parameters.AddWithValue("@CSR", idTipoServicio);
+                            insertCmd.Parameters.AddWithValue("@ISP", idTipoEmpleado); // Usar el id obtenido
+
+                            // Ejecutar la consulta de inserción
+                            insertCmd.ExecuteNonQuery();  // Usar ExecuteNonQuery para la inserción
+
+                            MessageBox.Show("Nuevo Tipo de Servicio Registrado");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el Servicio Especificado.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
         }
 
         private void BtnModificarServicios_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
+           //parentForm.formularioHijo(new ModificarServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
     }
 }
