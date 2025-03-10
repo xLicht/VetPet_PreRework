@@ -56,7 +56,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -840,8 +840,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteAlmacenManager.cs" />
     <Compile Include="ReporteBase.cs" />
     <Compile Include="ReporteCitasManager.cs" />
+    <Compile Include="ReporteClienteManager.cs" />
     <Compile Include="ReportesAlmacen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -860,6 +862,7 @@
     <Compile Include="ReportesClientes.Designer.cs">
       <DependentUpon>ReportesClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteServicioManager.cs" />
     <Compile Include="ReportesServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -902,6 +905,7 @@
     <Compile Include="Angie\Ventas\VentasVentanadePagoNueva.Designer.cs">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteVentasManager.cs" />
     <Compile Include="VeterianiaGestionarHistorialM.cs">
       <SubType>Form</SubType>
     </Compile>

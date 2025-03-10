@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
         private Form1 parentForm;
+        private string nombreProveedor;
 
         public AlmacenModificarProveedor()
         {
@@ -25,10 +27,12 @@ namespace VetPet_
             this.Resize += AlmacenModificarProveedor_Resize;   // Evento Resize
         }
 
-        public AlmacenModificarProveedor(Form1 parent)
+        public AlmacenModificarProveedor(Form1 parent, string nombreProveedor = null)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            this.nombreProveedor = nombreProveedor;
+            CargarDatosProveedor();
         }
 
         private void AlmacenModificarProveedor_Load(object sender, EventArgs e)
@@ -41,6 +45,49 @@ namespace VetPet_
             foreach (Control control in this.Controls)
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
+            }
+        }
+        private void CargarDatosProveedor()
+        {
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+                conexion.AbrirConexion();
+
+                // Definir la consulta para obtener los datos del producto
+                string query = @"
+                SELECT
+                p.nombre AS nombre,
+                p.celular AS celular,
+                p.correoElectronico AS correoElectronico,
+                p.nombreContacto AS nombreContacto,
+                p.celularContacto AS celularContacto
+                FROM Proveedor p
+                WHERE p.nombre = @nombreProveedor;"; // Se usa p.nombre correctamente
+
+                // Crear un SqlCommand con la conexión
+                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                cmd.Parameters.AddWithValue("@nombreProveedor", nombreProveedor);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Si se encuentra el producto, mostrar los datos en los TextBox
+                if (reader.Read())
+                {
+                    txtNombre.Text = reader["nombre"].ToString();
+                    txtTelefono.Text = reader["celular"].ToString();
+                    txtCorreo.Text = reader["correoElectronico"].ToString();
+                    txtNombreContacto.Text = reader["nombreContacto"].ToString();
+                    txtTelefonoContacto.Text = reader["celularContacto"].ToString();                   
+                }
+
+                reader.Close();
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
