@@ -13,6 +13,7 @@ namespace VetPet_
 {
     public partial class EmpConsultarTipoEmpleado : FormPadre
     {
+        public int DatoEmpleado { get; set; }
         public EmpConsultarTipoEmpleado(Form1 parent)
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace VetPet_
 
         private void EmpConsultarTipoEmpleado_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Dato Recibido:" + DatoEmpleado);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)

@@ -41,7 +41,7 @@ namespace VetPet_
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           // parentForm.formularioHijo(new EmpConsultarEmpleado(parentForm));
+           
         }
 
         private void btnListaEmpleados_Click(object sender, EventArgs e)
@@ -98,14 +98,7 @@ namespace VetPet_
                     dtEmpleados.Rows.Clear();
                     foreach (DataRow row in dt.Rows)
                     {
-                        dtEmpleados.Rows.Add(
-                            row["idEmpleado"],
-                            row["nombre"],
-                            row["apellidoP"],
-                            row["apellidoM"],
-                            row["tipoEmpleado"],
-                            row["celular"]
-                        );
+                        dtEmpleados.Rows.Add(row["idEmpleado"],row["nombre"],row["apellidoP"],row["apellidoM"],row["tipoEmpleado"],row["celular"]);
                     }
                 }
             }

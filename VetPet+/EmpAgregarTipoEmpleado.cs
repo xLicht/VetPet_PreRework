@@ -14,6 +14,7 @@ namespace VetPet_
 {
     public partial class EmpAgregarTipoEmpleado : FormPadre
     {
+        
         public EmpAgregarTipoEmpleado(Form1 parent)
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace VetPet_
 
         private void EmpAgregarTipoEmpleado_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
