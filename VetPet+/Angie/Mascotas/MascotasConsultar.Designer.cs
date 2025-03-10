@@ -406,6 +406,7 @@
             // 
             this.groupBox3.Controls.Add(this.radioButton5);
             this.groupBox3.Controls.Add(this.radioButton6);
+            this.groupBox3.Enabled = false;
             this.groupBox3.Location = new System.Drawing.Point(957, 224);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(362, 100);
@@ -444,6 +445,7 @@
             // 
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(927, 138);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(430, 80);

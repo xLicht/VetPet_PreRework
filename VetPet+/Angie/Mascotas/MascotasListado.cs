@@ -20,17 +20,19 @@ namespace VetPet_.Angie
         private Mismetodos mismetodos;
 
         private Form1 parentForm;
-        public MascotasListado()
+       
+        public MascotasListado(Form1 parent)
         {
             InitializeComponent();
             this.Load += MascotasListado_Load;       // Evento Load
             this.Resize += MascotasListado_Resize;   // Evento Resize
-        }
-        public MascotasListado(Form1 parent)
-        {
-            InitializeComponent();
+            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
+
             parentForm = parent;  // Guardamos la referencia de Form
             CargarMascota();
+            PersonalizarDataGridView();
         }
         public void CargarMascota()
         {
@@ -64,6 +66,7 @@ namespace VetPet_.Angie
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
                 {
+                   
                     // Crear un DataTable y llenar los datos
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
@@ -71,6 +74,28 @@ namespace VetPet_.Angie
                     // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
                     dataGridView1.Columns["idMascota"].Visible = false; // Oculta la columna
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.IsNewRow) continue; // No borra la fila nueva si AllowUserToAddRows = true
+
+                        bool vacia = true;
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value != null && !string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                            {
+                                vacia = false;
+                                break;
+                            }
+                        }
+
+                        if (vacia)
+                        {
+                            dataGridView1.Rows.Remove(row);
+                        }
+                    }
+
+
 
                 }
             }
@@ -268,6 +293,63 @@ namespace VetPet_.Angie
             {
                 mismetodos.CerrarConexion(); // Cierra la conexión para evitar bloqueos en la base de datos
             }
+        }
+
+        public void PersonalizarDataGridView()
+        {
+            dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView1.BackgroundColor = Color.White; // Fondo blanco
+
+            // Alternar colores de filas
+            dataGridView1.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            // Bordes y alineación
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados
+            dataGridView1.ColumnHeadersHeight = 30;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Ocultar la columna del ID
+            if (dataGridView1.Columns.Contains("idMascota"))
+            {
+                dataGridView1.Columns["idMascota"].Visible = false;
+            }
+        }
+
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCyan;
+            }
+        }
+
+        private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            }
+        }
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridView1.ClearSelection();
         }
 
 
