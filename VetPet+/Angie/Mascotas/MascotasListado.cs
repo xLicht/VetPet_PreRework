@@ -29,8 +29,11 @@ namespace VetPet_.Angie
         public MascotasListado(Form1 parent)
         {
             InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia de Form1
-
+            parentForm = parent;  // Guardamos la referencia de Form
+            CargarMascota();
+        }
+        public void CargarMascota()
+        {
             try
             {
                 // Crear instancia de Mismetodos
@@ -82,7 +85,6 @@ namespace VetPet_.Angie
                 mismetodos.CerrarConexion();
             }
         }
-
 
         private void MascotasListado_Load(object sender, EventArgs e)
         {
@@ -165,34 +167,56 @@ namespace VetPet_.Angie
             {
                 mismetodos.AbrirConexion(); // Abre la conexión usando Mismetodos
                 string filtroTexto = textBox1.Text.Trim();
-                string columnaSeleccionada = comboBox1.SelectedItem?.ToString(); // Verifica que el ComboBox tenga un valor seleccionado
+                string columnaSeleccionada = comboBox1.SelectedItem?.ToString(); // Puede ser null
 
-                if (string.IsNullOrEmpty(columnaSeleccionada) || string.IsNullOrEmpty(filtroTexto))
+                if (string.IsNullOrEmpty(filtroTexto))
                 {
-                    return; // No hace nada si el campo está vacío
+                    CargarMascota();
+                    return; // No hace nada si el campo de búsqueda está vacío
                 }
-                // Construcción de la consulta según la columna seleccionada
+
+                // Mapeo de nombres visibles a nombres reales de columnas
+                Dictionary<string, string> mapaColumnas = new Dictionary<string, string>
+        {
+            { "Mascota", "Mascota.nombre" },
+            { "Dueño", "Persona.nombre" },
+            { "Especie", "Especie.nombre" },
+            { "Fecha_Nacimiento", "Mascota.fechaNacimiento" }
+        };
+
                 string query;
-                if (columnaSeleccionada == "Fecha_Nacimiento")
+
+                if (string.IsNullOrEmpty(columnaSeleccionada) || !mapaColumnas.ContainsKey(columnaSeleccionada))
                 {
+                    // Si no hay columna seleccionada, busca en todas las columnas relevantes
                     query = @"
-                    SELECT 
-                    Mascota.nombre AS Mascota,
-                    Persona.nombre AS Dueño,
-                    Especie.nombre AS Especie,
-                    Mascota.fechaNacimiento AS Fecha_Nacimiento
-                FROM 
-                    Mascota
-                INNER JOIN 
-                    Persona ON Mascota.idPersona = Persona.idPersona
-                INNER JOIN 
-                    Especie ON Mascota.idEspecie = Especie.idEspecie
-                    WHERE CONVERT(VARCHAR, Fecha_Nacimiento, 103) LIKE @filtro";
+            SELECT 
+                Mascota.idMascota, 
+                Mascota.nombre AS Mascota,
+                Persona.nombre AS Dueño,
+                Especie.nombre AS Especie,
+                Mascota.fechaNacimiento AS Fecha_Nacimiento
+            FROM 
+                Mascota
+            INNER JOIN 
+                Persona ON Mascota.idPersona = Persona.idPersona
+            INNER JOIN 
+                Especie ON Mascota.idEspecie = Especie.idEspecie
+            WHERE 
+                Mascota.nombre LIKE @filtro 
+                OR Persona.nombre LIKE @filtro 
+                OR Especie.nombre LIKE @filtro 
+                OR CONVERT(VARCHAR, Mascota.fechaNacimiento, 103) LIKE @filtro";
                 }
                 else
                 {
-                    query = $@"
-                   SELECT 
+                    string columnaReal = mapaColumnas[columnaSeleccionada];
+
+                    if (columnaSeleccionada == "Fecha_Nacimiento")
+                    {
+                        query = $@"
+                SELECT 
+                    Mascota.idMascota, 
                     Mascota.nombre AS Mascota,
                     Persona.nombre AS Dueño,
                     Especie.nombre AS Especie,
@@ -203,24 +227,50 @@ namespace VetPet_.Angie
                     Persona ON Mascota.idPersona = Persona.idPersona
                 INNER JOIN 
                     Especie ON Mascota.idEspecie = Especie.idEspecie
-                    WHERE {columnaSeleccionada} LIKE @filtro";
+                WHERE 
+                    CONVERT(VARCHAR, {columnaReal}, 103) LIKE @filtro";
+                    }
+                    else
+                    {
+                        query = $@"
+                SELECT 
+                    Mascota.idMascota, 
+                    Mascota.nombre AS Mascota,
+                    Persona.nombre AS Dueño,
+                    Especie.nombre AS Especie,
+                    Mascota.fechaNacimiento AS Fecha_Nacimiento
+                FROM 
+                    Mascota
+                INNER JOIN 
+                    Persona ON Mascota.idPersona = Persona.idPersona
+                INNER JOIN 
+                    Especie ON Mascota.idEspecie = Especie.idEspecie
+                WHERE 
+                    {columnaReal} LIKE @filtro";
+                    }
                 }
 
+                // Ejecutar la consulta
                 SqlDataAdapter adaptador = new SqlDataAdapter(query, mismetodos.GetConexion());
                 adaptador.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtroTexto + "%");
 
                 DataTable dt = new DataTable();
                 adaptador.Fill(dt);
+
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns["idMascota"].Visible = false; // Oculta la columna ID
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Error al filtrar: " + ex.Message);
             }
             finally
             {
                 mismetodos.CerrarConexion(); // Cierra la conexión para evitar bloqueos en la base de datos
             }
         }
+
+
     }
 }
 
