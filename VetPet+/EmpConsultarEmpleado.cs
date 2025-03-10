@@ -58,23 +58,6 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                //string query = @"
-                //    SELECT e.usuario, e.contraseña, e.palabraClave, 
-                //   p.nombre, p.apellidoP, p.apellidoM, p.celular, p.correoElectronico,
-                //   t.nombre AS tipoEmpleado,
-                //   pais.nombre AS pais, calle.nombre AS calle, 
-                //   cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia
-                //    FROM Empleado e
-                //    JOIN Persona p ON e.idPersona = p.idPersona
-                //    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                //    LEFT JOIN Direccion d ON e.idEmpleado = d.idPersona
-                //    LEFT JOIN Pais pais ON d.idPais = pais.idPais
-                //    LEFT JOIN Calle calle ON d.idCalle = calle.idCalle
-                //    LEFT JOIN Cp cp ON d.idCp = cp.idCp
-                //    LEFT JOIN Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
-                //    LEFT JOIN Colonia colonia ON d.idColonia = colonia.idColonia
-                //    WHERE e.idEmpleado = @idEmpleado";
-
                 string query = @"SELECT  e.usuario,e.contraseña, e.palabraClave, 
                         p.nombre, p.apellidoP, p.apellidoM, p.celular, 
                         p.correoElectronico, t.nombre AS tipoEmpleado, pais.nombre AS pais,  calle.nombre AS calle, 
@@ -153,7 +136,38 @@ namespace VetPet_
 
         private void EliminarEmpleado(int idEmpleado)
         {
-           
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string query = @"UPDATE Persona 
+                         SET estado = 'I' 
+                         WHERE idPersona = (SELECT idPersona FROM Empleado WHERE idEmpleado = @idEmpleado)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Empleado eliminado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        parentForm.formularioHijo(new EmpListaEmpleados(parentForm)); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el empleado a eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el empleado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
 
         private void advertenciaEliminar()

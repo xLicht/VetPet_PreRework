@@ -63,10 +63,7 @@ namespace VetPet_
                 parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
             }
             else
-            {
-              
-                
-            }
+            { }
         }
 
         private void AgregarEmpleado()
