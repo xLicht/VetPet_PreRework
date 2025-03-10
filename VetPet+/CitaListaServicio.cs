@@ -78,7 +78,7 @@ namespace VetPet_
                     string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
 
                     // Llamar al formulario de opciones
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                     {
                         if (opcionesForm.ShowDialog() == DialogResult.OK)
                         {
@@ -104,7 +104,7 @@ namespace VetPet_
                     string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
 
                     // Llamar al formulario de opciones
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                     {
                         if (opcionesForm.ShowDialog() == DialogResult.OK)
                         {
@@ -129,7 +129,7 @@ namespace VetPet_
 
                     string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
 
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                     {
                         if (opcionesForm.ShowDialog() == DialogResult.OK)
                         {
@@ -154,7 +154,7 @@ namespace VetPet_
                 {
                     string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
 
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                     {
                         if (opcionesForm.ShowDialog() == DialogResult.OK)
                         {
@@ -177,7 +177,7 @@ namespace VetPet_
                 {
                     string nombre = dataGridView1.Rows[e.RowIndex].Cells[1].Value?.ToString();
 
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                     {
                         if (opcionesForm.ShowDialog() == DialogResult.OK)
                         {

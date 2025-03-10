@@ -212,18 +212,6 @@ namespace VetPet_
             }
         }
 
-        private void btnElegir_Click(object sender, EventArgs e)
-        {
-            AlmacenProveedor proveedorForm = new AlmacenProveedor(parentForm, this);
-            proveedorForm.VieneDeAgregarMedicamento = true;
-            parentForm.formularioHijo(proveedorForm);
-        }
-
-        public void SetProveedorSeleccionado(string proveedor)
-        {
-            txtIdPresentacion.Text = proveedor;
-        }
-
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm));
@@ -468,5 +456,31 @@ namespace VetPet_
             }
         }
 
+        private void txtNombre_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtNombre.Text == "Nombre de medicamento") // Si el texto predeterminado está presente
+            {
+                txtNombre.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtDosis_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtDosis.Text == "Dosis recomendada") // Si el texto predeterminado está presente
+            {
+                txtDosis.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtIntervalo_Enter(object sender, EventArgs e)
+        {
+            // Limpia el contenido cuando el usuario hace clic en el TextBox
+            if (txtIntervalo.Text == "Intervalo") // Si el texto predeterminado está presente
+            {
+                txtIntervalo.Text = ""; // Limpia el TextBox
+            }
+        }
     }
 }

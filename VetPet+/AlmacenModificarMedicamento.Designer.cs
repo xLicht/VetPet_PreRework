@@ -208,6 +208,7 @@
             this.cmbPresentacion.Size = new System.Drawing.Size(306, 40);
             this.cmbPresentacion.TabIndex = 104;
             this.cmbPresentacion.SelectedIndexChanged += new System.EventHandler(this.cmbPresentacion_SelectedIndexChanged);
+            this.cmbPresentacion.Enter += new System.EventHandler(this.cmbPresentacion_Enter);
             // 
             // label3
             // 
@@ -218,12 +219,13 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(225, 38);
             this.label3.TabIndex = 103;
-            this.label3.Text = "Id Producto";
+            this.label3.Text = "Producto";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtIdProducto
             // 
             this.txtIdProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdProducto.Enabled = false;
             this.txtIdProducto.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtIdProducto.Location = new System.Drawing.Point(624, 414);
@@ -241,12 +243,13 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(225, 38);
             this.label7.TabIndex = 101;
-            this.label7.Text = "Id Laboratorio";
+            this.label7.Text = "Laboratorio";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtIdLaboratorio
             // 
             this.txtIdLaboratorio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdLaboratorio.Enabled = false;
             this.txtIdLaboratorio.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdLaboratorio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtIdLaboratorio.Location = new System.Drawing.Point(624, 359);
@@ -264,12 +267,13 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(331, 38);
             this.label1.TabIndex = 99;
-            this.label1.Text = "Id Via Administracion";
+            this.label1.Text = "Via Administracion";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtIdViaAdministracion
             // 
             this.txtIdViaAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdViaAdministracion.Enabled = false;
             this.txtIdViaAdministracion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdViaAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtIdViaAdministracion.Location = new System.Drawing.Point(624, 307);
@@ -330,11 +334,11 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label6.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label6.Location = new System.Drawing.Point(618, 89);
+            this.label6.Location = new System.Drawing.Point(624, 194);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(449, 40);
+            this.label6.Size = new System.Drawing.Size(446, 40);
             this.label6.TabIndex = 93;
-            this.label6.Text = "Informacion de Id\'s";
+            this.label6.Text = "Numero de Id\'s";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtDosis
@@ -347,6 +351,7 @@
             this.txtDosis.Size = new System.Drawing.Size(275, 40);
             this.txtDosis.TabIndex = 92;
             this.txtDosis.Text = "Dosis recomendada";
+            this.txtDosis.Enter += new System.EventHandler(this.txtDosis_Enter);
             // 
             // label4
             // 
@@ -357,12 +362,13 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(245, 38);
             this.label4.TabIndex = 91;
-            this.label4.Text = "Id Presentacion";
+            this.label4.Text = "Presentacion";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtIdPresentacion
             // 
             this.txtIdPresentacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdPresentacion.Enabled = false;
             this.txtIdPresentacion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdPresentacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtIdPresentacion.Location = new System.Drawing.Point(624, 252);
@@ -381,6 +387,7 @@
             this.txtNombre.Size = new System.Drawing.Size(364, 40);
             this.txtNombre.TabIndex = 89;
             this.txtNombre.Text = "Nombre de medicamento";
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             // 
             // label2
             // 

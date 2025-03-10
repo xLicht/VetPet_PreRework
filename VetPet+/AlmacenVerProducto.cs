@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,15 +17,86 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
 
-        public AlmacenVerProducto()
+        private string nombreProducto; // Variable para almacenar el nombre del producto
+
+        public AlmacenVerProducto(string idProducto)
         {
             this.Load += AlmacenVerProducto_Load;       // Evento Load
             this.Resize += AlmacenVerProducto_Resize;   // Evento Resize
         }
-        public AlmacenVerProducto(Form1 parent)
+
+        public AlmacenVerProducto(Form parent, string nombreProducto)
         {
             InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia de Form1
+            this.parentForm = (Form1)parent; // Asignar la instancia de Form1
+            this.nombreProducto = nombreProducto;
+            CargarDatosProducto();
+        }
+
+        private void CargarDatosProducto()
+        {
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Definir la consulta para obtener los datos del producto
+                string query = @"
+                SELECT 
+                    pr.nombre AS Nombre,
+                    pr.precioVenta AS PrecioVenta,
+                    pr.precioProveedor AS PrecioProveedor,
+                    pr.cantidad AS Cantidad,
+                    pr.stock AS Stock,
+                    ma.nombre AS Marca,
+                    tp.nombre AS TipoProducto,
+                    pro.nombre AS Proveedor,
+                    pr.descripcion AS Descripcion,
+                    ma.idMarca AS idMarca,
+                    tp.idTipoProducto AS idTipoProducto,
+                    pro.idProveedor AS idProveedor
+                FROM Producto pr
+                JOIN Marca ma ON pr.idMarca = ma.idMarca
+                JOIN TipoProducto tp ON pr.idTipoProducto = tp.idTipoProducto
+                JOIN Proveedor pro ON pr.idProveedor = pro.idProveedor
+                WHERE pr.nombre = @nombreProducto;"; // Usamos el nombre del producto
+
+                // Crear un SqlCommand con la conexión
+                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                cmd.Parameters.AddWithValue("@nombreProducto", nombreProducto);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Si se encuentra el producto, mostrar los datos en los TextBox
+                if (reader.Read())
+                {
+                    txtNombre.Text = reader["Nombre"].ToString();
+                    txtPrecioVenta.Text = reader["PrecioVenta"].ToString();
+                    txtPrecioProveedor.Text = reader["PrecioProveedor"].ToString();
+                    txtCantidad.Text = reader["Cantidad"].ToString();
+                    txtStock.Text = reader["Stock"].ToString();
+                    cmbIdMarca.Text = reader["Marca"].ToString();
+                    cmbIdTipoProducto.Text = reader["TipoProducto"].ToString();
+                    cmbIdProveedor.Text = reader["Proveedor"].ToString();
+                    txtDescripcion.Text = reader["Descripcion"].ToString();
+
+                    txtIdMarca.Text = reader["idMarca"].ToString();
+                    txtIdProveedor.Text = reader["idTipoProducto"].ToString();
+                    txtIdTipoProducto.Text = reader["idProveedor"].ToString();
+                }
+
+                reader.Close();
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void AlmacenVerProducto_Load(object sender, EventArgs e)
@@ -67,17 +138,7 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
-        }
-
-        private void btnElegir_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
-        }
-
-        private void txtMarca_TextChanged(object sender, EventArgs e)
-        {
-
+            parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm));
         }
     }
 }

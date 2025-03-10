@@ -59,6 +59,7 @@
             // txtFecha
             // 
             this.txtFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtFecha.Enabled = false;
             this.txtFecha.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtFecha.Location = new System.Drawing.Point(899, 296);
@@ -70,6 +71,7 @@
             // txtLaboratorio
             // 
             this.txtLaboratorio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtLaboratorio.Enabled = false;
             this.txtLaboratorio.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLaboratorio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtLaboratorio.Location = new System.Drawing.Point(802, 194);
@@ -81,6 +83,7 @@
             // txtMarca
             // 
             this.txtMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtMarca.Enabled = false;
             this.txtMarca.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtMarca.Location = new System.Drawing.Point(802, 146);
@@ -144,7 +147,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label3.Location = new System.Drawing.Point(627, 246);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(186, 40);
+            this.label3.Size = new System.Drawing.Size(217, 40);
             this.label3.TabIndex = 76;
             this.label3.Text = "Presentación";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -176,6 +179,7 @@
             // txtDescripcion
             // 
             this.txtDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtDescripcion.Location = new System.Drawing.Point(316, 360);
@@ -242,6 +246,7 @@
             // txtDosis
             // 
             this.txtDosis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtDosis.Enabled = false;
             this.txtDosis.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDosis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtDosis.Location = new System.Drawing.Point(316, 246);
@@ -265,6 +270,7 @@
             // txtProveedor
             // 
             this.txtProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtProveedor.Enabled = false;
             this.txtProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtProveedor.Location = new System.Drawing.Point(802, 95);
@@ -276,6 +282,7 @@
             // txtPrecioVenta
             // 
             this.txtPrecioVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtPrecioVenta.Enabled = false;
             this.txtPrecioVenta.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtPrecioVenta.Location = new System.Drawing.Point(227, 145);
@@ -299,6 +306,7 @@
             // txtPrecioProveedor
             // 
             this.txtPrecioProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtPrecioProveedor.Enabled = false;
             this.txtPrecioProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtPrecioProveedor.Location = new System.Drawing.Point(279, 195);
@@ -310,6 +318,7 @@
             // txtNombre
             // 
             this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtNombre.Enabled = false;
             this.txtNombre.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtNombre.Location = new System.Drawing.Point(227, 95);
@@ -333,6 +342,7 @@
             // txtViaAdministracion
             // 
             this.txtViaAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtViaAdministracion.Enabled = false;
             this.txtViaAdministracion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtViaAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtViaAdministracion.Location = new System.Drawing.Point(316, 298);
@@ -344,11 +354,12 @@
             // txtPresentacion
             // 
             this.txtPresentacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtPresentacion.Enabled = false;
             this.txtPresentacion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPresentacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPresentacion.Location = new System.Drawing.Point(819, 247);
+            this.txtPresentacion.Location = new System.Drawing.Point(850, 247);
             this.txtPresentacion.Name = "txtPresentacion";
-            this.txtPresentacion.Size = new System.Drawing.Size(243, 40);
+            this.txtPresentacion.Size = new System.Drawing.Size(212, 40);
             this.txtPresentacion.TabIndex = 86;
             this.txtPresentacion.Text = "Presentación";
             // 

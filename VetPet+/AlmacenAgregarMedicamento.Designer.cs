@@ -33,21 +33,21 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDosis = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtIntervalo = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtIdPresentacion = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDosis = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtIntervalo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtIdViaAdministracion = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtIdProducto = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtIdLaboratorio = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbPresentacion = new System.Windows.Forms.ComboBox();
             this.cmbViaAdministracion = new System.Windows.Forms.ComboBox();
             this.cmbLaboratorio = new System.Windows.Forms.ComboBox();
@@ -128,52 +128,6 @@
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
-            this.label6.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label6.Location = new System.Drawing.Point(605, 91);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(449, 40);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "Informacion de Id\'s";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtDosis
-            // 
-            this.txtDosis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtDosis.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDosis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtDosis.Location = new System.Drawing.Point(308, 144);
-            this.txtDosis.Name = "txtDosis";
-            this.txtDosis.Size = new System.Drawing.Size(275, 40);
-            this.txtDosis.TabIndex = 35;
-            this.txtDosis.Text = "Dosis recomendada";
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
-            this.label4.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(12, 254);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(250, 38);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Id Presentacion";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtNombre.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtNombre.Location = new System.Drawing.Point(219, 89);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(364, 40);
-            this.txtNombre.TabIndex = 27;
-            this.txtNombre.Text = "Nombre de medicamento";
-            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
@@ -185,6 +139,67 @@
             this.label2.TabIndex = 26;
             this.label2.Text = "Nombre";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtNombre.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtNombre.Location = new System.Drawing.Point(219, 89);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(364, 40);
+            this.txtNombre.TabIndex = 27;
+            this.txtNombre.Text = "Nombre de medicamento";
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
+            // 
+            // txtIdPresentacion
+            // 
+            this.txtIdPresentacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdPresentacion.Enabled = false;
+            this.txtIdPresentacion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdPresentacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtIdPresentacion.Location = new System.Drawing.Point(611, 254);
+            this.txtIdPresentacion.Name = "txtIdPresentacion";
+            this.txtIdPresentacion.Size = new System.Drawing.Size(443, 40);
+            this.txtIdPresentacion.TabIndex = 32;
+            this.txtIdPresentacion.Text = "Id Presentacion";
+            this.txtIdPresentacion.TextChanged += new System.EventHandler(this.txtIdPresentacion_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
+            this.label4.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
+            this.label4.Location = new System.Drawing.Point(12, 254);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(250, 38);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Presentacion";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtDosis
+            // 
+            this.txtDosis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtDosis.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDosis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtDosis.Location = new System.Drawing.Point(308, 144);
+            this.txtDosis.Name = "txtDosis";
+            this.txtDosis.Size = new System.Drawing.Size(275, 40);
+            this.txtDosis.TabIndex = 35;
+            this.txtDosis.Text = "Dosis recomendada";
+            this.txtDosis.Enter += new System.EventHandler(this.txtDosis_Enter);
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
+            this.label6.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
+            this.label6.Location = new System.Drawing.Point(605, 91);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(449, 40);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Informacion de Id\'s";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
@@ -198,6 +213,18 @@
             this.label9.Text = "Dosis recomendada";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtIntervalo
+            // 
+            this.txtIntervalo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIntervalo.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIntervalo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtIntervalo.Location = new System.Drawing.Point(219, 197);
+            this.txtIntervalo.Name = "txtIntervalo";
+            this.txtIntervalo.Size = new System.Drawing.Size(364, 40);
+            this.txtIntervalo.TabIndex = 58;
+            this.txtIntervalo.Text = "Intervalo";
+            this.txtIntervalo.Enter += new System.EventHandler(this.txtIntervalo_Enter);
+            // 
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
@@ -210,28 +237,17 @@
             this.label5.Text = "Intervalo";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtIntervalo
+            // txtIdViaAdministracion
             // 
-            this.txtIntervalo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtIntervalo.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIntervalo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIntervalo.Location = new System.Drawing.Point(219, 197);
-            this.txtIntervalo.Name = "txtIntervalo";
-            this.txtIntervalo.Size = new System.Drawing.Size(364, 40);
-            this.txtIntervalo.TabIndex = 58;
-            this.txtIntervalo.Text = "Intervalo";
-            // 
-            // txtIdPresentacion
-            // 
-            this.txtIdPresentacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtIdPresentacion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdPresentacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdPresentacion.Location = new System.Drawing.Point(611, 254);
-            this.txtIdPresentacion.Name = "txtIdPresentacion";
-            this.txtIdPresentacion.Size = new System.Drawing.Size(443, 40);
-            this.txtIdPresentacion.TabIndex = 32;
-            this.txtIdPresentacion.Text = "Id Presentacion";
-            this.txtIdPresentacion.TextChanged += new System.EventHandler(this.txtIdPresentacion_TextChanged);
+            this.txtIdViaAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdViaAdministracion.Enabled = false;
+            this.txtIdViaAdministracion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdViaAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtIdViaAdministracion.Location = new System.Drawing.Point(611, 309);
+            this.txtIdViaAdministracion.Name = "txtIdViaAdministracion";
+            this.txtIdViaAdministracion.Size = new System.Drawing.Size(443, 40);
+            this.txtIdViaAdministracion.TabIndex = 60;
+            this.txtIdViaAdministracion.Text = "Id Admin";
             // 
             // label1
             // 
@@ -242,31 +258,32 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(331, 38);
             this.label1.TabIndex = 61;
-            this.label1.Text = "Id Via Administracion";
+            this.label1.Text = "Via Administracion";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtIdViaAdministracion
+            // txtIdLaboratorio
             // 
-            this.txtIdViaAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtIdViaAdministracion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdViaAdministracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdViaAdministracion.Location = new System.Drawing.Point(611, 309);
-            this.txtIdViaAdministracion.Name = "txtIdViaAdministracion";
-            this.txtIdViaAdministracion.Size = new System.Drawing.Size(443, 40);
-            this.txtIdViaAdministracion.TabIndex = 60;
-            this.txtIdViaAdministracion.Text = "Id Admin";
+            this.txtIdLaboratorio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.txtIdLaboratorio.Enabled = false;
+            this.txtIdLaboratorio.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdLaboratorio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.txtIdLaboratorio.Location = new System.Drawing.Point(611, 361);
+            this.txtIdLaboratorio.Name = "txtIdLaboratorio";
+            this.txtIdLaboratorio.Size = new System.Drawing.Size(443, 40);
+            this.txtIdLaboratorio.TabIndex = 62;
+            this.txtIdLaboratorio.Text = "Id Laboratorio";
             // 
-            // label3
+            // label7
             // 
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
-            this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label3.Location = new System.Drawing.Point(12, 416);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(225, 38);
-            this.label3.TabIndex = 65;
-            this.label3.Text = "Id Producto";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
+            this.label7.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
+            this.label7.Location = new System.Drawing.Point(12, 361);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(225, 38);
+            this.label7.TabIndex = 63;
+            this.label7.Text = "Laboratorio";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtIdProducto
             // 
@@ -279,28 +296,17 @@
             this.txtIdProducto.TabIndex = 64;
             this.txtIdProducto.Text = "Id Producto";
             // 
-            // label7
+            // label3
             // 
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
-            this.label7.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label7.Location = new System.Drawing.Point(12, 361);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(225, 38);
-            this.label7.TabIndex = 63;
-            this.label7.Text = "Id Laboratorio";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtIdLaboratorio
-            // 
-            this.txtIdLaboratorio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtIdLaboratorio.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdLaboratorio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdLaboratorio.Location = new System.Drawing.Point(611, 361);
-            this.txtIdLaboratorio.Name = "txtIdLaboratorio";
-            this.txtIdLaboratorio.Size = new System.Drawing.Size(443, 40);
-            this.txtIdLaboratorio.TabIndex = 62;
-            this.txtIdLaboratorio.Text = "Id Laboratorio";
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
+            this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
+            this.label3.Location = new System.Drawing.Point(12, 416);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(225, 38);
+            this.label3.TabIndex = 65;
+            this.label3.Text = "Producto";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmbPresentacion
             // 
@@ -409,21 +415,21 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnRegresar;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtDosis;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtIntervalo;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtIdPresentacion;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtDosis;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtIntervalo;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtIdViaAdministracion;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtIdProducto;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtIdLaboratorio;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtIdProducto;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbPresentacion;
         private System.Windows.Forms.ComboBox cmbViaAdministracion;
         private System.Windows.Forms.ComboBox cmbLaboratorio;

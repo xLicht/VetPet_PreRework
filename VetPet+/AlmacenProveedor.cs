@@ -181,7 +181,7 @@ namespace VetPet_
                 else
                 {
                     // Llamar al formulario de opciones
-                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre))
+                    using (var opcionesForm = new AlmacenAvisoVerOModificar(nombre, parentForm))
                     {
                         if (opcionesForm.ShowDialog() == DialogResult.OK)
                         {
