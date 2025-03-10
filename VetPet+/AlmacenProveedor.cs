@@ -207,5 +207,47 @@ namespace VetPet_
         {
 
         }
+
+        private void FiltrarProveedoresPorFecha(DateTime fechaSeleccionada)
+        {
+            try
+            {
+                conexionBrandon conexion = new conexionBrandon();
+                conexion.AbrirConexion();
+
+                string query = @"SELECT 
+                            p.Nombre, 
+                            p.Celular, 
+                            e.nombre
+                        FROM 
+                            Proveedor p
+                        JOIN 
+                            Direccion d ON p.IdProveedor = d.IdProveedor
+                        JOIN 
+                            Estado e ON d.IdEstado = e.IdEstado
+                        WHERE 
+                            CAST(p.FechaRegistro AS DATE) = @FechaSeleccionada;";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+                da.SelectCommand.Parameters.AddWithValue("@FechaSeleccionada", fechaSeleccionada.Date);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+                dataGridView1.AutoGenerateColumns = true;
+
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar proveedores: " + ex.Message);
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            FiltrarProveedoresPorFecha(dateTimePicker1.Value);
+        }
     }
 }

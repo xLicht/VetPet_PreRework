@@ -340,6 +340,57 @@ namespace VetPet_
                 txtProducto.Text = ""; // Limpia el TextBox
             }
         }
+
+        private void FiltrarMedicamentosPorFecha(DateTime fechaSeleccionada)
+        {
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Consulta SQL para filtrar medicamentos por fecha de registro
+                string query = @"
+            SELECT 
+                p.nombre AS Presentacion,
+                m.nombreGenérico AS Nombre,
+                pr.stock AS Inventario,
+                pr.precioventa AS Precio
+            FROM Medicamento m
+            JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+            JOIN producto pr ON m.idproducto = pr.idproducto
+            WHERE CAST(pr.fechaRegistro AS DATE) = @fechaSeleccionada;";
+
+                // Crear un SqlDataAdapter con la conexión
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                // Agregar el parámetro de fecha
+                da.SelectCommand.Parameters.AddWithValue("@fechaSeleccionada", fechaSeleccionada.Date);
+
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados
+                da.Fill(dt);
+
+                // Asignar el DataTable al DataGridView
+                dataGridView1.DataSource = dt;
+                dataGridView1.AutoGenerateColumns = true;
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            FiltrarMedicamentosPorFecha(dateTimePicker1.Value);
+        }
     }
 }
 
