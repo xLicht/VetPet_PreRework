@@ -34,9 +34,9 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT nombre
-                    FROM TipoEmpleado
-                    WHERE idTipoEmpleado = @idTipoEmpleado";
+                string query = @"SELECT nombre, descripcion
+                         FROM TipoEmpleado
+                         WHERE idTipoEmpleado = @idTipoEmpleado";
 
                 using (SqlCommand comandoSQL = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -46,7 +46,7 @@ namespace VetPet_
                     if (lectorSQL.Read())
                     {
                         txtNombre.Text = lectorSQL["nombre"].ToString();
-                        // rtDescripcion.Text = lectorSQL["descripcion"].ToString(); // Comentado por ahora
+                        rtDescripcion.Text = lectorSQL["descripcion"].ToString(); // Ahora asignamos la descripción
                     }
                 }
             }
@@ -151,16 +151,18 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string actualizarNombreQuery = @"UPDATE TipoEmpleado 
-                SET nombre = @nombre
+                string actualizarTipoEmpleadoQuery = @"UPDATE TipoEmpleado 
+                SET nombre = @nombre, descripcion = @descripcion
                 WHERE idTipoEmpleado = @idTipoEmpleado";
 
-                using (SqlCommand comandoSQL = new SqlCommand(actualizarNombreQuery, conexionDB.GetConexion()))
+                using (SqlCommand comandoSQL = new SqlCommand(actualizarTipoEmpleadoQuery, conexionDB.GetConexion()))
                 {
                     comandoSQL.Parameters.AddWithValue("@nombre", txtNombre.Text);
+                    comandoSQL.Parameters.AddWithValue("@descripcion", rtDescripcion.Text); // Guardar descripción
                     comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", DatoEmpleado);
                     comandoSQL.ExecuteNonQuery();
                 }
+
 
 
                 Dictionary<string, bool> modulosAsignados = new Dictionary<string, bool>();
@@ -205,9 +207,8 @@ namespace VetPet_
                     bool estaMarcado = modulo.Value.Checked;
                     bool yaAsignado = modulosAsignados.ContainsKey(modulo.Key);
 
-                    if (estaMarcado && !yaAsignado)  // Insertar si está marcado y no está asignado
+                    if (estaMarcado && !yaAsignado)  
                     {
-                        // Obtener idModulo antes de insertar
                         string obtenerIdModuloQuery = "SELECT idModulo FROM Modulo WHERE nombre = @nombreModulo";
                         int? idModulo = null;
 
@@ -221,7 +222,7 @@ namespace VetPet_
                             }
                         }
 
-                        if (idModulo.HasValue) // Solo insertar si encontró un idModulo válido
+                        if (idModulo.HasValue) 
                         {
                             string insertarModuloQuery = @"INSERT INTO TipoEmpleado_Modulo (idTipoEmpleado, idModulo) 
                             VALUES (@idTipoEmpleado, @idModulo)";
@@ -234,7 +235,7 @@ namespace VetPet_
                             }
                         }
                     }
-                    else if (!estaMarcado && yaAsignado)  // Eliminar si NO está marcado pero está asignado
+                    else if (!estaMarcado && yaAsignado)  
                     {
                         string eliminarModuloQuery = @" DELETE FROM TipoEmpleado_Modulo 
                         WHERE idTipoEmpleado = @idTipoEmpleado 

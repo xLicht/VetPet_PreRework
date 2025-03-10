@@ -24,7 +24,7 @@ namespace VetPet_
 
         private void EmpAgregarTipoEmpleado_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -38,23 +38,29 @@ namespace VetPet_
             parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
         }
 
-
         private void AgregarTipoEmpleado()
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(rtDescripcion.Text))
+                {
+                    MessageBox.Show("Por favor, completa todos los campos antes de continuar.");
+                    return;
+                }
+
                 conexionDB.AbrirConexion();
 
-                string insertarTipoEmpleadoQuery = @"
-                    INSERT INTO TipoEmpleado (nombre) 
-                    VALUES (@nombre);
-                    SELECT SCOPE_IDENTITY();"; 
+                string insertarTipoEmpleadoQuery = @"INSERT INTO TipoEmpleado (nombre, descripcion, estado) 
+                VALUES (@nombre, @descripcion, @estado);
+                SELECT SCOPE_IDENTITY();";
 
                 int nuevoIdTipoEmpleado;
 
                 using (SqlCommand comandoSQL = new SqlCommand(insertarTipoEmpleadoQuery, conexionDB.GetConexion()))
                 {
                     comandoSQL.Parameters.AddWithValue("@nombre", txtNombre.Text);
+                    comandoSQL.Parameters.AddWithValue("@descripcion", rtDescripcion.Text);
+                    comandoSQL.Parameters.AddWithValue("@estado", 'A');  
                     object resultado = comandoSQL.ExecuteScalar();
                     nuevoIdTipoEmpleado = Convert.ToInt32(resultado);
                 }
@@ -76,34 +82,33 @@ namespace VetPet_
                     { "Empleados", cbEmpleados }
                 };
 
+                string obtenerIdModulosQuery = "SELECT idModulo, nombre FROM Modulo";
+                Dictionary<string, int> modulosExistentes = new Dictionary<string, int>();
+
+                using (SqlCommand comandoSQL = new SqlCommand(obtenerIdModulosQuery, conexionDB.GetConexion()))
+                {
+                    using (SqlDataReader reader = comandoSQL.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            modulosExistentes[reader["nombre"].ToString()] = Convert.ToInt32(reader["idModulo"]);
+                        }
+                    }
+                }
                 foreach (var modulo in modulosCheckBox)
                 {
-                    if (modulo.Value.Checked) 
+                    if (modulo.Value.Checked && modulosExistentes.ContainsKey(modulo.Key))
                     {
-                        string obtenerIdModuloQuery = "SELECT idModulo FROM Modulo WHERE nombre = @nombreModulo";
-                        int? idModulo = null;
+                        int idModulo = modulosExistentes[modulo.Key];
 
-                        using (SqlCommand comandoSQL = new SqlCommand(obtenerIdModuloQuery, conexionDB.GetConexion()))
+                        string insertarModuloQuery = @"INSERT INTO TipoEmpleado_Modulo (idTipoEmpleado, idModulo) 
+                        VALUES (@idTipoEmpleado, @idModulo)";
+
+                        using (SqlCommand comandoSQL = new SqlCommand(insertarModuloQuery, conexionDB.GetConexion()))
                         {
-                            comandoSQL.Parameters.AddWithValue("@nombreModulo", modulo.Key);
-                            object resultado = comandoSQL.ExecuteScalar();
-                            if (resultado != null)
-                            {
-                                idModulo = Convert.ToInt32(resultado);
-                            }
-                        }
-
-                        if (idModulo.HasValue) 
-                        {
-                            string insertarModuloQuery = @" INSERT INTO TipoEmpleado_Modulo (idTipoEmpleado, idModulo) 
-                            VALUES (@idTipoEmpleado, @idModulo)";
-
-                            using (SqlCommand comandoSQL = new SqlCommand(insertarModuloQuery, conexionDB.GetConexion()))
-                            {
-                                comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", nuevoIdTipoEmpleado);
-                                comandoSQL.Parameters.AddWithValue("@idModulo", idModulo.Value);
-                                comandoSQL.ExecuteNonQuery();
-                            }
+                            comandoSQL.Parameters.AddWithValue("@idTipoEmpleado", nuevoIdTipoEmpleado);
+                            comandoSQL.Parameters.AddWithValue("@idModulo", idModulo);
+                            comandoSQL.ExecuteNonQuery();
                         }
                     }
                 }

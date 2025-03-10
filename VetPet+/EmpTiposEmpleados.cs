@@ -35,12 +35,20 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"
-                    SELECT te.idTipoEmpleado, te.nombre AS TipoEmpleado, m.nombre AS Modulo
-                    FROM TipoEmpleado te
-                    JOIN TipoEmpleado_Modulo tem ON te.idTipoEmpleado = tem.idTipoEmpleado
-                    JOIN Modulo m ON tem.idModulo = m.idModulo
-                    ORDER BY te.idTipoEmpleado, m.nombre;";
+                //string query = @"
+                //    SELECT te.idTipoEmpleado, te.nombre AS TipoEmpleado, m.nombre AS Modulo
+                //    FROM TipoEmpleado te
+                //    JOIN TipoEmpleado_Modulo tem ON te.idTipoEmpleado = tem.idTipoEmpleado
+                //    JOIN Modulo m ON tem.idModulo = m.idModulo
+                //    ORDER BY te.idTipoEmpleado, m.nombre;";
+
+                string query = @"SELECT te.idTipoEmpleado, te.nombre AS TipoEmpleado, m.nombre AS Modulo
+                FROM TipoEmpleado te
+                JOIN TipoEmpleado_Modulo tem ON te.idTipoEmpleado = tem.idTipoEmpleado
+                JOIN Modulo m ON tem.idModulo = m.idModulo
+                WHERE te.estado = 'A' 
+                ORDER BY te.idTipoEmpleado, m.nombre;";
+
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {

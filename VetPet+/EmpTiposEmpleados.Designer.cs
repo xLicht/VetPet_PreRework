@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.cbFliltrar = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.a = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -39,25 +38,10 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.a)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTipoEmpleado)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cbFliltrar
-            // 
-            this.cbFliltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.cbFliltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFliltrar.FormattingEnabled = true;
-            this.cbFliltrar.Items.AddRange(new object[] {
-            "Tipo",
-            "Modulos de Acceso"});
-            this.cbFliltrar.Location = new System.Drawing.Point(150, 85);
-            this.cbFliltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cbFliltrar.Name = "cbFliltrar";
-            this.cbFliltrar.Size = new System.Drawing.Size(156, 33);
-            this.cbFliltrar.TabIndex = 132;
             // 
             // label16
             // 
@@ -166,31 +150,18 @@
             this.Column2.HeaderText = "Modulos de Acceso";
             this.Column2.Name = "Column2";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(68, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 30);
-            this.label5.TabIndex = 124;
-            this.label5.Text = "Filtrar";
-            // 
             // EmpTiposEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.cbFliltrar);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.a);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.r);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.dtTipoEmpleado);
-            this.Controls.Add(this.label5);
             this.Name = "EmpTiposEmpleados";
             this.Text = "EmpTiposEmpleados";
             this.Load += new System.EventHandler(this.EmpTiposEmpleados_Load);
@@ -203,14 +174,12 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox cbFliltrar;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox a;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.PictureBox r;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.DataGridView dtTipoEmpleado;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

@@ -393,9 +393,10 @@
             // rtDescripcion
             // 
             this.rtDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.rtDescripcion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtDescripcion.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtDescripcion.ForeColor = System.Drawing.Color.Black;
             this.rtDescripcion.Location = new System.Drawing.Point(74, 221);
+            this.rtDescripcion.MaxLength = 200;
             this.rtDescripcion.Name = "rtDescripcion";
             this.rtDescripcion.Size = new System.Drawing.Size(388, 245);
             this.rtDescripcion.TabIndex = 420;

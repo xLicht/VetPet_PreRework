@@ -50,9 +50,9 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT nombre
-                    FROM TipoEmpleado
-                    WHERE idTipoEmpleado = @idTipoEmpleado";
+                string query = @"SELECT nombre, descripcion
+                         FROM TipoEmpleado
+                         WHERE idTipoEmpleado = @idTipoEmpleado";
 
                 using (SqlCommand comandoSQL = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -62,7 +62,7 @@ namespace VetPet_
                     if (lectorSQL.Read())
                     {
                         txtNombre.Text = lectorSQL["nombre"].ToString();
-                        // rtDescripcion.Text = lectorSQL["descripcion"].ToString(); // Comentado por ahora
+                        rtDescripcion.Text = lectorSQL["descripcion"].ToString(); 
                     }
                 }
             }
