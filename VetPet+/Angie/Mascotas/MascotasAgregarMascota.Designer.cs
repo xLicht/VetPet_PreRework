@@ -149,9 +149,9 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button3.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(1245, 667);
+            this.button3.Location = new System.Drawing.Point(1145, 624);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(201, 78);
+            this.button3.Size = new System.Drawing.Size(217, 78);
             this.button3.TabIndex = 149;
             this.button3.Text = "Regresar";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -163,7 +163,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(724, 667);
+            this.button1.Location = new System.Drawing.Point(745, 624);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(215, 78);
             this.button1.TabIndex = 147;
@@ -351,7 +351,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.flecha_ang;
-            this.pictureBox3.Location = new System.Drawing.Point(1377, 676);
+            this.pictureBox3.Location = new System.Drawing.Point(1288, 633);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(58, 57);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -362,7 +362,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_aceptar_505;
-            this.pictureBox2.Location = new System.Drawing.Point(870, 676);
+            this.pictureBox2.Location = new System.Drawing.Point(891, 633);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(58, 57);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

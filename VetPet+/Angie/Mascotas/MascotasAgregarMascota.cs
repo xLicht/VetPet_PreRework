@@ -106,9 +106,9 @@ namespace VetPet_.Angie.Mascotas
                 string dueño = comboBox1.SelectedItem?.ToString()?.Trim();
                 string sensibilidades = richTextBox1.Text.Trim();
 
-                if (string.IsNullOrEmpty(nombreMascota) || string.IsNullOrEmpty(dueño))
+                if (string.IsNullOrEmpty(nombreMascota) || string.IsNullOrEmpty(dueño) || string.IsNullOrEmpty(especie) || string.IsNullOrEmpty(raza))
                 {
-                    MessageBox.Show("El nombre de la mascota y el dueño son obligatorios.");
+                    MessageBox.Show("Todos los campos son obligatorios.");
                     return;
                 }
 
