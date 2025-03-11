@@ -101,7 +101,7 @@ namespace VetPet_
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Mascota eliminada lógicamente correctamente.", "Éxito");
+                        MessageBox.Show("Mascota eliminada correctamente.", "Éxito");
                         // Redirigir al formulario de consulta o cualquier otra acción necesaria
                         parentForm.formularioHijo(new MascotasListado(parentForm));
                     }

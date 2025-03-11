@@ -9,16 +9,17 @@ namespace VetPet_
 {
     internal class conexionDaniel
     {
-        private readonly string cadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\BDatos\VetPet+\VetPetPlus_.mdf;Integrated Security=True;Connect Timeout=30";
+        //private readonly string cadenaConexion = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
+        private readonly string cadenaConexion = @"Server=LAPTOP-NQM61SRI\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
-        // Constructor
+       
         public conexionDaniel()
         {
             conexion = new SqlConnection(cadenaConexion);
         }
 
-        // Método para abrir la conexión
+       
         public void AbrirConexion()
         {
             try
@@ -34,7 +35,7 @@ namespace VetPet_
             }
         }
 
-        // Método para cerrar la conexión
+    
         public void CerrarConexion()
         {
             try
@@ -50,7 +51,7 @@ namespace VetPet_
             }
         }
 
-        // Método para obtener la conexión
+       
         public SqlConnection GetConexion()
         {
             return conexion;

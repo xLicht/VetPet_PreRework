@@ -76,7 +76,7 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button3.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(1255, 650);
+            this.button3.Location = new System.Drawing.Point(1241, 641);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(201, 78);
             this.button3.TabIndex = 123;
@@ -90,7 +90,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(734, 650);
+            this.button1.Location = new System.Drawing.Point(720, 641);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(215, 78);
             this.button1.TabIndex = 119;
@@ -104,7 +104,7 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button2.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(964, 650);
+            this.button2.Location = new System.Drawing.Point(950, 641);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(265, 78);
             this.button2.TabIndex = 117;
@@ -116,7 +116,7 @@
             // richTextBox1
             // 
             this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(1041, 388);
+            this.richTextBox1.Location = new System.Drawing.Point(985, 347);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(359, 213);
             this.richTextBox1.TabIndex = 116;
@@ -156,7 +156,7 @@
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label11.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label11.Location = new System.Drawing.Point(814, 385);
+            this.label11.Location = new System.Drawing.Point(759, 347);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(203, 35);
             this.label11.TabIndex = 111;
@@ -168,7 +168,7 @@
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label10.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label10.Location = new System.Drawing.Point(814, 297);
+            this.label10.Location = new System.Drawing.Point(759, 254);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(156, 35);
             this.label10.TabIndex = 110;
@@ -180,7 +180,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label9.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label9.Location = new System.Drawing.Point(814, 206);
+            this.label9.Location = new System.Drawing.Point(759, 160);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 35);
             this.label9.TabIndex = 109;
@@ -190,7 +190,7 @@
             // 
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(344, 659);
+            this.textBox6.Location = new System.Drawing.Point(323, 624);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(372, 43);
             this.textBox6.TabIndex = 108;
@@ -201,7 +201,7 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label8.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(39, 659);
+            this.label8.Location = new System.Drawing.Point(18, 624);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 35);
             this.label8.TabIndex = 107;
@@ -213,7 +213,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label7.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(39, 474);
+            this.label7.Location = new System.Drawing.Point(18, 439);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(287, 35);
             this.label7.TabIndex = 106;
@@ -225,7 +225,7 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label6.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(39, 566);
+            this.label6.Location = new System.Drawing.Point(18, 531);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 35);
             this.label6.TabIndex = 104;
@@ -235,7 +235,7 @@
             // 
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(344, 571);
+            this.textBox4.Location = new System.Drawing.Point(323, 536);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(372, 43);
             this.textBox4.TabIndex = 103;
@@ -246,7 +246,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label5.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(39, 382);
+            this.label5.Location = new System.Drawing.Point(18, 347);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 35);
             this.label5.TabIndex = 102;
@@ -258,7 +258,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(39, 289);
+            this.label4.Location = new System.Drawing.Point(18, 254);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 35);
             this.label4.TabIndex = 101;
@@ -270,7 +270,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(39, 203);
+            this.label3.Location = new System.Drawing.Point(18, 168);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 35);
             this.label3.TabIndex = 100;
@@ -280,7 +280,7 @@
             // 
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(344, 195);
+            this.textBox1.Location = new System.Drawing.Point(323, 160);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(372, 43);
             this.textBox1.TabIndex = 99;
@@ -343,40 +343,43 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.flecha_ang;
-            this.pictureBox3.Location = new System.Drawing.Point(1389, 662);
+            this.pictureBox3.Location = new System.Drawing.Point(1373, 650);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(58, 57);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 122;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_pasado_24;
-            this.pictureBox2.Location = new System.Drawing.Point(881, 662);
+            this.pictureBox2.Location = new System.Drawing.Point(866, 650);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(58, 57);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 118;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.icons8_receta_50;
-            this.pictureBox1.Location = new System.Drawing.Point(1161, 662);
+            this.pictureBox1.Location = new System.Drawing.Point(1145, 650);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(58, 57);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 98;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
             // 
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(344, 281);
+            this.textBox2.Location = new System.Drawing.Point(323, 246);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(372, 43);
             this.textBox2.TabIndex = 125;
@@ -385,7 +388,7 @@
             // 
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(344, 374);
+            this.textBox3.Location = new System.Drawing.Point(323, 339);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(372, 43);
             this.textBox3.TabIndex = 126;
@@ -394,7 +397,7 @@
             // 
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(344, 466);
+            this.textBox5.Location = new System.Drawing.Point(323, 431);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(372, 43);
             this.textBox5.TabIndex = 127;
@@ -403,7 +406,8 @@
             // 
             this.groupBox3.Controls.Add(this.radioButton5);
             this.groupBox3.Controls.Add(this.radioButton6);
-            this.groupBox3.Location = new System.Drawing.Point(994, 258);
+            this.groupBox3.Enabled = false;
+            this.groupBox3.Location = new System.Drawing.Point(957, 224);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(362, 100);
             this.groupBox3.TabIndex = 128;
@@ -441,7 +445,8 @@
             // 
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(964, 172);
+            this.groupBox1.Enabled = false;
+            this.groupBox1.Location = new System.Drawing.Point(927, 138);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(430, 80);
             this.groupBox1.TabIndex = 129;

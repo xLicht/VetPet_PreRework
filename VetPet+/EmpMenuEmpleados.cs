@@ -39,5 +39,15 @@ namespace VetPet_
         {
            
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new EmpTiposEmpleados(parentForm));
+        }
     }
 }

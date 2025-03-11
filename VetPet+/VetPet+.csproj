@@ -258,6 +258,12 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarMascota.Designer.cs">
+      <DependentUpon>MascotasAgregarMascota.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Mascotas\MascotasListado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,12 @@
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\Mismetodos.cs" />
+    <Compile Include="Angie\Ventas\DueAgregarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Ventas\DueAgregarMascota.Designer.cs">
+      <DependentUpon>DueAgregarMascota.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1089,6 +1101,9 @@
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarMascota.resx">
+      <DependentUpon>MascotasAgregarMascota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasConsultar.resx">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
     </EmbeddedResource>
@@ -1577,6 +1592,8 @@
     <Content Include="icudt.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-add-button-251.png" />
+    <None Include="Resources\icons8-aceptar-505.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
