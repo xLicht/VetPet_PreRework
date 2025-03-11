@@ -42,7 +42,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCp = new System.Windows.Forms.TextBox();
+            this.txtCP = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCelular = new System.Windows.Forms.TextBox();
@@ -92,7 +92,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(391, 34);
+            this.label13.Location = new System.Drawing.Point(403, 37);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(314, 37);
             this.label13.TabIndex = 596;
@@ -229,16 +229,17 @@
             this.label5.TabIndex = 665;
             this.label5.Text = "Colonia";
             // 
-            // txtCp
+            // txtCP
             // 
-            this.txtCp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.txtCp.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCp.Location = new System.Drawing.Point(719, 122);
-            this.txtCp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCp.Name = "txtCp";
-            this.txtCp.ReadOnly = true;
-            this.txtCp.Size = new System.Drawing.Size(171, 29);
-            this.txtCp.TabIndex = 664;
+            this.txtCP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.txtCP.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCP.Location = new System.Drawing.Point(719, 122);
+            this.txtCP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCP.Name = "txtCP";
+            this.txtCP.ReadOnly = true;
+            this.txtCP.Size = new System.Drawing.Size(171, 29);
+            this.txtCP.TabIndex = 664;
+            this.txtCP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCp_KeyPress);
             // 
             // label6
             // 
@@ -398,7 +399,7 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtCp);
+            this.Controls.Add(this.txtCP);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtCelular);
@@ -442,7 +443,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtCp;
+        private System.Windows.Forms.TextBox txtCP;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtCelular;

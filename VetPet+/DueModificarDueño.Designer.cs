@@ -208,10 +208,11 @@
             this.txtCp.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCp.Location = new System.Drawing.Point(738, 108);
             this.txtCp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCp.MaxLength = 8;
             this.txtCp.Name = "txtCp";
-            this.txtCp.ReadOnly = true;
             this.txtCp.Size = new System.Drawing.Size(171, 29);
             this.txtCp.TabIndex = 636;
+            this.txtCp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCp_KeyPress);
             // 
             // label6
             // 
@@ -241,10 +242,11 @@
             this.txtCelular.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCelular.Location = new System.Drawing.Point(296, 291);
             this.txtCelular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCelular.MaxLength = 10;
             this.txtCelular.Name = "txtCelular";
-            this.txtCelular.ReadOnly = true;
             this.txtCelular.Size = new System.Drawing.Size(153, 29);
             this.txtCelular.TabIndex = 633;
+            this.txtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCp_KeyPress);
             // 
             // txtApellidoP
             // 
@@ -253,7 +255,6 @@
             this.txtApellidoP.Location = new System.Drawing.Point(278, 175);
             this.txtApellidoP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellidoP.Name = "txtApellidoP";
-            this.txtApellidoP.ReadOnly = true;
             this.txtApellidoP.Size = new System.Drawing.Size(171, 29);
             this.txtApellidoP.TabIndex = 632;
             // 
@@ -264,9 +265,9 @@
             this.txtCorreo.Location = new System.Drawing.Point(278, 349);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.ReadOnly = true;
             this.txtCorreo.Size = new System.Drawing.Size(221, 29);
             this.txtCorreo.TabIndex = 631;
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             // 
             // txtApellidoM
             // 
@@ -275,7 +276,6 @@
             this.txtApellidoM.Location = new System.Drawing.Point(278, 237);
             this.txtApellidoM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellidoM.Name = "txtApellidoM";
-            this.txtApellidoM.ReadOnly = true;
             this.txtApellidoM.Size = new System.Drawing.Size(171, 29);
             this.txtApellidoM.TabIndex = 630;
             // 
@@ -286,7 +286,6 @@
             this.txtNombre.Location = new System.Drawing.Point(289, 118);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(171, 29);
             this.txtNombre.TabIndex = 629;
             // 

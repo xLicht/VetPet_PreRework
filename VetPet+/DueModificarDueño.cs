@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using VetPet_;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace VetPet_
 {
@@ -26,7 +27,9 @@ namespace VetPet_
         private void DueModificarDueño_Load(object sender, EventArgs e)
         {
             MessageBox.Show("Mensaje: "+ DatoEmpleado);
+            CargarCB();
             MostrarDato();
+
         }
 
         public void MostrarDato()
@@ -113,7 +116,7 @@ namespace VetPet_
                     idColonia = (SELECT idColonia FROM Colonia WHERE nombre = @colonia),
                     idEstado = (SELECT idEstado FROM Estado WHERE nombre = @estado)
                 WHERE idPersona = @idPersona;
-        ";
+                    ";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -152,7 +155,39 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+        private void CargarCB()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                MostrarCB("SELECT nombre FROM Pais", cbPais);
+                MostrarCB("SELECT nombre FROM Ciudad", cbCiudad);
+                MostrarCB("SELECT nombre FROM Colonia", cbColonia);
+                MostrarCB("SELECT nombre FROM Calle", cbCalle);
+                MostrarCB("SELECT nombre FROM Estado", cbEstado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al Cargar los datos" + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
 
+        private void MostrarCB(string query, ComboBox comboBox)
+        {
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox.Items.Add(reader[0].ToString());
+                }
+                reader.Close();
+            }
+        }
         private void btnMostrarMascota_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new DueMascotadeDue(parentForm));
@@ -165,7 +200,7 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            GuardarCambios();
 
             int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
             DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
@@ -185,6 +220,32 @@ namespace VetPet_
 
 
             //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
+        }
+
+        private bool CaracterValido(char c)
+        {
+            string caracteresPermitidos = @"^[a-zA-Z0-9._%+-@]+$";
+            return Regex.IsMatch(c.ToString(), caracteresPermitidos);
+        }
+
+        private void txtCp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                return;
+            }
+            if (!CaracterValido(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
