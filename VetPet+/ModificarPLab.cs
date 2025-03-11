@@ -38,7 +38,7 @@ namespace VetPet_
             conexion.AbrirConexion();
 
             // Consulta para eliminar el registro basado en el ID
-            string query = "DELETE FROM ServicioEspecificoNieto WHERE idServicioEspecificoNieto = @ID";
+            string query = "UPDATE ServicioEspecificoNieto SET estado = 'B' WHERE idServicioEspecificoNieto = @ID";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
