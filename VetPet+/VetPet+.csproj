@@ -271,12 +271,6 @@
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\Mismetodos.cs" />
-    <Compile Include="Angie\Ventas\DueAgregarMascota.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Angie\Ventas\DueAgregarMascota.Designer.cs">
-      <DependentUpon>DueAgregarMascota.cs</DependentUpon>
-    </Compile>
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
