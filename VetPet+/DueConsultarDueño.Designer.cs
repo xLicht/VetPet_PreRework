@@ -39,10 +39,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnMostrarMascota = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.txtCelular = new System.Windows.Forms.TextBox();
             this.txtApellidoP = new System.Windows.Forms.TextBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
@@ -60,10 +58,12 @@
             this.txtCp = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox2
@@ -197,18 +197,6 @@
             this.label13.TabIndex = 568;
             this.label13.Text = "Consultar Dueño";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.EmpAceptar;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(934, 502);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(57, 43);
-            this.pictureBox3.TabIndex = 570;
-            this.pictureBox3.TabStop = false;
-            // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
@@ -235,21 +223,6 @@
             this.btnMostrarMascota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMostrarMascota.UseVisualStyleBackColor = false;
             this.btnMostrarMascota.Click += new System.EventHandler(this.btnMostrarMascota_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnAceptar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnAceptar.Location = new System.Drawing.Point(776, 492);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(235, 62);
-            this.btnAceptar.TabIndex = 569;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtCelular
             // 
@@ -311,7 +284,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label18.Location = new System.Drawing.Point(645, 210);
+            this.label18.Location = new System.Drawing.Point(478, 229);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(74, 25);
             this.label18.TabIndex = 622;
@@ -321,7 +294,7 @@
             // 
             this.txtEstado.BackColor = System.Drawing.Color.Silver;
             this.txtEstado.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstado.Location = new System.Drawing.Point(726, 206);
+            this.txtEstado.Location = new System.Drawing.Point(559, 229);
             this.txtEstado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.ReadOnly = true;
@@ -332,7 +305,7 @@
             // 
             this.txtColonia.BackColor = System.Drawing.Color.Silver;
             this.txtColonia.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColonia.Location = new System.Drawing.Point(726, 370);
+            this.txtColonia.Location = new System.Drawing.Point(745, 299);
             this.txtColonia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtColonia.Name = "txtColonia";
             this.txtColonia.ReadOnly = true;
@@ -343,7 +316,7 @@
             // 
             this.txtCiudad.BackColor = System.Drawing.Color.Silver;
             this.txtCiudad.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCiudad.Location = new System.Drawing.Point(726, 312);
+            this.txtCiudad.Location = new System.Drawing.Point(857, 167);
             this.txtCiudad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.ReadOnly = true;
@@ -354,18 +327,18 @@
             // 
             this.txtCalle.BackColor = System.Drawing.Color.Silver;
             this.txtCalle.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalle.Location = new System.Drawing.Point(726, 263);
+            this.txtCalle.Location = new System.Drawing.Point(857, 233);
             this.txtCalle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.ReadOnly = true;
-            this.txtCalle.Size = new System.Drawing.Size(214, 29);
+            this.txtCalle.Size = new System.Drawing.Size(164, 29);
             this.txtCalle.TabIndex = 618;
             // 
             // txtPais
             // 
             this.txtPais.BackColor = System.Drawing.Color.Silver;
             this.txtPais.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPais.Location = new System.Drawing.Point(726, 152);
+            this.txtPais.Location = new System.Drawing.Point(559, 167);
             this.txtPais.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPais.Name = "txtPais";
             this.txtPais.ReadOnly = true;
@@ -377,7 +350,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label14.Location = new System.Drawing.Point(642, 312);
+            this.label14.Location = new System.Drawing.Point(773, 167);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(77, 25);
             this.label14.TabIndex = 616;
@@ -388,7 +361,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label3.Location = new System.Drawing.Point(669, 152);
+            this.label3.Location = new System.Drawing.Point(502, 167);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 25);
             this.label3.TabIndex = 615;
@@ -399,7 +372,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(642, 365);
+            this.label5.Location = new System.Drawing.Point(655, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 25);
             this.label5.TabIndex = 614;
@@ -432,11 +405,37 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label12.Location = new System.Drawing.Point(661, 267);
+            this.label12.Location = new System.Drawing.Point(792, 237);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 25);
             this.label12.TabIndex = 611;
             this.label12.Text = "Calle";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.DueEliminar;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(934, 502);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(57, 43);
+            this.pictureBox3.TabIndex = 624;
+            this.pictureBox3.TabStop = false;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnEliminar.Location = new System.Drawing.Point(776, 492);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(235, 62);
+            this.btnEliminar.TabIndex = 623;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.UseVisualStyleBackColor = false;
             // 
             // DueConsultarDueño
             // 
@@ -444,6 +443,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.txtColonia);
@@ -463,8 +464,6 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.btnMostrarMascota);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnModificar);
@@ -481,8 +480,8 @@
             this.Load += new System.EventHandler(this.DueConsultarDueño_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,10 +499,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btnMostrarMascota;
-        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox txtCelular;
         private System.Windows.Forms.TextBox txtApellidoP;
         private System.Windows.Forms.TextBox txtCorreo;
@@ -521,5 +518,7 @@
         private System.Windows.Forms.TextBox txtCp;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

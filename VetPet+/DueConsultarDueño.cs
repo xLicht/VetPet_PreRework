@@ -25,7 +25,7 @@ namespace VetPet_
 
         private void DueConsultarDueño_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Dato"+DatoEmpleado);
+            //MessageBox.Show("Dato"+DatoEmpleado);
             MostrarDato();
         }
 
@@ -108,7 +108,13 @@ namespace VetPet_
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueModificarDueño(parentForm));
+
+            int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+            DueModificarDueño formularioHijo = new DueModificarDueño(parentForm);
+            formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+            parentForm.formularioHijo(formularioHijo);
+
+            //parentForm.formularioHijo(new DueModificarDueño(parentForm));
         }
     } 
 }
