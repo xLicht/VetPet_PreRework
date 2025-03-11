@@ -28,107 +28,193 @@ namespace VetPet_.Angie.Mascotas
                                                             //comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
             parentForm = parent;  // Guardamos la referencia de Form1
             mismetodos = new Mismetodos();
-            CargarDetallesMascota();
+
+            CargarDatos();
+
         }
-        private void CargarDetallesMascota()
+        private void CargarDatos()
         {
-            string query = @"
-                      SELECT 
-                 Mascota.nombre AS Nombre,
-                 Especie.nombre AS Especie,
-                 Raza.nombre AS Raza,
-                 Mascota.fechaNacimiento AS FechaNacimiento,
-                 Mascota.peso AS Peso,
-                 Mascota.sexo AS Sexo,
-                 Mascota.esterilizado AS Esterilizado,
-                 STRING_AGG(Sensibilidad.nombre, ', ') AS Sensibilidades
-             FROM 
-                 Mascota
-             INNER JOIN 
-                 Especie ON Mascota.idEspecie = Especie.idEspecie
-             INNER JOIN 
-                 Raza ON Mascota.idRaza = Raza.idRaza
-             LEFT JOIN 
-                 Mascota_Sensibilidad ON Mascota.idMascota = Mascota_Sensibilidad.idMascota
-             LEFT JOIN 
-                 Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
-            WHERE Mascota.idMascota = @idMascota
-             GROUP BY 
-                 Mascota.nombre, Especie.nombre, Raza.nombre, Mascota.fechaNacimiento, Mascota.peso, Mascota.sexo, Mascota.esterilizado;
-            ";
             try
             {
-                // Abrir la conexión
                 mismetodos.AbrirConexion();
 
-                // Cargar las especies
-                string queryEsp = "SELECT nombre FROM Persona ORDER BY nombre";
-                using (SqlCommand comandoEsp = new SqlCommand(queryEsp, mismetodos.GetConexion()))
+                // 🔹 Cargar Dueños
+                string queryPersona = "SELECT nombre FROM Persona ORDER BY nombre";
+                using (SqlCommand comando = new SqlCommand(queryPersona, mismetodos.GetConexion()))
                 {
-                    using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
+                    using (SqlDataReader reader = comando.ExecuteReader())
                     {
-                        // Limpiar el ComboBox antes de agregar nuevos elementos
-                        comboBox1.Items.Clear();
-
-                        while (readerEsp.Read())
+                        comboBox1.Items.Clear(); // Se limpia antes de agregar datos
+                        while (reader.Read())
                         {
-                            comboBox1.Items.Add(readerEsp["nombre"].ToString());
+                            comboBox1.Items.Add(reader["nombre"].ToString());
                         }
                     }
                 }
 
-                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                // 🔹 Cargar Especies
+                string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
+                using (SqlCommand comandoEsp = new SqlCommand(queryEsp, mismetodos.GetConexion()))
                 {
-                    // Ejecutar la consulta y leer los datos
-                    using (SqlDataReader reader = comando.ExecuteReader())
+                    using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
                     {
-                        if (reader.Read())
+                        comboBox2.Items.Clear(); // Se limpia antes de agregar datos
+                        while (readerEsp.Read())
                         {
-                            DateTime fechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
-
-                            // Calcular la edad de la mascota
-                            int edad = DateTime.Now.Year - fechaNacimiento.Year;
-                            if (DateTime.Now < fechaNacimiento.AddYears(edad)) edad--;
-
-                            // Asignar valores a los controles del formulario
-                            textBox1.Text = reader["Nombre"].ToString();
-                            textBox2.Text = reader["Especie"].ToString();
-                            textBox3.Text = reader["Raza"].ToString();
-                            textBox5.Text = reader["FechaNacimiento"].ToString();
-                            textBox6.Text = $"{reader["Peso"]} kg";
-                            textBox4.Text = $"{edad} años";
-
-                            // Sexo
-                            string sexo = reader["Sexo"].ToString();
-                            if (sexo == "M") radioButton1.Checked = true; // Masculino
-                            if (sexo == "F") radioButton2.Checked = true; // Femenino
-
-                            // Esterilizado
-                            string esterilizado = reader["Esterilizado"].ToString();
-                            if (esterilizado == "S") radioButton6.Checked = true; // Sí
-                            if (esterilizado == "N") radioButton5.Checked = true; // No
-
-                            // Sensibilidades
-                            string sensibilidades = reader["Sensibilidades"].ToString();
-                            richTextBox1.Text = string.IsNullOrEmpty(sensibilidades)
-                                ? "Sin sensibilidades registradas"
-                                : sensibilidades;
+                            comboBox2.Items.Add(readerEsp["nombre"].ToString());
                         }
-                        else
+                    }
+                }
+
+                // 🔹 Cargar Razas
+                string queryRazas = "SELECT nombre FROM Raza ORDER BY nombre";
+                using (SqlCommand comandoRazas = new SqlCommand(queryRazas, mismetodos.GetConexion()))
+                {
+                    using (SqlDataReader readerRazas = comandoRazas.ExecuteReader())
+                    {
+                        comboBox3.Items.Clear(); // Se limpia antes de agregar datos
+                        while (readerRazas.Read())
                         {
-                            MessageBox.Show("No se encontraron detalles para esta mascota.", "Información");
+                            comboBox3.Items.Add(readerRazas["nombre"].ToString());
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejar cualquier excepción
-                MessageBox.Show("Error: " + ex.Message, "Error");
+                MessageBox.Show("Error al cargar datos: " + ex.Message, "Error");
             }
             finally
             {
-                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
+        }
+        private void InsertarMascota()
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                // Obtener los datos de los controles
+                string nombreMascota = textBox1.Text.Trim();
+                string especie = comboBox2.SelectedItem?.ToString()?.Trim();
+                string raza = comboBox3.SelectedItem?.ToString()?.Trim();
+                DateTime fechaNacimiento = dateTimePicker1.Value;
+                decimal peso = Convert.ToDecimal(textBox6.Text.Replace(" kg", "").Trim());
+                string sexo = radioButton1.Checked ? "M" : "F"; // M para macho, F para hembra
+                string esterilizado = radioButton6.Checked ? "S" : "N"; // S para sí, N para no
+                string dueño = comboBox1.SelectedItem?.ToString()?.Trim();
+                string sensibilidades = richTextBox1.Text.Trim();
+
+                if (string.IsNullOrEmpty(nombreMascota) || string.IsNullOrEmpty(dueño))
+                {
+                    MessageBox.Show("El nombre de la mascota y el dueño son obligatorios.");
+                    return;
+                }
+
+                // Obtener idPersona
+                int idPersona;
+                string queryPersona = "SELECT idPersona FROM Persona WHERE nombre = @nombre";
+                using (SqlCommand cmd = new SqlCommand(queryPersona, mismetodos.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", dueño);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        idPersona = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        // Insertar persona si no existe
+                        string insertPersona = "INSERT INTO Persona (nombre) OUTPUT INSERTED.idPersona VALUES (@nombre)";
+                        using (SqlCommand insertCmd = new SqlCommand(insertPersona, mismetodos.GetConexion()))
+                        {
+                            insertCmd.Parameters.AddWithValue("@nombre", dueño);
+                            idPersona = (int)insertCmd.ExecuteScalar();
+                        }
+                    }
+                }
+
+                // Insertar la mascota (SIN idMascota, porque es IDENTITY)
+                string insertMascota = @"
+            INSERT INTO Mascota (nombre, esterilizado, muerto, peso, fechaNacimiento, sexo, idRaza, 
+                                 idEspecie, idPersona, fechaRegistro) 
+            VALUES (
+                @nombreMascota, @esterilizado, 'N', @peso, @fechaNacimiento, @sexo, 
+                (SELECT idRaza FROM Raza WHERE nombre = @raza), 
+                (SELECT idEspecie FROM Especie WHERE nombre = @especie), 
+                @idPersona, GETDATE()
+            );
+            SELECT SCOPE_IDENTITY();"; // Obtiene el último ID insertado
+
+                int idMascota;
+                using (SqlCommand cmd = new SqlCommand(insertMascota, mismetodos.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombreMascota", nombreMascota);
+                    cmd.Parameters.AddWithValue("@esterilizado", esterilizado);
+                    cmd.Parameters.AddWithValue("@peso", peso);
+                    cmd.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
+                    cmd.Parameters.AddWithValue("@sexo", sexo);
+                    cmd.Parameters.AddWithValue("@raza", raza);
+                    cmd.Parameters.AddWithValue("@especie", especie);
+                    cmd.Parameters.AddWithValue("@idPersona", idPersona);
+
+                    // Obtener el idMascota recién insertado
+                    idMascota = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                // Insertar sensibilidades
+                if (!string.IsNullOrEmpty(sensibilidades) && sensibilidades != "Sin sensibilidades registradas")
+                {
+                    string[] sensibilidadesArray = sensibilidades.Split(',');
+                    foreach (string sensibilidad in sensibilidadesArray)
+                    {
+                        string sensibilidadTrim = sensibilidad.Trim();
+                        if (string.IsNullOrEmpty(sensibilidadTrim)) continue;
+
+                        // Obtener idSensibilidad
+                        int idSensibilidad;
+                        string querySensibilidad = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @nombre";
+                        using (SqlCommand cmd = new SqlCommand(querySensibilidad, mismetodos.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", sensibilidadTrim);
+                            object result = cmd.ExecuteScalar();
+                            if (result != null)
+                            {
+                                idSensibilidad = Convert.ToInt32(result);
+                            }
+                            else
+                            {
+                                // Insertar sensibilidad si no existe
+                                string insertSensibilidad = "INSERT INTO Sensibilidad (nombre) OUTPUT INSERTED.idSensibilidad VALUES (@nombre)";
+                                using (SqlCommand insertCmd = new SqlCommand(insertSensibilidad, mismetodos.GetConexion()))
+                                {
+                                    insertCmd.Parameters.AddWithValue("@nombre", sensibilidadTrim);
+                                    idSensibilidad = (int)insertCmd.ExecuteScalar();
+                                }
+                            }
+                        }
+
+                        // Insertar relación en Mascota_Sensibilidad
+                        string insertMascotaSensibilidad = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad)";
+                        using (SqlCommand cmd = new SqlCommand(insertMascotaSensibilidad, mismetodos.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idMascota", idMascota);
+                            cmd.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                MessageBox.Show("Mascota registrada correctamente.", "Éxito");
+                parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar la mascota: " + ex.Message, "Error");
+            }
+            finally
+            {
                 mismetodos.CerrarConexion();
             }
         }
@@ -167,6 +253,16 @@ namespace VetPet_.Angie.Mascotas
                     control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertarMascota();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }
