@@ -19,17 +19,12 @@ namespace VetPet_.Angie
         private Form1 parentForm;
 
 
-        public VentasDeseaAgregarMedicamento()
+
+        public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto)
         {
             InitializeComponent();
             this.Load += VentasDeseaAgregarMedicamento_Load;       // Evento Load
             this.Resize += VentasDeseaAgregarMedicamento_Resize;   // Evento Resize
-
-        }
-
-        public VentasDeseaAgregarMedicamento(Form1 parent)
-        {
-            InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
 

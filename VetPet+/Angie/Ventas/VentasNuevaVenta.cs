@@ -34,63 +34,11 @@ namespace VetPet_
                 // Crear instancia de Mismetodos
                 mismetodos = new Mismetodos();
 
-                // Abrir conexión
-                mismetodos.AbrirConexion();
-
-                string query = @"
-                               SELECT 
-                    SE.nombre AS Servicio,
-                    CS.nombre AS Clase,
-                    E.usuario AS Veterinario,
-                    SE.precio AS Precio
-                FROM 
-                    Cita C
-                JOIN 
-                    ServicioEspecificoNieto SE ON C.idServiceEspecificoNieto = SE.idServiceEspecificoNieto
-                JOIN 
-                    ClassServicio CS ON SE.idServiceEspecificoHijo = CS.idClassServicio
-                JOIN 
-                    Empleado E ON C.idEmpleado = E.idEmpleado
-                WHERE 
-                    C.idCita = ?;
-                ";
-
-
-                // Usar `using` para asegurar la correcta liberación de recursos
-                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
-                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
-                {
-
-                    // Crear un DataTable y llenar los datos
-                    DataTable tabla = new DataTable();
-                    adaptador.Fill(tabla);
-
-                    // Asignar el DataTable al DataGridView
-                    dataGridView1.DataSource = tabla;
-
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        if (row.IsNewRow) continue; // No borra la fila nueva si AllowUserToAddRows = true
-
-                        bool vacia = true;
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            if (cell.Value != null && !string.IsNullOrWhiteSpace(cell.Value.ToString()))
-                            {
-                                vacia = false;
-                                break;
-                            }
-                        }
-
-                        if (vacia)
-                        {
-                            dataGridView1.Rows.Remove(row);
-                        }
-                    }
+              
 
 
 
-                }
+                
             }
             catch (Exception ex)
             {

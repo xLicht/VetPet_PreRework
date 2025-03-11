@@ -42,22 +42,22 @@ namespace VetPet_
                 mismetodos.AbrirConexion();
 
                 string query = @"
-            SELECT 
-                SE.nombre AS Servicio,
-                CS.nombre AS Clase,
-                E.usuario AS Empleado,
-                SE.precio AS Precio
-            FROM 
-                Cita C
-            JOIN 
-                ServicioEspecificoNieto SE ON C.idServicioEspecificoNieto = SE.idServicioEspecificoNieto
-            JOIN 
-                ClaseServicio CS ON SE.idServicioEspecificoHijo = CS.idClaseServicio
-            JOIN 
-                Empleado E ON C.idEmpleado = E.idEmpleado
-            WHERE 
-                C.idCita = @idCita;
-        ";
+                            SELECT 
+                    sp.nombre AS ServicioPadre,
+                    cs.nombre AS ClaseServicio,
+                    sen.nombre AS ServicioEspecifico, 
+	                seh.nombre as ServicioHijo,
+                    e.usuario AS Medico,
+                    sen.precio AS precio,              
+                    c.idCita
+                FROM Servicio_Cita c
+                LEFT JOIN ServicioEspecificoNieto sen ON c.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                LEFT JOIN ServicioEspecificoHijo seh ON c.idServicioSencilloHijo = seh.idServicioEspecificoHijo
+                LEFT JOIN ServicioPadre sp ON seh.idServicioPadre = sp.idServicioPadre
+                LEFT JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio
+                LEFT JOIN Empleado e ON c.idEmpleado = e.idEmpleado
+                WHERE c.idCita = @idCita;
+                 ";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -93,6 +93,42 @@ namespace VetPet_
                             {
                                 dataGridView1.Rows.Remove(row);
                             }
+
+                        }
+                    }
+                }
+
+                string queryDueño = @"
+                                SELECT 
+                            P.nombre AS NombrePersona,
+                            P.apellidoP AS ApellidoPaterno, 
+                            M.nombre AS NombreMascota
+                        FROM 
+                            Cita C
+                        JOIN 
+                            Mascota M ON C.idMascota = M.idMascota
+                        JOIN 
+                            Persona P ON M.idPersona = P.idPersona
+                        WHERE 
+                            C.idCita = @idCita;
+                            ";
+
+                using (SqlCommand comando2 = new SqlCommand(queryDueño, mismetodos.GetConexion()))
+                {
+                    comando2.Parameters.AddWithValue("@idCita", idCita);
+
+                    using (SqlDataReader reader = comando2.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            textBox3.Text = reader["NombrePersona"].ToString();
+                            textBox4.Text = reader["apellidoPaterno"].ToString();
+                            textBox5.Text = reader["NombreMascota"].ToString();
+                        }
+                        else
+                        {
+                            // Si no se encuentra la cita, mostrar un mensaje o dejar el TextBox vacío
+                            textBox3.Text = "No se encontró la cita.";
                         }
                     }
                 }
