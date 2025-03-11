@@ -27,6 +27,10 @@ namespace VetPet_
             parentForm = parent;  // Guardamos la referencia de Form1
             this.Load += VentasListado_Load;       // Evento Load
             this.Resize += VentasListado_Resize;   // Evento Resize
+            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView();
             Cargar();
         }
         public void Cargar()
@@ -41,11 +45,12 @@ namespace VetPet_
 
                 string query = @"
                 SELECT 
+                    CI.idCita AS idCita,
                     P.nombre AS Persona,
-                    P.apellidoP AS Apellido_Paterno,
+                    P.apellidoP AS ApellidoPaterno,
                     C.numero AS Telefono,
                     M.nombre AS Mascota,
-                    CI.fechaProgramada AS Fecha_Cita
+                    CI.fechaProgramada AS FechaCita
                 FROM 
                     Cita CI
                 JOIN 
@@ -68,6 +73,7 @@ namespace VetPet_
 
                     // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
+                    dataGridView1.Columns["idCita"].Visible = false; // Oculta la columna
 
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
@@ -102,6 +108,125 @@ namespace VetPet_
             {
                 // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
+            }
+        }
+        public void FiltrarDatos()
+        {
+            try
+            {
+                mismetodos.AbrirConexion(); // Abre la conexión usando Mismetodos
+                string filtroTexto = textBox1.Text.Trim();
+                string columnaSeleccionada = comboBox1.SelectedItem?.ToString(); // Puede ser null
+
+                if (string.IsNullOrEmpty(filtroTexto))
+                {
+                    Cargar();
+                    return; // No hace nada si el campo de búsqueda está vacío
+                }
+
+                // Mapeo de nombres visibles a nombres reales de columnas
+                Dictionary<string, string> mapaColumnas = new Dictionary<string, string>
+        {
+            { "Dueño", "Persona.nombre" },
+            { "Apellido Paterno", "Persona.apellidoP" },
+            { "Telefono", "Celular.numero" },
+            { "Mascota", "Mascota.nombre" },
+            { "Fecha", "Cita.fechaProgramada" }
+        };
+
+                string query;
+
+                if (string.IsNullOrEmpty(columnaSeleccionada) || !mapaColumnas.ContainsKey(columnaSeleccionada))
+                {
+                    // Si no hay columna seleccionada, busca en todas las columnas relevantes
+                    query = @"
+                SELECT 
+                    CI.idCita AS idCita,
+                    P.nombre AS Persona,
+                    P.apellidoP AS Apellido_Paterno,
+                    C.numero AS Telefono,
+                    M.nombre AS Mascota,
+                    CI.fechaProgramada AS Fecha_Cita
+                FROM 
+                    Cita CI
+                JOIN 
+                    Mascota M ON CI.idMascota = M.idMascota
+                JOIN 
+                    Persona P ON M.idPersona = P.idPersona
+                JOIN 
+                    Celular C ON P.idPersona = C.idPersona
+                WHERE 
+                    P.nombre LIKE @filtro 
+                    OR P.apellidoP LIKE @filtro 
+                    OR C.numero LIKE @filtro 
+                    OR M.nombre LIKE @filtro 
+                    OR CONVERT(VARCHAR, CI.fechaProgramada, 103) LIKE @filtro";
+                }
+                else
+                {
+                    string columnaReal = mapaColumnas[columnaSeleccionada];
+
+                    if (columnaSeleccionada == "Fecha")
+                    {
+                        query = $@"
+                    SELECT 
+                        CI.idCita AS idCita,
+                        P.nombre AS Persona,
+                        P.apellidoP AS Apellido_Paterno,
+                        C.numero AS Telefono,
+                        M.nombre AS Mascota,
+                        CI.fechaProgramada AS Fecha_Cita
+                    FROM 
+                        Cita CI
+                    JOIN 
+                        Mascota M ON CI.idMascota = M.idMascota
+                    JOIN 
+                        Persona P ON M.idPersona = P.idPersona
+                    JOIN 
+                        Celular C ON P.idPersona = C.idPersona
+                    WHERE 
+                        CONVERT(VARCHAR, {columnaReal}, 103) LIKE @filtro";
+                    }
+                    else
+                    {
+                        query = $@"
+                    SELECT 
+                        CI.idCita AS idCita,
+                        P.nombre AS Persona,
+                        P.apellidoP AS Apellido_Paterno,
+                        C.numero AS Telefono,
+                        M.nombre AS Mascota,
+                        CI.fechaProgramada AS Fecha_Cita
+                    FROM 
+                        Cita CI
+                    JOIN 
+                        Mascota M ON CI.idMascota = M.idMascota
+                    JOIN 
+                        Persona P ON M.idPersona = P.idPersona
+                    JOIN 
+                        Celular C ON P.idPersona = C.idPersona
+                    WHERE 
+                        {columnaReal} LIKE @filtro";
+                    }
+                }
+
+                // Ejecutar la consulta
+                SqlDataAdapter adaptador = new SqlDataAdapter(query, mismetodos.GetConexion());
+                adaptador.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtroTexto + "%");
+
+                DataTable dt = new DataTable();
+                adaptador.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns["idCita"].Visible = false; // Oculta la columna
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar: " + ex.Message);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion(); // Cierra la conexión para evitar bloqueos en la base de datos
             }
         }
         private void VentasListado_Load(object sender, EventArgs e)
@@ -158,7 +283,88 @@ namespace VetPet_
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    // Obtener el idMascota y nombre de la mascota seleccionada
+                    int idCita = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idCita"].Value);
+
+                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
+                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
+        }
+
+        public void PersonalizarDataGridView()
+        {
+            dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView1.BackgroundColor = Color.White; // Fondo blanco
+
+            // Alternar colores de filas
+            dataGridView1.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            // Bordes y alineación
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados
+            dataGridView1.ColumnHeadersHeight = 30;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Ocultar la columna del ID
+            if (dataGridView1.Columns.Contains("idMascota"))
+            {
+                dataGridView1.Columns["idMascota"].Visible = false;
+            }
+        }
+
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCyan;
+            }
+        }
+
+        private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+            }
+        }
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarDatos();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FiltrarDatos();
         }
     }
 }

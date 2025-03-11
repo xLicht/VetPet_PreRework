@@ -61,7 +61,7 @@
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button4.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(918, 629);
+            this.button4.Location = new System.Drawing.Point(935, 614);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(272, 83);
             this.button4.TabIndex = 88;
@@ -89,7 +89,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(1212, 629);
+            this.button1.Location = new System.Drawing.Point(1229, 614);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(208, 83);
             this.button1.TabIndex = 84;
@@ -108,7 +108,7 @@
             "Teléfono",
             "Mascota",
             "Fecha"});
-            this.comboBox1.Location = new System.Drawing.Point(239, 140);
+            this.comboBox1.Location = new System.Drawing.Point(207, 142);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(320, 43);
             this.comboBox1.TabIndex = 83;
@@ -123,7 +123,7 @@
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.Color.Blue;
+            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGridView1.Location = new System.Drawing.Point(207, 207);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -145,14 +145,16 @@
             this.button2.Text = "Buscar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(632, 142);
+            this.textBox1.Location = new System.Drawing.Point(619, 143);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(384, 43);
             this.textBox1.TabIndex = 79;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // panel1
             // 
@@ -212,7 +214,7 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox7.Image = global::VetPet_.Properties.Resources.icons8_add_button_25;
-            this.pictureBox7.Location = new System.Drawing.Point(1118, 644);
+            this.pictureBox7.Location = new System.Drawing.Point(1135, 629);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(58, 57);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -234,7 +236,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.flecha_ang;
-            this.pictureBox1.Location = new System.Drawing.Point(1356, 644);
+            this.pictureBox1.Location = new System.Drawing.Point(1373, 629);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(58, 57);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -256,7 +258,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(221)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.filtrar_ang;
-            this.pictureBox2.Location = new System.Drawing.Point(565, 140);
+            this.pictureBox2.Location = new System.Drawing.Point(533, 140);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(45, 46);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
