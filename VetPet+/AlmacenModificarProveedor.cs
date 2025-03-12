@@ -161,10 +161,8 @@ namespace VetPet_
             try
             {
                 conexion.AbrirConexion();
-                // Iniciar la transacción
                 transaction = conexion.GetConexion().BeginTransaction();
 
-                // Obtener el id del proveedor con el nombre
                 int idProveedor = ObtenerIdProveedorPorNombre(nombreProveedor);
 
                 // Modificar el proveedor
@@ -177,56 +175,30 @@ namespace VetPet_
                 cmdProveedor.Parameters.AddWithValue("@IdProveedor", idProveedor);
                 cmdProveedor.ExecuteNonQuery();
 
-                // Modificar el número de celular principal
-                string queryActualizarCelular = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND numero = @NumeroOriginal;";
+                // Actualizar teléfono principal (tipoCelular = 1)
+                string queryActualizarCelular = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND tipoCelular = 1;";
                 SqlCommand cmdActualizarCelular = new SqlCommand(queryActualizarCelular, conexion.GetConexion(), transaction);
                 cmdActualizarCelular.Parameters.AddWithValue("@IdProveedor", idProveedor);
                 cmdActualizarCelular.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
-                cmdActualizarCelular.Parameters.AddWithValue("@NumeroOriginal", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
                 cmdActualizarCelular.ExecuteNonQuery();
 
-                // Modificar el número de celular de contacto
-                string queryActualizarCelularContacto = "UPDATE CelularContacto SET numero = @Numero WHERE idProveedor = @IdProveedor;";
-                SqlCommand cmdActualizarCelularContacto = new SqlCommand(queryActualizarCelularContacto, conexion.GetConexion(), transaction);
-                cmdActualizarCelularContacto.Parameters.AddWithValue("@IdProveedor", idProveedor);
-                cmdActualizarCelularContacto.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefonoContacto.Text) ? (object)DBNull.Value : txtTelefonoContacto.Text);
-                cmdActualizarCelularContacto.ExecuteNonQuery();
+                // Actualizar teléfono extra (tipoCelular = 2)
+                string queryActualizarCelularExtra = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND tipoCelular = 2;";
+                SqlCommand cmdActualizarCelularExtra = new SqlCommand(queryActualizarCelularExtra, conexion.GetConexion(), transaction);
+                cmdActualizarCelularExtra.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCelularExtra.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefonoExtra.Text) ? (object)DBNull.Value : txtTelefonoExtra.Text);
+                cmdActualizarCelularExtra.ExecuteNonQuery();
 
-                // Modificar la dirección
-                int idPais = ObtenerIdDeEntidad(txtPais.Text, "Pais", "Pais", conexion, transaction);
-                int idEstado = ObtenerIdDeEntidad(txtEstado.Text, "Estado", "Estado", conexion, transaction);
-                int idCiudad = ObtenerIdDeEntidad(txtCiudad.Text, "Ciudad", "Ciudad", conexion, transaction);
-                int idColonia = ObtenerIdDeEntidad(txtColonia.Text, "Colonia", "Colonia", conexion, transaction);
-                int idCalle = ObtenerIdDeEntidad(txtCalle.Text, "Calle", "Calle", conexion, transaction);
-                int idCp = ObtenerIdDeEntidad(txtCp.Text, "Cp", "Cp", conexion, transaction);
-
-                string queryDireccion = "UPDATE Direccion SET idPais = @IdPais, idEstado = @IdEstado, idCiudad = @IdCiudad, " +
-                                        "idColonia = @IdColonia, idCalle = @IdCalle, idCp = @IdCp " +
-                                        "WHERE idProveedor = @IdProveedor;";
-                SqlCommand cmdDireccion = new SqlCommand(queryDireccion, conexion.GetConexion(), transaction);
-                cmdDireccion.Parameters.AddWithValue("@IdProveedor", idProveedor);
-                cmdDireccion.Parameters.AddWithValue("@IdPais", idPais);
-                cmdDireccion.Parameters.AddWithValue("@IdEstado", idEstado);
-                cmdDireccion.Parameters.AddWithValue("@IdCiudad", idCiudad);
-                cmdDireccion.Parameters.AddWithValue("@IdColonia", idColonia);
-                cmdDireccion.Parameters.AddWithValue("@IdCalle", idCalle);
-                cmdDireccion.Parameters.AddWithValue("@IdCp", idCp);
-                cmdDireccion.ExecuteNonQuery();
-
-                // Si todo es correcto, confirmar la transacción
                 transaction.Commit();
-
                 MessageBox.Show("Proveedor actualizado correctamente.");
             }
             catch (Exception ex)
             {
-                // Si hay algún error, revertir la transacción
                 transaction?.Rollback();
                 MessageBox.Show("Error al actualizar el proveedor: " + ex.Message);
             }
             finally
             {
-                // Cerrar la conexión
                 if (conexion.GetConexion().State == ConnectionState.Open)
                 {
                     conexion.GetConexion().Close();

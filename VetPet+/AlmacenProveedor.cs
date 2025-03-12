@@ -183,7 +183,7 @@ namespace VetPet_
                             }
                             else if (opcionesForm.Resultado == "Ver")
                             {
-                                parentForm.formularioHijo(new AlmacenVerProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                                parentForm.formularioHijo(new AlmacenVerProveedor(parentForm, nombre)); // Pasamos la referencia de Form1 a 
                             }
                         }
                     }
