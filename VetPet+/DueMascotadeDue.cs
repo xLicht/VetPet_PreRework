@@ -14,6 +14,8 @@ namespace VetPet_
 {
     public partial class DueMascotadeDue : FormPadre
     {
+        public int DatoEmpleado { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
         public DueMascotadeDue(Form1 parent)
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace VetPet_
 
         private void DueMascotadeDue_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("dato: "+DatoEmpleado);
         }
 
         private void btnAgregarMascota_Click(object sender, EventArgs e)

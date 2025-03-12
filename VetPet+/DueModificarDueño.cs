@@ -26,7 +26,7 @@ namespace VetPet_
 
         private void DueModificarDueño_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Mensaje: "+ DatoEmpleado);
+            //MessageBox.Show("Mensaje: "+ DatoEmpleado);
             CargarCB();
             MostrarDato();
 
@@ -99,6 +99,13 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
+                int idPais = ObtenerORegistrarIdPais(cbPais.Text);
+                int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
+                int idCp = ObtenerORegistrarIdCp(txtCp.Text);
+                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
+                int idEstado = ObtenerORegistrarIdEstado(cbEstado.Text);
+
                 string query = @"
                 UPDATE Persona 
                 SET nombre = @nombre, 
@@ -155,6 +162,107 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
+
+        private int ObtenerIdPorNombre(string tabla, string nombre)
+        {
+            string query = $"SELECT id{tabla} FROM {tabla} WHERE nombre = @nombre";
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+        }
+
+        private int ObtenerIdPorCodigoPostal(string cp)
+        {
+            string query = "SELECT idCp FROM Cp WHERE cp = @cp";
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@cp", cp);
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+        }
+        private int ObtenerORegistrarIdPais(string pais)
+        {
+            int idPais = ObtenerIdPorNombre("Pais", pais);
+            if (idPais == 0)
+            {
+                string queryInsert = "INSERT INTO Pais (nombre) VALUES (@pais); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@pais", pais);
+                    object result = cmd.ExecuteScalar();
+                    idPais = Convert.ToInt32(result);
+                }
+            }
+            return idPais;
+        }
+
+        private int ObtenerORegistrarIdCalle(string calle)
+        {
+            int idCalle = ObtenerIdPorNombre("Calle", calle);
+            if (idCalle == 0)
+            {
+                string queryInsert = "INSERT INTO Calle (nombre) VALUES (@calle); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@calle", calle);
+                    object result = cmd.ExecuteScalar();
+                    idCalle = Convert.ToInt32(result);
+                }
+            }
+            return idCalle;
+        }
+
+        private int ObtenerORegistrarIdColonia(string colonia)
+        {
+            int idColonia = ObtenerIdPorNombre("Colonia", colonia);
+            if (idColonia == 0)
+            {
+                string queryInsert = "INSERT INTO Colonia (nombre) VALUES (@colonia); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@colonia", colonia);
+                    object result = cmd.ExecuteScalar();
+                    idColonia = Convert.ToInt32(result);
+                }
+            }
+            return idColonia;
+        }
+
+        private int ObtenerORegistrarIdCp(string cp)
+        {
+            int idCp = ObtenerIdPorCodigoPostal(cp);
+            if (idCp == 0)
+            {
+                string queryInsert = "INSERT INTO Cp (cp) VALUES (@cp); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@cp", cp);
+                    object result = cmd.ExecuteScalar();
+                    idCp = Convert.ToInt32(result);
+                }
+            }
+            return idCp;
+        }
+        private int ObtenerORegistrarIdEstado(string estado)
+        {
+            int idEstado = ObtenerIdPorNombre("Estado", estado);
+            if (idEstado == 0)
+            {
+                string queryInsert = "INSERT INTO Estado (nombre) VALUES (@estado); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@estado", estado);
+                    object result = cmd.ExecuteScalar();
+                    idEstado = Convert.ToInt32(result);
+                }
+            }
+            return idEstado;
+        }
         private void CargarCB()
         {
             try
@@ -200,14 +308,18 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            GuardarCambios();
 
-            int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
-            DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
-            formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
-            parentForm.formularioHijo(formularioHijo);
+            if (ValidarCampos())
+            {
+                GuardarCambios();
+                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+                DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
 
-            //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
+                //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
+            }
+
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -216,9 +328,6 @@ namespace VetPet_
             DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
             formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
             parentForm.formularioHijo(formularioHijo);
-
-
-
             //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
         }
 
@@ -246,6 +355,33 @@ namespace VetPet_
             {
                 e.Handled = true;
             }
+        }
+
+        private bool ValidarCampos()
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellidoP.Text) ||
+                string.IsNullOrWhiteSpace(txtApellidoM.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCp.Text) ||
+                string.IsNullOrWhiteSpace(cbPais.Text) || string.IsNullOrWhiteSpace(cbCalle.Text) ||
+                string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text))
+         
+            {
+                MessageBox.Show("Por favor, complete todos los campos.");
+                return false;
+            }
+
+            if (!ValidarCorreo(txtCorreo.Text))
+            {
+                MessageBox.Show("Correo electronico invalido, Por favor, ingrese un correo electrónico válido.");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidarCorreo(string correo)
+        {
+            string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(correo, patronCorreo);
         }
     }
 }
