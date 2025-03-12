@@ -175,7 +175,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                parentForm.formularioHijo(new AlmacenModificarProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                                parentForm.formularioHijo(new AlmacenModificarProveedor(parentForm, nombre)); // Pasamos la referencia de Form1 a 
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
