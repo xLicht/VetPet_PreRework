@@ -89,7 +89,7 @@ namespace VetPet_
         }
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm);
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm,0, 0);
             ventasAgregarMedicamento.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }

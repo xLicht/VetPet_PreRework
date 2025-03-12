@@ -140,9 +140,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-13, 7);
+            this.panel1.Location = new System.Drawing.Point(-13, -5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1469, 110);
+            this.panel1.Size = new System.Drawing.Size(1469, 111);
             this.panel1.TabIndex = 107;
             // 
             // pictureBox5
@@ -248,6 +248,7 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(699, 431);
             this.dataGridView2.TabIndex = 121;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dataGridView3
             // 

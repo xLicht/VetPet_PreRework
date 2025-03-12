@@ -22,17 +22,77 @@ namespace VetPet_.Angie
 
         public string FormularioOrigen {get;set;}
 
+        public VentasAgregarMedicamento(Form1 parent, int idProducto,int subTotal)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia de Form1
+            this.Load += VentasAgregarMedicamento_Load;       // Evento Load
+            this.Resize += VentasAgregarMedicamento_Resize;   // Evento Resize
+            dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView2.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView(dataGridView2);
+            PersonalizarDataGridView(dataGridView3);
+            Cargar();
+             CargarProductosEnDataGridView(idProducto, subTotal);
+        }
         public VentasAgregarMedicamento(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
             this.Load += VentasAgregarMedicamento_Load;       // Evento Load
             this.Resize += VentasAgregarMedicamento_Resize;   // Evento Resize
-            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
-            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
-            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
-            PersonalizarDataGridView();
-            Cargar();
+            dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView2.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView(dataGridView2);
+            PersonalizarDataGridView(dataGridView3);
+                Cargar();
+           
+        }
+        private void CargarProductosEnDataGridView(int idProducto, int subTotal)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                string query = @"
+            SELECT 
+                p.nombre AS Producto,
+                m.nombre AS Marca,
+                p.precioVenta AS Precio
+            FROM Producto p
+            INNER JOIN Marca m ON p.idMarca = m.idMarca;";
+
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                using (SqlDataAdapter da = new SqlDataAdapter(comando))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // Agregar una columna extra para el Total
+                    dt.Columns.Add("Total", typeof(int));
+
+                    dataGridView3.DataSource = dt;
+                    foreach (DataGridViewRow row in dataGridView3.Rows)
+                    {
+                        if (row.Cells["idProducto"].Value != null && Convert.ToInt32(row.Cells["idProducto"].Value) == idProducto)
+                        {
+                            decimal precio = Convert.ToDecimal(row.Cells["Precio"].Value);
+                            row.Cells["Total"].Value = subTotal;
+                            return;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar productos: " + ex.Message);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
         }
 
         public void Cargar()
@@ -69,10 +129,10 @@ namespace VetPet_.Angie
                     adaptador.Fill(tabla);
 
                     // Asignar el DataTable al DataGridView
-                    dataGridView1.DataSource = tabla;
-                    dataGridView1.Columns["idProducto"].Visible = false; // Oculta la columna
+                    dataGridView2.DataSource = tabla;
+                    dataGridView2.Columns["idProducto"].Visible = false; // Oculta la columna
 
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
                         if (row.IsNewRow) continue; // No borra la fila nueva si AllowUserToAddRows = true
 
@@ -88,7 +148,7 @@ namespace VetPet_.Angie
 
                         if (vacia)
                         {
-                            dataGridView1.Rows.Remove(row);
+                            dataGridView2.Rows.Remove(row);
                         }
                     }
 
@@ -115,11 +175,11 @@ namespace VetPet_.Angie
                 if (e.RowIndex >= 0)
                 {
                     // Obtener el idMascota y nombre de la mascota seleccionada
-                    int idMedicamento = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idProducto"].Value);
+                    int idMedicamento = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["idProducto"].Value);
                     //string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                   parentForm.formularioHijo(new VentasDeseaAgregarMedicamento(parentForm, idMedicamento));
+                   parentForm.formularioHijo(new VentasDeseaAgregarMedicamento(parentForm,idMedicamento,0));
                 }
             }
             catch (Exception ex)
@@ -198,8 +258,8 @@ namespace VetPet_.Angie
                 DataTable dt = new DataTable();
                 adaptador.Fill(dt);
 
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns["idProducto"].Visible = false; // Oculta la columna ID
+                dataGridView2.DataSource = dt;
+                dataGridView2.Columns["idProducto"].Visible = false; // Oculta la columna ID
             }
             catch (Exception ex)
             {
@@ -211,40 +271,40 @@ namespace VetPet_.Angie
             }
         }
 
-        public void PersonalizarDataGridView()
+        public void PersonalizarDataGridView(DataGridView dataGridView2)
         {
-            dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
-            dataGridView1.BackgroundColor = Color.White; // Fondo blanco
+            dataGridView2.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView2.BackgroundColor = Color.White; // Fondo blanco
 
             // Alternar colores de filas
-            dataGridView1.DefaultCellStyle.BackColor = Color.White;
+            dataGridView2.DefaultCellStyle.BackColor = Color.White;
 
             // Color de la selección
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Pink;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
 
             // Encabezados más elegantes
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
 
             // Bordes y alineación
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Ajustar el alto de los encabezados
-            dataGridView1.ColumnHeadersHeight = 30;
+            dataGridView2.ColumnHeadersHeight = 30;
 
             // Autoajustar el tamaño de las columnas
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
+            if (dataGridView2.Columns.Contains("idMascota"))
             {
-                dataGridView1.Columns["idMascota"].Visible = false;
+                dataGridView2.Columns["idMascota"].Visible = false;
             }
         }
 
@@ -252,7 +312,7 @@ namespace VetPet_.Angie
         {
             if (e.RowIndex >= 0)
             {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCyan;
+                dataGridView2.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCyan;
             }
         }
 
@@ -260,12 +320,12 @@ namespace VetPet_.Angie
         {
             if (e.RowIndex >= 0)
             {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                dataGridView2.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
             }
         }
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dataGridView1.ClearSelection();
+            dataGridView2.ClearSelection();
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
