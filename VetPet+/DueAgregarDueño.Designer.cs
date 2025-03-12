@@ -71,6 +71,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(57, 43);
             this.pictureBox3.TabIndex = 598;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnAceptar
             // 
@@ -109,6 +110,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 47);
             this.pictureBox1.TabIndex = 583;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnRegresar
             // 
@@ -236,7 +238,6 @@
             this.txtCP.Location = new System.Drawing.Point(719, 122);
             this.txtCP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCP.Name = "txtCP";
-            this.txtCP.ReadOnly = true;
             this.txtCP.Size = new System.Drawing.Size(171, 29);
             this.txtCP.TabIndex = 664;
             this.txtCP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCp_KeyPress);
@@ -270,7 +271,6 @@
             this.txtCelular.Location = new System.Drawing.Point(277, 305);
             this.txtCelular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCelular.Name = "txtCelular";
-            this.txtCelular.ReadOnly = true;
             this.txtCelular.Size = new System.Drawing.Size(153, 29);
             this.txtCelular.TabIndex = 661;
             // 
@@ -281,7 +281,6 @@
             this.txtApellidoP.Location = new System.Drawing.Point(259, 189);
             this.txtApellidoP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellidoP.Name = "txtApellidoP";
-            this.txtApellidoP.ReadOnly = true;
             this.txtApellidoP.Size = new System.Drawing.Size(171, 29);
             this.txtApellidoP.TabIndex = 660;
             // 
@@ -292,7 +291,6 @@
             this.txtCorreo.Location = new System.Drawing.Point(259, 363);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.ReadOnly = true;
             this.txtCorreo.Size = new System.Drawing.Size(221, 29);
             this.txtCorreo.TabIndex = 659;
             // 
@@ -303,7 +301,6 @@
             this.txtApellidoM.Location = new System.Drawing.Point(259, 251);
             this.txtApellidoM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellidoM.Name = "txtApellidoM";
-            this.txtApellidoM.ReadOnly = true;
             this.txtApellidoM.Size = new System.Drawing.Size(171, 29);
             this.txtApellidoM.TabIndex = 658;
             // 
@@ -314,7 +311,6 @@
             this.txtNombre.Location = new System.Drawing.Point(270, 132);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(171, 29);
             this.txtNombre.TabIndex = 657;
             // 

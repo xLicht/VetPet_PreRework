@@ -25,7 +25,7 @@ namespace VetPet_
 
         private void DueAgregarDueño_Load(object sender, EventArgs e)
         {
-
+            CargarCB();
         }
 
 
@@ -44,8 +44,7 @@ namespace VetPet_
                 int idEstado = ObtenerIdPorNombre("Estado", cbEstado.Text);
 
                 // Insertar nuevo empleado
-                string query = @"
-                    INSERT INTO Persona (nombre, apellidoP, apellidoM, celular, correoElectronico)
+                string query = @" INSERT INTO Persona (nombre, apellidoP, apellidoM, celular, correoElectronico)
                     VALUES (@nombre, @apellidoP, @apellidoM, @celular, @correo);
                     SELECT SCOPE_IDENTITY();"; // Obtener el ID de la persona insertada
 
@@ -199,14 +198,54 @@ namespace VetPet_
             string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
             return Regex.IsMatch(correo, patronCorreo);
         }
+        private void CargarCB()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                MostrarCB("SELECT nombre FROM Pais", cbPais);
+                MostrarCB("SELECT nombre FROM Ciudad", cbCiudad);
+                MostrarCB("SELECT nombre FROM Colonia", cbColonia);
+                MostrarCB("SELECT nombre FROM Calle", cbCalle);
+                MostrarCB("SELECT nombre FROM Estado", cbEstado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al Cargar los datos" + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void MostrarCB(string query, ComboBox comboBox)
+        {
+            using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox.Items.Add(reader[0].ToString());
+                }
+                reader.Close();
+            }
+        }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+            DialogResult result = MessageBox.Show("Los datos ingresados se borraran, guarde para salvar los datos", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+            }
+           
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            AgregarEmpleado();
             parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
         }
 

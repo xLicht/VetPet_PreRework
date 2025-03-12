@@ -116,5 +116,45 @@ namespace VetPet_
 
             //parentForm.formularioHijo(new DueModificarDueño(parentForm));
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("¿Está seguro de eliminar este dueño?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    conexionDB.AbrirConexion();
+
+                    string query = "UPDATE Persona SET estado = 'I' WHERE idPersona = @idPersona";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("El dueño ha sido eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close(); 
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo eliminar el dueño.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el dueño: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+        }
     } 
 }
