@@ -123,6 +123,7 @@ namespace VetPet_
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        
 
         private void AlmacenModificarProveedor_Resize(object sender, EventArgs e)
         {
@@ -155,9 +156,138 @@ namespace VetPet_
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AlmacenProveedor(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProducto
-        }
+            conexionBrandon conexion = new conexionBrandon();
+            SqlTransaction transaction = null;
+            try
+            {
+                conexion.AbrirConexion();
+                // Iniciar la transacción
+                transaction = conexion.GetConexion().BeginTransaction();
 
+                // Obtener el id del proveedor con el nombre
+                int idProveedor = ObtenerIdProveedorPorNombre(nombreProveedor);
+
+                // Modificar el proveedor
+                string queryProveedor = "UPDATE Proveedor SET nombre = @Nombre, correoElectronico = @Correo, nombreContacto = @NombreContacto " +
+                                         "WHERE idProveedor = @IdProveedor;";
+                SqlCommand cmdProveedor = new SqlCommand(queryProveedor, conexion.GetConexion(), transaction);
+                cmdProveedor.Parameters.AddWithValue("@Nombre", string.IsNullOrWhiteSpace(txtNombre.Text) ? (object)DBNull.Value : txtNombre.Text);
+                cmdProveedor.Parameters.AddWithValue("@Correo", string.IsNullOrWhiteSpace(txtCorreo.Text) ? (object)DBNull.Value : txtCorreo.Text);
+                cmdProveedor.Parameters.AddWithValue("@NombreContacto", string.IsNullOrWhiteSpace(txtNombreContacto.Text) ? (object)DBNull.Value : txtNombreContacto.Text);
+                cmdProveedor.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdProveedor.ExecuteNonQuery();
+
+                // Modificar el número de celular principal
+                string queryActualizarCelular = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND numero = @NumeroOriginal;";
+                SqlCommand cmdActualizarCelular = new SqlCommand(queryActualizarCelular, conexion.GetConexion(), transaction);
+                cmdActualizarCelular.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCelular.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
+                cmdActualizarCelular.Parameters.AddWithValue("@NumeroOriginal", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
+                cmdActualizarCelular.ExecuteNonQuery();
+
+                // Modificar el número de celular de contacto
+                string queryActualizarCelularContacto = "UPDATE CelularContacto SET numero = @Numero WHERE idProveedor = @IdProveedor;";
+                SqlCommand cmdActualizarCelularContacto = new SqlCommand(queryActualizarCelularContacto, conexion.GetConexion(), transaction);
+                cmdActualizarCelularContacto.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCelularContacto.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefonoContacto.Text) ? (object)DBNull.Value : txtTelefonoContacto.Text);
+                cmdActualizarCelularContacto.ExecuteNonQuery();
+
+                // Modificar la dirección
+                int idPais = ObtenerIdDeEntidad(txtPais.Text, "Pais", "Pais", conexion, transaction);
+                int idEstado = ObtenerIdDeEntidad(txtEstado.Text, "Estado", "Estado", conexion, transaction);
+                int idCiudad = ObtenerIdDeEntidad(txtCiudad.Text, "Ciudad", "Ciudad", conexion, transaction);
+                int idColonia = ObtenerIdDeEntidad(txtColonia.Text, "Colonia", "Colonia", conexion, transaction);
+                int idCalle = ObtenerIdDeEntidad(txtCalle.Text, "Calle", "Calle", conexion, transaction);
+                int idCp = ObtenerIdDeEntidad(txtCp.Text, "Cp", "Cp", conexion, transaction);
+
+                string queryDireccion = "UPDATE Direccion SET idPais = @IdPais, idEstado = @IdEstado, idCiudad = @IdCiudad, " +
+                                        "idColonia = @IdColonia, idCalle = @IdCalle, idCp = @IdCp " +
+                                        "WHERE idProveedor = @IdProveedor;";
+                SqlCommand cmdDireccion = new SqlCommand(queryDireccion, conexion.GetConexion(), transaction);
+                cmdDireccion.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdDireccion.Parameters.AddWithValue("@IdPais", idPais);
+                cmdDireccion.Parameters.AddWithValue("@IdEstado", idEstado);
+                cmdDireccion.Parameters.AddWithValue("@IdCiudad", idCiudad);
+                cmdDireccion.Parameters.AddWithValue("@IdColonia", idColonia);
+                cmdDireccion.Parameters.AddWithValue("@IdCalle", idCalle);
+                cmdDireccion.Parameters.AddWithValue("@IdCp", idCp);
+                cmdDireccion.ExecuteNonQuery();
+
+                // Si todo es correcto, confirmar la transacción
+                transaction.Commit();
+
+                MessageBox.Show("Proveedor actualizado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                // Si hay algún error, revertir la transacción
+                transaction?.Rollback();
+                MessageBox.Show("Error al actualizar el proveedor: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión
+                if (conexion.GetConexion().State == ConnectionState.Open)
+                {
+                    conexion.GetConexion().Close();
+                }
+            }
+        }
+        private int ObtenerIdProveedorPorNombre(string nombreProveedor)
+        {
+            conexionBrandon conexion = new conexionBrandon();
+            int idProveedor = 0;
+            try
+            {
+                string query = "SELECT idProveedor FROM Proveedor WHERE nombre = @nombreProveedor;";
+                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                cmd.Parameters.AddWithValue("@nombreProveedor", nombreProveedor);
+
+                conexion.AbrirConexion();
+                idProveedor = Convert.ToInt32(cmd.ExecuteScalar());
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el id del proveedor: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión
+                if (conexion.GetConexion().State == ConnectionState.Open)
+                {
+                    conexion.GetConexion().Close();
+                }
+            }
+            return idProveedor;
+        }
+        private int ObtenerIdDeEntidad(string nombreEntidad, string tabla, string columna, conexionBrandon conexion, SqlTransaction transaction)
+        {
+            // Verificar si la tabla tiene la columna "nombre" o si es una tabla diferente (por ejemplo, "Cp")
+            string columnaBusqueda = (tabla == "Cp") ? "cp" : "nombre";  // En "Cp" usamos "cp", en las demás usamos "nombre"
+
+            // Crear la consulta dependiendo de si usamos "nombre" o "cp"
+            string queryVerificar = $"SELECT Id{columna} FROM {tabla} WHERE {columnaBusqueda} = @NombreEntidad";
+            SqlCommand cmdVerificar = new SqlCommand(queryVerificar, conexion.GetConexion(), transaction);
+            cmdVerificar.Parameters.AddWithValue("@NombreEntidad", nombreEntidad);
+
+            // Intentar obtener el Id de la entidad
+            object resultado = cmdVerificar.ExecuteScalar();
+
+            if (resultado != null) // Si existe, devolver el ID
+            {
+                return Convert.ToInt32(resultado);
+            }
+            else // Si no existe, insertar y devolver el ID
+            {
+                string queryInsertar = $"INSERT INTO {tabla} ({columnaBusqueda}) VALUES (@NombreEntidad);" +
+                                       $"SELECT SCOPE_IDENTITY();";
+                SqlCommand cmdInsertar = new SqlCommand(queryInsertar, conexion.GetConexion(), transaction);
+                cmdInsertar.Parameters.AddWithValue("@NombreEntidad", nombreEntidad);
+
+                return Convert.ToInt32(cmdInsertar.ExecuteScalar());
+            }
+        }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             // Llamar al formulario de opciones
