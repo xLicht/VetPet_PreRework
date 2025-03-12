@@ -15,11 +15,7 @@ namespace VetPet_
     public partial class ListaVacunas : FormPadre
     {
         //Variables SQL
-        public SqlConnection conexion;
-        public SqlCommand comando;
-        public SqlDataReader Lector;
-        public string q;
-        public string mensaje;
+
 
         public ListaVacunas()
         {
@@ -47,36 +43,155 @@ namespace VetPet_
             parentForm.formularioHijo(new ListaServicios(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
 
-        private void BtnModificar_Click(object sender, EventArgs e)
+        private void CargarTipodeServicio()
         {
-            parentForm.formularioHijo(new ModificarVacunas(parentForm));
-        }
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string id = "3";
+            string query = "SELECT \r\n    nombre AS TipoDeServicio\r\n\tFROM ServicioEspecificoHijo \r\n\tWHERE " +
+                "idServicioPadre = "+id+" AND estado = 'A';";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        private void CargarInformaciondeServicio()
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string id = "3";
+            string query = "SELECT SEN.nombre, SEN.precio, SEN.intervalo, SEN.descripcion FROM Vacuna \r\n" +
+                "SEN INNER JOIN ServicioEspecificoHijo SEH ON SEN.idServicioEspecificoHijo = \r\n" +
+                "SEH.idServicioEspecificoHijo WHERE SEH.idServicioPadre = "+id+" AND SEN.estado = 'A' AND SEH.estado = 'A'";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView2.Rows.Clear();
+                    dataGridView2.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView2.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
         private void ListaVacunas_Load(object sender, EventArgs e)
         {
-            //Consultas SQL
-            conexion = new SqlConnection(@"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=Servicio;Integrated Security=True;");
-            conexion.Open();
+            CargarTipodeServicio();
+            CargarInformaciondeServicio();
+        }
 
-            //Primera Tabla
-            q = "SELECT NombreServicio FROM Servicios";
-            comando = new SqlCommand(q, conexion);
-            Lector = comando.ExecuteReader();
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
+            {
+                if (e.ColumnIndex == 0) // Verificar si es la primera columna
+                {
+                    // Aquí puedes obtener el valor de la celda clickeada
+                    DataGridViewRow filaSeleccionada = dataGridView2.Rows[e.RowIndex];
+                    string nombre = filaSeleccionada.Cells["Nombre"].Value.ToString();
 
-            DataTable dt = new DataTable();
-            dt.Load(Lector);
-            dataGridView1.DataSource = dt;
+                    conexionAlex conexion = new conexionAlex();
+                    conexion.AbrirConexion();
 
-            //Segunda Tabla
-            q = "SELECT ID FROM Servicios";
-            comando = new SqlCommand(q, conexion);
-            Lector = comando.ExecuteReader();
 
-            DataTable dt2 = new DataTable();
-            dt2.Load(Lector);
-            dataGridView2.DataSource = dt2;
+                    string queryIdServicio = "SELECT idVacuna FROM Vacuna WHERE nombre = @NombreServicio";
 
-            conexion.Close();
+                    // Crear el comando para obtener el idServicioEspecificoHijo
+                    using (SqlCommand cmd = new SqlCommand(queryIdServicio, conexion.GetConexion()))
+                    {
+                        try
+                        {
+                            // Agregar el parámetro del nombre del ServicioEspecificoHijo
+                            cmd.Parameters.AddWithValue("@NombreServicio", nombre);
+
+                            // Ejecutar la consulta y obtener el id
+                            object result = cmd.ExecuteScalar(); // ExecuteScalar retorna el primer valor de la consulta (idServicioEspecificoHijo)
+
+                            if (result != null)
+                            {
+                                // Convertir el resultado a int (si el id es entero)
+                                int idServicioEspecificoNieto = Convert.ToInt32(result);
+                                parentForm.formularioHijo(new ModificarVacunas(parentForm, idServicioEspecificoNieto));
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontró el Servicio Especificado.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                        }
+                        finally
+                        {
+                            conexion.CerrarConexion();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string patron = TxtBuscar.Text;
+            string id = "3";
+            string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = "+id+" " +
+                "AND nombre LIKE '%" + patron + "%' AND estado = 'A';";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
         }
     }
 }
