@@ -102,8 +102,8 @@ namespace VetPet_
         {
 
 
-
-
+            //Pasarle el ID del Dueño 
+            parentForm.formularioHijo(new MascotasAgregarMascota(parentForm));
 
 
 
@@ -133,6 +133,7 @@ namespace VetPet_
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             parentForm.formularioHijo(new DueConsultarMascota(parentForm));
         }
 
@@ -145,9 +146,13 @@ namespace VetPet_
                 if (row.Cells[0].Value != null)
                 {
 
+
                     //Pantallas de La Angie 
                     int idMascota = Convert.ToInt32(row.Cells[0].Value);
                     string nombreMascota = Convert.ToString(row.Cells[1].Value);
+                    //PASARLE EL ID DE DE DUEÑO 
+                    int idDueño = Convert.ToInt32(DatoEmpleado);
+
 
 
                     //int idMascota = Convert.ToInt32(dtMascotas.Rows[e.RowIndex].Cells["idMascota"].Value);

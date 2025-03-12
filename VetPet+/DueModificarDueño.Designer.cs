@@ -208,7 +208,7 @@
             this.txtCp.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCp.Location = new System.Drawing.Point(738, 108);
             this.txtCp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCp.MaxLength = 8;
+            this.txtCp.MaxLength = 5;
             this.txtCp.Name = "txtCp";
             this.txtCp.Size = new System.Drawing.Size(171, 29);
             this.txtCp.TabIndex = 636;
