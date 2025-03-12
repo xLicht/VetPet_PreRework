@@ -298,7 +298,12 @@ namespace VetPet_
         }
         private void btnMostrarMascota_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueMascotadeDue(parentForm));
+            int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+            DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm, "DueModificarDue");
+            formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+            parentForm.formularioHijo(formularioHijo);
+
+            //parentForm.formularioHijo(new DueMascotadeDue(parentForm, "DueModificarDue"));
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

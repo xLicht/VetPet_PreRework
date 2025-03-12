@@ -105,7 +105,7 @@ namespace VetPet_
         {
 
             int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
-            DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm);
+            DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm, "DueConsultarDue");
             formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
             parentForm.formularioHijo(formularioHijo);
 

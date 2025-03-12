@@ -10,18 +10,20 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using VetPet_;
 using System.Data.SqlClient;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_
 {
     public partial class DueMascotadeDue : FormPadre
     {
+        public string origen;
         public int DatoEmpleado { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
-        public DueMascotadeDue(Form1 parent)
+        public DueMascotadeDue(Form1 parent, string origen)
         {
             InitializeComponent();
             parentForm = parent;
-
+            this.origen = origen;
         }
 
         private void DueMascotadeDue_Load(object sender, EventArgs e)
@@ -103,12 +105,51 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
+            parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaModificarReceta"));
+            if (origen == "DueConsultarDue")
+            {
+                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+                DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            else if (origen == "DueModificarDue")
+            {
+                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+                DueModificarDueño formularioHijo = new DueModificarDueño(parentForm);
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
+            }
+
             parentForm.formularioHijo(new DueConsultarDueño(parentForm));
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             parentForm.formularioHijo(new DueConsultarMascota(parentForm));
+        }
+
+        private void dtMascotas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dtMascotas.Rows[e.RowIndex];
+
+                if (row.Cells[0].Value != null)
+                {
+
+                    //Pantallas de La Angie 
+                    int idEmpleadoSeleccionado = Convert.ToInt32(row.Cells[0].Value);
+                    MascotasAgregarMascota formularioHijo = new MascotasAgregarMascota(parentForm);
+                   // formularioHijo.DatoMascota = idEmpleadoSeleccionado;
+                    parentForm.formularioHijo(formularioHijo);
+
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener el ID del empleado.");
+                }
+            }
         }
     } 
 }

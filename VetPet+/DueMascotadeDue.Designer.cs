@@ -66,6 +66,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(51, 42);
             this.pictureBox3.TabIndex = 50;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.btnAgregarMascota_Click);
             // 
             // btnAgregarMascota
             // 
@@ -115,6 +116,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(42, 45);
             this.pictureBox2.TabIndex = 46;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnRegresar
             // 
@@ -159,6 +161,7 @@
             this.dtMascotas.RowHeadersVisible = false;
             this.dtMascotas.Size = new System.Drawing.Size(911, 287);
             this.dtMascotas.TabIndex = 44;
+            this.dtMascotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtMascotas_CellClick);
             this.dtMascotas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // pictureBox1
