@@ -100,12 +100,19 @@ namespace VetPet_
 
         private void btnAgregarMascota_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueAgregarMascota(parentForm));
+
+
+
+
+
+
+
+            //parentForm.formularioHijo(new DueAgregarMascota(parentForm));
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaModificarReceta"));
+           // parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaModificarReceta"));
             if (origen == "DueConsultarDue")
             {
                 int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
@@ -113,7 +120,7 @@ namespace VetPet_
                 formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
                 parentForm.formularioHijo(formularioHijo);
             }
-            else if (origen == "DueModificarDue")
+            if (origen == "DueModificarDue")
             {
                 int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
                 DueModificarDueño formularioHijo = new DueModificarDueño(parentForm);
@@ -121,7 +128,7 @@ namespace VetPet_
                 parentForm.formularioHijo(formularioHijo);
             }
 
-            parentForm.formularioHijo(new DueConsultarDueño(parentForm));
+            //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -139,10 +146,17 @@ namespace VetPet_
                 {
 
                     //Pantallas de La Angie 
-                    int idEmpleadoSeleccionado = Convert.ToInt32(row.Cells[0].Value);
-                    MascotasAgregarMascota formularioHijo = new MascotasAgregarMascota(parentForm);
+                    int idMascota = Convert.ToInt32(row.Cells[0].Value);
+                    string nombreMascota = Convert.ToString(row.Cells[1].Value);
+
+
+                    //int idMascota = Convert.ToInt32(dtMascotas.Rows[e.RowIndex].Cells["idMascota"].Value);
+                    //string nombreMascota = dtMascotas.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
+
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
+                  //  MascotasConsultar formularioHijo = new MascotasConsultar(parentForm, idMascotaSeleccionada);
                    // formularioHijo.DatoMascota = idEmpleadoSeleccionado;
-                    parentForm.formularioHijo(formularioHijo);
+                    //parentForm.formularioHijo(formularioHijo);
 
                 }
                 else

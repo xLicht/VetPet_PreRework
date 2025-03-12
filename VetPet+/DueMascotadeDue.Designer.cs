@@ -36,10 +36,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.dtMascotas = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.cbFiltrar = new System.Windows.Forms.ComboBox();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +45,10 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.cbFiltrar = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtMascotas)).BeginInit();
@@ -60,7 +60,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaMascota;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(919, 514);
+            this.pictureBox3.Location = new System.Drawing.Point(919, 501);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(51, 42);
@@ -73,7 +73,7 @@
             this.btnAgregarMascota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnAgregarMascota.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarMascota.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnAgregarMascota.Location = new System.Drawing.Point(642, 500);
+            this.btnAgregarMascota.Location = new System.Drawing.Point(642, 487);
             this.btnAgregarMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarMascota.Name = "btnAgregarMascota";
             this.btnAgregarMascota.Size = new System.Drawing.Size(340, 63);
@@ -164,6 +164,51 @@
             this.dtMascotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtMascotas_CellClick);
             this.dtMascotas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "idMascota";
+            this.Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Nombre";
+            this.Column1.Name = "Column1";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Raza";
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Especie";
+            this.Column9.Name = "Column9";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Esterilizado";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Muerto";
+            this.Column7.Name = "Column7";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Peso";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Fecha de nacimiento";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Sexo";
+            this.Column4.Name = "Column4";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
@@ -218,51 +263,6 @@
             this.cbFiltrar.Name = "cbFiltrar";
             this.cbFiltrar.Size = new System.Drawing.Size(127, 33);
             this.cbFiltrar.TabIndex = 40;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "idMascota";
-            this.Column5.Name = "Column5";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Nombre";
-            this.Column1.Name = "Column1";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Raza";
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Especie";
-            this.Column9.Name = "Column9";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Esterilizado";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Muerto";
-            this.Column7.Name = "Column7";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Peso";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Fecha de nacimiento";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Sexo";
-            this.Column4.Name = "Column4";
             // 
             // DueMascotadeDue
             // 
