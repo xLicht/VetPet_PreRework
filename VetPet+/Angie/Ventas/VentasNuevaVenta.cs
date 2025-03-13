@@ -138,5 +138,7 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+      
     }
 }

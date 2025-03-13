@@ -230,7 +230,7 @@ namespace VetPet_
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,idCita);
             VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
         }
