@@ -59,13 +59,18 @@ namespace VetPet_
                 return;
             }
 
-            if (txtTelefono.TextLength != 9)
+            if (txtTelefono.TextLength != 10)
+            {
+                MessageBox.Show("El campo de numero debe tener 10 digitos");
+                return;
+            }
+            if (txtTelefonoExtra.TextLength != 10)
             {
                 MessageBox.Show("El campo de numero debe tener 10 digitos");
                 return;
             }
 
-            if (txtTelefonoContacto.TextLength != 9)
+            if (txtTelefonoContacto.TextLength != 10)
             {
                 MessageBox.Show("El campo de numero debe tener 10 digitos");
                 return;

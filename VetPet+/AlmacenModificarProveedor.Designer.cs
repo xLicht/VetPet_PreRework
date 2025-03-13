@@ -186,7 +186,7 @@
             this.txtTelefonoExtra.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefonoExtra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtTelefonoExtra.Location = new System.Drawing.Point(309, 255);
-            this.txtTelefonoExtra.MaxLength = 9;
+            this.txtTelefonoExtra.MaxLength = 10;
             this.txtTelefonoExtra.Name = "txtTelefonoExtra";
             this.txtTelefonoExtra.Size = new System.Drawing.Size(306, 40);
             this.txtTelefonoExtra.TabIndex = 166;
@@ -378,7 +378,7 @@
             this.txtTelefonoContacto.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefonoContacto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtTelefonoContacto.Location = new System.Drawing.Point(310, 417);
-            this.txtTelefonoContacto.MaxLength = 9;
+            this.txtTelefonoContacto.MaxLength = 10;
             this.txtTelefonoContacto.Name = "txtTelefonoContacto";
             this.txtTelefonoContacto.Size = new System.Drawing.Size(307, 40);
             this.txtTelefonoContacto.TabIndex = 150;
@@ -450,7 +450,7 @@
             this.txtTelefono.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtTelefono.Location = new System.Drawing.Point(312, 204);
-            this.txtTelefono.MaxLength = 9;
+            this.txtTelefono.MaxLength = 10;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(306, 40);
             this.txtTelefono.TabIndex = 144;

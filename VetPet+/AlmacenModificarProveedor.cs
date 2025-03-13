@@ -163,11 +163,11 @@ namespace VetPet_
                 conexion.AbrirConexion();
                 transaction = conexion.GetConexion().BeginTransaction();
 
+                // ID del proveedor
                 int idProveedor = ObtenerIdProveedorPorNombre(nombreProveedor);
 
-                // Modificar el proveedor
-                string queryProveedor = "UPDATE Proveedor SET nombre = @Nombre, correoElectronico = @Correo, nombreContacto = @NombreContacto " +
-                                         "WHERE idProveedor = @IdProveedor;";
+                // Actualizar los datos del proveedor
+                string queryProveedor = "UPDATE Proveedor SET nombre = @Nombre, correoElectronico = @Correo, nombreContacto = @NombreContacto WHERE idProveedor = @IdProveedor;";
                 SqlCommand cmdProveedor = new SqlCommand(queryProveedor, conexion.GetConexion(), transaction);
                 cmdProveedor.Parameters.AddWithValue("@Nombre", string.IsNullOrWhiteSpace(txtNombre.Text) ? (object)DBNull.Value : txtNombre.Text);
                 cmdProveedor.Parameters.AddWithValue("@Correo", string.IsNullOrWhiteSpace(txtCorreo.Text) ? (object)DBNull.Value : txtCorreo.Text);
@@ -175,27 +175,94 @@ namespace VetPet_
                 cmdProveedor.Parameters.AddWithValue("@IdProveedor", idProveedor);
                 cmdProveedor.ExecuteNonQuery();
 
-                // Actualizar teléfono principal (tipoCelular = 1)
-                string queryActualizarCelular = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND tipoCelular = 1;";
-                SqlCommand cmdActualizarCelular = new SqlCommand(queryActualizarCelular, conexion.GetConexion(), transaction);
-                cmdActualizarCelular.Parameters.AddWithValue("@IdProveedor", idProveedor);
-                cmdActualizarCelular.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
-                cmdActualizarCelular.ExecuteNonQuery();
+                // Actualizar el celular principal
+                string queryActualizarCelularPrincipal = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND idCelular = (SELECT TOP 1 idCelular FROM Celular WHERE idProveedor = @IdProveedor ORDER BY idCelular ASC);";
+                SqlCommand cmdActualizarCelularPrincipal = new SqlCommand(queryActualizarCelularPrincipal, conexion.GetConexion(), transaction);
+                cmdActualizarCelularPrincipal.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCelularPrincipal.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
+                cmdActualizarCelularPrincipal.ExecuteNonQuery();
 
-                // Actualizar teléfono extra (tipoCelular = 2)
-                string queryActualizarCelularExtra = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND tipoCelular = 2;";
-                SqlCommand cmdActualizarCelularExtra = new SqlCommand(queryActualizarCelularExtra, conexion.GetConexion(), transaction);
-                cmdActualizarCelularExtra.Parameters.AddWithValue("@IdProveedor", idProveedor);
-                cmdActualizarCelularExtra.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefonoExtra.Text) ? (object)DBNull.Value : txtTelefonoExtra.Text);
-                cmdActualizarCelularExtra.ExecuteNonQuery();
+                // Si se ha ingresado un teléfono extra, actualizar el celular con id mayor
+                if (!string.IsNullOrWhiteSpace(txtTelefonoExtra.Text))
+                {
+                    string queryActualizarCelularExtra = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND idCelular = (SELECT TOP 1 idCelular FROM Celular WHERE idProveedor = @IdProveedor ORDER BY idCelular DESC);";
+                    SqlCommand cmdActualizarCelularExtra = new SqlCommand(queryActualizarCelularExtra, conexion.GetConexion(), transaction);
+                    cmdActualizarCelularExtra.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                    cmdActualizarCelularExtra.Parameters.AddWithValue("@Numero", txtTelefonoExtra.Text);
+                    cmdActualizarCelularExtra.ExecuteNonQuery();
+                }
 
+                string queryActualizarCelularContacto = @"
+                UPDATE CelularContacto 
+                SET numero = @Numero 
+                WHERE idProveedor = @IdProveedor;";
+
+                SqlCommand cmdActualizarCelularContacto = new SqlCommand(queryActualizarCelularContacto, conexion.GetConexion(), transaction);
+                cmdActualizarCelularContacto.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCelularContacto.Parameters.AddWithValue("@Numero", string.IsNullOrWhiteSpace(txtTelefonoContacto.Text) ? (object)DBNull.Value : txtTelefono.Text);
+                cmdActualizarCelularContacto.ExecuteNonQuery();
+
+
+                // Actualizar el nombre del país
+                string queryActualizarPais = @"
+        UPDATE Pais
+        SET nombre = @NombrePais
+        WHERE IdPais IN (SELECT IdPais FROM Direccion WHERE IdProveedor = @IdProveedor)";
+                SqlCommand cmdActualizarPais = new SqlCommand(queryActualizarPais, conexion.GetConexion(), transaction);
+                cmdActualizarPais.Parameters.AddWithValue("@NombrePais", txtPais.Text); // Asume que txtPais es el TextBox con el nombre del país
+                cmdActualizarPais.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarPais.ExecuteNonQuery();
+
+                // Actualizar el nombre del estado
+                string queryActualizarEstado = @"
+        UPDATE Estado
+        SET nombre = @NombreEstado
+        WHERE IdEstado IN (SELECT IdEstado FROM Direccion WHERE IdProveedor = @IdProveedor)";
+                SqlCommand cmdActualizarEstado = new SqlCommand(queryActualizarEstado, conexion.GetConexion(), transaction);
+                cmdActualizarEstado.Parameters.AddWithValue("@NombreEstado", txtEstado.Text); // Asume que txtEstado es el TextBox con el nombre del estado
+                cmdActualizarEstado.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarEstado.ExecuteNonQuery();
+
+
+                // Actualizar el nombre de la ciudad
+                string queryActualizarCiudad = @"
+        UPDATE Ciudad
+        SET nombre = @NombreCiudad
+        WHERE IdCiudad IN (SELECT IdCiudad FROM Direccion WHERE IdProveedor = @IdProveedor)";
+                SqlCommand cmdActualizarCiudad = new SqlCommand(queryActualizarCiudad, conexion.GetConexion(), transaction);
+                cmdActualizarCiudad.Parameters.AddWithValue("@NombreCiudad", txtCiudad.Text); // Asume que txtCiudad es el TextBox con el nombre de la ciudad
+                cmdActualizarCiudad.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCiudad.ExecuteNonQuery();
+
+                // Actualizar el código postal
+                string queryActualizarCp = @"
+        UPDATE Cp
+        SET cp = @Cp
+        WHERE IdCp IN (SELECT IdCp FROM Direccion WHERE IdProveedor = @IdProveedor)";
+                SqlCommand cmdActualizarCp = new SqlCommand(queryActualizarCp, conexion.GetConexion(), transaction);
+                cmdActualizarCp.Parameters.AddWithValue("@Cp", txtCp.Text); // Asume que txtCp es el TextBox con el código postal
+                cmdActualizarCp.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCp.ExecuteNonQuery();
+
+                // Actualizar el nombre de la calle
+                string queryActualizarCalle = @"
+        UPDATE Calle
+        SET nombre = @NombreCalle
+        WHERE IdCalle IN (SELECT IdCalle FROM Direccion WHERE IdProveedor = @IdProveedor)";
+                SqlCommand cmdActualizarCalle = new SqlCommand(queryActualizarCalle, conexion.GetConexion(), transaction);
+                cmdActualizarCalle.Parameters.AddWithValue("@NombreCalle", txtCalle.Text); // Asume que txtCalle es el TextBox con el nombre de la calle
+                cmdActualizarCalle.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarCalle.ExecuteNonQuery();
+
+                // Confirmar la transacción
                 transaction.Commit();
-                MessageBox.Show("Proveedor actualizado correctamente.");
+                MessageBox.Show("Proveedor y direcciones actualizados correctamente.");
             }
             catch (Exception ex)
             {
+                // Si ocurre un error, revertir la transacción
                 transaction?.Rollback();
-                MessageBox.Show("Error al actualizar el proveedor: " + ex.Message);
+                MessageBox.Show("Error al actualizar: " + ex.Message);
             }
             finally
             {
@@ -205,6 +272,7 @@ namespace VetPet_
                 }
             }
         }
+
         private int ObtenerIdProveedorPorNombre(string nombreProveedor)
         {
             conexionBrandon conexion = new conexionBrandon();
@@ -233,33 +301,7 @@ namespace VetPet_
             }
             return idProveedor;
         }
-        private int ObtenerIdDeEntidad(string nombreEntidad, string tabla, string columna, conexionBrandon conexion, SqlTransaction transaction)
-        {
-            // Verificar si la tabla tiene la columna "nombre" o si es una tabla diferente (por ejemplo, "Cp")
-            string columnaBusqueda = (tabla == "Cp") ? "cp" : "nombre";  // En "Cp" usamos "cp", en las demás usamos "nombre"
-
-            // Crear la consulta dependiendo de si usamos "nombre" o "cp"
-            string queryVerificar = $"SELECT Id{columna} FROM {tabla} WHERE {columnaBusqueda} = @NombreEntidad";
-            SqlCommand cmdVerificar = new SqlCommand(queryVerificar, conexion.GetConexion(), transaction);
-            cmdVerificar.Parameters.AddWithValue("@NombreEntidad", nombreEntidad);
-
-            // Intentar obtener el Id de la entidad
-            object resultado = cmdVerificar.ExecuteScalar();
-
-            if (resultado != null) // Si existe, devolver el ID
-            {
-                return Convert.ToInt32(resultado);
-            }
-            else // Si no existe, insertar y devolver el ID
-            {
-                string queryInsertar = $"INSERT INTO {tabla} ({columnaBusqueda}) VALUES (@NombreEntidad);" +
-                                       $"SELECT SCOPE_IDENTITY();";
-                SqlCommand cmdInsertar = new SqlCommand(queryInsertar, conexion.GetConexion(), transaction);
-                cmdInsertar.Parameters.AddWithValue("@NombreEntidad", nombreEntidad);
-
-                return Convert.ToInt32(cmdInsertar.ExecuteScalar());
-            }
-        }
+  
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             // Llamar al formulario de opciones
