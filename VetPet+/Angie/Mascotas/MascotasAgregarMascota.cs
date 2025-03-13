@@ -19,6 +19,7 @@ namespace VetPet_.Angie.Mascotas
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
+        int idDueño = DueMascotadeDue.DatoEmpleadoGlobal;
 
         public MascotasAgregarMascota(Form1 parent)
         {
@@ -262,7 +263,18 @@ namespace VetPet_.Angie.Mascotas
 
         private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+
+            if (idDueño != null || idDueño != 0)
+            {
+                int idEmpleadoSeleccionado = Convert.ToInt32(idDueño);
+                DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm, "DueConsultarDue");
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            else
+            {
+                parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            }
         }
     }
 }

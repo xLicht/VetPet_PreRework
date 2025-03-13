@@ -23,6 +23,7 @@ namespace VetPet_
         private Form1 parentForm;
         private int idMascota;
         private string nombreMascota;
+        int idDueño = DueMascotadeDue.DatoEmpleadoGlobal;
         public MascotasConsultar()
         {
             InitializeComponent();
@@ -175,7 +176,17 @@ namespace VetPet_
 
         private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            if(idDueño != null || idDueño!= 0)
+            {
+                int idEmpleadoSeleccionado = Convert.ToInt32(idDueño);
+                DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm, "DueConsultarDue");
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            else
+            {
+                parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

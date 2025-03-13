@@ -18,6 +18,7 @@ namespace VetPet_
     {
         public string origen;
         public int DatoEmpleado { get; set; }
+        public static int DatoEmpleadoGlobal { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
         public DueMascotadeDue(Form1 parent, string origen)
         {
@@ -100,12 +101,9 @@ namespace VetPet_
 
         private void btnAgregarMascota_Click(object sender, EventArgs e)
         {
+            DatoEmpleadoGlobal = DatoEmpleado;
 
-
-            //Pasarle el ID del Dueño 
             parentForm.formularioHijo(new MascotasAgregarMascota(parentForm));
-
-
 
             //parentForm.formularioHijo(new DueAgregarMascota(parentForm));
         }
@@ -151,13 +149,10 @@ namespace VetPet_
                     int idMascota = Convert.ToInt32(row.Cells[0].Value);
                     string nombreMascota = Convert.ToString(row.Cells[1].Value);
                     //PASARLE EL ID DE DE DUEÑO 
-                    int idDueño = Convert.ToInt32(DatoEmpleado);
-
-
-
+                    //int idDueño = Convert.ToInt32(DatoEmpleado);
+                    DatoEmpleadoGlobal = DatoEmpleado; // Guarda el dato globalmente
                     //int idMascota = Convert.ToInt32(dtMascotas.Rows[e.RowIndex].Cells["idMascota"].Value);
                     //string nombreMascota = dtMascotas.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
-
                     parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
                   //  MascotasConsultar formularioHijo = new MascotasConsultar(parentForm, idMascotaSeleccionada);
                    // formularioHijo.DatoMascota = idEmpleadoSeleccionado;
