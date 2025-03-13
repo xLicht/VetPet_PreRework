@@ -57,7 +57,7 @@ namespace Pruebas_PDF
         {
             try
             {
-                Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+                Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 9);
 
                 string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPet_Logo1.png");
                 if (!File.Exists(imagenPath))
@@ -67,7 +67,7 @@ namespace Pruebas_PDF
                 }
 
                 iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(imagenPath);
-                img.ScaleAbsolute(100f, 100f);
+                img.ScaleAbsolute(70f, 70f);
                 img.Alignment = Element.ALIGN_LEFT;
 
                 PdfPTable tablaEncabezado = new PdfPTable(2);
@@ -88,7 +88,6 @@ namespace Pruebas_PDF
                 tablaEncabezado.AddCell(celdaTextoEmpresa);
 
                 Documento.Add(tablaEncabezado);
-                Documento.Add(new Paragraph("\n"));
             }
             catch (Exception ex)
             {
@@ -102,7 +101,8 @@ namespace Pruebas_PDF
         {
             try
             {
-                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-LAPTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
+                //SqlConnection conexion = new SqlConnection("Data Source=CARLOS-LAPTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
+                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-DESKTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
                 //MessageBox.Show("Conexión establecida correctamente");
                 return conexion;
 
@@ -117,7 +117,7 @@ namespace Pruebas_PDF
 
         protected virtual void AgregarPiePagina()
         {
-            Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+            Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
 
             PdfPTable tablaFirmas = new PdfPTable(2);
             tablaFirmas.WidthPercentage = 80;

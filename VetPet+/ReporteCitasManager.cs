@@ -24,10 +24,10 @@ namespace Pruebas_PDF
         protected override void AgregarContenido(string tipoReporte)
         {
             string tituloString = "";
-            Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
-            Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-            Font tablaHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
-            Font tablaFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+            Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
+            Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+            Font tablaHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+            Font tablaFont = FontFactory.GetFont(FontFactory.HELVETICA, 11);
 
             if (tipoReporte == "01") tituloString = "Reporte de Razón de Cita más Frecuentes";
             else if (tipoReporte == "02") tituloString = "Reporte de Razón de Cita menos Frecuentes";
@@ -36,14 +36,15 @@ namespace Pruebas_PDF
             Paragraph titulo = new Paragraph(tituloString, tituloFont);
             titulo.Alignment = Element.ALIGN_LEFT;
             Documento.Add(titulo);
-            string fechaEmi1 = fecha1.Reverse().ToString().Replace("-", "/");
-            string fechaEmi2 = fecha2.Reverse().ToString().Replace("-", "/");
+            DateTime fechaZ = DateTime.ParseExact(fecha1, "yyyy-MM-dd", null);
+            string fechaEmi1 = fechaZ.ToString("dd/MM/yyyy");
+            DateTime fechaY = DateTime.ParseExact(fecha2, "yyyy-MM-dd", null);
+            string fechaEmi2 = fechaY.ToString("dd/MM/yyyy");
             // 🔹 Agregar las fechas y el módulo
             Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Módulo: Citas", textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Emisión: " + DateTime.Now));
 
-            Documento.Add(new Paragraph("\n"));
             Documento.Add(new Paragraph("\n"));
 
             // 🔹 Crear tabla con dos columnas (Razón - Veces)

@@ -29,10 +29,10 @@ namespace VetPet_
         protected override void AgregarContenido(string tipoReporte)
         {
             string tituloString = "";
-            Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
-            Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-            Font tablaHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
-            Font tablaFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+            Font tituloFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
+            Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+            Font tablaHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+            Font tablaFont = FontFactory.GetFont(FontFactory.HELVETICA, 11);
 
             // 🔹 Agregar el título del reporte
             if (tipoReporte == "01") tituloString = "Reporte de Productos más Vendidos";
@@ -47,14 +47,15 @@ namespace VetPet_
             Paragraph titulo = new Paragraph(tituloString, tituloFont);
             titulo.Alignment = Element.ALIGN_LEFT;
             Documento.Add(titulo);
-            string fechaEmi1 = fecha1.Reverse().ToString().Replace("-", "/");
-            string fechaEmi2 = fecha2.Reverse().ToString().Replace("-", "/");
+            DateTime fechaZ = DateTime.ParseExact(fecha1, "yyyy-MM-dd", null);
+            string fechaEmi1 = fechaZ.ToString("dd/MM/yyyy");
+            DateTime fechaY = DateTime.ParseExact(fecha2, "yyyy-MM-dd", null);
+            string fechaEmi2 = fechaY.ToString("dd/MM/yyyy");
             // 🔹 Agregar las fechas y el módulo
             Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Módulo: Almacén", textoFont) { Alignment = Element.ALIGN_LEFT });
-            Documento.Add(new Paragraph("Emisión: " + DateTime.Now));
+            Documento.Add(new Paragraph("Emisión: " + DateTime.Now, textoFont));
 
-            Documento.Add(new Paragraph("\n"));
             Documento.Add(new Paragraph("\n"));
 
 
@@ -63,31 +64,30 @@ namespace VetPet_
             // ESTO ES REDUCIBLE CON UN METODO
             if (tipoReporte == "01")
             {
-                CrearTablasProductos(ConsultaRep01(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
-
+                CrearTablasProductos(ConsultaRep01(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             }
             else if (tipoReporte == "02")
             {
-                CrearTablasProductos(ConsultaRep02(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasProductos(ConsultaRep02(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             }
             else if (tipoReporte == "03")
             {
-                CrearTablasMedicamentos(ConsultaRep03(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasMedicamentos(ConsultaRep03(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
 
             }
             else if (tipoReporte == "04")
             {
-                CrearTablasMedicamentos(ConsultaRep04(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasMedicamentos(ConsultaRep04(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
 
             }
             else if (tipoReporte == "05")
-                CrearTablasProductos(ConsultaRep05(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasProductos(ConsultaRep05(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             else if (tipoReporte == "06")
-                CrearTablasMedicamentos(ConsultaRep06(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasMedicamentos(ConsultaRep06(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             else if (tipoReporte == "07")
-                CrearTablasProveedores(ConsultaRep07(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasProveedores(ConsultaRep07(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             else if (tipoReporte == "08")
-                CrearTablasProveedores(ConsultaRep08(ConexionSQL()), tabla, tablaHeaderFont, tablaFont);
+                CrearTablasProveedores(ConsultaRep08(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
 
 
             Documento.Add(tabla);
@@ -99,7 +99,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT TOP 10 P.nombre AS Nombre,P.descripcion AS Descripcion, P.precioProveedor AS [Precio del proveedor], P.precioVenta AS [Precio a la Venta], COUNT(VP.idProducto) AS [Cantidad vendida] FROM Producto P JOIN Venta_Producto VP ON P.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta WHERE P.idTipoProducto <> 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin GROUP BY P.nombre, P.descripcion, P.precioProveedor, P.precioVenta ORDER BY [Cantidad vendida] DESC;";
+                string q = @"EXEC sp_ProductosMasVendidos @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -138,7 +138,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT TOP 10 P.nombre AS Nombre,P.descripcion AS Descripcion, P.precioProveedor AS [Precio del proveedor], P.precioVenta AS [Precio a la Venta], COUNT(VP.idProducto) AS [Cantidad vendida] FROM Producto P JOIN Venta_Producto VP ON P.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta WHERE P.idTipoProducto <> 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin GROUP BY P.nombre, P.descripcion, P.precioProveedor, P.precioVenta ORDER BY [Cantidad vendida] ASC;";
+                string q = @"EXEC sp_ProductosMenosVendidos @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -176,7 +176,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT M.nombreGenérico AS [Nombre Generico], P.nombre AS Presentacion, VA.nombre AS [Via de Administracion], PR.precioProveedor AS [Precio del proveedor], PR.precioVenta AS [Precio a la venta], COUNT(VP.idProducto) AS [Cantidad vendida]\r\nFROM Medicamento M JOIN Producto PR ON M.idProducto = PR.idProducto JOIN Presentacion P ON M.idPresentacion = P.idPresentacion JOIN ViaAdministracion VA ON M.idViaAdministracion = VA.idViaAdministracion JOIN  Venta_Producto VP ON PR.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta\r\nWHERE PR.idTipoProducto = 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY M.nombreGenérico, P.nombre, VA.nombre, PR.precioProveedor, PR.precioVenta ORDER BY [Cantidad vendida] DESC;";
+                string q = @"EXEC  sp_MedicamentosMasVendidos @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -216,7 +216,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT M.nombreGenérico AS [Nombre Generico], P.nombre AS Presentacion, VA.nombre AS [Via de Administracion], PR.precioProveedor AS [Precio del proveedor], PR.precioVenta AS [Precio a la venta], COUNT(VP.idProducto) AS [Cantidad vendida]\r\nFROM Medicamento M JOIN Producto PR ON M.idProducto = PR.idProducto JOIN Presentacion P ON M.idPresentacion = P.idPresentacion JOIN ViaAdministracion VA ON M.idViaAdministracion = VA.idViaAdministracion JOIN  Venta_Producto VP ON PR.idProducto = VP.idProducto JOIN Venta V ON VP.idVenta = V.idVenta\r\nWHERE PR.idTipoProducto = 3 AND V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin\r\nGROUP BY M.nombreGenérico, P.nombre, VA.nombre, PR.precioProveedor, PR.precioVenta ORDER BY [Cantidad vendida] ASC;";
+                string q = @"EXEC sp_MedicamentosMenosVendidos @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -334,7 +334,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"EXEC sp_ProveedoresMasVentas @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -402,13 +402,13 @@ namespace VetPet_
         }
         #endregion
         #region CreacionDeTablas
-        public void CrearTablasProductos(string[,] datos, PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        public void CrearTablasProductos(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
             tabla = new PdfPTable(5);
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
-            tabla.WidthPercentage = 80;
+            tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1 });
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1 });
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
             PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
@@ -447,13 +447,12 @@ namespace VetPet_
                 }
             }
         }
-        public void CrearTablasMedicamentos(string[,] datos, PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        public void CrearTablasMedicamentos(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
             tabla = new PdfPTable(6);
-            tabla.WidthPercentage = 80;
+            tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1 });
-            datos = ConsultaRep04(ConexionSQL());
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1, 1 });
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("Nombre Generico", tablaHeaderFont));
             PdfPCell header2 = new PdfPCell(new Phrase("Presentación", tablaHeaderFont));
@@ -498,13 +497,12 @@ namespace VetPet_
                 }
             }
         }
-        public void CrearTablasProveedores(string[,] datos, PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        public void CrearTablasProveedores(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
             tabla = new PdfPTable(4);
-            tabla.WidthPercentage = 80;
+            tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1 });
-            datos = ConsultaRep04(ConexionSQL());
+            tabla.SetWidths(new float[] { 1, 1, 1, 1 });
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
             PdfPCell header2 = new PdfPCell(new Phrase("Correo Electronico", tablaHeaderFont));

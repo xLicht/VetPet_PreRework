@@ -72,11 +72,11 @@
             this.pdfViewAlma.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
             this.pdfViewAlma.LoadingIconText = "Loading...";
             this.pdfViewAlma.Location = new System.Drawing.Point(441, 115);
-            this.pdfViewAlma.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pdfViewAlma.Margin = new System.Windows.Forms.Padding(4);
             this.pdfViewAlma.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
             this.pdfViewAlma.Name = "pdfViewAlma";
             this.pdfViewAlma.OptimizedLoadThreshold = 1000;
-            this.pdfViewAlma.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pdfViewAlma.Padding = new System.Windows.Forms.Padding(10);
             this.pdfViewAlma.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.pdfViewAlma.PageAutoDispose = true;
             this.pdfViewAlma.PageBackColor = System.Drawing.Color.White;
@@ -90,10 +90,12 @@
             this.pdfViewAlma.Size = new System.Drawing.Size(618, 381);
             this.pdfViewAlma.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
             this.pdfViewAlma.TabIndex = 35;
+            this.pdfViewAlma.Tag = "1";
             this.pdfViewAlma.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.pdfViewAlma.TilesCount = 2;
             this.pdfViewAlma.UseProgressiveRender = true;
             this.pdfViewAlma.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
+            this.pdfViewAlma.Visible = false;
             this.pdfViewAlma.Zoom = 1F;
             // 
             // BtnProdMasVend
@@ -102,10 +104,11 @@
             this.BtnProdMasVend.Font = new System.Drawing.Font("Cascadia Mono", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProdMasVend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnProdMasVend.Location = new System.Drawing.Point(27, 114);
-            this.BtnProdMasVend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnProdMasVend.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProdMasVend.Name = "BtnProdMasVend";
             this.BtnProdMasVend.Size = new System.Drawing.Size(180, 62);
             this.BtnProdMasVend.TabIndex = 36;
+            this.BtnProdMasVend.Tag = "1";
             this.BtnProdMasVend.Text = "Productos más Vendidos";
             this.BtnProdMasVend.UseVisualStyleBackColor = false;
             this.BtnProdMasVend.Click += new System.EventHandler(this.BtnProdMasVend_Click);
@@ -116,12 +119,14 @@
             this.BtnProdMenVend.Font = new System.Drawing.Font("Cascadia Mono", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProdMenVend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnProdMenVend.Location = new System.Drawing.Point(226, 115);
-            this.BtnProdMenVend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnProdMenVend.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProdMenVend.Name = "BtnProdMenVend";
             this.BtnProdMenVend.Size = new System.Drawing.Size(180, 62);
             this.BtnProdMenVend.TabIndex = 37;
+            this.BtnProdMenVend.Tag = "1";
             this.BtnProdMenVend.Text = "Productos menos Vendidos";
             this.BtnProdMenVend.UseVisualStyleBackColor = false;
+            this.BtnProdMenVend.Click += new System.EventHandler(this.BtnProdMenVend_Click);
             // 
             // BtnMedMasVend
             // 
@@ -129,12 +134,14 @@
             this.BtnMedMasVend.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMedMasVend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnMedMasVend.Location = new System.Drawing.Point(27, 195);
-            this.BtnMedMasVend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnMedMasVend.Margin = new System.Windows.Forms.Padding(2);
             this.BtnMedMasVend.Name = "BtnMedMasVend";
             this.BtnMedMasVend.Size = new System.Drawing.Size(180, 62);
             this.BtnMedMasVend.TabIndex = 38;
+            this.BtnMedMasVend.Tag = "1";
             this.BtnMedMasVend.Text = "Medicamentos más Vendidos";
             this.BtnMedMasVend.UseVisualStyleBackColor = false;
+            this.BtnMedMasVend.Click += new System.EventHandler(this.BtnMedMasVend_Click);
             // 
             // BtnMedMenVend
             // 
@@ -142,12 +149,14 @@
             this.BtnMedMenVend.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMedMenVend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnMedMenVend.Location = new System.Drawing.Point(226, 195);
-            this.BtnMedMenVend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnMedMenVend.Margin = new System.Windows.Forms.Padding(2);
             this.BtnMedMenVend.Name = "BtnMedMenVend";
             this.BtnMedMenVend.Size = new System.Drawing.Size(180, 62);
             this.BtnMedMenVend.TabIndex = 39;
+            this.BtnMedMenVend.Tag = "1";
             this.BtnMedMenVend.Text = "Medicamentos menos Vendidos";
             this.BtnMedMenVend.UseVisualStyleBackColor = false;
+            this.BtnMedMenVend.Click += new System.EventHandler(this.BtnMedMenVend_Click);
             // 
             // BtnProdBajoStk
             // 
@@ -155,12 +164,14 @@
             this.BtnProdBajoStk.Font = new System.Drawing.Font("Cascadia Mono", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProdBajoStk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnProdBajoStk.Location = new System.Drawing.Point(27, 276);
-            this.BtnProdBajoStk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnProdBajoStk.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProdBajoStk.Name = "BtnProdBajoStk";
             this.BtnProdBajoStk.Size = new System.Drawing.Size(180, 62);
             this.BtnProdBajoStk.TabIndex = 40;
+            this.BtnProdBajoStk.Tag = "1";
             this.BtnProdBajoStk.Text = "Productos con Bajo Stock";
             this.BtnProdBajoStk.UseVisualStyleBackColor = false;
+            this.BtnProdBajoStk.Click += new System.EventHandler(this.BtnProdBajoStk_Click);
             // 
             // BtnMedBajoStk
             // 
@@ -168,12 +179,14 @@
             this.BtnMedBajoStk.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMedBajoStk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnMedBajoStk.Location = new System.Drawing.Point(226, 275);
-            this.BtnMedBajoStk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnMedBajoStk.Margin = new System.Windows.Forms.Padding(2);
             this.BtnMedBajoStk.Name = "BtnMedBajoStk";
             this.BtnMedBajoStk.Size = new System.Drawing.Size(180, 62);
             this.BtnMedBajoStk.TabIndex = 41;
+            this.BtnMedBajoStk.Tag = "1";
             this.BtnMedBajoStk.Text = "Medicamentos con Bajo Stock";
             this.BtnMedBajoStk.UseVisualStyleBackColor = false;
+            this.BtnMedBajoStk.Click += new System.EventHandler(this.BtnMedBajoStk_Click);
             // 
             // BtnProvMasVent
             // 
@@ -181,12 +194,14 @@
             this.BtnProvMasVent.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProvMasVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnProvMasVent.Location = new System.Drawing.Point(27, 357);
-            this.BtnProvMasVent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnProvMasVent.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProvMasVent.Name = "BtnProvMasVent";
             this.BtnProvMasVent.Size = new System.Drawing.Size(180, 62);
             this.BtnProvMasVent.TabIndex = 42;
+            this.BtnProvMasVent.Tag = "1";
             this.BtnProvMasVent.Text = "Proveedores con mas Venta";
             this.BtnProvMasVent.UseVisualStyleBackColor = false;
+            this.BtnProvMasVent.Click += new System.EventHandler(this.BtnProvMasVent_Click);
             // 
             // BtnProvMenVent
             // 
@@ -194,12 +209,14 @@
             this.BtnProvMenVent.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnProvMenVent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnProvMenVent.Location = new System.Drawing.Point(226, 355);
-            this.BtnProvMenVent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnProvMenVent.Margin = new System.Windows.Forms.Padding(2);
             this.BtnProvMenVent.Name = "BtnProvMenVent";
             this.BtnProvMenVent.Size = new System.Drawing.Size(180, 62);
             this.BtnProvMenVent.TabIndex = 43;
+            this.BtnProvMenVent.Tag = "1";
             this.BtnProvMenVent.Text = "Proveedores con menos Venta";
             this.BtnProvMenVent.UseVisualStyleBackColor = false;
+            this.BtnProvMenVent.Click += new System.EventHandler(this.BtnProvMenVent_Click);
             // 
             // BtnImprimir
             // 
@@ -207,12 +224,14 @@
             this.BtnImprimir.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnImprimir.Location = new System.Drawing.Point(441, 504);
-            this.BtnImprimir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnImprimir.Margin = new System.Windows.Forms.Padding(2);
             this.BtnImprimir.Name = "BtnImprimir";
             this.BtnImprimir.Size = new System.Drawing.Size(164, 45);
             this.BtnImprimir.TabIndex = 44;
+            this.BtnImprimir.Tag = "1";
             this.BtnImprimir.Text = "Imprimir";
             this.BtnImprimir.UseVisualStyleBackColor = false;
+            this.BtnImprimir.Visible = false;
             // 
             // BtnGenerar
             // 
@@ -220,13 +239,15 @@
             this.BtnGenerar.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnGenerar.Location = new System.Drawing.Point(895, 504);
-            this.BtnGenerar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnGenerar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnGenerar.Name = "BtnGenerar";
             this.BtnGenerar.Size = new System.Drawing.Size(164, 45);
             this.BtnGenerar.TabIndex = 45;
+            this.BtnGenerar.Tag = "1";
             this.BtnGenerar.Text = "Generar";
             this.BtnGenerar.UseVisualStyleBackColor = false;
-            this.BtnGenerar.Click += new System.EventHandler(this.BtnDescargar_Click);
+            this.BtnGenerar.Visible = false;
+            this.BtnGenerar.Click += new System.EventHandler(this.BtnGenerar_Click);
             // 
             // lblPreview
             // 
@@ -237,8 +258,10 @@
             this.lblPreview.Name = "lblPreview";
             this.lblPreview.Size = new System.Drawing.Size(156, 28);
             this.lblPreview.TabIndex = 46;
+            this.lblPreview.Tag = "1";
             this.lblPreview.Text = "Vista Previa";
             this.lblPreview.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblPreview.Visible = false;
             // 
             // dateTime1
             // 
@@ -249,6 +272,9 @@
             this.dateTime1.Name = "dateTime1";
             this.dateTime1.Size = new System.Drawing.Size(120, 23);
             this.dateTime1.TabIndex = 47;
+            this.dateTime1.Tag = "1";
+            this.dateTime1.Value = new System.DateTime(2025, 3, 12, 21, 47, 14, 0);
+            this.dateTime1.Visible = false;
             // 
             // label3
             // 
@@ -259,8 +285,10 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 28);
             this.label3.TabIndex = 48;
+            this.label3.Tag = "1";
             this.label3.Text = "Fecha";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label3.Visible = false;
             // 
             // dateTime2
             // 
@@ -271,6 +299,8 @@
             this.dateTime2.Name = "dateTime2";
             this.dateTime2.Size = new System.Drawing.Size(120, 23);
             this.dateTime2.TabIndex = 53;
+            this.dateTime2.Tag = "1";
+            this.dateTime2.Visible = false;
             // 
             // lblA
             // 
@@ -281,8 +311,10 @@
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(24, 28);
             this.lblA.TabIndex = 61;
+            this.lblA.Tag = "1";
             this.lblA.Text = "a";
             this.lblA.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblA.Visible = false;
             // 
             // BtnMenu
             // 
@@ -295,6 +327,7 @@
             this.BtnMenu.TabIndex = 67;
             this.BtnMenu.Text = "Menu";
             this.BtnMenu.UseVisualStyleBackColor = false;
+            this.BtnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
             // BtnVolver
             // 
@@ -305,9 +338,11 @@
             this.BtnVolver.Name = "BtnVolver";
             this.BtnVolver.Size = new System.Drawing.Size(135, 39);
             this.BtnVolver.TabIndex = 66;
+            this.BtnVolver.Tag = "1";
             this.BtnVolver.Text = "Volver";
             this.BtnVolver.UseVisualStyleBackColor = false;
             this.BtnVolver.Visible = false;
+            this.BtnVolver.Click += new System.EventHandler(this.BtnVolver_Click);
             // 
             // panel1
             // 
@@ -343,7 +378,7 @@
             this.Controls.Add(this.BtnProdMasVend);
             this.Controls.Add(this.pdfViewAlma);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReportesAlmacen";
             this.Text = "ReportesAlmacen";
             this.ResumeLayout(false);
