@@ -41,19 +41,7 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string ordenColumna = "nombre";
-                if (cbFiltrar.SelectedItem != null)
-                {
-                    switch (cbFiltrar.SelectedItem.ToString())
-                    {
-                        case "Peso":
-                            ordenColumna = "peso";
-                            break;
-                        case "Fecha de Nacimiento":
-                            ordenColumna = "fechaNacimiento";
-                            break;
-                    }
-                }
-
+               
                 string query = $@"
                     SELECT 
                         m.idMascota, 
@@ -164,6 +152,102 @@ namespace VetPet_
                     MessageBox.Show("No se pudo obtener el ID del empleado.");
                 }
             }
+        }
+
+        private void CargarDatos2()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string ordenColumna = "nombre"; // Orden predeterminado alfabético
+                string ordenDireccion = "ASC";  // Orden ascendente por defecto
+
+                
+
+                string query = $@"
+            SELECT 
+                m.idMascota, 
+                m.nombre, 
+                r.nombre AS Raza,
+                e.nombre AS Especie,
+                m.esterilizado, 
+                m.muerto, 
+                m.peso, 
+                m.fechaNacimiento, 
+                m.sexo
+            FROM Mascota m
+            INNER JOIN Raza r ON m.idRaza = r.idRaza
+            INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+            WHERE m.estado = 'A' AND m.idPersona = @idPersona";
+
+                // Agregar filtro de búsqueda solo si hay texto en txtBuscar
+                if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+                {
+                    query += " AND m.nombre LIKE @nombre";
+                }
+
+                query += $" ORDER BY {ordenColumna} {ordenDireccion};";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+
+                    if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", $"%{txtBuscar.Text}%"); // Busca coincidencias parciales
+                    }
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dtMascotas.Rows.Clear(); // Limpia antes de agregar nuevas filas
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dtMascotas.Rows.Add(
+                            row["idMascota"], row["nombre"], row["Raza"], row["Especie"],
+                            row["esterilizado"], row["muerto"], row["peso"],
+                            row["fechaNacimiento"], row["sexo"]
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: No se pudo conectar a la BD. " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void cbFiltrar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbFiltrar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CargarDatos2();
         }
     } 
 }

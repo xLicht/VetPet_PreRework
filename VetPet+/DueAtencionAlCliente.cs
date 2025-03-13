@@ -51,7 +51,7 @@ namespace VetPet_
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            CargarDatos();
+            CargarDatos2();
         }
 
         private void CargarDatos()
@@ -112,6 +112,8 @@ namespace VetPet_
             }
         }
 
+      
+
         private void dtDueños_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -131,6 +133,156 @@ namespace VetPet_
                     MessageBox.Show("No se pudo obtener el ID del empleado.");
                 }
             }
+        }
+        private void CargarDatos2()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string ordenColumna = "nombre"; // Orden predeterminado
+                string ordenDireccion = "ASC";  // Orden ascendente por defecto
+
+                // Determinar el criterio de ordenamiento seleccionado en cbFiltrar
+                if (cbFliltrar.SelectedItem != null)
+                {
+                    switch (cbFliltrar.SelectedItem.ToString())
+                    {
+                        case "Nombre":
+                            ordenColumna = "nombre";
+                            break;
+                        case "Apellido Paterno":
+                            ordenColumna = "apellidoP";
+                            break;
+                        case "Apellido Materno":
+                            ordenColumna = "apellidoM";
+                            break;
+                    }
+                }
+
+                // Consulta SQL base
+                string query = $@"
+        SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celular
+        FROM Persona
+        WHERE estado = 'A'";
+
+                // Agregar filtro de búsqueda si txtBuscar no está vacío
+                if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+                {
+                    query += " AND nombre LIKE @nombreFiltro";
+                }
+
+                query += $" ORDER BY {ordenColumna} {ordenDireccion};";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    // Asignar parámetro si hay búsqueda
+                    if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+                    {
+                        cmd.Parameters.AddWithValue("@nombreFiltro", $"%{txtBuscar.Text}%");
+                    }
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dtDueños.Rows.Clear(); // Limpiar antes de agregar nuevas filas
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dtDueños.Rows.Add(
+                            row["idPersona"], row["nombre"], row["apellidoP"],
+                            row["apellidoM"], row["correoElectronico"], row["celular"]
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: No se pudo conectar a la BD. " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+
+        private void CargarDatos3()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                // Definir la columna por la cual se ordenará
+                string ordenColumna = "nombre"; // Orden predeterminado por nombre
+                if (cbFliltrar.SelectedItem != null)
+                {
+                    switch (cbFliltrar.SelectedItem.ToString())
+                    {
+                        case "Nombre":
+                            ordenColumna = "nombre";
+                            break;
+                        case "Apellido Paterno":
+                            ordenColumna = "apellidoP";
+                            break;
+                        case "Apellido Materno":
+                            ordenColumna = "apellidoM";
+                            break;
+                    }
+                }
+
+                // Consulta SQL para obtener los datos ordenados según la columna seleccionada
+                string query = $@"SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celular
+                          FROM Persona
+                          WHERE estado = 'A'
+                          ORDER BY {ordenColumna};";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dtDueños.Rows.Clear(); // Limpiar el DataGridView antes de agregar nuevos datos
+
+                    // Llenar el DataGridView con los datos obtenidos
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dtDueños.Rows.Add(
+                            row["idPersona"],
+                            row["nombre"],
+                            row["apellidoP"],
+                            row["apellidoM"],
+                            row["correoElectronico"],
+                            row["celular"]
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: No se pudo conectar a la BD. " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void cbFliltrar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarDatos3();
+        }
+
+        private void cbFliltrar_TextChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            CargarDatos2();
         }
     }
 }
