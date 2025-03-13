@@ -54,9 +54,9 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft JhengHei", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(705, 441);
+            this.textBox4.Location = new System.Drawing.Point(632, 441);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(397, 70);
+            this.textBox4.Size = new System.Drawing.Size(355, 70);
             this.textBox4.TabIndex = 122;
             // 
             // textBox3
@@ -64,7 +64,7 @@
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.textBox3.Font = new System.Drawing.Font("Microsoft JhengHei", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(387, 323);
+            this.textBox3.Location = new System.Drawing.Point(60, 323);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(321, 70);
             this.textBox3.TabIndex = 121;
@@ -203,9 +203,9 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft JhengHei", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(631, 323);
+            this.textBox5.Location = new System.Drawing.Point(304, 323);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(471, 70);
+            this.textBox5.Size = new System.Drawing.Size(1079, 70);
             this.textBox5.TabIndex = 123;
             // 
             // label3
@@ -225,6 +225,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(224)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
@@ -235,7 +236,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox5);
             this.Name = "VentasDeseaAgregarProducto";
             this.Text = "VentasDeseaAgregarProducto";
             this.panel1.ResumeLayout(false);

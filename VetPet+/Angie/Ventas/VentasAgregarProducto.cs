@@ -109,7 +109,7 @@ namespace VetPet_.Angie
             p.precioVenta AS Precio
         FROM Producto p
         INNER JOIN Marca m ON p.idMarca = m.idMarca
-        WHERE P.idTipoProducto = 1 OR 2;";
+        WHERE P.idTipoProducto = 1 OR P.idTipoProducto = 2;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter da = new SqlDataAdapter(comando))
@@ -194,7 +194,7 @@ namespace VetPet_.Angie
             JOIN 
                 Marca M ON P.idMarca = M.idMarca  -- Unión con la tabla Marca
             WHERE 
-                P.idTipoProducto = 1 OR  P.idTipoProducto = 2;  
+                P.idTipoProducto = 1 OR P.idTipoProducto = 2;  
         ";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
@@ -210,7 +210,7 @@ namespace VetPet_.Angie
                     dataGridView1.DataSource = tabla;
                     dataGridView1.Columns["idProducto"].Visible = false; // Oculta la columna
 
-                    foreach (DataGridViewRow row in dataGridView2.Rows)
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         if (row.IsNewRow) continue; // No borra la fila nueva si AllowUserToAddRows = true
 
@@ -257,7 +257,7 @@ namespace VetPet_.Angie
                     //string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                    parentForm.formularioHijo(new VentasDeseaAgregarMedicamento(parentForm, idMedicamento, idCita));
+                    parentForm.formularioHijo(new VentasDeseaAgregarProducto(parentForm, idMedicamento, idCita));
                 }
             }
             catch (Exception ex)
@@ -336,8 +336,8 @@ namespace VetPet_.Angie
                 DataTable dt = new DataTable();
                 adaptador.Fill(dt);
 
-                dataGridView2.DataSource = dt;
-                dataGridView2.Columns["idProducto"].Visible = false; // Oculta la columna ID
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns["idProducto"].Visible = false; // Oculta la columna ID
             }
             catch (Exception ex)
             {

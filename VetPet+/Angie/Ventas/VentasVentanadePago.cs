@@ -21,7 +21,7 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         int idCita;
-        DataTable dtProductos = new DataTable();
+        private  static DataTable dtProductos = new DataTable();
         public VentasVentanadePago(Form1 parent, int idCita)
         {
             InitializeComponent();
@@ -31,53 +31,84 @@ namespace VetPet_
             CargarServicios(idCita);
             this.idCita = idCita;
         }
+
         public VentasVentanadePago(Form1 parent, int idCita, decimal total, DataTable dt)
         {
             InitializeComponent();
-            this.Load += VentasVentanadePago_Load;       // Evento Load
-            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            this.Load += VentasVentanadePago_Load;
+            this.Resize += VentasVentanadePago_Resize;
             CargarServicios(idCita);
             this.idCita = idCita;
-            parentForm = parent;  
+            parentForm = parent;
 
+            // Si es la primera vez, clonar la estructura
+            if (dtProductos.Columns.Count == 0)
+            {
+                dtProductos = dt.Clone();
+            }
+
+            // Agregar los nuevos productos o medicamentos sin perder los anteriores
+            AgregarProductosAMedicamentos(dt);
+
+            // Vincular dtProductos al DataGridView
             BindingSource bs = new BindingSource();
-            bs.DataSource = dt;  
+            bs.DataSource = dtProductos;
             dataGridView2.DataSource = bs;
 
-            decimal sumaTotal = dt.AsEnumerable()  
-                .Where(r => r["Total"] != null && r["Total"] != DBNull.Value)  
-                .Sum(r => r.Field<decimal>("Total"));   
-
-            textBox8.Text = sumaTotal.ToString("0.##");  
+            // Actualizar la suma total
+            ActualizarSumaTotal();
         }
 
+        // 🔹 Método para agregar productos o medicamentos a la tabla sin eliminar los anteriores
+        private void AgregarProductosAMedicamentos(DataTable dtNuevos)
+        {
+            foreach (DataRow row in dtNuevos.Rows)
+            {
+                int idProducto = row.Field<int>("idProducto");
+
+                // Buscar si el producto ya está en la tabla
+                DataRow existingRow = dtProductos.AsEnumerable()
+                    .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
+
+                if (existingRow == null)
+                {
+                    // Si no existe, agregarlo
+                    dtProductos.ImportRow(row);
+                }
+                else
+                {
+                    // Si ya existe, actualizar el total sumando el nuevo subtotal
+                    existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + Convert.ToDecimal(row["Total"]);
+                }
+            }
+        }
+
+        private void ActualizarSumaTotal()
+        {
+            if (dtProductos.Rows.Count > 0)
+            {
+                decimal sumaTotal = dtProductos.AsEnumerable()
+                    .Where(r => r["Total"] != DBNull.Value)
+                    .Sum(r => r.Field<decimal>("Total"));
+
+                textBox8.Text = sumaTotal.ToString("0.##");
+            }
+            else
+            {
+                textBox8.Text = "0.00";
+            }
+        }
 
         public void CargarServicios(int idCita)
         {
             try
             {
-                // Crear instancia de Mismetodos
                 mismetodos = new Mismetodos();
 
-                // Abrir conexión
                 mismetodos.AbrirConexion();
 
                 string query = @"
-                            SELECT 
-                    sp.nombre AS ServicioPadre,
-                    cs.nombre AS ClaseServicio,
-                    sen.nombre AS ServicioEspecifico, 
-	                seh.nombre as ServicioHijo,
-                    e.usuario AS Medico,
-                    sen.precio AS precio,              
-                    c.idCita
-                FROM Servicio_Cita c
-                LEFT JOIN ServicioEspecificoNieto sen ON c.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                LEFT JOIN ServicioEspecificoHijo seh ON c.idServicioSencilloHijo = seh.idServicioEspecificoHijo
-                LEFT JOIN ServicioPadre sp ON seh.idServicioPadre = sp.idServicioPadre
-                LEFT JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio
-                LEFT JOIN Empleado e ON c.idEmpleado = e.idEmpleado
-                WHERE c.idCita = @idCita;
+                       EXEC sp_ObtenerServiciosCita @idCita = 1;
                  ";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
@@ -118,7 +149,6 @@ namespace VetPet_
                         }
                     }
                 }
-
                 string queryDueño = @"
                                 SELECT 
                             P.nombre AS NombrePersona,
@@ -237,8 +267,10 @@ namespace VetPet_
 
         private void textBox11_Click(object sender, EventArgs e)
         {
+
             VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, idCita);
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
+
     }
 }

@@ -18,9 +18,10 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();   
+        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-
+        int idCita;
+        private static DataTable dtProductos = new DataTable();
         public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();

@@ -99,7 +99,29 @@ namespace VetPet_.Angie
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
+        private void VentasDeseaAgregarMedicamento_Resize(object sender, EventArgs e)
+        {
+            // Calcular el factor de escala
+            float scaleX = this.ClientSize.Width / originalWidth;
+            float scaleY = this.ClientSize.Height / originalHeight;
 
+            foreach (Control control in this.Controls)
+            {
+                if (controlInfo.ContainsKey(control))
+                {
+                    var info = controlInfo[control];
+
+                    // Ajustar las dimensiones
+                    control.Width = (int)(info.width * scaleX);
+                    control.Height = (int)(info.height * scaleY);
+                    control.Left = (int)(info.left * scaleX);
+                    control.Top = (int)(info.top * scaleY);
+
+                    // Ajustar el tamaño de la fuente
+                    control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
+                }
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -179,11 +201,11 @@ namespace VetPet_.Angie
                         MessageBox.Show("Stock actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (idCita != 0)
                         {
-                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, int.Parse(label3.Text), total, nuevoStock, idCita));
+                            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, int.Parse(label3.Text), total, nuevoStock, idCita));
                         }
                         else
                         {
-                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, int.Parse(label3.Text), total, nuevoStock));
+                            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, int.Parse(label3.Text), total, nuevoStock));
                         }
                     }
                     else
@@ -201,7 +223,7 @@ namespace VetPet_.Angie
             {
                 // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
-            }
+            }      
         }
 
         private decimal ObtenerPrecioProducto(int idProducto)
@@ -256,7 +278,6 @@ namespace VetPet_.Angie
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
         }
-
         private void VentasDeseaAgregarProducto_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
@@ -280,10 +301,10 @@ namespace VetPet_.Angie
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarProducto(parentForm)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new VentasAgregarProducto(parentForm,idCita));
         }
+
     }
 }

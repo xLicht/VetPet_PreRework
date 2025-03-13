@@ -46,13 +46,13 @@ namespace VetPet_.Angie
                 mismetodos.AbrirConexion();
                 string query = @"
                             SELECT 
-                    idProducto as idProducto,
+                    idProducto AS idProducto,
                     nombre AS NombreMedicamento
                 FROM 
                     Producto
                 WHERE 
                     idProducto = @idProducto
-                    AND idTipoProducto = 3;
+                    AND idTipoProducto = 3 ;
                         ";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
