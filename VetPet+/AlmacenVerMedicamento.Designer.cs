@@ -62,9 +62,9 @@
             this.txtFecha.Enabled = false;
             this.txtFecha.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtFecha.Location = new System.Drawing.Point(893, 296);
+            this.txtFecha.Location = new System.Drawing.Point(873, 296);
             this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(169, 40);
+            this.txtFecha.Size = new System.Drawing.Size(189, 40);
             this.txtFecha.TabIndex = 83;
             this.txtFecha.Text = "Fecha";
             // 
@@ -97,7 +97,7 @@
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label13.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label13.Location = new System.Drawing.Point(627, 296);
+            this.label13.Location = new System.Drawing.Point(607, 296);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(260, 40);
             this.label13.TabIndex = 80;
@@ -109,9 +109,9 @@
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label12.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label12.Location = new System.Drawing.Point(627, 194);
+            this.label12.Location = new System.Drawing.Point(607, 194);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(169, 40);
+            this.label12.Size = new System.Drawing.Size(189, 40);
             this.label12.TabIndex = 79;
             this.label12.Text = "Laboratorio";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -121,9 +121,9 @@
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label11.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label11.Location = new System.Drawing.Point(627, 147);
+            this.label11.Location = new System.Drawing.Point(607, 147);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(169, 39);
+            this.label11.Size = new System.Drawing.Size(189, 39);
             this.label11.TabIndex = 78;
             this.label11.Text = "Marca";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,7 +145,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label3.Location = new System.Drawing.Point(627, 246);
+            this.label3.Location = new System.Drawing.Point(607, 246);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(217, 40);
             this.label3.TabIndex = 76;
@@ -260,9 +260,9 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label4.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(627, 95);
+            this.label4.Location = new System.Drawing.Point(607, 95);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 38);
+            this.label4.Size = new System.Drawing.Size(189, 38);
             this.label4.TabIndex = 64;
             this.label4.Text = "Proveedor";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -298,7 +298,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label1.Location = new System.Drawing.Point(20, 195);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 40);
+            this.label1.Size = new System.Drawing.Size(280, 40);
             this.label1.TabIndex = 61;
             this.label1.Text = "Precio Proveedor";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -309,9 +309,9 @@
             this.txtPrecioProveedor.Enabled = false;
             this.txtPrecioProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPrecioProveedor.Location = new System.Drawing.Point(279, 195);
+            this.txtPrecioProveedor.Location = new System.Drawing.Point(316, 195);
             this.txtPrecioProveedor.Name = "txtPrecioProveedor";
-            this.txtPrecioProveedor.Size = new System.Drawing.Size(312, 40);
+            this.txtPrecioProveedor.Size = new System.Drawing.Size(275, 40);
             this.txtPrecioProveedor.TabIndex = 60;
             this.txtPrecioProveedor.Text = "Precio de proveedor";
             // 
@@ -357,9 +357,9 @@
             this.txtPresentacion.Enabled = false;
             this.txtPresentacion.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPresentacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPresentacion.Location = new System.Drawing.Point(850, 247);
+            this.txtPresentacion.Location = new System.Drawing.Point(830, 247);
             this.txtPresentacion.Name = "txtPresentacion";
-            this.txtPresentacion.Size = new System.Drawing.Size(212, 40);
+            this.txtPresentacion.Size = new System.Drawing.Size(232, 40);
             this.txtPresentacion.TabIndex = 86;
             this.txtPresentacion.Text = "Presentación";
             // 
