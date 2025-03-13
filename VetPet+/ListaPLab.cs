@@ -66,7 +66,7 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string query = "SELECT \r\n    nombre AS TipoDeServicio\r\n\tFROM ServicioEspecificoHijo \r\n\tWHERE " +
-                "idServicioPadre = 8;";
+                "idServicioPadre = 8 AND estado = 'A';";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -95,7 +95,7 @@ namespace VetPet_
             conexion.AbrirConexion();
             string query = "SELECT SEN.nombre, SEN.precio, SEN.duracion, SEN.descripcion \r\nFROM ServicioEspecificoNieto " +
                 "SEN\r\nINNER JOIN ServicioEspecificoHijo SEH\r\nON SEN.idServicioEspecificoHijo = " +
-                "SEH.idServicioEspecificoHijo\r\nWHERE SEH.idServicioPadre = 8";
+                "SEH.idServicioEspecificoHijo\r\nWHERE SEH.idServicioPadre = 8 AND SEN.estado = 'A' AND SEH.estado = 'A'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -183,7 +183,7 @@ namespace VetPet_
             conexion.AbrirConexion();
             string patron = TxtBuscar.Text;
             string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = 8 " +
-                "AND nombre LIKE '%"+patron+"%';";
+                "AND nombre LIKE '%"+patron+"%' AND estado = 'A';";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try

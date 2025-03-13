@@ -52,16 +52,21 @@ namespace VetPet_
                 conexion.AbrirConexion();
 
                 // Definir la consulta
-                string query = @"SELECT 
-                                p.Nombre, 
-                                p.Celular, 
-                                e.nombre
-                            FROM 
-                                Proveedor p
-                            JOIN 
-                                Direccion d ON p.IdProveedor = d.IdProveedor
-                            JOIN 
-                                Estado e ON d.IdEstado = e.IdEstado;";
+                string query = @"
+                SELECT 
+                    p.Nombre, 
+                    (SELECT TOP 1 c.Numero 
+                     FROM Celular c 
+                     WHERE c.idProveedor = p.IdProveedor 
+                     ORDER BY c.idProveedor ASC) AS Celular,
+                    ISNULL(e.Nombre, 'Sin estado') AS Estado
+                FROM 
+                    Proveedor p
+                LEFT JOIN 
+                    Direccion d ON p.IdProveedor = d.IdProveedor
+                LEFT JOIN 
+                    Estado e ON d.IdEstado = e.IdEstado;";
+
 
                 // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
                 SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
@@ -170,7 +175,7 @@ namespace VetPet_
                         {
                             if (opcionesForm.Resultado == "Modificar")
                             {
-                                parentForm.formularioHijo(new AlmacenModificarProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                                parentForm.formularioHijo(new AlmacenModificarProveedor(parentForm, nombre)); // Pasamos la referencia de Form1 a 
                             }
                             if (opcionesForm.Resultado == "Salir")
                             {
@@ -178,7 +183,7 @@ namespace VetPet_
                             }
                             else if (opcionesForm.Resultado == "Ver")
                             {
-                                parentForm.formularioHijo(new AlmacenVerProveedor(parentForm)); // Pasamos la referencia de Form1 a 
+                                parentForm.formularioHijo(new AlmacenVerProveedor(parentForm, nombre)); // Pasamos la referencia de Form1 a 
                             }
                         }
                     }
