@@ -19,10 +19,57 @@ namespace VetPet_.Angie
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         Mismetodos mismetodos = new Mismetodos();   
         private Form1 parentForm;
-
+        private static DataTable dtProductos = new DataTable();
         public string FormularioOrigen {get;set;}
+        int idCita = 0; 
+        public VentasAgregarMedicamento(Form1 parent,int idProducto,decimal subTotal,int stock, int idCita)
+        {
+            InitializeComponent();
+            parentForm = parent;  
+            this.Load += VentasAgregarMedicamento_Load;       
+            this.Resize += VentasAgregarMedicamento_Resize;   
+            dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView2.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView(dataGridView2);
+            PersonalizarDataGridView(dataGridView3);
+            Cargar();
+            CargarProductosEnDataGridView(idProducto, subTotal);
+            this.idCita = idCita;
 
-        public VentasAgregarMedicamento(Form1 parent, int idProducto,int subTotal)
+            if (dtProductos.Rows.Count > 0)
+            {
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dtProductos;
+                bs.Filter = "[Total] IS NOT NULL";
+                dataGridView3.DataSource = bs;
+            }
+
+        }
+        public VentasAgregarMedicamento(Form1 parent, int idProducto, decimal subTotal, int stock)
+        {
+            InitializeComponent();
+            parentForm = parent;  
+            this.Load += VentasAgregarMedicamento_Load;       
+            this.Resize += VentasAgregarMedicamento_Resize;   
+            dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView2.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView(dataGridView2);
+            PersonalizarDataGridView(dataGridView3);
+            Cargar();
+            CargarProductosEnDataGridView(idProducto, subTotal);
+
+            if (dtProductos.Rows.Count > 0)
+            {
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dtProductos;
+                bs.Filter = "[Total] IS NOT NULL";
+                dataGridView3.DataSource = bs;
+            }
+
+        }
+        public VentasAgregarMedicamento(Form1 parent, int idCita)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
@@ -34,7 +81,7 @@ namespace VetPet_.Angie
             PersonalizarDataGridView(dataGridView2);
             PersonalizarDataGridView(dataGridView3);
             Cargar();
-             CargarProductosEnDataGridView(idProducto, subTotal);
+            this.idCita = idCita;
         }
         public VentasAgregarMedicamento(Form1 parent)
         {
@@ -47,22 +94,22 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView2);
             PersonalizarDataGridView(dataGridView3);
-                Cargar();
-           
+            Cargar();
         }
-        private void CargarProductosEnDataGridView(int idProducto, int subTotal)
+        private void CargarProductosEnDataGridView(int idProducto, decimal subTotal)
         {
             try
             {
                 mismetodos.AbrirConexion();
 
                 string query = @"
-            SELECT 
-                p.nombre AS Producto,
-                m.nombre AS Marca,
-                p.precioVenta AS Precio
-            FROM Producto p
-            INNER JOIN Marca m ON p.idMarca = m.idMarca;";
+        SELECT 
+            p.idProducto AS idProducto,
+            p.nombre AS Producto,
+            p.precioVenta AS Precio
+        FROM Producto p
+        INNER JOIN Marca m ON p.idMarca = m.idMarca
+        WHERE P.idTipoProducto = 3;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter da = new SqlDataAdapter(comando))
@@ -70,29 +117,60 @@ namespace VetPet_.Angie
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Agregar una columna extra para el Total
-                    dt.Columns.Add("Total", typeof(int));
-
-                    dataGridView3.DataSource = dt;
-                    foreach (DataGridViewRow row in dataGridView3.Rows)
+                    // Si es la primera vez que se usa, inicializar dtProductos y agregar la columna "Total"
+                    if (dtProductos.Columns.Count == 0)
                     {
-                        if (row.Cells["idProducto"].Value != null && Convert.ToInt32(row.Cells["idProducto"].Value) == idProducto)
+                        dtProductos = dt.Clone(); // Clonar estructura sin datos
+                        dtProductos.Columns.Add("Total", typeof(decimal)); // Agregar columna Total
+                    }
+
+                    // Buscar si el producto ya existe en dtProductos
+                    DataRow existingRow = dtProductos.AsEnumerable()
+                        .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
+
+                    if (existingRow == null)
+                    {
+                        // Buscar el producto en dt y agregarlo a dtProductos
+                        DataRow newRow = dt.AsEnumerable()
+                            .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
+
+                        if (newRow != null)
                         {
-                            decimal precio = Convert.ToDecimal(row.Cells["Precio"].Value);
-                            row.Cells["Total"].Value = subTotal;
-                            return;
+                            DataRow rowToAdd = dtProductos.NewRow();
+                            rowToAdd.ItemArray = newRow.ItemArray;
+                            rowToAdd["Total"] = subTotal; // Asignar el total
+                            dtProductos.Rows.Add(rowToAdd);
                         }
                     }
+                    else
+                    {
+                        // Si el producto ya está en la tabla, sumarle el subtotal
+                        existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + subTotal;
+                    }
+
+                    // Filtrar y actualizar el DataGridView
+                    BindingSource bs = new BindingSource();
+                    bs.DataSource = dtProductos;
+                    bs.Filter = "[Total] IS NOT NULL";
+                    dataGridView3.DataSource = bs;
+                    ActualizarTotal();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar productos: " + ex.Message);
+                MessageBox.Show("Error al cargar productos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                mismetodos.CerrarConexion();
-            }
+        }
+
+
+        // Método para calcular la suma y mostrarla en textBox2
+        private void ActualizarTotal()
+        {
+            decimal sumaTotal = dtProductos.AsEnumerable()
+                .Where(r => r["Total"] != DBNull.Value)
+                .Sum(r => r.Field<decimal>("Total"));
+
+            textBox2.Text = "Subtotal: "+sumaTotal.ToString("0.00"); // Mostrar con 2 decimales
         }
 
         public void Cargar()
@@ -179,7 +257,7 @@ namespace VetPet_.Angie
                     //string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                   parentForm.formularioHijo(new VentasDeseaAgregarMedicamento(parentForm,idMedicamento,0));
+                   parentForm.formularioHijo(new VentasDeseaAgregarMedicamento(parentForm,idMedicamento,idCita));
                 }
             }
             catch (Exception ex)
@@ -301,11 +379,6 @@ namespace VetPet_.Angie
             // Autoajustar el tamaño de las columnas
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar la columna del ID
-            if (dataGridView2.Columns.Contains("idMascota"))
-            {
-                dataGridView2.Columns["idMascota"].Visible = false;
-            }
         }
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -388,13 +461,20 @@ namespace VetPet_.Angie
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (FormularioOrigen == "VentasNuevaVenta")
+            if (idCita != 0)
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+                decimal sumaTotal = dtProductos.AsEnumerable()
+              .Where(r => r["Total"] != DBNull.Value)
+              .Sum(r => r.Field<decimal>("Total"));
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, sumaTotal, dtProductos));
+
             }
-            if (FormularioOrigen == "VentasVentanadePago")
+            else
             {
-              //  parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
+                decimal sumaTotal = dtProductos.AsEnumerable()
+               .Where(r => r["Total"] != DBNull.Value)
+               .Sum(r => r.Field<decimal>("Total"));
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm,sumaTotal ,dtProductos)); // Pasamos la referencia de Form1 a
             }
         }
 

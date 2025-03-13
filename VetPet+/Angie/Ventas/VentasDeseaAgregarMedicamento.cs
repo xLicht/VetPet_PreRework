@@ -20,17 +20,24 @@ namespace VetPet_.Angie
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
+        int idCita = 0;     
+        public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto )
+        {
+            InitializeComponent();
+            this.Load += VentasDeseaAgregarMedicamento_Load;       // Evento Load
+            this.Resize += VentasDeseaAgregarMedicamento_Resize;   // Evento Resize
+            parentForm = parent;  // Guardamos la referencia de Form1
+            CargarMedicamento(idProducto);        
+        }
 
-
-
-        public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto, int subTotal )
+        public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto, int idCita)
         {
             InitializeComponent();
             this.Load += VentasDeseaAgregarMedicamento_Load;       // Evento Load
             this.Resize += VentasDeseaAgregarMedicamento_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarMedicamento(idProducto);
-            CalcularVenta(subTotal);    
+            this.idCita = idCita;   
         }
         public void CargarMedicamento(int idMedicamento)
         {
@@ -39,6 +46,7 @@ namespace VetPet_.Angie
                 mismetodos.AbrirConexion();
                 string query = @"
                             SELECT 
+                    idProducto as idProducto,
                     nombre AS NombreMedicamento
                 FROM 
                     Producto
@@ -78,12 +86,6 @@ namespace VetPet_.Angie
                 mismetodos.CerrarConexion();
             }
         }
-
-        public void CalcularVenta(int subTotal)
-        {
-
-        }
-
         private void VentasDeseaAgregarMedicamento_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -123,30 +125,111 @@ namespace VetPet_.Angie
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(textBox4.Text, out int cantidad) || cantidad <= 0)
+            try
             {
-                MessageBox.Show("Ingrese una cantidad válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            int precio = ObtenerPrecioProducto(int.Parse(textBox4.Text));
+                if (!int.TryParse(textBox4.Text, out int cantidad) || cantidad <= 0)
+                {
+                    MessageBox.Show("Ingrese una cantidad válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                decimal precio = ObtenerPrecioProducto(int.Parse(label3.Text));
 
-            if (precio == -1)
+                if (precio == -1)
+                {
+                    MessageBox.Show("No se pudo obtener el precio del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Calcular el total
+                decimal total = cantidad * precio;
+                mismetodos.AbrirConexion();
+
+                // Consulta para obtener el stock actual del producto
+                string queryStock = @"
+                    SELECT stock 
+                    FROM Producto 
+                    WHERE idProducto = @idProducto;
+                ";
+
+                int stockActual = 0;
+
+                // Obtener el stock actual del producto
+                using (SqlCommand comandoStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
+                {
+                    comandoStock.Parameters.AddWithValue("@idProducto", label3.Text);
+
+                    using (SqlDataReader reader = comandoStock.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            stockActual = Convert.ToInt32(reader["stock"]);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+
+                // Validar que haya suficiente stock
+                if (cantidad > stockActual)
+                {
+                    MessageBox.Show("No hay suficiente stock disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Calcular el nuevo stock
+                int nuevoStock = stockActual - cantidad;
+
+                // Consulta para actualizar el stock del producto
+                string queryActualizarStock = @"
+                    UPDATE Producto 
+                    SET stock = @nuevoStock 
+                    WHERE idProducto = @idProducto;
+                ";
+
+                // Ejecutar la actualización del stock
+                using (SqlCommand comandoActualizar = new SqlCommand(queryActualizarStock, mismetodos.GetConexion()))
+                {
+                    comandoActualizar.Parameters.AddWithValue("@nuevoStock", nuevoStock);
+                    comandoActualizar.Parameters.AddWithValue("@idProducto", label3.Text);
+
+                    int filasAfectadas = comandoActualizar.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Stock actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (idCita != 0)
+                        {
+                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm,int.Parse(label3.Text), total, nuevoStock, idCita)); 
+                        }
+                        else
+                        {
+                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, int.Parse(label3.Text), total, nuevoStock)); 
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo actualizar el stock.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pudo obtener el precio del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // Calcular el total
-            int total = cantidad * precio;
-
-            // Mostrar el total en el Label
-            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, int.Parse(label3.Text),total)); // Pasamos la referencia de Form1 a
-
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
         }
-
-        private int ObtenerPrecioProducto(int idProducto)
+   
+        private decimal ObtenerPrecioProducto(int idProducto)
         {
-            int precio = -1;
+            decimal precio = 0;
 
             try
             {
@@ -156,7 +239,7 @@ namespace VetPet_.Angie
                 string query = @"
             SELECT precioVenta 
             FROM Producto 
-            WHERE idProducto = @idProducto";
+            WHERE idProducto = @idProducto AND idTipoProducto = 3;";
 
                 // Usar `using` para manejar recursos correctamente
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -167,7 +250,7 @@ namespace VetPet_.Angie
                     {
                         if (reader.Read())
                         {
-                            precio = (int)reader.GetDecimal(0); // Obtiene el valor del primer campo (precio)
+                            precio = reader.GetDecimal(0); // Obtiene el valor del primer campo (precio)
                         }
                     }
                 }
@@ -188,7 +271,7 @@ namespace VetPet_.Angie
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm,0, 0)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a
         }
     }
     

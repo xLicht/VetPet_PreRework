@@ -18,10 +18,10 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();   
-        int idCita;
+        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-
+        int idCita;
+        DataTable dtProductos = new DataTable();
         public VentasVentanadePago(Form1 parent, int idCita)
         {
             InitializeComponent();
@@ -29,7 +29,28 @@ namespace VetPet_
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarServicios(idCita);
+            this.idCita = idCita;
         }
+        public VentasVentanadePago(Form1 parent, int idCita, decimal total, DataTable dt)
+        {
+            InitializeComponent();
+            this.Load += VentasVentanadePago_Load;       // Evento Load
+            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            CargarServicios(idCita);
+            this.idCita = idCita;
+            parentForm = parent;  
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dt;  
+            dataGridView2.DataSource = bs;
+
+            decimal sumaTotal = dt.AsEnumerable()  
+                .Where(r => r["Total"] != null && r["Total"] != DBNull.Value)  
+                .Sum(r => r.Field<decimal>("Total"));   
+
+            textBox8.Text = sumaTotal.ToString("0.##");  
+        }
+
 
         public void CargarServicios(int idCita)
         {
@@ -144,7 +165,7 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
         }
-
+       
         private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -216,8 +237,7 @@ namespace VetPet_
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm);
-            ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, idCita);
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
     }

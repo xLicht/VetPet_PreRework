@@ -59,6 +59,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -252,7 +253,8 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewTextBoxColumn3,
+            this.Column1});
             this.dataGridView2.GridColor = System.Drawing.Color.Blue;
             this.dataGridView2.Location = new System.Drawing.Point(39, 208);
             this.dataGridView2.Name = "dataGridView2";
@@ -395,6 +397,12 @@
             this.textBox1.Text = "Productos/Medicamentos";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Cantidad";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
             // VentasNuevaVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -472,5 +480,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
