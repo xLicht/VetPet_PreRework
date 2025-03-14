@@ -50,7 +50,7 @@ namespace VetPet_
             conexionBrandon conexion = new conexionBrandon();
             conexion.AbrirConexion();
 
-            string query = "SELECT idProveedor, nombre FROM Proveedor";
+            string query = "SELECT idProveedor, nombre FROM Proveedor WHERE ";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
