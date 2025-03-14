@@ -17,19 +17,20 @@ namespace VetPet_.Angie.Mascotas
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        private string nombreMascota;
         private Mismetodos mismetodos = new Mismetodos();
-        // Variable de clase para almacenar el id de la mascota
+        private string raza;
         private int idMascota;
-
+        private string nombreMascota;
         private Form1 parentForm;
-        public MascotasAgregarRaza(Form1 parent)
+        public MascotasAgregarRaza(Form1 parent, string raza,int idMascota, string nombreMascota)
         {
             InitializeComponent();
             this.Load += MascotasAgregarRaza_Load;       // Evento Load
-            this.Resize += MascotasAgregarRaza_Resize;   // Evento Resize
-            comboBox1.KeyDown += comboBox2_KeyDown;
+            this.Resize += MascotasAgregarRaza_Resize; 
             parentForm = parent;  // Guardamos la referencia de Form1
+            this.raza = raza;
+            this.idMascota = idMascota;
+            this.nombreMascota = nombreMascota;
             CargarMascota();
         }
         private void CargarMascota()
@@ -48,11 +49,12 @@ namespace VetPet_.Angie.Mascotas
                         comboBox1.Items.Clear();
 
                         while (readerEsp.Read())
-                        {
+                        {                          
                             comboBox1.Items.Add(readerEsp["nombre"].ToString());
                         }
                     }
                 }
+                textBox1.Text = raza;
             }
             catch (Exception ex)
             {
@@ -63,40 +65,7 @@ namespace VetPet_.Angie.Mascotas
                 mismetodos.CerrarConexion();
             }
         }
-
-        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Verificar si la tecla presionada es "Enter"
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Obtener el texto ingresado por el usuario
-                string nuevaRaza = ValidarYFormatearTexto(comboBox1.Text);
-
-                // Verificar si la especie ya existe en la base de datos
-                if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
-                {
-                    // Preguntar al usuario si desea crear la nueva especie
-                    DialogResult result = MessageBox.Show(
-                        $"La raza '{nuevaRaza}' no existe. ¿Desea crearla?",
-                        "Crear nueva raza",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
-                    if (result == DialogResult.Yes)
-                    {
-                        mismetodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
-                        MessageBox.Show("Raza creada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM raza", "nombre");
-                        CargarMascota();
-                    }
-                }
-                else
-                {
-
-                }
-            }
-        }
+        
         private void MascotasAgregarRaza_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -169,7 +138,7 @@ namespace VetPet_.Angie.Mascotas
                     // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
                     if (result == DialogResult.Yes)
                     {
-                        mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
+                        mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)  SELECT SCOPE_IDENTITY();" , nuevaEspecie);
                         MessageBox.Show("Especie creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM especie", "nombre");
                         CargarMascota();
@@ -180,6 +149,29 @@ namespace VetPet_.Angie.Mascotas
 
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string nuevaRaza = ValidarYFormatearTexto(comboBox1.Text);
+
+            // Verificar si la especie ya existe en la base de datos
+            if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
+            {
+
+                    mismetodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
+                    MessageBox.Show("Raza creada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+            }
+            else
+            {
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
         }
     }
 }
