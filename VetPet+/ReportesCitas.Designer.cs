@@ -238,6 +238,7 @@
             this.BtnMenu.TabIndex = 63;
             this.BtnMenu.Text = "Menu";
             this.BtnMenu.UseVisualStyleBackColor = false;
+            this.BtnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
             // ReportesCitas
             // 

@@ -14,7 +14,7 @@ namespace VetPet_
 {
     public partial class ReportesCitas : FormPadre
     {
-        string modulo = "Almacen";
+        string modulo = "Citas";
         string tipoReporte;
         string fecha1;
         string fecha2;
@@ -26,6 +26,7 @@ namespace VetPet_
         {
             InitializeComponent();
             parentForm = parent;
+            dateTime1.Value = DateTime.Today.AddDays(-7);
         }
 
         private void BtnGenerar_Click(object sender, EventArgs e)
@@ -93,6 +94,12 @@ namespace VetPet_
             this.Controls.Clear();
             this.InitializeComponent();
             this.Refresh();
+        }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            parentForm.formularioHijo(new MenuReportes(parentForm));
         }
     }
 }
