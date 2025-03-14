@@ -65,6 +65,7 @@
             this.txtProducto.Size = new System.Drawing.Size(891, 24);
             this.txtProducto.TabIndex = 35;
             this.txtProducto.Text = "Buscar nombre de dueño";
+            this.txtProducto.Enter += new System.EventHandler(this.txtProducto_Enter);
             // 
             // btnBuscar
             // 

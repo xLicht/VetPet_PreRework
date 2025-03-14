@@ -43,5 +43,13 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new CitaConsultarCita(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
         }
+
+        private void txtProducto_Enter(object sender, EventArgs e)
+        {
+            if (txtProducto.Text == "Buscar nombre de dueño") // Si el texto predeterminado está presente
+            {
+                txtProducto.Text = ""; // Limpia el TextBox
+            }
+        }
     }
 }
