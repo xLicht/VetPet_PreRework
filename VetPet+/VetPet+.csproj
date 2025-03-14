@@ -264,6 +264,18 @@
     <Compile Include="Angie\Mascotas\MascotasAgregarMascota.Designer.cs">
       <DependentUpon>MascotasAgregarMascota.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarRaza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarRaza.Designer.cs">
+      <DependentUpon>MascotasAgregarRaza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarSensibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarSensibilidad.Designer.cs">
+      <DependentUpon>MascotasAgregarSensibilidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Mascotas\MascotasListado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1098,6 +1110,9 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarMascota.resx">
       <DependentUpon>MascotasAgregarMascota.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarRaza.resx">
+      <DependentUpon>MascotasAgregarRaza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasConsultar.resx">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
     </EmbeddedResource>
@@ -1588,6 +1603,7 @@
     </Content>
     <None Include="Resources\icons8-add-button-251.png" />
     <None Include="Resources\icons8-aceptar-505.png" />
+    <None Include="Resources\icons8-aceptar-506.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

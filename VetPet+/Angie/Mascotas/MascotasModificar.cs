@@ -343,50 +343,50 @@ namespace VetPet_
                     if (result == DialogResult.Yes)
                     {
                         mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
-                        MessageBox.Show("Especie creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Especie creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM especie", "nombre");
                         CargarMascota();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La especie ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
         }
-
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
         {
             // Verificar si la tecla presionada es "Enter"
             if (e.KeyCode == Keys.Enter)
             {
                 // Obtener el texto ingresado por el usuario
-                string nuevaRaza = ValidarYFormatearTexto(comboBox2.Text);
+                string nuevaEspecie = ValidarYFormatearTexto(comboBox1.Text);
 
                 // Verificar si la especie ya existe en la base de datos
-                if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
+                if (!mismetodos.Existe("SELECT COUNT(*) FROM especie WHERE nombre = @nombre", nuevaEspecie))
                 {
                     // Preguntar al usuario si desea crear la nueva especie
                     DialogResult result = MessageBox.Show(
-                        $"La raza '{nuevaRaza}' no existe. ¿Desea crearla?",
-                        "Crear nueva raza",
+                        $"La especie '{nuevaEspecie}' no existe. ¿Desea crearla?",
+                        "Crear nueva especie",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
 
                     // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
                     if (result == DialogResult.Yes)
                     {
-                        mismetodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
-                        MessageBox.Show("Raza creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM raza", "nombre");
-                        CargarMascota();   
+                        mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
+                        MessageBox.Show("Especie creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM especie", "nombre");
+                        CargarMascota();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La raza ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
         }
+
     }
 }
