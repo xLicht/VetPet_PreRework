@@ -39,9 +39,11 @@ namespace VetPet_
                 int idPais = ObtenerORegistrarIdPais(cbPais.Text);
                 int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
                 int idCp = ObtenerORegistrarIdCp(txtCP.Text);
-                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                //int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                int idCiudad = ObtenerORegistrarIdCiudad(cbCiudad.Text);
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
-                int idEstado = ObtenerIdPorNombre("Estado", cbEstado.Text);
+                // int idEstado = ObtenerIdPorNombre("Estado", cbEstado.Text);
+                int idEstado = ObtenerORegistrarIdEstado(cbEstado.Text);
 
                 // Insertar nuevo empleado
                 string query = @" INSERT INTO Persona (nombre, apellidoP, apellidoM, celular, correoElectronico)
@@ -193,6 +195,42 @@ namespace VetPet_
                 return result != null ? Convert.ToInt32(result) : 0;
             }
         }
+
+        private int ObtenerORegistrarIdCiudad(string ciudad)
+        {
+            int idCiudad = ObtenerIdPorNombre("Ciudad", ciudad);
+            if (idCiudad == 0)
+            {
+                string queryInsert = "INSERT INTO Ciudad (nombre) VALUES (@ciudad); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@ciudad", ciudad);
+                    object result = cmd.ExecuteScalar();
+                    idCiudad = Convert.ToInt32(result);
+                }
+            }
+            return idCiudad;
+        }
+
+        private int ObtenerORegistrarIdEstado(string estado)
+        {
+            int idEstado = ObtenerIdPorNombre("Estado", estado);
+            if (idEstado == 0)
+            {
+                string queryInsert = "INSERT INTO Estado (nombre) VALUES (@estado); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@estado", estado);
+                    object result = cmd.ExecuteScalar();
+                    idEstado = Convert.ToInt32(result);
+                }
+            }
+            return idEstado;
+        }
+
+
+
+
         private bool ValidarCorreo(string correo)
         {
             string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
