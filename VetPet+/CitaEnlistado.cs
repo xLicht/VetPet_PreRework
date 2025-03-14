@@ -46,11 +46,10 @@ namespace VetPet_
                 string query = @"Select 
 	                p.nombre AS nombre,
 	                p.apellidoP AS apellidoP,
-	                c.numero AS numero,
+	                p.celularPrincipal AS celularPrincipal, 
 	                m.nombre AS nombreMascota,
 	                ci.fechaProgramada AS fechaProgramada
                 FROM Persona p
-                JOIN Celular c ON p.idPersona = c.idPersona
                 JOIN Mascota m ON p.idPersona = m.idPersona
                 JOIN Cita ci ON m.idMascota = ci.idMascota;";
 
@@ -122,11 +121,10 @@ namespace VetPet_
                 string query = @"Select 
 	                p.nombre AS nombre,
 	                p.apellidoP AS apellidoP,
-	                c.numero AS numero,
+	                p.celularPrincipal AS celularPrincipal, 
 	                m.nombre AS nombreMascota,
 	                ci.fechaProgramada AS fechaProgramada
                 FROM Persona p
-                JOIN Celular c ON p.idPersona = c.idPersona
                 JOIN Mascota m ON p.idPersona = m.idPersona
                 JOIN Cita ci ON m.idMascota = ci.idMascota
                 WHERE p.nombre LIKE @nombreDueño"; // Usar LIKE para hacer la búsqueda
