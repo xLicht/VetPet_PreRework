@@ -17,7 +17,8 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-    
+
+
         private Form1 parentForm;
         public ListaServicios()
         {
@@ -33,6 +34,7 @@ namespace VetPet_
 
         private void ListaServicios_Load(object sender, EventArgs e)
         {
+            
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
             originalHeight = this.ClientSize.Height;
@@ -42,6 +44,7 @@ namespace VetPet_
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
         }
+
         private void CargarServicios()
         {
             conexionAlex conexion = new conexionAlex();
@@ -244,5 +247,42 @@ namespace VetPet_
                 }
             }
         }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string patron = TxtBuscar.Text;
+            string query = "SELECT     sp.nombre AS NombreServicio,cs.nombre AS ClaseServicio,\r\n  " +
+                "te.nombre AS TipoEmpleado FROM ServicioPadre sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n" +
+                "te.idtipoempleado INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio" +
+                " WHERE sp.nombre LIKE '%" + patron + "%' AND sp.estado = 'A'";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        
+
     }
 }
