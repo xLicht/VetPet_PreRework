@@ -175,7 +175,7 @@ namespace VetPet_
                 // Dependiendo del valor o cualquier otro criterio, puedes abrir el formulario correspondiente
                 switch (valorCelda)
                 {
-                    case "Cirugias":
+                    case "Cirugías":
                         parentForm.formularioHijo(new ListaCirugias(parentForm));
                         break;
                     case "Acicalamiento":
@@ -202,7 +202,7 @@ namespace VetPet_
                     case "Vacunas":
                         parentForm.formularioHijo(new ListaVacunas(parentForm));
                         break;
-                    case "Radiografías":
+                    case "Radiografía":
                         parentForm.formularioHijo(new ListaRadiografias(parentForm));
                         break;
                     // Agrega más casos según los tipos de servicio que tengas

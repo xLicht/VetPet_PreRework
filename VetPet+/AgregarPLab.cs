@@ -108,40 +108,7 @@ namespace VetPet_
                     conexion.CerrarConexion();
                 }
             }
-        }
-        private void cargarCombobox()
-        {
-            conexionAlex conexion = new conexionAlex();
-            conexion.AbrirConexion();
-            string query = "SELECT nombre FROM ServicioEspecificoHijo WHERE idServicioPadre = 8";
-
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    // Crear un SqlDataAdapter con la conexión correcta
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-
-                    DataTable dt = new DataTable();
-                    dataAdapter.Fill(dt);
-
-                    // Asignar el DataTable como fuente de datos
-                    comboBox1.DataSource = dt;
-
-                    // Asegúrate de que DisplayMember coincida con el nombre exacto de la columna en tu DataTable
-                    comboBox1.DisplayMember = "nombre";  // Nombre de la columna que quieres mostrar en el ComboBox
-                    comboBox1.ValueMember = "nombre";    // El valor del ComboBox será el mismo campo
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
-        }
+        }        
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo números, punto decimal, y tecla de retroceso
@@ -159,7 +126,9 @@ namespace VetPet_
 
         private void AgregarPLab_Load(object sender, EventArgs e)
         {
-            cargarCombobox();
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            conexion.cargarCombobox(comboBox1,"8");
         }
               
     }

@@ -57,69 +57,15 @@ namespace VetPet_
 
         private void ListaPLab_Load(object sender, EventArgs e)
         {
-            CargarTipodeServicio();
-            CargarInformaciondeServicio();
-            
-        }
-        private void CargarTipodeServicio()
-        {
+
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string query = "SELECT \r\n    nombre AS TipoDeServicio\r\n\tFROM ServicioEspecificoHijo \r\n\tWHERE " +
-                "idServicioPadre = 8 AND estado = 'A';";
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    dataGridView1.DataSource = dt;
+            conexion.CargarTipodeServicio(dataGridView1, "8");
+            conexion.CargarInformaciondeServicio(dataGridView2, "8");
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
+
         }
-        private void CargarInformaciondeServicio()
-        {
-            conexionAlex conexion = new conexionAlex();
-            conexion.AbrirConexion();
-            string query = "SELECT SEN.nombre, SEN.precio, SEN.duracion, SEN.descripcion \r\nFROM ServicioEspecificoNieto " +
-                "SEN\r\nINNER JOIN ServicioEspecificoHijo SEH\r\nON SEN.idServicioEspecificoHijo = " +
-                "SEH.idServicioEspecificoHijo\r\nWHERE SEH.idServicioPadre = 8 AND SEN.estado = 'A' AND SEH.estado = 'A'";
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    dataGridView2.Rows.Clear();
-                    dataGridView2.Columns.Clear();
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    dataGridView2.DataSource = dt;
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
-        }
-
-
+        
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
@@ -176,68 +122,16 @@ namespace VetPet_
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string patron = TxtBuscar.Text;
-            string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = 8 " +
-                "AND nombre LIKE '%"+patron+"%' AND estado = 'A';";
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    dataGridView1.DataSource = dt;
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
+            conexion.Buscar(dataGridView1, TxtBuscar,"8");
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string patron = TxtBuscar.Text;
-            string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = 8 " +
-                "AND nombre LIKE '%" + patron + "%' AND estado = 'A';";
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    dataGridView1.DataSource = dt;
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
+            conexion.Buscar(dataGridView1, TxtBuscar, "8");
         }
     }
 }

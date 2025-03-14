@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace VetPet_
         public readonly string cadenaConexion = @"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
+        System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
         public conexionAlex()
         {
             conexion = new SqlConnection(cadenaConexion);
@@ -58,6 +60,202 @@ namespace VetPet_
                 {
                     MessageBox.Show("Error al actualizar el registro: " + ex.Message);
                     return idServicioHijo;
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+
+        public void CargarTipodeServicio(DataGridView datg1, string IdServicioPadre)
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT \r\n    nombre AS TipoDeServicio\r\n\tFROM ServicioEspecificoHijo \r\n\tWHERE " +
+                "idServicioPadre = " + IdServicioPadre + " AND estado = 'A';";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    datg1.Rows.Clear();
+                    datg1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    datg1.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        public void GuardarTipoServicio(TextBox TxtNombre, RichTextBox richTextBox1,int idServicio)
+        {
+
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "INSERT INTO ServicioEspecificoHijo (nombre, descripcion, idServicioPadre) VALUES (@NOM, @DES, @ISP);";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    // Primero obtenemos los valores
+                    string Nombre = TxtNombre.Text;
+                    string Descripcion = richTextBox1.Text.Replace("\r", "").Replace("\n", "");
+
+
+                    // Agregamos los parámetros
+                    cmd.Parameters.AddWithValue("@NOM", Nombre);
+                    cmd.Parameters.AddWithValue("@DES", Descripcion);
+                    cmd.Parameters.AddWithValue("@ISP", idServicio);
+
+                    // Ejecutamos la consulta
+                    cmd.ExecuteNonQuery();  // Cambié ExecuteReader por ExecuteNonQuery
+
+                    MessageBox.Show("Nuevo Tipo de Servicio Registrado");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+
+
+        }
+        public void CargarInformaciondeServicio(DataGridView datg2, string IdServicioPadre)
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT SEN.nombre, SEN.precio, SEN.duracion, SEN.descripcion \r\nFROM ServicioEspecificoNieto " +
+                "SEN\r\nINNER JOIN ServicioEspecificoHijo SEH\r\nON SEN.idServicioEspecificoHijo = " +
+                "SEH.idServicioEspecificoHijo\r\nWHERE SEH.idServicioPadre = " + IdServicioPadre + " AND SEN.estado = 'A' AND SEH.estado = 'A'";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    datg2.Rows.Clear();
+                    datg2.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    datg2.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        public void Eliminar(int identificador)
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+
+            // Consulta para eliminar el registro basado en el ID
+            string query = "UPDATE ServicioEspecificoNieto SET estado = 'B' WHERE idServicioEspecificoNieto = @ID";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    // Agregar el parámetro de ID a la consulta
+                    cmd.Parameters.AddWithValue("@ID", identificador);
+
+                    // Ejecutar la consulta de eliminación
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Registro eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró un registro con ese ID.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        public void cargarCombobox(ComboBox comb1,string idSrP)
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT nombre FROM ServicioEspecificoHijo WHERE idServicioPadre = "+idSrP+"";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    // Crear un SqlDataAdapter con la conexión correcta
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+
+                    DataTable dt = new DataTable();
+                    dataAdapter.Fill(dt);
+
+                    // Asignar el DataTable como fuente de datos
+                    comb1.DataSource = dt;
+
+                    // Asegúrate de que DisplayMember coincida con el nombre exacto de la columna en tu DataTable
+                    comb1.DisplayMember = "nombre";  // Nombre de la columna que quieres mostrar en el ComboBox
+                    comb1.ValueMember = "nombre";    // El valor del ComboBox será el mismo campo
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        public void Buscar(DataGridView dt1, TextBox TxtBuscar, string idPadre)
+        {
+            dt1.DataSource = null;
+            dt1.Rows.Clear();
+            dt1.Columns.Clear();
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string patron = TxtBuscar.Text;
+            string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = " + idPadre + " AND nombre LIKE '%" + patron + "%' AND estado = 'A';";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt1.Rows.Clear();
+                    dt1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dt1.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
                 }
                 finally
                 {

@@ -168,7 +168,6 @@
             this.Controls.Add(this.label4);
             this.Name = "AgregarTipoCirugia";
             this.Text = "AgregarTipoCirugia";
-            this.Load += new System.EventHandler(this.AgregarTipoCirugia_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
