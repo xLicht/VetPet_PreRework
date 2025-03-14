@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnVenMasAlt = new System.Windows.Forms.Button();
             this.pdfViewVent = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             this.lblPreview = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BtnVentMasBaj = new System.Windows.Forms.Button();
+            this.BtnImprimir = new System.Windows.Forms.Button();
             this.BtnGenerar = new System.Windows.Forms.Button();
             this.lblFecha = new System.Windows.Forms.Label();
             this.dateTime1 = new System.Windows.Forms.DateTimePicker();
@@ -56,17 +56,18 @@
             this.label1.Text = "Reportes: Ventas";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // BtnVenMasAlt
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button1.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button1.Location = new System.Drawing.Point(40, 115);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(262, 45);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Ventas más Altas";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnVenMasAlt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
+            this.BtnVenMasAlt.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVenMasAlt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.BtnVenMasAlt.Location = new System.Drawing.Point(40, 115);
+            this.BtnVenMasAlt.Name = "BtnVenMasAlt";
+            this.BtnVenMasAlt.Size = new System.Drawing.Size(262, 45);
+            this.BtnVenMasAlt.TabIndex = 26;
+            this.BtnVenMasAlt.Text = "Ventas más Altas";
+            this.BtnVenMasAlt.UseVisualStyleBackColor = false;
+            this.BtnVenMasAlt.Click += new System.EventHandler(this.BtnVenMasAlt_Click);
             // 
             // pdfViewVent
             // 
@@ -78,11 +79,11 @@
             this.pdfViewVent.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
             this.pdfViewVent.LoadingIconText = "Loading...";
             this.pdfViewVent.Location = new System.Drawing.Point(441, 115);
-            this.pdfViewVent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pdfViewVent.Margin = new System.Windows.Forms.Padding(4);
             this.pdfViewVent.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
             this.pdfViewVent.Name = "pdfViewVent";
             this.pdfViewVent.OptimizedLoadThreshold = 1000;
-            this.pdfViewVent.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.pdfViewVent.Padding = new System.Windows.Forms.Padding(10);
             this.pdfViewVent.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.pdfViewVent.PageAutoDispose = true;
             this.pdfViewVent.PageBackColor = System.Drawing.Color.White;
@@ -114,34 +115,35 @@
             this.lblPreview.Text = "Vista Previa";
             this.lblPreview.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button2
+            // BtnVentMasBaj
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button2.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button2.Location = new System.Drawing.Point(40, 192);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(262, 45);
-            this.button2.TabIndex = 50;
-            this.button2.Text = "Ventas más Bajas";
-            this.button2.UseVisualStyleBackColor = false;
+            this.BtnVentMasBaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
+            this.BtnVentMasBaj.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVentMasBaj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.BtnVentMasBaj.Location = new System.Drawing.Point(40, 192);
+            this.BtnVentMasBaj.Name = "BtnVentMasBaj";
+            this.BtnVentMasBaj.Size = new System.Drawing.Size(262, 45);
+            this.BtnVentMasBaj.TabIndex = 50;
+            this.BtnVentMasBaj.Text = "Ventas más Bajas";
+            this.BtnVentMasBaj.UseVisualStyleBackColor = false;
+            this.BtnVentMasBaj.Click += new System.EventHandler(this.BtnVentMasBaj_Click);
             // 
-            // button3
+            // BtnImprimir
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.button3.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.button3.Location = new System.Drawing.Point(441, 504);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(164, 45);
-            this.button3.TabIndex = 51;
-            this.button3.Text = "Imprimir";
-            this.button3.UseVisualStyleBackColor = false;
+            this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
+            this.BtnImprimir.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
+            this.BtnImprimir.Location = new System.Drawing.Point(441, 504);
+            this.BtnImprimir.Name = "BtnImprimir";
+            this.BtnImprimir.Size = new System.Drawing.Size(164, 45);
+            this.BtnImprimir.TabIndex = 51;
+            this.BtnImprimir.Text = "Imprimir";
+            this.BtnImprimir.UseVisualStyleBackColor = false;
             // 
             // BtnGenerar
             // 
             this.BtnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
-            this.BtnGenerar.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGenerar.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnGenerar.Location = new System.Drawing.Point(895, 504);
             this.BtnGenerar.Name = "BtnGenerar";
@@ -149,6 +151,7 @@
             this.BtnGenerar.TabIndex = 52;
             this.BtnGenerar.Text = "Generar";
             this.BtnGenerar.UseVisualStyleBackColor = false;
+            this.BtnGenerar.Click += new System.EventHandler(this.BtnGenerar_Click);
             // 
             // lblFecha
             // 
@@ -226,6 +229,7 @@
             this.BtnVolver.Text = "Volver";
             this.BtnVolver.UseVisualStyleBackColor = false;
             this.BtnVolver.Visible = false;
+            this.BtnVolver.Click += new System.EventHandler(this.BtnVolver_Click);
             // 
             // ReportesVenta
             // 
@@ -241,11 +245,11 @@
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.dateTime1);
             this.Controls.Add(this.BtnGenerar);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.BtnImprimir);
+            this.Controls.Add(this.BtnVentMasBaj);
             this.Controls.Add(this.lblPreview);
             this.Controls.Add(this.pdfViewVent);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnVenMasAlt);
             this.Controls.Add(this.label1);
             this.Name = "ReportesVenta";
             this.Text = "ReportesVenta";
@@ -257,11 +261,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnVenMasAlt;
         private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewVent;
         private System.Windows.Forms.Label lblPreview;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnVentMasBaj;
+        private System.Windows.Forms.Button BtnImprimir;
         private System.Windows.Forms.Button BtnGenerar;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dateTime1;

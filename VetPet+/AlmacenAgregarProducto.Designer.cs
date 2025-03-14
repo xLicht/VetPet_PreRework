@@ -273,6 +273,7 @@
             this.txtPrecioProveedor.Size = new System.Drawing.Size(270, 40);
             this.txtPrecioProveedor.TabIndex = 114;
             this.txtPrecioProveedor.Text = "Precio proveedor";
+            this.txtPrecioProveedor.Enter += new System.EventHandler(this.txtPrecioProveedor_Enter);
             // 
             // txtDescripcion
             // 
@@ -285,6 +286,7 @@
             this.txtDescripcion.Size = new System.Drawing.Size(398, 126);
             this.txtDescripcion.TabIndex = 113;
             this.txtDescripcion.Text = "Descripción de producto";
+            this.txtDescripcion.Enter += new System.EventHandler(this.txtDescripcion_Enter);
             // 
             // label6
             // 
@@ -320,6 +322,7 @@
             this.txtPrecioVenta.Size = new System.Drawing.Size(340, 40);
             this.txtPrecioVenta.TabIndex = 110;
             this.txtPrecioVenta.Text = "Precio de venta";
+            this.txtPrecioVenta.Enter += new System.EventHandler(this.txtPrecioVenta_Enter);
             // 
             // label4
             // 
@@ -343,6 +346,7 @@
             this.txtStock.Size = new System.Drawing.Size(340, 40);
             this.txtStock.TabIndex = 108;
             this.txtStock.Text = "Stock";
+            this.txtStock.Enter += new System.EventHandler(this.txtStock_Enter);
             // 
             // label3
             // 
@@ -366,6 +370,7 @@
             this.txtCantidad.Size = new System.Drawing.Size(364, 40);
             this.txtCantidad.TabIndex = 106;
             this.txtCantidad.Text = "Cantidad de producto";
+            this.txtCantidad.Enter += new System.EventHandler(this.txtCantidad_Enter);
             // 
             // txtNombre
             // 
@@ -377,6 +382,7 @@
             this.txtNombre.Size = new System.Drawing.Size(364, 40);
             this.txtNombre.TabIndex = 105;
             this.txtNombre.Text = "Nombre de producto";
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             // 
             // label2
             // 

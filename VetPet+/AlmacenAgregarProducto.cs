@@ -50,7 +50,7 @@ namespace VetPet_
             conexionBrandon conexion = new conexionBrandon();
             conexion.AbrirConexion();
 
-            string query = "SELECT idProveedor, nombre FROM Proveedor";
+            string query = "SELECT idProveedor, nombre FROM Proveedor WHERE ";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
@@ -335,6 +335,54 @@ namespace VetPet_
                         conexion.GetConexion().Close();
                     }
                 }
+            }
+        }
+
+        private void txtNombre_Enter(object sender, EventArgs e)
+        {
+            if (txtNombre.Text == "Nombre de producto") // Si el texto predeterminado está presente
+            {
+                txtNombre.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtCantidad_Enter(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text == "Cantidad de producto") // Si el texto predeterminado está presente
+            {
+                txtCantidad.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtPrecioVenta_Enter(object sender, EventArgs e)
+        {
+            if (txtPrecioVenta.Text == "Precio de venta") // Si el texto predeterminado está presente
+            {
+                txtPrecioVenta.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtPrecioProveedor_Enter(object sender, EventArgs e)
+        {
+            if (txtPrecioProveedor.Text == "Precio proveedor") // Si el texto predeterminado está presente
+            {
+                txtPrecioProveedor.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtStock_Enter(object sender, EventArgs e)
+        {
+            if (txtStock.Text == "Stock") // Si el texto predeterminado está presente
+            {
+                txtStock.Text = ""; // Limpia el TextBox
+            }
+        }
+
+        private void txtDescripcion_Enter(object sender, EventArgs e)
+        {
+            if (txtDescripcion.Text == "Descripción de producto") // Si el texto predeterminado está presente
+            {
+                txtDescripcion.Text = ""; // Limpia el TextBox
             }
         }
     }
