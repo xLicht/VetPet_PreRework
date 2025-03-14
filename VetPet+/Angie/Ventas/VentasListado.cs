@@ -48,7 +48,7 @@ namespace VetPet_
                     CI.idCita AS idCita,
                     P.nombre AS Persona,
                     P.apellidoP AS ApellidoPaterno,
-                    C.numero AS Telefono,
+                    P.celularPrincipal AS Telefono,
                     M.nombre AS Mascota,
                     CI.fechaProgramada AS FechaCita
                 FROM 
@@ -56,9 +56,7 @@ namespace VetPet_
                 JOIN 
                     Mascota M ON CI.idMascota = M.idMascota
                 JOIN 
-                    Persona P ON M.idPersona = P.idPersona
-                JOIN 
-                    Celular C ON P.idPersona = C.idPersona;; 
+                    Persona P ON M.idPersona = P.idPersona;
                 ";
 
 
@@ -143,10 +141,10 @@ namespace VetPet_
                 SELECT 
                     CI.idCita AS idCita,
                     P.nombre AS Persona,
-                    P.apellidoP AS Apellido_Paterno,
+                    P.apellidoP AS ApellidoPaterno,
                     C.numero AS Telefono,
                     M.nombre AS Mascota,
-                    CI.fechaProgramada AS Fecha_Cita
+                    CI.fechaProgramada AS FechaCita
                 FROM 
                     Cita CI
                 JOIN 

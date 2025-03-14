@@ -21,16 +21,8 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         int idCita;
-        private  static DataTable dtProductos = new DataTable();
-        public VentasVentanadePago(Form1 parent, int idCita)
-        {
-            InitializeComponent();
-            this.Load += VentasVentanadePago_Load;       // Evento Load
-            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
-            parentForm = parent;  // Guardamos la referencia de Form1
-            CargarServicios(idCita);
-            this.idCita = idCita;
-        }
+        private static decimal totalServicios = -1; // -1 indica que aún no se ha calculado
+        private static DataTable dtProductos = new DataTable();
 
         public VentasVentanadePago(Form1 parent, int idCita, decimal total, DataTable dt)
         {
@@ -85,51 +77,40 @@ namespace VetPet_
 
         private void ActualizarSumaTotal()
         {
-            if (dtProductos.Rows.Count > 0)
-            {
-                decimal sumaTotal = dtProductos.AsEnumerable()
-                    .Where(r => r["Total"] != DBNull.Value)
-                    .Sum(r => r.Field<decimal>("Total"));
+            // Sumar el total de productos
+            decimal sumaTotalProductos = dtProductos.AsEnumerable()
+                .Where(r => r["Total"] != DBNull.Value)
+                .Sum(r => r.Field<decimal>("Total"));
 
-                textBox8.Text = sumaTotal.ToString("0.##");
-            }
-            else
-            {
-                textBox8.Text = "0.00";
-            }
+            // Calcular la suma total de productos y servicios
+            decimal sumaFinal = sumaTotalProductos + (totalServicios > -1 ? totalServicios : 0);
+
+            textBox8.Text = "Subtotal: "+sumaFinal.ToString("0.##");
         }
 
         public void CargarServicios(int idCita)
         {
             try
             {
-                mismetodos = new Mismetodos();
-
                 mismetodos.AbrirConexion();
 
-                string query = @"
-                       EXEC sp_ObtenerServiciosCita @idCita = 1;
-                 ";
+                string query = "EXEC sp_ObtenerServiciosCita @idCita = @idCita;";
 
-                // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
-                    // Agregar el parámetro @idCita
                     comando.Parameters.AddWithValue("@idCita", idCita);
 
                     using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
                     {
-                        // Crear un DataTable y llenar los datos
                         DataTable tabla = new DataTable();
                         adaptador.Fill(tabla);
 
-                        // Asignar el DataTable al DataGridView
                         dataGridView1.DataSource = tabla;
 
-                        // Verificar si hay filas vacías y eliminarlas
+                        // Eliminar filas vacías
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            if (row.IsNewRow) continue; // No borra la fila nueva si AllowUserToAddRows = true
+                            if (row.IsNewRow) continue;
 
                             bool vacia = true;
                             foreach (DataGridViewCell cell in row.Cells)
@@ -145,10 +126,21 @@ namespace VetPet_
                             {
                                 dataGridView1.Rows.Remove(row);
                             }
-
                         }
+
+                        // Calcular la suma del total de la consulta solo si no se ha calculado antes
+                        if (totalServicios == -1)
+                        {
+                            totalServicios = tabla.AsEnumerable()
+                                .Where(r => r["Precio"] != DBNull.Value)
+                                .Sum(r => r.Field<decimal>("Precio"));
+                        }
+
+                        // Sumar este total al `textBox8`
+                        ActualizarSumaTotal();
                     }
                 }
+
                 string queryDueño = @"
                                 SELECT 
                             P.nombre AS NombrePersona,
@@ -184,6 +176,7 @@ namespace VetPet_
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 // Manejar el error si ocurre algún problema
@@ -195,7 +188,15 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
         }
-       
+        public VentasVentanadePago(Form1 parent, int idCita)
+        {
+            InitializeComponent();
+            this.Load += VentasVentanadePago_Load;       // Evento Load
+            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            parentForm = parent;  // Guardamos la referencia de Form1
+            CargarServicios(idCita);
+            this.idCita = idCita;
+        }
         private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
