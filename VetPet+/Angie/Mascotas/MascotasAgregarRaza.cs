@@ -193,7 +193,7 @@ namespace VetPet_.Angie.Mascotas
 
                             if (idRazaInsertada > 0)
                             {
-                                MessageBox.Show("Raza creada con ID: " + idRazaInsertada, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Raza creada ", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 // Redirigir al formulario correspondiente
                                 if (nombreMascota != null)
