@@ -21,6 +21,7 @@ namespace VetPet_.Angie.Mascotas
         private string raza;
         private int idMascota;
         private string nombreMascota;
+        private int idEspecie;
         private Form1 parentForm;
         public MascotasAgregarRaza(Form1 parent, string raza,int idMascota, string nombreMascota)
         {
@@ -40,7 +41,7 @@ namespace VetPet_.Angie.Mascotas
                 mismetodos.AbrirConexion();
 
                 // Cargar las especies
-                string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
+                string queryEsp = "SELECT nombre,idEspecie FROM Especie ORDER BY nombre";
                 using (SqlCommand comandoEsp = new SqlCommand(queryEsp, mismetodos.GetConexion()))
                 {
                     using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
@@ -117,56 +118,63 @@ namespace VetPet_.Angie.Mascotas
             // Formatear el texto: primera letra en mayúscula y el resto en minúscula
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
-        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Verificar si la tecla presionada es "Enter"
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Obtener el texto ingresado por el usuario
-                string nuevaEspecie = ValidarYFormatearTexto(comboBox1.Text);
-
-                // Verificar si la especie ya existe en la base de datos
-                if (!mismetodos.Existe("SELECT COUNT(*) FROM especie WHERE nombre = @nombre", nuevaEspecie))
-                {
-                    // Preguntar al usuario si desea crear la nueva especie
-                    DialogResult result = MessageBox.Show(
-                        $"La especie '{nuevaEspecie}' no existe. ¿Desea crearla?",
-                        "Crear nueva especie",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
-                    if (result == DialogResult.Yes)
-                    {
-                        mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)  SELECT SCOPE_IDENTITY();" , nuevaEspecie);
-                        MessageBox.Show("Especie creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM especie", "nombre");
-                        CargarMascota();
-                    }
-                }
-                else
-                {
-
-                }
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string nuevaRaza = ValidarYFormatearTexto(comboBox1.Text);
-
-            // Verificar si la especie ya existe en la base de datos
-            if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
+            try
             {
+                mismetodos.AbrirConexion();
 
-                    mismetodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
-                    MessageBox.Show("Raza creada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+                // Obtener el idEspecie basado en el nombre de la especie seleccionada en el ComboBox
+                string nombreEspecie = comboBox1.SelectedItem.ToString();
+                int idEspecie = 0;
+
+                string queryIdEsp = "SELECT idEspecie FROM Especie WHERE nombre = @nombre";
+                using (SqlCommand comandoIdEsp = new SqlCommand(queryIdEsp, mismetodos.GetConexion()))
+                {
+                    comandoIdEsp.Parameters.AddWithValue("@nombre", nombreEspecie);
+                    idEspecie = Convert.ToInt32(comandoIdEsp.ExecuteScalar());
+                }
+
+                // Verificar si la raza ya existe
+                string nombreRaza = textBox1.Text;
+                string queryExiste = "SELECT COUNT(*) FROM raza WHERE nombre = @nombre AND idEspecie = @idEspecie";
+                using (SqlCommand comandoExiste = new SqlCommand(queryExiste, mismetodos.GetConexion()))
+                {
+                    comandoExiste.Parameters.AddWithValue("@nombre", nombreRaza);
+                    comandoExiste.Parameters.AddWithValue("@idEspecie", idEspecie);
+                    int existe = Convert.ToInt32(comandoExiste.ExecuteScalar());
+
+                    if (existe == 0)
+                    {
+                        // Insertar la nueva raza
+                        string queryInsertar = "INSERT INTO raza (nombre, idEspecie) VALUES (@nombre, @idEspecie); SELECT SCOPE_IDENTITY();";
+                        using (SqlCommand comandoInsertar = new SqlCommand(queryInsertar, mismetodos.GetConexion()))
+                        {
+                            comandoInsertar.Parameters.AddWithValue("@nombre", nombreRaza);
+                            comandoInsertar.Parameters.AddWithValue("@idEspecie", idEspecie);
+
+                            MessageBox.Show("Raza creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La raza ya existe.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-
+                MessageBox.Show("Error: " + ex.Message, "Error");
             }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -32,6 +32,7 @@ namespace VetPet_
             this.Load += MascotasModificar_Load;       // Evento Load
             this.Resize += MascotasModificar_Resize;   // Evento Resize
             comboBox1.KeyDown += comboBox1_KeyDown;
+            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nombreMascota = nombreMascota;
             this.idMascota = idMascota;
@@ -43,6 +44,24 @@ namespace VetPet_
             try
             {
                 mismetodos.AbrirConexion();
+
+                // Consulta para obtener los elementos
+                string query1 = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        // Limpiar el ListBox antes de agregar nuevos elementos
+                        listBox1.Items.Clear();
+
+                        // Agregar elementos al ListBox
+                        while (reader.Read())
+                        {
+                            listBox1.Items.Add(reader["nombre"].ToString());
+                        }
+                    }
+                }
+
 
                 // Cargar las especies
                 string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
@@ -157,7 +176,27 @@ namespace VetPet_
 
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                // Obtener el ítem seleccionado
+                string selectedItem = listBox1.SelectedItem.ToString();
 
+                // Agregar el ítem al RichTextBox
+                if (!richTextBox1.Text.Contains(selectedItem))
+                {
+                    if (richTextBox1.Text.Length > 0)
+                    {
+                        richTextBox1.AppendText(", " + selectedItem);
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(selectedItem);
+                    }
+                }
+            }
+        }
         private void MascotasModificar_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -223,7 +262,7 @@ namespace VetPet_
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
                     comando.Parameters.AddWithValue("@idMascota", idMascota);
-                    comando.Parameters.AddWithValue("@nombre", textBox1.Text); // Nuevo nombre de la mascota
+                    comando.Parameters.AddWithValue("@nombre", textBox1.Text); 
                     comando.Parameters.AddWithValue("@especie", comboBox1.Text);
                     comando.Parameters.AddWithValue("@raza", comboBox2.Text);
                     comando.Parameters.AddWithValue("@fechaNacimiento", dateTimePicker1.Value);
