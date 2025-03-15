@@ -34,6 +34,15 @@ namespace VetPet_.Angie.Mascotas
             this.nombreMascota = nombreMascota;
             CargarMascota();
         }
+        public MascotasAgregarRaza(Form1 parent, string raza)
+        {
+            InitializeComponent();
+            this.Load += MascotasAgregarRaza_Load;       // Evento Load
+            this.Resize += MascotasAgregarRaza_Resize;
+            parentForm = parent;  // Guardamos la referencia de Form1
+            this.raza = raza;
+            CargarMascota();
+        }
         private void CargarMascota()
         {
             try
@@ -121,24 +130,48 @@ namespace VetPet_.Angie.Mascotas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string nuevaRaza = ValidarYFormatearTexto(comboBox1.Text);
             try
             {
+                // Validar que el ComboBox tenga un elemento seleccionado
+                if (comboBox1.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, selecciona una especie.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener el nombre de la especie seleccionada en el ComboBox
+                string nombreEspecie = comboBox1.SelectedItem.ToString();
+
+                // Validar que el nombre de la raza no esté vacío
+                string nombreRaza = textBox1.Text.Trim();
+                if (string.IsNullOrEmpty(nombreRaza))
+                {
+                    MessageBox.Show("Por favor, ingresa un nombre para la raza.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Abrir la conexión a la base de datos
                 mismetodos.AbrirConexion();
 
-                // Obtener el idEspecie basado en el nombre de la especie seleccionada en el ComboBox
-                string nombreEspecie = comboBox1.SelectedItem.ToString();
+                // Obtener el idEspecie basado en el nombre de la especie
                 int idEspecie = 0;
-
                 string queryIdEsp = "SELECT idEspecie FROM Especie WHERE nombre = @nombre";
                 using (SqlCommand comandoIdEsp = new SqlCommand(queryIdEsp, mismetodos.GetConexion()))
                 {
                     comandoIdEsp.Parameters.AddWithValue("@nombre", nombreEspecie);
-                    idEspecie = Convert.ToInt32(comandoIdEsp.ExecuteScalar());
+                    var result = comandoIdEsp.ExecuteScalar();
+                    if (result != null)
+                    {
+                        idEspecie = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("La especie seleccionada no existe en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
 
                 // Verificar si la raza ya existe
-                string nombreRaza = textBox1.Text;
                 string queryExiste = "SELECT COUNT(*) FROM raza WHERE nombre = @nombre AND idEspecie = @idEspecie";
                 using (SqlCommand comandoExiste = new SqlCommand(queryExiste, mismetodos.GetConexion()))
                 {
@@ -155,8 +188,27 @@ namespace VetPet_.Angie.Mascotas
                             comandoInsertar.Parameters.AddWithValue("@nombre", nombreRaza);
                             comandoInsertar.Parameters.AddWithValue("@idEspecie", idEspecie);
 
-                            MessageBox.Show("Raza creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+                            // Ejecutar la inserción y obtener el ID de la raza insertada
+                            int idRazaInsertada = Convert.ToInt32(comandoInsertar.ExecuteScalar());
+
+                            if (idRazaInsertada > 0)
+                            {
+                                MessageBox.Show("Raza creada con ID: " + idRazaInsertada, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Redirigir al formulario correspondiente
+                                if (nombreMascota != null)
+                                {
+                                    parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+                                }
+                                else
+                                {
+                                    parentForm.formularioHijo(new MascotasAgregarMascota(parentForm));
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo crear la raza.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
@@ -167,10 +219,11 @@ namespace VetPet_.Angie.Mascotas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error");
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
+                // Cerrar la conexión a la base de datos
                 mismetodos.CerrarConexion();
             }
 
