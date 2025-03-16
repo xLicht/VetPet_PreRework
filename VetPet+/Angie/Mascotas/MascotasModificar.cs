@@ -32,18 +32,36 @@ namespace VetPet_
             this.Load += MascotasModificar_Load;       // Evento Load
             this.Resize += MascotasModificar_Resize;   // Evento Resize
             comboBox1.KeyDown += comboBox1_KeyDown;
+            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nombreMascota = nombreMascota;
             this.idMascota = idMascota;
             CargarMascota();
         }
 
-    
         private void CargarMascota()
         {
             try
             {
                 mismetodos.AbrirConexion();
+
+                // Consulta para obtener los elementos
+                string query1 = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        // Limpiar el ListBox antes de agregar nuevos elementos
+                        listBox1.Items.Clear();
+
+                        // Agregar elementos al ListBox
+                        while (reader.Read())
+                        {
+                            listBox1.Items.Add(reader["nombre"].ToString());
+                        }
+                    }
+                }
+
 
                 // Cargar las especies
                 string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
@@ -158,7 +176,27 @@ namespace VetPet_
 
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                // Obtener el ítem seleccionado
+                string selectedItem = listBox1.SelectedItem.ToString();
 
+                // Agregar el ítem al RichTextBox
+                if (!richTextBox1.Text.Contains(selectedItem))
+                {
+                    if (richTextBox1.Text.Length > 0)
+                    {
+                        richTextBox1.AppendText(", " + selectedItem);
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(selectedItem);
+                    }
+                }
+            }
+        }
         private void MascotasModificar_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -224,7 +262,7 @@ namespace VetPet_
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
                     comando.Parameters.AddWithValue("@idMascota", idMascota);
-                    comando.Parameters.AddWithValue("@nombre", textBox1.Text); // Nuevo nombre de la mascota
+                    comando.Parameters.AddWithValue("@nombre", textBox1.Text); 
                     comando.Parameters.AddWithValue("@especie", comboBox1.Text);
                     comando.Parameters.AddWithValue("@raza", comboBox2.Text);
                     comando.Parameters.AddWithValue("@fechaNacimiento", dateTimePicker1.Value);
@@ -343,32 +381,32 @@ namespace VetPet_
                     if (result == DialogResult.Yes)
                     {
                         mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
-                        MessageBox.Show("Especie creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Especie creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM especie", "nombre");
-                        CargarMascota();
+                        CargarMascota();                                            
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La especie ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
         }
-
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
         {
             // Verificar si la tecla presionada es "Enter"
             if (e.KeyCode == Keys.Enter)
             {
                 // Obtener el texto ingresado por el usuario
-                string nuevaRaza = ValidarYFormatearTexto(comboBox2.Text);
+                
+                string nuevaEspecie = ValidarYFormatearTexto(comboBox2.Text);
 
                 // Verificar si la especie ya existe en la base de datos
-                if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaRaza))
+                if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaEspecie))
                 {
                     // Preguntar al usuario si desea crear la nueva especie
                     DialogResult result = MessageBox.Show(
-                        $"La raza '{nuevaRaza}' no existe. ¿Desea crearla?",
+                        $"La raza '{nuevaEspecie}' no existe. ¿Desea crearla?",
                         "Crear nueva raza",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
@@ -376,17 +414,15 @@ namespace VetPet_
                     // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
                     if (result == DialogResult.Yes)
                     {
-                        mismetodos.Insertar("INSERT INTO raza (nombre) VALUES (@nombre)", nuevaRaza);
-                        MessageBox.Show("Raza creada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM raza", "nombre");
-                        CargarMascota();   
+                        parentForm.formularioHijo(new MascotasAgregarRaza(parentForm, nuevaEspecie, idMascota,nombreMascota));
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La raza ya existe.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
         }
+
     }
 }

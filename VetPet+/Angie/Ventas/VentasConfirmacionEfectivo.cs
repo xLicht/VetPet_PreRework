@@ -79,7 +79,7 @@ namespace VetPet_.Angie
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
-                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+               // parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
             }
         }
 
@@ -91,7 +91,7 @@ namespace VetPet_.Angie
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
-                parentForm.formularioHijo(new VentasVentanadePago(parentForm)); // Pasamos la referencia de Form1 a
+               // parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
             }
         }
     }

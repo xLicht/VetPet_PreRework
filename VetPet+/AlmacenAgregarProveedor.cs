@@ -88,41 +88,34 @@ namespace VetPet_
             try
             {
                 // Insertar el proveedor
-                string queryProveedor = "INSERT INTO Proveedor (nombre, correoElectronico, nombreContacto) " +
-                                       "VALUES (@Nombre, @Correo, @NombreContacto);" +
+                string queryProveedor = "INSERT INTO Proveedor (nombre, celularPrincipal, correoElectronico, nombreContacto, celularContactoPrincipal) " +
+                                       "VALUES (@Nombre, @CelularPrincipal, @Correo, @NombreContacto, @CelularContactoPrincipal);" +
                                        "SELECT SCOPE_IDENTITY();";
 
                 SqlCommand cmdProveedor = new SqlCommand(queryProveedor, conexion.GetConexion(), transaction);
                 cmdProveedor.Parameters.AddWithValue("@Nombre", txtNombre.Text);
+                cmdProveedor.Parameters.AddWithValue("@CelularPrincipal", txtTelefono.Text);
                 cmdProveedor.Parameters.AddWithValue("@Correo", txtCorreo.Text);
                 cmdProveedor.Parameters.AddWithValue("@NombreContacto", txtNombreContacto.Text);
+                cmdProveedor.Parameters.AddWithValue("@CelularContactoPrincipal", txtTelefonoContacto.Text);
 
                 // Obtener el id del proveedor insertado
                 int idProveedor = Convert.ToInt32(cmdProveedor.ExecuteScalar());
 
-                // Insertar el número de celular principal
+                // Insertar el número de celular extra
                 string queryInsertarCelular = "INSERT INTO Celular (idProveedor, numero) VALUES (@IdProveedor, @Numero);";
                 SqlCommand cmdInsertarCelular = new SqlCommand(queryInsertarCelular, conexion.GetConexion(), transaction);
                 cmdInsertarCelular.Parameters.AddWithValue("@IdProveedor", idProveedor);
-                cmdInsertarCelular.Parameters.AddWithValue("@Numero", txtTelefono.Text);
+                cmdInsertarCelular.Parameters.AddWithValue("@Numero", txtTelefonoExtra.Text);
                 cmdInsertarCelular.ExecuteNonQuery();
 
-                // Insertar el número de celular de contacto
-                string queryInsertarCelularContacto = "INSERT INTO CelularContacto (idProveedor, numero) VALUES (@IdProveedor, @Numero);";
+                // Insertar el número de celular de contacto extra
+                /*string queryInsertarCelularContacto = "INSERT INTO CelularContacto (idProveedor, numero) VALUES (@IdProveedor, @Numero);";
                 SqlCommand cmdInsertarCelularContacto = new SqlCommand(queryInsertarCelularContacto, conexion.GetConexion(), transaction);
                 cmdInsertarCelularContacto.Parameters.AddWithValue("@IdProveedor", idProveedor);
                 cmdInsertarCelularContacto.Parameters.AddWithValue("@Numero", txtTelefonoContacto.Text);
-                cmdInsertarCelularContacto.ExecuteNonQuery();
-
-                // Verificar si hay un celular extra y agregarlo
-                if (!string.IsNullOrWhiteSpace(txtTelefonoExtra.Text))
-                {
-                    string queryInsertarCelularExtra = "INSERT INTO Celular (idProveedor, numero) VALUES (@IdProveedor, @Numero);";
-                    SqlCommand cmdInsertarCelularExtra = new SqlCommand(queryInsertarCelularExtra, conexion.GetConexion(), transaction);
-                    cmdInsertarCelularExtra.Parameters.AddWithValue("@IdProveedor", idProveedor);
-                    cmdInsertarCelularExtra.Parameters.AddWithValue("@Numero", txtTelefonoExtra.Text);
-                    cmdInsertarCelularExtra.ExecuteNonQuery();
-                }
+                cmdInsertarCelularContacto.ExecuteNonQuery();*/
+                
 
                 // Insertar o obtener los ids de las entidades de la dirección
                 int idPais = ObtenerIdDeEntidad(txtPais.Text, "Pais", "Pais", conexion, transaction);
@@ -152,7 +145,7 @@ namespace VetPet_
                 transaction.Commit();
 
                 // Confirmación de éxito
-                MessageBox.Show("Proveedor, números de celular y dirección insertados correctamente.");
+                MessageBox.Show("Proveedor y dirección insertados correctamente.");
 
                 // Recargar el formulario si es necesario
                 if (parentForm != null)

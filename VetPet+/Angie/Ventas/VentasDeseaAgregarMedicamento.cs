@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie.Mascotas;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_.Angie
 {
@@ -15,24 +18,74 @@ namespace VetPet_.Angie
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-
-
-        public VentasDeseaAgregarMedicamento()
+        int idCita = 0;     
+        public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto )
         {
             InitializeComponent();
             this.Load += VentasDeseaAgregarMedicamento_Load;       // Evento Load
             this.Resize += VentasDeseaAgregarMedicamento_Resize;   // Evento Resize
-
+            parentForm = parent;  // Guardamos la referencia de Form1
+            CargarMedicamento(idProducto);        
         }
 
-        public VentasDeseaAgregarMedicamento(Form1 parent)
+        public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto, int idCita)
         {
             InitializeComponent();
+            this.Load += VentasDeseaAgregarMedicamento_Load;       // Evento Load
+            this.Resize += VentasDeseaAgregarMedicamento_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
+            CargarMedicamento(idProducto);
+            this.idCita = idCita;   
         }
+        public void CargarMedicamento(int idMedicamento)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+                string query = @"
+                            SELECT 
+                    idProducto AS idProducto,
+                    nombre AS NombreMedicamento
+                FROM 
+                    Producto
+                WHERE 
+                    idProducto = @idProducto
+                    AND idTipoProducto = 3 ;
+                        ";
 
+                // Usar `using` para asegurar la correcta liberación de recursos
+                using (SqlCommand comando2 = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    comando2.Parameters.AddWithValue("@idProducto", idMedicamento);
+
+                    using (SqlDataReader reader = comando2.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            textBox5.Text = reader["NombreMedicamento"].ToString();
+                            label3.Text = reader["idProducto"].ToString();
+                        }
+                        else
+                        {
+                            // Si no se encuentra la cita, mostrar un mensaje o dejar el TextBox vacío
+                            textBox5.Text = "No se encontró la cita.";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
+        }
         private void VentasDeseaAgregarMedicamento_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -72,8 +125,149 @@ namespace VetPet_.Angie
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm)); // Pasamos la referencia de Form1 a
+            try
+            {
+                if (!int.TryParse(textBox4.Text, out int cantidad) || cantidad <= 0)
+                {
+                    MessageBox.Show("Ingrese una cantidad válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                decimal precio = ObtenerPrecioProducto(int.Parse(label3.Text));
+
+                if (precio == -1)
+                {
+                    MessageBox.Show("No se pudo obtener el precio del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Calcular el total
+                decimal total = cantidad * precio;
+                mismetodos.AbrirConexion();
+
+                // Consulta para obtener el stock actual del producto
+                string queryStock = @"
+                    SELECT stock 
+                    FROM Producto 
+                    WHERE idProducto = @idProducto;
+                ";
+
+                int stockActual = 0;
+
+                // Obtener el stock actual del producto
+                using (SqlCommand comandoStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
+                {
+                    comandoStock.Parameters.AddWithValue("@idProducto", label3.Text);
+
+                    using (SqlDataReader reader = comandoStock.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            stockActual = Convert.ToInt32(reader["stock"]);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+
+                // Validar que haya suficiente stock
+                if (cantidad > stockActual)
+                {
+                    MessageBox.Show("No hay suficiente stock disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Calcular el nuevo stock
+                int nuevoStock = stockActual - cantidad;
+
+                // Consulta para actualizar el stock del producto
+                string queryActualizarStock = @"
+                    UPDATE Producto 
+                    SET stock = @nuevoStock 
+                    WHERE idProducto = @idProducto;
+                ";
+
+                // Ejecutar la actualización del stock
+                using (SqlCommand comandoActualizar = new SqlCommand(queryActualizarStock, mismetodos.GetConexion()))
+                {
+                    comandoActualizar.Parameters.AddWithValue("@nuevoStock", nuevoStock);
+                    comandoActualizar.Parameters.AddWithValue("@idProducto", label3.Text);
+
+                    int filasAfectadas = comandoActualizar.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Stock actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (idCita != 0)
+                        {
+                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm,int.Parse(label3.Text), total, nuevoStock, idCita)); 
+                        }
+                        else
+                        {
+                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, int.Parse(label3.Text), total, nuevoStock)); 
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo actualizar el stock.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
         }
+   
+        private decimal ObtenerPrecioProducto(int idProducto)
+        {
+            decimal precio = 0;
+
+            try
+            {
+                // Abrir conexión usando los métodos existentes
+                mismetodos.AbrirConexion();
+
+                string query = @"
+            SELECT precioVenta 
+            FROM Producto 
+            WHERE idProducto = @idProducto AND idTipoProducto = 3;";
+
+                // Usar `using` para manejar recursos correctamente
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    comando.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            precio = reader.GetDecimal(0); // Obtiene el valor del primer campo (precio)
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el precio: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
+
+            return precio;
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
