@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_
 {
@@ -16,24 +18,58 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-
-
-        public VentasNuevaVenta()
+        int idCita;
+        private static DataTable dtProductos = new DataTable();
+        public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
-
-        }
-
-        public VentasNuevaVenta(Form1 parent)
-        {
-            InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
         }
+        public VentasNuevaVenta(Form1 parent, decimal total, DataTable dt)
+        {
+            InitializeComponent();
+            this.Load += VentasNuevaVenta_Load;       // Evento Load
+            this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
+            parentForm = parent;  // Guardamos la referencia de Form1
 
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dt;
+            dataGridView2.DataSource = bs;
+
+            decimal sumaTotal = dt.AsEnumerable()
+                .Where(r => r["Total"] != null && r["Total"] != DBNull.Value)
+                .Sum(r => r.Field<decimal>("Total"));
+
+            textBox8.Text = sumaTotal.ToString("0.##");
+        }
+        public void Cargar()
+        {
+            try
+            {
+                // Crear instancia de Mismetodos
+                mismetodos = new Mismetodos();
+
+              
+
+
+
+                
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
+        }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -103,5 +139,7 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+      
     }
 }

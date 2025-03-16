@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
@@ -19,13 +20,15 @@ namespace VetPet_.Angie.Mascotas
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
+        int idDueño = DueMascotadeDue.DatoEmpleadoGlobal;
 
         public MascotasAgregarMascota(Form1 parent)
         {
             InitializeComponent();
             this.Load += MascotasAgregarMascota_Load;       // Evento Load
             this.Resize += MascotasAgregarMascota_Resize;   // Evento Resize
-                                                            //comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
+            comboBox1.KeyDown += comboBox1_KeyDown;
+            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);                                          
             parentForm = parent;  // Guardamos la referencia de Form1
             mismetodos = new Mismetodos();
 
@@ -38,6 +41,18 @@ namespace VetPet_.Angie.Mascotas
             {
                 mismetodos.AbrirConexion();
 
+                string querySens = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                using (SqlCommand comandoSens = new SqlCommand(querySens, mismetodos.GetConexion()))
+                {
+                    using (SqlDataReader readerSens = comandoSens.ExecuteReader())
+                    {
+                        listBox1.Items.Clear();
+                        while (readerSens.Read())
+                        {
+                            listBox1.Items.Add(readerSens["nombre"].ToString());
+                        }
+                    }
+                }
                 // 🔹 Cargar Dueños
                 string queryPersona = "SELECT nombre FROM Persona ORDER BY nombre";
                 using (SqlCommand comando = new SqlCommand(queryPersona, mismetodos.GetConexion()))
@@ -164,9 +179,9 @@ namespace VetPet_.Angie.Mascotas
                 }
 
                 // Insertar sensibilidades
-                if (!string.IsNullOrEmpty(sensibilidades) && sensibilidades != "Sin sensibilidades registradas")
+                if (!string.IsNullOrEmpty(richTextBox1.Text) && richTextBox1.Text != "Sin sensibilidades registradas")
                 {
-                    string[] sensibilidadesArray = sensibilidades.Split(',');
+                    string[] sensibilidadesArray = richTextBox1.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string sensibilidad in sensibilidadesArray)
                     {
                         string sensibilidadTrim = sensibilidad.Trim();
@@ -254,7 +269,108 @@ namespace VetPet_.Angie.Mascotas
                 }
             }
         }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                // Obtener el ítem seleccionado
+                string selectedItem = listBox1.SelectedItem.ToString();
 
+                // Agregar el ítem al RichTextBox
+                if (!richTextBox1.Text.Contains(selectedItem))
+                {
+                    if (richTextBox1.Text.Length > 0)
+                    {
+                        richTextBox1.AppendText(", " + selectedItem);
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(selectedItem);
+                    }
+                }
+            }
+        }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verificar si la tecla presionada es "Enter"
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Obtener el texto ingresado por el usuario
+                string nuevaEspecie = ValidarYFormatearTexto(comboBox2.Text);
+
+                // Verificar si la especie ya existe en la base de datos
+                if (!mismetodos.Existe("SELECT COUNT(*) FROM especie WHERE nombre = @nombre", nuevaEspecie))
+                {
+                    // Preguntar al usuario si desea crear la nueva especie
+                    DialogResult result = MessageBox.Show(
+                        $"La especie '{nuevaEspecie}' no existe. ¿Desea crearla?",
+                        "Crear nueva especie",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
+                    if (result == DialogResult.Yes)
+                    {
+                        mismetodos.Insertar("INSERT INTO especie (nombre) VALUES (@nombre)", nuevaEspecie);
+                        MessageBox.Show("Especie creada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mismetodos.ActualizarComboBox(comboBox1, "SELECT nombre FROM especie", "nombre");
+                        CargarDatos();
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        }
+        public string ValidarYFormatearTexto(string texto)
+        {
+            // Verificar si el texto está vacío o es nulo
+            if (string.IsNullOrEmpty(texto))
+                return texto;
+
+            // Validar que el texto contenga solo letras (incluyendo acentos y espacios)
+            if (!Regex.IsMatch(texto, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"))
+            {
+                throw new ArgumentException("El texto solo puede contener letras y espacios.");
+            }
+
+            // Formatear el texto: primera letra en mayúscula y el resto en minúscula
+            return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
+        }
+
+        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verificar si la tecla presionada es "Enter"
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Obtener el texto ingresado por el usuario
+
+                string nuevaEspecie = ValidarYFormatearTexto(comboBox3.Text);
+
+                // Verificar si la especie ya existe en la base de datos
+                if (!mismetodos.Existe("SELECT COUNT(*) FROM raza WHERE nombre = @nombre", nuevaEspecie))
+                {
+                    // Preguntar al usuario si desea crear la nueva especie
+                    DialogResult result = MessageBox.Show(
+                        $"La raza '{nuevaEspecie}' no existe. ¿Desea crearla?",
+                        "Crear nueva raza",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
+                    if (result == DialogResult.Yes)
+                    {
+                        parentForm.formularioHijo(new MascotasAgregarRaza(parentForm, nuevaEspecie));
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             InsertarMascota();
@@ -262,7 +378,18 @@ namespace VetPet_.Angie.Mascotas
 
         private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+
+            if (idDueño != null || idDueño != 0)
+            {
+                int idEmpleadoSeleccionado = Convert.ToInt32(idDueño);
+                DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm, "DueConsultarDue");
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            else
+            {
+                parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            }
         }
     }
 }
