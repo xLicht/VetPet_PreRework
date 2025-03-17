@@ -18,7 +18,9 @@ namespace VetPet_.Angie
         decimal sumaTotalProductos = 0; 
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
-        private int idCita;  
+        private int idCita;
+        private decimal montoPagado = 0;
+        private decimal nuevoSubtotal = 0;  
         public string FormularioOrigen { get; set; }
 
         public VentasConfirmacionEfectivo(Form1 parent, decimal sumaTotalProductos, DataTable dtProductos)
@@ -39,15 +41,6 @@ namespace VetPet_.Angie
             this.sumaTotalProductos = sumaTotalProductos;
             this.idCita = idCita;
         }
-        public VentasConfirmacionEfectivo(Form1 parent)
-        {
-            InitializeComponent();
-            this.Load += VentasConfirmacionEfectivo_Load;       // Evento Load
-            this.Resize += VentasConfirmacionEfectivo_Resize;   // Evento Resize
-            parentForm = parent;  
-        }
-
-       
         private void VentasConfirmacionEfectivo_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -89,7 +82,7 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, montoPagado, dtProductos)); // Pasamos la referencia de Form1 a
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -102,7 +95,7 @@ namespace VetPet_.Angie
             try
             {
                 // Validar y obtener el monto pagado
-                if (!decimal.TryParse(textBox4.Text, out decimal montoPagado))
+                if (!decimal.TryParse(textBox4.Text, out montoPagado))
                 {
                     MessageBox.Show("El monto pagado no es un valor válido.");
                     return;
@@ -116,7 +109,7 @@ namespace VetPet_.Angie
                 }
 
                 // Calcular el nuevo subtotal
-                decimal nuevoSubtotal = sumaTotalProductos - montoPagado;
+                nuevoSubtotal = sumaTotalProductos - montoPagado;
 
               
                 if (FormularioOrigen == "VentasNuevaVenta")

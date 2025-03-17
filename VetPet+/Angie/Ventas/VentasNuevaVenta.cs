@@ -23,7 +23,7 @@ namespace VetPet_
         private static DataTable dtProductos = new DataTable();
         decimal sumaTotalProductos = 0;
         decimal nuevoSubtotal = 0;
-        decimal montoPagado = 0;
+        decimal montoPagado= 0;
 
         private int idCita;
         private decimal subtotal;
@@ -60,6 +60,7 @@ namespace VetPet_
             // Actualizar la suma total
             ActualizarSumaTotal();
         }
+      
         public VentasNuevaVenta(Form1 parent, decimal total, DataTable dt)
         {
             InitializeComponent();
@@ -180,7 +181,7 @@ namespace VetPet_
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos,dtProductos);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
