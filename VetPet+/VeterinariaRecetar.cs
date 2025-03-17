@@ -15,7 +15,8 @@ namespace VetPet_
 {
     public partial class VeterinariaRecetar : FormPadre
     {
-
+        public int DatoCita { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
         public VeterinariaRecetar(Form1 parent)
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace VetPet_
 
         private void VeterinariaRecetar_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Dato Recibido :" + DatoCita);
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
