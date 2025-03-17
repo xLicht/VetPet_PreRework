@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label16 = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtApellidoPat = new System.Windows.Forms.TextBox();
@@ -49,16 +49,13 @@
             this.rtMotivo = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtMascota = new System.Windows.Forms.TextBox();
-            this.txtFecha = new System.Windows.Forms.TextBox();
+            this.txtFechaP = new System.Windows.Forms.TextBox();
             this.txtHora = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtFechaR = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -70,7 +67,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(451, 21);
+            this.label16.Location = new System.Drawing.Point(414, 9);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(203, 37);
             this.label16.TabIndex = 88;
@@ -83,6 +80,7 @@
             this.txtTelefono.Location = new System.Drawing.Point(250, 171);
             this.txtTelefono.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.ReadOnly = true;
             this.txtTelefono.Size = new System.Drawing.Size(203, 29);
             this.txtTelefono.TabIndex = 82;
             // 
@@ -93,6 +91,7 @@
             this.txtApellidoPat.Location = new System.Drawing.Point(206, 132);
             this.txtApellidoPat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellidoPat.Name = "txtApellidoPat";
+            this.txtApellidoPat.ReadOnly = true;
             this.txtApellidoPat.Size = new System.Drawing.Size(171, 29);
             this.txtApellidoPat.TabIndex = 81;
             // 
@@ -101,7 +100,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label14.Location = new System.Drawing.Point(747, 183);
+            this.label14.Location = new System.Drawing.Point(711, 188);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(58, 25);
             this.label14.TabIndex = 76;
@@ -112,11 +111,11 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(747, 125);
+            this.label13.Location = new System.Drawing.Point(596, 140);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 25);
+            this.label13.Size = new System.Drawing.Size(185, 25);
             this.label13.TabIndex = 75;
-            this.label13.Text = "Fecha";
+            this.label13.Text = "Fecha Programada";
             // 
             // label7
             // 
@@ -183,22 +182,16 @@
             // 
             // dtServicio
             // 
-            this.dtServicio.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dtServicio.BackgroundColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtServicio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column4,
-            this.Column3,
-            this.Column2,
-            this.Column5});
             this.dtServicio.EnableHeadersVisualStyles = false;
             this.dtServicio.Location = new System.Drawing.Point(43, 304);
             this.dtServicio.Name = "dtServicio";
@@ -234,7 +227,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label3.Location = new System.Drawing.Point(802, 76);
+            this.label3.Location = new System.Drawing.Point(738, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 30);
             this.label3.TabIndex = 59;
@@ -245,7 +238,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(29, 217);
+            this.label1.Location = new System.Drawing.Point(38, 218);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(286, 30);
             this.label1.TabIndex = 58;
@@ -273,15 +266,17 @@
             this.txtNombre.Location = new System.Drawing.Point(133, 93);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombre.Name = "txtNombre";
+            this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(171, 29);
             this.txtNombre.TabIndex = 55;
             // 
             // rtMotivo
             // 
-            this.rtMotivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtMotivo.BackColor = System.Drawing.Color.Silver;
             this.rtMotivo.Location = new System.Drawing.Point(664, 262);
             this.rtMotivo.Margin = new System.Windows.Forms.Padding(2);
             this.rtMotivo.Name = "rtMotivo";
+            this.rtMotivo.ReadOnly = true;
             this.rtMotivo.Size = new System.Drawing.Size(374, 212);
             this.rtMotivo.TabIndex = 89;
             this.rtMotivo.Text = "";
@@ -299,31 +294,34 @@
             // 
             // txtMascota
             // 
-            this.txtMascota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtMascota.BackColor = System.Drawing.Color.Silver;
             this.txtMascota.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMascota.Location = new System.Drawing.Point(124, 262);
+            this.txtMascota.Location = new System.Drawing.Point(142, 262);
             this.txtMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtMascota.Name = "txtMascota";
-            this.txtMascota.Size = new System.Drawing.Size(253, 29);
+            this.txtMascota.ReadOnly = true;
+            this.txtMascota.Size = new System.Drawing.Size(162, 29);
             this.txtMascota.TabIndex = 90;
             // 
-            // txtFecha
+            // txtFechaP
             // 
-            this.txtFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.txtFecha.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(848, 125);
-            this.txtFecha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(167, 29);
-            this.txtFecha.TabIndex = 92;
+            this.txtFechaP.BackColor = System.Drawing.Color.Silver;
+            this.txtFechaP.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaP.Location = new System.Drawing.Point(788, 136);
+            this.txtFechaP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFechaP.Name = "txtFechaP";
+            this.txtFechaP.ReadOnly = true;
+            this.txtFechaP.Size = new System.Drawing.Size(167, 29);
+            this.txtFechaP.TabIndex = 92;
             // 
             // txtHora
             // 
-            this.txtHora.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtHora.BackColor = System.Drawing.Color.Silver;
             this.txtHora.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHora.Location = new System.Drawing.Point(848, 181);
+            this.txtHora.Location = new System.Drawing.Point(788, 184);
             this.txtHora.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtHora.Name = "txtHora";
+            this.txtHora.ReadOnly = true;
             this.txtHora.Size = new System.Drawing.Size(167, 29);
             this.txtHora.TabIndex = 93;
             // 
@@ -363,38 +361,27 @@
             this.pictureBox1.TabIndex = 57;
             this.pictureBox1.TabStop = false;
             // 
-            // Column1
+            // txtFechaR
             // 
-            this.Column1.HeaderText = "Servicio";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 120;
+            this.txtFechaR.BackColor = System.Drawing.Color.Silver;
+            this.txtFechaR.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaR.Location = new System.Drawing.Point(743, 97);
+            this.txtFechaR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFechaR.Name = "txtFechaR";
+            this.txtFechaR.ReadOnly = true;
+            this.txtFechaR.Size = new System.Drawing.Size(167, 29);
+            this.txtFechaR.TabIndex = 95;
             // 
-            // Column4
+            // label9
             // 
-            this.Column4.HeaderText = "Veterinario";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 120;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Precio";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 120;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Clase del Servicio";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 120;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Servicio Principal";
-            this.Column5.Name = "Column5";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label9.Location = new System.Drawing.Point(564, 97);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(172, 25);
+            this.label9.TabIndex = 94;
+            this.label9.Text = "Fecha de registro";
             // 
             // ConsultarCita
             // 
@@ -402,8 +389,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.txtFechaR);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtHora);
-            this.Controls.Add(this.txtFecha);
+            this.Controls.Add(this.txtFechaP);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtMascota);
             this.Controls.Add(this.rtMotivo);
@@ -464,12 +453,9 @@
         private System.Windows.Forms.RichTextBox rtMotivo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtMascota;
-        private System.Windows.Forms.TextBox txtFecha;
+        private System.Windows.Forms.TextBox txtFechaP;
         private System.Windows.Forms.TextBox txtHora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.TextBox txtFechaR;
+        private System.Windows.Forms.Label label9;
     }
 }

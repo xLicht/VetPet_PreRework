@@ -41,7 +41,7 @@ namespace VetPet_
 
         private void dtCitasMedicas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            parentForm.formularioHijo(new ConsultarCita(parentForm));
+            //parentForm.formularioHijo(new ConsultarCita(parentForm));
         }
 
         private void CitasMedicas_Load_1(object sender, EventArgs e)

@@ -14,6 +14,7 @@ namespace VetPet_
 {
     public partial class VeterinariaConsultaMedica : FormPadre
     {
+        public int DatoCita { get; set; }
         public VeterinariaConsultaMedica(Form1 parent)
         {
             InitializeComponent();
