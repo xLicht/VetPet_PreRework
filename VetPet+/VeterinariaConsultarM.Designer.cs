@@ -43,7 +43,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -57,7 +56,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnSubir = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -83,6 +81,8 @@
             this.txtApellidoDueño = new System.Windows.Forms.TextBox();
             this.txtNombreDueño = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -95,31 +95,31 @@
             this.richTextBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.richTextBox6.Location = new System.Drawing.Point(745, 430);
             this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.Size = new System.Drawing.Size(223, 33);
+            this.richTextBox6.Size = new System.Drawing.Size(271, 33);
             this.richTextBox6.TabIndex = 324;
-            this.richTextBox6.Text = "Observaciones";
+            this.richTextBox6.Text = "";
             // 
             // richTextBox5
             // 
             this.richTextBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.richTextBox5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.richTextBox5.Location = new System.Drawing.Point(864, 383);
+            this.richTextBox5.Location = new System.Drawing.Point(745, 383);
             this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.Size = new System.Drawing.Size(161, 33);
+            this.richTextBox5.Size = new System.Drawing.Size(271, 33);
             this.richTextBox5.TabIndex = 323;
-            this.richTextBox5.Text = "Observaciones";
+            this.richTextBox5.Text = "";
             // 
             // richTextBox4
             // 
             this.richTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.richTextBox4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.richTextBox4.Location = new System.Drawing.Point(758, 341);
+            this.richTextBox4.Location = new System.Drawing.Point(745, 341);
             this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(223, 33);
+            this.richTextBox4.Size = new System.Drawing.Size(271, 33);
             this.richTextBox4.TabIndex = 322;
-            this.richTextBox4.Text = "Observaciones";
+            this.richTextBox4.Text = "";
             // 
             // richTextBox3
             // 
@@ -128,20 +128,20 @@
             this.richTextBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.richTextBox3.Location = new System.Drawing.Point(745, 301);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(223, 33);
+            this.richTextBox3.Size = new System.Drawing.Size(271, 33);
             this.richTextBox3.TabIndex = 321;
-            this.richTextBox3.Text = "Observaciones";
+            this.richTextBox3.Text = "";
             // 
             // richTextBox2
             // 
             this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.richTextBox2.Location = new System.Drawing.Point(745, 259);
+            this.richTextBox2.Location = new System.Drawing.Point(722, 259);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(223, 33);
+            this.richTextBox2.Size = new System.Drawing.Size(294, 33);
             this.richTextBox2.TabIndex = 319;
-            this.richTextBox2.Text = "Observaciones";
+            this.richTextBox2.Text = "";
             // 
             // pictureBox3
             // 
@@ -225,9 +225,9 @@
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.richTextBox1.Location = new System.Drawing.Point(190, 450);
+            this.richTextBox1.Location = new System.Drawing.Point(29, 430);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(258, 38);
+            this.richTextBox1.Size = new System.Drawing.Size(258, 90);
             this.richTextBox1.TabIndex = 312;
             this.richTextBox1.Text = "";
             // 
@@ -236,11 +236,11 @@
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label24.Location = new System.Drawing.Point(24, 463);
+            this.label24.Location = new System.Drawing.Point(26, 402);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(160, 25);
+            this.label24.Size = new System.Drawing.Size(171, 25);
             this.label24.TabIndex = 311;
-            this.label24.Text = "Estudio Especial";
+            this.label24.Text = "Estudio Especial :";
             // 
             // checkBox2
             // 
@@ -260,16 +260,6 @@
             this.checkBox1.TabIndex = 308;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // textBox11
-            // 
-            this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.textBox11.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(160, 407);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(171, 29);
-            this.textBox11.TabIndex = 307;
-            // 
             // textBox10
             // 
             this.textBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -277,7 +267,7 @@
             this.textBox10.Location = new System.Drawing.Point(156, 357);
             this.textBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(171, 29);
+            this.textBox10.Size = new System.Drawing.Size(242, 29);
             this.textBox10.TabIndex = 306;
             // 
             // textBox9
@@ -287,7 +277,7 @@
             this.textBox9.Location = new System.Drawing.Point(229, 314);
             this.textBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(171, 29);
+            this.textBox9.Size = new System.Drawing.Size(201, 29);
             this.textBox9.TabIndex = 305;
             // 
             // textBox8
@@ -337,7 +327,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label20.Location = new System.Drawing.Point(527, 434);
+            this.label20.Location = new System.Drawing.Point(449, 431);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(79, 25);
             this.label20.TabIndex = 288;
@@ -348,18 +338,18 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label19.Location = new System.Drawing.Point(527, 389);
+            this.label19.Location = new System.Drawing.Point(449, 389);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(224, 25);
+            this.label19.Size = new System.Drawing.Size(86, 25);
             this.label19.TabIndex = 287;
-            this.label19.Text = "Estudio de Laboratorio";
+            this.label19.Text = "Estudio ";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label18.Location = new System.Drawing.Point(527, 346);
+            this.label18.Location = new System.Drawing.Point(449, 346);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(122, 25);
             this.label18.TabIndex = 286;
@@ -370,7 +360,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label17.Location = new System.Drawing.Point(527, 303);
+            this.label17.Location = new System.Drawing.Point(449, 303);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(86, 25);
             this.label17.TabIndex = 285;
@@ -381,7 +371,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label15.Location = new System.Drawing.Point(527, 263);
+            this.label15.Location = new System.Drawing.Point(449, 263);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(80, 25);
             this.label15.TabIndex = 284;
@@ -411,17 +401,6 @@
             this.label14.Size = new System.Drawing.Size(123, 25);
             this.label14.TabIndex = 279;
             this.label14.Text = "Diagnostico";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(24, 407);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(129, 25);
-            this.label13.TabIndex = 278;
-            this.label13.Text = "Tratamiento";
             // 
             // label12
             // 
@@ -483,7 +462,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label7.Location = new System.Drawing.Point(583, 177);
+            this.label7.Location = new System.Drawing.Point(583, 164);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 25);
             this.label7.TabIndex = 272;
@@ -494,7 +473,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label6.Location = new System.Drawing.Point(306, 175);
+            this.label6.Location = new System.Drawing.Point(306, 164);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 25);
             this.label6.TabIndex = 271;
@@ -505,7 +484,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(24, 173);
+            this.label5.Location = new System.Drawing.Point(24, 164);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 25);
             this.label5.TabIndex = 270;
@@ -571,20 +550,10 @@
             this.comboBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox4.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "Reprodutiva",
-            "Ortopedica",
-            "Gastrointestinal",
-            "Dentales",
-            "Oculares",
-            "Tumorales",
-            "Oncologicas",
-            "Sistema Urinario",
-            "Sistema Respiratorio"});
-            this.comboBox4.Location = new System.Drawing.Point(629, 431);
+            this.comboBox4.Location = new System.Drawing.Point(535, 431);
             this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(102, 33);
+            this.comboBox4.Size = new System.Drawing.Size(178, 33);
             this.comboBox4.TabIndex = 350;
             // 
             // comboBox3
@@ -592,15 +561,10 @@
             this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Orina",
-            "Sangre",
-            "Heces",
-            "Biopsia"});
-            this.comboBox3.Location = new System.Drawing.Point(752, 386);
+            this.comboBox3.Location = new System.Drawing.Point(542, 386);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(102, 33);
+            this.comboBox3.Size = new System.Drawing.Size(171, 33);
             this.comboBox3.TabIndex = 349;
             // 
             // comboBox2
@@ -608,17 +572,10 @@
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Ultrasonido Adominal",
-            "Ultrasonido Cardiaco",
-            "Ultrasonido de Embarazo",
-            "Ultrasonido de Orhganos Internos",
-            "Ultrasonido de Tiroideo",
-            "Ultrasonido Ortopedico"});
-            this.comboBox2.Location = new System.Drawing.Point(646, 343);
+            this.comboBox2.Location = new System.Drawing.Point(571, 343);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(102, 33);
+            this.comboBox2.Size = new System.Drawing.Size(142, 33);
             this.comboBox2.TabIndex = 348;
             // 
             // comboBox1
@@ -626,16 +583,10 @@
             this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Simple",
-            "Doble",
-            "De Contraste",
-            "De Cadera",
-            "De  Codo"});
-            this.comboBox1.Location = new System.Drawing.Point(629, 300);
+            this.comboBox1.Location = new System.Drawing.Point(542, 303);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 33);
+            this.comboBox1.Size = new System.Drawing.Size(171, 33);
             this.comboBox1.TabIndex = 347;
             // 
             // cbFliltrar
@@ -643,20 +594,17 @@
             this.cbFliltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.cbFliltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFliltrar.FormattingEnabled = true;
-            this.cbFliltrar.Items.AddRange(new object[] {
-            "Esencial",
-            "No Ecencial"});
-            this.cbFliltrar.Location = new System.Drawing.Point(629, 260);
+            this.cbFliltrar.Location = new System.Drawing.Point(536, 260);
             this.cbFliltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbFliltrar.Name = "cbFliltrar";
-            this.cbFliltrar.Size = new System.Drawing.Size(102, 33);
+            this.cbFliltrar.Size = new System.Drawing.Size(154, 33);
             this.cbFliltrar.TabIndex = 346;
             // 
             // txtRaza
             // 
             this.txtRaza.BackColor = System.Drawing.Color.Silver;
             this.txtRaza.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRaza.Location = new System.Drawing.Point(652, 177);
+            this.txtRaza.Location = new System.Drawing.Point(652, 162);
             this.txtRaza.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRaza.Name = "txtRaza";
             this.txtRaza.Size = new System.Drawing.Size(171, 29);
@@ -666,7 +614,7 @@
             // 
             this.txtEspecie.BackColor = System.Drawing.Color.Silver;
             this.txtEspecie.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEspecie.Location = new System.Drawing.Point(393, 173);
+            this.txtEspecie.Location = new System.Drawing.Point(393, 162);
             this.txtEspecie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEspecie.Name = "txtEspecie";
             this.txtEspecie.Size = new System.Drawing.Size(171, 29);
@@ -676,7 +624,7 @@
             // 
             this.txtNombreMascota.BackColor = System.Drawing.Color.Silver;
             this.txtNombreMascota.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreMascota.Location = new System.Drawing.Point(121, 173);
+            this.txtNombreMascota.Location = new System.Drawing.Point(121, 162);
             this.txtNombreMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombreMascota.Name = "txtNombreMascota";
             this.txtNombreMascota.Size = new System.Drawing.Size(171, 29);
@@ -721,12 +669,36 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(132, 33);
             this.dateTimePicker1.TabIndex = 385;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label23.Location = new System.Drawing.Point(566, 222);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(116, 30);
+            this.label23.TabIndex = 386;
+            this.label23.Text = "Servicios :";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label25.Location = new System.Drawing.Point(810, 222);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(174, 30);
+            this.label25.TabIndex = 387;
+            this.label25.Text = "Observaciones :";
+            // 
             // VeterinariaConsultarM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtRaza);
             this.Controls.Add(this.txtEspecie);
@@ -754,7 +726,6 @@
             this.Controls.Add(this.label24);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
@@ -768,7 +739,6 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.btnSubir);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
@@ -811,7 +781,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
@@ -825,7 +794,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSubir;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
@@ -851,5 +819,7 @@
         private System.Windows.Forms.TextBox txtApellidoDueño;
         private System.Windows.Forms.TextBox txtNombreDueño;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label25;
     }
 }
