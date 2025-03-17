@@ -14,6 +14,8 @@ namespace VetPet_
 {
     public partial class ConsultarCita : FormPadre
     {
+        public int DatoCita { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
         public ConsultarCita(Form1 parent)
         {
             InitializeComponent(); 
@@ -22,7 +24,7 @@ namespace VetPet_
 
         private void ConsultarCita_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Dato Recibido :"+ DatoCita);
         }
 
         private void ConsultarCita_Resize(object sender, EventArgs e)
@@ -43,6 +45,11 @@ namespace VetPet_
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new CitasMedicas(parentForm));
+        }
+
+        private void ConsultarCita_Load_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Dato Recibido :" + DatoCita);
         }
     }
 }

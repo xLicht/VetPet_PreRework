@@ -55,40 +55,16 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string ordenColumna = "c.idCita";
-                if (cbFiltrar.SelectedItem != null)
-                {
-                    switch (cbFiltrar.SelectedItem.ToString())
-                    {
-                        case "Fecha":
-                            ordenColumna = "c.fechaCita";
-                            break;
-                        case "Mascota":
-                            ordenColumna = "m.nombre";
-                            break;
-                        case "Dueño":
-                            ordenColumna = "p.nombre";
-                            break;
-                    }
-                }
-
-                string filtro = txtBuscar.Text;
-
-                string query = $@"
-                    SELECT c.idCita, c.fechaCita, c.horaCita, m.nombre AS Mascota, 
-                           p.nombre AS Dueño, v.nombre AS Veterinario, c.estado
-                    FROM Cita c
-                    JOIN Mascota m ON c.idMascota = m.idMascota
-                    JOIN Persona p ON m.idPersona = p.idPersona
-                    JOIN Empleado e ON c.idVeterinario = e.idEmpleado
-                    JOIN Persona v ON e.idPersona = v.idPersona
-                    WHERE (m.nombre LIKE @filtro OR p.nombre LIKE @filtro OR c.fechaCita LIKE @filtro)
-                    ORDER BY {ordenColumna};";
+                    string query = @"
+                SELECT c.idCita, c.fechaRegistro, c.fechaProgramada, c.hora, c.duracion, 
+                       m.nombre AS NombreMascota, mo.nombre AS Motivo
+                FROM Cita c
+                INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
+                ORDER BY c.fechaProgramada;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
-                    cmd.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
-
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -96,8 +72,8 @@ namespace VetPet_
                     dtCitasMedicas.Rows.Clear();
                     foreach (DataRow row in dt.Rows)
                     {
-                        dtCitasMedicas.Rows.Add(row["idCita"], row["fechaCita"], row["horaCita"],
-                                                row["Mascota"], row["Dueño"], row["Veterinario"], row["estado"]);
+                        dtCitasMedicas.Rows.Add(row["idCita"], row["fechaRegistro"], row["fechaProgramada"],
+                                                row["hora"], row["duracion"], row["NombreMascota"], row["Motivo"]);
                     }
                 }
             }
@@ -111,25 +87,29 @@ namespace VetPet_
             }
         }
 
-
         private void dtCitasMedicas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex >= 0)
-            //{
-            //    DataGridViewRow row = dtCitasMedicas.Rows[e.RowIndex];
-            //    if (row.Cells[0].Value != null)
-            //    {
-            //        int idCitaSeleccionada = Convert.ToInt32(row.Cells[0].Value);
-            //        ConsultarCita formularioHijo = new ConsultarCita(parentForm);
-            //        formularioHijo.DatoCita = idCitaSeleccionada;
-            //        parentForm.formularioHijo(formularioHijo);
-            //        formularioHijo.MostrarDato();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("No se pudo obtener el ID de la cita.");
-            //    }
-            //}
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dtCitasMedicas.Rows[e.RowIndex];
+                if (row.Cells[0].Value != null)
+                {
+                    int idCitaSeleccionada = Convert.ToInt32(row.Cells[0].Value);
+                    ConsultarCita formularioHijo = new ConsultarCita(parentForm);
+                    formularioHijo.DatoCita = idCitaSeleccionada;
+                    parentForm.formularioHijo(formularioHijo);
+                    
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener el ID de la cita.");
+                }
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
         }
     }
    

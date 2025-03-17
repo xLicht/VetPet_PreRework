@@ -33,10 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.dtCitasMedicas = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.cbFiltrar = new System.Windows.Forms.ComboBox();
@@ -97,10 +100,13 @@
             this.dtCitasMedicas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtCitasMedicas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtCitasMedicas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
+            this.Column5,
             this.Column3,
-            this.Column4});
+            this.Column4,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9});
             this.dtCitasMedicas.EnableHeadersVisualStyles = false;
             this.dtCitasMedicas.Location = new System.Drawing.Point(73, 123);
             this.dtCitasMedicas.Name = "dtCitasMedicas";
@@ -110,25 +116,40 @@
             this.dtCitasMedicas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellClick);
             this.dtCitasMedicas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellContentClick);
             // 
-            // Column1
+            // Column5
             // 
-            this.Column1.HeaderText = "Mascota";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Dueño";
-            this.Column2.Name = "Column2";
+            this.Column5.HeaderText = "Id";
+            this.Column5.Name = "Column5";
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Especie";
+            this.Column3.HeaderText = "fecha registro";
             this.Column3.Name = "Column3";
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Fecha de Nacimiento";
+            this.Column4.HeaderText = "fecha Programada";
             this.Column4.Name = "Column4";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "hora";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "duracion";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Mascota";
+            this.Column8.Name = "Column8";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Motivo";
+            this.Column9.Name = "Column9";
             // 
             // btnBuscar
             // 
@@ -143,18 +164,18 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtBuscar
             // 
             this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.txtBuscar.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.txtBuscar.Location = new System.Drawing.Point(415, 72);
+            this.txtBuscar.Location = new System.Drawing.Point(434, 72);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(376, 36);
             this.txtBuscar.TabIndex = 20;
-            this.txtBuscar.Text = "Ingrese el Nombre de Cliente";
             this.txtBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cbFiltrar
@@ -164,9 +185,7 @@
             this.cbFiltrar.FormattingEnabled = true;
             this.cbFiltrar.Items.AddRange(new object[] {
             "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
+            "Fecha"});
             this.cbFiltrar.Location = new System.Drawing.Point(73, 76);
             this.cbFiltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbFiltrar.Name = "cbFiltrar";
@@ -230,13 +249,16 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.DataGridView dtCitasMedicas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.ComboBox cbFiltrar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }
