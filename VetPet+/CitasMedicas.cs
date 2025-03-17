@@ -15,6 +15,7 @@ namespace VetPet_
 {
     public partial class CitasMedicas : FormPadre
     {
+        public int DatoCita { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
         public CitasMedicas(Form1 parent)
         {
