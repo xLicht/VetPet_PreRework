@@ -68,34 +68,7 @@ namespace VetPet_.Angie
                 dataGridView2.DataSource = bs;
             }
 
-        }
-        public VentasAgregarProducto(Form1 parent, int idCita)
-        {
-            InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia de Form1
-            this.Load += VentasAgregarProducto_Load;       // Evento Load
-            this.Resize += VentasAgregarProducto_Resize;   // Evento Resize
-            dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
-            dataGridView2.CellMouseLeave += dataGridView1_CellMouseLeave;
-            dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
-            PersonalizarDataGridView(dataGridView1);
-            PersonalizarDataGridView(dataGridView2);
-            Cargar();
-            this.idCita = idCita;
-        }
-        public VentasAgregarProducto(Form1 parent)
-        {
-            InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia de Form1
-            this.Load += VentasAgregarProducto_Load;       // Evento Load
-            this.Resize += VentasAgregarProducto_Resize;   // Evento Resize
-            dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
-            dataGridView2.CellMouseLeave += dataGridView1_CellMouseLeave;
-            dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
-            PersonalizarDataGridView(dataGridView1);
-            PersonalizarDataGridView(dataGridView2);
-            Cargar();
-        }
+        }    
         private void CargarProductosEnDataGridView(int idProducto, decimal subTotal)
         {
             try
@@ -450,11 +423,17 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+                decimal sumaTotal = dtProductos.AsEnumerable()
+              .Where(r => r["Total"] != DBNull.Value)
+              .Sum(r => r.Field<decimal>("Total"));
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, sumaTotal ,dtProductos)); // Pasamos la referencia de Form1 a
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
-                // parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
+                decimal sumaTotal = dtProductos.AsEnumerable()
+               .Where(r => r["Total"] != DBNull.Value)
+               .Sum(r => r.Field<decimal>("Total"));
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm,idCita,sumaTotal,dtProductos)); // Pasamos la referencia de Form1 a
             }
         }
 

@@ -451,11 +451,17 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+                decimal sumaTotal = dtProductos.AsEnumerable()
+              .Where(r => r["Total"] != DBNull.Value)
+              .Sum(r => r.Field<decimal>("Total"));
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, sumaTotal, dtProductos));
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
-                //parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
+                decimal sumaTotal = dtProductos.AsEnumerable()
+               .Where(r => r["Total"] != DBNull.Value)
+               .Sum(r => r.Field<decimal>("Total"));
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, sumaTotal, dtProductos)); // Pasamos la referencia de Form1 a
             }
         }
 

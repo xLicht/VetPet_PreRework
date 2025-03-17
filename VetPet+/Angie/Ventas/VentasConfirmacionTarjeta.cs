@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_.Angie
 {
@@ -15,23 +16,25 @@ namespace VetPet_.Angie
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        decimal sumaTotalProductos = 0; 
         private Form1 parentForm;
 
         public string FormularioOrigen { get; set; }
 
-        public VentasConfirmacionTarjeta()
+        public VentasConfirmacionTarjeta(Form1 parent,decimal sumaTotalProductos)
         {
             InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia de Form1
             this.Load += VentasConfirmacionTarjeta_Load;       // Evento Load
             this.Resize += VentasConfirmacionTarjeta_Resize;   // Evento Resize
-
+            this.sumaTotalProductos = sumaTotalProductos;   
         }
-
         public VentasConfirmacionTarjeta(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+            this.Load += VentasConfirmacionTarjeta_Load;       // Evento Load
+            this.Resize += VentasConfirmacionTarjeta_Resize;   
         }
 
         private void VentasConfirmacionTarjeta_Load(object sender, EventArgs e)

@@ -20,6 +20,8 @@ namespace VetPet_.Angie
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         int idCita = 0;
+        private decimal subtotal;
+        private int stock;
 
         public VentasDeseaAgregarProducto()
         {
@@ -303,7 +305,7 @@ namespace VetPet_.Angie
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarProducto(parentForm,idCita));
+            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, idCita,subtotal,stock));
         }
 
     }
