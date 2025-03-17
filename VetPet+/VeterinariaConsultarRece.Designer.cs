@@ -128,6 +128,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(46, 51);
             this.pictureBox2.TabIndex = 354;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnRegresar
             // 
@@ -155,6 +156,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(50, 51);
             this.pictureBox1.TabIndex = 352;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnModificar
             // 

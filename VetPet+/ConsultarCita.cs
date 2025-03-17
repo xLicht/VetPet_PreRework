@@ -47,10 +47,10 @@ namespace VetPet_
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            //VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
-            //formularioHijo.DatoCita = idCitaSeleccionada;
-            //parentForm.formularioHijo(formularioHijo);
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
 
 
 

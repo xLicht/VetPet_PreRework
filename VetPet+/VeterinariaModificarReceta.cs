@@ -14,6 +14,8 @@ namespace VetPet_
 {
     public partial class VeterinariaModificarReceta : FormPadre
     {
+        public int DatoCita { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
         public VeterinariaModificarReceta(Form1 parent)
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace VetPet_
 
         private void VeterinariaModificarReceta_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Dato Recibido" + DatoCita);
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)

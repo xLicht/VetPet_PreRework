@@ -37,55 +37,28 @@ namespace VetPet_
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaModificarConsultaM(parentForm));
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaModificarConsultaM formularioHijo = new VeterinariaModificarConsultaM(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
+
+
+
+            //parentForm.formularioHijo(new VeterinariaModificarConsultaM(parentForm));
         }
 
         private void btnRecetar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
+
+
+
+            //parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
         }
-        //private void MostrarDatosCita()
-        //{
-        //    try
-        //    {
-        //        conexionDB.AbrirConexion();
-
-        //        string query = @"SELECT p.nombre AS NombreCliente, p.apellidoP AS ApellidoPaterno, p.celularPrincipal AS Telefono, 
-        //                        c.fechaRegistro AS FechaRegistro, c.fechaProgramada AS FechaProgramada, 
-        //                        m.nombre AS NombreMascota, c.hora AS Hora, mo.nombre AS Motivo
-        //                FROM Cita c
-        //                INNER JOIN Mascota m ON c.idMascota = m.idMascota
-        //                INNER JOIN Persona p ON m.idPersona = p.idPersona
-        //                INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
-        //                WHERE c.idCita = @idCita";
-
-        //        using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-        //        {
-        //            cmd.Parameters.AddWithValue("@idCita", DatoCita);
-        //            SqlDataReader reader = cmd.ExecuteReader();
-
-        //            if (reader.Read())
-        //            {
-        //                txtNombre.Text = reader["NombreCliente"].ToString();
-        //                txtApellidoPat.Text = reader["ApellidoPaterno"].ToString();
-        //                txtTelefono.Text = reader["Telefono"].ToString();
-        //                //txtFechaR.Text = reader["FechaRegistro"].ToString();
-        //                //txtFechaP.Text = reader["FechaProgramada"].ToString();
-        //                txtMascota.Text = reader["NombreMascota"].ToString();
-        //               // txtHora.Text = reader["Hora"].ToString();
-        //                txtMotivo.Text = reader["Motivo"].ToString();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al obtener los datos de la cita: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        conexionDB.CerrarConexion();
-        //    }
-        //}
+    
         private void MostrarDatosCita()
         {
             try

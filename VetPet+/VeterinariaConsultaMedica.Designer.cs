@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rtEstudioEspecial = new System.Windows.Forms.RichTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.cbCastrado = new System.Windows.Forms.CheckBox();
@@ -47,7 +47,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnRecetar = new System.Windows.Forms.Button();
+            this.btnVerReceta = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -271,21 +271,22 @@
             this.pictureBox3.Size = new System.Drawing.Size(57, 47);
             this.pictureBox3.TabIndex = 324;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.btnRecetar_Click);
             // 
-            // btnRecetar
+            // btnVerReceta
             // 
-            this.btnRecetar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnRecetar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecetar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnRecetar.Location = new System.Drawing.Point(315, 501);
-            this.btnRecetar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnRecetar.Name = "btnRecetar";
-            this.btnRecetar.Size = new System.Drawing.Size(253, 62);
-            this.btnRecetar.TabIndex = 323;
-            this.btnRecetar.Text = "Ver Receta";
-            this.btnRecetar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecetar.UseVisualStyleBackColor = false;
-            this.btnRecetar.Click += new System.EventHandler(this.btnRecetar_Click);
+            this.btnVerReceta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnVerReceta.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerReceta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnVerReceta.Location = new System.Drawing.Point(315, 501);
+            this.btnVerReceta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVerReceta.Name = "btnVerReceta";
+            this.btnVerReceta.Size = new System.Drawing.Size(253, 62);
+            this.btnVerReceta.TabIndex = 323;
+            this.btnVerReceta.Text = "Ver Receta";
+            this.btnVerReceta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerReceta.UseVisualStyleBackColor = false;
+            this.btnVerReceta.Click += new System.EventHandler(this.btnRecetar_Click);
             // 
             // pictureBox2
             // 
@@ -298,6 +299,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(57, 47);
             this.pictureBox2.TabIndex = 322;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnModificar
             // 
@@ -325,6 +327,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(57, 43);
             this.pictureBox1.TabIndex = 320;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnRegresar
             // 
@@ -503,14 +506,14 @@
             // dtServicio
             // 
             this.dtServicio.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtServicio.EnableHeadersVisualStyles = false;
             this.dtServicio.Location = new System.Drawing.Point(486, 256);
@@ -557,7 +560,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.btnRecetar);
+            this.Controls.Add(this.btnVerReceta);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.pictureBox1);
@@ -609,7 +612,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button btnRecetar;
+        private System.Windows.Forms.Button btnVerReceta;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.PictureBox pictureBox1;

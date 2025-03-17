@@ -13,6 +13,9 @@ namespace VetPet_
 {
     public partial class VeterinariaConsultarRece : FormPadre
     {
+        public int DatoCita { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
+
         public VeterinariaConsultarRece(Form1 parent)
         {
             InitializeComponent();
@@ -22,7 +25,7 @@ namespace VetPet_
 
         private void VeterinariaConsultarRece_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Dato Recibido"+ DatoCita);
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -32,7 +35,16 @@ namespace VetPet_
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaModificarReceta(parentForm));
+
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaModificarReceta formularioHijo = new VeterinariaModificarReceta(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
+
+
+
+
+           // parentForm.formularioHijo(new VeterinariaModificarReceta(parentForm));
         }
     }
 }

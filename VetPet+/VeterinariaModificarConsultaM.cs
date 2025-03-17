@@ -13,6 +13,8 @@ namespace VetPet_
 {
     public partial class VeterinariaModificarConsultaM : FormPadre
     {
+        public int DatoCita { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
         public VeterinariaModificarConsultaM(Form1 parent)
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace VetPet_
 
         private void VeterinariaModificarConsultaM_Load(object sender, EventArgs e)
         {
-           
+            MessageBox.Show("Dato Recibido :" + DatoCita);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
