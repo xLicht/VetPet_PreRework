@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
 
@@ -13,9 +14,26 @@ namespace VetPet_
 {
     public partial class Form1 : Form
     {
+        //public int idUsuarioGLOBAL { get; set; }
+        //public int idTipoEmpleadoGLOBAL { get; set; }
         public Form1()
         {
+            InicioSesion login = new InicioSesion();
+            if (login.ShowDialog() != DialogResult.OK)
+            {
+                this.Close();
+                return;
+            }
+
+            // 2️⃣ Paso 2: Mostrar el formulario de Fondo de Caja
+            FondoCaja fondoCaja = new FondoCaja();
+            if (fondoCaja.ShowDialog() != DialogResult.OK)
+            {
+                this.Close();
+                return;
+            }
             InitializeComponent();
+            
         }
 
         private Form formHijo;
