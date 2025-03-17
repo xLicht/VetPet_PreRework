@@ -35,8 +35,6 @@ namespace VetPet_
         private void BtnOlvideMiContraseña_Click(object sender, EventArgs e)
         {
             string usuario = TxtUsuario.Text;
-            idUsuario = ObtenerIdUsuario(usuario, "Empleado");
-            RFCUsuario = ObtenerRFC(idUsuario);
 
             if (string.IsNullOrWhiteSpace(TxtUsuario.Text))
             {
@@ -44,6 +42,8 @@ namespace VetPet_
 
                 return;
             }
+            idUsuario = ObtenerIdUsuario(usuario, "Empleado");
+            RFCUsuario = ObtenerRFC(idUsuario);
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string query = "UPDATE empleado SET contraseña = @RFC WHERE idEmpleado = @idEmpleado";
