@@ -39,7 +39,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.cbFliltrar = new System.Windows.Forms.ComboBox();
+            this.cbFiltrar = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtCitasMedicas)).BeginInit();
@@ -107,6 +107,7 @@
             this.dtCitasMedicas.RowHeadersVisible = false;
             this.dtCitasMedicas.Size = new System.Drawing.Size(936, 374);
             this.dtCitasMedicas.TabIndex = 23;
+            this.dtCitasMedicas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellClick);
             this.dtCitasMedicas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellContentClick);
             // 
             // Column1
@@ -156,21 +157,21 @@
             this.txtBuscar.Text = "Ingrese el Nombre de Cliente";
             this.txtBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // cbFliltrar
+            // cbFiltrar
             // 
-            this.cbFliltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.cbFliltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFliltrar.FormattingEnabled = true;
-            this.cbFliltrar.Items.AddRange(new object[] {
+            this.cbFiltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.cbFiltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFiltrar.FormattingEnabled = true;
+            this.cbFiltrar.Items.AddRange(new object[] {
             "Mascota",
             "Dueño",
             "Especie",
             "Fecha de Nacimiento"});
-            this.cbFliltrar.Location = new System.Drawing.Point(73, 76);
-            this.cbFliltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cbFliltrar.Name = "cbFliltrar";
-            this.cbFliltrar.Size = new System.Drawing.Size(151, 33);
-            this.cbFliltrar.TabIndex = 19;
+            this.cbFiltrar.Location = new System.Drawing.Point(73, 76);
+            this.cbFiltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbFiltrar.Name = "cbFiltrar";
+            this.cbFiltrar.Size = new System.Drawing.Size(151, 33);
+            this.cbFiltrar.TabIndex = 19;
             // 
             // pictureBox2
             // 
@@ -210,7 +211,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.cbFliltrar);
+            this.Controls.Add(this.cbFiltrar);
             this.Name = "CitasMedicas";
             this.Text = "CitasMedicas";
             this.Load += new System.EventHandler(this.CitasMedicas_Load_1);
@@ -236,6 +237,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.ComboBox cbFliltrar;
+        private System.Windows.Forms.ComboBox cbFiltrar;
     }
 }
