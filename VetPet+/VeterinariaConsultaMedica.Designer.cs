@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rtEstudioEspecial = new System.Windows.Forms.RichTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.cbCastrado = new System.Windows.Forms.CheckBox();
@@ -40,7 +40,7 @@
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnSubirVacuna = new System.Windows.Forms.Button();
+            this.btnVerArchivos = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -191,19 +191,19 @@
             this.label21.TabIndex = 340;
             this.label21.Text = "Fallecido";
             // 
-            // btnSubirVacuna
+            // btnVerArchivos
             // 
-            this.btnSubirVacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnSubirVacuna.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubirVacuna.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnSubirVacuna.Location = new System.Drawing.Point(887, 164);
-            this.btnSubirVacuna.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSubirVacuna.Name = "btnSubirVacuna";
-            this.btnSubirVacuna.Size = new System.Drawing.Size(153, 37);
-            this.btnSubirVacuna.TabIndex = 331;
-            this.btnSubirVacuna.Text = "Ver Archivos";
-            this.btnSubirVacuna.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSubirVacuna.UseVisualStyleBackColor = false;
+            this.btnVerArchivos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnVerArchivos.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerArchivos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnVerArchivos.Location = new System.Drawing.Point(887, 164);
+            this.btnVerArchivos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVerArchivos.Name = "btnVerArchivos";
+            this.btnVerArchivos.Size = new System.Drawing.Size(153, 37);
+            this.btnVerArchivos.TabIndex = 331;
+            this.btnVerArchivos.Text = "Ver Archivos";
+            this.btnVerArchivos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerArchivos.UseVisualStyleBackColor = false;
             // 
             // label14
             // 
@@ -462,7 +462,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(410, 18);
+            this.label16.Location = new System.Drawing.Point(410, 21);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(235, 37);
             this.label16.TabIndex = 307;
@@ -503,14 +503,14 @@
             // dtServicio
             // 
             this.dtServicio.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtServicio.EnableHeadersVisualStyles = false;
             this.dtServicio.Location = new System.Drawing.Point(486, 256);
@@ -550,7 +550,7 @@
             this.Controls.Add(this.txtFecha);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.btnSubirVacuna);
+            this.Controls.Add(this.btnVerArchivos);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -602,7 +602,7 @@
         private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button btnSubirVacuna;
+        private System.Windows.Forms.Button btnVerArchivos;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
