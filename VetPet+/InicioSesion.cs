@@ -47,8 +47,10 @@ namespace VetPet_
                 int idUsuario = ObtenerIdUsuario(usuario, "Empleado");
                 int tipoEmpleado = ObtenerIdTipoEmpleado(idUsuario);
 
-                this.DialogResult = DialogResult.OK; // Indica que el login fue exitoso
-                this.Close();
+
+                FondoCaja fondoC = new FondoCaja(idUsuario,tipoEmpleado);
+                fondoC.Show();
+                this.Hide();
             }
             else
             {

@@ -8,17 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace VetPet_
 {
-    public partial class FondoCaja : Form
+    public partial class FondoCaja : FormPadre
     {
-        public decimal MontoInicial { get; set; }
-        public FondoCaja()
+        int idUsuario;
+        int idEmpleado;
+
+        public FondoCaja(int idUs, int tipoEmp)
         {
             InitializeComponent();
+            this.idUsuario = idUs;
+            this.idEmpleado = tipoEmp;
         }
+
 
         private void BtnIngresar_Click(object sender, EventArgs e)
         {
@@ -27,8 +33,10 @@ namespace VetPet_
 
             if (ValidarCredenciales(usuario))
             {
-                this.DialogResult = DialogResult.OK; // Indica que el login fue exitoso
+                Form1 forma = new Form1(idUsuario,idEmpleado);
+                forma.Show();
                 this.Close();
+
             }
             else
             {

@@ -14,25 +14,14 @@ namespace VetPet_
 {
     public partial class Form1 : Form
     {
-        //public int idUsuarioGLOBAL { get; set; }
-        //public int idTipoEmpleadoGLOBAL { get; set; }
-        public Form1()
+        int idUsuarioGLOBAL;
+        int idTipoEmpleadoGLOBAL;
+        public Form1(int idUsuario,int tipoEmpleado)
         {
-            InicioSesion login = new InicioSesion();
-            if (login.ShowDialog() != DialogResult.OK)
-            {
-                this.Close();
-                return;
-            }
-
-            // 2️⃣ Paso 2: Mostrar el formulario de Fondo de Caja
-            FondoCaja fondoCaja = new FondoCaja();
-            if (fondoCaja.ShowDialog() != DialogResult.OK)
-            {
-                this.Close();
-                return;
-            }
+            
             InitializeComponent();
+            this.idUsuarioGLOBAL = idUsuario;
+            this.idTipoEmpleadoGLOBAL = tipoEmpleado;
             
         }
 
@@ -122,6 +111,11 @@ namespace VetPet_
         private void pictureBox9_Click(object sender, EventArgs e)
         {
             formularioHijo(new MainMenu(this));
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
