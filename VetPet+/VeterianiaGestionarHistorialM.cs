@@ -14,6 +14,8 @@ namespace VetPet_
 {
     public partial class VeterianiaGestionarHistorialM : FormPadre
     {
+        public int DatoMascota { get; set; }
+        private conexionDaniel conexionDB = new conexionDaniel();
 
         public VeterianiaGestionarHistorialM(Form1 parent)
         {
@@ -24,7 +26,7 @@ namespace VetPet_
 
         private void VeterianiaGestionarHistorialM_Load(object sender, EventArgs e)
         {
-            
+            MessageBox.Show("Mensaje recibido :" + DatoMascota);
         }
 
         private void VeterianiaGestionarHistorialM_Resize(object sender, EventArgs e)

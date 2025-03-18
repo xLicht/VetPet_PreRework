@@ -44,7 +44,6 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtxNumero = new System.Windows.Forms.TextBox();
             this.txtDueño = new System.Windows.Forms.TextBox();
             this.txtRaza = new System.Windows.Forms.TextBox();
@@ -72,6 +71,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMascota = new System.Windows.Forms.TextBox();
+            this.txtFechaNac = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -232,16 +232,6 @@
             this.Column5.HeaderText = "Fecha";
             this.Column5.Name = "Column5";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(232, 199);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(116, 27);
-            this.dateTimePicker1.TabIndex = 400;
-            // 
             // txtxNumero
             // 
             this.txtxNumero.BackColor = System.Drawing.Color.Silver;
@@ -266,7 +256,7 @@
             // 
             this.txtRaza.BackColor = System.Drawing.Color.Silver;
             this.txtRaza.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRaza.Location = new System.Drawing.Point(447, 194);
+            this.txtRaza.Location = new System.Drawing.Point(482, 194);
             this.txtRaza.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRaza.Name = "txtRaza";
             this.txtRaza.Size = new System.Drawing.Size(134, 29);
@@ -276,7 +266,7 @@
             // 
             this.txtPeso.BackColor = System.Drawing.Color.Silver;
             this.txtPeso.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPeso.Location = new System.Drawing.Point(447, 148);
+            this.txtPeso.Location = new System.Drawing.Point(482, 148);
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Size = new System.Drawing.Size(134, 29);
@@ -286,7 +276,7 @@
             // 
             this.txtServicio.BackColor = System.Drawing.Color.Silver;
             this.txtServicio.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServicio.Location = new System.Drawing.Point(447, 106);
+            this.txtServicio.Location = new System.Drawing.Point(482, 106);
             this.txtServicio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtServicio.Name = "txtServicio";
             this.txtServicio.Size = new System.Drawing.Size(172, 29);
@@ -389,7 +379,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label10.Location = new System.Drawing.Point(383, 198);
+            this.label10.Location = new System.Drawing.Point(418, 198);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 25);
             this.label10.TabIndex = 385;
@@ -400,7 +390,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label9.Location = new System.Drawing.Point(384, 152);
+            this.label9.Location = new System.Drawing.Point(419, 152);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 25);
             this.label9.TabIndex = 384;
@@ -411,7 +401,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(354, 110);
+            this.label8.Location = new System.Drawing.Point(389, 110);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(86, 25);
             this.label8.TabIndex = 383;
@@ -481,7 +471,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(883, 242);
+            this.label5.Location = new System.Drawing.Point(884, 242);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(112, 30);
             this.label5.TabIndex = 378;
@@ -530,15 +520,25 @@
             this.txtMascota.Size = new System.Drawing.Size(187, 29);
             this.txtMascota.TabIndex = 374;
             // 
+            // txtFechaNac
+            // 
+            this.txtFechaNac.BackColor = System.Drawing.Color.Silver;
+            this.txtFechaNac.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaNac.Location = new System.Drawing.Point(223, 194);
+            this.txtFechaNac.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFechaNac.Name = "txtFechaNac";
+            this.txtFechaNac.Size = new System.Drawing.Size(172, 29);
+            this.txtFechaNac.TabIndex = 403;
+            // 
             // VeterianiaGestionarHistorialM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.txtFechaNac);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.dtCitas);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtxNumero);
             this.Controls.Add(this.txtDueño);
             this.Controls.Add(this.txtRaza);
@@ -601,7 +601,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtxNumero;
         private System.Windows.Forms.TextBox txtDueño;
         private System.Windows.Forms.TextBox txtRaza;
@@ -629,5 +628,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMascota;
+        private System.Windows.Forms.TextBox txtFechaNac;
     }
 }
