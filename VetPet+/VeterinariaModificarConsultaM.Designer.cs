@@ -55,9 +55,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtRaza = new System.Windows.Forms.TextBox();
             this.txtEspecie = new System.Windows.Forms.TextBox();
-            this.txtNombreMascota = new System.Windows.Forms.TextBox();
+            this.txtMascota = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.txtApellidoDueño = new System.Windows.Forms.TextBox();
+            this.txtApellidoPat = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtNombreDueño = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).BeginInit();
@@ -373,15 +373,15 @@
             this.txtEspecie.Size = new System.Drawing.Size(171, 29);
             this.txtEspecie.TabIndex = 373;
             // 
-            // txtNombreMascota
+            // txtMascota
             // 
-            this.txtNombreMascota.BackColor = System.Drawing.Color.Silver;
-            this.txtNombreMascota.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreMascota.Location = new System.Drawing.Point(147, 171);
-            this.txtNombreMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNombreMascota.Name = "txtNombreMascota";
-            this.txtNombreMascota.Size = new System.Drawing.Size(171, 29);
-            this.txtNombreMascota.TabIndex = 372;
+            this.txtMascota.BackColor = System.Drawing.Color.Silver;
+            this.txtMascota.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMascota.Location = new System.Drawing.Point(147, 171);
+            this.txtMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtMascota.Name = "txtMascota";
+            this.txtMascota.Size = new System.Drawing.Size(171, 29);
+            this.txtMascota.TabIndex = 372;
             // 
             // txtTelefono
             // 
@@ -393,15 +393,15 @@
             this.txtTelefono.Size = new System.Drawing.Size(171, 29);
             this.txtTelefono.TabIndex = 371;
             // 
-            // txtApellidoDueño
+            // txtApellidoPat
             // 
-            this.txtApellidoDueño.BackColor = System.Drawing.Color.Silver;
-            this.txtApellidoDueño.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidoDueño.Location = new System.Drawing.Point(435, 95);
-            this.txtApellidoDueño.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtApellidoDueño.Name = "txtApellidoDueño";
-            this.txtApellidoDueño.Size = new System.Drawing.Size(171, 29);
-            this.txtApellidoDueño.TabIndex = 370;
+            this.txtApellidoPat.BackColor = System.Drawing.Color.Silver;
+            this.txtApellidoPat.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApellidoPat.Location = new System.Drawing.Point(435, 95);
+            this.txtApellidoPat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtApellidoPat.Name = "txtApellidoPat";
+            this.txtApellidoPat.Size = new System.Drawing.Size(171, 29);
+            this.txtApellidoPat.TabIndex = 370;
             // 
             // label10
             // 
@@ -491,15 +491,15 @@
             this.label4.TabIndex = 362;
             this.label4.Text = "Informacion del Dueño";
             // 
-            // txtNombreDueño
+            // txtNombre
             // 
-            this.txtNombreDueño.BackColor = System.Drawing.Color.Silver;
-            this.txtNombreDueño.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreDueño.Location = new System.Drawing.Point(151, 95);
-            this.txtNombreDueño.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNombreDueño.Name = "txtNombreDueño";
-            this.txtNombreDueño.Size = new System.Drawing.Size(171, 29);
-            this.txtNombreDueño.TabIndex = 361;
+            this.txtNombre.BackColor = System.Drawing.Color.Silver;
+            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Location = new System.Drawing.Point(151, 95);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(171, 29);
+            this.txtNombre.TabIndex = 361;
             // 
             // VeterinariaModificarConsultaM
             // 
@@ -528,9 +528,9 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtRaza);
             this.Controls.Add(this.txtEspecie);
-            this.Controls.Add(this.txtNombreMascota);
+            this.Controls.Add(this.txtMascota);
             this.Controls.Add(this.txtTelefono);
-            this.Controls.Add(this.txtApellidoDueño);
+            this.Controls.Add(this.txtApellidoPat);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -539,7 +539,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtNombreDueño);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.pictureBox5);
@@ -583,9 +583,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtRaza;
         private System.Windows.Forms.TextBox txtEspecie;
-        private System.Windows.Forms.TextBox txtNombreMascota;
+        private System.Windows.Forms.TextBox txtMascota;
         private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.TextBox txtApellidoDueño;
+        private System.Windows.Forms.TextBox txtApellidoPat;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -594,6 +594,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtNombreDueño;
+        private System.Windows.Forms.TextBox txtNombre;
     }
 }
