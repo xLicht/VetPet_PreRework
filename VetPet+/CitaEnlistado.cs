@@ -156,5 +156,56 @@ namespace VetPet_
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private void FiltrarPorFecha(DateTime fechaSeleccionada)
+        {
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Consulta SQL para filtrar productos por fechaRegistro
+                string query = @"
+                Select 
+	                p.nombre AS nombre,
+	                p.apellidoP AS apellidoP,
+	                p.celularPrincipal AS celularPrincipal, 
+	                m.nombre AS nombreMascota,
+	                ci.fechaProgramada AS fechaProgramada
+                FROM Persona p
+                JOIN Mascota m ON p.idPersona = m.idPersona
+                JOIN Cita ci ON m.idMascota = ci.idMascota
+                WHERE CAST(p.fechaRegistro AS DATE) = @fechaSeleccionada;";
+
+                // Crear un SqlDataAdapter con la conexión
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                // Agregar el parámetro de fecha
+                da.SelectCommand.Parameters.AddWithValue("@fechaSeleccionada", fechaSeleccionada.Date);
+
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados
+                da.Fill(dt);
+
+                // Asignar el DataTable al DataGridView
+                dataGridView1.DataSource = dt;
+                dataGridView1.AutoGenerateColumns = true;
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            FiltrarPorFecha(dateTimePicker1.Value);
+        }
     }
 }

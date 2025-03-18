@@ -27,13 +27,31 @@ namespace VetPet_
 
         private void CitaAgregarServicio_Load(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(CitaListaServicio.ServicioSeleccionado))
+            {
+                txtServicio.Text = CitaListaServicio.ServicioSeleccionado;
+                txtClaseServicio.Text = CitaListaServicio.CategoriaSeleccionada;
+            }
+            if (!string.IsNullOrEmpty(CitaEmpleadosDisponibles.PersonalSeleccionado))
+            {
+                txtPersonal.Text = CitaEmpleadosDisponibles.PersonalSeleccionado;
+            }
         }
+
+
+        public static string ServicioSeleccionado { get; set; }
+        public static string ClaseServicioSeleccionada { get; set; }
+        public static string PersonalSeleccionado { get; set; }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            CitaAgregarServicio.ServicioSeleccionado = txtServicio.Text;
+            CitaAgregarServicio.ClaseServicioSeleccionada = txtClaseServicio.Text;
+            CitaAgregarServicio.PersonalSeleccionado = txtPersonal.Text;
+
+            parentForm.formularioHijo(new CitaAgendar(parentForm));
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -54,8 +72,10 @@ namespace VetPet_
 
         private void btnServicio_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CitaListaServicio(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioAgregarProducto
+            CitaListaServicio.VieneDeCitaAgregarServicio = true;
+            parentForm.formularioHijo(new CitaListaServicio(parentForm));
         }
+
 
         private void btnPersonal_Click(object sender, EventArgs e)
         {
