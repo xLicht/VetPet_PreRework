@@ -15,6 +15,9 @@ namespace VetPet_
     public partial class VeterinariaConsultarRece : FormPadre
     {
         public int DatoCita { get; set; }
+        public int DatoCita2 { get; set; }
+        int DatoCitaT = 0;
+        int DatoCita2T = 0;
         private int datoConsulta;
         private List<Tuple<int, string, int>> listaMedicamentos = new List<Tuple<int, string, int>>();
         private conexionDaniel conexionDB = new conexionDaniel();
@@ -28,6 +31,13 @@ namespace VetPet_
 
         private void VeterinariaConsultarRece_Load(object sender, EventArgs e)
         {
+            DatoCitaT = DatoCita;
+            DatoCita2T = DatoCita2;
+
+            if (DatoCita == 0)
+            {
+                DatoCita = DatoCita2;
+            }
             ObtenerDatoConsulta();
             if (datoConsulta != 0)
             {
@@ -259,7 +269,14 @@ namespace VetPet_
         {
             int idCitaSeleccionada = Convert.ToInt32(DatoCita);
             VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
+            if (DatoCitaT == 0 && DatoCita2T != 0)
+            {
+                formularioHijo.DatoCita2 = idCitaSeleccionada;
+            }
+            else
+            {
+                formularioHijo.DatoCita = idCitaSeleccionada;
+            }
             parentForm.formularioHijo(formularioHijo);
 
             //parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
@@ -270,7 +287,14 @@ namespace VetPet_
 
             int idCitaSeleccionada = Convert.ToInt32(DatoCita);
             VeterinariaModificarReceta formularioHijo = new VeterinariaModificarReceta(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
+            if (DatoCitaT == 0 && DatoCita2T != 0)
+            {
+                formularioHijo.DatoCita2 = idCitaSeleccionada;
+            }
+            else
+            {
+                formularioHijo.DatoCita = idCitaSeleccionada;
+            }
             parentForm.formularioHijo(formularioHijo);
 
            // parentForm.formularioHijo(new VeterinariaModificarReceta(parentForm));

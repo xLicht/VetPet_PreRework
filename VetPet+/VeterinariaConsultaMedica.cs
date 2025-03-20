@@ -17,9 +17,9 @@ namespace VetPet_
     {
         public int DatoCita { get; set; }
         public int DatoCita2 { get; set; }
-        private conexionDaniel conexionDB = new conexionDaniel();
         int DatoCitaT = 0;
         int DatoCita2T = 0;
+        private conexionDaniel conexionDB = new conexionDaniel();
         public VeterinariaConsultaMedica(Form1 parent)
         {
             InitializeComponent();
@@ -62,9 +62,17 @@ namespace VetPet_
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+
             int idCitaSeleccionada = Convert.ToInt32(DatoCita);
             VeterinariaModificarConsultaM formularioHijo = new VeterinariaModificarConsultaM(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
+            if (DatoCitaT == 0 && DatoCita2T != 0)
+            {
+                formularioHijo.DatoCita2 = idCitaSeleccionada;
+            }
+            else
+            {
+                formularioHijo.DatoCita = idCitaSeleccionada;
+            }
             parentForm.formularioHijo(formularioHijo);
 
 
@@ -74,9 +82,17 @@ namespace VetPet_
 
         private void btnRecetar_Click(object sender, EventArgs e)
         {
+            
             int idCitaSeleccionada = Convert.ToInt32(DatoCita);
             VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
+            if (DatoCitaT == 0 && DatoCita2T != 0)
+            {
+                formularioHijo.DatoCita2 = idCitaSeleccionada;
+            }
+            else
+            {
+                formularioHijo.DatoCita = idCitaSeleccionada;
+            }
             parentForm.formularioHijo(formularioHijo);
 
 

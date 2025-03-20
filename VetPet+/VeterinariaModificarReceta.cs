@@ -16,6 +16,9 @@ namespace VetPet_
     public partial class VeterinariaModificarReceta : FormPadre
     {
         public int DatoCita { get; set; }
+        public int DatoCita2 { get; set; }
+        int DatoCitaT = 0;
+        int DatoCita2T = 0;
         private conexionDaniel conexionDB = new conexionDaniel();
         private int datoConsulta;
         private List<Tuple<int, string, int>> listaMedicamentos = new List<Tuple<int, string, int>>();
@@ -28,6 +31,13 @@ namespace VetPet_
         private void VeterinariaModificarReceta_Load(object sender, EventArgs e)
         {
             //MessageBox.Show("Dato Recibido" + DatoCita);
+            DatoCitaT = DatoCita;
+            DatoCita2T = DatoCita2;
+
+            if (DatoCita == 0)
+            {
+                DatoCita = DatoCita2;
+            }
             ObtenerDatoConsulta();
             if (datoConsulta != 0)
             {
