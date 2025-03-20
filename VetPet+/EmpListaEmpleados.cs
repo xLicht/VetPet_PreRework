@@ -78,16 +78,8 @@ namespace VetPet_
 
                 string filtroNombre = txtBuscar.Text;
 
-                //string query = $@"
-                //    SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
-                //           t.nombre AS tipoEmpleado, p.Celular
-                //    FROM Empleado e
-                //    JOIN Persona p ON e.idPersona = p.idPersona
-                //    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                //    WHERE p.nombre LIKE @nombreFiltro
-                //    ORDER BY {ordenColumna};";
                 string query = $@"SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
-                    t.nombre AS tipoEmpleado, p.Celular
+                    t.nombre AS tipoEmpleado, p.CelularPrincipal
                     FROM Empleado e
                     JOIN Persona p ON e.idPersona = p.idPersona
                     JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
@@ -105,7 +97,7 @@ namespace VetPet_
                     dtEmpleados.Rows.Clear();
                     foreach (DataRow row in dt.Rows)
                     {
-                        dtEmpleados.Rows.Add(row["idEmpleado"],row["nombre"],row["apellidoP"],row["apellidoM"],row["tipoEmpleado"],row["celular"]);
+                        dtEmpleados.Rows.Add(row["idEmpleado"],row["nombre"],row["apellidoP"],row["apellidoM"],row["tipoEmpleado"],row["celularPrincipal"]);
                     }
                 }
             }
