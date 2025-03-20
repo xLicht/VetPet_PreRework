@@ -76,13 +76,13 @@ namespace VetPet_.Angie
                 mismetodos.AbrirConexion();
 
                 string query = @"
-        SELECT 
-            p.idProducto AS idProducto,
-            p.nombre AS Producto,
-            p.precioVenta AS Precio
-        FROM Producto p
-        INNER JOIN Marca m ON p.idMarca = m.idMarca
-        WHERE P.idTipoProducto = 1 OR P.idTipoProducto = 2;";
+    SELECT 
+        p.idProducto AS idProducto,
+        p.nombre AS Producto,
+        p.precioVenta AS Precio
+    FROM Producto p
+    INNER JOIN Marca m ON p.idMarca = m.idMarca
+    WHERE P.idTipoProducto = 1 OR P.idTipoProducto = 2;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter da = new SqlDataAdapter(comando))
@@ -111,21 +111,34 @@ namespace VetPet_.Angie
                         {
                             DataRow rowToAdd = dtProductos.NewRow();
                             rowToAdd.ItemArray = newRow.ItemArray;
-                            rowToAdd["Total"] = subTotal; // Asignar el total
+
+                            // Aquí calculamos el total de forma correcta.
+                            // Asegúrate de que subTotal está correctamente calculado antes de asignarlo
+                            rowToAdd["Total"] = subTotal; // Asignar el total calculado
+
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
                     else
                     {
                         // Si el producto ya está en la tabla, sumarle el subtotal
-                        existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + subTotal;
+                        decimal existingTotal = existingRow["Total"] == DBNull.Value ? 0 : Convert.ToDecimal(existingRow["Total"]);
+                        existingRow["Total"] = existingTotal + subTotal; // Sumar el subtotal al total actual
+
+                        // Si el valor de Total se vuelve incorrecto, asignamos 0
+                        if (Convert.ToDecimal(existingRow["Total"]) <= 0)
+                        {
+                            existingRow["Total"] = 0;
+                        }
                     }
 
                     // Filtrar y actualizar el DataGridView
                     BindingSource bs = new BindingSource();
                     bs.DataSource = dtProductos;
-                    bs.Filter = "[Total] IS NOT NULL";
+                    bs.Filter = "[Total] IS NOT NULL"; // Filtramos filas con Total no nulo
                     dataGridView2.DataSource = bs;
+
+                    // Actualizamos el total general si es necesario
                     ActualizarTotal();
                 }
             }
@@ -133,6 +146,7 @@ namespace VetPet_.Angie
             {
                 MessageBox.Show("Error al cargar productos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
 
