@@ -36,15 +36,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RbMédico = new System.Windows.Forms.RadioButton();
-            this.RbEstetico = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtDuracion = new System.Windows.Forms.TextBox();
             this.TxtPrecio = new System.Windows.Forms.TextBox();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,8 +50,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -156,103 +146,15 @@
             this.pictureBox3.TabIndex = 58;
             this.pictureBox3.TabStop = false;
             // 
-            // groupBox2
+            // TxtDuracion
             // 
-            this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Location = new System.Drawing.Point(254, 389);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(267, 54);
-            this.groupBox2.TabIndex = 80;
-            this.groupBox2.TabStop = false;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(143, 18);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(115, 22);
-            this.radioButton1.TabIndex = 14;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Veterinario";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(19, 18);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 22);
-            this.radioButton2.TabIndex = 13;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Acicalador";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(80, 407);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(175, 22);
-            this.label8.TabIndex = 79;
-            this.label8.Text = "Tipo de Empleado";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.RbMédico);
-            this.groupBox1.Controls.Add(this.RbEstetico);
-            this.groupBox1.Location = new System.Drawing.Point(254, 324);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(267, 54);
-            this.groupBox1.TabIndex = 78;
-            this.groupBox1.TabStop = false;
-            // 
-            // RbMédico
-            // 
-            this.RbMédico.AutoSize = true;
-            this.RbMédico.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbMédico.Location = new System.Drawing.Point(143, 19);
-            this.RbMédico.Name = "RbMédico";
-            this.RbMédico.Size = new System.Drawing.Size(83, 22);
-            this.RbMédico.TabIndex = 14;
-            this.RbMédico.TabStop = true;
-            this.RbMédico.Text = "Médico";
-            this.RbMédico.UseVisualStyleBackColor = true;
-            // 
-            // RbEstetico
-            // 
-            this.RbEstetico.AutoSize = true;
-            this.RbEstetico.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbEstetico.Location = new System.Drawing.Point(19, 18);
-            this.RbEstetico.Name = "RbEstetico";
-            this.RbEstetico.Size = new System.Drawing.Size(92, 22);
-            this.RbEstetico.TabIndex = 13;
-            this.RbEstetico.TabStop = true;
-            this.RbEstetico.Text = "Estetico";
-            this.RbEstetico.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(80, 342);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(168, 22);
-            this.label3.TabIndex = 77;
-            this.label3.Text = "Clase de Servicio";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.textBox1.Location = new System.Drawing.Point(366, 267);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(155, 29);
-            this.textBox1.TabIndex = 74;
+            this.TxtDuracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
+            this.TxtDuracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDuracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TxtDuracion.Location = new System.Drawing.Point(366, 267);
+            this.TxtDuracion.Name = "TxtDuracion";
+            this.TxtDuracion.Size = new System.Drawing.Size(155, 29);
+            this.TxtDuracion.TabIndex = 74;
             // 
             // TxtPrecio
             // 
@@ -357,11 +259,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TxtDuracion);
             this.Controls.Add(this.TxtPrecio);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label6);
@@ -380,15 +278,12 @@
             this.Controls.Add(this.BtnRegresar);
             this.Name = "ModificarRadiografias";
             this.Text = "ModificarRadiografias";
+            this.Load += new System.EventHandler(this.ModificarRadiografias_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,15 +299,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton RbMédico;
-        private System.Windows.Forms.RadioButton RbEstetico;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtDuracion;
         private System.Windows.Forms.TextBox TxtPrecio;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label label6;

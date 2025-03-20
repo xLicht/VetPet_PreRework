@@ -40,13 +40,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgendarCita = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // txtProducto
@@ -57,7 +56,7 @@
             this.txtProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.txtProducto.Location = new System.Drawing.Point(53, 33);
             this.txtProducto.Name = "txtProducto";
-            this.txtProducto.Size = new System.Drawing.Size(891, 24);
+            this.txtProducto.Size = new System.Drawing.Size(590, 24);
             this.txtProducto.TabIndex = 35;
             this.txtProducto.Text = "Buscar nombre de dueño";
             this.txtProducto.Enter += new System.EventHandler(this.txtProducto_Enter);
@@ -91,9 +90,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label1.Location = new System.Drawing.Point(94, 103);
+            this.label1.Location = new System.Drawing.Point(53, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 35);
+            this.label1.Size = new System.Drawing.Size(212, 35);
             this.label1.TabIndex = 38;
             this.label1.Text = "Dueño";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -103,9 +102,9 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label2.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label2.Location = new System.Drawing.Point(237, 103);
+            this.label2.Location = new System.Drawing.Point(227, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 35);
+            this.label2.Size = new System.Drawing.Size(230, 35);
             this.label2.TabIndex = 39;
             this.label2.Text = "Apellido paterno";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -206,34 +205,25 @@
             this.pictureBox2.TabIndex = 45;
             this.pictureBox2.TabStop = false;
             // 
-            // comboBox1
+            // dateTimePicker1
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.DropDownWidth = 150;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Dueño",
-            "Apellido Paterno",
-            "Mascota",
-            "Fecha"});
-            this.comboBox1.Location = new System.Drawing.Point(53, 114);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(35, 26);
-            this.comboBox1.TabIndex = 48;
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.dateTimePicker1.Location = new System.Drawing.Point(746, 38);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 50;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // pictureBox3
+            // label6
             // 
-            this.pictureBox3.Enabled = false;
-            this.pictureBox3.Image = global::VetPet_.Properties.Resources.menu_bar;
-            this.pictureBox3.Location = new System.Drawing.Point(53, 103);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(35, 37);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 47;
-            this.pictureBox3.TabStop = false;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
+            this.label6.Location = new System.Drawing.Point(659, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 25);
+            this.label6.TabIndex = 49;
+            this.label6.Text = "Fecha";
             // 
             // CitaEnlistado
             // 
@@ -241,8 +231,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnAgendarCita);
             this.Controls.Add(this.label5);
@@ -262,7 +252,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +271,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnAgendarCita;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label6;
     }
 }

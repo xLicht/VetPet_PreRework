@@ -82,6 +82,7 @@
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(678, 29);
             this.TxtBuscar.TabIndex = 7;
+            this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // BtnBuscar
             // 

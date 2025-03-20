@@ -53,19 +53,16 @@ namespace VetPet_
 
                 // Definir la consulta
                 string query = @"
-                SELECT 
-                    p.Nombre, 
-                    (SELECT TOP 1 c.Numero 
-                     FROM Celular c 
-                     WHERE c.idProveedor = p.IdProveedor 
-                     ORDER BY c.idProveedor ASC) AS Celular,
-                    ISNULL(e.Nombre, 'Sin estado') AS Estado
-                FROM 
-                    Proveedor p
-                LEFT JOIN 
-                    Direccion d ON p.IdProveedor = d.IdProveedor
-                LEFT JOIN 
-                    Estado e ON d.IdEstado = e.IdEstado;";
+               SELECT 
+                     p.Nombre, 
+                     p.celularPrincipal,
+                     ISNULL(e.Nombre, 'Sin estado') AS Estado
+                 FROM 
+                     Proveedor p
+                 LEFT JOIN 
+                     Direccion d ON p.IdProveedor = d.IdProveedor
+                 LEFT JOIN 
+                     Estado e ON d.IdEstado = e.IdEstado;";
 
 
                 // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
@@ -205,7 +202,7 @@ namespace VetPet_
 
                 string query = @"SELECT 
                             p.Nombre, 
-                            p.Celular, 
+                            p.celularPrincipal, 
                             e.nombre
                         FROM 
                             Proveedor p
@@ -236,6 +233,67 @@ namespace VetPet_
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             FiltrarProveedoresPorFecha(dateTimePicker1.Value);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // Obtener el texto del TextBox (nombre del medicamento a buscar)
+            string nombreProveedor = txtProveedor.Text.Trim();
+
+            // Validar que no esté vacío
+            if (string.IsNullOrEmpty(nombreProveedor))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre de proveedor para buscar.");
+                return;
+            }
+
+            try
+            {
+                // Crear una instancia de la clase conexionBrandon
+                conexionBrandon conexion = new conexionBrandon();
+
+                // Abrir la conexión
+                conexion.AbrirConexion();
+
+                // Definir la consulta con un filtro de búsqueda
+                string query = @"SELECT 
+                            p.Nombre, 
+                            p.celularPrincipal, 
+                            e.nombre
+                        FROM 
+                            Proveedor p
+                        JOIN 
+                            Direccion d ON p.IdProveedor = d.IdProveedor
+                        JOIN 
+                            Estado e ON d.IdEstado = e.IdEstado
+                        WHERE p.Nombre LIKE @Nombre"; // Usar LIKE para hacer la búsqueda
+
+                // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
+                SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
+
+                // Agregar el parámetro para la búsqueda
+                da.SelectCommand.Parameters.AddWithValue("@Nombre", "%" + nombreProveedor + "%");
+
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados de la consulta
+                da.Fill(dt);
+
+                // Asignar el DataTable al DataGridView
+                dataGridView1.DataSource = dt;
+
+                // Asegurarse de que las columnas se generen correctamente
+                dataGridView1.AutoGenerateColumns = true; // Esta propiedad debería estar en true por defecto
+
+
+
+                // Cerrar la conexión
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

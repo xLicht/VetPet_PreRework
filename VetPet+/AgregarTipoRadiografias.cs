@@ -30,7 +30,9 @@ namespace VetPet_
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaRadiografias(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            conexion.GuardarTipoServicio(TxtNombre, richTextBox1, 7);
         }
     }
 }

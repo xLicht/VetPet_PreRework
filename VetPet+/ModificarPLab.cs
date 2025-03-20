@@ -36,38 +36,7 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-
-            // Consulta para eliminar el registro basado en el ID
-            string query = "UPDATE ServicioEspecificoNieto SET estado = 'B' WHERE idServicioEspecificoNieto = @ID";
-
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    // Agregar el parámetro de ID a la consulta
-                    cmd.Parameters.AddWithValue("@ID", identificador);
-
-                    // Ejecutar la consulta de eliminación
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-
-                    if (filasAfectadas > 0)
-                    {
-                        MessageBox.Show("Registro eliminado correctamente.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró un registro con ese ID.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al eliminar el registro: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
+            conexion.Eliminar(identificador);
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -152,39 +121,7 @@ namespace VetPet_
                 }
             }
         }
-        private void cargarCombobox()
-        {
-            conexionAlex conexion = new conexionAlex();
-            conexion.AbrirConexion();
-            string query = "SELECT nombre FROM ServicioEspecificoHijo WHERE idServicioPadre = 8";
 
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    // Crear un SqlDataAdapter con la conexión correcta
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-
-                    DataTable dt = new DataTable();
-                    dataAdapter.Fill(dt);
-
-                    // Asignar el DataTable como fuente de datos
-                    comboBox1.DataSource = dt;
-
-                    // Asegúrate de que DisplayMember coincida con el nombre exacto de la columna en tu DataTable
-                    comboBox1.DisplayMember = "nombre";  // Nombre de la columna que quieres mostrar en el ComboBox
-                    comboBox1.ValueMember = "nombre";    // El valor del ComboBox será el mismo campo
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
-        }
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo números, punto decimal, y tecla de retroceso
@@ -201,10 +138,10 @@ namespace VetPet_
         }
         private void ModificarPLab_Load(object sender, EventArgs e)
         {
-            cargarCombobox();
+            
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-
+            conexion.cargarCombobox(comboBox1, "8");
             string query = "SELECT nombre, descripcion, precio, duracion FROM ServicioEspecificoNieto WHERE idServicioEspecificoNieto = @ID";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
