@@ -33,13 +33,15 @@ namespace VetPet_
 
                 // Definir la consulta
                 string query = @"SELECT 
-                            p.nombre AS Presentacion,
-                            m.nombreGenérico AS Nombre,
-                            pr.stock AS Inventario,
-                            pr.precioventa AS Precio
-                        FROM Medicamento m
-                        JOIN presentacion p ON m.idpresentacion = p.idpresentacion
-                        JOIN producto pr ON m.idproducto = pr.idproducto;";
+                    p.nombre AS Presentacion,
+                    m.nombreGenérico AS Nombre,
+                    pr.stock AS Inventario,
+                    pr.precioventa AS Precio,
+                    pro.nombre
+                    FROM Medicamento m
+                    JOIN presentacion p ON m.idpresentacion = p.idpresentacion
+                    JOIN producto pr ON m.idproducto = pr.idproducto
+                    JOIN Proveedor pro ON pr.idProveedor = pro.idProveedor";
 
                 // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
                 SqlDataAdapter da = new SqlDataAdapter(query, conexion.GetConexion());
