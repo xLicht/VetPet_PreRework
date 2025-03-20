@@ -51,7 +51,11 @@ namespace VetPet_
             }
             else
             {
-                parentForm.formularioHijo(new CitasMedicas(parentForm));
+                int idMascotaSeleccionada = Convert.ToInt32(DatoCita);
+                ConsultarCita formularioHijo = new ConsultarCita(parentForm);
+                formularioHijo.DatoCita = DatoCita;
+                parentForm.formularioHijo(formularioHijo);
+                //parentForm.formularioHijo(new CitasMedicas(parentForm));
             }
             //parentForm.formularioHijo(new ConsultarCita(parentForm));
         }

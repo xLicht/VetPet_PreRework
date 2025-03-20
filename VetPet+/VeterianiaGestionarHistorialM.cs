@@ -191,7 +191,7 @@ namespace VetPet_
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dtConsultas.Rows[e.RowIndex];
-                if (row.Cells[0].Value != null)
+                if (row.Cells[2].Value != null)
                 {
                     int idConsultaSeleccionada = Convert.ToInt32(row.Cells[0].Value);
                     VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);

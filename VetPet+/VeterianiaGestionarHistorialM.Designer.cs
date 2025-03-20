@@ -31,9 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRegresar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label17 = new System.Windows.Forms.Label();
             this.dtCitas = new System.Windows.Forms.DataGridView();
@@ -62,7 +60,6 @@
             this.txtMascota = new System.Windows.Forms.TextBox();
             this.txtFechaNac = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCitas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtConsultas)).BeginInit();
@@ -83,21 +80,6 @@
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // btnModificar
-            // 
-            this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnModificar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnModificar.Location = new System.Drawing.Point(277, 495);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(220, 63);
-            this.btnModificar.TabIndex = 31;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -108,18 +90,6 @@
             this.label16.Size = new System.Drawing.Size(380, 37);
             this.label16.TabIndex = 54;
             this.label16.Text = "Gestionar  Historial Medico";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VetrinariaAjustes;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(436, 506);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(48, 44);
-            this.pictureBox3.TabIndex = 32;
-            this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -160,7 +130,7 @@
             this.dtCitas.Location = new System.Drawing.Point(258, 275);
             this.dtCitas.Name = "dtCitas";
             this.dtCitas.RowHeadersVisible = false;
-            this.dtCitas.Size = new System.Drawing.Size(486, 217);
+            this.dtCitas.Size = new System.Drawing.Size(486, 271);
             this.dtCitas.TabIndex = 401;
             this.dtCitas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitas_CellContentClick);
             this.dtCitas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitas_CellContentClick);
@@ -375,7 +345,7 @@
             this.dtConsultas.Location = new System.Drawing.Point(780, 275);
             this.dtConsultas.Name = "dtConsultas";
             this.dtConsultas.RowHeadersVisible = false;
-            this.dtConsultas.Size = new System.Drawing.Size(269, 217);
+            this.dtConsultas.Size = new System.Drawing.Size(269, 271);
             this.dtConsultas.TabIndex = 379;
             this.dtConsultas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConsultas_CellContentClick);
             this.dtConsultas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConsultas_CellContentClick);
@@ -480,15 +450,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMascota);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnRegresar);
             this.Name = "VeterianiaGestionarHistorialM";
             this.Text = " ";
             this.Load += new System.EventHandler(this.VeterianiaGestionarHistorialM_Load);
             this.Resize += new System.EventHandler(this.VeterianiaGestionarHistorialM_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCitas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtConsultas)).EndInit();
@@ -500,8 +467,6 @@
         #endregion
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnRegresar;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView dtCitas;

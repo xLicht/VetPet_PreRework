@@ -533,6 +533,19 @@ namespace VetPet_
                 }
             }
         }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmacion = MessageBox.Show("los cambios no guardados se borraran", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                int idMascotaSeleccionada = Convert.ToInt32(DatoCita);
+                ConsultarCita formularioHijo = new ConsultarCita(parentForm);
+                formularioHijo.DatoCita = DatoCita;
+                parentForm.formularioHijo(formularioHijo);
+            }
+        }
     }
     public class ServicioSeleccionado
     {

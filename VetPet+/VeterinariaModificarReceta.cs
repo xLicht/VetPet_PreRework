@@ -39,14 +39,32 @@ namespace VetPet_
             }
             else
             {
-                //MessageBox.Show("No se encontró una consulta asociada a esta cita.");
+                MessageBox.Show("No se encontró una consulta asociada a esta cita.");
                // Close();
             }
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
+
+            DialogResult resultado = MessageBox.Show("Si no se guardan los cambios, se perderán. ¿Desea continuar?","Advertencia",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+
+                // parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
+            }
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //parentForm.formularioHijo(formularioHijo);
+
+
+            // parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -57,7 +75,7 @@ namespace VetPet_
 
         private void btnAgregarMedicamentos_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaModificarReceta"));
+           // parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaModificarReceta"));
         }
         private void CargarMedicamentos()
         {
@@ -166,7 +184,7 @@ namespace VetPet_
                     if (reader.Read())
                     {
                         datoConsulta = Convert.ToInt32(reader["idConsulta"]);
-                        MessageBox.Show("Consulta encontrada: " + datoConsulta);
+                        //MessageBox.Show("Consulta encontrada: " + datoConsulta);
                     }
                     else
                     {

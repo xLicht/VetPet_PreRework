@@ -39,7 +39,7 @@ namespace VetPet_
             else
             {
                 MessageBox.Show("No se encontró una consulta asociada a esta cita.");
-                Close();
+                //Close();
             }
             //MessageBox.Show("Dato Recibido"+ DatoCita);
         }
@@ -118,7 +118,7 @@ namespace VetPet_
                     if (reader.Read())
                     {
                         datoConsulta = Convert.ToInt32(reader["idConsulta"]);
-                        MessageBox.Show("Consulta encontrada: " + datoConsulta);
+                        //MessageBox.Show("Consulta encontrada: " + datoConsulta);
                     }
                     else
                     {
@@ -257,7 +257,12 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
+
+            //parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
