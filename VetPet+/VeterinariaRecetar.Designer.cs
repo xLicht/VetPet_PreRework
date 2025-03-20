@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dtMedicamentos = new System.Windows.Forms.DataGridView();
+            this.columm1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rtDiagnostico = new System.Windows.Forms.RichTextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnAgregarMedicamentos = new System.Windows.Forms.Button();
@@ -49,8 +52,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.cMedicamentos = new System.Windows.Forms.ComboBox();
-            this.cbCantidad = new System.Windows.Forms.NumericUpDown();
+            this.cbMedicamentos = new System.Windows.Forms.ComboBox();
+            this.nupCantidad = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -59,44 +62,58 @@
             this.txtEspecie = new System.Windows.Forms.TextBox();
             this.txtTemperatura = new System.Windows.Forms.TextBox();
             this.txtPeso = new System.Windows.Forms.TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMedicamentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dtMedicamentos
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.dtMedicamentos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtMedicamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dtMedicamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtMedicamentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columm1,
             this.Column2,
             this.Column3});
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 332);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(576, 218);
-            this.dataGridView1.TabIndex = 329;
+            this.dtMedicamentos.EnableHeadersVisualStyles = false;
+            this.dtMedicamentos.Location = new System.Drawing.Point(25, 332);
+            this.dtMedicamentos.Name = "dtMedicamentos";
+            this.dtMedicamentos.RowHeadersVisible = false;
+            this.dtMedicamentos.Size = new System.Drawing.Size(576, 218);
+            this.dtMedicamentos.TabIndex = 329;
+            this.dtMedicamentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtMedicamentos_CellClick);
+            // 
+            // columm1
+            // 
+            this.columm1.HeaderText = "id";
+            this.columm1.Name = "columm1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Cantidad";
+            this.Column3.Name = "Column3";
             // 
             // rtDiagnostico
             // 
-            this.rtDiagnostico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtDiagnostico.BackColor = System.Drawing.Color.Silver;
             this.rtDiagnostico.Location = new System.Drawing.Point(637, 99);
             this.rtDiagnostico.Name = "rtDiagnostico";
+            this.rtDiagnostico.ReadOnly = true;
             this.rtDiagnostico.Size = new System.Drawing.Size(424, 46);
             this.rtDiagnostico.TabIndex = 328;
             this.rtDiagnostico.Text = "";
@@ -196,9 +213,9 @@
             // rtIndicaciones
             // 
             this.rtIndicaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.rtIndicaciones.Location = new System.Drawing.Point(637, 210);
+            this.rtIndicaciones.Location = new System.Drawing.Point(637, 194);
             this.rtIndicaciones.Name = "rtIndicaciones";
-            this.rtIndicaciones.Size = new System.Drawing.Size(423, 266);
+            this.rtIndicaciones.Size = new System.Drawing.Size(423, 282);
             this.rtIndicaciones.TabIndex = 318;
             this.rtIndicaciones.Text = "";
             // 
@@ -284,7 +301,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(466, 9);
+            this.label16.Location = new System.Drawing.Point(485, 20);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(116, 37);
             this.label16.TabIndex = 302;
@@ -311,30 +328,30 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(116, 27);
             this.dateTimePicker1.TabIndex = 330;
             // 
-            // cMedicamentos
+            // cbMedicamentos
             // 
-            this.cMedicamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.cMedicamentos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cMedicamentos.FormattingEnabled = true;
-            this.cMedicamentos.Location = new System.Drawing.Point(33, 287);
-            this.cMedicamentos.Name = "cMedicamentos";
-            this.cMedicamentos.Size = new System.Drawing.Size(179, 29);
-            this.cMedicamentos.TabIndex = 331;
+            this.cbMedicamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.cbMedicamentos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMedicamentos.FormattingEnabled = true;
+            this.cbMedicamentos.Location = new System.Drawing.Point(33, 287);
+            this.cbMedicamentos.Name = "cbMedicamentos";
+            this.cbMedicamentos.Size = new System.Drawing.Size(179, 29);
+            this.cbMedicamentos.TabIndex = 331;
             // 
-            // cbCantidad
+            // nupCantidad
             // 
-            this.cbCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            this.cbCantidad.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCantidad.Location = new System.Drawing.Point(268, 287);
-            this.cbCantidad.Minimum = new decimal(new int[] {
+            this.nupCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.nupCantidad.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nupCantidad.Location = new System.Drawing.Point(268, 287);
+            this.nupCantidad.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.cbCantidad.Name = "cbCantidad";
-            this.cbCantidad.Size = new System.Drawing.Size(120, 29);
-            this.cbCantidad.TabIndex = 333;
-            this.cbCantidad.Value = new decimal(new int[] {
+            this.nupCantidad.Name = "nupCantidad";
+            this.nupCantidad.Size = new System.Drawing.Size(120, 29);
+            this.nupCantidad.TabIndex = 333;
+            this.nupCantidad.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -408,38 +425,25 @@
             // 
             // txtTemperatura
             // 
-            this.txtTemperatura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtTemperatura.BackColor = System.Drawing.Color.Silver;
             this.txtTemperatura.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTemperatura.Location = new System.Drawing.Point(377, 162);
             this.txtTemperatura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTemperatura.Name = "txtTemperatura";
+            this.txtTemperatura.ReadOnly = true;
             this.txtTemperatura.Size = new System.Drawing.Size(99, 29);
             this.txtTemperatura.TabIndex = 389;
             // 
             // txtPeso
             // 
-            this.txtPeso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtPeso.BackColor = System.Drawing.Color.Silver;
             this.txtPeso.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPeso.Location = new System.Drawing.Point(135, 162);
+            this.txtPeso.Location = new System.Drawing.Point(115, 162);
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPeso.Name = "txtPeso";
+            this.txtPeso.ReadOnly = true;
             this.txtPeso.Size = new System.Drawing.Size(86, 29);
             this.txtPeso.TabIndex = 388;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Nombre";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Marca";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Cantidad";
-            this.Column3.Name = "Column3";
             // 
             // VeterinariaRecetar
             // 
@@ -455,10 +459,10 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbCantidad);
-            this.Controls.Add(this.cMedicamentos);
+            this.Controls.Add(this.nupCantidad);
+            this.Controls.Add(this.cbMedicamentos);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtMedicamentos);
             this.Controls.Add(this.rtDiagnostico);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnAgregarMedicamentos);
@@ -480,11 +484,11 @@
             this.Name = "VeterinariaRecetar";
             this.Text = "VeterinariaRecetar";
             this.Load += new System.EventHandler(this.VeterinariaRecetar_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMedicamentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,7 +496,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtMedicamentos;
         private System.Windows.Forms.RichTextBox rtDiagnostico;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnAgregarMedicamentos;
@@ -512,8 +516,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox cMedicamentos;
-        private System.Windows.Forms.NumericUpDown cbCantidad;
+        private System.Windows.Forms.ComboBox cbMedicamentos;
+        private System.Windows.Forms.NumericUpDown nupCantidad;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNombre;
@@ -522,7 +526,7 @@
         private System.Windows.Forms.TextBox txtEspecie;
         private System.Windows.Forms.TextBox txtTemperatura;
         private System.Windows.Forms.TextBox txtPeso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columm1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }

@@ -18,6 +18,7 @@ namespace VetPet_
         public int DatoCita { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
         private List<ServicioSeleccionado> listaServicios = new List<ServicioSeleccionado>();
+        int idConsultaCreada = 0;
         public VeterinariaConsultarM(Form1 parent)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace VetPet_
             int idCitaSeleccionada = Convert.ToInt32(DatoCita);
             VeterinariaRecetar formularioHijo = new VeterinariaRecetar(parentForm);
             formularioHijo.DatoCita = idCitaSeleccionada;
+            formularioHijo.DatoConsulta = idConsultaCreada;
             parentForm.formularioHijo(formularioHijo);
 
             //parentForm.formularioHijo(new VeterinariaRecetar(parentForm));
@@ -395,8 +397,11 @@ namespace VetPet_
             try
             {
                 conexionDB.AbrirConexion();
+                //string query = @"INSERT INTO Consulta (diagnostico, peso, temperatura, idCita, FechaConsulta, MotivoConsulta, EstudioEspecial) 
+                //         VALUES (@diagnostico, @peso, @temperatura, @idCita, @fechaConsulta, @motivoConsulta, @estudioEspecial)";
                 string query = @"INSERT INTO Consulta (diagnostico, peso, temperatura, idCita, FechaConsulta, MotivoConsulta, EstudioEspecial) 
-                         VALUES (@diagnostico, @peso, @temperatura, @idCita, @fechaConsulta, @motivoConsulta, @estudioEspecial)";
+                         VALUES (@diagnostico, @peso, @temperatura, @idCita, @fechaConsulta, @motivoConsulta, @estudioEspecial);
+                         SELECT SCOPE_IDENTITY();"; 
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -417,6 +422,14 @@ namespace VetPet_
                     if (filasAfectadas > 0)
                     {
                         MessageBox.Show("Consulta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Ejecuta la consulta y obtiene el ID de la consulta insertada
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            idConsultaCreada = Convert.ToInt32(result);
+                            MessageBox.Show("Consulta guardada con éxito. ID: " + idConsultaCreada, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //MessageBox.Show("consulta:"+idConsultaCreada);
+                        }
                     }
                     else
                     {
