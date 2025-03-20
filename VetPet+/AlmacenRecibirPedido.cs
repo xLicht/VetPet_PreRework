@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -149,34 +150,63 @@ namespace VetPet_
             conexionBrandon conexion = new conexionBrandon();
             try
             {
-                // Verificar si ambos campos son "NULL"
                 if (txtIdProducto.Text == "NULL" && txtIdMedicamento.Text == "NULL")
                 {
                     MessageBox.Show("Debes seleccionar al menos un Producto o un Medicamento para agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // Salir del método sin guardar el pedido
+                    return;
                 }
 
                 conexion.AbrirConexion();
 
-                // Verificar si el texto en los TextBox es "NULL" y asignar DBNull.Value si es así
                 object idProducto = txtIdProducto.Text == "NULL" ? DBNull.Value : (object)int.Parse(txtIdProducto.Text);
                 object idMedicamento = txtIdMedicamento.Text == "NULL" ? DBNull.Value : (object)int.Parse(txtIdMedicamento.Text);
 
-                string query = "INSERT INTO Pedido (numFactura, fechaRecibido, cantidad, total, idProducto, idMedicamento, idProveedor) " +
-                               "VALUES (@Factura, @FechaRecibido, @Cantidad, @Total, @IdProducto, @IdMedicamento, @IdProveedor)";
+                // 1️⃣ Insertar en Pedido y obtener idPedido con SCOPE_IDENTITY()
+                string query = "INSERT INTO Pedido (numFactura, fechaRecibido, idProveedor) " +
+                               "VALUES (@Factura, @FechaRecibido, @IdProveedor); " +
+                               "SELECT SCOPE_IDENTITY();";
 
-                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
-                cmd.Parameters.AddWithValue("@Factura", txtFactura.Text);
+                SqlCommand cmd1 = new SqlCommand(query, conexion.GetConexion());
+                cmd1.Parameters.AddWithValue("@Factura", txtFactura.Text);
+                cmd1.Parameters.AddWithValue("@FechaRecibido", fechaRecibidoPicker.Value);
+                cmd1.Parameters.AddWithValue("@IdProveedor", int.Parse(txtIdProveedor.Text));
 
-                // Usar la fecha seleccionada en el DateTimePicker
-                cmd.Parameters.AddWithValue("@FechaRecibido", fechaRecibidoPicker.Value);  // Aquí tomas el valor de DateTimePicker
-                cmd.Parameters.AddWithValue("@Cantidad", int.Parse(txtCantidad.Text));
-                cmd.Parameters.AddWithValue("@Total", decimal.Parse(txtTotal.Text));
-                cmd.Parameters.AddWithValue("@IdProveedor", int.Parse(txtIdProveedor.Text));
-                cmd.Parameters.AddWithValue("@IdProducto", idProducto);
-                cmd.Parameters.AddWithValue("@IdMedicamento", idMedicamento);
+                int idPedido = Convert.ToInt32(cmd1.ExecuteScalar()); // Obtener el idPedido generado
 
-                cmd.ExecuteNonQuery();
+                // 2️⃣ Obtener datos del producto seleccionado
+                string queryProducto = "SELECT precioProveedor, precioVenta, fechaCaducidad FROM Producto WHERE idProducto = @IdProducto";
+                SqlCommand cmdProducto = new SqlCommand(queryProducto, conexion.GetConexion());
+                cmdProducto.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdProducto.Text));
+
+                SqlDataReader reader = cmdProducto.ExecuteReader();
+                decimal precioProveedor = 0, precioVenta = 0;
+                DateTime fechaCaducidad = DateTime.Now;
+
+                if (reader.Read())
+                {
+                    precioProveedor = reader.GetDecimal(0);
+                    precioVenta = reader.GetDecimal(1);
+                    fechaCaducidad = reader.GetDateTime(2);
+                }
+                reader.Close();
+
+                // 3️⃣ Insertar en DetallePedido con los valores obtenidos
+                string query2 = "INSERT INTO Detalles_Pedido (idPedido, idProducto, cantidad, precioProveedor, precioVenta, fechaCaducidad) " +
+                                "VALUES (@IdPedido, @IdProducto, @Cantidad, @PrecioProveedor, @PrecioVenta, @FechaCaducidad)";
+
+                SqlCommand cmd2 = new SqlCommand(query2, conexion.GetConexion());
+                cmd2.Parameters.AddWithValue("@IdPedido", idPedido);
+                if (cmbProducto.Focus())
+                    cmd2.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdProducto.Text));
+                else if (cmbMedicamento.Focus())
+                    cmd2.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdMedicamento.Text));
+                cmd2.Parameters.AddWithValue("@Cantidad", int.Parse(txtCantidad.Text));
+                cmd2.Parameters.AddWithValue("@PrecioProveedor", precioProveedor);
+                cmd2.Parameters.AddWithValue("@PrecioVenta", precioVenta);
+                cmd2.Parameters.AddWithValue("@FechaCaducidad", fechaCaducidad);
+
+                cmd2.ExecuteNonQuery();  // 🔹 Aquí estaba el error, debe ser cmd2
+
                 MessageBox.Show("Pedido agregado correctamente.");
 
                 // Preguntar si desea agregar otro pedido
@@ -195,6 +225,7 @@ namespace VetPet_
                 conexion.CerrarConexion();
             }
         }
+
 
 
 
