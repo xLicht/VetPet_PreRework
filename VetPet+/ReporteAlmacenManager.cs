@@ -330,7 +330,7 @@ namespace VetPet_
         }
         public string[,] ConsultaRep07(SqlConnection conex)
         {
-            string[,] datos = new string[10, 4];
+            string[,] datos = new string[10, 6];
             try
             {
                 conex.Open();
@@ -342,15 +342,19 @@ namespace VetPet_
                 int i = 0;
                 while (lector.Read())
                 {
-                    string nombre = lector.GetString(0);
-                    string correoElectronico = lector.GetString(1);
-                    string celular = lector.GetString(2);
-                    int cantidadVenta = lector.GetInt32(3);
+                    string nombreProv = lector.GetString(0);
+                    string nombreConta = lector.GetString(1);
+                    string correoElectronico = lector.GetString(2);
+                    string celular = lector.GetString(3);
+                    int cantidadVenta = lector.GetInt32(4);
+                    decimal totalVentas = lector.GetDecimal(5);
 
-                    datos[i, 0] = nombre;
-                    datos[i, 1] = correoElectronico;
-                    datos[i, 2] = celular;
-                    datos[i, 3] = cantidadVenta.ToString();
+                    datos[i, 0] = nombreProv;
+                    datos[i, 1] = nombreConta;
+                    datos[i, 2] = correoElectronico;
+                    datos[i, 3] = celular;
+                    datos[i, 4] = cantidadVenta.ToString();
+                    datos[i, 5] = totalVentas.ToString();
 
                     i++;
                 }
@@ -366,11 +370,11 @@ namespace VetPet_
         }
         public string[,] ConsultaRep08(SqlConnection conex)
         {
-            string[,] datos = new string[10, 4];
+            string[,] datos = new string[10, 6];
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"exec sp_ProveedoresMenosVentas @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -378,15 +382,19 @@ namespace VetPet_
                 int i = 0;
                 while (lector.Read())
                 {
-                    string nombre = lector.GetString(0);
-                    string correoElectronico = lector.GetString(1);
-                    string celular = lector.GetString(2);
-                    int cantidadVenta = lector.GetInt32(3);
+                    string nombreProv = lector.GetString(0);
+                    string nombreConta = lector.GetString(1);
+                    string correoElectronico = lector.GetString(2);
+                    string celular = lector.GetString(3);
+                    int cantidadVenta = lector.GetInt32(4);
+                    decimal totalVentas = lector.GetDecimal(5);
 
-                    datos[i, 0] = nombre;
-                    datos[i, 1] = correoElectronico;
-                    datos[i, 2] = celular;
-                    datos[i, 3] = cantidadVenta.ToString();
+                    datos[i, 0] = nombreProv;
+                    datos[i, 1] = nombreConta;
+                    datos[i, 2] = correoElectronico;
+                    datos[i, 3] = celular;
+                    datos[i, 4] = cantidadVenta.ToString();
+                    datos[i, 5] = totalVentas.ToString();
 
                     i++;
                 }
@@ -499,23 +507,29 @@ namespace VetPet_
         }
         public void CrearTablasProveedores(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
-            tabla = new PdfPTable(4);
+            tabla = new PdfPTable(6);
             tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1, 1, 1 });
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1, 1 });
             // Encabezados de la tabla
-            PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
-            PdfPCell header2 = new PdfPCell(new Phrase("Correo Electronico", tablaHeaderFont));
-            PdfPCell header3 = new PdfPCell(new Phrase("Celular", tablaHeaderFont));
-            PdfPCell header4 = new PdfPCell(new Phrase("Cantidad de Ventas", tablaHeaderFont));
+            PdfPCell header1 = new PdfPCell(new Phrase("Nombre del Proveedor", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Nombre del Contacto", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Correo Electronico", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Celular", tablaHeaderFont));
+            PdfPCell header5 = new PdfPCell(new Phrase("Numero de Pedidos", tablaHeaderFont));
+            PdfPCell header6 = new PdfPCell(new Phrase("Total de Venta", tablaHeaderFont));
             header1.HorizontalAlignment = Element.ALIGN_CENTER;
             header2.HorizontalAlignment = Element.ALIGN_CENTER;
             header3.HorizontalAlignment = Element.ALIGN_CENTER;
             header4.HorizontalAlignment = Element.ALIGN_CENTER;
+            header5.HorizontalAlignment = Element.ALIGN_CENTER;
+            header6.HorizontalAlignment = Element.ALIGN_CENTER;
             tabla.AddCell(header1);
             tabla.AddCell(header2);
             tabla.AddCell(header3);
             tabla.AddCell(header4);
+            tabla.AddCell(header5);
+            tabla.AddCell(header6);
             for (int i = 0; i < datos.GetLength(0); i++)
             {
                 if (datos[i, 0] != null || datos[i, 1] != null)
@@ -524,14 +538,20 @@ namespace VetPet_
                     PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
                     PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
                     PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
+                    PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
+                    PdfPCell celda6 = new PdfPCell(new Phrase(datos[i, 5], tablaFont));
                     celda1.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda2.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda3.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda4.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda5.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda6.HorizontalAlignment = Element.ALIGN_CENTER;
                     tabla.AddCell(celda1);
                     tabla.AddCell(celda2);
                     tabla.AddCell(celda3);
                     tabla.AddCell(celda4);
+                    tabla.AddCell(celda5);
+                    tabla.AddCell(celda6);
                 }
             }
         }
