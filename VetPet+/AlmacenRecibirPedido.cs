@@ -54,7 +54,6 @@ namespace VetPet_
 
             cmbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbProducto.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbMedicamento.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private void CargarCombos()
         {
@@ -63,7 +62,6 @@ namespace VetPet_
             {
                 this.cmbProveedor.SelectedIndexChanged += new System.EventHandler(this.cmbProveedor_SelectedIndexChanged);
                 this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectedIndexChanged);
-                this.cmbMedicamento.SelectedIndexChanged += new System.EventHandler(this.cmbMedicamento_SelectedIndexChanged);
 
                 conexion.AbrirConexion();
 
@@ -92,10 +90,6 @@ namespace VetPet_
                 SqlDataAdapter daMedicamento = new SqlDataAdapter(queryMedicamento, conexion.GetConexion());
                 DataTable dtMedicamento = new DataTable();
                 daMedicamento.Fill(dtMedicamento);
-
-                cmbMedicamento.DataSource = dtMedicamento;
-                cmbMedicamento.DisplayMember = "nombreGenérico";
-                cmbMedicamento.ValueMember = "idMedicamento";
             }
             catch (Exception ex)
             {
@@ -150,9 +144,9 @@ namespace VetPet_
             conexionBrandon conexion = new conexionBrandon();
             try
             {
-                if (txtIdProducto.Text == "NULL" && txtIdMedicamento.Text == "NULL")
+                if (txtIdProducto.Text == "NULL")
                 {
-                    MessageBox.Show("Debes seleccionar al menos un Producto o un Medicamento para agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debes seleccionar un Producto para agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -198,7 +192,7 @@ namespace VetPet_
                 cmd2.Parameters.AddWithValue("@IdPedido", idPedido);
                 if (cmbProducto.Focus())
                     cmd2.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdProducto.Text));
-                else if (cmbMedicamento.Focus())
+                //else if (cmbMedicamento.Focus())
                     cmd2.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdMedicamento.Text));
                 cmd2.Parameters.AddWithValue("@Cantidad", int.Parse(txtCantidad.Text));
                 cmd2.Parameters.AddWithValue("@PrecioProveedor", precioProveedor);
@@ -234,37 +228,6 @@ namespace VetPet_
             parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
         }
 
-        private void checkboxMedicamento_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkboxMedicamento.Checked)
-            {
-                cmbProducto.Text = "NULL";
-                txtIdProducto.Text = "NULL";
-                checkboxProducto.Checked = false;
-                cmbMedicamento.Enabled = true;
-                cmbProducto.Enabled = false;
-            }
-            else
-            {
-                cmbMedicamento.Enabled = false;
-            }
-        }
-
-        private void checkboxProducto_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkboxProducto.Checked)
-            {
-                cmbMedicamento.Text = "NULL";
-                txtIdMedicamento.Text = "NULL";
-                checkboxMedicamento.Checked = false;
-                cmbProducto.Enabled = true;
-                cmbMedicamento.Enabled = false;
-            }
-            else
-            {
-                cmbProducto.Enabled = false;
-            }
-        }
 
         private void cmbProveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -282,13 +245,6 @@ namespace VetPet_
             }
         }
 
-        private void cmbMedicamento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbMedicamento.SelectedValue != null)
-            {
-                txtIdMedicamento.Text = cmbMedicamento.SelectedValue.ToString();
-            }
-        }
 
         private void txtFactura_Enter(object sender, EventArgs e)
         {
@@ -313,6 +269,11 @@ namespace VetPet_
             {
                 txtTotal.Text = ""; // Limpia el TextBox
             }
+        }
+
+        private void btnCrearPedido_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
