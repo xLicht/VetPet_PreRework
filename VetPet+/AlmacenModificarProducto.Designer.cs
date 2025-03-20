@@ -57,8 +57,8 @@
             this.txtIdProveedor = new System.Windows.Forms.TextBox();
             this.txtIdTipoProducto = new System.Windows.Forms.TextBox();
             this.txtIdMarca = new System.Windows.Forms.TextBox();
+            this.fechaVencimientoPicker = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -431,6 +431,17 @@
             this.txtIdMarca.TabIndex = 101;
             this.txtIdMarca.Text = "Id Marca";
             // 
+            // fechaVencimientoPicker
+            // 
+            this.fechaVencimientoPicker.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.fechaVencimientoPicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.fechaVencimientoPicker.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaVencimientoPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fechaVencimientoPicker.Location = new System.Drawing.Point(324, 283);
+            this.fechaVencimientoPicker.Name = "fechaVencimientoPicker";
+            this.fechaVencimientoPicker.Size = new System.Drawing.Size(275, 40);
+            this.fechaVencimientoPicker.TabIndex = 129;
+            // 
             // label12
             // 
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
@@ -438,25 +449,10 @@
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
             this.label12.Location = new System.Drawing.Point(28, 283);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(223, 38);
-            this.label12.TabIndex = 105;
-            this.label12.Text = "Estado";
+            this.label12.Size = new System.Drawing.Size(280, 40);
+            this.label12.TabIndex = 128;
+            this.label12.Text = "Fecha vencimiento";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cmbEstado
-            // 
-            this.cmbEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.cmbEstado.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Items.AddRange(new object[] {
-            "A",
-            "N"});
-            this.cmbEstado.Location = new System.Drawing.Point(259, 281);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(340, 40);
-            this.cmbEstado.TabIndex = 106;
-            this.cmbEstado.Text = "Estado";
             // 
             // AlmacenModificarProducto
             // 
@@ -464,7 +460,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.cmbEstado);
+            this.Controls.Add(this.fechaVencimientoPicker);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtIdProveedor);
             this.Controls.Add(this.txtIdTipoProducto);
@@ -539,7 +535,7 @@
         private System.Windows.Forms.TextBox txtIdProveedor;
         private System.Windows.Forms.TextBox txtIdTipoProducto;
         private System.Windows.Forms.TextBox txtIdMarca;
+        private System.Windows.Forms.DateTimePicker fechaVencimientoPicker;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbEstado;
     }
 }

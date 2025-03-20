@@ -19,6 +19,18 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
         private Form1 parentForm;
+        private int idPedido; // Guardará el ID del pedido creado
+        private List<DetallesPedido> listaDetalles = new List<DetallesPedido>(); // Lista de productos agregados
+
+        public class DetallesPedido
+        {
+            public int IdPedido { get; set; }
+            public int IdProducto { get; set; }
+            public int Cantidad { get; set; }
+            public decimal PrecioProveedor { get; set; }
+            public decimal PrecioVenta { get; set; }
+            public DateTime FechaCaducidad { get; set; }
+        }
 
         public AlmacenRecibirPedido()
         {
@@ -32,6 +44,7 @@ namespace VetPet_
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
             CargarCombos();
+            CargarProductosEnComboBox();
         }
 
 
@@ -75,21 +88,6 @@ namespace VetPet_
                 cmbProveedor.DisplayMember = "nombre";  // Se muestra el nombre
                 cmbProveedor.ValueMember = "idProveedor"; // Se guarda el ID en SelectedValue
 
-                // Cargar Productos
-                string queryProducto = "SELECT idProducto, nombre FROM Producto";
-                SqlDataAdapter daProducto = new SqlDataAdapter(queryProducto, conexion.GetConexion());
-                DataTable dtProducto = new DataTable();
-                daProducto.Fill(dtProducto);
-
-                cmbProducto.DataSource = dtProducto;
-                cmbProducto.DisplayMember = "nombre";
-                cmbProducto.ValueMember = "idProducto";
-
-                // Cargar Medicamentos
-                string queryMedicamento = "SELECT idMedicamento, nombreGenérico FROM Medicamento";
-                SqlDataAdapter daMedicamento = new SqlDataAdapter(queryMedicamento, conexion.GetConexion());
-                DataTable dtMedicamento = new DataTable();
-                daMedicamento.Fill(dtMedicamento);
             }
             catch (Exception ex)
             {
@@ -101,6 +99,39 @@ namespace VetPet_
             }
         }
 
+        private void CargarProductosEnComboBox()
+        {
+            conexionBrandon conexion = new conexionBrandon();
+            try
+            {
+                conexion.AbrirConexion();
+
+                string query = @"
+                SELECT 
+                    p.idProducto, 
+                    COALESCE(m.nombreGenérico, p.nombre) AS NombreProducto
+                FROM Producto p
+                LEFT JOIN Medicamento m ON p.idProducto = m.idProducto
+                WHERE p.estado = 'A'";
+
+                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbProducto.DataSource = dt;
+                cmbProducto.DisplayMember = "NombreProducto";  // Mostrar el nombre en el ComboBox
+                cmbProducto.ValueMember = "idProducto"; // Guardar el idProducto internamente
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar productos: " + ex.Message);
+            }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
+        }
 
 
         private void AlmacenRecibirPedido_Resize(object sender, EventArgs e)
@@ -142,85 +173,47 @@ namespace VetPet_
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             conexionBrandon conexion = new conexionBrandon();
+            if (listaDetalles.Count == 0)
+            {
+                MessageBox.Show("No hay productos en el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
-                if (txtIdProducto.Text == "NULL")
-                {
-                    MessageBox.Show("Debes seleccionar un Producto para agregar el pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 conexion.AbrirConexion();
 
-                object idProducto = txtIdProducto.Text == "NULL" ? DBNull.Value : (object)int.Parse(txtIdProducto.Text);
-                object idMedicamento = txtIdMedicamento.Text == "NULL" ? DBNull.Value : (object)int.Parse(txtIdMedicamento.Text);
-
-                // 1️⃣ Insertar en Pedido y obtener idPedido con SCOPE_IDENTITY()
-                string query = "INSERT INTO Pedido (numFactura, fechaRecibido, idProveedor) " +
-                               "VALUES (@Factura, @FechaRecibido, @IdProveedor); " +
-                               "SELECT SCOPE_IDENTITY();";
-
-                SqlCommand cmd1 = new SqlCommand(query, conexion.GetConexion());
-                cmd1.Parameters.AddWithValue("@Factura", txtFactura.Text);
-                cmd1.Parameters.AddWithValue("@FechaRecibido", fechaRecibidoPicker.Value);
-                cmd1.Parameters.AddWithValue("@IdProveedor", int.Parse(txtIdProveedor.Text));
-
-                int idPedido = Convert.ToInt32(cmd1.ExecuteScalar()); // Obtener el idPedido generado
-
-                // 2️⃣ Obtener datos del producto seleccionado
-                string queryProducto = "SELECT precioProveedor, precioVenta, fechaCaducidad FROM Producto WHERE idProducto = @IdProducto";
-                SqlCommand cmdProducto = new SqlCommand(queryProducto, conexion.GetConexion());
-                cmdProducto.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdProducto.Text));
-
-                SqlDataReader reader = cmdProducto.ExecuteReader();
-                decimal precioProveedor = 0, precioVenta = 0;
-                DateTime fechaCaducidad = DateTime.Now;
-
-                if (reader.Read())
+                foreach (var detalle in listaDetalles)
                 {
-                    precioProveedor = reader.GetDecimal(0);
-                    precioVenta = reader.GetDecimal(1);
-                    fechaCaducidad = reader.GetDateTime(2);
+                    string query = "INSERT INTO Detalles_Pedido (idPedido, idProducto, cantidad, precioProveedor, precioVenta, fechaCaducidad) " +
+                                   "VALUES (@IdPedido, @IdProducto, @Cantidad, @PrecioProveedor, @PrecioVenta, @FechaCaducidad)";
+
+                    SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                    cmd.Parameters.AddWithValue("@IdPedido", detalle.IdPedido);
+                    cmd.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
+                    cmd.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                    cmd.Parameters.AddWithValue("@PrecioProveedor", detalle.PrecioProveedor);
+                    cmd.Parameters.AddWithValue("@PrecioVenta", detalle.PrecioVenta);
+                    cmd.Parameters.AddWithValue("@FechaCaducidad", detalle.FechaCaducidad);
+
+                    cmd.ExecuteNonQuery();
                 }
-                reader.Close();
 
-                // 3️⃣ Insertar en DetallePedido con los valores obtenidos
-                string query2 = "INSERT INTO Detalles_Pedido (idPedido, idProducto, cantidad, precioProveedor, precioVenta, fechaCaducidad) " +
-                                "VALUES (@IdPedido, @IdProducto, @Cantidad, @PrecioProveedor, @PrecioVenta, @FechaCaducidad)";
-
-                SqlCommand cmd2 = new SqlCommand(query2, conexion.GetConexion());
-                cmd2.Parameters.AddWithValue("@IdPedido", idPedido);
-                if (cmbProducto.Focus())
-                    cmd2.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdProducto.Text));
-                //else if (cmbMedicamento.Focus())
-                    cmd2.Parameters.AddWithValue("@IdProducto", int.Parse(txtIdMedicamento.Text));
-                cmd2.Parameters.AddWithValue("@Cantidad", int.Parse(txtCantidad.Text));
-                cmd2.Parameters.AddWithValue("@PrecioProveedor", precioProveedor);
-                cmd2.Parameters.AddWithValue("@PrecioVenta", precioVenta);
-                cmd2.Parameters.AddWithValue("@FechaCaducidad", fechaCaducidad);
-
-                cmd2.ExecuteNonQuery();  // 🔹 Aquí estaba el error, debe ser cmd2
-
-                MessageBox.Show("Pedido agregado correctamente.");
-
-                // Preguntar si desea agregar otro pedido
-                DialogResult resultado = MessageBox.Show("¿Quieres agregar otro pedido?", "Confirmación", MessageBoxButtons.YesNo);
-                if (resultado == DialogResult.No)
-                {
-                    parentForm.formularioHijo(new AlmacenMenu(parentForm));
-                }
+                MessageBox.Show("Pedido guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listaDetalles.Clear(); // Limpiar lista
+                dataGridView1.Rows.Clear(); // Limpiar DataGridView
+                btnCrearPedido.Enabled = true; // Permitir nuevo pedido
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar el pedido: " + ex.Message);
+                MessageBox.Show("Error al guardar detalles del pedido: " + ex.Message);
             }
             finally
             {
                 conexion.CerrarConexion();
+                parentForm.formularioHijo(new AlmacenMenu(parentForm)); // Pasamos la referencia de Form1 a AlmacenInventarioProductos
             }
         }
-
-
 
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -273,7 +266,74 @@ namespace VetPet_
 
         private void btnCrearPedido_Click(object sender, EventArgs e)
         {
+            conexionBrandon conexion = new conexionBrandon();
+            try
+            {
+                conexion.AbrirConexion();
 
+                string query = "INSERT INTO Pedido (numFactura, fechaRecibido, idProveedor) " +
+                               "VALUES (@Factura, @FechaRecibido, @IdProveedor); SELECT SCOPE_IDENTITY();";
+
+                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                cmd.Parameters.AddWithValue("@Factura", txtFactura.Text);
+                cmd.Parameters.AddWithValue("@FechaRecibido", fechaRecibidoPicker.Value);
+                cmd.Parameters.AddWithValue("@IdProveedor", cmbProveedor.SelectedValue);
+
+                idPedido = Convert.ToInt32(cmd.ExecuteScalar()); // Obtener ID del pedido
+                MessageBox.Show($"Pedido creado con ID: {idPedido}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                btnCrearPedido.Enabled = false; // Deshabilitar para evitar duplicados
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el pedido: " + ex.Message);
+            }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
+        }
+        decimal totalidad = 0;
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (idPedido == 0)
+            {
+                MessageBox.Show("Primero debes crear un pedido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                int idProducto = Convert.ToInt32(cmbProducto.SelectedValue);
+                int cantidad = Convert.ToInt32(txtCantidad.Text);
+                decimal precioProveedor = Convert.ToDecimal(txtPrecioProveedor.Text);
+                decimal precioVenta = Convert.ToDecimal(txtPrecioVenta.Text);
+                DateTime fechaCaducidad = fechaCaducidadPicker.Value;
+
+
+                // Agregar a la lista
+                listaDetalles.Add(new DetallesPedido
+                {
+                    IdPedido = idPedido,
+                    IdProducto = idProducto,
+                    Cantidad = cantidad,
+                    PrecioProveedor = precioProveedor,
+                    PrecioVenta = precioVenta,
+                    FechaCaducidad = fechaCaducidad
+                });
+
+
+                totalidad += precioProveedor;
+                txtTotal.Text = totalidad.ToString();
+                // Agregar al DataGridView
+                dataGridView1.Rows.Add(cmbProducto.Text, cantidad, precioProveedor, precioVenta, fechaCaducidad);
+
+                MessageBox.Show("Producto agregado a la lista.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar producto: " + ex.Message);
+            }
         }
     }
 }

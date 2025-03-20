@@ -171,7 +171,7 @@ namespace VetPet_
                 p.precioVenta AS PrecioVenta,
                 p.cantidad AS Cantidad,
                 p.stock AS Stock,
-                p.estado AS Estado,
+                p.fechaCaducidad AS FechaCaducidad,
                 p.idMarca AS IdMarca,
                 p.idTipoProducto AS IdTipoProducto,
                 p.idProveedor AS IdProveedor
@@ -193,7 +193,7 @@ namespace VetPet_
                     txtPrecioVenta.Text = reader["PrecioVenta"].ToString();
                     txtCantidad.Text = reader["Cantidad"].ToString();
                     txtStock.Text = reader["Stock"].ToString();
-                    cmbEstado.Text = reader["Estado"].ToString();
+                    fechaVencimientoPicker.Text = reader["FechaCaducidad"].ToString();
 
                     // Aquí los valores se asignan correctamente como string
                     txtIdMarca.Text = reader["IdMarca"].ToString(); // Debería ser VARCHAR(30), no int
@@ -397,7 +397,7 @@ namespace VetPet_
                     precioVenta = @PrecioVenta,
                     cantidad = @Cantidad,
                     stock = @Stock,
-                    estado = @Estado,
+                    fechaCaducidad = @FechaVencimiento,
                     idMarca = @IdMarca,
                     idTipoProducto = @IdTipoProducto,
                     idProveedor = @IdProveedor
@@ -413,7 +413,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@PrecioVenta", precioVenta);
                     cmd.Parameters.AddWithValue("@Cantidad", txtCantidad.Text); // Se mantiene como VARCHAR
                     cmd.Parameters.AddWithValue("@Stock", stock);
-                    cmd.Parameters.AddWithValue("@Estado", cmbEstado.Text);
+                    cmd.Parameters.AddWithValue("@FechaVencimiento", fechaVencimientoPicker.Value);
                     cmd.Parameters.AddWithValue("@IdMarca", txtIdMarca.Text);
                     cmd.Parameters.AddWithValue("@IdTipoProducto", txtIdTipoProducto.Text);
                     cmd.Parameters.AddWithValue("@IdProveedor", txtIdProveedor.Text);
