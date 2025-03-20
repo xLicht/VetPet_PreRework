@@ -41,7 +41,7 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = "SELECT idMedicamento, nombreGenerico FROM Medicamento";
+                string query = "SELECT idMedicamento, nombreGenérico FROM Medicamento";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -53,7 +53,7 @@ namespace VetPet_
                     {
                         cbMedicamentos.Items.Add(new KeyValuePair<int, string>(
                             Convert.ToInt32(reader["idMedicamento"]),
-                            reader["nombreGenerico"].ToString()
+                            reader["nombreGenérico"].ToString()
                         ));
                     }
                 }

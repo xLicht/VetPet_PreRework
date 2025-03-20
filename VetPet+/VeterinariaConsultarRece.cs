@@ -59,7 +59,7 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT rm.idMedicamento, m.nombreGenerico, rm.cantidad
+                string query = @"SELECT rm.idMedicamento, m.nombreGenérico, rm.cantidad
                          FROM Receta_Medicamento rm
                          INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
                          INNER JOIN Receta r ON rm.idReceta = r.idReceta
@@ -75,7 +75,7 @@ namespace VetPet_
                     while (reader.Read())
                     {
                         int idMedicamento = reader["idMedicamento"] != DBNull.Value ? Convert.ToInt32(reader["idMedicamento"]) : 0;
-                        string nombreMedicamento = reader["nombreGenerico"] != DBNull.Value ? reader["nombreGenerico"].ToString() : "Desconocido";
+                        string nombreMedicamento = reader["nombreGenérico"] != DBNull.Value ? reader["nombreGenérico"].ToString() : "Desconocido";
                         int cantidad = reader["cantidad"] != DBNull.Value ? Convert.ToInt32(reader["cantidad"]) : 0;
 
                         listaMedicamentos.Add(new Tuple<int, string, int>(idMedicamento, nombreMedicamento, cantidad));
@@ -152,7 +152,7 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT r.indicaciones, m.nombreGenerico, rm.cantidad
+                string query = @"SELECT r.indicaciones, m.nombreGenérico, rm.cantidad
                                  FROM Receta r
                                  INNER JOIN Receta_Medicamento rm ON r.idReceta = rm.idReceta
                                  INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
@@ -174,7 +174,7 @@ namespace VetPet_
                             primeraFila = false;
                         }
 
-                        dtMedicamentos.Rows.Add(reader["nombreGenerico"].ToString(), reader["cantidad"].ToString());
+                        dtMedicamentos.Rows.Add(reader["nombreGenérico"].ToString(), reader["cantidad"].ToString());
                     }
                 }
             }
