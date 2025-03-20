@@ -20,8 +20,7 @@ namespace VetPet_.Angie
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
         private int idCita;
-
-        private decimal montoPagado = 0;
+        public decimal montoPagado { get; set; }
         private decimal nuevoSubtotal = 0;
         public string FormularioOrigen { get; set; }
 
@@ -85,7 +84,7 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, montoPagado, dtProductos));
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos));
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -97,12 +96,6 @@ namespace VetPet_.Angie
         {
             try
             {
-                // Validar y obtener el monto pagado
-                if (!decimal.TryParse(textBox4.Text, out montoPagado))
-                {
-                    MessageBox.Show("El monto pagado no es un valor válido.");
-                    return;
-                }
 
                 // Validar que el monto pagado no sea mayor que el subtotal
                 if (montoPagado > sumaTotalProductos)
@@ -115,7 +108,9 @@ namespace VetPet_.Angie
                 nuevoSubtotal = sumaTotalProductos - montoPagado;
                 if (FormularioOrigen == "VentasNuevaVenta")
                 {
-                    parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, montoPagado, dtProductos)); // Pasamos la referencia de Form1 a
+                    VentasNuevaVenta VentasNuevaVenta = new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos);
+                    VentasNuevaVenta.MontoPagadoT = montoPagado;
+                    parentForm.formularioHijo(VentasNuevaVenta); // Usar la misma instancia
                 }
                 if (FormularioOrigen == "VentasVentanadePago")
                 {

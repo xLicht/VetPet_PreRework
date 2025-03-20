@@ -18,15 +18,15 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
         decimal sumaTotalProductos = 0;
         decimal nuevoSubtotal = 0;
-        decimal montoPagado= 0;
+        public decimal MontoPagadoE { get; set; }
+        public decimal MontoPagadoT { get; set; }
+        public string FormularioOrigen { get; set; }
 
         private int idCita;
-        private decimal subtotal;
         private int stock;
         public VentasNuevaVenta(Form1 parent)
         {
@@ -35,15 +35,13 @@ namespace VetPet_
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
         }
-        public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, decimal montoPagado, DataTable dt)
+        public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, DataTable dt)
         {
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nuevoSubtotal = nuevoSubtotal;
-            this.montoPagado = montoPagado;
-
             if (dtProductos.Columns.Count == 0)
             {
                 dtProductos = dt.Clone();
@@ -61,32 +59,6 @@ namespace VetPet_
             ActualizarSumaTotal();
         }
       
-        public VentasNuevaVenta(Form1 parent, decimal total, DataTable dt)
-        {
-            InitializeComponent();
-            this.Load += VentasNuevaVenta_Load;
-            this.Resize += VentasNuevaVenta_Resize;
-            parentForm = parent;
-
-            // Si es la primera vez, clonar la estructura
-            if (dtProductos.Columns.Count == 0)
-            {
-                dtProductos = dt.Clone();
-            }
-
-            // Agregar los nuevos productos o medicamentos sin perder los anteriores
-            AgregarProductosAMedicamentos(dt);
-
-            // Vincular dtProductos al DataGridView
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dtProductos;
-            dataGridView2.DataSource = bs;
-
-            // Actualizar la suma total
-            ActualizarSumaTotal();
-        }
-
-
         private void AgregarProductosAMedicamentos(DataTable dtNuevos)
         {
             foreach (DataRow row in dtNuevos.Rows)
@@ -109,8 +81,7 @@ namespace VetPet_
                 }
             }
         }
-
-        private void ActualizarSumaTotal()
+        public void ActualizarSumaTotal()
         {
             // Sumar el total de productos
             sumaTotalProductos = dtProductos.AsEnumerable()
@@ -119,7 +90,10 @@ namespace VetPet_
 
             textBox8.Text = "Subtotal: " + sumaTotalProductos.ToString("0.###");
             textBox2.Text = "Monto restante: " + nuevoSubtotal.ToString("0.###");
-            textBox9.Text = montoPagado.ToString();
+
+            textBox9.Text = MontoPagadoE.ToString();
+            textBox10.Text = MontoPagadoT.ToString();
+           
         }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
         {
@@ -174,9 +148,9 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos);
-            VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
-            parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(this, parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta";
+            parentForm.formularioHijo(VentasConfirmacionEfectivo);
         }
 
         private void textBox14_Click(object sender, EventArgs e)
@@ -190,7 +164,6 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
-
 
     }
 }

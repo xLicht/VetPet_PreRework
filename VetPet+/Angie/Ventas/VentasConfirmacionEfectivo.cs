@@ -18,12 +18,15 @@ namespace VetPet_.Angie
         decimal sumaTotalProductos = 0; 
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
+        private VentasNuevaVenta ventasNuevaVenta; // Guardar la referencia
         private int idCita;
-        private decimal montoPagado = 0;
-        private decimal nuevoSubtotal = 0;  
+        public decimal montoPagado { get; set; }
+        public decimal nuevoSubtotal = 0;
+
+
         public string FormularioOrigen { get; set; }
 
-        public VentasConfirmacionEfectivo(Form1 parent, decimal sumaTotalProductos, DataTable dtProductos)
+        public VentasConfirmacionEfectivo(VentasNuevaVenta ventasNuevaVenta, Form1 parent, decimal sumaTotalProductos, DataTable dtProductos)
         {
             InitializeComponent();
             this.Load += VentasConfirmacionEfectivo_Load;       // Evento Load
@@ -31,8 +34,10 @@ namespace VetPet_.Angie
             parentForm = parent;  // Guardamos la referencia de Form1
             this.sumaTotalProductos += sumaTotalProductos;  
             textBox3.Text += sumaTotalProductos.ToString();
+            this.ventasNuevaVenta = ventasNuevaVenta;   
+
         }
-        public VentasConfirmacionEfectivo(Form1 parent, decimal sumaTotalProductos,int idCita)
+        public VentasConfirmacionEfectivo(VentasVentanadePago ventasVentanadePago, Form1 parent, decimal sumaTotalProductos,int idCita)
         {
             InitializeComponent();
             this.Load += VentasConfirmacionEfectivo_Load;       // Evento Load
@@ -41,6 +46,7 @@ namespace VetPet_.Angie
             this.sumaTotalProductos = sumaTotalProductos;
             this.idCita = idCita;
         }
+
         private void VentasConfirmacionEfectivo_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -82,7 +88,7 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, montoPagado, dtProductos)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos)); // Pasamos la referencia de Form1 a
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -94,38 +100,29 @@ namespace VetPet_.Angie
         {
             try
             {
-                // Validar y obtener el monto pagado
-                if (!decimal.TryParse(textBox4.Text, out montoPagado))
-                {
-                    MessageBox.Show("El monto pagado no es un valor válido.");
-                    return;
-                }
+                decimal montoIngresado = decimal.Parse(textBox4.Text);
 
-                // Validar que el monto pagado no sea mayor que el subtotal
-                if (montoPagado > sumaTotalProductos)
+                if (montoIngresado > sumaTotalProductos)
                 {
                     MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
                     return;
                 }
 
-                // Calcular el nuevo subtotal
+                // Asignar el monto pagado en la instancia de VentasNuevaVenta
+                ventasNuevaVenta.MontoPagadoE = montoIngresado;
+
                 nuevoSubtotal = sumaTotalProductos - montoPagado;
 
-              
-                if (FormularioOrigen == "VentasNuevaVenta")
-                {
-                    parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, montoPagado,dtProductos)); // Pasamos la referencia de Form1 a
-                }
-                if (FormularioOrigen == "VentasVentanadePago")
-                {
-                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
-                }
+                MessageBox.Show("Monto actualizado correctamente en VentasNuevaVenta.");
+                this.Hide();
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Error al procesar el pago: " + ex.Message);
             }
         }
+
+
+
     }
 }
