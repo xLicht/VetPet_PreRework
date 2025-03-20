@@ -17,6 +17,7 @@ namespace VetPet_
     {
         public int DatoCita { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
+        private List<ServicioSeleccionado> listaServicios = new List<ServicioSeleccionado>();
         public VeterinariaConsultarM(Form1 parent)
         {
             InitializeComponent();
@@ -29,7 +30,6 @@ namespace VetPet_
             VeterinariaRecetar formularioHijo = new VeterinariaRecetar(parentForm);
             formularioHijo.DatoCita = idCitaSeleccionada;
             parentForm.formularioHijo(formularioHijo);
-
 
             //parentForm.formularioHijo(new VeterinariaRecetar(parentForm));
         }
@@ -188,7 +188,7 @@ namespace VetPet_
             cbServicioNieto.Text = "";
             if (cbServicioEspecifico.SelectedItem != null)
             {
-                string servicioHijoSeleccionado = cbServicioEspecifico.Text; // Obtiene el nombre seleccionado
+                string servicioHijoSeleccionado = cbServicioEspecifico.Text; 
 
                 string query = "SELECT idServicioEspecificoHijo FROM ServicioEspecificoHijo WHERE nombre = @nombre";
 
@@ -204,7 +204,6 @@ namespace VetPet_
                         {
                             int idServicioHijo = Convert.ToInt32(result);
 
-                            // Llamar al método que carga los servicios nietos
                             CargarServiciosNietos(idServicioHijo);
                         }
                     }
@@ -230,7 +229,7 @@ namespace VetPet_
             cbServicioEspecifico.Text = "";
             if (cbServicioP.SelectedItem != null)
             {
-                string servicioSeleccionado = cbServicioP.Text; // Obtiene el nombre seleccionado
+                string servicioSeleccionado = cbServicioP.Text; 
 
                 string query = "SELECT idServicioPadre FROM ServicioPadre WHERE nombre = @nombre";
 
@@ -246,7 +245,6 @@ namespace VetPet_
                         {
                             int idServicioPadre = Convert.ToInt32(result);
 
-                            // Llamar al método que carga los servicios específicos hijos
                             CargarServiciosHijos(idServicioPadre);
                         }
                     }
@@ -261,5 +259,248 @@ namespace VetPet_
                 }
             }
         }
+
+      
+        private void AgregarServicioALista()
+        {
+            string servicioSeleccionado = cbServicioP.Text; // Obtener el nombre del servicio padre seleccionado
+
+            // Permitir agregar "Consulta General" sin necesidad de servicios hijo o nieto
+            if (servicioSeleccionado == "Consulta General")
+            {
+                int idPadre = Convert.ToInt32(cbServicioP.SelectedValue);
+
+                listaServicios.Add(new ServicioSeleccionado
+                {
+                    IdServicioPadre = idPadre,
+                    NombreServicioPadre = servicioSeleccionado,
+                    IdServicioHijo = -1,  // Indicar que no tiene hijo
+                    NombreServicioHijo = "",
+                    IdServicioNieto = -1, // Indicar que no tiene nieto
+                    NombreServicioNieto = "",
+                    Observacion = rtObservacion.Text
+                });
+
+                ActualizarDataGridView();
+                return; // Salir de la función sin validar más
+            }
+
+            // Validación para otros servicios
+            if (cbServicioP.SelectedItem == null || cbServicioEspecifico.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar al menos un servicio padre y un servicio hijo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idPadreNormal = Convert.ToInt32(cbServicioP.SelectedValue);
+            string nombrePadreNormal = cbServicioP.Text;
+
+            int idHijo = ObtenerIdServicioHijo(cbServicioEspecifico.Text);
+            string nombreHijo = cbServicioEspecifico.Text;
+
+            int idNieto = -1;
+            string nombreNieto = "";
+
+            if (cbServicioNieto.SelectedItem != null)
+            {
+                idNieto = ObtenerIdServicioNieto(cbServicioNieto.Text);
+                nombreNieto = cbServicioNieto.Text;
+            }
+
+            string observacion = rtObservacion.Text;
+
+            listaServicios.Add(new ServicioSeleccionado
+            {
+                IdServicioPadre = idPadreNormal,
+                NombreServicioPadre = nombrePadreNormal,
+                IdServicioHijo = idHijo,
+                NombreServicioHijo = nombreHijo,
+                IdServicioNieto = idNieto,
+                NombreServicioNieto = nombreNieto,
+                Observacion = observacion
+            });
+
+            ActualizarDataGridView();
+        }
+        private void ActualizarDataGridView()
+        {
+            dtServicios.DataSource = null;
+            dtServicios.DataSource = listaServicios;
+
+            dtServicios.Columns["IdServicioPadre"].Visible = false;
+            dtServicios.Columns["IdServicioHijo"].Visible = false;
+            dtServicios.Columns["IdServicioNieto"].Visible = false;
+        }
+        private int ObtenerIdServicioNieto(string nombreServicioNieto)
+        {
+            string query = "SELECT idServicioEspecificoNieto FROM ServicioEspecificoNieto WHERE nombre = @nombre";
+            try
+            {
+                conexionDB.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombreServicioNieto);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el ID del servicio nieto: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private int ObtenerIdServicioHijo(string nombreServicioHijo)
+        {
+            int idServicioHijo = -1; 
+
+            string query = "SELECT idServicioEspecificoHijo FROM ServicioEspecificoHijo WHERE nombre = @nombre";
+
+            try
+            {
+                conexionDB.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombreServicioHijo);
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        idServicioHijo = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el ID del servicio hijo: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+
+            return idServicioHijo;
+        }
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarServicioALista();
+        }
+
+        private void InsertarConsulta()
+        {
+            try
+            {
+                // Abrimos la conexión
+                conexionDB.AbrirConexion();
+
+                // Consulta SQL para la inserción
+                string query = @"INSERT INTO Consulta (diagnostico, peso, temperatura, idCita, FechaConsulta, MotivoConsulta, EstudioEspecial) 
+                         VALUES (@diagnostico, @peso, @temperatura, @idCita, @fechaConsulta, @motivoConsulta, @estudioEspecial)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    // Asignación de parámetros desde los controles del formulario
+                    cmd.Parameters.AddWithValue("@diagnostico", rtDiagnostico.Text.Trim());
+                    cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
+                    cmd.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    cmd.Parameters.AddWithValue("@fechaConsulta", dtFechaConsulta.Value.Date);
+                    cmd.Parameters.AddWithValue("@motivoConsulta", rtMotivo.Text.Trim());
+
+                    // Si el campo EstudioEspecial está vacío, se inserta NULL en la base de datos
+                    if (string.IsNullOrWhiteSpace(rtEstudioEspecial.Text))
+                        cmd.Parameters.AddWithValue("@estudioEspecial", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text.Trim());
+
+                    // Ejecutar la consulta
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Consulta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo registrar la consulta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Error en el formato de los valores numéricos. Verifique los datos ingresados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar la consulta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private void InsertarServiciosEnCita()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"INSERT INTO Servicio_Cita (idCita, hora, idServicioSencilloHijo, idServicioEspecificoNieto, idEmpleado, observaciones)
+                         VALUES (@idCita, @hora, @idServicioSencilloHijo, @idServicioEspecificoNieto, @idEmpleado, @observaciones)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    foreach (var servicio in listaServicios)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                        cmd.Parameters.AddWithValue("@hora", DateTime.Now.ToString("HH:mm:ss")); // Usa la hora actual o ajusta según necesites
+                        cmd.Parameters.AddWithValue("@idEmpleado", 1); // Reemplaza con tu lógica para obtener el ID del empleado
+                        cmd.Parameters.AddWithValue("@observaciones", string.IsNullOrEmpty(servicio.Observacion) ? DBNull.Value : (object)servicio.Observacion);
+
+                        if (servicio.IdServicioHijo == 4) // Solo "Consulta General" tiene idServicioSencilloHijo = 4
+                        {
+                            cmd.Parameters.AddWithValue("@idServicioSencilloHijo", 4);
+                            cmd.Parameters.AddWithValue("@idServicioEspecificoNieto", DBNull.Value);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@idServicioSencilloHijo", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@idServicioEspecificoNieto", servicio.IdServicioNieto);
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Servicios agregados correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar los servicios en la cita: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            InsertarConsulta();
+            InsertarServiciosEnCita();
+        }
+    }
+    public class ServicioSeleccionado
+    {
+        public int IdServicioPadre { get; set; }
+        public string NombreServicioPadre { get; set; }
+        public int IdServicioHijo { get; set; }
+        public string NombreServicioHijo { get; set; }
+        public int IdServicioNieto { get; set; }
+        public string NombreServicioNieto { get; set; }
+        public string Observacion { get; set; }
     }
 }
