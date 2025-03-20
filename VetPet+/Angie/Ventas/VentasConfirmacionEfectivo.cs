@@ -18,15 +18,11 @@ namespace VetPet_.Angie
         decimal sumaTotalProductos = 0; 
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
-        private VentasNuevaVenta ventasNuevaVenta; // Guardar la referencia
         private int idCita;
-        public decimal montoPagado { get; set; }
         public decimal nuevoSubtotal = 0;
-
-
         public string FormularioOrigen { get; set; }
 
-        public VentasConfirmacionEfectivo(VentasNuevaVenta ventasNuevaVenta, Form1 parent, decimal sumaTotalProductos, DataTable dtProductos)
+        public VentasConfirmacionEfectivo( Form1 parent, decimal sumaTotalProductos, DataTable dtProductos)
         {
             InitializeComponent();
             this.Load += VentasConfirmacionEfectivo_Load;       // Evento Load
@@ -34,7 +30,6 @@ namespace VetPet_.Angie
             parentForm = parent;  // Guardamos la referencia de Form1
             this.sumaTotalProductos += sumaTotalProductos;  
             textBox3.Text += sumaTotalProductos.ToString();
-            this.ventasNuevaVenta = ventasNuevaVenta;   
 
         }
         public VentasConfirmacionEfectivo(VentasVentanadePago ventasVentanadePago, Form1 parent, decimal sumaTotalProductos,int idCita)
@@ -86,9 +81,10 @@ namespace VetPet_.Angie
 
         private void button1_Click(object sender, EventArgs e)
         {
+            decimal montoIngresado = decimal.Parse(textBox4.Text);
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, true)); // Pasamos la referencia de Form1 a
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -107,13 +103,14 @@ namespace VetPet_.Angie
                     MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
                     return;
                 }
+                
 
-                // Asignar el monto pagado en la instancia de VentasNuevaVenta
-                ventasNuevaVenta.MontoPagadoE = montoIngresado;
+                if (FormularioOrigen == "VentasNuevaVenta")
+                {
+                    parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, true));
+                }
 
-                nuevoSubtotal = sumaTotalProductos - montoPagado;
-
-                MessageBox.Show("Monto actualizado correctamente en VentasNuevaVenta.");
+                // Ocultar la ventana de confirmación para evitar que se cierre antes de completar el flujo
                 this.Hide();
             }
             catch (Exception ex)
@@ -121,8 +118,6 @@ namespace VetPet_.Angie
                 MessageBox.Show("Error al procesar el pago: " + ex.Message);
             }
         }
-
-
 
     }
 }

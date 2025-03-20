@@ -84,7 +84,7 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos));
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos,0,true));
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -96,34 +96,26 @@ namespace VetPet_.Angie
         {
             try
             {
+                decimal montoIngresado = decimal.Parse(textBox4.Text);
 
-                // Validar que el monto pagado no sea mayor que el subtotal
-                if (montoPagado > sumaTotalProductos)
+                if (montoIngresado > sumaTotalProductos)
                 {
                     MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
                     return;
                 }
 
-                // Calcular el nuevo subtotal
-                nuevoSubtotal = sumaTotalProductos - montoPagado;
                 if (FormularioOrigen == "VentasNuevaVenta")
                 {
-                    VentasNuevaVenta VentasNuevaVenta = new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos);
-                    VentasNuevaVenta.MontoPagadoT = montoPagado;
-                    parentForm.formularioHijo(VentasNuevaVenta); // Usar la misma instancia
+                    parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, false));
                 }
-                if (FormularioOrigen == "VentasVentanadePago")
-                {
-                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
-                }
-            }
-            
 
+                // Ocultar la ventana de confirmación para evitar que se cierre antes de completar el flujo
+                this.Hide();
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al procesar el pago: " + ex.Message);
             }
         }
-
     }
 }

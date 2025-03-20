@@ -22,8 +22,8 @@ namespace VetPet_
         private static DataTable dtProductos = new DataTable();
         decimal sumaTotalProductos = 0;
         decimal nuevoSubtotal = 0;
-        public decimal MontoPagadoE { get; set; }
-        public decimal MontoPagadoT { get; set; }
+        public static decimal MontoPagadoE = 0;    
+        public static decimal MontoPagadoT = 0;
         public string FormularioOrigen { get; set; }
 
         private int idCita;
@@ -35,7 +35,7 @@ namespace VetPet_
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
         }
-        public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, DataTable dt)
+        public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
         {
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
@@ -55,10 +55,18 @@ namespace VetPet_
             bs.DataSource = dtProductos;
             dataGridView2.DataSource = bs;
 
-            // Actualizar la suma total
+            if (bandera == true)
+            {
+                MontoPagadoE = montoPagado;
+            }
+            if (bandera == false)
+            {
+                MontoPagadoT = montoPagado; 
+            }
+                
             ActualizarSumaTotal();
         }
-      
+        
         private void AgregarProductosAMedicamentos(DataTable dtNuevos)
         {
             foreach (DataRow row in dtNuevos.Rows)
@@ -89,11 +97,14 @@ namespace VetPet_
                 .Sum(r => r.Field<decimal>("Total"));
 
             textBox8.Text = "Subtotal: " + sumaTotalProductos.ToString("0.###");
-            textBox2.Text = "Monto restante: " + nuevoSubtotal.ToString("0.###");
 
             textBox9.Text = MontoPagadoE.ToString();
             textBox10.Text = MontoPagadoT.ToString();
-           
+
+            decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
+            textBox2.Text = montoRestante.ToString();
+
+
         }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
         {
@@ -148,7 +159,7 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(this, parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos);
             VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta";
             parentForm.formularioHijo(VentasConfirmacionEfectivo);
         }

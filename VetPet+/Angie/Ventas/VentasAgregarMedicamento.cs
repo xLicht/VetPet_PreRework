@@ -461,7 +461,7 @@ namespace VetPet_.Angie
                 decimal sumaTotal = dtProductos.AsEnumerable()
                .Where(r => r["Total"] != DBNull.Value)
                .Sum(r => r.Field<decimal>("Total"));
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, sumaTotal, dtProductos)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, sumaTotal, dtProductos,0,true)); // Pasamos la referencia de Form1 a
             }
         }
 
@@ -480,7 +480,7 @@ namespace VetPet_.Angie
                 decimal sumaTotal = dtProductos.AsEnumerable()
                .Where(r => r["Total"] != DBNull.Value)
                .Sum(r => r.Field<decimal>("Total"));
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm,sumaTotal ,dtProductos)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm,sumaTotal, dtProductos,0,true)); // Pasamos la referencia de Form1 a
             }
         }
 
