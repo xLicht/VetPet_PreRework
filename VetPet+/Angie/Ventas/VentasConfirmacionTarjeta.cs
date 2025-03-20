@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_.Angie
 {
@@ -15,23 +16,31 @@ namespace VetPet_.Angie
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        decimal sumaTotalProductos = 0;
         private Form1 parentForm;
-
+        private static DataTable dtProductos = new DataTable();
+        private int idCita;
+        public decimal montoPagado { get; set; }
+        private decimal nuevoSubtotal = 0;
         public string FormularioOrigen { get; set; }
 
-        public VentasConfirmacionTarjeta()
+        public VentasConfirmacionTarjeta(Form1 parent, decimal sumaTotalProductos, DataTable dtProductos)
         {
             InitializeComponent();
             this.Load += VentasConfirmacionTarjeta_Load;       // Evento Load
             this.Resize += VentasConfirmacionTarjeta_Resize;   // Evento Resize
-
+            parentForm = parent;  // Guardamos la referencia de Form1
+            this.sumaTotalProductos += sumaTotalProductos;
+            textBox3.Text += sumaTotalProductos.ToString();
         }
-
-        public VentasConfirmacionTarjeta(Form1 parent)
+        public VentasConfirmacionTarjeta(Form1 parent, decimal sumaTotalProductos, int idCita)
         {
             InitializeComponent();
+            this.Load += VentasConfirmacionTarjeta_Load;       // Evento Load
+            this.Resize += VentasConfirmacionTarjeta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
+            this.sumaTotalProductos = sumaTotalProductos;
+            this.idCita = idCita;
         }
 
         private void VentasConfirmacionTarjeta_Load(object sender, EventArgs e)
@@ -75,23 +84,37 @@ namespace VetPet_.Angie
         {
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos,0,true));
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
-                //parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (FormularioOrigen == "VentasNuevaVenta")
+            try
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+                decimal montoIngresado = decimal.Parse(textBox4.Text);
+
+                if (montoIngresado > sumaTotalProductos)
+                {
+                    MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
+                    return;
+                }
+
+                if (FormularioOrigen == "VentasNuevaVenta")
+                {
+                    parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, false));
+                }
+
+                // Ocultar la ventana de confirmación para evitar que se cierre antes de completar el flujo
+                this.Hide();
             }
-            if (FormularioOrigen == "VentasVentanadePago")
+            catch (Exception ex)
             {
-                //parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita)); // Pasamos la referencia de Form1 a
+                MessageBox.Show("Error al procesar el pago: " + ex.Message);
             }
         }
     }
