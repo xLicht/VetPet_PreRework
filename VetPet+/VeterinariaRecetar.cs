@@ -30,7 +30,7 @@ namespace VetPet_
         private void VeterinariaRecetar_Load(object sender, EventArgs e)
         {
             //MessageBox.Show("Dato Recibido :" + DatoCita);
-            MessageBox.Show("Dato Recibido :" + DatoConsulta);
+            //MessageBox.Show("Dato Recibido :" + DatoConsulta);
             MostrarDatosMacota();
             CargarMedicamentos();
             MostrarDatosConsulta();
@@ -266,6 +266,8 @@ namespace VetPet_
 
             //parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaRecetar"));
         }
+
+       
 
         private void dtMedicamentos_CellClick(object sender, DataGridViewCellEventArgs e)
         {

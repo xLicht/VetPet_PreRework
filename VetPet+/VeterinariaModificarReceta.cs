@@ -27,7 +27,7 @@ namespace VetPet_
 
         private void VeterinariaModificarReceta_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Dato Recibido" + DatoCita);
+            //MessageBox.Show("Dato Recibido" + DatoCita);
             ObtenerDatoConsulta();
             if (datoConsulta != 0)
             {
@@ -39,8 +39,8 @@ namespace VetPet_
             }
             else
             {
-                MessageBox.Show("No se encontró una consulta asociada a esta cita.");
-                Close();
+                //MessageBox.Show("No se encontró una consulta asociada a esta cita.");
+               // Close();
             }
         }
 
@@ -51,7 +51,8 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
+            GuardarModificaciones(); 
+            //parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
         }
 
         private void btnAgregarMedicamentos_Click(object sender, EventArgs e)
@@ -293,6 +294,70 @@ namespace VetPet_
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener los datos de la mascota: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private void GuardarModificaciones()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                SqlTransaction transaction = conexionDB.GetConexion().BeginTransaction();
+
+                string updateRecetaQuery = "UPDATE Receta SET indicaciones = @indicaciones WHERE idConsulta = @idConsulta";
+                using (SqlCommand cmd = new SqlCommand(updateRecetaQuery, conexionDB.GetConexion(), transaction))
+                {
+                    cmd.Parameters.AddWithValue("@indicaciones", rtIndicaciones.Text);
+                    cmd.Parameters.AddWithValue("@idConsulta", datoConsulta);
+                    cmd.ExecuteNonQuery();
+                }
+
+                int idReceta = 0;
+                string selectRecetaQuery = "SELECT idReceta FROM Receta WHERE idConsulta = @idConsulta";
+                using (SqlCommand cmd = new SqlCommand(selectRecetaQuery, conexionDB.GetConexion(), transaction))
+                {
+                    cmd.Parameters.AddWithValue("@idConsulta", datoConsulta);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        idReceta = Convert.ToInt32(reader["idReceta"]);
+                    }
+                    reader.Close();
+                }
+
+                if (idReceta == 0)
+                {
+                    throw new Exception("No se encontró una receta asociada a la consulta.");
+                }
+
+                string deleteQuery = "DELETE FROM Receta_Medicamento WHERE idReceta = @idReceta";
+                using (SqlCommand cmd = new SqlCommand(deleteQuery, conexionDB.GetConexion(), transaction))
+                {
+                    cmd.Parameters.AddWithValue("@idReceta", idReceta);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string insertQuery = "INSERT INTO Receta_Medicamento (idReceta, idMedicamento, cantidad) VALUES (@idReceta, @idMedicamento, @cantidad)";
+                foreach (var medicamento in listaMedicamentos)
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, conexionDB.GetConexion(), transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@idReceta", idReceta);
+                        cmd.Parameters.AddWithValue("@idMedicamento", medicamento.Item1);
+                        cmd.Parameters.AddWithValue("@cantidad", medicamento.Item3);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                transaction.Commit();
+                MessageBox.Show("Receta actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la receta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
