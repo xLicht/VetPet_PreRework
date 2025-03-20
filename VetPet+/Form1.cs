@@ -19,7 +19,10 @@ namespace VetPet_
         protected Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo
             = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
-        public Form1()
+        int IDUsuario;
+        int IDTEmpleado;
+        int FondoCaja;
+        public Form1(int iDUsuario, int iDTEmpleado, int fondoCaja)
         {
             InitializeComponent();
             this.Text = String.Empty;
@@ -27,6 +30,9 @@ namespace VetPet_
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+            IDUsuario = iDUsuario;
+            IDTEmpleado = iDTEmpleado;
+            FondoCaja = fondoCaja;
         }
         private void StoreControlInfo(Control parent)
         {
