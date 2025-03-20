@@ -507,6 +507,19 @@ namespace VetPet_
             LimpiarCampos();
         }
 
+        private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) 
+            {
+                DialogResult confirmacion = MessageBox.Show("¿Desea eliminar este servicio?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    listaServicios.RemoveAt(e.RowIndex); 
+                    ActualizarDataGridView(); 
+                }
+            }
+        }
     }
     public class ServicioSeleccionado
     {
