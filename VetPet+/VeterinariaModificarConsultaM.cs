@@ -31,12 +31,32 @@ namespace VetPet_
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
+          DialogResult resultado = MessageBox.Show("Los cambios no guardados se perderán. ¿Está seguro de que desea cancelar?","Advertencia",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+            }
+
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //parentForm.formularioHijo(formularioHijo);
+
+
+            //parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
+
+            ActualizarConsulta();
+
+
+           // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
         }
 
         private void MostrarDatosCita()
@@ -104,6 +124,51 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+        private void ActualizarConsulta()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string query = @"UPDATE Consulta 
+                        SET peso = @peso, 
+                            temperatura = @temperatura, 
+                            MotivoConsulta = @motivo, 
+                            diagnostico = @diagnostico, 
+                            EstudioEspecial = @estudioEspecial
+                        WHERE idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
+                    cmd.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
+                    cmd.Parameters.AddWithValue("@motivo", txtMotivo.Text);
+                    cmd.Parameters.AddWithValue("@diagnostico", txtDiagnostico.Text);
+                    cmd.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text);
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Consulta actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la consulta para actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar la consulta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
 
         private void MostrarServicios()
         {

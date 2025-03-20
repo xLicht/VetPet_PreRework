@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -150,14 +150,14 @@
             // dtServicio
             // 
             this.dtServicio.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtServicio.EnableHeadersVisualStyles = false;
             this.dtServicio.Location = new System.Drawing.Point(470, 259);
@@ -172,7 +172,6 @@
             this.rtEstudioEspecial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.rtEstudioEspecial.Location = new System.Drawing.Point(52, 425);
             this.rtEstudioEspecial.Name = "rtEstudioEspecial";
-            this.rtEstudioEspecial.ReadOnly = true;
             this.rtEstudioEspecial.Size = new System.Drawing.Size(300, 87);
             this.rtEstudioEspecial.TabIndex = 391;
             this.rtEstudioEspecial.Text = "";
@@ -213,7 +212,6 @@
             this.txtDiagnostico.Location = new System.Drawing.Point(177, 356);
             this.txtDiagnostico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDiagnostico.Name = "txtDiagnostico";
-            this.txtDiagnostico.ReadOnly = true;
             this.txtDiagnostico.Size = new System.Drawing.Size(244, 29);
             this.txtDiagnostico.TabIndex = 387;
             // 
@@ -224,7 +222,6 @@
             this.txtMotivo.Location = new System.Drawing.Point(250, 317);
             this.txtMotivo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.ReadOnly = true;
             this.txtMotivo.Size = new System.Drawing.Size(171, 29);
             this.txtMotivo.TabIndex = 386;
             // 
@@ -235,7 +232,6 @@
             this.txtTemperatura.Location = new System.Drawing.Point(352, 270);
             this.txtTemperatura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTemperatura.Name = "txtTemperatura";
-            this.txtTemperatura.ReadOnly = true;
             this.txtTemperatura.Size = new System.Drawing.Size(99, 29);
             this.txtTemperatura.TabIndex = 385;
             // 
@@ -246,7 +242,6 @@
             this.txtPeso.Location = new System.Drawing.Point(110, 270);
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPeso.Name = "txtPeso";
-            this.txtPeso.ReadOnly = true;
             this.txtPeso.Size = new System.Drawing.Size(86, 29);
             this.txtPeso.TabIndex = 384;
             // 
