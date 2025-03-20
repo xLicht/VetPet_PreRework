@@ -35,7 +35,9 @@ namespace VetPet_
             if (!string.IsNullOrWhiteSpace(TxtFondoCaja.Text))
             {
                 int fondoCaja = Convert.ToInt32(TxtFondoCaja.Text);
-                Form1 forma = new Form1(idUsuario,idEmpleado,fondoCaja);
+                string tipoUsuario = ObtenerTipoEmpleado(idEmpleado);
+                string nombreUsuario = obtenernombreUsuario(idUsuario);
+                Form1 forma = new Form1(idUsuario,idEmpleado,fondoCaja,tipoUsuario,nombreUsuario);
                 forma.Show();
                 this.Close();
 
@@ -72,7 +74,84 @@ namespace VetPet_
         //    }
         //    return valido;
         //}
+        private string obtenernombreUsuario(int nombre)
+        {
 
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+
+            // Obtener el idServicioEspecificoHijo a partir del nombre
+            string queryGetIdServicioHijo = "SELECT usuario  FROM Empleado WHERE idEmpleado = @NombreServicioHijo";
+            string idServicioHijo = "";
+
+            using (SqlCommand cmd = new SqlCommand(queryGetIdServicioHijo, conexion.GetConexion()))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("@NombreServicioHijo", nombre);
+                    object result = cmd.ExecuteScalar(); // Ejecutar la consulta y obtener el primer valor de la primera columna
+
+                    if (result != null)
+                    {
+                        idServicioHijo = Convert.ToString(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el servicio hijo con ese IdNombre.");
+
+                    }
+                    return idServicioHijo;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+                    return idServicioHijo;
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        private string ObtenerTipoEmpleado(int IdNombre)
+        {
+
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+
+            // Obtener el idServicioEspecificoHijo a partir del nombre
+            string queryGetIdServicioHijo = "SELECT nombre FROM TipoEmpleado WHERE idTipoEmpleado = @IDNombre";
+            string idServicioHijo = "";
+
+            using (SqlCommand cmd = new SqlCommand(queryGetIdServicioHijo, conexion.GetConexion()))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("@IDNombre", IdNombre);
+                    object result = cmd.ExecuteScalar(); // Ejecutar la consulta y obtener el primer valor de la primera columna
+
+                    if (result != null)
+                    {
+                        idServicioHijo = Convert.ToString(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el servicio hijo con ese IdNombre.");
+
+                    }
+                    return idServicioHijo;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+                    return idServicioHijo;
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
         private void TxtFondoCaja_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo números del 0 al 9 y la tecla de retroceso (Backspace)

@@ -22,7 +22,9 @@ namespace VetPet_
         int IDUsuario;
         int IDTEmpleado;
         int FondoCaja;
-        public Form1(int iDUsuario, int iDTEmpleado, int fondoCaja)
+        string NombreUsuario;
+        string TipoEmpleado;
+        public Form1(int iDUsuario, int iDTEmpleado, int fondoCaja, string tipoEmpleado, string nombreUsuario)
         {
             InitializeComponent();
             this.Text = String.Empty;
@@ -33,6 +35,8 @@ namespace VetPet_
             IDUsuario = iDUsuario;
             IDTEmpleado = iDTEmpleado;
             FondoCaja = fondoCaja;
+            NombreUsuario = nombreUsuario;
+            TipoEmpleado = tipoEmpleado;
         }
         private void StoreControlInfo(Control parent)
         {
