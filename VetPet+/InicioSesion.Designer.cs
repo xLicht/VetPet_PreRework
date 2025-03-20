@@ -78,9 +78,9 @@
             this.groupBox1.Controls.Add(this.Txtus);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(25, 19);
+            this.groupBox1.Location = new System.Drawing.Point(25, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 519);
+            this.groupBox1.Size = new System.Drawing.Size(402, 523);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -97,7 +97,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.VetPet_Logo1;
-            this.pictureBox2.Location = new System.Drawing.Point(75, 257);
+            this.pictureBox2.Location = new System.Drawing.Point(71, 260);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(260, 188);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -108,9 +108,9 @@
             // 
             this.BtnOlvidarContraseña.BackColor = System.Drawing.Color.LightCoral;
             this.BtnOlvidarContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOlvidarContraseña.Location = new System.Drawing.Point(149, 209);
+            this.BtnOlvidarContraseña.Location = new System.Drawing.Point(163, 209);
             this.BtnOlvidarContraseña.Name = "BtnOlvidarContraseña";
-            this.BtnOlvidarContraseña.Size = new System.Drawing.Size(186, 44);
+            this.BtnOlvidarContraseña.Size = new System.Drawing.Size(186, 36);
             this.BtnOlvidarContraseña.TabIndex = 4;
             this.BtnOlvidarContraseña.Text = "Olvide mi Contraseña";
             this.BtnOlvidarContraseña.UseVisualStyleBackColor = false;
@@ -238,7 +238,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Coral;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(219)))), ((int)(((byte)(211)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.panel1);
             this.Name = "InicioSesion";

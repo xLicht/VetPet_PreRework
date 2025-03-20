@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnRegresar = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnOlvideMiContraseña = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnRegresar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -65,11 +65,23 @@
             this.groupBox1.Controls.Add(this.TxtUsuario);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(27, 15);
+            this.groupBox1.Location = new System.Drawing.Point(27, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 522);
+            this.groupBox1.Size = new System.Drawing.Size(401, 525);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            // 
+            // BtnRegresar
+            // 
+            this.BtnRegresar.BackColor = System.Drawing.Color.LightCoral;
+            this.BtnRegresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRegresar.Location = new System.Drawing.Point(23, 460);
+            this.BtnRegresar.Name = "BtnRegresar";
+            this.BtnRegresar.Size = new System.Drawing.Size(161, 46);
+            this.BtnRegresar.TabIndex = 2;
+            this.BtnRegresar.Text = "Regresar";
+            this.BtnRegresar.UseVisualStyleBackColor = false;
+            this.BtnRegresar.Click += new System.EventHandler(this.BtnRegresar_Click);
             // 
             // pictureBox3
             // 
@@ -95,9 +107,9 @@
             // 
             this.BtnOlvideMiContraseña.BackColor = System.Drawing.Color.LightCoral;
             this.BtnOlvideMiContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOlvideMiContraseña.Location = new System.Drawing.Point(149, 204);
+            this.BtnOlvideMiContraseña.Location = new System.Drawing.Point(159, 204);
             this.BtnOlvideMiContraseña.Name = "BtnOlvideMiContraseña";
-            this.BtnOlvideMiContraseña.Size = new System.Drawing.Size(186, 44);
+            this.BtnOlvideMiContraseña.Size = new System.Drawing.Size(190, 38);
             this.BtnOlvideMiContraseña.TabIndex = 4;
             this.BtnOlvideMiContraseña.Text = "Olvide mi Palabra Clave";
             this.BtnOlvideMiContraseña.UseVisualStyleBackColor = false;
@@ -107,7 +119,7 @@
             // 
             this.BtnIngresar.BackColor = System.Drawing.Color.LightCoral;
             this.BtnIngresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIngresar.Location = new System.Drawing.Point(208, 457);
+            this.BtnIngresar.Location = new System.Drawing.Point(208, 460);
             this.BtnIngresar.Name = "BtnIngresar";
             this.BtnIngresar.Size = new System.Drawing.Size(171, 46);
             this.BtnIngresar.TabIndex = 3;
@@ -151,23 +163,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario";
             // 
-            // BtnRegresar
-            // 
-            this.BtnRegresar.BackColor = System.Drawing.Color.LightCoral;
-            this.BtnRegresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegresar.Location = new System.Drawing.Point(23, 457);
-            this.BtnRegresar.Name = "BtnRegresar";
-            this.BtnRegresar.Size = new System.Drawing.Size(161, 46);
-            this.BtnRegresar.TabIndex = 2;
-            this.BtnRegresar.Text = "Regresar";
-            this.BtnRegresar.UseVisualStyleBackColor = false;
-            this.BtnRegresar.Click += new System.EventHandler(this.BtnRegresar_Click);
-            // 
             // OlvideConstraseña
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Coral;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(219)))), ((int)(((byte)(211)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);

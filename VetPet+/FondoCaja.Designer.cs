@@ -57,16 +57,16 @@
             this.groupBox1.Controls.Add(this.BtnIngresar);
             this.groupBox1.Controls.Add(this.TxtFondoCaja);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(45, 22);
+            this.groupBox1.Location = new System.Drawing.Point(23, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(378, 511);
+            this.groupBox1.Size = new System.Drawing.Size(406, 520);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.people;
-            this.pictureBox3.Location = new System.Drawing.Point(156, 19);
+            this.pictureBox3.Location = new System.Drawing.Point(167, 19);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(83, 66);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -76,7 +76,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.VetPet_Logo1;
-            this.pictureBox1.Location = new System.Drawing.Point(63, 228);
+            this.pictureBox1.Location = new System.Drawing.Point(76, 227);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(260, 188);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -87,7 +87,7 @@
             // 
             this.BtnIngresar.BackColor = System.Drawing.Color.LightCoral;
             this.BtnIngresar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnIngresar.Location = new System.Drawing.Point(94, 449);
+            this.BtnIngresar.Location = new System.Drawing.Point(111, 458);
             this.BtnIngresar.Name = "BtnIngresar";
             this.BtnIngresar.Size = new System.Drawing.Size(198, 46);
             this.BtnIngresar.TabIndex = 3;
@@ -98,16 +98,17 @@
             // TxtFondoCaja
             // 
             this.TxtFondoCaja.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFondoCaja.Location = new System.Drawing.Point(34, 150);
+            this.TxtFondoCaja.Location = new System.Drawing.Point(51, 146);
             this.TxtFondoCaja.Name = "TxtFondoCaja";
             this.TxtFondoCaja.Size = new System.Drawing.Size(301, 29);
             this.TxtFondoCaja.TabIndex = 1;
+            this.TxtFondoCaja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtFondoCaja_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 101);
+            this.label1.Location = new System.Drawing.Point(46, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 28);
             this.label1.TabIndex = 0;
@@ -117,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Coral;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(219)))), ((int)(((byte)(211)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.panel1);
             this.Name = "FondoCaja";

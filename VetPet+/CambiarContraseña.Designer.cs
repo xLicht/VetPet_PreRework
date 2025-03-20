@@ -74,9 +74,9 @@
             this.groupBox1.Controls.Add(this.TxtContraseña);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.Contraseña);
-            this.groupBox1.Location = new System.Drawing.Point(25, 17);
+            this.groupBox1.Location = new System.Drawing.Point(25, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(401, 522);
+            this.groupBox1.Size = new System.Drawing.Size(403, 524);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -104,7 +104,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.LightCoral;
             this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(105, 455);
+            this.button1.Location = new System.Drawing.Point(105, 463);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(198, 46);
             this.button1.TabIndex = 3;
@@ -115,7 +115,7 @@
             // TxtConfiMiContraseña
             // 
             this.TxtConfiMiContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtConfiMiContraseña.Location = new System.Drawing.Point(56, 186);
+            this.TxtConfiMiContraseña.Location = new System.Drawing.Point(54, 196);
             this.TxtConfiMiContraseña.Name = "TxtConfiMiContraseña";
             this.TxtConfiMiContraseña.Size = new System.Drawing.Size(297, 29);
             this.TxtConfiMiContraseña.TabIndex = 2;
@@ -123,7 +123,7 @@
             // TxtContraseña
             // 
             this.TxtContraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContraseña.Location = new System.Drawing.Point(52, 110);
+            this.TxtContraseña.Location = new System.Drawing.Point(50, 120);
             this.TxtContraseña.Name = "TxtContraseña";
             this.TxtContraseña.Size = new System.Drawing.Size(301, 29);
             this.TxtContraseña.TabIndex = 1;
@@ -132,7 +132,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(51, 155);
+            this.label3.Location = new System.Drawing.Point(49, 165);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(211, 22);
             this.label3.TabIndex = 0;
@@ -142,7 +142,7 @@
             // 
             this.Contraseña.AutoSize = true;
             this.Contraseña.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Contraseña.Location = new System.Drawing.Point(50, 79);
+            this.Contraseña.Location = new System.Drawing.Point(48, 89);
             this.Contraseña.Name = "Contraseña";
             this.Contraseña.Size = new System.Drawing.Size(115, 22);
             this.Contraseña.TabIndex = 0;
@@ -210,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Coral;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(219)))), ((int)(((byte)(211)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
             this.Controls.Add(this.panel1);
             this.Name = "CambiarContraseña";

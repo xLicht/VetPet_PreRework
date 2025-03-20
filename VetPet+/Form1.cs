@@ -16,12 +16,14 @@ namespace VetPet_
     {
         int idUsuarioGLOBAL;
         int idTipoEmpleadoGLOBAL;
-        public Form1(int idUsuario,int tipoEmpleado)
+        int fondoDeCaja;
+        public Form1(int idUsuario,int tipoEmpleado,int fondoCaja)
         {
             
             InitializeComponent();
             this.idUsuarioGLOBAL = idUsuario;
             this.idTipoEmpleadoGLOBAL = tipoEmpleado;
+            this.fondoDeCaja = fondoCaja;
             
         }
 
