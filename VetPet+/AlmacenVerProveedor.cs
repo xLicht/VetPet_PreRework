@@ -50,34 +50,26 @@ namespace VetPet_
                     FROM Celular c
                 )
                 SELECT 
-                    p.nombre AS NombreProveedor,
-                    MAX(CASE WHEN c.NumeroOrden = 1 THEN c.numero END) AS CelularProveedor,
-                    MAX(CASE WHEN c.NumeroOrden = 2 THEN c.numero END) AS CelularProveedorExtra,
+                    p.nombre AS NombreProveedor,                  
+                    p.celularPrincipal AS celularPrincipal,
+                    p.celularContactoPrincipal AS celularContactoPrincipal,
+                    ce.numero AS CelularProveedorExtra,
                     p.correoElectronico AS CorreoElectronico,
                     p.nombreContacto AS NombreContacto,
-                    -- Cambiado de p.celularContacto a cct.numero para obtener el número de celular desde CelularContacto
-                    cct.numero AS CelularContacto,
                     ca.nombre AS Calle,
                     co.nombre AS Colonia,
                     cp.cp AS CodigoPostal,
                     ci.nombre AS Ciudad,
                     e.nombre AS Estado
                 FROM Proveedor p
-                -- Se une con la subconsulta que maneja los celulares ordenados
-                LEFT JOIN CelularesOrdenados c ON p.idProveedor = c.idProveedor
-                -- Se añade la unión con la tabla CelularContacto para obtener el celular de contacto
-                LEFT JOIN CelularContacto cct ON p.idProveedor = cct.idProveedor
+                INNER JOIN Celular ce ON p.idProveedor = ce.idProveedor
                 LEFT JOIN Direccion d ON p.idProveedor = d.idProveedor
                 LEFT JOIN Calle ca ON d.idCalle = ca.idCalle
                 LEFT JOIN Colonia co ON d.idColonia = co.idColonia
                 LEFT JOIN Cp cp ON d.idCp = cp.idCp
                 LEFT JOIN Ciudad ci ON d.idCiudad = ci.idCiudad
                 LEFT JOIN Estado e ON d.idEstado = e.idEstado
-                WHERE p.nombre = @nombreProveedor
-                GROUP BY 
-                    p.nombre, p.correoElectronico, p.nombreContacto, 
-                    cct.numero, -- Se agrupa el número de celular de contacto correctamente
-                    ca.nombre, co.nombre, cp.cp, ci.nombre, e.nombre;"; // Se usa p.nombre correctamente
+                WHERE p.nombre = @nombreProveedor;"; // Se usa p.nombre correctamente
 
                 // Crear un SqlCommand con la conexión
                 SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
@@ -87,19 +79,17 @@ namespace VetPet_
                 if (reader.Read())
                 {
                     txtNombre.Text = reader["NombreProveedor"].ToString();
-                    txtTelefono.Text = reader["CelularProveedor"].ToString(); // Primer número
+                    txtTelefono.Text = reader["celularPrincipal"].ToString(); // Primer número
                     txtTelefonoExtra.Text = reader["CelularProveedorExtra"].ToString(); // Segundo número
                     txtCorreo.Text = reader["CorreoElectronico"].ToString();
                     txtNombreContacto.Text = reader["NombreContacto"].ToString();
-                    txtTelefonoContacto.Text = reader["CelularContacto"].ToString();
+                    txtTelefonoContacto.Text = reader["celularContactoPrincipal"].ToString();
                     txtCalle.Text = reader["Calle"].ToString();
                     txtColonia.Text = reader["Colonia"].ToString();
                     txtCp.Text = reader["CodigoPostal"].ToString();
                     txtCiudad.Text = reader["Ciudad"].ToString();
                     txtEstado.Text = reader["Estado"].ToString();
                 }
-
-
                 reader.Close();
                 conexion.CerrarConexion();
             }

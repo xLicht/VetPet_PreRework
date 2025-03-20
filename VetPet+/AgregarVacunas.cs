@@ -38,11 +38,12 @@ namespace VetPet_
             string nombreViaAdmin = selectedRow2["nombre"].ToString();
             string tabla1 = "ViaAdministracion";
             string tabla2 = "ServicioEspecificoHijo";
-            int idViaAdmin = ObtenerId(nombreViaAdmin, tabla1);
-            int idSerEsp = ObtenerId(nombreServicioHijo, tabla2);
+            
 
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
+            int idViaAdmin = conexion.ObtenerId(nombreViaAdmin, tabla1);
+            int idSerEsp = conexion.ObtenerId(nombreServicioHijo, tabla2);
             string queryUpdate = "INSERT INTO Vacuna (nombre, descripcion, precio, intervalo, frecuencia, edadMinima, idServicioEspecificoHijo, idViaAdministracion)" +
                 " VALUES (@NOM, @DES, @PRE, @INT, @FRE, @EDM, @ISH, @IVA)";
 
@@ -100,45 +101,7 @@ namespace VetPet_
 
             }
         }
-        private int ObtenerId(string nombre, string tabla)
-        {
-
-            conexionAlex conexion = new conexionAlex();
-            conexion.AbrirConexion();
-
-            // Obtener el idServicioEspecificoHijo a partir del nombre
-            string queryGetIdServicioHijo = "SELECT id" + tabla + " FROM " + tabla + " WHERE nombre = @NombreServicioHijo";
-            int idServicioHijo = 0;
-
-            using (SqlCommand cmd = new SqlCommand(queryGetIdServicioHijo, conexion.GetConexion()))
-            {
-                try
-                {
-                    cmd.Parameters.AddWithValue("@NombreServicioHijo", nombre);
-                    object result = cmd.ExecuteScalar(); // Ejecutar la consulta y obtener el primer valor de la primera columna
-
-                    if (result != null)
-                    {
-                        idServicioHijo = Convert.ToInt32(result);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró el servicio hijo con ese nombre.");
-
-                    }
-                    return idServicioHijo;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al actualizar el registro: " + ex.Message);
-                    return idServicioHijo;
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
-        }
+        
         private void cargarCombobox()
         {
             conexionAlex conexion = new conexionAlex();

@@ -56,19 +56,19 @@ namespace VetPet_
 
                 // Consulta SQL para obtener la información de Pedido, Producto, Medicamento y Proveedor
                 string query = @"
-            SELECT 
-                CASE 
-                    WHEN pe.idProducto IS NOT NULL THEN p.nombre
-                    ELSE m.nombreGenérico
-                END AS Producto, 
-                pr.nombre AS Proveedor, 
-                pe.cantidad, 
-                pe.total, 
-                pe.fechaRecibido
-            FROM Pedido pe
-            LEFT JOIN Producto p ON pe.idProducto = p.idProducto
-            LEFT JOIN Medicamento m ON pe.idMedicamento = m.idMedicamento
-            INNER JOIN Proveedor pr ON pe.idProveedor = pr.idProveedor";
+                SELECT 
+                    pr.nombre AS Proveedor, 
+                    CASE 
+                        WHEN pe.idProducto IS NOT NULL THEN p.nombre
+                        ELSE m.nombreGenérico
+                    END AS Producto, 
+                    pe.cantidad, 
+                    pe.total, 
+                    pe.fechaRecibido
+                FROM Pedido pe
+                LEFT JOIN Producto p ON pe.idProducto = p.idProducto
+                LEFT JOIN Medicamento m ON pe.idMedicamento = m.idMedicamento
+                INNER JOIN Proveedor pr ON pe.idProveedor = pr.idProveedor";
 
                 // Crear el comando SQL
                 SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());

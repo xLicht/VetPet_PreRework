@@ -29,7 +29,9 @@ namespace VetPet_
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AgregarCirugias(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            conexion.GuardarTipoServicio(TxtNombre, richTextBox1, 4);
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

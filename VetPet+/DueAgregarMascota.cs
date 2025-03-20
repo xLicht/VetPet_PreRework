@@ -26,12 +26,12 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueMascotadeDue(parentForm));
+            //parentForm.formularioHijo(new DueMascotadeDue(parentForm));
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueMascotadeDue(parentForm));
+            ///parentForm.formularioHijo(new DueMascotadeDue(parentForm));
         }
     }
 }

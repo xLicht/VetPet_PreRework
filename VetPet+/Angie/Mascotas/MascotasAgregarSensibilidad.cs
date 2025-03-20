@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VetPet_.Angie.Ventas
+namespace VetPet_.Angie.Mascotas
 {
-    public partial class DueAgregarMascota : Form
+    public partial class MascotasAgregarSensibilidad : Form
     {
-        public DueAgregarMascota()
+        public MascotasAgregarSensibilidad()
         {
             InitializeComponent();
         }

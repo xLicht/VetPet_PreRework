@@ -10,7 +10,9 @@ namespace VetPet_.Angie.Mascotas
 {
     internal class Mismetodos
     {
-        public readonly string cadenaConexion = @"Data Source=127.0.0.1;Initial Catalog=VetPetPlus;Integrated Security=True;";
+       // public readonly string cadenaConexion = @"Data Source=127.0.0.1;Initial Catalog=VetPetPlus;Integrated Security=True;";
+        public readonly string cadenaConexion = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
+
         public SqlConnection conexion;
 
         public Mismetodos()

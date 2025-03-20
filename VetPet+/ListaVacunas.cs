@@ -193,5 +193,39 @@ namespace VetPet_
                 }
             }
         }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string patron = TxtBuscar.Text;
+            string id = "3";
+            string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = " + id + " " +
+                "AND nombre LIKE '%" + patron + "%' AND estado = 'A';";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
     }
 }

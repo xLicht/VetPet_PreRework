@@ -163,7 +163,7 @@ namespace VetPet_
             conexion.AbrirConexion();
 
             // Crear la consulta para obtener los nombres de los productos
-            string query = "SELECT idProducto, nombre FROM Producto";
+            string query = "SELECT idProducto, nombre FROM Producto WHERE idTipoProducto = '3'";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {

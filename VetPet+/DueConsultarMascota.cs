@@ -39,7 +39,7 @@ namespace VetPet_
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueMascotadeDue(parentForm));
+            //parentForm.formularioHijo(new DueMascotadeDue(parentForm));
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace VetPet_
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new DueMascotadeDue(parentForm));
+            //parentForm.formularioHijo(new DueMascotadeDue(parentForm));
         }
 
         private void cbEspecie_SelectedIndexChanged(object sender, EventArgs e)
