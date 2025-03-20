@@ -258,6 +258,12 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarEspecie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarEspecie.Designer.cs">
+      <DependentUpon>MascotasAgregarEspecie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Mascotas\MascotasAgregarMascota.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,11 +288,29 @@
     <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\Mismetodos.cs" />
-    <Compile Include="Angie\Ventas\MenuMascotas.cs">
+    <Compile Include="Angie\Mascotas\MascotasVerEspecies.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\Ventas\MenuMascotas.Designer.cs">
+    <Compile Include="Angie\Mascotas\MascotasVerEspecies.Designer.cs">
+      <DependentUpon>MascotasVerEspecies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerSensibilidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerSensibilidades.Designer.cs">
+      <DependentUpon>MascotasVerSensibilidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mismetodos.cs" />
+    <Compile Include="Angie\Mascotas\MascotasVerRazas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerRazas.Designer.cs">
+      <DependentUpon>MascotasVerRazas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MenuMascotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MenuMascotas.Designer.cs">
       <DependentUpon>MenuMascotas.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
@@ -1113,6 +1137,9 @@
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarEspecie.resx">
+      <DependentUpon>MascotasAgregarEspecie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarMascota.resx">
       <DependentUpon>MascotasAgregarMascota.cs</DependentUpon>
     </EmbeddedResource>
@@ -1131,7 +1158,16 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasModificar.resx">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\Ventas\MenuMascotas.resx">
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerEspecies.resx">
+      <DependentUpon>MascotasVerEspecies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerRazas.resx">
+      <DependentUpon>MascotasVerRazas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerSensibilidades.resx">
+      <DependentUpon>MascotasVerSensibilidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MenuMascotas.resx">
       <DependentUpon>MenuMascotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasAgregarMedicamento.resx">
