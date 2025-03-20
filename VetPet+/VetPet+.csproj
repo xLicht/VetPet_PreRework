@@ -1603,6 +1603,9 @@
     </Content>
     <None Include="Resources\icons8-add-button-251.png" />
     <None Include="Resources\icons8-aceptar-505.png" />
+    <None Include="Resources\VetPet+.png" />
+    <None Include="Resources\topBar.png" />
+    <None Include="Resources\barraTop.png" />
     <None Include="Resources\icons8-aceptar-506.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

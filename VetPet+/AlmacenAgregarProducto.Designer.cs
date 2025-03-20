@@ -55,6 +55,8 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.fechaVencimientoPicker = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +102,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label8.Location = new System.Drawing.Point(29, 24);
+            this.label8.Location = new System.Drawing.Point(29, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(493, 38);
             this.label8.TabIndex = 24;
@@ -137,7 +139,7 @@
             this.txtIdProveedor.Enabled = false;
             this.txtIdProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdProveedor.Location = new System.Drawing.Point(659, 401);
+            this.txtIdProveedor.Location = new System.Drawing.Point(659, 426);
             this.txtIdProveedor.Name = "txtIdProveedor";
             this.txtIdProveedor.Size = new System.Drawing.Size(398, 40);
             this.txtIdProveedor.TabIndex = 125;
@@ -149,7 +151,7 @@
             this.txtIdTipoProducto.Enabled = false;
             this.txtIdTipoProducto.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdTipoProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdTipoProducto.Location = new System.Drawing.Point(659, 354);
+            this.txtIdTipoProducto.Location = new System.Drawing.Point(659, 379);
             this.txtIdTipoProducto.Name = "txtIdTipoProducto";
             this.txtIdTipoProducto.Size = new System.Drawing.Size(398, 40);
             this.txtIdTipoProducto.TabIndex = 124;
@@ -161,7 +163,7 @@
             this.txtIdMarca.Enabled = false;
             this.txtIdMarca.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdMarca.Location = new System.Drawing.Point(659, 308);
+            this.txtIdMarca.Location = new System.Drawing.Point(659, 333);
             this.txtIdMarca.Name = "txtIdMarca";
             this.txtIdMarca.Size = new System.Drawing.Size(398, 40);
             this.txtIdMarca.TabIndex = 123;
@@ -172,7 +174,7 @@
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label11.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label11.Location = new System.Drawing.Point(659, 262);
+            this.label11.Location = new System.Drawing.Point(659, 287);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(398, 40);
             this.label11.TabIndex = 122;
@@ -185,7 +187,7 @@
             this.cmbIdTipoProducto.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbIdTipoProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.cmbIdTipoProducto.FormattingEnabled = true;
-            this.cmbIdTipoProducto.Location = new System.Drawing.Point(312, 352);
+            this.cmbIdTipoProducto.Location = new System.Drawing.Point(312, 377);
             this.cmbIdTipoProducto.Name = "cmbIdTipoProducto";
             this.cmbIdTipoProducto.Size = new System.Drawing.Size(290, 40);
             this.cmbIdTipoProducto.TabIndex = 121;
@@ -196,7 +198,7 @@
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label10.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label10.Location = new System.Drawing.Point(31, 354);
+            this.label10.Location = new System.Drawing.Point(31, 379);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(265, 38);
             this.label10.TabIndex = 120;
@@ -209,7 +211,7 @@
             this.cmbIdMarca.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbIdMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.cmbIdMarca.FormattingEnabled = true;
-            this.cmbIdMarca.Location = new System.Drawing.Point(262, 306);
+            this.cmbIdMarca.Location = new System.Drawing.Point(262, 331);
             this.cmbIdMarca.Name = "cmbIdMarca";
             this.cmbIdMarca.Size = new System.Drawing.Size(340, 40);
             this.cmbIdMarca.TabIndex = 119;
@@ -220,7 +222,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label1.Location = new System.Drawing.Point(31, 308);
+            this.label1.Location = new System.Drawing.Point(31, 333);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(223, 38);
             this.label1.TabIndex = 118;
@@ -233,7 +235,7 @@
             this.cmbIdProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbIdProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
             this.cmbIdProveedor.FormattingEnabled = true;
-            this.cmbIdProveedor.Location = new System.Drawing.Point(262, 399);
+            this.cmbIdProveedor.Location = new System.Drawing.Point(262, 424);
             this.cmbIdProveedor.Name = "cmbIdProveedor";
             this.cmbIdProveedor.Size = new System.Drawing.Size(340, 40);
             this.cmbIdProveedor.TabIndex = 117;
@@ -244,7 +246,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label9.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label9.Location = new System.Drawing.Point(31, 401);
+            this.label9.Location = new System.Drawing.Point(31, 426);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(223, 38);
             this.label9.TabIndex = 116;
@@ -256,7 +258,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label7.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label7.Location = new System.Drawing.Point(31, 217);
+            this.label7.Location = new System.Drawing.Point(31, 196);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(281, 38);
             this.label7.TabIndex = 115;
@@ -268,7 +270,7 @@
             this.txtPrecioProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtPrecioProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPrecioProveedor.Location = new System.Drawing.Point(332, 217);
+            this.txtPrecioProveedor.Location = new System.Drawing.Point(332, 196);
             this.txtPrecioProveedor.Name = "txtPrecioProveedor";
             this.txtPrecioProveedor.Size = new System.Drawing.Size(270, 40);
             this.txtPrecioProveedor.TabIndex = 114;
@@ -280,10 +282,10 @@
             this.txtDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtDescripcion.Location = new System.Drawing.Point(659, 131);
+            this.txtDescripcion.Location = new System.Drawing.Point(657, 112);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(398, 126);
+            this.txtDescripcion.Size = new System.Drawing.Size(398, 167);
             this.txtDescripcion.TabIndex = 113;
             this.txtDescripcion.Text = "Descripción de producto";
             this.txtDescripcion.Enter += new System.EventHandler(this.txtDescripcion_Enter);
@@ -293,7 +295,7 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label6.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label6.Location = new System.Drawing.Point(659, 88);
+            this.label6.Location = new System.Drawing.Point(659, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(398, 38);
             this.label6.TabIndex = 112;
@@ -305,7 +307,7 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label5.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label5.Location = new System.Drawing.Point(31, 174);
+            this.label5.Location = new System.Drawing.Point(31, 153);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(213, 38);
             this.label5.TabIndex = 111;
@@ -317,7 +319,7 @@
             this.txtPrecioVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtPrecioVenta.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPrecioVenta.Location = new System.Drawing.Point(262, 174);
+            this.txtPrecioVenta.Location = new System.Drawing.Point(262, 153);
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Size = new System.Drawing.Size(340, 40);
             this.txtPrecioVenta.TabIndex = 110;
@@ -329,7 +331,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label4.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(31, 262);
+            this.label4.Location = new System.Drawing.Point(31, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(223, 38);
             this.label4.TabIndex = 109;
@@ -341,7 +343,7 @@
             this.txtStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtStock.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtStock.Location = new System.Drawing.Point(262, 262);
+            this.txtStock.Location = new System.Drawing.Point(262, 241);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(340, 40);
             this.txtStock.TabIndex = 108;
@@ -353,7 +355,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label3.Location = new System.Drawing.Point(31, 131);
+            this.label3.Location = new System.Drawing.Point(31, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(186, 38);
             this.label3.TabIndex = 107;
@@ -365,7 +367,7 @@
             this.txtCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtCantidad.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtCantidad.Location = new System.Drawing.Point(238, 131);
+            this.txtCantidad.Location = new System.Drawing.Point(238, 110);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(364, 40);
             this.txtCantidad.TabIndex = 106;
@@ -377,7 +379,7 @@
             this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtNombre.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtNombre.Location = new System.Drawing.Point(238, 88);
+            this.txtNombre.Location = new System.Drawing.Point(238, 67);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(364, 40);
             this.txtNombre.TabIndex = 105;
@@ -389,12 +391,35 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label2.Location = new System.Drawing.Point(31, 90);
+            this.label2.Location = new System.Drawing.Point(31, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(186, 38);
             this.label2.TabIndex = 104;
             this.label2.Text = "Nombre";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // fechaVencimientoPicker
+            // 
+            this.fechaVencimientoPicker.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
+            this.fechaVencimientoPicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
+            this.fechaVencimientoPicker.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaVencimientoPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fechaVencimientoPicker.Location = new System.Drawing.Point(327, 287);
+            this.fechaVencimientoPicker.Name = "fechaVencimientoPicker";
+            this.fechaVencimientoPicker.Size = new System.Drawing.Size(275, 40);
+            this.fechaVencimientoPicker.TabIndex = 127;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
+            this.label12.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
+            this.label12.Location = new System.Drawing.Point(31, 287);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(280, 40);
+            this.label12.TabIndex = 126;
+            this.label12.Text = "Fecha vencimiento";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AlmacenAgregarProducto
             // 
@@ -402,6 +427,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.fechaVencimientoPicker);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.txtIdProveedor);
             this.Controls.Add(this.txtIdTipoProducto);
             this.Controls.Add(this.txtIdMarca);
@@ -468,5 +495,7 @@
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker fechaVencimientoPicker;
+        private System.Windows.Forms.Label label12;
     }
 }

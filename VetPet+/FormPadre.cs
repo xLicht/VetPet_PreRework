@@ -73,8 +73,12 @@ namespace VetPet_
                     control.Height = (int)(info.height * scaleY);
                     control.Left = (int)(info.left * scaleX);
                     control.Top = (int)(info.top * scaleY);
-                    
-                    control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
+
+                    float newFontSize = info.fontSize * Math.Min(scaleX, scaleY);
+                    newFontSize = Math.Max(newFontSize, 1); // Evita valores menores a 1
+
+                    control.Font = new Font(control.Font.FontFamily, newFontSize);
+
                 }
 
                 if (control.HasChildren)
