@@ -86,29 +86,30 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT 
-                        p.nombre AS NombreCliente, 
-                        p.apellidoP AS ApellidoPaterno, 
-                        p.celularPrincipal AS Telefono, 
-                        c.fechaRegistro AS FechaRegistro, 
-                        c.fechaProgramada AS FechaProgramada, 
-                        m.nombre AS NombreMascota, 
-                        e.nombre AS Especie, 
-                        r.nombre AS Raza, 
-                        con.peso AS Peso, 
-                        con.temperatura AS Temperatura, 
-                        con.diagnostico AS Diagnostico, 
-                        mo.nombre AS MotivoConsulta, 
-                        m.esterilizado AS Esterilizado, 
-                        m.muerto AS Fallecido
-                    FROM Cita c
-                    INNER JOIN Mascota m ON c.idMascota = m.idMascota
-                    INNER JOIN Persona p ON m.idPersona = p.idPersona
-                    INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
-                    INNER JOIN Especie e ON m.idEspecie = e.idEspecie
-                    INNER JOIN Raza r ON m.idRaza = r.idRaza
-                    LEFT JOIN Consulta con ON c.idCita = con.idCita
-                    WHERE c.idCita = @idCita";
+                    string query = @"SELECT 
+                    p.nombre AS NombreCliente, 
+                    p.apellidoP AS ApellidoPaterno, 
+                    p.celularPrincipal AS Telefono, 
+                    c.fechaRegistro AS FechaRegistro, 
+                    c.fechaProgramada AS FechaProgramada, 
+                    m.nombre AS NombreMascota, 
+                    e.nombre AS Especie, 
+                    r.nombre AS Raza, 
+                    con.peso AS Peso, 
+                    con.temperatura AS Temperatura, 
+                    con.diagnostico AS Diagnostico, 
+                    con.EstudioEspecial AS EstudioEspecial, 
+                    mo.nombre AS MotivoConsulta, 
+                    m.esterilizado AS Esterilizado, 
+                    m.muerto AS Fallecido
+                FROM Cita c
+                INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                INNER JOIN Persona p ON m.idPersona = p.idPersona
+                INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
+                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                INNER JOIN Raza r ON m.idRaza = r.idRaza
+                LEFT JOIN Consulta con ON c.idCita = con.idCita
+                WHERE c.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -120,7 +121,6 @@ namespace VetPet_
                         txtNombre.Text = reader["NombreCliente"].ToString();
                         txtApellidoPat.Text = reader["ApellidoPaterno"].ToString();
                         txtTelefono.Text = reader["Telefono"].ToString();
-                        // txtFechaR.Text = reader["FechaRegistro"].ToString();
                         txtFecha.Text = reader["FechaProgramada"].ToString();
                         txtMascota.Text = reader["NombreMascota"].ToString();
                         txtEspecie.Text = reader["Especie"].ToString();
@@ -129,6 +129,7 @@ namespace VetPet_
                         txtTemperatura.Text = reader["Temperatura"] != DBNull.Value ? reader["Temperatura"].ToString() : "N/A";
                         txtMotivo.Text = reader["MotivoConsulta"].ToString();
                         txtDiagnostico.Text = reader["Diagnostico"] != DBNull.Value ? reader["Diagnostico"].ToString() : "Sin diagnóstico";
+                        rtEstudioEspecial.Text = reader["EstudioEspecial"] != DBNull.Value ? reader["EstudioEspecial"].ToString() : "Sin estudio especial";
 
                         cbCastrado.Checked = reader["Esterilizado"] != DBNull.Value && reader["Esterilizado"].ToString() == "S";
                         cbFallecido.Checked = reader["Fallecido"] != DBNull.Value && reader["Fallecido"].ToString() == "S";

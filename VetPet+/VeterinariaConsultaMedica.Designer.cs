@@ -40,7 +40,6 @@
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnVerArchivos = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -99,7 +98,7 @@
             // cbCastrado
             // 
             this.cbCastrado.AutoSize = true;
-            this.cbCastrado.Location = new System.Drawing.Point(1019, 134);
+            this.cbCastrado.Location = new System.Drawing.Point(1008, 149);
             this.cbCastrado.Name = "cbCastrado";
             this.cbCastrado.Size = new System.Drawing.Size(15, 14);
             this.cbCastrado.TabIndex = 355;
@@ -108,7 +107,7 @@
             // cbFallecido
             // 
             this.cbFallecido.AutoSize = true;
-            this.cbFallecido.Location = new System.Drawing.Point(1012, 99);
+            this.cbFallecido.Location = new System.Drawing.Point(1001, 114);
             this.cbFallecido.Name = "cbFallecido";
             this.cbFallecido.Size = new System.Drawing.Size(15, 14);
             this.cbFallecido.TabIndex = 354;
@@ -174,7 +173,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label22.Location = new System.Drawing.Point(895, 127);
+            this.label22.Location = new System.Drawing.Point(884, 142);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(121, 25);
             this.label22.TabIndex = 341;
@@ -185,25 +184,11 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label21.Location = new System.Drawing.Point(910, 91);
+            this.label21.Location = new System.Drawing.Point(899, 106);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(95, 25);
             this.label21.TabIndex = 340;
             this.label21.Text = "Fallecido";
-            // 
-            // btnVerArchivos
-            // 
-            this.btnVerArchivos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.btnVerArchivos.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerArchivos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnVerArchivos.Location = new System.Drawing.Point(853, 164);
-            this.btnVerArchivos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnVerArchivos.Name = "btnVerArchivos";
-            this.btnVerArchivos.Size = new System.Drawing.Size(187, 37);
-            this.btnVerArchivos.TabIndex = 331;
-            this.btnVerArchivos.Text = "Ver Archivos";
-            this.btnVerArchivos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVerArchivos.UseVisualStyleBackColor = false;
             // 
             // label14
             // 
@@ -553,7 +538,6 @@
             this.Controls.Add(this.txtFecha);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.btnVerArchivos);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -605,7 +589,6 @@
         private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button btnVerArchivos;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;

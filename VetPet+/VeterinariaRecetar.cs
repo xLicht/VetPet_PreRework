@@ -146,12 +146,73 @@ namespace VetPet_
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultarM(parentForm));
+            if (string.IsNullOrWhiteSpace(rtIndicaciones.Text))
+            {
+                MessageBox.Show("Las indicaciones no pueden estar vacías.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string queryReceta = @"INSERT INTO Receta (indicaciones, idConsulta) 
+                               VALUES (@indicaciones, @idConsulta);
+                               SELECT SCOPE_IDENTITY();";
+
+                int idReceta;
+
+                using (SqlCommand cmd = new SqlCommand(queryReceta, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@indicaciones", rtIndicaciones.Text.Trim());
+                    cmd.Parameters.AddWithValue("@idConsulta", DatoConsulta);
+                    idReceta = Convert.ToInt32(cmd.ExecuteScalar()); 
+                }
+
+                if (listaMedicamentos.Count > 0)
+                {
+                    foreach (var medicamento in listaMedicamentos)
+                    {
+                        string queryMedicamento = @"INSERT INTO Receta_Medicamento (idReceta, idMedicamento, cantidad) 
+                                            VALUES (@idReceta, @idMedicamento, @cantidad);";
+
+                        using (SqlCommand cmd = new SqlCommand(queryMedicamento, conexionDB.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idReceta", idReceta);
+                            cmd.Parameters.AddWithValue("@idMedicamento", medicamento.Item1);
+                            cmd.Parameters.AddWithValue("@cantidad", medicamento.Item3);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                MessageBox.Show("Receta guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                listaMedicamentos.Clear();
+                ActualizarDataGrid();
+                rtIndicaciones.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la receta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+
+
+            //parentForm.formularioHijo(new VeterinariaConsultarM(parentForm));
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VeterinariaConsultarM(parentForm));
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            ConsultarCita formularioHijo = new ConsultarCita(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
+
+            //parentForm.formularioHijo(new VeterinariaConsultarM(parentForm));
         }
 
         private void ActualizarDataGrid()
