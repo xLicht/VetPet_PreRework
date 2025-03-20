@@ -112,6 +112,11 @@ namespace VetPet_
         {
 
         }
+
+        private void btnAgendarCita_Click(object sender, EventArgs e)
+        {
+
+        }
     }
    
 }
