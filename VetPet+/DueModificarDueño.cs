@@ -39,7 +39,7 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                     string query = @"SELECT 
-                        p.nombre, p.apellidoP, p.apellidoM, p.celular, 
+                        p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
                         p.correoElectronico, 
                         pais.nombre AS pais, calle.nombre AS calle, 
                         cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
@@ -73,7 +73,7 @@ namespace VetPet_
                         txtNombre.Text = reader["nombre"].ToString();
                         txtApellidoP.Text = reader["apellidoP"].ToString();
                         txtApellidoM.Text = reader["apellidoM"].ToString();
-                        txtCelular.Text = reader["celular"].ToString();
+                        txtCelular.Text = reader["celularPrincipal"].ToString();
                         txtCorreo.Text = reader["correoElectronico"].ToString();
                         cbPais.Text = reader["pais"].ToString();
                         cbCalle.Text = reader["calle"].ToString();
@@ -111,7 +111,7 @@ namespace VetPet_
                 SET nombre = @nombre, 
                     apellidoP = @apellidoP, 
                     apellidoM = @apellidoM, 
-                    celular = @celular, 
+                    celularPrincipal = @celularPrincipal, 
                     correoElectronico = @correo
                 WHERE idPersona = @idPersona;
 
@@ -131,7 +131,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@apellidoP", txtApellidoP.Text);
                     cmd.Parameters.AddWithValue("@apellidoM", txtApellidoM.Text);
-                    cmd.Parameters.AddWithValue("@celular", txtCelular.Text);
+                    cmd.Parameters.AddWithValue("@celularPrincipal", txtCelular.Text);
                     cmd.Parameters.AddWithValue("@correo", txtCorreo.Text);
                     cmd.Parameters.AddWithValue("@pais", cbPais.Text);
                     cmd.Parameters.AddWithValue("@calle", cbCalle.Text);
