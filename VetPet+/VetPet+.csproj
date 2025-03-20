@@ -283,6 +283,12 @@
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\Mismetodos.cs" />
+    <Compile Include="Angie\Ventas\MenuMascotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Ventas\MenuMascotas.Designer.cs">
+      <DependentUpon>MenuMascotas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1124,6 +1130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasModificar.resx">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Ventas\MenuMascotas.resx">
+      <DependentUpon>MenuMascotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasAgregarMedicamento.resx">
       <DependentUpon>VentasAgregarMedicamento.cs</DependentUpon>
