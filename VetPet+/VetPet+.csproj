@@ -1146,6 +1146,9 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarRaza.resx">
       <DependentUpon>MascotasAgregarRaza.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarSensibilidad.resx">
+      <DependentUpon>MascotasAgregarSensibilidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasConsultar.resx">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
     </EmbeddedResource>
