@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie.Ventas;
 
 namespace VetPet_.Angie.Mascotas
 {
-    public partial class MascotasAgregarEspecie : Form
+    public partial class MascotasVerAlergias : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -18,15 +19,15 @@ namespace VetPet_.Angie.Mascotas
         private Mismetodos mismetodos;
 
         private Form1 parentForm;
-        public MascotasAgregarEspecie(Form1 parent)
+        public MascotasVerAlergias(Form1 parent)
         {
             InitializeComponent();
-            this.Load += MascotasAgregarEspecie_Load;       // Evento Load
-            this.Resize += MascotasAgregarEspecie_Resize;   // Evento Resize
+            this.Load += MascotasVerAlergias_Load;       // Evento Load
+            this.Resize += MascotasVerAlergias_Resize;   // Evento Resize
 
             parentForm = parent;  // Guardamos la referencia de Form
         }
-        private void MascotasAgregarEspecie_Load(object sender, EventArgs e)
+        private void MascotasVerAlergias_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -37,9 +38,11 @@ namespace VetPet_.Angie.Mascotas
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+
+
         }
 
-        private void MascotasAgregarEspecie_Resize(object sender, EventArgs e)
+        private void MascotasVerAlergias_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -62,5 +65,26 @@ namespace VetPet_.Angie.Mascotas
                 }
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MenuMascotas (parentForm)); // Pasamos la referencia de Form1 a
+        }
     }
 }
+

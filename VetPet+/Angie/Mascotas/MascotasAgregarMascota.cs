@@ -362,7 +362,7 @@ namespace VetPet_.Angie.Mascotas
                     // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
                     if (result == DialogResult.Yes)
                     {
-                        parentForm.formularioHijo(new MascotasAgregarRaza(parentForm, nuevaEspecie));
+                        //parentForm.formularioHijo(new MascotasAgregarRaza(parentForm, nuevaEspecie));
                     }
                 }
                 else

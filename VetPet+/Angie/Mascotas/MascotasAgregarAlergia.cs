@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace VetPet_.Angie.Mascotas
 {
-    public partial class MascotasAgregarEspecie : Form
+    public partial class MascotasAgregarAlergia : Form
     {
         private float originalWidth;
         private float originalHeight;
@@ -18,15 +18,15 @@ namespace VetPet_.Angie.Mascotas
         private Mismetodos mismetodos;
 
         private Form1 parentForm;
-        public MascotasAgregarEspecie(Form1 parent)
+        public MascotasAgregarAlergia(Form1 parent)
         {
             InitializeComponent();
-            this.Load += MascotasAgregarEspecie_Load;       // Evento Load
-            this.Resize += MascotasAgregarEspecie_Resize;   // Evento Resize
+            this.Load += MascotasAgregarAlergia_Load;       // Evento Load
+            this.Resize += MascotasAgregarAlergia_Resize;   // Evento Resize
 
             parentForm = parent;  // Guardamos la referencia de Form
         }
-        private void MascotasAgregarEspecie_Load(object sender, EventArgs e)
+        private void MascotasAgregarAlergia_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -39,7 +39,7 @@ namespace VetPet_.Angie.Mascotas
             }
         }
 
-        private void MascotasAgregarEspecie_Resize(object sender, EventArgs e)
+        private void MascotasAgregarAlergia_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -61,6 +61,16 @@ namespace VetPet_.Angie.Mascotas
                     control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerAlergias(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerAlergias(parentForm)); // Pasamos la referencia de Form1 a
         }
     }
 }

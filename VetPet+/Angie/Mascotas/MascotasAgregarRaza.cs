@@ -34,15 +34,6 @@ namespace VetPet_.Angie.Mascotas
             this.nombreMascota = nombreMascota;
             CargarMascota();
         }
-        public MascotasAgregarRaza(Form1 parent, string raza)
-        {
-            InitializeComponent();
-            this.Load += MascotasAgregarRaza_Load;       // Evento Load
-            this.Resize += MascotasAgregarRaza_Resize;
-            parentForm = parent;  // Guardamos la referencia de Form1
-            this.raza = raza;
-            CargarMascota();
-        }
         private void CargarMascota()
         {
             try
