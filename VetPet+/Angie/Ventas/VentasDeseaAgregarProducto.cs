@@ -20,23 +20,9 @@ namespace VetPet_.Angie
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         int idCita = 0;
-
-        public VentasDeseaAgregarProducto()
-        {
-            InitializeComponent();
-            this.Load += VentasDeseaAgregarProducto_Load;       // Evento Load
-            this.Resize += VentasDeseaAgregarProducto_Resize;   // Evento Resize
-
-        }
-
-        public VentasDeseaAgregarProducto(Form1 parent, int idProducto)
-        {
-            InitializeComponent();
-            this.Load += VentasDeseaAgregarProducto_Load;       // Evento Load
-            this.Resize += VentasDeseaAgregarProducto_Resize;   // Evento Resize
-            parentForm = parent;  // Guardamos la referencia de Form1
-            CargarMedicamento(idProducto);
-        }
+        private decimal subtotal;
+        private int stock;
+        private decimal precio;  
 
         public VentasDeseaAgregarProducto(Form1 parent, int idProducto, int idCita)
         {
@@ -53,17 +39,16 @@ namespace VetPet_.Angie
             {
                 mismetodos.AbrirConexion();
                 string query = @"
-                            SELECT 
-                    idProducto as idProducto,
-                    nombre AS NombreMedicamento
-                FROM 
-                    Producto
-                WHERE 
-                    idProducto = @idProducto
-                    AND idTipoProducto = 1 OR idTipoProducto = 2;
-                        ";
+            SELECT 
+                idProducto AS idProducto,
+                nombre AS NombreMedicamento,
+                precioVenta AS Precio
+            FROM 
+                Producto
+            WHERE 
+                idProducto = @idProducto
+                AND (idTipoProducto = 1 OR idTipoProducto = 2);";
 
-                // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando2 = new SqlCommand(query, mismetodos.GetConexion()))
                 {
                     comando2.Parameters.AddWithValue("@idProducto", idMedicamento);
@@ -74,31 +59,28 @@ namespace VetPet_.Angie
                         {
                             textBox5.Text = reader["NombreMedicamento"].ToString();
                             label3.Text = reader["idProducto"].ToString();
+                            precio = reader.GetDecimal(reader.GetOrdinal("Precio"));
+
                         }
                         else
                         {
-                            // Si no se encuentra la cita, mostrar un mensaje o dejar el TextBox vacío
-                            textBox5.Text = "No se encontró la cita.";
+                            textBox5.Text = "No se encontró el medicamento.";
+                            label3.Text = "";
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejar el error si ocurre algún problema
                 MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {
-                // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
             }
         }
-        public VentasDeseaAgregarProducto(Form1 parent)
-        {
-            InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia de Form1
-        }
+
+
         private void VentasDeseaAgregarMedicamento_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
@@ -131,7 +113,6 @@ namespace VetPet_.Angie
                     MessageBox.Show("Ingrese una cantidad válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                decimal precio = ObtenerPrecioProducto(int.Parse(label3.Text));
 
                 if (precio == -1)
                 {
@@ -303,7 +284,7 @@ namespace VetPet_.Angie
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarProducto(parentForm,idCita));
+            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, idCita,subtotal,stock));
         }
 
     }

@@ -10,50 +10,75 @@ namespace VetPet_.Angie.Mascotas
 {
     internal class Mismetodos
     {
-       // public readonly string cadenaConexion = @"Data Source=127.0.0.1;Initial Catalog=VetPetPlus;Integrated Security=True;";
-        public readonly string cadenaConexion = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
+            // Definir las dos cadenas de conexión
+            private readonly string cadenaConexion1 = @"Data Source=127.0.0.1;Initial Catalog=VetPetPlus;Integrated Security=True;";
+            private readonly string cadenaConexion2 = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
 
-        public SqlConnection conexion;
+            private SqlConnection conexion;
+            private bool usarConexion1 = true; // Bandera para alternar entre las conexiones
 
-        public Mismetodos()
-        {
-            conexion = new SqlConnection(cadenaConexion);
-        }
-
-        public void AbrirConexion()
-        {
-            try
+            public Mismetodos()
             {
-                if (conexion == null)
+                // Inicializar la conexión con la primera cadena de conexión
+                conexion = new SqlConnection(cadenaConexion1);
+            }
+
+            public void AbrirConexion()
+            {
+                try
                 {
-                    throw new InvalidOperationException("La conexión no está inicializada.");
-                }
+                    if (conexion == null)
+                    {
+                        throw new InvalidOperationException("La conexión no está inicializada.");
+                    }
 
-                if (conexion.State == System.Data.ConnectionState.Closed)
+                    if (conexion.State == System.Data.ConnectionState.Closed)
+                    {
+                        conexion.Open();
+                    }
+                }
+                catch (Exception ex)
                 {
-                    conexion.Open();
+                    // Si hay un error, intentar con la otra conexión
+                    Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
+                    AlternarConexion(); // Cambiar a la otra cadena de conexión
+                    conexion.Open();   // Intentar abrir la nueva conexión
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
-                throw;
-            }
-        }
 
-     
-        public void CerrarConexion()
-        {
-            if (conexion.State == System.Data.ConnectionState.Open)
+            public void CerrarConexion()
             {
-                conexion.Close();
+                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
-        }
 
-        public SqlConnection GetConexion()
-        {
-            return conexion;
-        }
+            public SqlConnection GetConexion()
+            {
+                return conexion;
+            }
+
+            private void AlternarConexion()
+            {
+                // Cerrar la conexión actual si está abierta
+                CerrarConexion();
+
+                // Cambiar a la otra cadena de conexión
+                if (usarConexion1)
+                {
+                    conexion = new SqlConnection(cadenaConexion2);
+                    usarConexion1 = false;
+                    Console.WriteLine("Cambiando a la segunda cadena de conexión.");
+                }
+                else
+                {
+                    conexion = new SqlConnection(cadenaConexion1);
+                    usarConexion1 = true;
+                    Console.WriteLine("Cambiando a la primera cadena de conexión.");
+                }
+            }
+        
         public bool Existe(string query, string nombreEspecie)
         {
             try

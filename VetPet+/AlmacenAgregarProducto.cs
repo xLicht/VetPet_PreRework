@@ -50,7 +50,7 @@ namespace VetPet_
             conexionBrandon conexion = new conexionBrandon();
             conexion.AbrirConexion();
 
-            string query = "SELECT idProveedor, nombre FROM Proveedor WHERE ";
+            string query = "SELECT idProveedor, nombre FROM Proveedor";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
@@ -194,8 +194,8 @@ namespace VetPet_
                 return;
             }
 
-            string query = "INSERT INTO Producto (nombre, descripcion, precioProveedor, precioVenta, cantidad, stock, idMarca, idTipoProducto, idProveedor) " +
-                           "VALUES (@Nombre, @Descripcion, @PrecioProveedor, @PrecioVenta, @Cantidad, @Stock, @IdMarca, @IdTipoProducto, @IdProveedor)";
+            string query = "INSERT INTO Producto (nombre, descripcion, precioProveedor, precioVenta, cantidad, stock, fechaCaducidad, idMarca, idTipoProducto, idProveedor) " +
+                           "VALUES (@Nombre, @Descripcion, @PrecioProveedor, @PrecioVenta, @Cantidad, @Stock, @FechaCaducidad, @IdMarca, @IdTipoProducto, @IdProveedor)";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
@@ -210,6 +210,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@IdMarca", IdMarca);
                     cmd.Parameters.AddWithValue("@IdTipoProducto", IdTipoProducto);
                     cmd.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+                    cmd.Parameters.AddWithValue("@FechaCaducidad", fechaVencimientoPicker.Value);
 
                     cmd.ExecuteNonQuery();
                     conexion.GetConexion().Close();

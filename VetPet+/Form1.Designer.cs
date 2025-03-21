@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlForms = new System.Windows.Forms.Panel();
             this.BtnAlmacen = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,9 +44,11 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.BtnClose = new System.Windows.Forms.PictureBox();
+            this.BtnMax = new System.Windows.Forms.PictureBox();
+            this.BtnMin = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -57,40 +57,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnMin)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(78)))), ((int)(((byte)(166)))));
-            this.panel1.Controls.Add(this.pictureBox9);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1264, 65);
-            this.panel1.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cascadia Mono", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(158, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 46);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "VetPet+";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pnlForms
             // 
             this.pnlForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlForms.Location = new System.Drawing.Point(166, 65);
+            this.pnlForms.Location = new System.Drawing.Point(169, 68);
             this.pnlForms.Name = "pnlForms";
-            this.pnlForms.Size = new System.Drawing.Size(1098, 616);
+            this.pnlForms.Size = new System.Drawing.Size(1092, 610);
             this.pnlForms.TabIndex = 5;
             // 
             // BtnAlmacen
@@ -126,10 +105,10 @@
             this.panel2.Controls.Add(this.BtnVeterinaria);
             this.panel2.Controls.Add(this.BtnAlmacen);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 65);
+            this.panel2.Location = new System.Drawing.Point(3, 68);
             this.panel2.Name = "panel2";
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panel2.Size = new System.Drawing.Size(166, 616);
+            this.panel2.Size = new System.Drawing.Size(166, 610);
             this.panel2.TabIndex = 4;
             // 
             // BtnReportes
@@ -299,26 +278,61 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox9
+            // panel1
             // 
-            this.pictureBox9.Image = global::VetPet_.Properties.Resources.VetPet_Logo1;
-            this.pictureBox9.Location = new System.Drawing.Point(26, 3);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(90, 62);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 19;
-            this.pictureBox9.TabStop = false;
-            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(78)))), ((int)(((byte)(166)))));
+            this.panel1.BackgroundImage = global::VetPet_.Properties.Resources.barraTop;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.pictureBox11);
+            this.panel1.Controls.Add(this.BtnClose);
+            this.panel1.Controls.Add(this.BtnMax);
+            this.panel1.Controls.Add(this.BtnMin);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1258, 65);
+            this.panel1.TabIndex = 3;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
-            // pictureBox2
+            // pictureBox11
             // 
-            this.pictureBox2.Image = global::VetPet_.Properties.Resources.remove;
-            this.pictureBox2.Location = new System.Drawing.Point(1203, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox11.Location = new System.Drawing.Point(15, 3);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(66, 62);
+            this.pictureBox11.TabIndex = 3;
+            this.pictureBox11.TabStop = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
+            // 
+            // BtnClose
+            // 
+            this.BtnClose.BackColor = System.Drawing.Color.Transparent;
+            this.BtnClose.Location = new System.Drawing.Point(1235, 3);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(17, 27);
+            this.BtnClose.TabIndex = 2;
+            this.BtnClose.TabStop = false;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
+            // BtnMax
+            // 
+            this.BtnMax.BackColor = System.Drawing.Color.Transparent;
+            this.BtnMax.Location = new System.Drawing.Point(1210, 3);
+            this.BtnMax.Name = "BtnMax";
+            this.BtnMax.Size = new System.Drawing.Size(17, 27);
+            this.BtnMax.TabIndex = 1;
+            this.BtnMax.TabStop = false;
+            this.BtnMax.Click += new System.EventHandler(this.BtnMax_Click);
+            // 
+            // BtnMin
+            // 
+            this.BtnMin.BackColor = System.Drawing.Color.Transparent;
+            this.BtnMin.Location = new System.Drawing.Point(1185, 3);
+            this.BtnMin.Name = "BtnMin";
+            this.BtnMin.Size = new System.Drawing.Size(17, 27);
+            this.BtnMin.TabIndex = 0;
+            this.BtnMin.TabStop = false;
+            this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
             // 
             // Form1
             // 
@@ -328,12 +342,13 @@
             this.Controls.Add(this.pnlForms);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load_1);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -342,16 +357,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnMin)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel pnlForms;
         private System.Windows.Forms.Button BtnAlmacen;
         private System.Windows.Forms.Panel panel2;
@@ -368,7 +384,10 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox BtnClose;
+        private System.Windows.Forms.PictureBox BtnMax;
+        private System.Windows.Forms.PictureBox BtnMin;
     }
 }
 
