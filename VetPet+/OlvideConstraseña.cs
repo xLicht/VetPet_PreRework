@@ -115,7 +115,7 @@ namespace VetPet_
             }
             return valido;
         }
-        private int ObtenerIdUsuario(string nombre, string tabla)
+        public int ObtenerIdUsuario(string nombre, string tabla)
         {
 
             conexionAlex conexion = new conexionAlex();

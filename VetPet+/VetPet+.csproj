@@ -1467,6 +1467,9 @@
     <EmbeddedResource Include="VeterinariaVentaMedicamentos.resx">
       <DependentUpon>VeterinariaVentaMedicamentos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="xd.resx">
+      <DependentUpon>xd.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="libpdfium.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

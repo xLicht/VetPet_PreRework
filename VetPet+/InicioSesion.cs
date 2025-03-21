@@ -33,7 +33,7 @@ namespace VetPet_
 
         private void BtnOlvideMiContraseña_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new OlvideConstraseña(parentForm));
+            parentForm.formularioHijo(new xd());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace VetPet_
         private void BtnOlvidarContraseña_Click(object sender, EventArgs e)
         {
             this.Hide(); // Ocultamos el formulario de login
-            OlvideConstraseña recuperarForm = new OlvideConstraseña();
+            xd recuperarForm = new xd();
             if (recuperarForm.ShowDialog() == DialogResult.OK)
             {
                 // Lógica adicional si es necesario después de recuperar la contraseña
