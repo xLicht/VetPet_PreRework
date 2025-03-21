@@ -936,6 +936,12 @@
     <Compile Include="VeterianiaGestionarHistorialM.Designer.cs">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaAgendarCita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaAgendarCita.Designer.cs">
+      <DependentUpon>VeterinariaAgendarCita.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaConsultaM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1430,6 +1436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterianiaGestionarHistorialM.resx">
       <DependentUpon>VeterianiaGestionarHistorialM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaAgendarCita.resx">
+      <DependentUpon>VeterinariaAgendarCita.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaConsultaMed.resx">
       <DependentUpon>VeterinariaConsultaMed.cs</DependentUpon>
