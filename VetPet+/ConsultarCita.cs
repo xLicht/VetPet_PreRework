@@ -136,12 +136,52 @@ namespace VetPet_
             }
         }
 
+        //private void MostrarServicios()
+        //{
+        //    try
+        //    {
+        //        conexionDB.AbrirConexion();
+        //        string query = "SELECT * FROM Servicio_Cita WHERE idCita = @idCita";
+        //        using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+        //        {
+        //            cmd.Parameters.AddWithValue("@idCita", DatoCita);
+        //            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        //            DataTable dt = new DataTable();
+        //            adapter.Fill(dt);
+        //            dtServicio.DataSource = dt;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al obtener los servicios de la cita: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        conexionDB.CerrarConexion();
+        //    }
+        //}
+
         private void MostrarServicios()
         {
             try
             {
                 conexionDB.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("EXEC sp_ObtenerServiciosCita @idCita", conexionDB.GetConexion()))
+                string query = @"
+            SELECT 
+                sc.hora, 
+                sen.nombre AS Servicio, 
+                v.descripcion AS Vacuna, 
+                e.usuario AS Empleado
+            FROM Servicio_Cita sc
+            LEFT JOIN ServicioEspecificoNieto sen 
+                ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            LEFT JOIN vacuna v 
+                ON sc.idVacuna = v.idvacuna
+            LEFT JOIN Empleado e
+                ON sc.idEmpleado = e.idEmpleado
+            WHERE sc.idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -161,6 +201,11 @@ namespace VetPet_
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
 
         }

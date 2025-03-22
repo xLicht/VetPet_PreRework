@@ -68,6 +68,7 @@
             this.dtServicio.Name = "dtServicio";
             this.dtServicio.Size = new System.Drawing.Size(336, 213);
             this.dtServicio.TabIndex = 408;
+            this.dtServicio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtServicio_CellClick);
             // 
             // label8
             // 
@@ -114,7 +115,7 @@
             // dtHora
             // 
             this.dtHora.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtHora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtHora.Location = new System.Drawing.Point(54, 351);
             this.dtHora.Name = "dtHora";
             this.dtHora.Size = new System.Drawing.Size(167, 33);
