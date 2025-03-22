@@ -72,8 +72,9 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string query = "SELECT \r\n    nombre AS TipoDeServicio\r\n\tFROM ServicioEspecificoHijo \r\n\tWHERE " +
-                "idServicioPadre = " + IdServicioPadre + " AND estado = 'A';";
+            string query = "SELECT     sp.nombre AS TipoDeServicio, te.nombre AS TipoEmpleado\t  FROM ServicioEspecificoHijo" +
+                " sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n           " +
+                "     te.idtipoEmpleado WHERE\r\n                idServicioPadre = "+ IdServicioPadre + " AND sp.estado = 'A';";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -96,12 +97,12 @@ namespace VetPet_
                 }
             }
         }
-        public void GuardarTipoServicio(TextBox TxtNombre, RichTextBox richTextBox1,int idServicio)
+        public void GuardarTipoServicio(TextBox TxtNombre, RichTextBox richTextBox1,int idServicio,int tipoEmpleado)
         {
 
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string query = "INSERT INTO ServicioEspecificoHijo (nombre, descripcion, idServicioPadre) VALUES (@NOM, @DES, @ISP);";
+            string query = "INSERT INTO ServicioEspecificoHijo (nombre, descripcion, idServicioPadre,idTipoEmpleado) VALUES (@NOM, @DES, @ISP, @ITP);";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -115,6 +116,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@NOM", Nombre);
                     cmd.Parameters.AddWithValue("@DES", Descripcion);
                     cmd.Parameters.AddWithValue("@ISP", idServicio);
+                    cmd.Parameters.AddWithValue("@ITP", tipoEmpleado);
 
                     // Ejecutamos la consulta
                     cmd.ExecuteNonQuery();  // Cambié ExecuteReader por ExecuteNonQuery

@@ -49,9 +49,8 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string query = "SELECT \r\n    sp.nombre AS NombreServicio, \r\n    cs.nombre AS ClaseServicio, \r\n    " +
-                "te.nombre AS TipoEmpleado\r\nFROM ServicioPadre sp\r\nINNER JOIN TipoEmpleado te ON sp.idtipoempleado = " +
-                "te.idtipoempleado\r\nINNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'";
+            string query = "SELECT     sp.nombre AS NombreServicio,    cs.nombre AS ClaseServicio, sp.descripcion\r\n     " +
+                "  FROM ServicioPadre sp INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -167,28 +166,30 @@ namespace VetPet_
             }
            else if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
             {
+                conexionAlex conexion = new conexionAlex();
+                conexion.AbrirConexion();
                 DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
                 // Aquí puedes obtener el valor de la celda clickeada
                 string valorCelda = cell.Value.ToString();
-
+                int idServicio = conexion.ObtenerId(valorCelda, "ServicioPadre");
                 // Dependiendo del valor o cualquier otro criterio, puedes abrir el formulario correspondiente
                 switch (valorCelda)
                 {
                     case "Cirugías":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        parentForm.formularioHijo(new ListaCirugias(parentForm,idServicio));
                         break;
                     case "Acicalamiento":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
                         break;
                     case "Consulta General":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
                         break;
                     case "Cremacion":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
                         break;
                     case "Masaje":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
+                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
                         break;
                     case "Rayos X":
                         parentForm.formularioHijo(new ListaRayosX(parentForm));

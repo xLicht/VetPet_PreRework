@@ -15,20 +15,25 @@ namespace VetPet_
     public partial class ModificarCirugias : FormPadre
     {
         int identificador;
+        string cirugia;
         public ModificarCirugias()
         {
             InitializeComponent();
         }
-        public ModificarCirugias(Form1 parent, int Id)
+        public ModificarCirugias(Form1 parent, int Id,string idcirugia)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
             identificador = Id;
+            cirugia = idcirugia;
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaCirugias(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId("Cirugías", "ServicioPadre");
+            parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -125,7 +130,7 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.cargarCombobox(comboBox1, "4");
+            conexion.cargarCombobox(comboBox1, cirugia);
             string query = "SELECT nombre, descripcion, precio, duracion FROM ServicioEspecificoNieto WHERE idServicioEspecificoNieto = @ID";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))

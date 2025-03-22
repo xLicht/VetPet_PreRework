@@ -14,19 +14,24 @@ namespace VetPet_
 {
     public partial class AgregarCirugias : FormPadre
     {
+        string idSer;
         public AgregarCirugias()
         {
             InitializeComponent();
         }
-        public AgregarCirugias(Form1 parent)
+        public AgregarCirugias(Form1 parent,string id)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            idSer=id;
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaCirugias(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId("Cirugías", "ServicioPadre");
+            parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio)); ;
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -112,7 +117,7 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.cargarCombobox(comboBox1, "4");
+            conexion.cargarCombobox(comboBox1, idSer);
         }
 
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)

@@ -35,7 +35,7 @@ namespace VetPet_
 
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.GuardarTipoServicio(TxtNombre, richTextBox1, 8);
+            //conexion.GuardarTipoServicio(TxtNombre, richTextBox1, 8);
 
 
         }
