@@ -189,7 +189,7 @@ namespace VetPet_.Angie.Mascotas
                                 // Redirigir al formulario correspondiente
                                 if (nombreMascota != null)
                                 {
-                                    parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+                                    parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota));
                                 }
                                 else
                                 {
@@ -223,7 +223,7 @@ namespace VetPet_.Angie.Mascotas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota, nombreMascota));
+            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota));
         }
     }
 }

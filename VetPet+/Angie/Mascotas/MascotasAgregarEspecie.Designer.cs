@@ -259,7 +259,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(792, 144);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(216, 63);
+            this.label4.Size = new System.Drawing.Size(173, 50);
             this.label4.TabIndex = 165;
             this.label4.Text = "Alergias";
             // 

@@ -67,9 +67,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(127, 381);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 50);
+            this.label4.Size = new System.Drawing.Size(104, 50);
             this.label4.TabIndex = 185;
-            this.label4.Text = "Especie";
+            this.label4.Text = "Tipo";
             // 
             // richTextBox1
             // 
