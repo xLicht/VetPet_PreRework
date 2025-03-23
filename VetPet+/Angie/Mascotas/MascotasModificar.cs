@@ -430,7 +430,7 @@ namespace VetPet_
 
         private void button4_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasAgregarSensibilidad (parentForm,"Mascota"));
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad (parentForm,"Mascota", idMascota));
         }
     }
 }
