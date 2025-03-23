@@ -1673,9 +1673,6 @@
     <None Include="Resources\icons8-medical-file-48.png" />
     <None Include="Resources\icons8-fursona-64.png" />
     <None Include="Resources\icons8-dinero-64.png" />
-    <Content Include="icudt.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\icons8-add-button-251.png" />
     <None Include="Resources\icons8-aceptar-505.png" />
     <None Include="Resources\VetPet+.png" />
@@ -1688,6 +1685,9 @@
     <None Include="Resources\icons8-para-ti-50.png" />
     <None Include="Resources\icons8-3d-touch-50.png" />
     <None Include="Resources\icons8-virus-50.png" />
+    <Content Include="icudt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
