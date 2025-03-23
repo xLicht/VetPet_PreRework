@@ -54,7 +54,8 @@ namespace VetPet_.Angie.Mascotas
                     idEspecie, 
                     nombre AS [Nombre], 
                     descripcion AS [Descripción de la Especie] 
-                FROM Especie";
+                FROM Especie
+                WHERE estado <> 'D';";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))

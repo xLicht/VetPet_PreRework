@@ -57,7 +57,8 @@ namespace VetPet_.Angie.Mascotas
                     idAlergia, 
                     nombre AS [Nombre], 
                     descripcion AS [Descripción de la Alergia] 
-                FROM Alergia";
+                FROM Alergia
+                WHERE estado <> 'D'";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))

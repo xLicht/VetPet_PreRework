@@ -49,7 +49,8 @@ namespace VetPet_.Angie.Ventas
                     idRaza, 
                     nombre AS [Nombre], 
                     descripcion AS [Descripción de la Raza] 
-                FROM Raza";
+                FROM Raza
+                WHERE estado <> 'D'";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))

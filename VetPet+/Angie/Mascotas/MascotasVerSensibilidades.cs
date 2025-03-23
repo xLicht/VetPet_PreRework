@@ -53,7 +53,8 @@ namespace VetPet_.Angie.Mascotas
                     idSensibilidad, 
                     nombre AS [Nombre], 
                     descripcion AS [Descripción de la Sensibilidad] 
-                FROM Sensibilidad";
+                FROM Sensibilidad 
+                WHERE estado <> 'D'";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
