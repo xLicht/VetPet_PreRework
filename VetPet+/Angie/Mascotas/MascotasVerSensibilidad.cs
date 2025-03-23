@@ -17,15 +17,88 @@ namespace VetPet_.Angie.Mascotas
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        private Mismetodos mismetodos;
-        string tipo = "";
+        private Mismetodos mismetodo = new Mismetodos();
+        public int idSensibilidad;
         private Form1 parentForm;
-        public MascotasVerSensibilidad(Form1 parent)
+        public MascotasVerSensibilidad(Form1 parent, int idSensibilidad)
         {
             InitializeComponent();
             this.Load += MascotasVerSensibilidad_Load;       // Evento Load
             this.Resize += MascotasVerSensibilidad_Resize;
-            parentForm = parent;  // Guardamos la referencia de Form
+            parentForm = parent;  // Guardamos la referencia de Form         
+            if (label1.Text == "Consultar Sensibilidad")
+            {
+                this.idSensibilidad = idSensibilidad;
+                Consultar();
+            }
+            button4.Visible = false;
+        }
+        public void Consultar()
+        {
+            Dictionary<string, Control> mapeoColumnasControles = new Dictionary<string, Control>
+            {
+                { "nombre", comboBox2 },        // Mapea la columna "nombre" al TextBox txtNombre
+                { "descripcion", richTextBox1 }
+            };
+            mismetodo.CargarDatosGenerico("Sensibilidad", idSensibilidad, mapeoColumnasControles);
+            label4.Visible = false;
+            comboBox1.Visible = false;
+        }
+        public void Modificar()
+        {
+            string nombre = comboBox2.Text;
+            string descripcion = richTextBox1.Text;
+            Dictionary<string, object> parametrosValores = new Dictionary<string, object>
+            {
+                { "nombre", nombre },        // Mapea la columna "nombre" al valor proporcionado
+                { "descripcion", descripcion },
+            };
+
+            mismetodo.ModificarDatosGenerico("Sensibilidad", idSensibilidad, parametrosValores);
+        }
+        public void EliminarEnCascadaSensibilidad()
+        {
+            List<string> tablasRelacionadas = new List<string>
+    {
+        "Mascota_Sensibilidad",  // Tabla que relaciona mascotas con alergias
+        "Especie_Sensibilidad",  // Tabla que relaciona especies con alergias
+        "Raza_Sensibilidad"      // Tabla que relaciona razas con alergias
+    };
+            mismetodo.EliminarEnCascada("Sensibilidad", idSensibilidad, tablasRelacionadas);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label1.Text = "Modificar Alergia";
+            button4.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (label1.Text == "Modificar Alergia")
+            {
+                Modificar();
+                parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
+
+            }
+            if (label1.Text == "Consultar Alergia")
+            {
+                parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button4.Text = "Eliminar";
+            if (button4.Text == "Eliminar")
+            {
+                EliminarEnCascadaSensibilidad();
+                parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
+            }
         }
         private void MascotasVerSensibilidad_Load(object sender, EventArgs e)
         {
@@ -67,6 +140,7 @@ namespace VetPet_.Angie.Mascotas
                 }
             }
         }
+
     }
 }
 

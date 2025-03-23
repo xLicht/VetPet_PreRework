@@ -1218,6 +1218,9 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerRazas.resx">
       <DependentUpon>MascotasVerRazas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerSensibilidad.resx">
+      <DependentUpon>MascotasVerSensibilidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerSensibilidades.resx">
       <DependentUpon>MascotasVerSensibilidades.cs</DependentUpon>
     </EmbeddedResource>
@@ -1719,6 +1722,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\icons8-pasado-243.png" />
+    <None Include="Resources\icons8-pasado-244.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

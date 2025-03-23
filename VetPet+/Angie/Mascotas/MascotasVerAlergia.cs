@@ -54,20 +54,16 @@ namespace VetPet_.Angie.Mascotas
                 { "descripcion", descripcion }, 
             };
 
-                    // Llamar al método ModificarDatosGenerico
-                    mismetodo.ModificarDatosGenerico("Alergia", idAlergia, parametrosValores);
+            mismetodo.ModificarDatosGenerico("Alergia", idAlergia, parametrosValores);
         }
-        private void EliminarAlergiaEnCascada()
+        public void EliminarAlergiaEnCascada()
         {
-            // Lista de tablas relacionadas que deben eliminarse en cascada
             List<string> tablasRelacionadas = new List<string>
     {
         "Mascota_Alergia",  // Tabla que relaciona mascotas con alergias
         "Especie_Alergia",  // Tabla que relaciona especies con alergias
         "Raza_Alergia"      // Tabla que relaciona razas con alergias
     };
-
-            // Llamar al método EliminarEnCascada
             mismetodo.EliminarEnCascada("Alergia", idAlergia, tablasRelacionadas);
         }
         private void MascotasVerAlergia_Load(object sender, EventArgs e)
@@ -142,6 +138,7 @@ namespace VetPet_.Angie.Mascotas
             if (button4.Text == "Eliminar")
             {
                 EliminarAlergiaEnCascada();
+                parentForm.formularioHijo(new MascotasVerAlergias(parentForm)); // Pasamos la referencia de Form1 a
             }
         }
     }
