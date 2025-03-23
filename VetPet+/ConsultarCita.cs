@@ -79,10 +79,40 @@ namespace VetPet_
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
-            parentForm.formularioHijo(formularioHijo);
+
+            try
+            {
+                conexionDB.AbrirConexion();
+                string consultaQuery = "SELECT COUNT(*) FROM Consulta WHERE idCita = @idCita";
+                using (SqlCommand cmdConsulta = new SqlCommand(consultaQuery, conexionDB.GetConexion()))
+                {
+                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
+                    int cantidadConsultas = (int)cmdConsulta.ExecuteScalar();
+
+                    if (cantidadConsultas > 0)
+                    {
+                        MessageBox.Show("Esta cita ya tiene una consulta registrada, no es necesario consultarla nuevamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //parentForm.formularioHijo(formularioHijo);
 
 
 
