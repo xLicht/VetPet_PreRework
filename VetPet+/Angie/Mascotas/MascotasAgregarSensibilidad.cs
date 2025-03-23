@@ -48,7 +48,23 @@ namespace VetPet_.Angie.Mascotas
                                 while (readerEsp.Read())
                                 {
                                     label4.Text = "Especie";
+                                    label5.Visible = false;
+                                    richTextBox1.Visible = false;
                                     comboBox1.Items.Add(readerEsp["nombre"].ToString());
+                                }
+                            }
+                        }
+                        string queryEsp2 = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                        using (SqlCommand comandoEsp = new SqlCommand(queryEsp2, mismetodos.GetConexion()))
+                        {
+                            using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
+                            {
+                                // Limpiar el ComboBox antes de agregar nuevos elementos
+                                comboBox2.Items.Clear();
+
+                                while (readerEsp.Read())
+                                {
+                                    comboBox2.Items.Add(readerEsp["nombre"].ToString());
                                 }
                             }
                         }
@@ -65,7 +81,24 @@ namespace VetPet_.Angie.Mascotas
                                 while (readerEsp.Read())
                                 {
                                     label4.Text = "Raza";
+
+                                    label5.Visible = false;
+                                    richTextBox1.Visible = false;
                                     comboBox1.Items.Add(readerEsp["nombre"].ToString());
+                                }
+                            }
+                        }
+                        string queryEsp3 = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                        using (SqlCommand comandoEsp = new SqlCommand(queryEsp3, mismetodos.GetConexion()))
+                        {
+                            using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
+                            {
+                                // Limpiar el ComboBox antes de agregar nuevos elementos
+                                comboBox2.Items.Clear();
+
+                                while (readerEsp.Read())
+                                {
+                                    comboBox2.Items.Add(readerEsp["nombre"].ToString());
                                 }
                             }
                         }
@@ -74,6 +107,7 @@ namespace VetPet_.Angie.Mascotas
                         label4.Visible = false;
                         comboBox1.Visible = false;
                         break;
+                
                 }
                
             }
@@ -134,71 +168,112 @@ namespace VetPet_.Angie.Mascotas
             try
             {
                 mismetodos.AbrirConexion();
-
-                // Paso 1: Insertar la sensibilidad en la tabla Sensibilidad
-                string insertSensibilidadQuery = "INSERT INTO Sensibilidad (nombre, descripcion) OUTPUT INSERTED.idSensibilidad VALUES (@nombre, @descripcion);";
-                int idSensibilidad;
-
-                using (SqlCommand insertSensibilidadCommand = new SqlCommand(insertSensibilidadQuery, mismetodos.GetConexion()))
-                {
-                    insertSensibilidadCommand.Parameters.AddWithValue("@nombre", nombre);
-                    insertSensibilidadCommand.Parameters.AddWithValue("@descripcion", descripcion);
-                    idSensibilidad = (int)insertSensibilidadCommand.ExecuteScalar();
-                }
-
-                // Paso 2: Manejar los casos según el tipo
                 switch (tipo)
                 {
                     case "Especie":
-                        // Obtener el idEspecie basado en el nombre seleccionado en el ComboBox
-                        string obtenerIdEspecieQuery = "SELECT idEspecie FROM Especie WHERE nombre = @nombreEspecie;";
-                        int idEspecie;
-
-                        using (SqlCommand obtenerIdEspecieCommand = new SqlCommand(obtenerIdEspecieQuery, mismetodos.GetConexion()))
+                        try
                         {
-                            obtenerIdEspecieCommand.Parameters.AddWithValue("@nombreEspecie", nombreSeleccionado);
-                            idEspecie = (int)obtenerIdEspecieCommand.ExecuteScalar();
+                            // Obtener el idSensibilidad basado en el nombre de la sensibilidad seleccionada
+                            string querySensibilidad = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @nombreSensibilidad;";
+                            int idSensibilidad;
+
+                            using (SqlCommand obtenerIdSensibilidadCommand = new SqlCommand(querySensibilidad, mismetodos.GetConexion()))
+                            {
+                                obtenerIdSensibilidadCommand.Parameters.AddWithValue("@nombreSensibilidad", nombreSeleccionado);
+                                idSensibilidad = (int)obtenerIdSensibilidadCommand.ExecuteScalar();
+                            }
+
+                            // Obtener el idEspecie basado en el nombre de la especie seleccionada
+                            string obtenerIdEspecieQuery = "SELECT idEspecie FROM Especie WHERE nombre = @nombreEspecie;";
+                            int idEspecie;
+
+                            using (SqlCommand obtenerIdEspecieCommand = new SqlCommand(obtenerIdEspecieQuery, mismetodos.GetConexion()))
+                            {
+                                obtenerIdEspecieCommand.Parameters.AddWithValue("@nombreEspecie", nombre);
+                                idEspecie = (int)obtenerIdEspecieCommand.ExecuteScalar();
+                            }
+
+                            // Insertar en la tabla Especie_Sensibilidad
+                            string insertEspecieSensibilidadQuery = "INSERT INTO Especie_Sensibilidad (idEspecie, idSensibilidad) VALUES (@idEspecie, @idSensibilidad);";
+
+                            using (SqlCommand insertEspecieSensibilidadCommand = new SqlCommand(insertEspecieSensibilidadQuery, mismetodos.GetConexion()))
+                            {
+                                insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idEspecie", idEspecie);
+                                insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
+                                insertEspecieSensibilidadCommand.ExecuteNonQuery();
+                            }
+
+                            MessageBox.Show("Sensibilidad asociada a la especie correctamente.");
                         }
-
-                        // Insertar en la tabla Especie_Sensibilidad
-                        string insertEspecieSensibilidadQuery = "INSERT INTO Especie_Sensibilidad (idEspecie, idSensibilidad) VALUES (@idEspecie, @idSensibilidad);";
-
-                        using (SqlCommand insertEspecieSensibilidadCommand = new SqlCommand(insertEspecieSensibilidadQuery, mismetodos.GetConexion()))
+                        catch (Exception ex)
                         {
-                            insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idEspecie", idEspecie);
-                            insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
-                            insertEspecieSensibilidadCommand.ExecuteNonQuery();
+                            MessageBox.Show($"Error al asociar la sensibilidad a la especie: {ex.Message}");
                         }
                         break;
 
                     case "Raza":
-                        // Obtener el idRaza basado en el nombre seleccionado en el ComboBox
-                        string obtenerIdRazaQuery = "SELECT idRaza FROM Raza WHERE nombre = @nombreRaza;";
-                        int idRaza;
-
-                        using (SqlCommand obtenerIdRazaCommand = new SqlCommand(obtenerIdRazaQuery, mismetodos.GetConexion()))
+                        try
                         {
-                            obtenerIdRazaCommand.Parameters.AddWithValue("@nombreRaza", nombreSeleccionado);
-                            idRaza = (int)obtenerIdRazaCommand.ExecuteScalar();
+                            // Obtener el idSensibilidad basado en el nombre de la sensibilidad seleccionada
+                            string querySensibilidad = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @nombreSensibilidad;";
+                            int idSensibilidad;
+
+                            using (SqlCommand obtenerIdSensibilidadCommand = new SqlCommand(querySensibilidad, mismetodos.GetConexion()))
+                            {
+                                obtenerIdSensibilidadCommand.Parameters.AddWithValue("@nombreSensibilidad", nombreSeleccionado);
+                                idSensibilidad = (int)obtenerIdSensibilidadCommand.ExecuteScalar();
+                            }
+
+                            // Obtener el idRaza basado en el nombre de la raza seleccionada
+                            string obtenerIdRazaQuery = "SELECT idRaza FROM Raza WHERE nombre = @nombreRaza;";
+                            int idRaza;
+
+                            using (SqlCommand obtenerIdRazaCommand = new SqlCommand(obtenerIdRazaQuery, mismetodos.GetConexion()))
+                            {
+                                obtenerIdRazaCommand.Parameters.AddWithValue("@nombreRaza", nombre);
+                                idRaza = (int)obtenerIdRazaCommand.ExecuteScalar();
+                            }
+
+                            // Insertar en la tabla Raza_Sensibilidad
+                            string insertRazaSensibilidadQuery = "INSERT INTO Raza_Sensibilidad (idRaza, idSensibilidad) VALUES (@idRaza, @idSensibilidad);";
+
+                            using (SqlCommand insertRazaSensibilidadCommand = new SqlCommand(insertRazaSensibilidadQuery, mismetodos.GetConexion()))
+                            {
+                                insertRazaSensibilidadCommand.Parameters.AddWithValue("@idRaza", idRaza);
+                                insertRazaSensibilidadCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
+                                insertRazaSensibilidadCommand.ExecuteNonQuery();
+                            }
+
+                            MessageBox.Show("Sensibilidad asociada a la raza correctamente.");
                         }
-
-                        // Insertar en la tabla Raza_Sensibilidad
-                        string insertRazaSensibilidadQuery = "INSERT INTO Raza_Sensibilidad (idRaza, idSensibilidad) VALUES (@idRaza, @idSensibilidad);";
-
-                        using (SqlCommand insertRazaSensibilidadCommand = new SqlCommand(insertRazaSensibilidadQuery, mismetodos.GetConexion()))
+                        catch (Exception ex)
                         {
-                            insertRazaSensibilidadCommand.Parameters.AddWithValue("@idRaza", idRaza);
-                            insertRazaSensibilidadCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
-                            insertRazaSensibilidadCommand.ExecuteNonQuery();
+                            MessageBox.Show($"Error al asociar la sensibilidad a la raza: {ex.Message}");
                         }
                         break;
 
                     case "":
-                        // No se necesita hacer nada más, ya se insertó solo la sensibilidad
+                        try
+                        {
+                            // Insertar en la tabla Sensibilidad
+                            string insertSensibilidadQuery = "INSERT INTO Sensibilidad (nombre, descripcion) OUTPUT INSERTED.idSensibilidad VALUES (@nombre, @descripcion);";
+                            int idSensibilidad;
+
+                            using (SqlCommand insertSensibilidadCommand = new SqlCommand(insertSensibilidadQuery, mismetodos.GetConexion()))
+                            {
+                                insertSensibilidadCommand.Parameters.AddWithValue("@nombre", nombre);
+                                insertSensibilidadCommand.Parameters.AddWithValue("@descripcion", descripcion);
+                                idSensibilidad = (int)insertSensibilidadCommand.ExecuteScalar(); // Obtener el idSensibilidad generado
+                            }
+
+                            MessageBox.Show("Sensibilidad agregada correctamente.");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error al agregar la sensibilidad: {ex.Message}");
+                        }
                         break;
                 }
-
-                MessageBox.Show("Sensibilidad agregada correctamente.");
             }
             catch (Exception ex)
             {
@@ -209,22 +284,24 @@ namespace VetPet_.Angie.Mascotas
                 mismetodos.CerrarConexion();
             }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string nombre = textBox1.Text;
+            string tipo = label4.Text;  // "Especie", "Raza" o ""
             string descripcion = richTextBox1.Text;
-            string tipo = comboBox1.SelectedItem?.ToString(); // "Especie", "Raza" o ""
-            string nombreSeleccionado = comboBox1.SelectedItem?.ToString(); // Nombre seleccionado en el ComboBox
+            string nombreSeleccionado = comboBox2.SelectedItem?.ToString(); // Nombre seleccionado en el ComboBox
 
             if (string.IsNullOrEmpty(nombreSeleccionado))
             {
+                string nombre = comboBox2.Text;
                 AgregarSensibilidad(nombre, descripcion, "", nombreSeleccionado);
             }
             else
             {
-                AgregarSensibilidad(nombre, descripcion, tipo, nombreSeleccionado);
+                string nombre = comboBox1.SelectedItem?.ToString();
+                AgregarSensibilidad(nombre, "", tipo, nombreSeleccionado);
             }
-            parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
         }
     }
 }

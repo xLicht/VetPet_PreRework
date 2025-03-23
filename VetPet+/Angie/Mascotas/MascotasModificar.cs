@@ -32,7 +32,6 @@ namespace VetPet_
             this.Load += MascotasModificar_Load;       // Evento Load
             this.Resize += MascotasModificar_Resize;   // Evento Resize
             comboBox1.KeyDown += comboBox1_KeyDown;
-            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
             parentForm = parent; 
             this.idMascota = idMascota;
             CargarMascota();
@@ -43,25 +42,6 @@ namespace VetPet_
             try
             {
                 mismetodos.AbrirConexion();
-
-                // Consulta para obtener los elementos
-                string query1 = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
-                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
-                {
-                    using (SqlDataReader reader = comando.ExecuteReader())
-                    {
-                        // Limpiar el ListBox antes de agregar nuevos elementos
-                        listBox1.Items.Clear();
-
-                        // Agregar elementos al ListBox
-                        while (reader.Read())
-                        {
-                            listBox1.Items.Add(reader["nombre"].ToString());
-                        }
-                    }
-                }
-
-
                 // Cargar las especies
                 string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
                 using (SqlCommand comandoEsp = new SqlCommand(queryEsp, mismetodos.GetConexion()))
@@ -95,7 +75,7 @@ namespace VetPet_
                 }
 
                 string query = @"
-                       SELECT 
+                                   SELECT 
                 Mascota.idMascota,
                 Mascota.nombre AS Nombre,
                 Especie.nombre AS Especie,
@@ -122,7 +102,26 @@ namespace VetPet_
                         INNER JOIN Sensibilidad ON Raza_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
                         WHERE Raza_Sensibilidad.idRaza = Raza.idRaza
                     ) AS Sensibilidad
-                    FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Sensibilidades
+                    FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Sensibilidades,
+                STUFF((
+                    SELECT DISTINCT ', ' + Alergia.nombre
+                    FROM (
+                        SELECT Alergia.nombre
+                        FROM Mascota_Alergia
+                        INNER JOIN Alergia ON Mascota_Alergia.idAlergia = Alergia.idAlergia
+                        WHERE Mascota_Alergia.idMascota = Mascota.idMascota
+                        UNION
+                        SELECT Alergia.nombre
+                        FROM Especie_Alergia
+                        INNER JOIN Alergia ON Especie_Alergia.idAlergia = Alergia.idAlergia
+                        WHERE Especie_Alergia.idEspecie = Especie.idEspecie
+                        UNION
+                        SELECT Alergia.nombre
+                        FROM Raza_Alergia
+                        INNER JOIN Alergia ON Raza_Alergia.idAlergia = Alergia.idAlergia
+                        WHERE Raza_Alergia.idRaza = Raza.idRaza
+                    ) AS Alergia
+                    FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Alergias
             FROM 
                 Mascota
             INNER JOIN 
@@ -179,6 +178,11 @@ namespace VetPet_
                             richTextBox1.Text = string.IsNullOrEmpty(sensibilidades)
                                 ? "Sin sensibilidades registradas"
                                 : sensibilidades;
+
+                            string alergias = reader["Alergias"].ToString();
+                            richTextBox2.Text = string.IsNullOrEmpty(sensibilidades)
+                                ? "Sin alergias registradas"
+                                : alergias;
                         }
                         else
                         {
@@ -196,28 +200,6 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
 
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedItem != null)
-            {
-                // Obtener el ítem seleccionado
-                string selectedItem = listBox1.SelectedItem.ToString();
-
-                // Agregar el ítem al RichTextBox
-                if (!richTextBox1.Text.Contains(selectedItem))
-                {
-                    if (richTextBox1.Text.Length > 0)
-                    {
-                        richTextBox1.AppendText(", " + selectedItem);
-                    }
-                    else
-                    {
-                        richTextBox1.AppendText(selectedItem);
-                    }
-                }
-            }
         }
         private void MascotasModificar_Load(object sender, EventArgs e)
         {
@@ -446,5 +428,9 @@ namespace VetPet_
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad (parentForm,"Mascota"));
+        }
     }
 }
