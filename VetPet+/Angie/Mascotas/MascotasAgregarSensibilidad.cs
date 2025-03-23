@@ -224,6 +224,7 @@ namespace VetPet_.Angie.Mascotas
             {
                 AgregarSensibilidad(nombre, descripcion, tipo, nombreSeleccionado);
             }
+            parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a 
         }
     }
 }

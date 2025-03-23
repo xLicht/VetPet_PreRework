@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,66 @@ namespace VetPet_.Angie.Mascotas
             this.Resize += MascotasAgregarAlergia_Resize;   // Evento Resize
             this.tipo = tipo;
             parentForm = parent;  // Guardamos la referencia de Form
+            Cargar();
+        }
+        private void Cargar()
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                switch (tipo)
+                {
+                    case "Especie":
+                        string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
+                        using (SqlCommand comandoEsp = new SqlCommand(queryEsp, mismetodos.GetConexion()))
+                        {
+                            using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
+                            {
+                                // Limpiar el ComboBox antes de agregar nuevos elementos
+                                comboBox1.Items.Clear();
+
+                                while (readerEsp.Read())
+                                {
+                                    label4.Text = "Especie";
+                                    comboBox1.Items.Add(readerEsp["nombre"].ToString());
+                                }
+                            }
+                        }
+                        break;
+                    case "Raza":
+                        string queryEsp1 = "SELECT nombre FROM Raza ORDER BY nombre";
+                        using (SqlCommand comandoEsp = new SqlCommand(queryEsp1, mismetodos.GetConexion()))
+                        {
+                            using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
+                            {
+                                // Limpiar el ComboBox antes de agregar nuevos elementos
+                                comboBox1.Items.Clear();
+
+                                while (readerEsp.Read())
+                                {
+                                    label4.Text = "Raza";
+                                    comboBox1.Items.Add(readerEsp["nombre"].ToString());
+                                }
+                            }
+                        }
+                        break;
+                    case "":
+                        label4.Visible = false;
+                        comboBox1.Visible = false;
+                        break;
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
         }
         private void MascotasAgregarAlergia_Load(object sender, EventArgs e)
         {
@@ -62,7 +123,86 @@ namespace VetPet_.Angie.Mascotas
                 }
             }
         }
+        public void AgregarAlegia(string nombre, string descripcion, string tipo, string nombreSeleccionado)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
 
+                // Paso 1: Insertar la sensibilidad en la tabla Sensibilidad
+                string query1 = "INSERT INTO Alergia (nombre, descripcion) OUTPUT INSERTED.idAlergia VALUES (@nombre, @descripcion);";
+                int idAlergia;
+
+                using (SqlCommand cmd = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                    idAlergia = (int)cmd.ExecuteScalar();
+                }
+
+                // Paso 2: Manejar los casos según el tipo
+                switch (tipo)
+                {
+                    case "Especie":
+                        // Obtener el idEspecie basado en el nombre seleccionado en el ComboBox
+                        string obtenerIdEspecieQuery = "SELECT idEspecie FROM Especie WHERE nombre = @nombreEspecie;";
+                        int idEspecie;
+
+                        using (SqlCommand obtenerIdEspecieCommand = new SqlCommand(obtenerIdEspecieQuery, mismetodos.GetConexion()))
+                        {
+                            obtenerIdEspecieCommand.Parameters.AddWithValue("@nombreEspecie", nombreSeleccionado);
+                            idEspecie = (int)obtenerIdEspecieCommand.ExecuteScalar();
+                        }
+
+                        // Insertar en la tabla Especie_Sensibilidad
+                        string query = "INSERT INTO Especie_Alergia (idEspecie, idSensibilidad) VALUES (@idEspecie, @idAlergia);";
+
+                        using (SqlCommand cmd = new SqlCommand(query, mismetodos.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idEspecie", idEspecie);
+                            cmd.Parameters.AddWithValue("@idAlergia", idAlergia);
+                            cmd.ExecuteNonQuery();
+                        }
+                        break;
+
+                    case "Raza":
+                        // Obtener el idRaza basado en el nombre seleccionado en el ComboBox
+                        string obtenerIdRazaQuery = "SELECT idRaza FROM Raza WHERE nombre = @nombreRaza;";
+                        int idRaza;
+
+                        using (SqlCommand obtenerIdRazaCommand = new SqlCommand(obtenerIdRazaQuery, mismetodos.GetConexion()))
+                        {
+                            obtenerIdRazaCommand.Parameters.AddWithValue("@nombreRaza", nombreSeleccionado);
+                            idRaza = (int)obtenerIdRazaCommand.ExecuteScalar();
+                        }
+
+                        // Insertar en la tabla Raza_Sensibilidad
+                        string insertRazaSensibilidadQuery = "INSERT INTO Raza_Alergia (idRaza, idSensibilidad) VALUES (@idRaza, @idAlergia);";
+
+                        using (SqlCommand insertRazaSensibilidadCommand = new SqlCommand(insertRazaSensibilidadQuery, mismetodos.GetConexion()))
+                        {
+                            insertRazaSensibilidadCommand.Parameters.AddWithValue("@idRaza", idRaza);
+                            insertRazaSensibilidadCommand.Parameters.AddWithValue("@idAlergia", idAlergia);
+                            insertRazaSensibilidadCommand.ExecuteNonQuery();
+                        }
+                        break;
+
+                    case "":
+                        // No se necesita hacer nada más, ya se insertó solo la sensibilidad
+                        break;
+                }
+
+                MessageBox.Show("Sensibilidad agregada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al agregar la sensibilidad: {ex.Message}");
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new MascotasVerAlergias(parentForm)); // Pasamos la referencia de Form1 a
@@ -70,6 +210,19 @@ namespace VetPet_.Angie.Mascotas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string nombre = textBox1.Text;
+            string descripcion = richTextBox1.Text;
+            string tipo = comboBox1.SelectedItem?.ToString(); // "Especie", "Raza" o ""
+            string nombreSeleccionado = comboBox1.SelectedItem?.ToString(); // Nombre seleccionado en el ComboBox
+
+            if (string.IsNullOrEmpty(nombreSeleccionado))
+            {
+                AgregarAlegia(nombre, descripcion, "", nombreSeleccionado);
+            }
+            else
+            {
+                AgregarAlegia(nombre, descripcion, tipo, nombreSeleccionado);
+            }
             parentForm.formularioHijo(new MascotasVerAlergias(parentForm)); // Pasamos la referencia de Form1 a
         }
     }
