@@ -54,9 +54,10 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(183, 466);
+            this.comboBox1.Location = new System.Drawing.Point(124, 376);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(411, 48);
+            this.comboBox1.Size = new System.Drawing.Size(309, 48);
             this.comboBox1.TabIndex = 186;
             // 
             // label4
@@ -65,7 +66,8 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(184, 388);
+            this.label4.Location = new System.Drawing.Point(125, 312);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 40);
             this.label4.TabIndex = 185;
@@ -73,9 +75,10 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(670, 289);
+            this.richTextBox1.Location = new System.Drawing.Point(489, 232);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(662, 235);
+            this.richTextBox1.Size = new System.Drawing.Size(498, 192);
             this.richTextBox1.TabIndex = 184;
             this.richTextBox1.Text = "";
             // 
@@ -85,7 +88,8 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label5.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(672, 216);
+            this.label5.Location = new System.Drawing.Point(491, 173);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(193, 40);
             this.label5.TabIndex = 183;
@@ -96,9 +100,10 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button2.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(755, 615);
+            this.button2.Location = new System.Drawing.Point(566, 500);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(202, 78);
+            this.button2.Size = new System.Drawing.Size(152, 63);
             this.button2.TabIndex = 182;
             this.button2.Text = "Regresar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -110,9 +115,10 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(522, 616);
+            this.button1.Location = new System.Drawing.Point(392, 500);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(218, 78);
+            this.button1.Size = new System.Drawing.Size(164, 63);
             this.button1.TabIndex = 180;
             this.button1.Text = "Agregar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,7 +131,8 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(184, 216);
+            this.label3.Location = new System.Drawing.Point(125, 173);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 40);
             this.label3.TabIndex = 179;
@@ -138,17 +145,19 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-12, -7);
+            this.panel1.Location = new System.Drawing.Point(-9, -6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1469, 138);
+            this.panel1.Size = new System.Drawing.Size(1102, 112);
             this.panel1.TabIndex = 176;
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = global::VetPet_.Properties.Resources.icons8_clínica_externa_veterinaria_y_mascotas_creatype_contorno_colorcreatype_3_64;
-            this.pictureBox5.Location = new System.Drawing.Point(28, 16);
+            this.pictureBox5.Location = new System.Drawing.Point(21, 13);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(80, 81);
+            this.pictureBox5.Size = new System.Drawing.Size(60, 66);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
@@ -158,7 +167,8 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft JhengHei", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(114, 35);
+            this.label2.Location = new System.Drawing.Point(86, 28);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 38);
             this.label2.TabIndex = 5;
@@ -167,9 +177,10 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::VetPet_.Properties.Resources.usuario_ang;
-            this.pictureBox4.Location = new System.Drawing.Point(1275, 18);
+            this.pictureBox4.Location = new System.Drawing.Point(956, 15);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(80, 81);
+            this.pictureBox4.Size = new System.Drawing.Size(60, 66);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
@@ -179,7 +190,8 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(388, 12);
+            this.label1.Location = new System.Drawing.Point(291, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(539, 81);
             this.label1.TabIndex = 0;
@@ -189,9 +201,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.flecha_ang;
-            this.pictureBox1.Location = new System.Drawing.Point(888, 626);
+            this.pictureBox1.Location = new System.Drawing.Point(666, 509);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 57);
+            this.pictureBox1.Size = new System.Drawing.Size(44, 46);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 177;
             this.pictureBox1.TabStop = false;
@@ -200,9 +213,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.icons8_aceptar_506;
-            this.pictureBox2.Location = new System.Drawing.Point(670, 626);
+            this.pictureBox2.Location = new System.Drawing.Point(502, 509);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(58, 57);
+            this.pictureBox2.Size = new System.Drawing.Size(44, 46);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 181;
             this.pictureBox2.TabStop = false;
@@ -211,17 +225,18 @@
             // 
             this.comboBox2.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(183, 289);
+            this.comboBox2.Location = new System.Drawing.Point(124, 232);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(411, 48);
+            this.comboBox2.Size = new System.Drawing.Size(309, 48);
             this.comboBox2.TabIndex = 187;
             // 
             // MascotasAgregarAlergia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(224)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(1444, 706);
+            this.ClientSize = new System.Drawing.Size(1083, 574);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
@@ -233,6 +248,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MascotasAgregarAlergia";
             this.Text = "MascotasAgregarAlergia";
             this.panel1.ResumeLayout(false);

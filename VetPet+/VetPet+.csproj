@@ -826,12 +826,6 @@
     <Compile Include="Angie\Mascotas\MascotasModificar.Designer.cs">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="MascotasAgregarAlergia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MascotasAgregarAlergia.Designer.cs">
-      <DependentUpon>MascotasAgregarAlergia.cs</DependentUpon>
-    </Compile>
     <Compile Include="MenuAtencionaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1433,9 +1427,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MascotasAgregarAlergia.resx">
-      <DependentUpon>MascotasAgregarAlergia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuAtencionaCliente.resx">
       <DependentUpon>MenuAtencionaCliente.cs</DependentUpon>
