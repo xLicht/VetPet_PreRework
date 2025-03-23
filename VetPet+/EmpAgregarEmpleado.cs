@@ -83,8 +83,8 @@ namespace VetPet_
 
                 // Insertar nuevo empleado
                 string query = @"
-                    INSERT INTO Persona (nombre, apellidoP, apellidoM, celular, correoElectronico)
-                    VALUES (@nombre, @apellidoP, @apellidoM, @celular, @correo);
+                    INSERT INTO Persona (nombre, apellidoP, apellidoM, celularPrincipal, correoElectronico)
+                    VALUES (@nombre, @apellidoP, @apellidoM, @celularPrincipal, @correo);
                     SELECT SCOPE_IDENTITY();"; // Obtener el ID de la persona insertada
 
                 int idPersona = 0;
@@ -93,7 +93,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@apellidoP", txtApellidoP.Text);
                     cmd.Parameters.AddWithValue("@apellidoM", txtApellidoM.Text);
-                    cmd.Parameters.AddWithValue("@celular", txtCelular.Text);
+                    cmd.Parameters.AddWithValue("@celularPrincipal", txtCelular.Text);
                     cmd.Parameters.AddWithValue("@correo", txtCorreo.Text);
                     idPersona = Convert.ToInt32(cmd.ExecuteScalar());
                 }

@@ -17,16 +17,18 @@ namespace VetPet_
 {
     public partial class ListaPLab : FormPadre
     {
+        string idStr;
         //Variables SQL
         int identificadorEnviado;
         public ListaPLab()
         {
             InitializeComponent();
         }
-        public ListaPLab(Form1 parent)
+        public ListaPLab(Form1 parent, int idConseguido)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            idStr = idConseguido.ToString();
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
@@ -35,24 +37,16 @@ namespace VetPet_
 
         }
 
-        private void BtnModificar_Click(object sender, EventArgs e)
-        {
-            //parentForm.formularioHijo(new ModificarPLab(parentForm));
-        }
 
         private void BtnAgregarTipoDeCirugia_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AgregarTipoPLab(parentForm));
+            parentForm.formularioHijo(new AgregarTipoPLab(parentForm, Convert.ToInt32(idStr)));
         }
 
-        private void BtnAgregarCirugía_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new AgregarPLab(parentForm));
-        }
 
         private void BtnAgregarPLab_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new AgregarPLab(parentForm));
+            parentForm.formularioHijo(new AgregarPLab(parentForm, idStr));
         }
 
         private void ListaPLab_Load(object sender, EventArgs e)
@@ -60,14 +54,14 @@ namespace VetPet_
 
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.CargarTipodeServicio(dataGridView1, "8");
-            conexion.CargarInformaciondeServicio(dataGridView2, "8");
-
+            conexion.CargarTipodeServicio(dataGridView1, idStr);
+            conexion.CargarInformaciondeServicio(dataGridView2, idStr);
 
         }
         
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
             {
                 if (e.ColumnIndex == 0) // Verificar si es la primera columna
@@ -97,7 +91,7 @@ namespace VetPet_
                             {
                                 // Convertir el resultado a int (si el id es entero)
                                 int idServicioEspecificoNieto = Convert.ToInt32(result);
-                                parentForm.formularioHijo(new ModificarPLab(parentForm, idServicioEspecificoNieto));
+                                parentForm.formularioHijo(new ModificarPLab(parentForm, idServicioEspecificoNieto, idStr));
 
                             }
                             else
@@ -124,14 +118,14 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.Buscar(dataGridView1, TxtBuscar,"8");
+            conexion.Buscar(dataGridView1, TxtBuscar, idStr);
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.Buscar(dataGridView1, TxtBuscar, "8");
+            conexion.Buscar(dataGridView1, TxtBuscar, idStr);
         }
     }
 }

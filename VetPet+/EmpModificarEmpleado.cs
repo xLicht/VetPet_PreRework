@@ -90,7 +90,7 @@ namespace VetPet_
 
                 string query = @"
                        SELECT e.usuario, e.contraseña, e.palabraClave, 
-                       p.nombre, p.apellidoP, p.apellidoM, p.celular, p.correoElectronico,
+                       p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, p.correoElectronico,
                        t.nombre AS tipoEmpleado,
                        pais.nombre AS pais, calle.nombre AS calle, 
                        cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia
@@ -119,7 +119,7 @@ namespace VetPet_
                         txtNombre.Text = reader["nombre"].ToString();
                         txtApellidoP.Text = reader["apellidoP"].ToString();
                         txtApellidoM.Text = reader["apellidoM"].ToString();
-                        txtCelular.Text = reader["celular"].ToString();
+                        txtCelular.Text = reader["celularPrincipal"].ToString();
                         txtCorreo.Text = reader["correoElectronico"].ToString();
                         cbTipo.Text = reader["tipoEmpleado"].ToString();
                         cbPais.SelectedItem = reader["pais"].ToString();
@@ -227,7 +227,7 @@ namespace VetPet_
                 SET nombre = @nombre, 
                     apellidoP = @apellidoP, 
                     apellidoM = @apellidoM, 
-                    celular = @celular, 
+                    celularPrincipal = @celularPrincipal, 
                     correoElectronico = @correo
                 WHERE idPersona = @idPersona;
 
@@ -247,7 +247,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@apellidoP", txtApellidoP.Text);
                     cmd.Parameters.AddWithValue("@apellidoM", txtApellidoM.Text);
-                    cmd.Parameters.AddWithValue("@celular", txtCelular.Text);
+                    cmd.Parameters.AddWithValue("@celularPrincipal", txtCelular.Text);
                     cmd.Parameters.AddWithValue("@correo", txtCorreo.Text);
                     cmd.Parameters.AddWithValue("@pais", cbPais.Text);
                     cmd.Parameters.AddWithValue("@calle", cbCalle.Text);
@@ -305,7 +305,7 @@ namespace VetPet_
                     SET nombre = @nombre, 
                         apellidoP = @apellidoP, 
                         apellidoM = @apellidoM, 
-                        celular = @celular,
+                        celularPrincipal = @celularPrincipal,
                         correoElectronico = @correo
                     WHERE idPersona = (SELECT idPersona FROM Empleado WHERE idEmpleado = @idEmpleado);
 
@@ -328,7 +328,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@apellidoP", txtApellidoP.Text);
                     cmd.Parameters.AddWithValue("@apellidoM", txtApellidoM.Text);
-                    cmd.Parameters.AddWithValue("@celular", txtCelular.Text);
+                    cmd.Parameters.AddWithValue("@celularPrincipal", txtCelular.Text);
                     cmd.Parameters.AddWithValue("@correo", txtCorreo.Text);
                     cmd.Parameters.AddWithValue("@idPais", idPais);
                     cmd.Parameters.AddWithValue("@idCalle", idCalle);

@@ -362,7 +362,7 @@ namespace VetPet_.Angie.Mascotas
                     // Si el usuario elige "Sí", insertar la nueva especie en la base de datos
                     if (result == DialogResult.Yes)
                     {
-                        parentForm.formularioHijo(new MascotasAgregarRaza(parentForm, nuevaEspecie));
+                        //parentForm.formularioHijo(new MascotasAgregarRaza(parentForm, nuevaEspecie));
                     }
                 }
                 else
@@ -377,9 +377,8 @@ namespace VetPet_.Angie.Mascotas
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-
-            if (idDueño != null || idDueño != 0)
+        {         
+            if (idDueño != 0)
             {
                 int idEmpleadoSeleccionado = Convert.ToInt32(idDueño);
                 DueMascotadeDue formularioHijo = new DueMascotadeDue(parentForm, "DueConsultarDue");
