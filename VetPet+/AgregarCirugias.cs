@@ -15,6 +15,7 @@ namespace VetPet_
     public partial class AgregarCirugias : FormPadre
     {
         string idSer;
+
         public AgregarCirugias()
         {
             InitializeComponent();

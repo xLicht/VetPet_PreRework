@@ -15,20 +15,27 @@ namespace VetPet_
     public partial class ModificarRadiografias : FormPadre
     {
         int identificador;
+        string cirugia;
+        string nombreServicio;
         public ModificarRadiografias()
         {
             InitializeComponent();
         }
-        public ModificarRadiografias(Form1 parent,int Id)
+        public ModificarRadiografias(Form1 parent, int Id, string idcirugia, string nombre)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
             identificador = Id;
+            cirugia = idcirugia;
+            nombreServicio = nombre;
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaRadiografias(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId(nombreServicio, "ServicioPadre");
+            parentForm.formularioHijo(new ListaRadiografias(parentForm, idServicio, nombreServicio));
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -123,9 +130,11 @@ namespace VetPet_
 
         private void ModificarRadiografias_Load(object sender, EventArgs e)
         {
+            label2.Text = "Modificar " + nombreServicio;
+            label1.Text = "Tipo de " + nombreServicio;
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.cargarCombobox(comboBox1, "7");
+            conexion.cargarCombobox(comboBox1, cirugia);
             string query = "SELECT nombre, descripcion, precio, duracion FROM ServicioEspecificoNieto WHERE idServicioEspecificoNieto = @ID";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))

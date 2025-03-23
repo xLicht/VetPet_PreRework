@@ -14,19 +14,24 @@ namespace VetPet_
 {
     public partial class AgregarVacunas : FormPadre
     {
+        string idSer;
         public AgregarVacunas()
         {
             InitializeComponent();
         }
-        public AgregarVacunas(Form1 parent)
+        public AgregarVacunas(Form1 parent, string id)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            idSer = id;
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaVacunas(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId("Vacunas", "ServicioPadre");
+            parentForm.formularioHijo(new ListaVacunas(parentForm, idServicio));
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -106,7 +111,7 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string id = "3";
+            string id = idSer;
             string query = "SELECT nombre FROM ServicioEspecificoHijo WHERE idServicioPadre = " + id + "";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))

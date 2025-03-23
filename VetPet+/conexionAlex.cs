@@ -242,7 +242,8 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string patron = TxtBuscar.Text;
-            string query = " SELECT nombre AS TipoDeServicio FROM ServicioEspecificoHijo \r\n  WHERE idServicioPadre = " + idPadre + " AND nombre LIKE '%" + patron + "%' AND estado = 'A';";
+            string query = " SELECT Se.nombre AS TipoDeServicio,te.nombre AS TipoEmpleado FROM ServicioEspecificoHijo Se  INNER JOIN TipoEmpleado te ON Se.idtipoempleado = \r\n            " +
+                "    te.idtipoEmpleado   WHERE idServicioPadre =" + idPadre + " AND Se.nombre LIKE '%" + patron + "%' AND Se.estado = 'A';";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try

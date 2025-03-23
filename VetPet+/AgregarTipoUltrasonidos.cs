@@ -25,12 +25,12 @@ namespace VetPet_
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaUltrasonidos(parentForm));
+            //parentForm.formularioHijo(new ListaUltrasonidos(parentForm));
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaUltrasonidos(parentForm));
+            //parentForm.formularioHijo(new ListaUltrasonidos(parentForm));
         }
     }
 }

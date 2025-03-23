@@ -174,43 +174,38 @@ namespace VetPet_
                 string valorCelda = cell.Value.ToString();
                 int idServicio = conexion.ObtenerId(valorCelda, "ServicioPadre");
                 // Dependiendo del valor o cualquier otro criterio, puedes abrir el formulario correspondiente
-                switch (valorCelda)
-                {
-                    case "Cirugías":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm,idServicio));
-                        break;
-                    case "Acicalamiento":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
-                        break;
-                    case "Consulta General":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
-                        break;
-                    case "Cremacion":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
-                        break;
-                    case "Masaje":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
-                        break;
-                    case "Rayos X":
-                        parentForm.formularioHijo(new ListaRayosX(parentForm));
-                        break;
-                    case "Estudios de Laboratorio":
-                        parentForm.formularioHijo(new ListaPLab(parentForm));
-                        break;
-                    case "Ultrasonidos":
-                        parentForm.formularioHijo(new ListaUltrasonidos(parentForm));
-                        break;
-                    case "Vacunas":
-                        parentForm.formularioHijo(new ListaVacunas(parentForm));
-                        break;
-                    case "Radiografía":
-                        parentForm.formularioHijo(new ListaRadiografias(parentForm));
-                        break;
-                    // Agrega más casos según los tipos de servicio que tengas
-                    default:
-                        MessageBox.Show("No se encontró formulario para este servicio.");
-                        break;
-                }
+                if(valorCelda=="Vacunas")
+                    parentForm.formularioHijo(new ListaVacunas(parentForm, idServicio));
+                else
+                    parentForm.formularioHijo(new ListaRadiografias(parentForm, idServicio, valorCelda));
+                //switch (valorCelda)
+                //{
+                //    case "Cirugías":
+                //        parentForm.formularioHijo(new ListaCirugias(parentForm,idServicio));
+                //        break;
+                //    case "Sencillos":
+                //        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
+                //        break;
+                //    case "Rayos X":
+                //        parentForm.formularioHijo(new ListaRayosX(parentForm, idServicio));
+                //        break;
+                //    case "Estudios de Laboratorio":
+                //        parentForm.formularioHijo(new ListaPLab(parentForm, idServicio));
+                //        break;
+                //    case "Ultrasonidos":
+                //        parentForm.formularioHijo(new ListaUltrasonidos(parentForm,idServicio)); //noterminado
+                //        break;
+                //    case "Vacunas":
+                //        parentForm.formularioHijo(new ListaVacunas(parentForm));
+                //        break;
+                //    case "Radiografía":
+                //        parentForm.formularioHijo(new ListaRadiografias(parentForm, idServicio,valorCelda));
+                //        break;
+                //    // Agrega más casos según los tipos de servicio que tengas
+                //    default:
+                //        MessageBox.Show("No se encontró formulario para este servicio.");
+                //        break;
+                //}
             }
         }
 
