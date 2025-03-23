@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Crypto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,45 +15,96 @@ namespace VetPet_
 {
     public partial class AgregarTipoVacunas : FormPadre
     {
+        int ServicioID;
         public AgregarTipoVacunas()
         {
             InitializeComponent();
         }
-        public AgregarTipoVacunas(Form1 parent)
+        public AgregarTipoVacunas(Form1 parent, int idS)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            ServicioID = idS;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaVacunas(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId("Vacunas", "ServicioPadre");
+            parentForm.formularioHijo(new ListaVacunas(parentForm, idServicio));
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string query = "INSERT INTO ServicioEspecificoHijo (nombre, descripcion, idServicioPadre) VALUES (@NOM, @DES, @ISP);";
+            DataRowView selectedRow = comboBox1.SelectedItem as DataRowView;
+
+            string nombreServicio = selectedRow["nombre"].ToString();
+
+            string queryIdServicio = "SELECT idTipoEmpleado FROM TipoEmpleado WHERE nombre = @NombreServicio";
+
+            // Crear el comando para obtener el idServicioEspecificoHijo
+            using (SqlCommand cmd = new SqlCommand(queryIdServicio, conexion.GetConexion()))
+            {
+                try
+                {
+                    // Agregar el parámetro del nombre del ServicioEspecificoHijo
+                    cmd.Parameters.AddWithValue("@NombreServicio", nombreServicio);
+
+                    // Ejecutar la consulta y obtener el id
+                    object result = cmd.ExecuteScalar(); // ExecuteScalar retorna el primer valor de la consulta (idServicioEspecificoHijo)
+
+                    if (result != null)
+                    {
+                        // Convertir el resultado a int (si el id es entero)
+                        int idTipoEmpleado = Convert.ToInt32(result);
+
+                        conexion.GuardarTipoServicio(TxtNombre, richTextBox1, ServicioID, idTipoEmpleado);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el Servicio Especificado.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar las presentaciones: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+
+        private void AgregarTipoVacunas_Load(object sender, EventArgs e)
+        {
+            cargarCombobox();
+        }
+        private void cargarCombobox()
+        {
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT nombre FROM TipoEmpleado";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
                 {
-                    // Primero obtenemos los valores
-                    string Nombre = TxtNombre.Text;
-                    string Descripcion = richTextBox1.Text.Replace("\r", "").Replace("\n", "");
-                    int idServicio = 3;
+                    // Crear un SqlDataAdapter con la conexión correcta
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
 
-                    // Agregamos los parámetros
-                    cmd.Parameters.AddWithValue("@NOM", Nombre);
-                    cmd.Parameters.AddWithValue("@DES", Descripcion);
-                    cmd.Parameters.AddWithValue("@ISP", idServicio);
+                    DataTable dt = new DataTable();
+                    dataAdapter.Fill(dt);
 
-                    // Ejecutamos la consulta
-                    cmd.ExecuteNonQuery();  // Cambié ExecuteReader por ExecuteNonQuery
+                    // Asignar el DataTable como fuente de datos
+                    comboBox1.DataSource = dt;
 
-                    MessageBox.Show("Nuevo Tipo de Servicio Registrado");
+                    // Asegúrate de que DisplayMember coincida con el nombre exacto de la columna en tu DataTable
+                    comboBox1.DisplayMember = "nombre";  // Nombre de la columna que quieres mostrar en el ComboBox
+                    comboBox1.ValueMember = "nombre";    // El valor del ComboBox será el mismo campo
                 }
                 catch (Exception ex)
                 {
