@@ -23,25 +23,24 @@ namespace VetPet_.Angie.Mascotas
                 // Inicializar la conexión con la primera cadena de conexión
                 conexion = new SqlConnection(cadenaConexion1);
             }
-
-        public void EliminarRazaEnCascada(int idRaza)
+        public void EliminarEnCascadaPlus(int idRaza, string proc )
         {
             try
             {
                 AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("EliminarRazaEnCascada", GetConexion()))
+                using (SqlCommand cmd = new SqlCommand(proc, GetConexion()))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Parámetro de entrada
-                    cmd.Parameters.AddWithValue("@idRaza", idRaza);
+                    cmd.Parameters.AddWithValue("@ID", idRaza);
 
                     // Parámetro de salida
                     SqlParameter resultadoParam = new SqlParameter("@Resultado", SqlDbType.NVarChar, -1);
                     resultadoParam.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(resultadoParam);
 
-
+                    // Abrir la conexión
                     cmd.ExecuteNonQuery();
 
                     // Obtener el resultado
@@ -53,10 +52,7 @@ namespace VetPet_.Angie.Mascotas
             {
                 MessageBox.Show($"Error al ejecutar el procedimiento almacenado: {ex.Message}");
             }
-            finally 
-            {
-                CerrarConexion();   
-            }
+            finally { CerrarConexion(); }
         }
         public void EliminarRegistro(string nombreTabla, string nombreColumna, string nombreRegistro)
         {

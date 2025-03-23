@@ -163,7 +163,7 @@ namespace VetPet_.Angie.Mascotas
 
         public void EliminarRazaEnCascada()
         {
-            mismetodos.EliminarRazaEnCascada(idRaza);
+            mismetodos.EliminarEnCascadaPlus(idRaza, "EliminarRazaLogicamente");
         }
 
         private void button2_Click(object sender, EventArgs e)

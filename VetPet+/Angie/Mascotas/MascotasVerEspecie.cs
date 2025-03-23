@@ -56,14 +56,7 @@ namespace VetPet_.Angie.Mascotas
 
         public void EliminarEnCascada()
         {
-            List<string> tablasRelacionadas = new List<string>
-        {
-            "Mascota",  // Tabla que relaciona mascotas con alergias
-            "Raza",  // Tabla que relaciona especies con alergias
-            "Especie_Alergia",
-            "Especie_Sensibilidad",
-        };
-            mismetodos.EliminarEnCascada("Especie", idEspecie, tablasRelacionadas);
+            mismetodos.EliminarEnCascadaPlus( idEspecie, "EliminarEspecieEnCascada");
         }
 
         private void button2_Click(object sender, EventArgs e)
