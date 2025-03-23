@@ -15,15 +15,15 @@ namespace VetPet_.Angie.Mascotas
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        private Mismetodos mismetodos;
-
+        private Mismetodos mismetodos = new Mismetodos();
+        string tipo = "";
         private Form1 parentForm;
-        public MascotasAgregarAlergia(Form1 parent)
+        public MascotasAgregarAlergia(Form1 parent, string tipo)
         {
             InitializeComponent();
             this.Load += MascotasAgregarAlergia_Load;       // Evento Load
             this.Resize += MascotasAgregarAlergia_Resize;   // Evento Resize
-
+            this.tipo = tipo;
             parentForm = parent;  // Guardamos la referencia de Form
         }
         private void MascotasAgregarAlergia_Load(object sender, EventArgs e)

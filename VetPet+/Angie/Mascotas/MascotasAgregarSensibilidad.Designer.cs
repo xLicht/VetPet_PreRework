@@ -62,6 +62,7 @@
             this.button2.Text = "Regresar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -75,6 +76,7 @@
             this.button1.Text = "Agregar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -84,7 +86,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Location = new System.Drawing.Point(128, 194);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 50);
+            this.label3.Size = new System.Drawing.Size(143, 40);
             this.label3.TabIndex = 148;
             this.label3.Text = "Nombre";
             // 
@@ -94,7 +96,7 @@
             this.textBox1.Location = new System.Drawing.Point(127, 267);
             this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(411, 61);
+            this.textBox1.Size = new System.Drawing.Size(411, 50);
             this.textBox1.TabIndex = 147;
             // 
             // panel1
@@ -126,7 +128,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(114, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 47);
+            this.label2.Size = new System.Drawing.Size(115, 38);
             this.label2.TabIndex = 5;
             this.label2.Text = "VetPet";
             // 
@@ -147,7 +149,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(321, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(870, 101);
+            this.label1.Size = new System.Drawing.Size(693, 81);
             this.label1.TabIndex = 0;
             this.label1.Text = "Agregar Sensibilidad ";
             // 
@@ -189,7 +191,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Location = new System.Drawing.Point(616, 194);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(242, 50);
+            this.label5.Size = new System.Drawing.Size(193, 40);
             this.label5.TabIndex = 156;
             this.label5.Text = "Descripción";
             // 
@@ -199,7 +201,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(127, 444);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(411, 58);
+            this.comboBox1.Size = new System.Drawing.Size(411, 48);
             this.comboBox1.TabIndex = 175;
             // 
             // label4
@@ -210,9 +212,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(128, 366);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 50);
+            this.label4.Size = new System.Drawing.Size(83, 40);
             this.label4.TabIndex = 174;
-            this.label4.Text = "Especie";
+            this.label4.Text = "Tipo";
             // 
             // MascotasAgregarSensibilidad
             // 

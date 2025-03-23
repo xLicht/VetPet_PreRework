@@ -18,7 +18,7 @@ namespace VetPet_.Angie.Mascotas
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Mismetodos mismetodos;
-
+        string tipo = "";
         private Form1 parentForm;
         public MascotasVerSensibilidades(Form1 parent)
         {
@@ -110,17 +110,19 @@ namespace VetPet_.Angie.Mascotas
 
         private void button4_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm,"")); // Pasamos la referencia de Form1 a
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm)); // Pasamos la referencia de Form1 a
+            tipo = "Raza";
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm,tipo)); // Pasamos la referencia de Form1 a
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm)); // Pasamos la referencia de Form1 a
+            tipo = "Especie";
+            parentForm.formularioHijo(new MascotasAgregarSensibilidad(parentForm,tipo)); // Pasamos la referencia de Form1 a
         }
         public void PersonalizarDataGridView()
         {
