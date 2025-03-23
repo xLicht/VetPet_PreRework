@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie.Ventas;
 
 namespace VetPet_.Angie.Mascotas
 {
@@ -346,7 +347,7 @@ namespace VetPet_.Angie.Mascotas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota));
+                parentForm.formularioHijo(new MascotasVerRazas(parentForm));
         }
     }
 }
