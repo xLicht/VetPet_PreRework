@@ -24,37 +24,114 @@ namespace VetPet_.Angie.Mascotas
                 conexion = new SqlConnection(cadenaConexion1);
             }
 
-        public void agregarDatosGenerico(string nombreProcedimiento, Dictionary<string, object> parametrosValores)
+        public void CargarDatosGenerico(string nombreTabla, int id, Dictionary<string, Control> mapeoColumnasControles)
         {
             try
             {
-                AbrirConexion();
-                string query = $"Exec {nombreProcedimiento}";
+                // Construir la consulta SQL de forma segura
+                string query = $"SELECT {string.Join(", ", mapeoColumnasControles.Keys)} FROM {nombreTabla} WHERE id{nombreTabla} = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    // Asegurarse de que la conexión esté abierta
+                    if (conexion.State != System.Data.ConnectionState.Open)
+                    {
+                        AbrirConexion();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Recorrer el diccionario y cargar los datos en los controles
+                            foreach (var columnaControl in mapeoColumnasControles)
+                            {
+                                string columna = columnaControl.Key;
+                                Control control = columnaControl.Value;
+
+                                int ordinal = reader.GetOrdinal(columna); // Obtener índice de la columna
+                                if (!reader.IsDBNull(ordinal)) // Verificar si no es NULL
+                                {
+                                    if (control is System.Windows.Forms.TextBox txt)
+                                    {
+                                        txt.Text = reader[ordinal].ToString();
+                                    }
+                                    else if (control is System.Windows.Forms.ComboBox cmb)
+                                    {
+                                        cmb.Text = reader[ordinal].ToString();
+                                    }
+                                    else if (control is System.Windows.Forms.RichTextBox rch)
+                                    {
+                                        rch.Text = reader[ordinal].ToString();
+                                    }
+                                    // Agrega más controles aquí según sea necesario
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se encontró un registro con el ID {id} en la tabla {nombreTabla}.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos de la tabla {nombreTabla}: {ex.Message}");
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+        }
+        public void ModificarDatosGenerico(string nombreTabla, int id, Dictionary<string, object> parametrosValores)
+        {
+            try
+            {
+                // Construir la consulta SQL dinámicamente
+                string query = $"UPDATE {nombreTabla} SET ";
 
                 // Agregar parámetros para cada valor
                 foreach (var parametroValor in parametrosValores)
                 {
-                    query += $", @{parametroValor.Key}";
+                    query += $"{parametroValor.Key} = @{parametroValor.Key}, ";
                 }
 
-                query += ", @Resultado OUTPUT";
+                // Eliminar la última coma y espacio
+                query = query.TrimEnd(',', ' ');
 
-                using (SqlCommand cmd = new SqlCommand(query, GetConexion()))
+                // Agregar la condición WHERE
+                query += $" WHERE id{nombreTabla} = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexion))
                 {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    // Agregar los valores de los parámetros
                     foreach (var parametroValor in parametrosValores)
                     {
                         cmd.Parameters.AddWithValue($"@{parametroValor.Key}", parametroValor.Value);
                     }
 
-                    SqlParameter resultadoParam = new SqlParameter("@Resultado", SqlDbType.VarChar, 100);
-                    resultadoParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(resultadoParam);
+                    // Asegurarse de que la conexión esté abierta
+                    if (conexion.State != System.Data.ConnectionState.Open)
+                    {
+                        AbrirConexion();
+                    }
 
-                   
-                    cmd.ExecuteNonQuery();
+                    // Ejecutar la consulta
+                    int rowsAffected = cmd.ExecuteNonQuery();
 
-                    string resultado = resultadoParam.Value.ToString();
-                    MessageBox.Show(resultado);
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Datos modificados correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ningún registro con el ID proporcionado.");
+                    }
                 }
             }
             catch (Exception ex)
@@ -66,62 +143,121 @@ namespace VetPet_.Angie.Mascotas
                 CerrarConexion();
             }
         }
-        public void AbrirConexion()
+        public void EliminarEnCascada(string nombreTablaPrincipal, int id, List<string> tablasRelacionadas)
+        {
+            // Preguntar al usuario si está seguro de eliminar
+            DialogResult resultado = MessageBox.Show(
+                "¿Estás seguro de que deseas eliminar este registro y todos sus registros relacionados?",
+                "Confirmar Eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            // Si el usuario no confirma, cancelar la operación
+            if (resultado != DialogResult.Yes)
             {
-                try
+                MessageBox.Show("Eliminación cancelada.");
+                return;
+            }
+
+            SqlTransaction transaction = null;
+
+            try
+            {
+                // Abrir la conexión
+                if (conexion.State != System.Data.ConnectionState.Open)
                 {
-                    if (conexion == null)
+                    AbrirConexion();
+                }
+
+                // Iniciar una transacción
+                transaction = conexion.BeginTransaction();
+
+                // Eliminar registros en las tablas relacionadas (hijas)
+                foreach (var tabla in tablasRelacionadas)
+                {
+                    string query = $"DELETE FROM {tabla} WHERE id{nombreTablaPrincipal} = @ID";
+                    using (SqlCommand cmd = new SqlCommand(query, conexion, transaction))
                     {
-                        throw new InvalidOperationException("La conexión no está inicializada.");
+                        cmd.Parameters.AddWithValue("@ID", id);
+                        cmd.ExecuteNonQuery();
                     }
+                }
 
-                    if (conexion.State == System.Data.ConnectionState.Closed)
+                // Eliminar el registro en la tabla principal
+                string queryPrincipal = $"DELETE FROM {nombreTablaPrincipal} WHERE id{nombreTablaPrincipal} = @ID";
+                using (SqlCommand cmdPrincipal = new SqlCommand(queryPrincipal, conexion, transaction))
+                {
+                    cmdPrincipal.Parameters.AddWithValue("@ID", id);
+                    int rowsAffected = cmdPrincipal.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
                     {
-                        conexion.Open();
+                        MessageBox.Show("Eliminación en cascada realizada correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró ningún registro con el ID proporcionado.");
                     }
                 }
-                catch (Exception ex)
-                {
-                    // Si hay un error, intentar con la otra conexión
-                    Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
-                    AlternarConexion(); // Cambiar a la otra cadena de conexión
-                    conexion.Open();   // Intentar abrir la nueva conexión
-                }
-            }
 
-            public void CerrarConexion()
-            {
-                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                // Confirmar la transacción
+                transaction.Commit();
             }
-
-            public SqlConnection GetConexion()
+            catch (Exception ex)
             {
-                return conexion;
+                // Revertir la transacción en caso de error
+                transaction?.Rollback();
+                MessageBox.Show($"Error al eliminar en cascada: {ex.Message}");
             }
-
-            private void AlternarConexion()
+            finally
             {
-                // Cerrar la conexión actual si está abierta
+                // Cerrar la conexión
                 CerrarConexion();
-
-                // Cambiar a la otra cadena de conexión
-                if (usarConexion1)
+            }
+        }
+        public void AbrirConexion()
+        {
+            try
+            {
+                if (conexion == null)
                 {
-                    conexion = new SqlConnection(cadenaConexion2);
-                    usarConexion1 = false;
-                    Console.WriteLine("Cambiando a la segunda cadena de conexión.");
+                    throw new InvalidOperationException("La conexión no está inicializada.");
                 }
-                else
+
+                if (conexion.State == System.Data.ConnectionState.Closed)
                 {
-                    conexion = new SqlConnection(cadenaConexion1);
-                    usarConexion1 = true;
-                    Console.WriteLine("Cambiando a la primera cadena de conexión.");
+                    conexion.Open();
                 }
             }
-        
+            catch (Exception ex)
+            {
+                // Si hay un error, intentar con la otra conexión
+                Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
+                AlternarConexion(); // Cambiar a la otra cadena de conexión
+                conexion.Open();   // Intentar abrir la nueva conexión
+            }
+        }
+
+        public void CerrarConexion()
+        {
+            if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+            {
+                conexion.Close();
+            }
+        }
+
+        public SqlConnection GetConexion()
+        {
+            return conexion;
+        }
+
+        private void AlternarConexion()
+        {
+            usarConexion1 = !usarConexion1;
+            conexion = new SqlConnection(usarConexion1 ? cadenaConexion1 : cadenaConexion2);
+        }
+       
         public bool Existe(string query, string nombreEspecie)
         {
             try
