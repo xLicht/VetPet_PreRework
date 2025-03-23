@@ -1476,6 +1476,9 @@
     <EmbeddedResource Include="OlvideConstraseña.resx">
       <DependentUpon>OlvideConstraseña.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OpcionesInicioSesion.resx">
+      <DependentUpon>OpcionesInicioSesion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

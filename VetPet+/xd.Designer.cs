@@ -173,6 +173,7 @@
             this.Name = "xd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "xd";
+            this.Load += new System.EventHandler(this.xd_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
