@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace VetPet_.Angie.Ventas
             InitializeComponent();
             this.Load += MascotasVerRazas_Load;       // Evento Load
             this.Resize += MascotasVerRazas_Resize;   // Evento Resize
-
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form
         }
         private void MascotasVerRazas_Load(object sender, EventArgs e)
@@ -39,7 +40,45 @@ namespace VetPet_.Angie.Ventas
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
 
+            try
+            {
+                // Crear instancia de Mismetodos
+                mismetodos = new Mismetodos();
 
+                // Abrir conexión
+                mismetodos.AbrirConexion();
+
+                // Consulta SQL con nombres personalizados
+                string query = @"
+            SELECT 
+                R.nombre AS [Nombre], 
+                E.nombre AS [Especie], 
+                R.descripcion AS [Descripción de la Raza] 
+            FROM Raza R
+            INNER JOIN Especie E ON R.idEspecie = E.idEspecie";
+
+                // Usar `using` para asegurar la correcta liberación de recursos
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                {
+                    // Crear un DataTable y llenar los datos
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    // Asignar el DataTable al DataGridView
+                    dataGridView1.DataSource = tabla;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+            }
         }
 
         private void MascotasVerRazas_Resize(object sender, EventArgs e)
@@ -73,7 +112,44 @@ namespace VetPet_.Angie.Ventas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //parentForm.formularioHijo(new MascotasAgregarRaza(parentForm)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new MenuMascotas(parentForm)); // Pasamos la referencia de Form1 a
+        }
+
+        public void PersonalizarDataGridView()
+        {
+            dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView1.BackgroundColor = Color.White; // Fondo blanco
+
+            // Alternar colores de filas
+            dataGridView1.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            // Bordes y alineación
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados
+            dataGridView1.ColumnHeadersHeight = 30;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Ocultar la columna del ID
+            if (dataGridView1.Columns.Contains("idMascota"))
+            {
+                dataGridView1.Columns["idMascota"].Visible = false;
+            }
         }
     }
 }

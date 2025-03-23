@@ -79,6 +79,7 @@
             this.button2.Text = "Regresar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox2
             // 
@@ -103,6 +104,7 @@
             this.button1.Text = "Agregar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -110,19 +112,19 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(39, 177);
+            this.label3.Location = new System.Drawing.Point(48, 177);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 50);
+            this.label3.Size = new System.Drawing.Size(143, 40);
             this.label3.TabIndex = 148;
             this.label3.Text = "Nombre";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(281, 177);
+            this.textBox1.Location = new System.Drawing.Point(290, 177);
             this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(372, 61);
+            this.textBox1.Size = new System.Drawing.Size(372, 50);
             this.textBox1.TabIndex = 147;
             // 
             // panel1
@@ -154,7 +156,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(114, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 47);
+            this.label2.Size = new System.Drawing.Size(115, 38);
             this.label2.TabIndex = 5;
             this.label2.Text = "VetPet";
             // 
@@ -175,7 +177,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(391, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(669, 101);
+            this.label1.Size = new System.Drawing.Size(533, 81);
             this.label1.TabIndex = 0;
             this.label1.Text = "Agregar Especie";
             // 
@@ -187,7 +189,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Location = new System.Drawing.Point(50, 291);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(242, 50);
+            this.label5.Size = new System.Drawing.Size(193, 40);
             this.label5.TabIndex = 154;
             this.label5.Text = "Descripción";
             // 
@@ -216,7 +218,7 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(1042, 216);
+            this.richTextBox2.Location = new System.Drawing.Point(1031, 213);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(344, 180);
             this.richTextBox2.TabIndex = 163;
@@ -230,7 +232,7 @@
             this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label11.Location = new System.Drawing.Point(782, 418);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(288, 50);
+            this.label11.Size = new System.Drawing.Size(230, 40);
             this.label11.TabIndex = 162;
             this.label11.Text = "Sensibilidades";
             // 
@@ -238,7 +240,7 @@
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(791, 216);
+            this.listBox2.Location = new System.Drawing.Point(780, 213);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(235, 180);
             this.listBox2.TabIndex = 167;
@@ -257,9 +259,9 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(182)))));
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(792, 144);
+            this.label4.Location = new System.Drawing.Point(781, 141);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 50);
+            this.label4.Size = new System.Drawing.Size(138, 40);
             this.label4.TabIndex = 165;
             this.label4.Text = "Alergias";
             // 

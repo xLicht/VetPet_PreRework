@@ -93,9 +93,9 @@
             "Dueño",
             "Especie",
             "Fecha_Nacimiento"});
-            this.comboBox1.Location = new System.Drawing.Point(1, 145);
+            this.comboBox1.Location = new System.Drawing.Point(30, 145);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(320, 43);
+            this.comboBox1.Size = new System.Drawing.Size(320, 36);
             this.comboBox1.TabIndex = 108;
             this.comboBox1.Text = "Filtrar";
             // 
@@ -145,7 +145,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(221)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.filtrar_ang;
-            this.pictureBox2.Location = new System.Drawing.Point(337, 140);
+            this.pictureBox2.Location = new System.Drawing.Point(366, 140);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(45, 54);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -157,7 +157,7 @@
             this.textBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(671, 145);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(521, 43);
+            this.textBox1.Size = new System.Drawing.Size(521, 36);
             this.textBox1.TabIndex = 104;
             // 
             // panel1
@@ -190,7 +190,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(126, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 47);
+            this.label2.Size = new System.Drawing.Size(115, 38);
             this.label2.TabIndex = 5;
             this.label2.Text = "VetPet";
             // 
@@ -211,7 +211,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(529, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(358, 101);
+            this.label1.Size = new System.Drawing.Size(286, 81);
             this.label1.TabIndex = 0;
             this.label1.Text = "Alergias";
             // 
