@@ -1026,6 +1026,12 @@
     <Compile Include="VeterinariaMenu.Designer.cs">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeterinariaModificarCita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeterinariaModificarCita.Designer.cs">
+      <DependentUpon>VeterinariaModificarCita.cs</DependentUpon>
+    </Compile>
     <Compile Include="VeterinariaModificarConsultaM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1517,6 +1523,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaMenu.resx">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeterinariaModificarCita.resx">
+      <DependentUpon>VeterinariaModificarCita.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaModificarConsultaM.resx">
       <DependentUpon>VeterinariaModificarConsultaM.cs</DependentUpon>
