@@ -40,12 +40,41 @@ namespace VetPet_
 
         private void btnVerConsulta_Click(object sender, EventArgs e)
         {
-            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
-            parentForm.formularioHijo(formularioHijo);
+            try
+            {
+                conexionDB.AbrirConexion();
+                string consultaQuery = "SELECT COUNT(*) FROM Consulta WHERE idCita = @idCita";
+                using (SqlCommand cmdConsulta = new SqlCommand(consultaQuery, conexionDB.GetConexion()))
+                {
+                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
+                    int cantidadConsultas = (int)cmdConsulta.ExecuteScalar();
 
-           // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
+                    if (cantidadConsultas == 0)
+                    {
+                        MessageBox.Show("Debe de consultar primero porque no hay consultas", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //parentForm.formularioHijo(formularioHijo);
+
+            // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -135,31 +164,6 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
-
-        //private void MostrarServicios()
-        //{
-        //    try
-        //    {
-        //        conexionDB.AbrirConexion();
-        //        string query = "SELECT * FROM Servicio_Cita WHERE idCita = @idCita";
-        //        using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-        //        {
-        //            cmd.Parameters.AddWithValue("@idCita", DatoCita);
-        //            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-        //            DataTable dt = new DataTable();
-        //            adapter.Fill(dt);
-        //            dtServicio.DataSource = dt;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al obtener los servicios de la cita: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        conexionDB.CerrarConexion();
-        //    }
-        //}
 
         private void MostrarServicios()
         {
