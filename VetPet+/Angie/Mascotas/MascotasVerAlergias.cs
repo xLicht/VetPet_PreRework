@@ -158,10 +158,27 @@ namespace VetPet_.Angie.Mascotas
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
+            
+           
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
             {
-                dataGridView1.Columns["idMascota"].Visible = false;
+                if (e.RowIndex >= 0)
+                {
+                    // Obtener el idMascota y nombre de la mascota seleccionada
+                    int idMascota = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Nombre"].Value);
+                    string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Descripción de la Alergia"].Value.ToString();
+
+                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
             }
         }
     }
