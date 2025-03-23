@@ -174,6 +174,7 @@
             this.Name = "OlvideConstraseña";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OlvideConstraseña";
+            this.Load += new System.EventHandler(this.OlvideConstraseña_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

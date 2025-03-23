@@ -898,6 +898,12 @@
     <Compile Include="OlvideConstraseña.Designer.cs">
       <DependentUpon>OlvideConstraseña.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpcionesInicioSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpcionesInicioSesion.Designer.cs">
+      <DependentUpon>OpcionesInicioSesion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteAlmacenManager.cs" />
@@ -1470,6 +1476,9 @@
     <EmbeddedResource Include="OlvideConstraseña.resx">
       <DependentUpon>OlvideConstraseña.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OpcionesInicioSesion.resx">
+      <DependentUpon>OpcionesInicioSesion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -1700,6 +1709,7 @@
     <Content Include="icudt.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\view.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
