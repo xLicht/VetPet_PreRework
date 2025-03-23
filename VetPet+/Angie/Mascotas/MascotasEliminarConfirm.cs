@@ -28,9 +28,9 @@ namespace VetPet_
             this.Load += MascotasEliminarConfirm_Load;       // Evento Load
             this.Resize += MascotasEliminarConfirm_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
-            textBox4.Text = nombreMascota;
             this.idMascota = idMascota;
             this.nombreMascota = nombreMascota;
+          
         }
 
         private void MascotasEliminarConfirm_Load(object sender, EventArgs e)
@@ -44,6 +44,7 @@ namespace VetPet_
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+            textBox4.Text = nombreMascota;
         }
 
         private void MascotasEliminarConfirm_Resize(object sender, EventArgs e)

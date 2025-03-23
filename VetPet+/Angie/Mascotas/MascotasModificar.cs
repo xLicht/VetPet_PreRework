@@ -240,7 +240,7 @@ namespace VetPet_
 
         private void button3_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasEliminarConfirm(parentForm,idMascota, nombreMascota)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasEliminarConfirm(parentForm,idMascota, textBox1.Text)); // Pasamos la referencia de Form1 a 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -284,8 +284,12 @@ namespace VetPet_
                             deleteCommand.Parameters.AddWithValue("@idMascota", idMascota);
                             deleteCommand.ExecuteNonQuery();
                         }
-
-                        // Insertar las nuevas sensibilidades
+                        string deleteAQuery = "DELETE FROM Mascota_Alergia WHERE idMascota = @idMascota;";
+                        using (SqlCommand deleteCommand = new SqlCommand(deleteAQuery, mismetodos.GetConexion()))
+                        {
+                            deleteCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                            deleteCommand.ExecuteNonQuery();
+                        }
                         string[] sensibilidades = richTextBox1.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                         foreach (string sensibilidad in sensibilidades)
                         {
@@ -325,11 +329,47 @@ namespace VetPet_
 
                         MessageBox.Show("Datos de la mascota y sensibilidades actualizados correctamente.", "Éxito");
                         parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota));
+
+                        string[] alergias = richTextBox2.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (string alergia in alergias)
+                        {
+                            string alergiastrim = alergia.Trim();
+
+                            string getIdQuery = "SELECT idAlergia FROM Alergia WHERE nombre = @alergia;";
+                            int idAlergia;
+
+                            using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, mismetodos.GetConexion()))
+                            {
+                                getIdCommand.Parameters.AddWithValue("@alergia", alergiastrim);
+                                var result = getIdCommand.ExecuteScalar();
+                                idAlergia = result != null ? Convert.ToInt32(result) : -1;
+                            }
+
+                            // Si la sensibilidad no existe, insertarla y obtener su nuevo id
+                            if (idAlergia == -1)
+                            {
+                                string insertSensQuery = "INSERT INTO Alergia (nombre) OUTPUT INSERTED.idAlergia VALUES (@alergia);";
+                                using (SqlCommand insertSensCommand = new SqlCommand(insertSensQuery, mismetodos.GetConexion()))
+                                {
+                                    insertSensCommand.Parameters.AddWithValue("@alergia", alergiastrim);
+                                    idAlergia = (int)insertSensCommand.ExecuteScalar();
+                                }
+                            }
+
+                            // Insertar en Mascota_Sensibilidad
+                            string insertMascotaSensQuery = "INSERT INTO Mascota_Alergia (idMascota, idAlergia) VALUES (@idMascota, @idAlergia);";
+                            using (SqlCommand insertMascotaSensCommand = new SqlCommand(insertMascotaSensQuery, mismetodos.GetConexion()))
+                            {
+                                insertMascotaSensCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                                insertMascotaSensCommand.Parameters.AddWithValue("@idAlergia", idAlergia);
+                                insertMascotaSensCommand.ExecuteNonQuery();
+                            }
+                        }
                     }
                     else
                     {
                         MessageBox.Show("No se encontró la mascota para actualizar.", "Información");
-                    }
+                    }                         
 
                 }
             }
