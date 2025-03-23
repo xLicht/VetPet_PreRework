@@ -205,7 +205,7 @@
             this.dtServicio.Name = "dtServicio";
             this.dtServicio.RowHeadersVisible = false;
             this.dtServicio.RowHeadersWidth = 49;
-            this.dtServicio.Size = new System.Drawing.Size(574, 111);
+            this.dtServicio.Size = new System.Drawing.Size(574, 137);
             this.dtServicio.TabIndex = 62;
             // 
             // label5

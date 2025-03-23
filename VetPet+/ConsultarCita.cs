@@ -206,7 +206,10 @@ namespace VetPet_
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
+            int idCita = Convert.ToInt32(DatoCita);
+            VeterinariaModificarCita formularioHijo = new VeterinariaModificarCita(parentForm);
+            formularioHijo.DatoCita = idCita;
+            parentForm.formularioHijo(formularioHijo);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

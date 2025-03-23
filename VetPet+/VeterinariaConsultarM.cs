@@ -450,49 +450,7 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
-        //private void InsertarServiciosEnCita()
-        //{
-        //    try
-        //    {
-        //        conexionDB.AbrirConexion();
-        //        string query = @"INSERT INTO Servicio_Cita (idCita, hora, idServicioSencilloHijo, idServicioEspecificoNieto, idEmpleado, observaciones)
-        //                 VALUES (@idCita, @hora, @idServicioSencilloHijo, @idServicioEspecificoNieto, @idEmpleado, @observaciones)";
-
-        //        using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-        //        {
-        //            foreach (var servicio in listaServicios)
-        //            {
-        //                cmd.Parameters.Clear();
-        //                cmd.Parameters.AddWithValue("@idCita", DatoCita);
-        //                cmd.Parameters.AddWithValue("@hora", DateTime.Now.ToString("HH:mm:ss")); 
-        //                cmd.Parameters.AddWithValue("@idEmpleado", 1); 
-        //                cmd.Parameters.AddWithValue("@observaciones", string.IsNullOrEmpty(servicio.Observacion) ? DBNull.Value : (object)servicio.Observacion);
-
-        //                if (servicio.IdServicioHijo == 4) 
-        //                {
-        //                    cmd.Parameters.AddWithValue("@idServicioSencilloHijo", 4);
-        //                    cmd.Parameters.AddWithValue("@idServicioEspecificoNieto", DBNull.Value);
-        //                }
-        //                else
-        //                {
-        //                    cmd.Parameters.AddWithValue("@idServicioSencilloHijo", DBNull.Value);
-        //                    cmd.Parameters.AddWithValue("@idServicioEspecificoNieto", servicio.IdServicioNieto);
-        //                }
-
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //        MessageBox.Show("Servicios agregados correctamente.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al insertar los servicios en la cita: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        conexionDB.CerrarConexion();
-        //    }
-        //}
+       
         private void LimpiarCampos()
         {
             txtPeso.Text = "";

@@ -430,6 +430,7 @@ namespace VetPet_
             dtServicio.DataSource = listaServicios;
             dtServicio.Refresh();
         }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AgregarServicioSeleccionado();
