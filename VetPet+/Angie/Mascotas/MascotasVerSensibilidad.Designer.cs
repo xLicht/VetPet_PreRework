@@ -122,6 +122,7 @@
             this.button2.Text = "Regresar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -136,6 +137,7 @@
             this.button1.Text = "Agregar";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -202,9 +204,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(321, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(926, 101);
+            this.label1.Size = new System.Drawing.Size(906, 101);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Consultar Sensibilidad ";
+            this.label1.Text = "Consultar Sensibilidad";
             // 
             // button3
             // 
@@ -219,6 +221,7 @@
             this.button3.Text = "Modificar";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox3
             // 
@@ -281,6 +284,7 @@
             this.button4.Text = "Eliminar";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MascotasVerSensibilidad
             // 
@@ -305,6 +309,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "MascotasVerSensibilidad";
             this.Text = "MascotasVerSensibilidad";
+            this.Load += new System.EventHandler(this.MascotasVerSensibilidad_Load);
+            this.Resize += new System.EventHandler(this.MascotasVerSensibilidad_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

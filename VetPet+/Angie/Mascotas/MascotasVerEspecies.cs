@@ -50,10 +50,11 @@ namespace VetPet_.Angie.Mascotas
 
                 // Consulta SQL con nombres personalizados
                 string query = @"
-        SELECT 
-            nombre AS [Nombre], 
-            descripcion AS [Descripción de la Especie] 
-        FROM Especie";
+                SELECT 
+                    idEspecie, 
+                    nombre AS [Nombre], 
+                    descripcion AS [Descripción de la Especie] 
+                FROM Especie";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -62,7 +63,6 @@ namespace VetPet_.Angie.Mascotas
                     // Crear un DataTable y llenar los datos
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
-
                     // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
                 }
@@ -76,6 +76,7 @@ namespace VetPet_.Angie.Mascotas
             {
                 // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
+                dataGridView1.Columns["idEspecie"].Visible = false; // Oculta la columna
             }
         }
         private void MascotasVerEspecies_Resize(object sender, EventArgs e)
@@ -142,10 +143,17 @@ namespace VetPet_.Angie.Mascotas
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
             {
-                dataGridView1.Columns["idMascota"].Visible = false;
+                // Obtener el idAlergia de la fila seleccionada
+                int idEspecie = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idEspecie"].Value);
+
+                // Pasar el idAlergia al nuevo formulario
+                parentForm.formularioHijo(new MascotasVerEspecie(parentForm, idEspecie));
             }
         }
     }

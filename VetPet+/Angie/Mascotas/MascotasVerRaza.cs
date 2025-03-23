@@ -20,12 +20,14 @@ namespace VetPet_.Angie.Mascotas
         private Mismetodos mismetodos;
         string tipo = "";
         private Form1 parentForm;
-        public MascotasVerRaza(Form1 parent)
+        int idRaza;
+        public MascotasVerRaza(Form1 parent, int idRaza)
         {
             InitializeComponent();
             this.Load += MascotasVerRaza_Load;       // Evento Load
             this.Resize += MascotasVerRaza_Resize;
             parentForm = parent;  // Guardamos la referencia de Form
+            this.idRaza = idRaza;
         }
         private void MascotasVerRaza_Load(object sender, EventArgs e)
         {

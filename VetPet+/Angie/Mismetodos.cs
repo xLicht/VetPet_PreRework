@@ -23,8 +23,42 @@ namespace VetPet_.Angie.Mascotas
                 // Inicializar la conexión con la primera cadena de conexión
                 conexion = new SqlConnection(cadenaConexion1);
             }
+        public void EliminarRegistro(string nombreTabla, string nombreColumna, string nombreRegistro)
+        {
+            try
+            {
+                AbrirConexion();
+                string query = $@"
+                DELETE FROM {nombreTabla}
+                WHERE id{nombreColumna} = (SELECT id{nombreColumna} FROM {nombreColumna} WHERE nombre = @Nombre)";
 
-        public void CargarDatosGenerico(string nombreTabla, int id, Dictionary<string, Control> mapeoColumnasControles)
+                using (SqlCommand cmd = new SqlCommand(query, GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Nombre", nombreRegistro);
+
+                    // Ejecutar la consulta
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show($"{nombreColumna} eliminado correctamente de la base de datos.");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No se encontró el {nombreColumna} en la base de datos.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar el {nombreColumna}: {ex.Message}");
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+        }
+        public void CargarDatosGenerico(string nombreTabla, int id, Dictionary<string, Control> mapeoColumnasControles, ListBox listBoxSensibilidades = null, ListBox listBoxAlergias = null)
         {
             try
             {
@@ -58,13 +92,9 @@ namespace VetPet_.Angie.Mascotas
                                     {
                                         txt.Text = reader[ordinal].ToString();
                                     }
-                                    else if (control is System.Windows.Forms.ComboBox cmb)
+                                    else if (control is System.Windows.Forms.RichTextBox rtb)
                                     {
-                                        cmb.Text = reader[ordinal].ToString();
-                                    }
-                                    else if (control is System.Windows.Forms.RichTextBox rch)
-                                    {
-                                        rch.Text = reader[ordinal].ToString();
+                                        rtb.Text = reader[ordinal].ToString();
                                     }
                                     // Agrega más controles aquí según sea necesario
                                 }
@@ -73,6 +103,103 @@ namespace VetPet_.Angie.Mascotas
                         else
                         {
                             MessageBox.Show($"No se encontró un registro con el ID {id} en la tabla {nombreTabla}.");
+                        }
+                    }
+                }
+
+                // Cargar las sensibilidades asociadas a la especie
+                if (listBoxSensibilidades != null && nombreTabla == "Especie")
+                {
+                    string querySensibilidades = @"
+                SELECT s.nombre 
+                FROM Sensibilidad s
+                INNER JOIN Especie_Sensibilidad es ON s.idSensibilidad = es.idSensibilidad
+                WHERE es.idEspecie = @ID";
+
+                    using (SqlCommand cmdSensibilidades = new SqlCommand(querySensibilidades, conexion))
+                    {
+                        cmdSensibilidades.Parameters.AddWithValue("@ID", id);
+
+                        using (SqlDataReader readerSensibilidades = cmdSensibilidades.ExecuteReader())
+                        {
+                            listBoxSensibilidades.Items.Clear(); // Limpiar el ListBox antes de agregar nuevos elementos
+
+                            while (readerSensibilidades.Read())
+                            {
+                                listBoxSensibilidades.Items.Add(readerSensibilidades["nombre"].ToString());
+                            }
+                        }
+                    }
+                }
+
+                if (listBoxSensibilidades != null && nombreTabla == "Raza")
+                {
+                    string querySensibilidades = @"
+                SELECT s.nombre 
+                FROM Sensibilidad s
+                INNER JOIN Raza_Sensibilidad es ON s.idSensibilidad = es.idSensibilidad
+                WHERE es.idRaza = @ID";
+
+                    using (SqlCommand cmdSensibilidades = new SqlCommand(querySensibilidades, conexion))
+                    {
+                        cmdSensibilidades.Parameters.AddWithValue("@ID", id);
+
+                        using (SqlDataReader readerSensibilidades = cmdSensibilidades.ExecuteReader())
+                        {
+                            listBoxSensibilidades.Items.Clear(); // Limpiar el ListBox antes de agregar nuevos elementos
+
+                            while (readerSensibilidades.Read())
+                            {
+                                listBoxSensibilidades.Items.Add(readerSensibilidades["nombre"].ToString());
+                            }
+                        }
+                    }
+                }
+
+                if (listBoxAlergias != null && nombreTabla == "Especie")
+                {
+                    string queryAlergias = @"
+                SELECT s.nombre 
+                FROM Alergia s
+                INNER JOIN Especie_Alergia es ON s.idAlergia = es.idAlergia
+                WHERE es.idEspecie = @ID";
+
+                    using (SqlCommand cmdSensibilidades = new SqlCommand(queryAlergias, conexion))
+                    {
+                        cmdSensibilidades.Parameters.AddWithValue("@ID", id);
+
+                        using (SqlDataReader readerSensibilidades = cmdSensibilidades.ExecuteReader())
+                        {
+                            listBoxAlergias.Items.Clear(); // Limpiar el ListBox antes de agregar nuevos elementos
+
+                            while (readerSensibilidades.Read())
+                            {
+                                listBoxAlergias.Items.Add(readerSensibilidades["nombre"].ToString());
+                            }
+                        }
+                    }
+                }
+
+                if (listBoxAlergias != null && nombreTabla == "Raza")
+                {
+                    string queryAlergias = @"
+                SELECT s.nombre 
+                FROM Alergia s
+                INNER JOIN Raza_Alergia es ON s.idAlergia = es.idAlergia
+                WHERE es.idRaza = @ID";
+
+                    using (SqlCommand cmdSensibilidades = new SqlCommand(queryAlergias, conexion))
+                    {
+                        cmdSensibilidades.Parameters.AddWithValue("@ID", id);
+
+                        using (SqlDataReader readerSensibilidades = cmdSensibilidades.ExecuteReader())
+                        {
+                            listBoxAlergias.Items.Clear(); // Limpiar el ListBox antes de agregar nuevos elementos
+
+                            while (readerSensibilidades.Read())
+                            {
+                                listBoxAlergias.Items.Add(readerSensibilidades["nombre"].ToString());
+                            }
                         }
                     }
                 }
@@ -86,6 +213,7 @@ namespace VetPet_.Angie.Mascotas
                 CerrarConexion();
             }
         }
+        
         public void ModificarDatosGenerico(string nombreTabla, int id, Dictionary<string, object> parametrosValores)
         {
             try

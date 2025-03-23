@@ -164,7 +164,7 @@ namespace VetPet_.Angie.Mascotas
                 int idSensibilidad = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idSensibilidad"].Value);
 
                 // Pasar el idAlergia al nuevo formulario
-                parentForm.formularioHijo(new MascotasVerAlergia(parentForm, idSensibilidad));
+                parentForm.formularioHijo(new MascotasVerSensibilidad(parentForm, idSensibilidad));
             }
         }
     }
