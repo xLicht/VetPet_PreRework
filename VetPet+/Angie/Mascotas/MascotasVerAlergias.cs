@@ -163,13 +163,20 @@ namespace VetPet_.Angie.Mascotas
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            try
             {
-                // Obtener el idAlergia de la fila seleccionada
-                int idAlergia = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idAlergia"].Value);
+                    if (e.RowIndex >= 0)
+                {
+                    // Obtener el idAlergia de la fila seleccionada
+                    int idAlergia = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idAlergia"].Value);
 
-                // Pasar el idAlergia al nuevo formulario
-                parentForm.formularioHijo(new MascotasVerAlergia(parentForm, idAlergia));
+                    // Pasar el idAlergia al nuevo formulario
+                    parentForm.formularioHijo(new MascotasVerAlergia(parentForm, idAlergia));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
             }
         }
     }

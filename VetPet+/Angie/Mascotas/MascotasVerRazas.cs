@@ -34,20 +34,16 @@ namespace VetPet_.Angie.Ventas
             originalWidth = this.ClientSize.Width;
             originalHeight = this.ClientSize.Height;
 
-            // Guardar información original de cada control
             foreach (Control control in this.Controls)
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
             try
             {
-                // Crear instancia de Mismetodos
                 mismetodos = new Mismetodos();
 
-                // Abrir conexión
                 mismetodos.AbrirConexion();
 
-                // Consulta SQL con nombres personalizados
                 string query = @"
                 SELECT 
                     idRaza, 
@@ -148,14 +144,21 @@ namespace VetPet_.Angie.Ventas
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            try
             {
-                // Obtener el idAlergia de la fila seleccionada
-                int idRaza = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idRaza"].Value);
+                if (e.RowIndex >= 0)
+                {
+                    // Obtener el idAlergia de la fila seleccionada
+                    int idRaza = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idRaza"].Value);
 
-                // Pasar el idAlergia al nuevo formulario
-                parentForm.formularioHijo(new MascotasVerEspecie(parentForm, idRaza));
+                    // Pasar el idAlergia al nuevo formulario
+                    parentForm.formularioHijo(new MascotasVerRaza(parentForm, idRaza));
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }           
         }
     }
 }

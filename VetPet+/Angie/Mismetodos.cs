@@ -23,6 +23,41 @@ namespace VetPet_.Angie.Mascotas
                 // Inicializar la conexión con la primera cadena de conexión
                 conexion = new SqlConnection(cadenaConexion1);
             }
+
+        public void EliminarRazaEnCascada(int idRaza)
+        {
+            try
+            {
+                AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand("EliminarRazaEnCascada", GetConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Parámetro de entrada
+                    cmd.Parameters.AddWithValue("@idRaza", idRaza);
+
+                    // Parámetro de salida
+                    SqlParameter resultadoParam = new SqlParameter("@Resultado", SqlDbType.NVarChar, -1);
+                    resultadoParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(resultadoParam);
+
+
+                    cmd.ExecuteNonQuery();
+
+                    // Obtener el resultado
+                    string resultado = resultadoParam.Value.ToString();
+                    MessageBox.Show(resultado);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al ejecutar el procedimiento almacenado: {ex.Message}");
+            }
+            finally 
+            {
+                CerrarConexion();   
+            }
+        }
         public void EliminarRegistro(string nombreTabla, string nombreColumna, string nombreRegistro)
         {
             try
@@ -95,6 +130,10 @@ namespace VetPet_.Angie.Mascotas
                                     else if (control is System.Windows.Forms.RichTextBox rtb)
                                     {
                                         rtb.Text = reader[ordinal].ToString();
+                                    }
+                                    else if (control is System.Windows.Forms.ComboBox cmb)
+                                    {
+                                        cmb.Text = reader[ordinal].ToString();
                                     }
                                     // Agrega más controles aquí según sea necesario
                                 }
@@ -271,6 +310,53 @@ namespace VetPet_.Angie.Mascotas
                 CerrarConexion();
             }
         }
+
+        public List<string> ObtenerTablasRelacionadas(string nombreTablaPrincipal)
+        {
+            List<string> tablasRelacionadas = new List<string>();
+
+            try
+            {
+                AbrirConexion();
+                // Consulta SQL para obtener las tablas relacionadas con la tabla principal
+                string query = @"
+SELECT 
+    OBJECT_NAME(fk.parent_object_id) AS TablaRelacionada
+FROM 
+    sys.foreign_keys fk
+INNER JOIN 
+    sys.tables t ON fk.referenced_object_id = t.object_id
+WHERE 
+    t.name = @NombreTablaPrincipal";
+
+                using (SqlCommand cmd = new SqlCommand(query, GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@NombreTablaPrincipal", nombreTablaPrincipal);
+
+                    // Ejecutar la consulta y leer los resultados
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string tablaRelacionada = reader["TablaRelacionada"].ToString();
+                            tablasRelacionadas.Add(tablaRelacionada);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener las tablas relacionadas: {ex.Message}");
+            }
+            finally 
+            {   
+                CerrarConexion();
+            }
+
+            return tablasRelacionadas;
+        }
+
+      
         public void EliminarEnCascada(string nombreTablaPrincipal, int id, List<string> tablasRelacionadas)
         {
             // Preguntar al usuario si está seguro de eliminar

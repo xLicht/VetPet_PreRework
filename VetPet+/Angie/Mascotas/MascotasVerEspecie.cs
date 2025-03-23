@@ -75,6 +75,11 @@ namespace VetPet_.Angie.Mascotas
         {
             label1.Text = "Modificar Especie";
             button4.Visible = true;
+            textBox1.Enabled = true;
+            listBox1.Enabled = true;
+            listBox2.Enabled = true;
+            richTextBox1.Enabled = true;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
