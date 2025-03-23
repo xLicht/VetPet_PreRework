@@ -107,7 +107,7 @@ namespace VetPet_.Angie.Ventas
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //parentForm.formularioHijo(new MascotasAgregarRaza(parentForm)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new MascotasAgregarRaza(parentForm)); // Pasamos la referencia de Form1 a
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -25,7 +25,7 @@ namespace VetPet_.Angie.Mascotas
             InitializeComponent();
             this.Load += MascotasVerSensibilidades_Load;       // Evento Load
             this.Resize += MascotasVerSensibilidades_Resize;   // Evento Resize
-
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form
         }
         private void MascotasVerSensibilidades_Load(object sender, EventArgs e)

@@ -27,21 +27,34 @@ namespace VetPet_.Angie.Mascotas
         {
             InitializeComponent();
             this.Load += MascotasAgregarRaza_Load;       // Evento Load
-            this.Resize += MascotasAgregarRaza_Resize; 
-            parentForm = parent;  // Guardamos la referencia de Form1
+            this.Resize += MascotasAgregarRaza_Resize;
+            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
+            listBox2.SelectedIndexChanged += new EventHandler(listBox2_SelectedIndexChanged);
+            parentForm = parent; 
             this.raza = raza;
             this.idMascota = idMascota;
             this.nombreMascota = nombreMascota;
-            CargarMascota();
+            Cargar();
         }
-        private void CargarMascota()
+        public MascotasAgregarRaza(Form1 parent)
+        {
+            InitializeComponent();
+            this.Load += MascotasAgregarRaza_Load;
+            this.Resize += MascotasAgregarRaza_Resize;
+            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
+            listBox2.SelectedIndexChanged += new EventHandler(listBox2_SelectedIndexChanged);
+            parentForm = parent;
+            parentForm = parent;  
+            Cargar();
+        }
+        private void Cargar()
         {
             try
             {
                 mismetodos.AbrirConexion();
 
                 // Cargar las especies
-                string queryEsp = "SELECT nombre,idEspecie FROM Especie ORDER BY nombre";
+                string queryEsp = "SELECT nombre FROM Especie ORDER BY nombre";
                 using (SqlCommand comandoEsp = new SqlCommand(queryEsp, mismetodos.GetConexion()))
                 {
                     using (SqlDataReader readerEsp = comandoEsp.ExecuteReader())
@@ -55,7 +68,38 @@ namespace VetPet_.Angie.Mascotas
                         }
                     }
                 }
-                textBox1.Text = raza;
+
+                string query1 = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        // Limpiar el ListBox antes de agregar nuevos elementos
+                        listBox1.Items.Clear();
+
+                        // Agregar elementos al ListBox
+                        while (reader.Read())
+                        {
+                            listBox1.Items.Add(reader["nombre"].ToString());
+                        }
+                    }
+                }
+
+                string query2 = "SELECT nombre FROM Alergia ORDER BY nombre";
+                using (SqlCommand comando = new SqlCommand(query2, mismetodos.GetConexion()))
+                {
+                    using (SqlDataReader reader = comando.ExecuteReader())
+                    {
+                        // Limpiar el ListBox antes de agregar nuevos elementos
+                        listBox2.Items.Clear();
+
+                        // Agregar elementos al ListBox
+                        while (reader.Read())
+                        {
+                            listBox2.Items.Add(reader["nombre"].ToString());
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -66,7 +110,47 @@ namespace VetPet_.Angie.Mascotas
                 mismetodos.CerrarConexion();
             }
         }
-        
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                // Obtener el ítem seleccionado
+                string selectedItem = listBox1.SelectedItem.ToString();
+
+                // Agregar el ítem al RichTextBox
+                if (!richTextBox3.Text.Contains(selectedItem))
+                {
+                    if (richTextBox3.Text.Length > 0)
+                    {
+                        richTextBox3.AppendText(", " + selectedItem);
+                    }
+                    else
+                    {
+                        richTextBox3.AppendText(selectedItem);
+                    }
+                }
+            }
+        }
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem != null)
+            {
+                string selectedItem = listBox2.SelectedItem.ToString();
+
+                if (!richTextBox2.Text.Contains(selectedItem))
+                {
+                    if (richTextBox2.Text.Length > 0)
+                    {
+                        richTextBox2.AppendText(", " + selectedItem);
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText(selectedItem);
+                    }
+                }
+            }
+        }
         private void MascotasAgregarRaza_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -119,105 +203,144 @@ namespace VetPet_.Angie.Mascotas
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void InsertarSensibilidades(int idMascota, string sensibilidadesStr)
         {
             try
             {
-                // Validar que el ComboBox tenga un elemento seleccionado
-                if (comboBox1.SelectedItem == null)
-                {
-                    MessageBox.Show("Por favor, selecciona una especie.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Obtener el nombre de la especie seleccionada en el ComboBox
-                string nombreEspecie = comboBox1.SelectedItem.ToString();
-
-                // Validar que el nombre de la raza no esté vacío
-                string nombreRaza = textBox1.Text.Trim();
-                if (string.IsNullOrEmpty(nombreRaza))
-                {
-                    MessageBox.Show("Por favor, ingresa un nombre para la raza.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Abrir la conexión a la base de datos
                 mismetodos.AbrirConexion();
+                // Dividir el texto del RichTextBox por comas y saltos de línea
+                string[] sensibilidades = sensibilidadesStr.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-                // Obtener el idEspecie basado en el nombre de la especie
-                int idEspecie = 0;
-                string queryIdEsp = "SELECT idEspecie FROM Especie WHERE nombre = @nombre";
-                using (SqlCommand comandoIdEsp = new SqlCommand(queryIdEsp, mismetodos.GetConexion()))
+                foreach (string sensibilidad in sensibilidades)
                 {
-                    comandoIdEsp.Parameters.AddWithValue("@nombre", nombreEspecie);
-                    var result = comandoIdEsp.ExecuteScalar();
-                    if (result != null)
+                    string sensibilidadTrim = sensibilidad.Trim();
+
+                    string getIdQuery = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @sensibilidad;";
+                    int idSensibilidad;
+
+                    using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, mismetodos.GetConexion()))
                     {
-                        idEspecie = Convert.ToInt32(result);
+                        getIdCommand.Parameters.AddWithValue("@sensibilidad", sensibilidadTrim);
+                        var result = getIdCommand.ExecuteScalar();
+                        idSensibilidad = result != null ? Convert.ToInt32(result) : -1;
                     }
-                    else
+                    string insertMascotaSensQuery = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad);";
+                    using (SqlCommand insertMascotaSensCommand = new SqlCommand(insertMascotaSensQuery, mismetodos.GetConexion()))
                     {
-                        MessageBox.Show("La especie seleccionada no existe en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-
-                // Verificar si la raza ya existe
-                string queryExiste = "SELECT COUNT(*) FROM raza WHERE nombre = @nombre AND idEspecie = @idEspecie";
-                using (SqlCommand comandoExiste = new SqlCommand(queryExiste, mismetodos.GetConexion()))
-                {
-                    comandoExiste.Parameters.AddWithValue("@nombre", nombreRaza);
-                    comandoExiste.Parameters.AddWithValue("@idEspecie", idEspecie);
-                    int existe = Convert.ToInt32(comandoExiste.ExecuteScalar());
-
-                    if (existe == 0)
-                    {
-                        // Insertar la nueva raza
-                        string queryInsertar = "INSERT INTO raza (nombre, idEspecie) VALUES (@nombre, @idEspecie); SELECT SCOPE_IDENTITY();";
-                        using (SqlCommand comandoInsertar = new SqlCommand(queryInsertar, mismetodos.GetConexion()))
-                        {
-                            comandoInsertar.Parameters.AddWithValue("@nombre", nombreRaza);
-                            comandoInsertar.Parameters.AddWithValue("@idEspecie", idEspecie);
-
-                            // Ejecutar la inserción y obtener el ID de la raza insertada
-                            int idRazaInsertada = Convert.ToInt32(comandoInsertar.ExecuteScalar());
-
-                            if (idRazaInsertada > 0)
-                            {
-                                MessageBox.Show("Raza creada ", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                // Redirigir al formulario correspondiente
-                                if (nombreMascota != null)
-                                {
-                                    parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota));
-                                }
-                                else
-                                {
-                                    parentForm.formularioHijo(new MascotasAgregarMascota(parentForm));
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se pudo crear la raza.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("La raza ya existe.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        insertMascotaSensCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                        insertMascotaSensCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
+                        insertMascotaSensCommand.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al insertar sensibilidades: {ex.Message}");
             }
             finally
             {
-                // Cerrar la conexión a la base de datos
                 mismetodos.CerrarConexion();
             }
+        }
 
+        public void InsertarAlergias(int idMascota, string alergiasStr)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+                // Dividir el texto del RichTextBox por comas y saltos de línea
+                string[] alergias = alergiasStr.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string alergia in alergias)
+                {
+                    string alergiaTrim = alergia.Trim();
+
+                    // Verificar si la alergia existe y obtener su id
+                    string getIdQuery = "SELECT idAlergia FROM Alergia WHERE nombre = @alergia;";
+                    int idAlergia;
+
+                    using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, mismetodos.GetConexion()))
+                    {
+                        getIdCommand.Parameters.AddWithValue("@alergia", alergiaTrim);
+                        var result = getIdCommand.ExecuteScalar();
+                        idAlergia = result != null ? Convert.ToInt32(result) : -1;
+                    }
+
+                    string insertMascotaAlergQuery = "INSERT INTO Mascota_Alergia (idMascota, idAlergia) VALUES (@idMascota, @idAlergia);";
+                    using (SqlCommand insertMascotaAlergCommand = new SqlCommand(insertMascotaAlergQuery, mismetodos.GetConexion()))
+                    {
+                        insertMascotaAlergCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                        insertMascotaAlergCommand.Parameters.AddWithValue("@idAlergia", idAlergia);
+                        insertMascotaAlergCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al insertar alergias: {ex.Message}");
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
+        }
+
+        public void AgregarRaza(string nombre, string descripcion, string especie, string sensibilidadesStr, string alergiasStr)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                // Paso 1: Obtener el idEspecie basado en el nombre de la especie seleccionada en el ComboBox
+                string obtenerIdEspecieQuery = "SELECT idEspecie FROM Especie WHERE nombre = @nombreEspecie;";
+                int idEspecie;
+
+                using (SqlCommand obtenerIdEspecieCommand = new SqlCommand(obtenerIdEspecieQuery, mismetodos.GetConexion()))
+                {
+                    obtenerIdEspecieCommand.Parameters.AddWithValue("@nombreEspecie", especie);
+                    idEspecie = (int)obtenerIdEspecieCommand.ExecuteScalar();
+                }
+
+                // Paso 2: Insertar la nueva raza usando el idEspecie obtenido
+                string insertRazaQuery = "INSERT INTO Raza (nombre, idEspecie, descripcion) OUTPUT INSERTED.idRaza VALUES (@nombre, @idEspecie, @descripcion);";
+                int idRaza;
+
+                using (SqlCommand insertRazaCommand = new SqlCommand(insertRazaQuery, mismetodos.GetConexion()))
+                {
+                    insertRazaCommand.Parameters.AddWithValue("@nombre", nombre);
+                    insertRazaCommand.Parameters.AddWithValue("@idEspecie", idEspecie);
+                    insertRazaCommand.Parameters.AddWithValue("@descripcion", descripcion);
+                    idRaza = (int)insertRazaCommand.ExecuteScalar();
+                }
+
+                // Paso 3: Insertar sensibilidades y alergias
+                InsertarSensibilidades(idRaza, sensibilidadesStr);
+                InsertarAlergias(idRaza, alergiasStr);
+
+                MessageBox.Show("Raza, sensibilidades y alergias agregadas correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al agregar la raza: {ex.Message}");
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string nombre = textBox1.Text;
+            string descripcion = richTextBox1.Text;
+            string especie = comboBox1.SelectedItem.ToString();
+
+            // Obtener las sensibilidades y alergias desde los RichTextBox
+            string sensibilidadesStr = richTextBox3.Text;
+            string alergiasStr = richTextBox2.Text;
+
+            // Llamar al método para agregar la especie con sensibilidades y alergias
+            AgregarRaza(nombre, descripcion,especie, sensibilidadesStr, alergiasStr);
+            parentForm.formularioHijo(new MascotasVerEspecies(parentForm)); // Pasamos la referencia de Form1 a 
 
         }
 
