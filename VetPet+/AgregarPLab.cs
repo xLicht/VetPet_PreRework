@@ -16,19 +16,24 @@ namespace VetPet_
 {
     public partial class AgregarPLab : FormPadre
     {
+        string idSer;
         public AgregarPLab()
         {
             InitializeComponent();
         }
-        public AgregarPLab(Form1 parent)
+        public AgregarPLab(Form1 parent, string id)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            idSer = id;
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaPLab(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId("Estudios de Laboratorio", "ServicioPadre");
+            parentForm.formularioHijo(new ListaPLab(parentForm, idServicio));
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -128,7 +133,7 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.cargarCombobox(comboBox1,"8");
+            conexion.cargarCombobox(comboBox1, idSer);
         }
               
     }

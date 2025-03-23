@@ -15,21 +15,25 @@ namespace VetPet_
     public partial class ModificarPLab : FormPadre
     {
         int identificador;
+        string cirugia;
         public ModificarPLab()
         {
             InitializeComponent();
         }
-        public ModificarPLab(Form1 parent,int Id)
+        public ModificarPLab(Form1 parent, int Id, string idcirugia)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
             identificador = Id;
+            cirugia = idcirugia;
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            
-            parentForm.formularioHijo(new ListaPLab(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId("Estudios de Laboratorio", "ServicioPadre");
+            parentForm.formularioHijo(new ListaPLab(parentForm, idServicio));
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -138,10 +142,10 @@ namespace VetPet_
         }
         private void ModificarPLab_Load(object sender, EventArgs e)
         {
-            
+
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.cargarCombobox(comboBox1, "8");
+            conexion.cargarCombobox(comboBox1, cirugia);
             string query = "SELECT nombre, descripcion, precio, duracion FROM ServicioEspecificoNieto WHERE idServicioEspecificoNieto = @ID";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))

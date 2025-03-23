@@ -71,5 +71,25 @@ namespace VetPet_.Angie.Ventas
         {
             parentForm.formularioHijo(new MascotasListado (parentForm)); // Pasamos la referencia de Form1 a 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerEspecies(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerRazas(parentForm)); // Pasamos la referencia de Form1 a 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasVerAlergias(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }

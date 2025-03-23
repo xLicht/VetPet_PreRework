@@ -258,6 +258,18 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarAlergia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarAlergia.Designer.cs">
+      <DependentUpon>MascotasAgregarAlergia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarEspecie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarEspecie.Designer.cs">
+      <DependentUpon>MascotasAgregarEspecie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Mascotas\MascotasAgregarMascota.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,11 +294,35 @@
     <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Angie\Mismetodos.cs" />
-    <Compile Include="Angie\Ventas\MenuMascotas.cs">
+    <Compile Include="Angie\Mascotas\MascotasVerAlergias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Angie\Ventas\MenuMascotas.Designer.cs">
+    <Compile Include="Angie\Mascotas\MascotasVerAlergias.Designer.cs">
+      <DependentUpon>MascotasVerAlergias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEspecies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEspecies.Designer.cs">
+      <DependentUpon>MascotasVerEspecies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerSensibilidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerSensibilidades.Designer.cs">
+      <DependentUpon>MascotasVerSensibilidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mismetodos.cs" />
+    <Compile Include="Angie\Mascotas\MascotasVerRazas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerRazas.Designer.cs">
+      <DependentUpon>MascotasVerRazas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MenuMascotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MenuMascotas.Designer.cs">
       <DependentUpon>MenuMascotas.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\Ventas\VentasAgregarMedicamento.cs">
@@ -1119,11 +1155,20 @@
     <EmbeddedResource Include="AlmacenVerProveedor.resx">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarAlergia.resx">
+      <DependentUpon>MascotasAgregarAlergia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarEspecie.resx">
+      <DependentUpon>MascotasAgregarEspecie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarMascota.resx">
       <DependentUpon>MascotasAgregarMascota.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarRaza.resx">
       <DependentUpon>MascotasAgregarRaza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarSensibilidad.resx">
+      <DependentUpon>MascotasAgregarSensibilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasConsultar.resx">
       <DependentUpon>MascotasConsultar.cs</DependentUpon>
@@ -1137,7 +1182,19 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasModificar.resx">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Angie\Ventas\MenuMascotas.resx">
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerAlergias.resx">
+      <DependentUpon>MascotasVerAlergias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerEspecies.resx">
+      <DependentUpon>MascotasVerEspecies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerRazas.resx">
+      <DependentUpon>MascotasVerRazas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerSensibilidades.resx">
+      <DependentUpon>MascotasVerSensibilidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MenuMascotas.resx">
       <DependentUpon>MenuMascotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasAgregarMedicamento.resx">
@@ -1476,6 +1533,9 @@
     <EmbeddedResource Include="VeterinariaVentaMedicamentos.resx">
       <DependentUpon>VeterinariaVentaMedicamentos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="xd.resx">
+      <DependentUpon>xd.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="libpdfium.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1616,15 +1676,21 @@
     <None Include="Resources\icons8-medical-file-48.png" />
     <None Include="Resources\icons8-fursona-64.png" />
     <None Include="Resources\icons8-dinero-64.png" />
-    <Content Include="icudt.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\icons8-add-button-251.png" />
     <None Include="Resources\icons8-aceptar-505.png" />
     <None Include="Resources\VetPet+.png" />
     <None Include="Resources\topBar.png" />
     <None Include="Resources\barraTop.png" />
     <None Include="Resources\icons8-aceptar-506.png" />
+    <None Include="Resources\icons8-mascota-50.png" />
+    <None Include="Resources\icons8-mascota-501.png" />
+    <None Include="Resources\icons8-impresión-de-la-pata-del-perro-50.png" />
+    <None Include="Resources\icons8-para-ti-50.png" />
+    <None Include="Resources\icons8-3d-touch-50.png" />
+    <None Include="Resources\icons8-virus-50.png" />
+    <Content Include="icudt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

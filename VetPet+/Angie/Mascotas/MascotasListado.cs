@@ -162,7 +162,7 @@ namespace VetPet_.Angie
                     string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota));
                 }
             }
             catch (Exception ex)
