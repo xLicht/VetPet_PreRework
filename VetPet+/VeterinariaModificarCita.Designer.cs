@@ -68,6 +68,8 @@
             this.dtServicio.Name = "dtServicio";
             this.dtServicio.Size = new System.Drawing.Size(345, 213);
             this.dtServicio.TabIndex = 436;
+            this.dtServicio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtServicio_CellClick);
+            this.dtServicio.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtServicio_CellContentClick);
             // 
             // label8
             // 
@@ -299,6 +301,7 @@
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // label3
             // 

@@ -14,6 +14,7 @@ namespace VetPet_
     public partial class VeterinariaModificarCita : FormPadre
     {
         public int DatoCita { get; set; }
+        private int idMotivoCita;
         private conexionDaniel conexionDB = new conexionDaniel();
         private List<ServicioSeleccionado> listaServicios = new List<ServicioSeleccionado>();
         public VeterinariaModificarCita(Form1 parent)
@@ -26,33 +27,34 @@ namespace VetPet_
         {
             dtHora.Format = DateTimePickerFormat.Custom;
             dtHora.CustomFormat = "HH:mm:ss";
-            MessageBox.Show("dato"+ DatoCita);
+            //MessageBox.Show("dato"+ DatoCita);
             CargarDatosCita();
             CargarMotivos();
             CargarEmpleados();
             CargarServiciosPadre();
             CargarServiciosCita();
         }
+    
+
         private void CargarDatosCita()
         {
             try
             {
                 conexionDB.AbrirConexion();
-
                 string query = @"
-                    SELECT 
-                        c.fechaProgramada, 
-                        c.hora, 
-                        c.duracion, 
-                        c.idMotivo,
-                        mo.nombre AS Motivo,
-                        p.nombre + ' ' + p.apellidoP + ' ' + p.apellidoM AS NombreCompleto, 
-                        m.nombre AS NombreMascota
-                    FROM Cita c
-                    INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
-                    INNER JOIN Mascota m ON c.idMascota = m.idMascota
-                    INNER JOIN Persona p ON m.idPersona = p.idPersona
-                    WHERE c.idCita = @idCita";
+                SELECT 
+                    c.fechaProgramada, 
+                    c.hora, 
+                    c.duracion, 
+                    c.idMotivo,
+                    mo.nombre AS Motivo,
+                    p.nombre + ' ' + p.apellidoP + ' ' + p.apellidoM AS NombreCompleto, 
+                    m.nombre AS NombreMascota
+                FROM Cita c
+                INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
+                INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                INNER JOIN Persona p ON m.idPersona = p.idPersona
+                WHERE c.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -64,7 +66,8 @@ namespace VetPet_
                         dtFecha.Value = Convert.ToDateTime(reader["fechaProgramada"]);
                         TimeSpan hora = (TimeSpan)reader["hora"];
                         dtHora.Value = DateTime.Today.Add(hora);
-                        cbMotivo.SelectedValue = Convert.ToInt32(reader["idMotivo"]);
+
+                        idMotivoCita = Convert.ToInt32(reader["idMotivo"]); 
                         cbDueño.Text = reader["NombreCompleto"].ToString();
                         cbMascota.Text = reader["NombreMascota"].ToString();
                         txtDuracion.Text = reader["duracion"].ToString();
@@ -81,6 +84,7 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+    
         private void CargarMotivos()
         {
             try
@@ -91,9 +95,15 @@ namespace VetPet_
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
+
                 cbMotivo.DataSource = dt;
                 cbMotivo.DisplayMember = "nombre";
                 cbMotivo.ValueMember = "idMotivo";
+
+                if (dt.Rows.Count > 0)
+                {
+                    cbMotivo.SelectedValue = idMotivoCita;
+                }
             }
             catch (Exception ex)
             {
@@ -104,6 +114,8 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
+
 
         private void CargarServiciosPadre()
         {
@@ -132,6 +144,7 @@ namespace VetPet_
             {
                 conexionDB.CerrarConexion();
             }
+
         }
 
         private void CargarServiciosHijos(int idServicioPadre)
@@ -243,22 +256,85 @@ namespace VetPet_
 
         private void AgregarServicioSeleccionado()
         {
-            string nombreServicio = "";
+            //string nombreServicio = "";
+            //bool esVacuna = false;
+            //int idVacuna = 0;
 
-            if (cbServicioNieto.SelectedItem != null)
-                nombreServicio = cbServicioNieto.Text;
-            else if (cbServicioEspecifico.SelectedItem != null)
-                nombreServicio = cbServicioEspecifico.Text;
-            else if (cbServicioP.SelectedItem != null)
-                nombreServicio = cbServicioP.Text;
+            //if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    if (cbServicioNieto.SelectedItem != null)
+            //    {
+            //        nombreServicio = cbServicioNieto.Text;
+            //        idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
+            //        esVacuna = true;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Seleccione una vacuna.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    if (cbServicioNieto.SelectedItem != null)
+            //        nombreServicio = cbServicioNieto.Text;
+            //    else if (cbServicioEspecifico.SelectedItem != null)
+            //        nombreServicio = cbServicioEspecifico.Text;
+            //    else if (cbServicioP.SelectedItem != null)
+            //        nombreServicio = cbServicioP.Text;
+            //}
+
+            //if (!string.IsNullOrEmpty(nombreServicio))
+            //{
+            //    string empleadoSeleccionado = cbEmpleado.Text;
+            //    if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
+            //    {
+            //        listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, esVacuna, idVacuna));
+            //        ActualizarDataGrid();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Este servicio ya ha sido agregado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            string nombreServicio = "";
+            bool esVacuna = false;
+            int idVacuna = 0;
+
+            if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
+            {
+                if (cbServicioNieto.SelectedItem != null)
+                {
+                    nombreServicio = cbServicioNieto.Text;
+                    idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
+                    esVacuna = true;
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una vacuna.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                if (cbServicioNieto.SelectedItem != null)
+                    nombreServicio = cbServicioNieto.Text;
+                else if (cbServicioEspecifico.SelectedItem != null)
+                    nombreServicio = cbServicioEspecifico.Text;
+                else if (cbServicioP.SelectedItem != null)
+                    nombreServicio = cbServicioP.Text;
+            }
 
             if (!string.IsNullOrEmpty(nombreServicio))
             {
                 string empleadoSeleccionado = cbEmpleado.Text;
-
-                if (!listaServicios.Any(s => s.NombreServicio == nombreServicio))
+                if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
                 {
-                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado));
+                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, esVacuna, idVacuna));
                     ActualizarDataGrid();
                 }
                 else
@@ -271,24 +347,30 @@ namespace VetPet_
                 MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+   
         private void ActualizarDataGrid()
         {
             dtServicio.DataSource = null;
             dtServicio.DataSource = listaServicios;
             dtServicio.Refresh();
+
+            if (dtServicio.Columns.Contains("EsVacuna"))
+                dtServicio.Columns["EsVacuna"].Visible = false;
+            if (dtServicio.Columns.Contains("IdVacuna"))
+                dtServicio.Columns["IdVacuna"].Visible = false;
         }
         private void CargarServiciosCita()
         {
             try
             {
                 conexionDB.AbrirConexion();
-                // Se realiza un JOIN para obtener el nombre del servicio (por ejemplo, desde ServicioEspecificoNieto) y el usuario del empleado.
-                string query = @"
-            SELECT sen.nombre AS NombreServicio, e.usuario AS Empleado
-            FROM Servicio_Cita sc
-            INNER JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-            INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
-            WHERE sc.idCita = @idCita";
+
+                    string query = @"
+                SELECT sen.nombre AS NombreServicio, e.usuario AS Empleado
+                FROM Servicio_Cita sc
+                INNER JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+                WHERE sc.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -347,24 +429,83 @@ namespace VetPet_
 
         private void cbServicioEspecifico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbServicioEspecifico.SelectedValue != null)
+            if (cbServicioEspecifico.SelectedItem != null)
             {
-                int idServicioEspecificoHijo;
+                string nombreServicioEspecifico = cbServicioEspecifico.Text;
 
-                if (cbServicioEspecifico.SelectedValue is DataRowView)
+                int idServicioEspecificoHijo = ObtenerIdServicioEspecificoHijo(nombreServicioEspecifico);
+
+
+                if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
                 {
-                    DataRowView drv = (DataRowView)cbServicioEspecifico.SelectedValue;
-                    idServicioEspecificoHijo = Convert.ToInt32(drv["idServicioEspecificoHijo"]);
+                    CargarVacunas(idServicioEspecificoHijo);
                 }
                 else
                 {
-                    idServicioEspecificoHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
+                    CargarServiciosNietos(idServicioEspecificoHijo);
                 }
-
-                CargarServiciosNietos(idServicioEspecificoHijo);
             }
         }
-
+        private int ObtenerIdServicioEspecificoHijo(string nombreServicioEspecifico)
+        {
+            int id = 0;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT idServicioEspecificoHijo FROM ServicioEspecificoHijo WHERE nombre = @nombre";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombreServicioEspecifico);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                        id = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el id del servicio específico: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return id;
+        }
+        private void CargarVacunas(int idServicioEspecificoHijo)
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT idVacuna, nombre FROM Vacuna WHERE idServicioEspecificoHijo = @idServicioEspecificoHijo";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idServicioEspecificoHijo", idServicioEspecificoHijo);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        cbServicioNieto.DataSource = dt;
+                        cbServicioNieto.DisplayMember = "nombre";
+                        cbServicioNieto.ValueMember = "idVacuna";
+                    }
+                    else
+                    {
+                        cbServicioNieto.DataSource = null;
+                        cbServicioNieto.Items.Clear();
+                        cbServicioNieto.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las vacunas: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AgregarServicioSeleccionado();
@@ -372,6 +513,7 @@ namespace VetPet_
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
+
             SqlTransaction transaction = null;
             try
             {
@@ -381,12 +523,12 @@ namespace VetPet_
                 TimeSpan hora = dtHora.Value.TimeOfDay;
 
                 string queryUpdate = @"
-                UPDATE Cita 
-                SET fechaProgramada = @fechaProgramada, 
-                    hora = @hora, 
-                    duracion = @duracion, 
-                    idMotivo = @idMotivo
-                WHERE idCita = @idCita";
+            UPDATE Cita 
+            SET fechaProgramada = @fechaProgramada, 
+                hora = @hora, 
+                duracion = @duracion, 
+                idMotivo = @idMotivo
+            WHERE idCita = @idCita";
                 using (SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conexionDB.GetConexion(), transaction))
                 {
                     cmdUpdate.Parameters.AddWithValue("@fechaProgramada", dtFecha.Value);
@@ -397,29 +539,47 @@ namespace VetPet_
                     cmdUpdate.ExecuteNonQuery();
                 }
 
+
                 string queryDelete = "DELETE FROM Servicio_Cita WHERE idCita = @idCita";
                 using (SqlCommand cmdDelete = new SqlCommand(queryDelete, conexionDB.GetConexion(), transaction))
                 {
                     cmdDelete.Parameters.AddWithValue("@idCita", DatoCita);
                     cmdDelete.ExecuteNonQuery();
                 }
-            
+
+
                 foreach (var servicio in listaServicios)
                 {
-                    int idServicioNieto = ObtenerIdServicioNieto(servicio.NombreServicio, transaction);
                     int idEmpleado = ObtenerIdEmpleado(servicio.Empleado, transaction);
 
+                    if (servicio.EsVacuna)
+                    {
+                        string queryInsertVacuna = @"
+                    INSERT INTO Servicio_Cita (idCita, idServicioEspecificoNieto, idVacuna, idEmpleado, hora)
+                    VALUES (@idCita, NULL, @idVacuna, @idEmpleado, @hora)";
+                        using (SqlCommand cmdInsert = new SqlCommand(queryInsertVacuna, conexionDB.GetConexion(), transaction))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
+                            cmdInsert.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
+                            cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
+                            cmdInsert.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        int idServicioNieto = ObtenerIdServicioNieto(servicio.NombreServicio, transaction);
                         string queryInsert = @"
                     INSERT INTO Servicio_Cita (idCita, idServicioEspecificoNieto, idEmpleado, hora)
                     VALUES (@idCita, @idServicioNieto, @idEmpleado, @hora)";
-
-                    using (SqlCommand cmdInsert = new SqlCommand(queryInsert, conexionDB.GetConexion(), transaction))
-                    {
-                        cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
-                        cmdInsert.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
-                        cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
-                        cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
-                        cmdInsert.ExecuteNonQuery();
+                        using (SqlCommand cmdInsert = new SqlCommand(queryInsert, conexionDB.GetConexion(), transaction))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
+                            cmdInsert.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
+                            cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
+                            cmdInsert.ExecuteNonQuery();
+                        }
                     }
                 }
 
@@ -438,6 +598,41 @@ namespace VetPet_
             {
                 conexionDB.CerrarConexion();
             }
+        }
+
+        private void dtServicio_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string servicio = dtServicio.Rows[e.RowIndex].Cells["NombreServicio"].Value.ToString();
+                DialogResult resultado = MessageBox.Show($"¿Deseas eliminar el servicio '{servicio}'?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    listaServicios.RemoveAt(e.RowIndex);
+                    ActualizarDataGrid();
+                }
+            }
+        }
+
+        private void dtServicio_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+
+            DialogResult resultado = MessageBox.Show($"Los datos no guardados seran eliminados", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                ConsultarCita formularioHijo = new ConsultarCita(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+            }
+           
         }
     }
 }
