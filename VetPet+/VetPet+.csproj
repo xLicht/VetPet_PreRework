@@ -385,6 +385,12 @@
     <Compile Include="Angie\Ventas\VentasDeseaAgregarProducto.Designer.cs">
       <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Ventas\VentasSeleccionarDueño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Ventas\VentasSeleccionarDueño.Designer.cs">
+      <DependentUpon>VentasSeleccionarDueño.cs</DependentUpon>
+    </Compile>
     <Compile Include="AvisoCirugia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1259,6 +1265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasNuevaVenta.resx">
       <DependentUpon>VentasNuevaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Ventas\VentasSeleccionarDueño.resx">
+      <DependentUpon>VentasSeleccionarDueño.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasVentanadePago.resx">
       <DependentUpon>VentasVentanadePago.cs</DependentUpon>
