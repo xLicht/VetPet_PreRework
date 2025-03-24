@@ -53,10 +53,12 @@ namespace VetPet_.Angie.Mascotas
 
                 // Consulta SQL con nombres personalizados
                 string query = @"
-        SELECT 
-            nombre AS [Nombre], 
-            descripcion AS [Descripción de la Alergia] 
-        FROM Alergia";
+                SELECT 
+                    idAlergia, 
+                    nombre AS [Nombre], 
+                    descripcion AS [Descripción de la Alergia] 
+                FROM Alergia
+                WHERE estado <> 'D'";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -64,8 +66,7 @@ namespace VetPet_.Angie.Mascotas
                 {
                     // Crear un DataTable y llenar los datos
                     DataTable tabla = new DataTable();
-                    adaptador.Fill(tabla);
-
+                    adaptador.Fill(tabla);            
                     // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
                 }
@@ -79,6 +80,7 @@ namespace VetPet_.Angie.Mascotas
             {
                 // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
+                dataGridView1.Columns["idAlergia"].Visible = false; // Oculta la columna
             }
 
         }
@@ -158,10 +160,24 @@ namespace VetPet_.Angie.Mascotas
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
+          
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
             {
-                dataGridView1.Columns["idMascota"].Visible = false;
+                    if (e.RowIndex >= 0)
+                {
+                    // Obtener el idAlergia de la fila seleccionada
+                    int idAlergia = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idAlergia"].Value);
+
+                    // Pasar el idAlergia al nuevo formulario
+                    parentForm.formularioHijo(new MascotasVerAlergia(parentForm, idAlergia));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
             }
         }
     }

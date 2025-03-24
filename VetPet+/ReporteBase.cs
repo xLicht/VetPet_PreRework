@@ -4,10 +4,11 @@ using System.IO;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using VetPet_;
 
 namespace Pruebas_PDF
 {
-    public abstract class ReporteBase
+    public abstract class ReporteBase : ConexionMaestra 
     {
         protected Document Documento { get; private set; }
         protected PdfWriter Writer { get; private set; }
@@ -101,9 +102,7 @@ namespace Pruebas_PDF
         {
             try
             {
-                SqlConnection conexion = new SqlConnection("Data Source=CARLOS-LAPTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
-                //SqlConnection conexion = new SqlConnection("Data Source=CARLOS-DESKTOP;Initial Catalog=VetPetPlus;Integrated Security=True");
-                //MessageBox.Show("Conexión establecida correctamente");
+                SqlConnection conexion = CrearConexion();
                 return conexion;
 
             }

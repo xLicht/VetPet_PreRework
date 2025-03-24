@@ -53,17 +53,16 @@ namespace VetPet_
 
                 // Definir la consulta
                 string query = @"
-           SELECT 
-                 p.Nombre, 
-                 p.celularPrincipal,
-                 ISNULL(e.Nombre, 'Sin estado') AS Estado,
-                 p.paginaWeb -- Se agrega la página web
-             FROM 
-                 Proveedor p
-             LEFT JOIN 
-                 Direccion d ON p.IdProveedor = d.IdProveedor
-             LEFT JOIN 
-                 Estado e ON d.IdEstado = e.IdEstado;";
+               SELECT 
+                     p.Nombre, 
+                     p.celularPrincipal,
+                     ISNULL(e.Nombre, 'Sin estado') AS Estado
+                 FROM 
+                     Proveedor p
+                 LEFT JOIN 
+                     Direccion d ON p.IdProveedor = d.IdProveedor
+                 LEFT JOIN 
+                     Estado e ON d.IdEstado = e.IdEstado;";
 
 
                 // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
@@ -204,8 +203,7 @@ namespace VetPet_
                 string query = @"SELECT 
                             p.Nombre, 
                             p.celularPrincipal, 
-                            e.nombre,
-                            p.paginaWeb -- Se agrega la página web
+                            e.nombre
                         FROM 
                             Proveedor p
                         JOIN 
@@ -261,8 +259,7 @@ namespace VetPet_
                 string query = @"SELECT 
                             p.Nombre, 
                             p.celularPrincipal, 
-                            e.nombre,
-                            p.paginaWeb -- Se agrega la página web
+                            e.nombre
                         FROM 
                             Proveedor p
                         JOIN 

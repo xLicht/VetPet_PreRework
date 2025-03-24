@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie.Mascotas;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using static VetPet_.Angie.VentasAgregarMedicamento;
 
 namespace VetPet_.Angie
 {
@@ -20,7 +21,9 @@ namespace VetPet_.Angie
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-        int idCita = 0;     
+        int idCita = 0;
+
+        private static Dictionary<int, int> _stockModificado = new Dictionary<int, int>();
         public VentasDeseaAgregarMedicamento(Form1 parent, int idProducto )
         {
             InitializeComponent();
@@ -132,7 +135,9 @@ namespace VetPet_.Angie
                     MessageBox.Show("Ingrese una cantidad válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                decimal precio = ObtenerPrecioProducto(int.Parse(label3.Text));
+
+                int idProducto = int.Parse(label3.Text);
+                decimal precio = ObtenerPrecioProducto(idProducto);
 
                 if (precio == -1)
                 {
@@ -142,34 +147,14 @@ namespace VetPet_.Angie
 
                 // Calcular el total
                 decimal total = cantidad * precio;
-                mismetodos.AbrirConexion();
-
-                // Consulta para obtener el stock actual del producto
-                string queryStock = @"
-                    SELECT stock 
-                    FROM Producto 
-                    WHERE idProducto = @idProducto;
-                ";
-
-                int stockActual = 0;
 
                 // Obtener el stock actual del producto
-                using (SqlCommand comandoStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
-                {
-                    comandoStock.Parameters.AddWithValue("@idProducto", label3.Text);
+                int stockActual = ObtenerStockActual(idProducto);
 
-                    using (SqlDataReader reader = comandoStock.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            stockActual = Convert.ToInt32(reader["stock"]);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
+                if (stockActual == -1)
+                {
+                    MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 // Validar que haya suficiente stock
@@ -182,51 +167,57 @@ namespace VetPet_.Angie
                 // Calcular el nuevo stock
                 int nuevoStock = stockActual - cantidad;
 
-                // Consulta para actualizar el stock del producto
-                string queryActualizarStock = @"
-                    UPDATE Producto 
-                    SET stock = @nuevoStock 
-                    WHERE idProducto = @idProducto;
-                ";
+                // Actualizar el stock en memoria usando StockManager
+                StockManager.ActualizarStock(idProducto, nuevoStock);
 
-                // Ejecutar la actualización del stock
-                using (SqlCommand comandoActualizar = new SqlCommand(queryActualizarStock, mismetodos.GetConexion()))
+                // Mostrar el nuevo stock en la interfaz de usuario
+                MessageBox.Show($"Stock actual: {stockActual}\nStock después de la venta: {nuevoStock}", "Stock Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Pasar al siguiente formulario
+                if (idCita != 0)
                 {
-                    comandoActualizar.Parameters.AddWithValue("@nuevoStock", nuevoStock);
-                    comandoActualizar.Parameters.AddWithValue("@idProducto", label3.Text);
+                    parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, idProducto, total, nuevoStock, idCita));
+                }
+                else
+                {
+                    parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, idProducto, total, nuevoStock));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                    int filasAfectadas = comandoActualizar.ExecuteNonQuery();
+        private int ObtenerStockActual(int idProducto)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+                string query = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
 
-                    if (filasAfectadas > 0)
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    comando.Parameters.AddWithValue("@idProducto", idProducto);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null)
                     {
-                        MessageBox.Show("Stock actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (idCita != 0)
-                        {
-                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm,int.Parse(label3.Text), total, nuevoStock, idCita)); 
-                        }
-                        else
-                        {
-                            parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, int.Parse(label3.Text), total, nuevoStock)); 
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo actualizar el stock.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return Convert.ToInt32(result);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejar el error si ocurre algún problema
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener el stock: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
             }
+            return -1; // Retorna -1 si hay un error
         }
-   
+
         private decimal ObtenerPrecioProducto(int idProducto)
         {
             decimal precio = 0;

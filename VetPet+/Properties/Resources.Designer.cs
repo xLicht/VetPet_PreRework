@@ -473,6 +473,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_aceptar_507 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-aceptar-507", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_button_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-button-25", resourceCulture);
@@ -667,6 +677,26 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap icons8_pasado_242 {
             get {
                 object obj = ResourceManager.GetObject("icons8-pasado-242", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_pasado_243 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-pasado-243", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_pasado_244 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-pasado-244", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1057,16 +1087,6 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap VetrinariaMascota {
             get {
                 object obj = ResourceManager.GetObject("VetrinariaMascota", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap view {
-            get {
-                object obj = ResourceManager.GetObject("view", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

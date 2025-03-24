@@ -193,10 +193,5 @@ namespace VetPet_
                 }
             }
         }
-
-        private void OlvideConstraseña_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

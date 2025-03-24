@@ -40,79 +40,20 @@ namespace VetPet_
 
         private void btnVerConsulta_Click(object sender, EventArgs e)
         {
-            try
-            {
-                conexionDB.AbrirConexion();
-                string consultaQuery = "SELECT COUNT(*) FROM Consulta WHERE idCita = @idCita";
-                using (SqlCommand cmdConsulta = new SqlCommand(consultaQuery, conexionDB.GetConexion()))
-                {
-                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
-                    int cantidadConsultas = (int)cmdConsulta.ExecuteScalar();
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
 
-                    if (cantidadConsultas == 0)
-                    {
-                        MessageBox.Show("Debe de consultar primero porque no hay consultas", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                }
-
-                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-                VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
-                formularioHijo.DatoCita = idCitaSeleccionada;
-                parentForm.formularioHijo(formularioHijo);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            //VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
-            //formularioHijo.DatoCita = idCitaSeleccionada;
-            //parentForm.formularioHijo(formularioHijo);
-
-            // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
+           // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                conexionDB.AbrirConexion();
-                string consultaQuery = "SELECT COUNT(*) FROM Consulta WHERE idCita = @idCita";
-                using (SqlCommand cmdConsulta = new SqlCommand(consultaQuery, conexionDB.GetConexion()))
-                {
-                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
-                    int cantidadConsultas = (int)cmdConsulta.ExecuteScalar();
-
-                    if (cantidadConsultas > 0)
-                    {
-                        MessageBox.Show("Esta cita ya tiene una consulta registrada, no es necesario consultarla nuevamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                }
-
-                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-                VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
-                formularioHijo.DatoCita = idCitaSeleccionada;
-                parentForm.formularioHijo(formularioHijo);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            //VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
-            //formularioHijo.DatoCita = idCitaSeleccionada;
-            //parentForm.formularioHijo(formularioHijo);
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            parentForm.formularioHijo(formularioHijo);
 
 
 
@@ -200,22 +141,7 @@ namespace VetPet_
             try
             {
                 conexionDB.AbrirConexion();
-                string query = @"
-            SELECT 
-                sc.hora, 
-                sen.nombre AS Servicio, 
-                v.descripcion AS Vacuna, 
-                e.usuario AS Empleado
-            FROM Servicio_Cita sc
-            LEFT JOIN ServicioEspecificoNieto sen 
-                ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-            LEFT JOIN vacuna v 
-                ON sc.idVacuna = v.idvacuna
-            LEFT JOIN Empleado e
-                ON sc.idEmpleado = e.idEmpleado
-            WHERE sc.idCita = @idCita";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                using (SqlCommand cmd = new SqlCommand("EXEC sp_ObtenerServiciosCita @idCita", conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -232,19 +158,6 @@ namespace VetPet_
             {
                 conexionDB.CerrarConexion();
             }
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            int idCita = Convert.ToInt32(DatoCita);
-            VeterinariaModificarCita formularioHijo = new VeterinariaModificarCita(parentForm);
-            formularioHijo.DatoCita = idCita;
-            parentForm.formularioHijo(formularioHijo);
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

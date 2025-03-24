@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VetPet_.Angie.Ventas;
 
 namespace VetPet_.Angie.Mascotas
 {
@@ -203,7 +204,7 @@ namespace VetPet_.Angie.Mascotas
             return char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
         }
 
-        public void InsertarSensibilidades(int idMascota, string sensibilidadesStr)
+        public void InsertarSensibilidades(int idRaza, string sensibilidadesStr)
         {
             try
             {
@@ -224,10 +225,10 @@ namespace VetPet_.Angie.Mascotas
                         var result = getIdCommand.ExecuteScalar();
                         idSensibilidad = result != null ? Convert.ToInt32(result) : -1;
                     }
-                    string insertMascotaSensQuery = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad);";
+                    string insertMascotaSensQuery = "INSERT INTO Raza_Sensibilidad (idRaza, idSensibilidad) VALUES (@idRaza, @idSensibilidad);";
                     using (SqlCommand insertMascotaSensCommand = new SqlCommand(insertMascotaSensQuery, mismetodos.GetConexion()))
                     {
-                        insertMascotaSensCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                        insertMascotaSensCommand.Parameters.AddWithValue("@idRaza", idRaza);
                         insertMascotaSensCommand.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
                         insertMascotaSensCommand.ExecuteNonQuery();
                     }
@@ -243,7 +244,7 @@ namespace VetPet_.Angie.Mascotas
             }
         }
 
-        public void InsertarAlergias(int idMascota, string alergiasStr)
+        public void InsertarAlergias(int idRaza, string alergiasStr)
         {
             try
             {
@@ -266,10 +267,10 @@ namespace VetPet_.Angie.Mascotas
                         idAlergia = result != null ? Convert.ToInt32(result) : -1;
                     }
 
-                    string insertMascotaAlergQuery = "INSERT INTO Mascota_Alergia (idMascota, idAlergia) VALUES (@idMascota, @idAlergia);";
+                    string insertMascotaAlergQuery = "INSERT INTO Raza_Alergia (idRaza, idAlergia) VALUES (@idRaza, @idAlergia);";
                     using (SqlCommand insertMascotaAlergCommand = new SqlCommand(insertMascotaAlergQuery, mismetodos.GetConexion()))
                     {
-                        insertMascotaAlergCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                        insertMascotaAlergCommand.Parameters.AddWithValue("@idRaza", idRaza);
                         insertMascotaAlergCommand.Parameters.AddWithValue("@idAlergia", idAlergia);
                         insertMascotaAlergCommand.ExecuteNonQuery();
                     }
@@ -340,13 +341,13 @@ namespace VetPet_.Angie.Mascotas
 
             // Llamar al método para agregar la especie con sensibilidades y alergias
             AgregarRaza(nombre, descripcion,especie, sensibilidadesStr, alergiasStr);
-            parentForm.formularioHijo(new MascotasVerEspecies(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasVerRazas(parentForm)); // Pasamos la referencia de Form1 a 
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasModificar(parentForm, idMascota));
+                parentForm.formularioHijo(new MascotasVerRazas(parentForm));
         }
     }
 }

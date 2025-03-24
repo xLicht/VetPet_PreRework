@@ -46,24 +46,17 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rbOtro = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.RbInactivo = new System.Windows.Forms.RadioButton();
-            this.RbActivo = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // RbMédico
             // 
             this.RbMédico.AutoSize = true;
             this.RbMédico.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbMédico.Location = new System.Drawing.Point(141, 22);
+            this.RbMédico.Location = new System.Drawing.Point(343, 326);
             this.RbMédico.Name = "RbMédico";
             this.RbMédico.Size = new System.Drawing.Size(83, 22);
             this.RbMédico.TabIndex = 33;
@@ -75,7 +68,7 @@
             // 
             this.RbEstetico.AutoSize = true;
             this.RbEstetico.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbEstetico.Location = new System.Drawing.Point(23, 22);
+            this.RbEstetico.Location = new System.Drawing.Point(343, 265);
             this.RbEstetico.Name = "RbEstetico";
             this.RbEstetico.Size = new System.Drawing.Size(92, 22);
             this.RbEstetico.TabIndex = 32;
@@ -250,7 +243,7 @@
             // 
             this.rbOtro.AutoSize = true;
             this.rbOtro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbOtro.Location = new System.Drawing.Point(263, 22);
+            this.rbOtro.Location = new System.Drawing.Point(343, 381);
             this.rbOtro.Name = "rbOtro";
             this.rbOtro.Size = new System.Drawing.Size(62, 22);
             this.rbOtro.TabIndex = 42;
@@ -258,75 +251,20 @@
             this.rbOtro.Text = "Otro";
             this.rbOtro.UseVisualStyleBackColor = true;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(53, 336);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 22);
-            this.label6.TabIndex = 43;
-            this.label6.Text = "Estado";
-            // 
-            // RbInactivo
-            // 
-            this.RbInactivo.AutoSize = true;
-            this.RbInactivo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbInactivo.Location = new System.Drawing.Point(129, 18);
-            this.RbInactivo.Name = "RbInactivo";
-            this.RbInactivo.Size = new System.Drawing.Size(90, 22);
-            this.RbInactivo.TabIndex = 45;
-            this.RbInactivo.TabStop = true;
-            this.RbInactivo.Text = "Inactivo";
-            this.RbInactivo.UseVisualStyleBackColor = true;
-            // 
-            // RbActivo
-            // 
-            this.RbActivo.AutoSize = true;
-            this.RbActivo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbActivo.Location = new System.Drawing.Point(11, 18);
-            this.RbActivo.Name = "RbActivo";
-            this.RbActivo.Size = new System.Drawing.Size(77, 22);
-            this.RbActivo.TabIndex = 44;
-            this.RbActivo.TabStop = true;
-            this.RbActivo.Text = "Activo";
-            this.RbActivo.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.RbInactivo);
-            this.groupBox1.Controls.Add(this.RbActivo);
-            this.groupBox1.Location = new System.Drawing.Point(143, 319);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(224, 54);
-            this.groupBox1.TabIndex = 46;
-            this.groupBox1.TabStop = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.rbOtro);
-            this.groupBox2.Controls.Add(this.RbMédico);
-            this.groupBox2.Controls.Add(this.RbEstetico);
-            this.groupBox2.Location = new System.Drawing.Point(253, 244);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(339, 58);
-            this.groupBox2.TabIndex = 47;
-            this.groupBox2.TabStop = false;
-            // 
             // ModificarServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(149)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.rbOtro);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.RbMédico);
+            this.Controls.Add(this.RbEstetico);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
@@ -345,10 +283,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,10 +307,5 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.RadioButton rbOtro;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RadioButton RbInactivo;
-        private System.Windows.Forms.RadioButton RbActivo;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

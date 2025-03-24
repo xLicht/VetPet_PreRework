@@ -128,7 +128,7 @@
             // 
             this.txtMotivo.BackColor = System.Drawing.Color.Silver;
             this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotivo.Location = new System.Drawing.Point(110, 314);
+            this.txtMotivo.Location = new System.Drawing.Point(229, 314);
             this.txtMotivo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.ReadOnly = true;
@@ -208,9 +208,9 @@
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.label12.Location = new System.Drawing.Point(26, 314);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 25);
+            this.label12.Size = new System.Drawing.Size(195, 25);
             this.label12.TabIndex = 328;
-            this.label12.Text = "Motivo";
+            this.label12.Text = "Motivo de Consulta";
             // 
             // label11
             // 

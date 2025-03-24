@@ -32,7 +32,7 @@ namespace VetPet_
                 SmtpClient smtp = ConfigurarSmtp(emailDestino);
                 if (smtp == null)
                 {
-                    MessageBox.Show("Proveedor de correo no soportado.");
+                    Console.WriteLine("Proveedor de correo no soportado.");
                     return;
                 }
 
@@ -46,11 +46,11 @@ namespace VetPet_
                 mail.To.Add(emailDestino);
                 smtp.Send(mail);
 
-                MessageBox.Show("Correo enviado correctamente.");
+                Console.WriteLine("Correo enviado correctamente.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al enviar el correo: " + ex.Message);
+                Console.WriteLine("Error al enviar el correo: " + ex.Message);
             }
         }
         private static SmtpClient ConfigurarSmtp(string email)
@@ -170,52 +170,6 @@ namespace VetPet_
                     conexion.CerrarConexion();
                 }
             }
-        }
-        private int ObtenerCorreo(string nombre)
-        {
-
-            conexionAlex conexion = new conexionAlex();
-            conexion.AbrirConexion();
-
-            // Obtener el idServicioEspecificoHijo a partir del nombre
-            string queryGetIdServicioHijo = "SELECT E.idEmpleado \r\nFROM Empleado E\r\nINNER JOIN Persona P ON E.idPersona = P.idPersona\r\nWHERE P.correoElectronico = @correo";
-            int idServicioHijo = 0;
-
-            using (SqlCommand cmd = new SqlCommand(queryGetIdServicioHijo, conexion.GetConexion()))
-            {
-                try
-                {
-                    cmd.Parameters.AddWithValue("@correo", nombre);
-                    object result = cmd.ExecuteScalar(); // Ejecutar la consulta y obtener el primer valor de la primera columna
-
-                    if (result != null)
-                    {
-                        idServicioHijo = Convert.ToInt32(result);
-                        correoEncontrado = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró al empleado asociado con ese Correo Electronico.");
-                        correoEncontrado = false;
-
-                    }
-                    return idServicioHijo;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error inesperado " + ex.Message);
-                    return idServicioHijo;
-                }
-                finally
-                {
-                    conexion.CerrarConexion();
-                }
-            }
-        }
-
-        private void xd_Load(object sender, EventArgs e)
-        {
-
         }
 
         //MailMessage mail = new MailMessage();

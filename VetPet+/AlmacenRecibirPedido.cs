@@ -323,7 +323,7 @@ namespace VetPet_
                 });
 
 
-                totalidad += (precioProveedor * cantidad);
+                totalidad += precioProveedor;
                 txtTotal.Text = totalidad.ToString();
                 // Agregar al DataGridView
                 dataGridView1.Rows.Add(cmbProducto.Text, cantidad, precioProveedor, precioVenta, fechaCaducidad);
@@ -333,22 +333,6 @@ namespace VetPet_
             catch (Exception ex)
             {
                 MessageBox.Show("Error al agregar producto: " + ex.Message);
-            }
-        }
-
-        private void txtPrecioVenta_Enter(object sender, EventArgs e)
-        {
-            if (txtPrecioVenta.Text == "Precio de venta") // Si el texto predeterminado está presente
-            {
-                txtPrecioVenta.Text = ""; // Limpia el TextBox
-            }
-        }
-
-        private void txtPrecioProveedor_Enter(object sender, EventArgs e)
-        {
-            if (txtPrecioProveedor.Text == "Precio proveedor") // Si el texto predeterminado está presente
-            {
-                txtPrecioProveedor.Text = ""; // Limpia el TextBox
             }
         }
     }

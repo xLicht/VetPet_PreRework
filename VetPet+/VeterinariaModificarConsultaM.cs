@@ -142,86 +142,38 @@ namespace VetPet_
         }
         private void ActualizarConsulta()
         {
-            //try
-            //{
-            //    conexionDB.AbrirConexion();
-
-            //    string query = @"UPDATE Consulta 
-            //            SET peso = @peso, 
-            //                temperatura = @temperatura, 
-            //                MotivoConsulta = @motivo, 
-            //                diagnostico = @diagnostico, 
-            //                EstudioEspecial = @estudioEspecial
-            //            WHERE idCita = @idCita";
-
-            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-            //    {
-            //        cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
-            //        cmd.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
-            //        cmd.Parameters.AddWithValue("@motivo", txtMotivo.Text);
-            //        cmd.Parameters.AddWithValue("@diagnostico", txtDiagnostico.Text);
-            //        cmd.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text);
-            //        cmd.Parameters.AddWithValue("@idCita", DatoCita);
-
-            //        int filasAfectadas = cmd.ExecuteNonQuery();
-
-            //        if (filasAfectadas > 0)
-            //        {
-            //            MessageBox.Show("Consulta actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("No se encontró la consulta para actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al actualizar la consulta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //finally
-            //{
-            //    conexionDB.CerrarConexion();
-            //}
-
             try
             {
                 conexionDB.AbrirConexion();
 
-                string queryConsulta = @"UPDATE Consulta 
+                string query = @"UPDATE Consulta 
                         SET peso = @peso, 
                             temperatura = @temperatura, 
+                            MotivoConsulta = @motivo, 
                             diagnostico = @diagnostico, 
                             EstudioEspecial = @estudioEspecial
                         WHERE idCita = @idCita";
-                using (SqlCommand cmdConsulta = new SqlCommand(queryConsulta, conexionDB.GetConexion()))
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
-                    cmdConsulta.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
-                    cmdConsulta.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
-                    cmdConsulta.Parameters.AddWithValue("@diagnostico", txtDiagnostico.Text);
-                    cmdConsulta.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text);
-                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
+                    cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
+                    cmd.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
+                    cmd.Parameters.AddWithValue("@motivo", txtMotivo.Text);
+                    cmd.Parameters.AddWithValue("@diagnostico", txtDiagnostico.Text);
+                    cmd.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text);
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
 
-                    cmdConsulta.ExecuteNonQuery();
-                }
+                    int filasAfectadas = cmd.ExecuteNonQuery();
 
-
-                string queryCita = @"UPDATE Cita 
-                             SET idMotivo = (SELECT idMotivo FROM Motivo WHERE nombre = @motivo)
-                             WHERE idCita = @idCita";
-                using (SqlCommand cmdCita = new SqlCommand(queryCita, conexionDB.GetConexion()))
-                {
-                    cmdCita.Parameters.AddWithValue("@motivo", txtMotivo.Text);
-                    cmdCita.Parameters.AddWithValue("@idCita", DatoCita);
-
-                    int filasAfectadasCita = cmdCita.ExecuteNonQuery();
-                    if (filasAfectadasCita == 0)
+                    if (filasAfectadas > 0)
                     {
-                        MessageBox.Show("No se encontró la cita para actualizar el motivo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Consulta actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la consulta para actualizar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-
-                MessageBox.Show("Consulta actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -233,62 +185,15 @@ namespace VetPet_
             }
         }
 
+
         private void MostrarServicios()
         {
-
-            int idConsulta = 0;
-
             try
             {
                 conexionDB.AbrirConexion();
-                string queryIdConsulta = "SELECT TOP 1 idConsulta FROM Consulta WHERE idCita = @idCita ORDER BY idConsulta DESC";
-                using (SqlCommand cmd = new SqlCommand(queryIdConsulta, conexionDB.GetConexion()))
+                using (SqlCommand cmd = new SqlCommand("EXEC sp_ObtenerServiciosCita @idCita", conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        idConsulta = Convert.ToInt32(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener el idConsulta: " + ex.Message);
-                return;
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-
-            if (idConsulta == 0)
-            {
-                dtServicio.DataSource = null;
-                return;
-            }
-
-            try
-            {
-                conexionDB.AbrirConexion();
-
-                    string query = @"
-                SELECT 
-                    sc.observacion,
-                    CASE 
-                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
-                        ELSE sen.nombre 
-                    END AS Servicio,
-                    CASE 
-                        WHEN sc.idVacuna IS NOT NULL THEN 'Vacuna'
-                        ELSE 'Servicio'
-                    END AS Tipo
-                FROM Servicio_Consulta sc
-                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                WHERE sc.idConsulta = @idConsulta";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@idConsulta", idConsulta);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -297,13 +202,12 @@ namespace VetPet_
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener los servicios de la consulta: " + ex.Message);
+                MessageBox.Show("Error al obtener los servicios de la cita: " + ex.Message);
             }
             finally
             {
                 conexionDB.CerrarConexion();
             }
         }
-       
     }
 }

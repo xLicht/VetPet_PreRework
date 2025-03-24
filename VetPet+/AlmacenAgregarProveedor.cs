@@ -88,18 +88,15 @@ namespace VetPet_
             try
             {
                 // Insertar el proveedor
-                string queryProveedor = "INSERT INTO Proveedor (nombre, celularPrincipal, paginaWeb,correoElectronico, nombreContacto, apellidoPContacto, apellidoMContacto, celularContactoPrincipal) " +
-                                       "VALUES (@Nombre, @CelularPrincipal, @PaginaWeb ,@Correo, @NombreContacto, @ApellidoPContacto, @ApellidoMContacto, @CelularContactoPrincipal);" +
+                string queryProveedor = "INSERT INTO Proveedor (nombre, celularPrincipal, correoElectronico, nombreContacto, celularContactoPrincipal) " +
+                                       "VALUES (@Nombre, @CelularPrincipal, @Correo, @NombreContacto, @CelularContactoPrincipal);" +
                                        "SELECT SCOPE_IDENTITY();";
 
                 SqlCommand cmdProveedor = new SqlCommand(queryProveedor, conexion.GetConexion(), transaction);
                 cmdProveedor.Parameters.AddWithValue("@Nombre", txtNombre.Text);
                 cmdProveedor.Parameters.AddWithValue("@CelularPrincipal", txtTelefono.Text);
-                cmdProveedor.Parameters.AddWithValue("@PaginaWeb", txtPaginaWeb.Text);
                 cmdProveedor.Parameters.AddWithValue("@Correo", txtCorreo.Text);
                 cmdProveedor.Parameters.AddWithValue("@NombreContacto", txtNombreContacto.Text);
-                cmdProveedor.Parameters.AddWithValue("@ApellidoPContacto", txtApellidoPaterno.Text);
-                cmdProveedor.Parameters.AddWithValue("@ApellidoMContacto", txtApellidoMaterno.Text);
                 cmdProveedor.Parameters.AddWithValue("@CelularContactoPrincipal", txtTelefonoContacto.Text);
 
                 // Obtener el id del proveedor insertado
@@ -126,12 +123,11 @@ namespace VetPet_
                 int idCiudad = ObtenerIdDeEntidad(txtCiudad.Text, "Ciudad", "Ciudad", conexion, transaction);
                 int idColonia = ObtenerIdDeEntidad(txtColonia.Text, "Colonia", "Colonia", conexion, transaction);
                 int idCalle = ObtenerIdDeEntidad(txtCalle.Text, "Calle", "Calle", conexion, transaction);
-                int idMunicipio = ObtenerIdDeEntidad(txtMunicipio.Text, "Municipio", "Municipio", conexion, transaction);
                 int idCp = ObtenerIdDeEntidad(txtCp.Text, "Cp", "Cp", conexion, transaction);
 
                 // Insertar la dirección con el idProveedor
-                string queryDireccion = "INSERT INTO Direccion (idProveedor, idPais, idEstado, idCiudad, idColonia, idCalle, idMunicipio, idCp) " +
-                                        "VALUES (@IdProveedor, @IdPais, @IdEstado, @IdCiudad, @IdColonia, @IdCalle, @IdMunicipio, @IdCp)";
+                string queryDireccion = "INSERT INTO Direccion (idProveedor, idPais, idEstado, idCiudad, idColonia, idCalle, idCp) " +
+                                        "VALUES (@IdProveedor, @IdPais, @IdEstado, @IdCiudad, @IdColonia, @IdCalle, @IdCp)";
 
                 SqlCommand cmdDireccion = new SqlCommand(queryDireccion, conexion.GetConexion(), transaction);
                 cmdDireccion.Parameters.AddWithValue("@IdProveedor", idProveedor);
@@ -140,7 +136,6 @@ namespace VetPet_
                 cmdDireccion.Parameters.AddWithValue("@IdCiudad", idCiudad);
                 cmdDireccion.Parameters.AddWithValue("@IdColonia", idColonia);
                 cmdDireccion.Parameters.AddWithValue("@IdCalle", idCalle);
-                cmdDireccion.Parameters.AddWithValue("@IdMunicipio", idMunicipio);
                 cmdDireccion.Parameters.AddWithValue("@IdCp", idCp);
 
                 // Ejecutar la inserción de la dirección
@@ -371,38 +366,6 @@ namespace VetPet_
             if (txtPais.Text == "Pais") // Si el texto predeterminado está presente
             {
                 txtPais.Text = ""; // Limpia el TextBox
-            }
-        }
-
-        private void txtApellidoPaterno_Enter(object sender, EventArgs e)
-        {
-            if (txtApellidoPaterno.Text == "Apellido Paterno") // Si el texto predeterminado está presente
-            {
-                txtApellidoPaterno.Text = ""; // Limpia el TextBox
-            }
-        }
-
-        private void txtApellidoMaterno_Enter(object sender, EventArgs e)
-        {
-            if (txtApellidoMaterno.Text == "Apellido Materno") // Si el texto predeterminado está presente
-            {
-                txtApellidoMaterno.Text = ""; // Limpia el TextBox
-            }
-        }
-
-        private void txtMunicipio_Enter(object sender, EventArgs e)
-        {
-            if (txtMunicipio.Text == "Municipio") // Si el texto predeterminado está presente
-            {
-                txtMunicipio.Text = ""; // Limpia el TextBox
-            }
-        }
-
-        private void txtPaginaWeb_Enter(object sender, EventArgs e)
-        {
-            if (txtPaginaWeb.Text == "Paginaweb.com") // Si el texto predeterminado está presente
-            {
-                txtPaginaWeb.Text = ""; // Limpia el TextBox
             }
         }
     }

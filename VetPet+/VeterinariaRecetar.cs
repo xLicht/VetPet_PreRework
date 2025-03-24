@@ -103,7 +103,6 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
-
         private void MostrarDatosMacota()
         {
             try
@@ -111,17 +110,16 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string query = @"SELECT 
-                                    p.nombre AS NombreCliente, 
-                                    m.nombre AS NombreMascota, 
-                                    e.nombre AS Especie, 
-                                    r.nombre AS Raza,
-                                    CONVERT(varchar, c.fechaProgramada, 103) AS FechaCita
-                                FROM Cita c
-                                INNER JOIN Mascota m ON c.idMascota = m.idMascota
-                                INNER JOIN Persona p ON m.idPersona = p.idPersona
-                                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
-                                INNER JOIN Raza r ON m.idRaza = r.idRaza
-                                WHERE c.idCita = @idCita";
+                    p.nombre AS NombreCliente, 
+                    m.nombre AS NombreMascota, 
+                    e.nombre AS Especie, 
+                    r.nombre AS Raza
+                FROM Cita c
+                INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                INNER JOIN Persona p ON m.idPersona = p.idPersona
+                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                INNER JOIN Raza r ON m.idRaza = r.idRaza
+                WHERE c.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -134,7 +132,6 @@ namespace VetPet_
                         txtMascota.Text = reader["NombreMascota"].ToString();
                         txtEspecie.Text = reader["Especie"].ToString();
                         txtRaza.Text = reader["Raza"].ToString();
-                        txtFecha.Text = reader["FechaCita"].ToString();
                     }
                 }
             }
@@ -160,8 +157,8 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string queryReceta = @"INSERT INTO Receta (indicaciones, idConsulta) 
-                                       VALUES (@indicaciones, @idConsulta);
-                                       SELECT SCOPE_IDENTITY();";
+                               VALUES (@indicaciones, @idConsulta);
+                               SELECT SCOPE_IDENTITY();";
 
                 int idReceta;
 
@@ -169,7 +166,7 @@ namespace VetPet_
                 {
                     cmd.Parameters.AddWithValue("@indicaciones", rtIndicaciones.Text.Trim());
                     cmd.Parameters.AddWithValue("@idConsulta", DatoConsulta);
-                    idReceta = Convert.ToInt32(cmd.ExecuteScalar());
+                    idReceta = Convert.ToInt32(cmd.ExecuteScalar()); 
                 }
 
                 if (listaMedicamentos.Count > 0)
@@ -177,7 +174,7 @@ namespace VetPet_
                     foreach (var medicamento in listaMedicamentos)
                     {
                         string queryMedicamento = @"INSERT INTO Receta_Medicamento (idReceta, idMedicamento, cantidad) 
-                                                    VALUES (@idReceta, @idMedicamento, @cantidad);";
+                                            VALUES (@idReceta, @idMedicamento, @cantidad);";
 
                         using (SqlCommand cmd = new SqlCommand(queryMedicamento, conexionDB.GetConexion()))
                         {
@@ -194,10 +191,6 @@ namespace VetPet_
                 listaMedicamentos.Clear();
                 ActualizarDataGrid();
                 rtIndicaciones.Clear();
-                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-                ConsultarCita formularioHijo = new ConsultarCita(parentForm);
-                formularioHijo.DatoCita = idCitaSeleccionada;
-                parentForm.formularioHijo(formularioHijo);
             }
             catch (Exception ex)
             {
@@ -207,6 +200,7 @@ namespace VetPet_
             {
                 conexionDB.CerrarConexion();
             }
+
 
             //parentForm.formularioHijo(new VeterinariaConsultarM(parentForm));
         }
