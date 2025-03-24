@@ -251,8 +251,20 @@ namespace VetPet_
 
         private void BtnInfoUsuario_Click(object sender, EventArgs e)
         {
-
+            MostrarInfoUsuario();
         }
+        private void MostrarInfoUsuario()
+        {
+            InfoUsuario infoForm = new InfoUsuario();
+
+            // Establecer la posición en la pantalla (ejemplo: 500,300 píxeles)
+            infoForm.StartPosition = FormStartPosition.Manual;
+            infoForm.Location = new Point(this.Location.X + 1250, this.Location.Y + 84);
+
+            // Mostrar el formulario
+            infoForm.Show();
+        }
+
     }
 }
 //SEXOO
