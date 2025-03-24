@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace VetPet_
 {
-    internal class conexionAlex
+    internal class conexionAlex : ConexionMaestra
     {
         public readonly string cadenaConexion = @"Data Source=DESKTOP-GQ6Q9HG\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
@@ -18,7 +18,7 @@ namespace VetPet_
         System.Windows.Forms.ComboBox comboBox = new System.Windows.Forms.ComboBox();
         public conexionAlex()
         {
-            conexion = new SqlConnection(cadenaConexion);
+            conexion = CrearConexion();
         }
 
         public void AbrirConexion()

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace VetPet_.Angie.Mascotas
 {
-    internal class Mismetodos
+    internal class Mismetodos : ConexionMaestra
     {
             // Definir las dos cadenas de conexión
             private readonly string cadenaConexion1 = @"Data Source=127.0.0.1;Initial Catalog=VetPetPlus;Integrated Security=True;";
@@ -20,8 +20,8 @@ namespace VetPet_.Angie.Mascotas
 
             public Mismetodos()
             {
-                // Inicializar la conexión con la primera cadena de conexión
-                conexion = new SqlConnection(cadenaConexion1);
+            // Inicializar la conexión con la primera cadena de conexión
+                conexion = CrearConexion();
             }
         public void EliminarEnCascadaPlus(int idRaza, string proc )
         {

@@ -258,6 +258,7 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConexionMaestra.cs" />
     <Compile Include="Angie\Mascotas\MascotasAgregarAlergia.cs">
       <SubType>Form</SubType>
     </Compile>
