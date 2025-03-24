@@ -244,22 +244,16 @@ namespace VetPet_
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("¿Estás seguro de que deseas eliminar la cita?", "Confirmación",
+      MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+
             try
             {
                 conexionDB.AbrirConexion();
-
-                string query = @"
-            UPDATE Receta 
-            SET estado = 'I'
-            WHERE idReceta = (
-                SELECT TOP 1 idReceta 
-                FROM Receta 
-                WHERE idConsulta = (
-                    SELECT TOP 1 idConsulta 
-                    FROM Consulta 
-                    WHERE idCita = @idCita
-                )
-            )";
+                string query = "UPDATE Cita SET estado = 'I' WHERE idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -268,17 +262,18 @@ namespace VetPet_
 
                     if (filasAfectadas > 0)
                     {
-                        MessageBox.Show("La receta se ha eliminado (inactivado) correctamente.");
+                        MessageBox.Show("La cita ha sido eliminada correctamente.");
+                        parentForm.formularioHijo(new CitasMedicas(parentForm)); 
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró la receta para eliminar.");
+                        MessageBox.Show("No se encontró la cita para eliminar.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar la receta: " + ex.Message);
+                MessageBox.Show("Error al eliminar la cita: " + ex.Message);
             }
             finally
             {
