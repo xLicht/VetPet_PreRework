@@ -160,6 +160,9 @@ namespace VetPet_
             originalWidth = this.Width;
             originalHeight = this.Height;
 
+            lblUser.Text = NombreUsuario;
+            lblTipoEmpleado.Text = TipoEmpleado;
+
             StoreControlInfo(this);
 
             formularioHijo(new MainMenu(this));
@@ -244,6 +247,11 @@ namespace VetPet_
         private void pictureBox11_Click(object sender, EventArgs e)
         {
             formularioHijo(new MainMenu(this));
+        }
+
+        private void BtnInfoUsuario_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

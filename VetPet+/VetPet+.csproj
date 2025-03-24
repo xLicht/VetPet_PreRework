@@ -742,6 +742,12 @@
     <Compile Include="FormPadre.Designer.cs">
       <DependentUpon>FormPadre.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoUsuario.Designer.cs">
+      <DependentUpon>InfoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="InicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1407,6 +1413,9 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InfoUsuario.resx">
+      <DependentUpon>InfoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.cs</DependentUpon>
     </EmbeddedResource>
@@ -1710,6 +1719,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\view.png" />
+    <None Include="Resources\avatar.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

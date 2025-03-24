@@ -84,11 +84,11 @@ namespace VetPet_
 
         public string[,] ConsultaRep01(SqlConnection conex)
         {
-            string[,] datos = new string[10, 5];
+            string[,] datos = new string[10, 7];
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"exec ObtenerDuenosConMasCitas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -97,16 +97,20 @@ namespace VetPet_
                 while (lector.Read())
                 {
                     string nombre = lector.GetString(0);
-                    string descripcion = lector.GetString(1);
-                    decimal precioProveedor = lector.GetDecimal(2);
-                    decimal precioVenta = lector.GetDecimal(3);
-                    int cantidadVendida = lector.GetInt32(4);
+                    string apellidoP = lector.GetString(1);
+                    string apellidoM = lector.GetString(2);
+                    string celular = lector.GetString(3);
+                    string correo = lector.GetString(4);
+                    string calle = lector.GetString(5);
+                    int numVisitas = lector.GetInt32(6);
 
                     datos[i, 0] = nombre;
-                    datos[i, 1] = descripcion;
-                    datos[i, 2] = precioProveedor.ToString();
-                    datos[i, 3] = precioVenta.ToString();
-                    datos[i, 4] = cantidadVendida.ToString();
+                    datos[i, 1] = apellidoP;
+                    datos[i, 2] = apellidoM;
+                    datos[i, 3] = celular;
+                    datos[i, 4] = correo;
+                    datos[i, 5] = calle;
+                    datos[i, 6] = numVisitas.ToString();
 
                     i++;
                 }
@@ -164,11 +168,11 @@ namespace VetPet_
         }
         public string[,] ConsultaRep03(SqlConnection conex)
         {
-            string[,] datos = new string[10, 5];
+            string[,] datos = new string[10, 7];
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"exec ObtenerDuenosConMenosCitas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -177,19 +181,19 @@ namespace VetPet_
                 while (lector.Read())
                 {
                     string nombre = lector.GetString(0);
-                    string dueño = lector.GetString(1);
-                    string especie = lector.GetString(2);
-                    string raza = lector.GetString(3);
-                    string sexo = lector.GetString(4);
-                    string fechaNac = lector.GetString(5);
+                    string apellidoP = lector.GetString(1);
+                    string apellidoM = lector.GetString(2);
+                    string celular = lector.GetString(3);
+                    string correo = lector.GetString(4);
+                    string calle = lector.GetString(5);
                     int numVisitas = lector.GetInt32(6);
 
                     datos[i, 0] = nombre;
-                    datos[i, 1] = dueño;
-                    datos[i, 2] = especie;
-                    datos[i, 3] = raza;
-                    datos[i, 4] = sexo;
-                    datos[i, 5] = fechaNac;
+                    datos[i, 1] = apellidoP;
+                    datos[i, 2] = apellidoM;
+                    datos[i, 3] = celular;
+                    datos[i, 4] = correo;
+                    datos[i, 5] = calle;
                     datos[i, 6] = numVisitas.ToString();
 
                     i++;
@@ -248,27 +252,33 @@ namespace VetPet_
         }
         public void CrearTablasDueños(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
-            tabla = new PdfPTable(5);
+            tabla = new PdfPTable(7);
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
             tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1 });
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1, 1, 1 });
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
-            PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
-            PdfPCell header3 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
-            PdfPCell header4 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
-            PdfPCell header5 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Apellido Paterno", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Apellido Materno", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Celular", tablaHeaderFont));
+            PdfPCell header5 = new PdfPCell(new Phrase("Correo", tablaHeaderFont));
+            PdfPCell header6 = new PdfPCell(new Phrase("Calle", tablaHeaderFont));
+            PdfPCell header7 = new PdfPCell(new Phrase("Numero de Visitas", tablaHeaderFont));
             header1.HorizontalAlignment = Element.ALIGN_CENTER;
             header2.HorizontalAlignment = Element.ALIGN_CENTER;
             header3.HorizontalAlignment = Element.ALIGN_CENTER;
             header4.HorizontalAlignment = Element.ALIGN_CENTER;
             header5.HorizontalAlignment = Element.ALIGN_CENTER;
+            header6.HorizontalAlignment = Element.ALIGN_CENTER;
+            header7.HorizontalAlignment = Element.ALIGN_CENTER;
             tabla.AddCell(header1);
             tabla.AddCell(header2);
             tabla.AddCell(header3);
             tabla.AddCell(header4);
             tabla.AddCell(header5);
+            tabla.AddCell(header6);
+            tabla.AddCell(header7);
             for (int i = 0; i < datos.GetLength(0); i++)
             {
                 if (datos[i, 0] != null || datos[i, 1] != null)
@@ -278,16 +288,22 @@ namespace VetPet_
                     PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
                     PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
                     PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
+                    PdfPCell celda6 = new PdfPCell(new Phrase(datos[i, 5], tablaFont));
+                    PdfPCell celda7 = new PdfPCell(new Phrase(datos[i, 6], tablaFont));
                     celda1.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda2.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda3.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda4.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda5.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda6.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda7.HorizontalAlignment = Element.ALIGN_CENTER;
                     tabla.AddCell(celda1);
                     tabla.AddCell(celda2);
                     tabla.AddCell(celda3);
                     tabla.AddCell(celda4);
                     tabla.AddCell(celda5);
+                    tabla.AddCell(celda6);
+                    tabla.AddCell(celda7);
                 }
             }
         }
