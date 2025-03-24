@@ -90,10 +90,11 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             int idTipoServicio;
+            string estado = "";
 
 
 
-            string queryIdServicio = "UPDATE ServicioPadre SET nombre = @NOM, descripcion = @DES, idClaseServicio = @ICS WHERE idServicioPadre = @ID";
+            string queryIdServicio = "UPDATE ServicioPadre SET nombre = @NOM, descripcion = @DES, idClaseServicio = @ICS, estado = @EST WHERE idServicioPadre = @ID";
 
             // Crear el comando para obtener el idServicioEspecificoHijo
             using (SqlCommand insertcmd = new SqlCommand(queryIdServicio, conexion.GetConexion()))
@@ -123,10 +124,25 @@ namespace VetPet_
                         MessageBox.Show("Por favor, seleccione una opción.");
                     }
 
+                    if (RbActivo.Checked)
+                    {
+                        estado = "A"; // Si el primer radio button está seleccionado
+                    }
+                    else if (RbInactivo.Checked)
+                    {
+                        estado = "B"; // Si el segundo radio button está seleccionado
+                    }
+                    else
+                    {
+                        idTipoServicio = 0; // Ningún radio button seleccionado
+                        MessageBox.Show("Por favor, seleccione una opción de estado.");
+                    }
+
                     // Agregar los parámetros para la inserción
                     insertcmd.Parameters.AddWithValue("@NOM", Nombre);
                     insertcmd.Parameters.AddWithValue("@DES", Descripcion);
                     insertcmd.Parameters.AddWithValue("@ICS", idTipoServicio);
+                    insertcmd.Parameters.AddWithValue("@EST", estado);
                     insertcmd.Parameters.AddWithValue("@ID", Identificador);
 
 
@@ -152,9 +168,10 @@ namespace VetPet_
             conexion.AbrirConexion();
 
             int idClaseServicio = 0;
+            string estado = "";
 
             // Consulta para obtener los datos del servicio
-            string query = "SELECT nombre, descripcion, idClaseServicio FROM ServicioPadre WHERE idServicioPadre = @ID";
+            string query = "SELECT nombre, descripcion, idClaseServicio, estado FROM ServicioPadre WHERE idServicioPadre = @ID";
 
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
@@ -169,10 +186,15 @@ namespace VetPet_
                         TxtNombre.Text = reader["nombre"].ToString();
                         richTextBox1.Text = reader["descripcion"].ToString();                       
                         idClaseServicio = Convert.ToInt32(reader["idClaseServicio"]);
-                        if(idClaseServicio == 2)
+                        estado = reader["estado"].ToString();
+                        if (idClaseServicio == 2)
                             RbEstetico.Checked = true;
                         else
                             RbMédico.Checked = true;
+                        if(estado == "A")
+                            RbActivo.Checked = true;
+                        else
+                            RbInactivo.Checked = true;
 
                     }
                     else

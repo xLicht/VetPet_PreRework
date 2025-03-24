@@ -72,7 +72,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(661, 139);
+            this.label4.Location = new System.Drawing.Point(661, 153);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(257, 22);
             this.label4.TabIndex = 34;
@@ -94,9 +94,9 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(211)))), ((int)(((byte)(181)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(41, 139);
+            this.dataGridView1.Location = new System.Drawing.Point(41, 153);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(483, 294);
+            this.dataGridView1.Size = new System.Drawing.Size(483, 280);
             this.dataGridView1.TabIndex = 33;
             // 
             // TxtBuscar
