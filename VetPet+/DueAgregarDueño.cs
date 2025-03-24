@@ -70,11 +70,12 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@idCp", idCp);
                     cmd.Parameters.AddWithValue("@idCiudad", idCiudad);
                     cmd.Parameters.AddWithValue("@idColonia", idColonia);
-                    cmd.Parameters.AddWithValue("@idEstado", idEstado); // Insertar el ID del estado
+                    cmd.Parameters.AddWithValue("@idEstado", idEstado);
                     cmd.ExecuteNonQuery();
                 }
 
                 MessageBox.Show("Empleado agregado correctamente.");
+                parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
             }
             catch (Exception ex)
             {
@@ -281,7 +282,7 @@ namespace VetPet_
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             AgregarEmpleado();
-            parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+            //parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
         }
 
         private void txtCp_KeyPress(object sender, KeyPressEventArgs e)
