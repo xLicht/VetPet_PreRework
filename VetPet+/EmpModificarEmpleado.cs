@@ -89,21 +89,23 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string query = @"
-                       SELECT e.usuario, e.contraseña, e.palabraClave, 
-                       p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, p.correoElectronico,
-                       t.nombre AS tipoEmpleado,
-                       pais.nombre AS pais, calle.nombre AS calle, 
-                       cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia
-                    FROM Empleado e
-                    JOIN Persona p ON e.idPersona = p.idPersona
-                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                    LEFT JOIN Direccion d ON e.idEmpleado = d.idPersona
-                    LEFT JOIN Pais pais ON d.idPais = pais.idPais
-                    LEFT JOIN Calle calle ON d.idCalle = calle.idCalle
-                    LEFT JOIN Cp cp ON d.idCp = cp.idCp
-                    LEFT JOIN Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
-                    LEFT JOIN Colonia colonia ON d.idColonia = colonia.idColonia
-                    WHERE e.idEmpleado = @idEmpleado";
+                   SELECT e.usuario, e.contraseña, e.palabraClave, 
+                          p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, p.correoElectronico,
+                          t.nombre AS tipoEmpleado,
+                          pais.nombre AS pais, calle.nombre AS calle, 
+                          cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia,
+                          estado.nombre AS estado
+                   FROM Empleado e
+                   JOIN Persona p ON e.idPersona = p.idPersona
+                   JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
+                   LEFT JOIN Direccion d ON e.idEmpleado = d.idPersona
+                   LEFT JOIN Pais pais ON d.idPais = pais.idPais
+                   LEFT JOIN Calle calle ON d.idCalle = calle.idCalle
+                   LEFT JOIN Cp cp ON d.idCp = cp.idCp
+                   LEFT JOIN Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
+                   LEFT JOIN Colonia colonia ON d.idColonia = colonia.idColonia
+                   LEFT JOIN Estado estado ON d.idEstado = estado.idEstado
+                   WHERE e.idEmpleado = @idEmpleado";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -127,7 +129,8 @@ namespace VetPet_
                         txtCP.Text = reader["cp"].ToString();
                         cbCiudad.SelectedItem = reader["ciudad"].ToString();
                         cbColonia.SelectedItem = reader["colonia"].ToString();
-                        
+                        cbEstado.SelectedItem = reader["estado"].ToString();
+
                     }
                 }
             }

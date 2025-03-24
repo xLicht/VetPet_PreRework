@@ -35,20 +35,17 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                // Obtener o registrar las IDs necesarias
                 int idPais = ObtenerORegistrarIdPais(cbPais.Text);
                 int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
                 int idCp = ObtenerORegistrarIdCp(txtCP.Text);
-                //int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
                 int idCiudad = ObtenerORegistrarIdCiudad(cbCiudad.Text);
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
-                // int idEstado = ObtenerIdPorNombre("Estado", cbEstado.Text);
                 int idEstado = ObtenerORegistrarIdEstado(cbEstado.Text);
 
                 // Insertar nuevo empleado
                 string query = @" INSERT INTO Persona (nombre, apellidoP, apellidoM, celularPrincipal, correoElectronico)
                     VALUES (@nombre, @apellidoP, @apellidoM, @celularPrincipal, @correo);
-                    SELECT SCOPE_IDENTITY();"; // Obtener el ID de la persona insertada
+                    SELECT SCOPE_IDENTITY();";
 
                 int idPersona = 0;
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))

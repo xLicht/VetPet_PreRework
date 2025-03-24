@@ -81,7 +81,7 @@ namespace VetPet_
                     LEFT JOIN 
                         Colonia colonia ON d.idColonia = colonia.idColonia
                     LEFT JOIN 
-                        Estado estado ON d.idEstado = estado.idEstado -- Hacer el LEFT JOIN con la tabla Estado
+                        Estado estado ON d.idEstado = estado.idEstado 
                     WHERE 
                      e.idEmpleado = @idEmpleado";
 
