@@ -160,6 +160,19 @@ namespace VetPet_
                 MessageBox.Show("Correo electronico invalido, Por favor, ingrese un correo electrónico válido.");
                 return false;
             }
+
+            if (!Regex.IsMatch(txtRFC.Text, @"^[A-ZÑ&]{3,4}\d{6}[A-Z\d]{3}$"))
+            {
+                MessageBox.Show("RFC inválido. Debe seguir el formato oficial.");
+                return false;
+            }
+
+            if (txtCP.Text.Length != 5 || !int.TryParse(txtCP.Text, out _))
+            {
+                MessageBox.Show("Código Postal inválido. Debe contener exactamente 5 dígitos.");
+                return false;
+            }
+
             return true;
         }
 
@@ -301,6 +314,8 @@ namespace VetPet_
             txtUsuario.Text = usuario;
         }
 
+
+     
         private void a_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
@@ -351,7 +366,7 @@ namespace VetPet_
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            
+          
         }
 
         private void cbColonia_KeyPress(object sender, KeyPressEventArgs e)
