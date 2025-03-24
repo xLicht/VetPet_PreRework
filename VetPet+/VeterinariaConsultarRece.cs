@@ -44,7 +44,7 @@ namespace VetPet_
                 MostrarDatosMascota();
                 MostrarDatosConsulta();
                 MostrarReceta();
-                //CargarMedicamentosRecetados();
+                CargarMedicamentosRecetados();
             }
             else
             {
@@ -146,57 +146,35 @@ namespace VetPet_
             }
         }
 
-        
         private void MostrarReceta()
         {
             try
             {
                 conexionDB.AbrirConexion();
 
-                // Primero, obtenemos la receta asociada a la consulta (filtrando por idConsulta)
-                string queryReceta = @"SELECT TOP 1 r.idReceta, r.indicaciones 
-                               FROM Receta r 
-                               WHERE r.idConsulta = @idConsulta";
-                int idReceta = 0;
-                using (SqlCommand cmdReceta = new SqlCommand(queryReceta, conexionDB.GetConexion()))
-                {
-                    cmdReceta.Parameters.AddWithValue("@idConsulta", datoConsulta);
-                    SqlDataReader reader = cmdReceta.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        idReceta = Convert.ToInt32(reader["idReceta"]);
-                        rtIndicaciones.Text = reader["indicaciones"].ToString();
-                    }
-                    else
-                    {
-                        // No se encontró receta: limpiar indicaciones o notificar
-                        rtIndicaciones.Text = "";
-                    }
-                    reader.Close();
-                }
+                string query = @"SELECT r.indicaciones, m.nombreGenérico, rm.cantidad
+                                 FROM Receta r
+                                 INNER JOIN Receta_Medicamento rm ON r.idReceta = rm.idReceta
+                                 INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
+                                 WHERE r.idConsulta = @idConsulta";
 
-                // Ahora, si se encontró una receta, obtenemos los medicamentos asociados
-                if (idReceta != 0)
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
-                    string queryMed = @"SELECT rm.idMedicamento, m.nombreGenérico, rm.cantidad
-                                FROM Receta_Medicamento rm
-                                INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
-                                WHERE rm.idReceta = @idReceta";
-                    using (SqlCommand cmdMed = new SqlCommand(queryMed, conexionDB.GetConexion()))
-                    {
-                        cmdMed.Parameters.AddWithValue("@idReceta", idReceta);
-                        SqlDataReader reader = cmdMed.ExecuteReader();
+                    cmd.Parameters.AddWithValue("@idConsulta", datoConsulta);
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                        listaMedicamentos.Clear();
-                        while (reader.Read())
+                    bool primeraFila = true;
+                    dtMedicamentos.Rows.Clear();
+
+                    while (reader.Read())
+                    {
+                        if (primeraFila)
                         {
-                            int idMedicamento = reader["idMedicamento"] != DBNull.Value ? Convert.ToInt32(reader["idMedicamento"]) : 0;
-                            string nombreMedicamento = reader["nombreGenérico"] != DBNull.Value ? reader["nombreGenérico"].ToString() : "Desconocido";
-                            int cantidad = reader["cantidad"] != DBNull.Value ? Convert.ToInt32(reader["cantidad"]) : 0;
-
-                            listaMedicamentos.Add(new Tuple<int, string, int>(idMedicamento, nombreMedicamento, cantidad));
+                            rtIndicaciones.Text = reader["indicaciones"].ToString();
+                            primeraFila = false;
                         }
-                        ActualizarDataGrid();
+
+                        dtMedicamentos.Rows.Add(reader["nombreGenérico"].ToString(), reader["cantidad"].ToString());
                     }
                 }
             }
@@ -210,24 +188,15 @@ namespace VetPet_
             }
         }
 
-
         private void MostrarDatosConsulta()
         {
-       
             try
             {
                 conexionDB.AbrirConexion();
 
-                // Se realiza un join entre Consulta y Cita para obtener la fecha de la cita
-                    string query = @"
-                SELECT 
-                    con.diagnostico, 
-                    con.peso, 
-                    con.temperatura,
-                    c.fechaProgramada AS FechaCita
-                FROM Consulta con
-                INNER JOIN Cita c ON con.idCita = c.idCita
-                WHERE con.idConsulta = @idConsulta";
+                string query = @"SELECT diagnostico, peso, temperatura, FechaConsulta 
+                         FROM Consulta 
+                         WHERE idConsulta = @idConsulta";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -239,8 +208,7 @@ namespace VetPet_
                         rtDiagnostico.Text = reader["diagnostico"].ToString();
                         txtPeso.Text = reader["peso"].ToString();
                         txtTemperatura.Text = reader["temperatura"].ToString();
-                        // Se muestra la fecha obtenida de la cita en lugar de FechaConsulta de la consulta
-                        txtFecha.Text = reader["FechaCita"].ToString();
+                        txtFecha.Text = reader["FechaConsulta"].ToString(); // NUEVO: Mostrar FechaConsulta
                     }
                 }
             }
