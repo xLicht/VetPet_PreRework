@@ -316,7 +316,59 @@ namespace VetPet_
             }
         }
 
-       
+
+        //private void AgregarServicioALista()
+        //{
+        //    if (cbServicioP.SelectedItem == null)
+        //    {
+        //        MessageBox.Show("Debe seleccionar al menos un servicio padre.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+
+        //    int idPadre = Convert.ToInt32(cbServicioP.SelectedValue);
+        //    string nombrePadre = cbServicioP.Text;
+
+        //    int idHijo = -1;
+        //    string nombreHijo = "";
+        //    int idNieto = -1;
+        //    string nombreNieto = "";
+
+        //    if (nombrePadre == "Consulta General")
+        //    {
+        //        idNieto = 4;
+        //        nombreNieto = "Consulta General";
+        //    }
+        //    else
+        //    {
+        //        if (cbServicioEspecifico.SelectedItem == null)
+        //        {
+        //            MessageBox.Show("Debe seleccionar un servicio hijo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            return;
+        //        }
+
+        //        idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
+        //        nombreHijo = cbServicioEspecifico.Text;
+
+        //        if (cbServicioNieto.SelectedItem != null)
+        //        {
+        //            idNieto = Convert.ToInt32(cbServicioNieto.SelectedValue);
+        //            nombreNieto = cbServicioNieto.Text;
+        //        }
+        //    }
+
+
+        //    string observacion = rtObservacion.Text.Trim();
+
+        //    string nombreServicioFinal = !string.IsNullOrEmpty(nombreNieto) ? nombreNieto : nombrePadre;
+
+
+        //    string empleado = "Ninguno";
+
+        //    listaServicios.Add(new ServicioSeleccionadoConsulta(nombreServicioFinal, empleado, false, 0, observacion));
+
+        //    ActualizarDataGrid();
+        //}
+
         private void AgregarServicioALista()
         {
             if (cbServicioP.SelectedItem == null)
@@ -327,16 +379,28 @@ namespace VetPet_
 
             int idPadre = Convert.ToInt32(cbServicioP.SelectedValue);
             string nombrePadre = cbServicioP.Text;
+            string empleado = "Ninguno";
+            string observacion = rtObservacion.Text.Trim();
 
-            int idHijo = -1;
-            string nombreHijo = "";
-            int idNieto = -1;
-            string nombreNieto = "";
-
-            if (nombrePadre == "Consulta General")
+            // Verifica si el servicio seleccionado es "Vacunas"
+            if (nombrePadre.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
             {
-                idNieto = 4;
-                nombreNieto = "Consulta General";
+                if (cbServicioNieto.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar una vacuna.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
+                string nombreVacuna = cbServicioNieto.Text;
+
+                // Agrega el servicio especificando que es vacuna
+                listaServicios.Add(new ServicioSeleccionadoConsulta(nombreVacuna, empleado, true, idVacuna, observacion));
+            }
+            else if (nombrePadre == "Consulta General")
+            {
+                // Caso especial para "Consulta General"
+                listaServicios.Add(new ServicioSeleccionadoConsulta("Consulta General", empleado, false, 0, observacion));
             }
             else
             {
@@ -346,29 +410,22 @@ namespace VetPet_
                     return;
                 }
 
-                idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
-                nombreHijo = cbServicioEspecifico.Text;
+                int idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
+                string nombreHijo = cbServicioEspecifico.Text;
+                string nombreFinal = nombreHijo; // Se puede ajustar según la lógica de negocio
 
+                // Si se selecciona un servicio nieto (para otros servicios que no son vacunas)
                 if (cbServicioNieto.SelectedItem != null)
                 {
-                    idNieto = Convert.ToInt32(cbServicioNieto.SelectedValue);
-                    nombreNieto = cbServicioNieto.Text;
+                    // Podrías realizar validación o asignación del id del nieto aquí si es necesario.
+                    nombreFinal = cbServicioNieto.Text;
                 }
+
+                listaServicios.Add(new ServicioSeleccionadoConsulta(nombreFinal, empleado, false, 0, observacion));
             }
-
-
-            string observacion = rtObservacion.Text.Trim();
-
-            string nombreServicioFinal = !string.IsNullOrEmpty(nombreNieto) ? nombreNieto : nombrePadre;
-
-     
-            string empleado = "Ninguno";
-
-            listaServicios.Add(new ServicioSeleccionadoConsulta(nombreServicioFinal, empleado, false, 0, observacion));
 
             ActualizarDataGrid();
         }
-
 
 
 
@@ -650,7 +707,6 @@ namespace VetPet_
 
                     if (servicio.EsVacuna)
                     {
-                        // Para vacunas, se inserta el idVacuna y se deja nulo el idServicioEspecificoNieto
                         query = @"INSERT INTO Servicio_Consulta 
                           (idConsulta, observacion, idServicioEspecificoNieto, idVacuna)
                           VALUES (@idConsulta, @observacion, NULL, @idVacuna)";
@@ -660,7 +716,6 @@ namespace VetPet_
                     }
                     else
                     {
-                        // Para otros servicios, se obtiene el idServicioEspecificoNieto en base al nombre del servicio
                         int idServicioNieto = ObtenerIdServicioNieto(servicio.NombreServicio);
                         query = @"INSERT INTO Servicio_Consulta 
                           (idConsulta, observacion, idServicioEspecificoNieto, idVacuna)
