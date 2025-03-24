@@ -217,10 +217,7 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string patron = TxtBuscar.Text;
-            string query = "SELECT     sp.nombre AS NombreServicio,cs.nombre AS ClaseServicio,\r\n  " +
-                "te.nombre AS TipoEmpleado FROM ServicioPadre sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n" +
-                "te.idtipoempleado INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio" +
-                " WHERE sp.nombre LIKE '%"+ patron + "%' AND sp.estado = 'A'";
+            string query = "SELECT     sp.nombre AS NombreServicio,    cs.nombre AS ClaseServicio, sp.descripcion   FROM ServicioPadre sp INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'AND sp.nombre LIKE '%" + patron + "%'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -252,10 +249,7 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string patron = TxtBuscar.Text;
-            string query = "SELECT     sp.nombre AS NombreServicio,cs.nombre AS ClaseServicio,\r\n  " +
-                "te.nombre AS TipoEmpleado FROM ServicioPadre sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n" +
-                "te.idtipoempleado INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio" +
-                " WHERE sp.nombre LIKE '%" + patron + "%' AND sp.estado = 'A'";
+            string query = "SELECT     sp.nombre AS NombreServicio,    cs.nombre AS ClaseServicio, sp.descripcion   FROM ServicioPadre sp INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'AND sp.nombre LIKE '%" + patron + "%'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try

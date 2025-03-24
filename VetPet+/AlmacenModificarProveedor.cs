@@ -58,26 +58,31 @@ namespace VetPet_
                 // Definir la consulta para obtener los datos del producto
                 string query = @"
                 SELECT 
-                    p.nombre AS NombreProveedor,                  
-                    p.celularPrincipal AS celularPrincipal,
-                    p.celularContactoPrincipal AS celularContactoPrincipal,
-                    ce.numero AS CelularProveedorExtra,
-                    p.correoElectronico AS CorreoElectronico,
-                    p.nombreContacto AS NombreContacto,
-                    ca.nombre AS Calle,
-                    co.nombre AS Colonia,
-                    cp.cp AS CodigoPostal,
-                    ci.nombre AS Ciudad,
-                    e.nombre AS Estado
-                FROM Proveedor p
-                INNER JOIN Celular ce ON p.idProveedor = ce.idProveedor
-                LEFT JOIN Direccion d ON p.idProveedor = d.idProveedor
-                LEFT JOIN Calle ca ON d.idCalle = ca.idCalle
-                LEFT JOIN Colonia co ON d.idColonia = co.idColonia
-                LEFT JOIN Cp cp ON d.idCp = cp.idCp
-                LEFT JOIN Ciudad ci ON d.idCiudad = ci.idCiudad
-                LEFT JOIN Estado e ON d.idEstado = e.idEstado
-                WHERE p.nombre = @nombreProveedor;"; // Se usa p.nombre correctamente
+                p.nombre AS NombreProveedor,                  
+                p.celularPrincipal AS celularPrincipal,
+                p.celularContactoPrincipal AS celularContactoPrincipal,
+                p.paginaWeb AS PaginaWeb,
+                p.apellidoPContacto AS ApellidoPContacto,
+                p.apellidoMContacto AS ApellidoMContacto,  
+                m.nombre AS Municipio,  -- Cambié 'm.Municipio' por 'm.nombre'
+                ce.numero AS CelularProveedorExtra,
+                p.correoElectronico AS CorreoElectronico,
+                p.nombreContacto AS NombreContacto,
+                ca.nombre AS Calle,
+                co.nombre AS Colonia,
+                cp.cp AS CodigoPostal,
+                ci.nombre AS Ciudad,
+                e.nombre AS Estado
+                    FROM Proveedor p
+                    INNER JOIN Celular ce ON p.idProveedor = ce.idProveedor
+                    LEFT JOIN Direccion d ON p.idProveedor = d.idProveedor
+                    LEFT JOIN Calle ca ON d.idCalle = ca.idCalle
+                    LEFT JOIN Colonia co ON d.idColonia = co.idColonia
+                    LEFT JOIN Cp cp ON d.idCp = cp.idCp
+                    LEFT JOIN Ciudad ci ON d.idCiudad = ci.idCiudad
+                    LEFT JOIN Estado e ON d.idEstado = e.idEstado
+                    LEFT JOIN Municipio m ON d.idMunicipio = m.idMunicipio
+                    WHERE p.nombre = @nombreProveedor;;"; // Se usa p.nombre correctamente
 
                 // Crear un SqlCommand con la conexión
                 SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
@@ -97,6 +102,10 @@ namespace VetPet_
                     txtCp.Text = reader["CodigoPostal"].ToString();
                     txtCiudad.Text = reader["Ciudad"].ToString();
                     txtEstado.Text = reader["Estado"].ToString();
+                    txtMunicipio.Text = reader["Municipio"].ToString();
+                    txtApellidoMaterno.Text = reader["ApellidoMContacto"].ToString();
+                    txtApellidoPaterno.Text = reader["ApellidoPContacto"].ToString();
+                    txtPaginaWeb.Text = reader["PaginaWeb"].ToString();
                 }
 
 
@@ -108,7 +117,7 @@ namespace VetPet_
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        
+
 
         private void AlmacenModificarProveedor_Resize(object sender, EventArgs e)
         {
@@ -152,15 +161,65 @@ namespace VetPet_
                 int idProveedor = ObtenerIdProveedorPorNombre(nombreProveedor);
 
                 // Actualizar los datos del proveedor
-                string queryProveedor = "UPDATE Proveedor SET nombre = @Nombre, celularPrincipal = @CelularPrincipal, correoElectronico = @Correo, nombreContacto = @NombreContacto, celularContactoPrincipal = @CelularContactoPrincipal WHERE idProveedor = @IdProveedor;";
+                string queryProveedor = @"
+                UPDATE Proveedor 
+                SET 
+                    nombre = @Nombre, 
+                    celularPrincipal = @CelularPrincipal, 
+                    correoElectronico = @Correo, 
+                    nombreContacto = @NombreContacto, 
+                    celularContactoPrincipal = @CelularContactoPrincipal,
+                    paginaWeb = @PaginaWeb,                    -- Se añade para la página web
+                    apellidoPContacto = @ApellidoPaterno,      -- Se añade para el apellido paterno
+                    apellidoMContacto = @ApellidoMaterno,       -- Se añade para el apellido materno
+                    estado = @Estado
+                WHERE idProveedor = @IdProveedor;";
                 SqlCommand cmdProveedor = new SqlCommand(queryProveedor, conexion.GetConexion(), transaction);
                 cmdProveedor.Parameters.AddWithValue("@Nombre", string.IsNullOrWhiteSpace(txtNombre.Text) ? (object)DBNull.Value : txtNombre.Text);
                 cmdProveedor.Parameters.AddWithValue("@CelularPrincipal", string.IsNullOrWhiteSpace(txtTelefono.Text) ? (object)DBNull.Value : txtTelefono.Text);
                 cmdProveedor.Parameters.AddWithValue("@Correo", string.IsNullOrWhiteSpace(txtCorreo.Text) ? (object)DBNull.Value : txtCorreo.Text);
                 cmdProveedor.Parameters.AddWithValue("@NombreContacto", string.IsNullOrWhiteSpace(txtNombreContacto.Text) ? (object)DBNull.Value : txtNombreContacto.Text);
                 cmdProveedor.Parameters.AddWithValue("@CelularContactoPrincipal", string.IsNullOrWhiteSpace(txtTelefonoContacto.Text) ? (object)DBNull.Value : txtTelefonoContacto.Text);
+                cmdProveedor.Parameters.AddWithValue("@PaginaWeb", string.IsNullOrWhiteSpace(txtPaginaWeb.Text) ? (object)DBNull.Value : txtPaginaWeb.Text); // Para la página web
+                cmdProveedor.Parameters.AddWithValue("@ApellidoPaterno", string.IsNullOrWhiteSpace(txtApellidoPaterno.Text) ? (object)DBNull.Value : txtApellidoPaterno.Text); // Para el apellido paterno
+                cmdProveedor.Parameters.AddWithValue("@ApellidoMaterno", string.IsNullOrWhiteSpace(txtApellidoMaterno.Text) ? (object)DBNull.Value : txtApellidoMaterno.Text); // Para el apellido materno
                 cmdProveedor.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdProveedor.Parameters.AddWithValue("@Estado", cmbEstadoMedicamento.SelectedItem.ToString());
                 cmdProveedor.ExecuteNonQuery();
+
+                // Actualizar el estado de todas las demás tablas si el estado es "A"
+                if (cmbEstadoMedicamento.SelectedItem.ToString() == "A")
+                {
+                    string queryActualizarEstados = @"
+                    UPDATE Celular SET estado = 'A' WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE idProveedor = @IdProveedor);
+                    UPDATE Direccion SET estado = 'A' WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE idProveedor = @IdProveedor);
+                    UPDATE Colonia SET estado = 'A' WHERE idColonia IN (SELECT idColonia FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Calle SET estado = 'A' WHERE idCalle IN (SELECT idCalle FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Cp SET estado = 'A' WHERE idCp IN (SELECT idCp FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Ciudad SET estado = 'A' WHERE idCiudad IN (SELECT idCiudad FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Estado SET estado = 'A' WHERE idEstado IN (SELECT idEstado FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Pais SET estado = 'A' WHERE idPais IN (SELECT idPais FROM Direccion WHERE idProveedor = @IdProveedor);";
+
+                    SqlCommand cmdActualizarEstados = new SqlCommand(queryActualizarEstados, conexion.GetConexion(), transaction);
+                    cmdActualizarEstados.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                    cmdActualizarEstados.ExecuteNonQuery();
+                }
+                if (cmbEstadoMedicamento.SelectedItem.ToString() == "I")
+                {
+                    string queryActualizarEstados = @"
+                    UPDATE Celular SET estado = 'I' WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE idProveedor = @IdProveedor);
+                    UPDATE Direccion SET estado = 'I' WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE idProveedor = @IdProveedor);
+                    UPDATE Colonia SET estado = 'I' WHERE idColonia IN (SELECT idColonia FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Calle SET estado = 'I' WHERE idCalle IN (SELECT idCalle FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Cp SET estado = 'I' WHERE idCp IN (SELECT idCp FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Ciudad SET estado = 'I' WHERE idCiudad IN (SELECT idCiudad FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Estado SET estado = 'I' WHERE idEstado IN (SELECT idEstado FROM Direccion WHERE idProveedor = @IdProveedor);
+                    UPDATE Pais SET estado = 'I' WHERE idPais IN (SELECT idPais FROM Direccion WHERE idProveedor = @IdProveedor);";
+
+                    SqlCommand cmdActualizarEstados = new SqlCommand(queryActualizarEstados, conexion.GetConexion(), transaction);
+                    cmdActualizarEstados.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                    cmdActualizarEstados.ExecuteNonQuery();
+                }
 
                 // Actualizar el celular extra
                 string queryActualizarCelularPrincipal = "UPDATE Celular SET numero = @Numero WHERE idProveedor = @IdProveedor AND idCelular = (SELECT TOP 1 idCelular FROM Celular WHERE idProveedor = @IdProveedor ORDER BY idCelular ASC);";
@@ -186,7 +245,7 @@ namespace VetPet_
                    UPDATE Pais
                    SET nombre = @NombrePais
                    WHERE IdPais IN (SELECT IdPais FROM Direccion WHERE IdProveedor = @IdProveedor)";
-                 SqlCommand cmdActualizarPais = new SqlCommand(queryActualizarPais, conexion.GetConexion(), transaction);
+                SqlCommand cmdActualizarPais = new SqlCommand(queryActualizarPais, conexion.GetConexion(), transaction);
                 cmdActualizarPais.Parameters.AddWithValue("@NombrePais", txtPais.Text); // Asume que txtPais es el TextBox con el nombre del país
                 cmdActualizarPais.Parameters.AddWithValue("@IdProveedor", idProveedor);
                 cmdActualizarPais.ExecuteNonQuery();
@@ -200,6 +259,16 @@ namespace VetPet_
                 cmdActualizarEstado.Parameters.AddWithValue("@NombreEstado", txtEstado.Text); // Asume que txtEstado es el TextBox con el nombre del estado
                 cmdActualizarEstado.Parameters.AddWithValue("@IdProveedor", idProveedor);
                 cmdActualizarEstado.ExecuteNonQuery();
+
+                // Actualizar municipio
+                string queryActualizarMunicipio = @"
+    UPDATE Municipio
+    SET nombre = @Municipio
+    WHERE idMunicipio IN (SELECT idMunicipio FROM Direccion WHERE idProveedor = @IdProveedor)";
+                SqlCommand cmdActualizarMunicipio = new SqlCommand(queryActualizarMunicipio, conexion.GetConexion(), transaction);
+                cmdActualizarMunicipio.Parameters.AddWithValue("@Municipio", string.IsNullOrWhiteSpace(txtMunicipio.Text) ? (object)DBNull.Value : txtMunicipio.Text); // Para el municipio
+                cmdActualizarMunicipio.Parameters.AddWithValue("@IdProveedor", idProveedor);
+                cmdActualizarMunicipio.ExecuteNonQuery();
 
 
                 // Actualizar el nombre de la ciudad
@@ -279,7 +348,7 @@ namespace VetPet_
             }
             return idProveedor;
         }
-  
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             // Llamar al formulario de opciones
@@ -293,20 +362,17 @@ namespace VetPet_
                         conexionBrandon conexion = new conexionBrandon();
                         conexion.AbrirConexion();
 
-                        // Consulta SQL para eliminar el medicamento
+                        // Consulta SQL para actualizar solo la columna 'estado'
                         string query = @"
-                        DELETE FROM Celular WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor);
-                        DELETE FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor);
-                        DELETE FROM Colonia WHERE idColonia IN (SELECT idColonia FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
-                        DELETE FROM Calle WHERE idCalle IN (SELECT idCalle FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
-                        DELETE FROM Cp WHERE idCp IN (SELECT idCp FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
-                        DELETE FROM Ciudad WHERE idCiudad IN (SELECT idCiudad FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
-                        DELETE FROM Estado WHERE idEstado IN (SELECT idEstado FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
-                        DELETE FROM Pais WHERE idPais IN (SELECT idPais FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
-                        DELETE FROM Proveedor WHERE nombre = @NombreProveedor;";
-
-
-
+                UPDATE Celular SET estado = 'I' WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor);
+                UPDATE Direccion SET estado = 'I' WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor);
+                UPDATE Colonia SET estado = 'I' WHERE idColonia IN (SELECT idColonia FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
+                UPDATE Calle SET estado = 'I' WHERE idCalle IN (SELECT idCalle FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
+                UPDATE Cp SET estado = 'I' WHERE idCp IN (SELECT idCp FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
+                UPDATE Ciudad SET estado = 'I' WHERE idCiudad IN (SELECT idCiudad FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
+                UPDATE Estado SET estado = 'I' WHERE idEstado IN (SELECT idEstado FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
+                UPDATE Pais SET estado = 'I' WHERE idPais IN (SELECT idPais FROM Direccion WHERE idProveedor IN (SELECT idProveedor FROM Proveedor WHERE nombre = @NombreProveedor));
+                UPDATE Proveedor SET estado = 'I' WHERE nombre = @NombreProveedor;";
 
                         using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
                         {
@@ -314,24 +380,24 @@ namespace VetPet_
 
                             try
                             {
-                                // Ejecutar la consulta de eliminación
+                                // Ejecutar la consulta de actualización
                                 int rowsAffected = cmd.ExecuteNonQuery();
 
-                                // Verificar si la eliminación fue exitosa
+                                // Verificar si la actualización fue exitosa
                                 if (rowsAffected > 0)
                                 {
-                                    MessageBox.Show("El Proveedor fue eliminado correctamente.");
-                                    // Redirigir al formulario de inventario después de la eliminación
+                                    MessageBox.Show("El estado del Proveedor fue actualizado correctamente.");
+                                    // Redirigir al formulario de inventario después de la actualización
                                     parentForm.formularioHijo(new AlmacenProveedor(parentForm));
                                 }
                                 else
                                 {
-                                    MessageBox.Show("No se pudo eliminar el Proveedor.");
+                                    MessageBox.Show("No se pudo actualizar el estado del Proveedor.");
                                 }
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Error al eliminar el Proveedor: " + ex.Message);
+                                MessageBox.Show("Error al actualizar el estado del Proveedor: " + ex.Message);
                             }
                             finally
                             {

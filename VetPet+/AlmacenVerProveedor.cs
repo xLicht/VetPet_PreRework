@@ -1,12 +1,16 @@
-﻿using System;
+﻿using iTextSharp.text.pdf.codec.wmf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace VetPet_
@@ -49,27 +53,32 @@ namespace VetPet_
                         ROW_NUMBER() OVER (PARTITION BY c.idProveedor ORDER BY c.numero) AS NumeroOrden
                     FROM Celular c
                 )
-                SELECT 
-                    p.nombre AS NombreProveedor,                  
-                    p.celularPrincipal AS celularPrincipal,
-                    p.celularContactoPrincipal AS celularContactoPrincipal,
-                    ce.numero AS CelularProveedorExtra,
-                    p.correoElectronico AS CorreoElectronico,
-                    p.nombreContacto AS NombreContacto,
-                    ca.nombre AS Calle,
-                    co.nombre AS Colonia,
-                    cp.cp AS CodigoPostal,
-                    ci.nombre AS Ciudad,
-                    e.nombre AS Estado
-                FROM Proveedor p
-                INNER JOIN Celular ce ON p.idProveedor = ce.idProveedor
-                LEFT JOIN Direccion d ON p.idProveedor = d.idProveedor
-                LEFT JOIN Calle ca ON d.idCalle = ca.idCalle
-                LEFT JOIN Colonia co ON d.idColonia = co.idColonia
-                LEFT JOIN Cp cp ON d.idCp = cp.idCp
-                LEFT JOIN Ciudad ci ON d.idCiudad = ci.idCiudad
-                LEFT JOIN Estado e ON d.idEstado = e.idEstado
-                WHERE p.nombre = @nombreProveedor;"; // Se usa p.nombre correctamente
+                SELECT
+                p.nombre AS NombreProveedor,                  
+                p.celularPrincipal AS celularPrincipal,
+                p.celularContactoPrincipal AS celularContactoPrincipal,
+                p.paginaWeb AS PaginaWeb,
+                p.apellidoPContacto AS ApellidoPContacto,
+                p.apellidoMContacto AS ApellidoMContacto,  
+                m.nombre AS Municipio,  --Cambié 'm.Municipio' por 'm.nombre'
+                ce.numero AS CelularProveedorExtra,
+                p.correoElectronico AS CorreoElectronico,
+                p.nombreContacto AS NombreContacto,
+                ca.nombre AS Calle,
+                co.nombre AS Colonia,
+                cp.cp AS CodigoPostal,
+                ci.nombre AS Ciudad,
+                e.nombre AS Estado
+                    FROM Proveedor p
+                    INNER JOIN Celular ce ON p.idProveedor = ce.idProveedor
+                    LEFT JOIN Direccion d ON p.idProveedor = d.idProveedor
+                    LEFT JOIN Calle ca ON d.idCalle = ca.idCalle
+                    LEFT JOIN Colonia co ON d.idColonia = co.idColonia
+                    LEFT JOIN Cp cp ON d.idCp = cp.idCp
+                    LEFT JOIN Ciudad ci ON d.idCiudad = ci.idCiudad
+                    LEFT JOIN Estado e ON d.idEstado = e.idEstado
+                    LEFT JOIN Municipio m ON d.idMunicipio = m.idMunicipio
+                    WHERE p.nombre = @nombreProveedor;  "; // Se usa p.nombre correctamente
 
                 // Crear un SqlCommand con la conexión
                 SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
@@ -89,6 +98,10 @@ namespace VetPet_
                     txtCp.Text = reader["CodigoPostal"].ToString();
                     txtCiudad.Text = reader["Ciudad"].ToString();
                     txtEstado.Text = reader["Estado"].ToString();
+                    txtMunicipio.Text = reader["Municipio"].ToString();
+                    txtApellidoMaterno.Text = reader["ApellidoMContacto"].ToString();
+                    txtApellidoPaterno.Text = reader["ApellidoPContacto"].ToString();
+                    txtPaginaWeb.Text = reader["PaginaWeb"].ToString();
                 }
                 reader.Close();
                 conexion.CerrarConexion();
