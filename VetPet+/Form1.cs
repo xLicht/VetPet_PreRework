@@ -152,7 +152,7 @@ namespace VetPet_
 
         private void BtnAtencionClient_Click(object sender, EventArgs e)
         {
-            formularioHijo(new MenuAtencionaCliente(this)); // Pasamos la referencia de Form1
+            formularioHijo(new MenuAtencionaCliente(this, IDUsuario)); // Pasamos la referencia de Form1
         }
 
         private void Form1_Load_1(object sender, EventArgs e)

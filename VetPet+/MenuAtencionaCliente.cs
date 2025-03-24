@@ -19,16 +19,25 @@ namespace VetPet_
         private float alturaOriginal;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
-
+        int idUsuario;
         public MenuAtencionaCliente(Form1 parent)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
             this.Load += MenuAtencionaCliente_Load;       // Evento Load
             this.Resize += MenuAtencionaCliente_Resize;   // Evento Resize
-            this.Controls.SetChildIndex(pictureBox1, 0); // Índice 0 = Capa superior
+            this.Controls.SetChildIndex(pictureBox1, 0); 
         }
 
+        public MenuAtencionaCliente(Form1 parent, int idUsuario)
+        {
+            InitializeComponent();
+            parentForm = parent;  // Guardamos la referencia del formulario principal
+            this.Load += MenuAtencionaCliente_Load;       // Evento Load
+            this.Resize += MenuAtencionaCliente_Resize;   // Evento Resize
+            this.Controls.SetChildIndex(pictureBox1, 0); // Índice 0 = Capa superior
+            this.idUsuario = idUsuario;
+        }
         private void MenuAtencionaCliente_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -83,7 +92,7 @@ namespace VetPet_
 
         private void button5_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasListado(parentForm));
+            parentForm.formularioHijo(new VentasListado(parentForm,idUsuario));
         }
     }
 }
