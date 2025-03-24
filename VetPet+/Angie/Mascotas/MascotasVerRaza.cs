@@ -50,7 +50,7 @@ namespace VetPet_.Angie.Mascotas
         };
 
                 // Llamar al método CargarDatosGenerico para cargar los datos de la raza
-                mismetodos.CargarDatosGenerico("Raza", idRaza, mapeoColumnasControles,listBox2,listBox1);
+                mismetodos.CargarDatosGenerico("Raza", idRaza, mapeoColumnasControles,listBox1,listBox2);
 
                 mismetodos.AbrirConexion();
                 // Obtener el idEspecie del ComboBox
