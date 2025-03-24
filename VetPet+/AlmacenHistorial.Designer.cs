@@ -124,7 +124,7 @@
             this.txtProducto.Name = "txtProducto";
             this.txtProducto.Size = new System.Drawing.Size(891, 24);
             this.txtProducto.TabIndex = 23;
-            this.txtProducto.Text = "Buscar nombre de producto";
+            this.txtProducto.Text = "Buscar nombre de factura";
             this.txtProducto.Enter += new System.EventHandler(this.txtProducto_Enter);
             // 
             // pictureBox3

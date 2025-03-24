@@ -202,7 +202,7 @@ namespace VetPet_
 
         private void txtProducto_Enter(object sender, EventArgs e)
         {
-            if (txtProducto.Text == "Buscar nombre de producto") // Si el texto predeterminado está presente
+            if (txtProducto.Text == "Buscar nombre de factura") // Si el texto predeterminado está presente
             {
                 txtProducto.Text = ""; // Limpia el TextBox
             }
@@ -210,35 +210,35 @@ namespace VetPet_
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string nombreBusqueda = txtProducto.Text.Trim(); // Obtener el texto ingresado
+            string numFacturaBusqueda = txtProducto.Text.Trim(); // Obtener el texto ingresado para el número de factura
 
             // Verificar si el campo de búsqueda está vacío
-            if (string.IsNullOrEmpty(nombreBusqueda) || nombreBusqueda == "Buscar nombre de producto")
+            if (string.IsNullOrEmpty(numFacturaBusqueda) || numFacturaBusqueda == "Buscar número de factura")
             {
-                MessageBox.Show("Por favor, ingresa un nombre para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingresa un número de factura para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Consulta SQL corregida para buscar solo en la tabla Producto
+            // Consulta SQL corregida para buscar por numFactura
             string query = @"
-                SELECT 
-                    p.numFactura AS Factura,
-                    pr.nombre AS Proveedor,
-                    prd.nombre AS Producto,
-                    dp.cantidad AS Cantidad,
-                    dp.precioProveedor AS Precio_Proveedor,
-                    dp.precioVenta AS Precio_Venta,
-                    dp.fechaCaducidad AS Fecha_Caducidad,
-                    p.fechaRecibido AS Fecha_Recibido
-                FROM Pedido p
-                INNER JOIN Detalles_Pedido dp ON p.idPedido = dp.idPedido
-                INNER JOIN Producto prd ON dp.idProducto = prd.idProducto
-                INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
-                WHERE prd.nombre LIKE @Nombre
-                ORDER BY p.fechaRecibido DESC"; 
+        SELECT 
+            p.numFactura AS Factura,
+            pr.nombre AS Proveedor,
+            prd.nombre AS Producto,
+            dp.cantidad AS Cantidad,
+            dp.precioProveedor AS Precio_Proveedor,
+            dp.precioVenta AS Precio_Venta,
+            dp.fechaCaducidad AS Fecha_Caducidad,
+            p.fechaRecibido AS Fecha_Recibido
+        FROM Pedido p
+        INNER JOIN Detalles_Pedido dp ON p.idPedido = dp.idPedido
+        INNER JOIN Producto prd ON dp.idProducto = prd.idProducto
+        INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
+        WHERE p.numFactura LIKE @NumFactura
+        ORDER BY p.fechaRecibido DESC";
 
-        // Llamar al método para cargar los datos con la consulta
-        CargarDatos(query, "%" + nombreBusqueda + "%");
+            // Llamar al método para cargar los datos con la consulta
+            CargarDatos(query, "%" + numFacturaBusqueda + "%");
         }
 
         private void CargarDatos(string query, string parametro)
@@ -249,7 +249,7 @@ namespace VetPet_
                 conexion.AbrirConexion();
 
                 SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
-                cmd.Parameters.AddWithValue("@Nombre", parametro);
+                cmd.Parameters.AddWithValue("@NumFactura", parametro);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -266,6 +266,7 @@ namespace VetPet_
                 conexion.CerrarConexion();
             }
         }
+
 
     }
 }
