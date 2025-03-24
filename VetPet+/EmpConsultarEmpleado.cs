@@ -59,7 +59,7 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string query = @"SELECT  e.usuario,e.contraseña, e.palabraClave, 
-                        p.nombre, p.apellidoP, p.apellidoM, p.celular, 
+                        p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
                         p.correoElectronico, t.nombre AS tipoEmpleado, pais.nombre AS pais,  calle.nombre AS calle, 
                         cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
                     FROM 
@@ -100,7 +100,7 @@ namespace VetPet_
                         txtNombre.Text = reader["nombre"].ToString();
                         txtApellidoP.Text = reader["apellidoP"].ToString();
                         txtApellidoM.Text = reader["apellidoM"].ToString();
-                        txtCelular.Text = reader["celular"].ToString();
+                        txtCelular.Text = reader["celularPrincipal"].ToString();
                         txtCorreo.Text = reader["correoElectronico"].ToString();
                         txtTipoEmpleado.Text = reader["tipoEmpleado"].ToString();
                         txtPais.Text = reader["pais"].ToString();

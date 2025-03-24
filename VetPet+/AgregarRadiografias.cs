@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Crypto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,14 +15,18 @@ namespace VetPet_
 {
     public partial class AgregarRadiografias : FormPadre
     {
+        string idSer;
+        string nombreServicio;
         public AgregarRadiografias()
         {
             InitializeComponent();
         }
-        public AgregarRadiografias(Form1 parent)
+        public AgregarRadiografias(Form1 parent, string id, string nombre)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia del formulario principal
+            idSer = id;
+            nombreServicio = nombre;
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -105,7 +110,10 @@ namespace VetPet_
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaRadiografias(parentForm));
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            int idServicio = conexion.ObtenerId(nombreServicio, "ServicioPadre");
+            parentForm.formularioHijo(new ListaRadiografias(parentForm, idServicio,nombreServicio));
         }
 
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
@@ -125,9 +133,13 @@ namespace VetPet_
 
         private void AgregarRadiografias_Load(object sender, EventArgs e)
         {
+            label1.Text = "Tipo de "+nombreServicio;
+            label2.Text = "Agregar "+nombreServicio;
+
+
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            conexion.cargarCombobox(comboBox1, "7");
+            conexion.cargarCombobox(comboBox1, idSer);
         }
     }
 }

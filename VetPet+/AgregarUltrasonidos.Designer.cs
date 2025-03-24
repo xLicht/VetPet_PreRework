@@ -350,6 +350,7 @@
             this.Controls.Add(this.label4);
             this.Name = "AgregarUltrasonidos";
             this.Text = "AgregarUltrasonidos";
+            this.Load += new System.EventHandler(this.AgregarUltrasonidos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -25,7 +25,7 @@ namespace VetPet_
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaVacunas(parentForm));
+            //parentForm.formularioHijo(new ListaVacunas(parentForm));
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace VetPet_
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ListaVacunas(parentForm));
+            //parentForm.formularioHijo(new ListaVacunas(parentForm));
         }
     }
 }

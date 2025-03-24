@@ -81,7 +81,7 @@ namespace VetPet_
                 string filtroNombre = txtBuscar.Text;
 
                 // Consulta SQL corregida para obtener los datos requeridos
-                string query = $@"SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celular
+                string query = $@"SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celularPrincipal
                             FROM Persona
                             WHERE estado = 'A'
                             ORDER BY nombre;";
@@ -98,7 +98,7 @@ namespace VetPet_
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        dtDueños.Rows.Add(row["idPersona"], row["nombre"], row["apellidoP"], row["apellidoM"], row["correoElectronico"], row["celular"]);
+                        dtDueños.Rows.Add(row["idPersona"], row["nombre"], row["apellidoP"], row["apellidoM"], row["correoElectronico"], row["celularPrincipal"]);
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace VetPet_
 
                 // Consulta SQL base
                 string query = $@"
-        SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celular
+        SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celularPrincipal
         FROM Persona
         WHERE estado = 'A'";
 
@@ -192,7 +192,7 @@ namespace VetPet_
                     {
                         dtDueños.Rows.Add(
                             row["idPersona"], row["nombre"], row["apellidoP"],
-                            row["apellidoM"], row["correoElectronico"], row["celular"]
+                            row["apellidoM"], row["correoElectronico"], row["celularPrincipal"]
                         );
                     }
                 }
@@ -233,7 +233,7 @@ namespace VetPet_
                 }
 
                 // Consulta SQL para obtener los datos ordenados según la columna seleccionada
-                string query = $@"SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celular
+                string query = $@"SELECT idPersona, nombre, apellidoP, apellidoM, correoElectronico, celularPrincipal
                           FROM Persona
                           WHERE estado = 'A'
                           ORDER BY {ordenColumna};";
@@ -255,7 +255,7 @@ namespace VetPet_
                             row["apellidoP"],
                             row["apellidoM"],
                             row["correoElectronico"],
-                            row["celular"]
+                            row["celularPrincipal"]
                         );
                     }
                 }

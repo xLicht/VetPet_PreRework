@@ -383,6 +383,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_3d_touch_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-3d-touch-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_aceptar_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-aceptar-50", resourceCulture);
@@ -554,9 +564,39 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_impresión_de_la_pata_del_perro_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-impresión-de-la-pata-del-perro-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_informe_gráfico_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-informe-gráfico-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_mascota_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-mascota-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_mascota_501 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-mascota-501", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -577,6 +617,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap icons8_medical_file_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-medical-file-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_para_ti_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-para-ti-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -627,6 +677,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap icons8_veterinario_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-veterinario-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_virus_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-virus-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -987,6 +1047,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap VetrinariaMascota {
             get {
                 object obj = ResourceManager.GetObject("VetrinariaMascota", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap view {
+            get {
+                object obj = ResourceManager.GetObject("view", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

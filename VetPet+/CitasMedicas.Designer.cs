@@ -33,18 +33,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.dtCitasMedicas = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.cbFliltrar = new System.Windows.Forms.ComboBox();
+            this.cbFiltrar = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnAgendarCita = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtCitasMedicas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -97,37 +103,71 @@
             this.dtCitasMedicas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtCitasMedicas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtCitasMedicas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
+            this.Column5,
             this.Column3,
-            this.Column4});
+            this.Column4,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9});
             this.dtCitasMedicas.EnableHeadersVisualStyles = false;
             this.dtCitasMedicas.Location = new System.Drawing.Point(73, 123);
             this.dtCitasMedicas.Name = "dtCitasMedicas";
             this.dtCitasMedicas.RowHeadersVisible = false;
+            this.dtCitasMedicas.RowHeadersWidth = 49;
             this.dtCitasMedicas.Size = new System.Drawing.Size(936, 374);
             this.dtCitasMedicas.TabIndex = 23;
+            this.dtCitasMedicas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellClick);
             this.dtCitasMedicas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellContentClick);
             // 
-            // Column1
+            // Column5
             // 
-            this.Column1.HeaderText = "Mascota";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Dueño";
-            this.Column2.Name = "Column2";
+            this.Column5.HeaderText = "Id";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Especie";
+            this.Column3.HeaderText = "fecha registro";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.Width = 120;
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Fecha de Nacimiento";
+            this.Column4.HeaderText = "fecha Programada";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.Width = 120;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "hora";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 120;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "duracion";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 120;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Mascota";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 120;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Motivo";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 120;
             // 
             // btnBuscar
             // 
@@ -142,35 +182,33 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtBuscar
             // 
             this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.txtBuscar.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.txtBuscar.Location = new System.Drawing.Point(415, 72);
+            this.txtBuscar.Location = new System.Drawing.Point(434, 72);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(376, 36);
             this.txtBuscar.TabIndex = 20;
-            this.txtBuscar.Text = "Ingrese el Nombre de Cliente";
             this.txtBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // cbFliltrar
+            // cbFiltrar
             // 
-            this.cbFliltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
-            this.cbFliltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFliltrar.FormattingEnabled = true;
-            this.cbFliltrar.Items.AddRange(new object[] {
+            this.cbFiltrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.cbFiltrar.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFiltrar.FormattingEnabled = true;
+            this.cbFiltrar.Items.AddRange(new object[] {
             "Mascota",
-            "Dueño",
-            "Especie",
-            "Fecha de Nacimiento"});
-            this.cbFliltrar.Location = new System.Drawing.Point(73, 76);
-            this.cbFliltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cbFliltrar.Name = "cbFliltrar";
-            this.cbFliltrar.Size = new System.Drawing.Size(151, 33);
-            this.cbFliltrar.TabIndex = 19;
+            "Fecha"});
+            this.cbFiltrar.Location = new System.Drawing.Point(73, 76);
+            this.cbFiltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbFiltrar.Name = "cbFiltrar";
+            this.cbFiltrar.Size = new System.Drawing.Size(151, 33);
+            this.cbFiltrar.TabIndex = 19;
             // 
             // pictureBox2
             // 
@@ -196,12 +234,41 @@
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaCitas;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(954, 514);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 45);
+            this.pictureBox3.TabIndex = 29;
+            this.pictureBox3.TabStop = false;
+            // 
+            // btnAgendarCita
+            // 
+            this.btnAgendarCita.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnAgendarCita.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgendarCita.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnAgendarCita.Location = new System.Drawing.Point(727, 509);
+            this.btnAgendarCita.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgendarCita.Name = "btnAgendarCita";
+            this.btnAgendarCita.Size = new System.Drawing.Size(282, 56);
+            this.btnAgendarCita.TabIndex = 28;
+            this.btnAgendarCita.Text = "Agendar Cita";
+            this.btnAgendarCita.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgendarCita.UseVisualStyleBackColor = false;
+            this.btnAgendarCita.Click += new System.EventHandler(this.btnAgendarCita_Click);
+            // 
             // CitasMedicas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.btnAgendarCita);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
@@ -210,13 +277,14 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.cbFliltrar);
+            this.Controls.Add(this.cbFiltrar);
             this.Name = "CitasMedicas";
             this.Text = "CitasMedicas";
             this.Load += new System.EventHandler(this.CitasMedicas_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dtCitasMedicas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,13 +297,18 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.DataGridView dtCitasMedicas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.ComboBox cbFliltrar;
+        private System.Windows.Forms.ComboBox cbFiltrar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button btnAgendarCita;
     }
 }

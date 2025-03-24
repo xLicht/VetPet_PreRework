@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie.Mascotas;
+using VetPet_.Angie.Ventas;
 
 namespace VetPet_.Angie
 {
@@ -161,7 +162,7 @@ namespace VetPet_.Angie
                     string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota));
                 }
             }
             catch (Exception ex)
@@ -173,7 +174,7 @@ namespace VetPet_.Angie
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MenuAtencionaCliente(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MenuMascotas(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

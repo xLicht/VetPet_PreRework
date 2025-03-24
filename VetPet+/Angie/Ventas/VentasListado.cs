@@ -46,7 +46,7 @@ namespace VetPet_
                 string query = @"
                 SELECT 
                     CI.idCita AS idCita,
-                    P.nombre AS Persona,
+                    P.nombre AS Dueño,
                     P.apellidoP AS ApellidoPaterno,
                     P.celularPrincipal AS Telefono,
                     M.nombre AS Mascota,
@@ -118,18 +118,18 @@ namespace VetPet_
 
                 if (string.IsNullOrEmpty(filtroTexto))
                 {
-                    Cargar();
-                    return; // No hace nada si el campo de búsqueda está vacío
+                    Cargar(); // Recarga los datos sin filtro si el campo de búsqueda está vacío
+                    return;
                 }
 
                 // Mapeo de nombres visibles a nombres reales de columnas
                 Dictionary<string, string> mapaColumnas = new Dictionary<string, string>
         {
             { "Dueño", "Persona.nombre" },
-            { "Apellido Paterno", "Persona.apellidoP" },
-            { "Telefono", "Celular.numero" },
+            { "ApellidoPaterno", "Persona.apellidoP" },
+            { "Telefono", "Persona.celularPrincipal" },
             { "Mascota", "Mascota.nombre" },
-            { "Fecha", "Cita.fechaProgramada" }
+            { "FechaCita", "Cita.fechaProgramada" }
         };
 
                 string query;
@@ -140,23 +140,21 @@ namespace VetPet_
                     query = @"
                 SELECT 
                     CI.idCita AS idCita,
-                    P.nombre AS Persona,
+                    P.nombre AS Dueño,
                     P.apellidoP AS ApellidoPaterno,
-                    C.numero AS Telefono,
+                    P.celularPrincipal AS Telefono,
                     M.nombre AS Mascota,
                     CI.fechaProgramada AS FechaCita
                 FROM 
                     Cita CI
-                JOIN 
+                INNER JOIN 
                     Mascota M ON CI.idMascota = M.idMascota
-                JOIN 
+                INNER JOIN 
                     Persona P ON M.idPersona = P.idPersona
-                JOIN 
-                    Celular C ON P.idPersona = C.idPersona
                 WHERE 
                     P.nombre LIKE @filtro 
                     OR P.apellidoP LIKE @filtro 
-                    OR C.numero LIKE @filtro 
+                    OR P.celularPrincipal LIKE @filtro 
                     OR M.nombre LIKE @filtro 
                     OR CONVERT(VARCHAR, CI.fechaProgramada, 103) LIKE @filtro";
                 }
@@ -164,24 +162,22 @@ namespace VetPet_
                 {
                     string columnaReal = mapaColumnas[columnaSeleccionada];
 
-                    if (columnaSeleccionada == "Fecha")
+                    if (columnaSeleccionada == "FechaCita")
                     {
                         query = $@"
                     SELECT 
                         CI.idCita AS idCita,
-                        P.nombre AS Persona,
-                        P.apellidoP AS Apellido_Paterno,
-                        C.numero AS Telefono,
+                        P.nombre AS Dueño,
+                        P.apellidoP AS ApellidoPaterno,
+                        P.celularPrincipal AS Telefono,
                         M.nombre AS Mascota,
-                        CI.fechaProgramada AS Fecha_Cita
+                        CI.fechaProgramada AS FechaCita
                     FROM 
                         Cita CI
-                    JOIN 
+                    INNER JOIN 
                         Mascota M ON CI.idMascota = M.idMascota
-                    JOIN 
+                    INNER JOIN 
                         Persona P ON M.idPersona = P.idPersona
-                    JOIN 
-                        Celular C ON P.idPersona = C.idPersona
                     WHERE 
                         CONVERT(VARCHAR, {columnaReal}, 103) LIKE @filtro";
                     }
@@ -190,19 +186,17 @@ namespace VetPet_
                         query = $@"
                     SELECT 
                         CI.idCita AS idCita,
-                        P.nombre AS Persona,
-                        P.apellidoP AS Apellido_Paterno,
-                        C.numero AS Telefono,
+                        P.nombre AS Dueño,
+                        P.apellidoP AS ApellidoPaterno,
+                        P.celularPrincipal AS Telefono,
                         M.nombre AS Mascota,
-                        CI.fechaProgramada AS Fecha_Cita
+                        CI.fechaProgramada AS FechaCita
                     FROM 
                         Cita CI
-                    JOIN 
+                    INNER JOIN 
                         Mascota M ON CI.idMascota = M.idMascota
-                    JOIN 
+                    INNER JOIN 
                         Persona P ON M.idPersona = P.idPersona
-                    JOIN 
-                        Celular C ON P.idPersona = C.idPersona
                     WHERE 
                         {columnaReal} LIKE @filtro";
                     }
@@ -216,7 +210,7 @@ namespace VetPet_
                 adaptador.Fill(dt);
 
                 dataGridView1.DataSource = dt;
-                dataGridView1.Columns["idCita"].Visible = false; // Oculta la columna
+                dataGridView1.Columns["idCita"].Visible = false; // Oculta la columna ID
             }
             catch (Exception ex)
             {

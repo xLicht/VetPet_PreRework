@@ -18,10 +18,16 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-        int idCita;
         private static DataTable dtProductos = new DataTable();
+        decimal sumaTotalProductos = 0;
+        decimal nuevoSubtotal = 0;
+        public static decimal MontoPagadoE = 0;    
+        public static decimal MontoPagadoT = 0;
+        public string FormularioOrigen { get; set; }
+
+        private int idCita;
+        private int stock;
         public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();
@@ -29,46 +35,76 @@ namespace VetPet_
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
         }
-        public VentasNuevaVenta(Form1 parent, decimal total, DataTable dt)
+        public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
         {
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
+            this.nuevoSubtotal = nuevoSubtotal;
+            if (dtProductos.Columns.Count == 0)
+            {
+                dtProductos = dt.Clone();
+            }
 
+            // Agregar los nuevos productos o medicamentos sin perder los anteriores
+            AgregarProductosAMedicamentos(dt);
+
+            // Vincular dtProductos al DataGridView
             BindingSource bs = new BindingSource();
-            bs.DataSource = dt;
+            bs.DataSource = dtProductos;
             dataGridView2.DataSource = bs;
 
-            decimal sumaTotal = dt.AsEnumerable()
-                .Where(r => r["Total"] != null && r["Total"] != DBNull.Value)
+            if (bandera == true)
+            {
+                MontoPagadoE = montoPagado;
+            }
+            if (bandera == false)
+            {
+                MontoPagadoT = montoPagado; 
+            }
+                
+            ActualizarSumaTotal();
+        }
+        
+        private void AgregarProductosAMedicamentos(DataTable dtNuevos)
+        {
+            foreach (DataRow row in dtNuevos.Rows)
+            {
+                int idProducto = row.Field<int>("idProducto");
+
+                // Buscar si el producto ya está en la tabla
+                DataRow existingRow = dtProductos.AsEnumerable()
+                    .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
+
+                if (existingRow == null)
+                {
+                    // Si no existe, agregarlo
+                    dtProductos.ImportRow(row);
+                }
+                else
+                {
+                    // Si ya existe, actualizar el total sumando el nuevo subtotal
+                    existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + Convert.ToDecimal(row["Total"]);
+                }
+            }
+        }
+        public void ActualizarSumaTotal()
+        {
+            // Sumar el total de productos
+            sumaTotalProductos = dtProductos.AsEnumerable()
+                .Where(r => r["Total"] != DBNull.Value)
                 .Sum(r => r.Field<decimal>("Total"));
 
-            textBox8.Text = sumaTotal.ToString("0.##");
-        }
-        public void Cargar()
-        {
-            try
-            {
-                // Crear instancia de Mismetodos
-                mismetodos = new Mismetodos();
+            textBox8.Text = "Subtotal: " + sumaTotalProductos.ToString("0.###");
 
-              
+            textBox9.Text = MontoPagadoE.ToString();
+            textBox10.Text = MontoPagadoT.ToString();
+
+            decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
+            textBox2.Text = montoRestante.ToString();
 
 
-
-                
-            }
-            catch (Exception ex)
-            {
-                // Manejar el error si ocurre algún problema
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                // Cerrar la conexión al finalizar
-                mismetodos.CerrarConexion();
-            }
         }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
         {
@@ -116,21 +152,21 @@ namespace VetPet_
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,idCita,sumaTotalProductos,stock);
             VentasAgregarProducto.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOri
             parentForm.formularioHijo(VentasAgregarProducto); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm);
-            VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
-            parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta";
+            parentForm.formularioHijo(VentasConfirmacionEfectivo);
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos,dtProductos);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
@@ -140,6 +176,5 @@ namespace VetPet_
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
-      
     }
 }

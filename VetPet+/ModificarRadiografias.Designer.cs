@@ -219,7 +219,7 @@
             "Dental",
             "Articular",
             "Craneo"});
-            this.comboBox1.Location = new System.Drawing.Point(806, 123);
+            this.comboBox1.Location = new System.Drawing.Point(721, 157);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(197, 26);
             this.comboBox1.TabIndex = 70;

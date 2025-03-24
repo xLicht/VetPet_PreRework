@@ -49,9 +49,8 @@ namespace VetPet_
         {
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
-            string query = "SELECT \r\n    sp.nombre AS NombreServicio, \r\n    cs.nombre AS ClaseServicio, \r\n    " +
-                "te.nombre AS TipoEmpleado\r\nFROM ServicioPadre sp\r\nINNER JOIN TipoEmpleado te ON sp.idtipoempleado = " +
-                "te.idtipoempleado\r\nINNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'";
+            string query = "SELECT     sp.nombre AS NombreServicio,    cs.nombre AS ClaseServicio, sp.descripcion\r\n     " +
+                "  FROM ServicioPadre sp INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -167,49 +166,46 @@ namespace VetPet_
             }
            else if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Asegúrate de que el clic sea dentro de los límites válidos
             {
+                conexionAlex conexion = new conexionAlex();
+                conexion.AbrirConexion();
                 DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
                 // Aquí puedes obtener el valor de la celda clickeada
                 string valorCelda = cell.Value.ToString();
-
+                int idServicio = conexion.ObtenerId(valorCelda, "ServicioPadre");
                 // Dependiendo del valor o cualquier otro criterio, puedes abrir el formulario correspondiente
-                switch (valorCelda)
-                {
-                    case "Cirugías":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
-                        break;
-                    case "Acicalamiento":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
-                        break;
-                    case "Consulta General":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
-                        break;
-                    case "Cremacion":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
-                        break;
-                    case "Masaje":
-                        parentForm.formularioHijo(new ListaCirugias(parentForm));
-                        break;
-                    case "Rayos X":
-                        parentForm.formularioHijo(new ListaRayosX(parentForm));
-                        break;
-                    case "Estudios de Laboratorio":
-                        parentForm.formularioHijo(new ListaPLab(parentForm));
-                        break;
-                    case "Ultrasonidos":
-                        parentForm.formularioHijo(new ListaUltrasonidos(parentForm));
-                        break;
-                    case "Vacunas":
-                        parentForm.formularioHijo(new ListaVacunas(parentForm));
-                        break;
-                    case "Radiografía":
-                        parentForm.formularioHijo(new ListaRadiografias(parentForm));
-                        break;
-                    // Agrega más casos según los tipos de servicio que tengas
-                    default:
-                        MessageBox.Show("No se encontró formulario para este servicio.");
-                        break;
-                }
+                if(valorCelda=="Vacunas")
+                    parentForm.formularioHijo(new ListaVacunas(parentForm, idServicio));
+                else
+                    parentForm.formularioHijo(new ListaRadiografias(parentForm, idServicio, valorCelda));
+                //switch (valorCelda)
+                //{
+                //    case "Cirugías":
+                //        parentForm.formularioHijo(new ListaCirugias(parentForm,idServicio));
+                //        break;
+                //    case "Sencillos":
+                //        parentForm.formularioHijo(new ListaCirugias(parentForm, idServicio));
+                //        break;
+                //    case "Rayos X":
+                //        parentForm.formularioHijo(new ListaRayosX(parentForm, idServicio));
+                //        break;
+                //    case "Estudios de Laboratorio":
+                //        parentForm.formularioHijo(new ListaPLab(parentForm, idServicio));
+                //        break;
+                //    case "Ultrasonidos":
+                //        parentForm.formularioHijo(new ListaUltrasonidos(parentForm,idServicio)); //noterminado
+                //        break;
+                //    case "Vacunas":
+                //        parentForm.formularioHijo(new ListaVacunas(parentForm));
+                //        break;
+                //    case "Radiografía":
+                //        parentForm.formularioHijo(new ListaRadiografias(parentForm, idServicio,valorCelda));
+                //        break;
+                //    // Agrega más casos según los tipos de servicio que tengas
+                //    default:
+                //        MessageBox.Show("No se encontró formulario para este servicio.");
+                //        break;
+                //}
             }
         }
 
@@ -221,10 +217,7 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string patron = TxtBuscar.Text;
-            string query = "SELECT     sp.nombre AS NombreServicio,cs.nombre AS ClaseServicio,\r\n  " +
-                "te.nombre AS TipoEmpleado FROM ServicioPadre sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n" +
-                "te.idtipoempleado INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio" +
-                " WHERE sp.nombre LIKE '%"+ patron + "%' AND sp.estado = 'A'";
+            string query = "SELECT     sp.nombre AS NombreServicio,    cs.nombre AS ClaseServicio, sp.descripcion   FROM ServicioPadre sp INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'AND sp.nombre LIKE '%" + patron + "%'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try
@@ -256,10 +249,7 @@ namespace VetPet_
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
             string patron = TxtBuscar.Text;
-            string query = "SELECT     sp.nombre AS NombreServicio,cs.nombre AS ClaseServicio,\r\n  " +
-                "te.nombre AS TipoEmpleado FROM ServicioPadre sp INNER JOIN TipoEmpleado te ON sp.idtipoempleado = \r\n" +
-                "te.idtipoempleado INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio" +
-                " WHERE sp.nombre LIKE '%" + patron + "%' AND sp.estado = 'A'";
+            string query = "SELECT     sp.nombre AS NombreServicio,    cs.nombre AS ClaseServicio, sp.descripcion   FROM ServicioPadre sp INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio WHERE sp.estado = 'A'AND sp.nombre LIKE '%" + patron + "%'";
             using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
             {
                 try

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Math;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,47 +49,39 @@ namespace VetPet_
         }
         private void LlenarDataGridView()
         {
-            // Crear la conexión a la base de datos
             conexionBrandon conexion = new conexionBrandon();
             try
             {
                 conexion.AbrirConexion();
 
-                // Consulta SQL para obtener la información de Pedido, Producto, Medicamento y Proveedor
+                // Consulta SQL actualizada
                 string query = @"
                 SELECT 
-                    pr.nombre AS Proveedor, 
-                    CASE 
-                        WHEN pe.idProducto IS NOT NULL THEN p.nombre
-                        ELSE m.nombreGenérico
-                    END AS Producto, 
-                    pe.cantidad, 
-                    pe.total, 
-                    pe.fechaRecibido
-                FROM Pedido pe
-                LEFT JOIN Producto p ON pe.idProducto = p.idProducto
-                LEFT JOIN Medicamento m ON pe.idMedicamento = m.idMedicamento
-                INNER JOIN Proveedor pr ON pe.idProveedor = pr.idProveedor";
-
-                // Crear el comando SQL
-                SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
-
-                // Crear un DataAdapter para llenar el DataTable
+                    p.numFactura AS Factura,
+                    pr.nombre AS Proveedor,
+                    prd.nombre AS Producto,
+                    dp.cantidad AS Cantidad,
+                    dp.precioProveedor AS Precio_Proveedor,
+                    dp.precioVenta AS Precio_Venta,
+                    dp.fechaCaducidad AS Fecha_Caducidad,
+                    p.fechaRecibido AS Fecha_Recibido
+                FROM Pedido p
+                INNER JOIN Detalles_Pedido dp ON p.idPedido = dp.idPedido
+                INNER JOIN Producto prd ON dp.idProducto = prd.idProducto
+                INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
+                ORDER BY p.fechaRecibido DESC"; 
+        
+        SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
-
-                // Llenar el DataTable con los datos de la base de datos
                 da.Fill(dt);
 
-                // Asignar el DataTable como la fuente de datos del DataGridView
                 dataGridView1.DataSource = dt;
-
-                // Si deseas ajustar el tamaño de las columnas automáticamente
                 dataGridView1.AutoResizeColumns();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+                MessageBox.Show("Error al cargar el historial de pedidos: " + ex.Message);
             }
             finally
             {
@@ -132,49 +125,40 @@ namespace VetPet_
             switch (comboBox1.SelectedItem.ToString())
             {
                 case "Eliminar Filtro":
-                    // Mostrar todos los pedidos (con productos y medicamentos)
+                    // Mostrar todos los pedidos con sus productos
                     query = @"
-                SELECT 
-                    CASE 
-                        WHEN pe.idProducto IS NOT NULL THEN p.nombre
-                        ELSE m.nombreGenérico
-                    END AS Producto, 
-                    pr.nombre AS Proveedor, 
-                    pe.cantidad, 
-                    pe.total, 
-                    pe.fechaRecibido
-                FROM Pedido pe
-                LEFT JOIN Producto p ON pe.idProducto = p.idProducto
-                LEFT JOIN Medicamento m ON pe.idMedicamento = m.idMedicamento
-                INNER JOIN Proveedor pr ON pe.idProveedor = pr.idProveedor";
-                    break;
-
-                case "Medicamentos":
-                    // Mostrar solo los medicamentos
-                    query = @"
-                SELECT 
-                    m.nombreGenérico AS Producto, 
-                    pr.nombre AS Proveedor, 
-                    pe.cantidad, 
-                    pe.total, 
-                    pe.fechaRecibido
-                FROM Pedido pe
-                INNER JOIN Medicamento m ON pe.idMedicamento = m.idMedicamento
-                INNER JOIN Proveedor pr ON pe.idProveedor = pr.idProveedor";
+            SELECT 
+                p.numFactura AS Factura,
+                pr.nombre AS Proveedor,
+                prod.nombre AS Producto,
+                dp.cantidad AS Cantidad,
+                dp.precioProveedor AS Precio_Proveedor,
+                dp.precioVenta AS Precio_Venta,
+                dp.fechaCaducidad AS Fecha_Caducidad,
+                p.fechaRecibido AS Fecha_Recibido
+            FROM Pedido p
+            INNER JOIN Detalles_Pedido dp ON p.idPedido = dp.idPedido
+            INNER JOIN Producto prod ON dp.idProducto = prod.idProducto
+            INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
+            ORDER BY p.fechaRecibido DESC"; 
                     break;
 
                 case "Productos":
-                    // Mostrar solo los productos
+                    // Mostrar solo los productos de los pedidos
                     query = @"
-                SELECT 
-                    p.nombre AS Producto, 
-                    pr.nombre AS Proveedor, 
-                    pe.cantidad, 
-                    pe.total, 
-                    pe.fechaRecibido
-                FROM Pedido pe
-                INNER JOIN Producto p ON pe.idProducto = p.idProducto
-                INNER JOIN Proveedor pr ON pe.idProveedor = pr.idProveedor";
+            SELECT 
+                prod.nombre AS Producto,
+                pr.nombre AS Proveedor,
+                dp.cantidad AS Cantidad,
+                dp.precioProveedor AS Precio_Proveedor,
+                dp.precioVenta AS Precio_Venta,
+                dp.fechaCaducidad AS Fecha_Caducidad,
+                p.fechaRecibido AS Fecha_Recibido
+            FROM Pedido p
+            INNER JOIN Detalles_Pedido dp ON p.idPedido = dp.idPedido
+            INNER JOIN Producto prod ON dp.idProducto = prod.idProducto
+            INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
+            ORDER BY p.fechaRecibido DESC";
                     break;
 
                 default:
@@ -218,7 +202,7 @@ namespace VetPet_
 
         private void txtProducto_Enter(object sender, EventArgs e)
         {
-            if (txtProducto.Text == "Buscar nombre de producto") // Si el texto predeterminado está presente
+            if (txtProducto.Text == "Buscar nombre de factura") // Si el texto predeterminado está presente
             {
                 txtProducto.Text = ""; // Limpia el TextBox
             }
@@ -226,71 +210,63 @@ namespace VetPet_
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string nombreBusqueda = txtProducto.Text.Trim(); // Obtener el texto ingresado
+            string numFacturaBusqueda = txtProducto.Text.Trim(); // Obtener el texto ingresado para el número de factura
 
             // Verificar si el campo de búsqueda está vacío
-            if (string.IsNullOrEmpty(nombreBusqueda) || nombreBusqueda == "Buscar nombre de producto")
+            if (string.IsNullOrEmpty(numFacturaBusqueda) || numFacturaBusqueda == "Buscar número de factura")
             {
-                MessageBox.Show("Por favor, ingresa un nombre para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingresa un número de factura para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Definir la consulta SQL para buscar tanto en la tabla Producto como en Medicamento
+            // Consulta SQL corregida para buscar por numFactura
             string query = @"
-                SELECT 
-                    pr.nombre AS Producto,
-                    CASE 
-                        WHEN m.nombreGenérico IS NOT NULL THEN m.nombreGenérico
-                        ELSE 'N/A'
-                    END AS Medicamento,
-                    p.nombre AS Proveedor,
-                    pe.cantidad,
-                    pe.total,
-                    pe.fechaRecibido
-                FROM Pedido pe
-                LEFT JOIN Producto pr ON pe.idProducto = pr.idProducto
-                LEFT JOIN Medicamento m ON pe.idMedicamento = m.idMedicamento
-                LEFT JOIN Proveedor p ON pe.idProveedor = p.idProveedor
-                WHERE pr.nombre LIKE @Nombre OR m.nombreGenérico LIKE @Nombre
-            ";
+        SELECT 
+            p.numFactura AS Factura,
+            pr.nombre AS Proveedor,
+            prd.nombre AS Producto,
+            dp.cantidad AS Cantidad,
+            dp.precioProveedor AS Precio_Proveedor,
+            dp.precioVenta AS Precio_Venta,
+            dp.fechaCaducidad AS Fecha_Caducidad,
+            p.fechaRecibido AS Fecha_Recibido
+        FROM Pedido p
+        INNER JOIN Detalles_Pedido dp ON p.idPedido = dp.idPedido
+        INNER JOIN Producto prd ON dp.idProducto = prd.idProducto
+        INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
+        WHERE p.numFactura LIKE @NumFactura
+        ORDER BY p.fechaRecibido DESC";
 
-            // Llamar al método de cargar datos con la consulta
-            CargarDatos(query, "%" + nombreBusqueda + "%");
+            // Llamar al método para cargar los datos con la consulta
+            CargarDatos(query, "%" + numFacturaBusqueda + "%");
         }
 
-        private void CargarDatos(string query, string nombreBusqueda)
+        private void CargarDatos(string query, string parametro)
         {
-            // Crear la conexión a la base de datos
             conexionBrandon conexion = new conexionBrandon();
             try
             {
                 conexion.AbrirConexion();
 
-                // Crear el comando SQL
                 SqlCommand cmd = new SqlCommand(query, conexion.GetConexion());
+                cmd.Parameters.AddWithValue("@NumFactura", parametro);
 
-                // Añadir el parámetro de búsqueda
-                cmd.Parameters.AddWithValue("@Nombre", nombreBusqueda);
-
-                // Crear un DataAdapter para llenar el DataTable
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
-
-                // Llenar el DataTable con los datos de la base de datos
                 da.Fill(dt);
 
-                // Asignar el DataTable como la fuente de datos del DataGridView
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+                MessageBox.Show("Error al buscar el producto: " + ex.Message);
             }
             finally
             {
                 conexion.CerrarConexion();
             }
         }
+
 
     }
 }

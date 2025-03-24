@@ -54,6 +54,43 @@ namespace VetPet_
 
             // Cargar los productos
             CargarComboBoxProducto();
+
+            CargarComboBoxEstadoProducto();
+        }
+        private void CargarComboBoxEstadoProducto()
+        {
+            // Crear la instancia de la clase conexionBrandon
+            conexionBrandon conexion = new conexionBrandon();
+            conexion.AbrirConexion();
+
+            // Crear la consulta para obtener los posibles valores de estado (suponiendo que estén en una tabla o definidos como constantes)
+            string query = "SELECT DISTINCT estado FROM Producto";
+
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Limpiar cualquier valor previo del ComboBox
+                    cmbEstadoMedicamento.Items.Clear();
+
+                    // Llenar el ComboBox con los valores de estado
+                    while (reader.Read())
+                    {
+                        // Agregar el estado al ComboBox
+                        cmbEstadoMedicamento.Items.Add(reader["estado"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar los estados de Medicamento: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.GetConexion().Close(); // Cerrar la conexión
+                }
+            }
         }
         private void CargarComboBoxPresentacion()
         {
@@ -278,18 +315,28 @@ namespace VetPet_
                 conexionBrandon conexion = new conexionBrandon();
                 conexion.AbrirConexion();
 
-                // Definir la consulta de actualización
+                // Definir la consulta para actualizar tanto el medicamento como el producto
                 string query = @"
-            UPDATE Medicamento
-            SET 
-                nombreGenérico = @Nombre,
-                dosisRecomendada = @Dosis,
-                intervalo = @Intervalo,
-                idPresentacion = @IdPresentacion,
-                idLaboratorio = @IdLaboratorio,
-                idViaAdministracion = @IdViaAdministracion,
-                idProducto = @IdProducto
-            WHERE nombreGenérico = @NombreMedicamento";
+        BEGIN TRANSACTION;
+
+        -- Actualizar el estado del producto relacionado con el medicamento
+        UPDATE Producto
+        SET estado = @Estado
+        WHERE idProducto = @IdProducto;
+
+        -- Actualizar los datos del medicamento
+        UPDATE Medicamento
+        SET 
+            nombreGenérico = @Nombre,
+            dosisRecomendada = @Dosis,
+            intervalo = @Intervalo,
+            idPresentacion = @IdPresentacion,
+            idLaboratorio = @IdLaboratorio,
+            idViaAdministracion = @IdViaAdministracion
+        WHERE nombreGenérico = @NombreMedicamento;
+
+        COMMIT TRANSACTION;
+        ";
 
                 // Crear el comando SQL
                 using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
@@ -301,8 +348,9 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@IdPresentacion", txtIdPresentacion.Text);
                     cmd.Parameters.AddWithValue("@IdLaboratorio", txtIdLaboratorio.Text);
                     cmd.Parameters.AddWithValue("@IdViaAdministracion", txtIdViaAdministracion.Text);
-                    cmd.Parameters.AddWithValue("@IdProducto", txtIdProducto.Text);
+                    cmd.Parameters.AddWithValue("@IdProducto", txtIdProducto.Text); // Asegúrate de que el idProducto es correcto
                     cmd.Parameters.AddWithValue("@NombreMedicamento", nombreMedicamento);
+                    cmd.Parameters.AddWithValue("@Estado", cmbEstadoMedicamento.SelectedItem.ToString()); // El estado seleccionado en el ComboBox
 
                     // Ejecutar el comando de actualización
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -310,11 +358,11 @@ namespace VetPet_
                     // Verificar si la actualización fue exitosa
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Los datos del medicamento fueron actualizados correctamente.");
+                        MessageBox.Show("Los datos del medicamento y producto fueron actualizados correctamente.");
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo actualizar el medicamento.");
+                        MessageBox.Show("No se pudo actualizar el medicamento o el producto.");
                     }
                 }
 
@@ -325,6 +373,7 @@ namespace VetPet_
                 MessageBox.Show("Error al guardar los datos: " + ex.Message);
             }
         }
+
 
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -345,40 +394,53 @@ namespace VetPet_
                         conexionBrandon conexion = new conexionBrandon();
                         conexion.AbrirConexion();
 
-                        // Consulta SQL para eliminar el medicamento
-                        string query = @"
-                    DELETE FROM Medicamento 
-                    WHERE nombreGenérico = @NombreMedicamento";
+                        // Consulta SQL para obtener el idProducto relacionado con el medicamento
+                        string queryGetIdProducto = @"
+                        SELECT idProducto
+                        FROM Medicamento
+                        WHERE nombreGenérico = @NombreMedicamento";
 
-                        using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+                        SqlCommand cmdGetIdProducto = new SqlCommand(queryGetIdProducto, conexion.GetConexion());
+                        cmdGetIdProducto.Parameters.AddWithValue("@NombreMedicamento", nombreMedicamento);
+
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@NombreMedicamento", nombreMedicamento);
+                            // Obtener el idProducto del medicamento
+                            int idProducto = (int)cmdGetIdProducto.ExecuteScalar();
 
-                            try
+                            // Consulta SQL para actualizar el estado del producto a inactivo (estado = 'I')
+                            string queryUpdateEstado = @"
+                            UPDATE Producto
+                            SET estado = 'I'
+                            WHERE idProducto = @IdProducto;";
+
+                            // Ahora actualizamos el estado del producto usando el idProducto obtenido
+                            using (SqlCommand cmdUpdateEstado = new SqlCommand(queryUpdateEstado, conexion.GetConexion()))
                             {
-                                // Ejecutar la consulta de eliminación
-                                int rowsAffected = cmd.ExecuteNonQuery();
+                                cmdUpdateEstado.Parameters.AddWithValue("@IdProducto", idProducto);
 
-                                // Verificar si la eliminación fue exitosa
+                                // Ejecutar la actualización del estado del producto
+                                int rowsAffected = cmdUpdateEstado.ExecuteNonQuery();
+
                                 if (rowsAffected > 0)
                                 {
-                                    MessageBox.Show("El medicamento fue eliminado correctamente.");
-                                    // Redirigir al formulario de inventario después de la eliminación
+                                    MessageBox.Show("El Producto fue marcado como inactivo correctamente.");
+                                    // Aquí redirigir al formulario de inventario después de la actualización
                                     parentForm.formularioHijo(new AlmacenInventarioMedicamentos(parentForm));
                                 }
                                 else
                                 {
-                                    MessageBox.Show("No se pudo eliminar el medicamento.");
+                                    MessageBox.Show("No se pudo actualizar el estado del Producto.");
                                 }
                             }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Error al eliminar el medicamento: " + ex.Message);
-                            }
-                            finally
-                            {
-                                conexion.CerrarConexion(); // Cerrar la conexión
-                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                        finally
+                        {
+                            conexion.CerrarConexion(); // Cerrar la conexión
                         }
                     }
                     else if (opcionesForm.Resultado == "No")
@@ -388,6 +450,8 @@ namespace VetPet_
                 }
             }
         }
+
+
 
         private void cmbPresentacion_SelectedIndexChanged(object sender, EventArgs e)
         {

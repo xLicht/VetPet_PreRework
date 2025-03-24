@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
+using VetPet_.Angie.Ventas;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace VetPet_
@@ -67,7 +68,7 @@ namespace VetPet_
 
         private void btnMascotas_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MenuMascotas(parentForm)); // Pasamos la referencia de Form1 a 
          }
 
         private void btnCitas_Click(object sender, EventArgs e)

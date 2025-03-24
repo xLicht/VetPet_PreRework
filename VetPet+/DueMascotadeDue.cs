@@ -141,7 +141,7 @@ namespace VetPet_
                     DatoEmpleadoGlobal = DatoEmpleado; // Guarda el dato globalmente
                     //int idMascota = Convert.ToInt32(dtMascotas.Rows[e.RowIndex].Cells["idMascota"].Value);
                     //string nombreMascota = dtMascotas.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
-                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota, nombreMascota));
+                    parentForm.formularioHijo(new MascotasConsultar(parentForm, idMascota));
                   //  MascotasConsultar formularioHijo = new MascotasConsultar(parentForm, idMascotaSeleccionada);
                    // formularioHijo.DatoMascota = idEmpleadoSeleccionado;
                     //parentForm.formularioHijo(formularioHijo);
