@@ -35,12 +35,13 @@ namespace VetPet_
                 string query = @"SELECT 
                     p.nombre AS Presentacion,
                     m.nombreGenérico AS Nombre,
-                    pr.stock AS Inventario,
-                    pr.precioventa AS Precio,
+                    dp.cantidad AS Inventario,
+                    dp.precioVenta AS Precio,
                     pro.nombre
                     FROM Medicamento m
                     JOIN presentacion p ON m.idpresentacion = p.idpresentacion
                     JOIN producto pr ON m.idproducto = pr.idproducto
+                    JOIN detalles_pedido dp ON pr.idproducto = dp.idproducto
                     JOIN Proveedor pro ON pr.idProveedor = pro.idProveedor";
 
                 // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
@@ -188,11 +189,12 @@ namespace VetPet_
                 string query = @"SELECT 
                             p.nombre AS Presentacion,
                             m.nombreGenérico AS Nombre,
-                            pr.stock AS Inventario,
-                            pr.precioventa AS Precio
+                            dp.cantidad AS Inventario,
+                            dp.precioVenta AS Precio
                         FROM Medicamento m
                         JOIN presentacion p ON m.idpresentacion = p.idpresentacion
                         JOIN producto pr ON m.idproducto = pr.idproducto
+                        JOIN detalles_pedido dp ON pr.idproducto = dp.idproducto
                         WHERE m.nombreGenérico LIKE @nombreMedicamento"; // Usar LIKE para hacer la búsqueda
 
                 // Crear un SqlDataAdapter usando la conexión obtenida de la clase conexionBrandon
@@ -295,11 +297,12 @@ namespace VetPet_
                     SELECT 
                         p.nombre AS Presentacion,
                         m.nombreGenérico AS Nombre,
-                        pr.stock AS Inventario,
-                        pr.precioventa AS Precio
+                        dp.cantidad AS Inventario,
+                        dp.precioVenta AS Precio
                     FROM Medicamento m
                     JOIN presentacion p ON m.idpresentacion = p.idpresentacion
-                    JOIN producto pr ON m.idproducto = pr.idproducto";
+                    JOIN producto pr ON m.idproducto = pr.idproducto
+                    JOIN detalles_pedido dp ON pr.idproducto = dp.idproducto";
 
                     // Si hay un filtro, agregar la cláusula WHERE
                     if (!string.IsNullOrEmpty(filtro))
@@ -358,11 +361,12 @@ namespace VetPet_
             SELECT 
                 p.nombre AS Presentacion,
                 m.nombreGenérico AS Nombre,
-                pr.stock AS Inventario,
-                pr.precioventa AS Precio
+                dp.cantidad AS Inventario,
+                dp.precioVenta AS Precio
             FROM Medicamento m
             JOIN presentacion p ON m.idpresentacion = p.idpresentacion
             JOIN producto pr ON m.idproducto = pr.idproducto
+             JOIN detalles_pedido dp ON pr.idproducto = dp.idproducto
             WHERE CAST(pr.fechaRegistro AS DATE) = @fechaSeleccionada;";
 
                 // Crear un SqlDataAdapter con la conexión
