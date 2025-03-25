@@ -34,7 +34,7 @@ namespace VetPet_
             if (ValidarCampos())
             {
                 AgregarEmpleado();
-                parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
+                //parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
             }
             //parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
         }
@@ -80,12 +80,13 @@ namespace VetPet_
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idTipoEmpleado = ObtenerIdPorNombre("TipoEmpleado", cbTipo.Text);
                 int idEstado = ObtenerIdPorNombre("Estado", cbEstado.Text);
+                int idMunicipio = ObtenerORegistrarIdMunicipio(cbMunicipio.Text);
 
                 // Insertar nuevo empleado
                 string query = @"
                     INSERT INTO Persona (nombre, apellidoP, apellidoM, celularPrincipal, correoElectronico)
                     VALUES (@nombre, @apellidoP, @apellidoM, @celularPrincipal, @correo);
-                    SELECT SCOPE_IDENTITY();"; // Obtener el ID de la persona insertada
+                    SELECT SCOPE_IDENTITY();"; 
 
                 int idPersona = 0;
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
@@ -100,22 +101,23 @@ namespace VetPet_
 
                 // Insertar nuevo empleado
                         query = @"
-                    INSERT INTO Empleado (usuario, contraseña, palabraClave, idTipoEmpleado, idPersona)
-                    VALUES (@usuario, @contraseña, @palabraClave, @idTipoEmpleado, @idPersona);";
+                    INSERT INTO Empleado (usuario, contraseña, palabraClave, rfc, idTipoEmpleado, idPersona)
+                    VALUES (@usuario, @contraseña, @palabraClave,@rfc, @idTipoEmpleado, @idPersona);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
                     cmd.Parameters.AddWithValue("@contraseña", txtContraseña.Text);
                     cmd.Parameters.AddWithValue("@palabraClave", txtPalabraClave.Text);
+                    cmd.Parameters.AddWithValue("@RFC", txtRFC.Text);
                     cmd.Parameters.AddWithValue("@idTipoEmpleado", idTipoEmpleado);
                     cmd.Parameters.AddWithValue("@idPersona", idPersona);
                     cmd.ExecuteNonQuery();
                 }
 
                 // Insertar dirección
-                query = @"INSERT INTO Direccion (idPersona, idPais, idCalle, idCp, idCiudad, idColonia, idEstado)
-                 VALUES (@idPersona, @idPais, @idCalle, @idCp, @idCiudad, @idColonia, @idEstado);";
+                query = @"INSERT INTO Direccion (idPersona, idPais, idCalle, idCp, idCiudad, idColonia, idEstado, idMunicipio)
+                 VALUES (@idPersona, @idPais, @idCalle, @idCp, @idCiudad, @idColonia, @idEstado,@idMunicipio);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -125,11 +127,13 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@idCp", idCp);
                     cmd.Parameters.AddWithValue("@idCiudad", idCiudad);
                     cmd.Parameters.AddWithValue("@idColonia", idColonia);
-                    cmd.Parameters.AddWithValue("@idEstado", idEstado); // Insertar el ID del estado
+                    cmd.Parameters.AddWithValue("@idEstado", idEstado);
+                    cmd.Parameters.AddWithValue("@idMunicipio", idMunicipio);
                     cmd.ExecuteNonQuery();
                 }
 
                     MessageBox.Show("Empleado agregado correctamente.");
+                    parentForm.formularioHijo(new EmpListaEmpleados(parentForm));
             }
             catch (Exception ex)
             {
@@ -262,6 +266,23 @@ namespace VetPet_
             }
         }
 
+        private int ObtenerORegistrarIdMunicipio(string municipio)
+        {
+            int idMunicipio = ObtenerIdPorNombre("Municipio", municipio);
+            if (idMunicipio == 0)
+            {
+                string queryInsert = "INSERT INTO Municipio (nombre) VALUES (@municipio); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@municipio", municipio);
+                    object result = cmd.ExecuteScalar();
+                    idMunicipio = Convert.ToInt32(result);
+                }
+            }
+            return idMunicipio;
+        }
+
+
         private bool ValidarCorreo(string correo)
         {
             string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
@@ -279,6 +300,7 @@ namespace VetPet_
                 MostrarCB("SELECT nombre FROM Calle", cbCalle);
                 MostrarCB("SELECT nombre FROM TipoEmpleado", cbTipo);
                 MostrarCB("SELECT nombre FROM Estado", cbEstado);
+                MostrarCB("SELECT nombre FROM Municipio", cbMunicipio);
             }
             catch (Exception ex)
             {
