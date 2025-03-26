@@ -62,9 +62,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtNumSec = new System.Windows.Forms.TextBox();
+            this.btnAgregarNumeroSecundario = new System.Windows.Forms.Button();
+            this.dtNumeros = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtNumeros)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox4
@@ -139,7 +143,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox1.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(237, 503);
+            this.pictureBox1.Location = new System.Drawing.Point(191, 503);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 47);
@@ -152,7 +156,7 @@
             this.btnRegresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnRegresar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnRegresar.Location = new System.Drawing.Point(77, 495);
+            this.btnRegresar.Location = new System.Drawing.Point(31, 495);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(235, 62);
@@ -166,7 +170,7 @@
             // 
             this.txtCelular.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtCelular.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCelular.Location = new System.Drawing.Point(296, 291);
+            this.txtCelular.Location = new System.Drawing.Point(256, 324);
             this.txtCelular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCelular.MaxLength = 10;
             this.txtCelular.Name = "txtCelular";
@@ -188,7 +192,7 @@
             // 
             this.txtCorreo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(278, 349);
+            this.txtCorreo.Location = new System.Drawing.Point(256, 273);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(221, 29);
@@ -199,7 +203,7 @@
             // 
             this.txtApellidoM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtApellidoM.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellidoM.Location = new System.Drawing.Point(278, 237);
+            this.txtApellidoM.Location = new System.Drawing.Point(278, 223);
             this.txtApellidoM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellidoM.Name = "txtApellidoM";
             this.txtApellidoM.Size = new System.Drawing.Size(171, 29);
@@ -220,7 +224,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label11.Location = new System.Drawing.Point(66, 295);
+            this.label11.Location = new System.Drawing.Point(26, 328);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(205, 25);
             this.label11.TabIndex = 628;
@@ -231,7 +235,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label10.Location = new System.Drawing.Point(77, 237);
+            this.label10.Location = new System.Drawing.Point(77, 223);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(177, 25);
             this.label10.TabIndex = 627;
@@ -242,7 +246,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label9.Location = new System.Drawing.Point(66, 353);
+            this.label9.Location = new System.Drawing.Point(44, 277);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(183, 25);
             this.label9.TabIndex = 626;
@@ -457,11 +461,46 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(77, 412);
+            this.label8.Location = new System.Drawing.Point(26, 383);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(206, 25);
             this.label8.TabIndex = 694;
             this.label8.Text = "Numero Secundarios";
+            // 
+            // txtNumSec
+            // 
+            this.txtNumSec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.txtNumSec.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumSec.Location = new System.Drawing.Point(237, 383);
+            this.txtNumSec.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtNumSec.MaxLength = 10;
+            this.txtNumSec.Name = "txtNumSec";
+            this.txtNumSec.Size = new System.Drawing.Size(172, 29);
+            this.txtNumSec.TabIndex = 695;
+            // 
+            // btnAgregarNumeroSecundario
+            // 
+            this.btnAgregarNumeroSecundario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnAgregarNumeroSecundario.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarNumeroSecundario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnAgregarNumeroSecundario.Location = new System.Drawing.Point(417, 383);
+            this.btnAgregarNumeroSecundario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgregarNumeroSecundario.Name = "btnAgregarNumeroSecundario";
+            this.btnAgregarNumeroSecundario.Size = new System.Drawing.Size(97, 32);
+            this.btnAgregarNumeroSecundario.TabIndex = 696;
+            this.btnAgregarNumeroSecundario.Text = "Agregar";
+            this.btnAgregarNumeroSecundario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarNumeroSecundario.UseVisualStyleBackColor = false;
+            this.btnAgregarNumeroSecundario.Click += new System.EventHandler(this.btnAgregarNumeroSecundario_Click);
+            // 
+            // dtNumeros
+            // 
+            this.dtNumeros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtNumeros.Location = new System.Drawing.Point(237, 419);
+            this.dtNumeros.Name = "dtNumeros";
+            this.dtNumeros.Size = new System.Drawing.Size(172, 66);
+            this.dtNumeros.TabIndex = 697;
+            this.dtNumeros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtNumeros_CellClick);
             // 
             // DueModificarDueño
             // 
@@ -469,6 +508,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.dtNumeros);
+            this.Controls.Add(this.btnAgregarNumeroSecundario);
+            this.Controls.Add(this.txtNumSec);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cbMunicipio);
             this.Controls.Add(this.label15);
@@ -509,6 +551,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtNumeros)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -550,5 +593,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtNumSec;
+        private System.Windows.Forms.Button btnAgregarNumeroSecundario;
+        private System.Windows.Forms.DataGridView dtNumeros;
     }
 }

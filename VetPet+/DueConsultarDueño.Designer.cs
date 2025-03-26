@@ -63,11 +63,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtMunicipio = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.dtNumeros = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtNumeros)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox2
@@ -475,16 +477,25 @@
             this.label8.TabIndex = 626;
             this.label8.Text = "Municipio";
             // 
+            // dtNumeros
+            // 
+            this.dtNumeros.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtNumeros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtNumeros.Location = new System.Drawing.Point(279, 389);
+            this.dtNumeros.Name = "dtNumeros";
+            this.dtNumeros.Size = new System.Drawing.Size(187, 83);
+            this.dtNumeros.TabIndex = 703;
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label15.Location = new System.Drawing.Point(67, 399);
+            this.label15.Location = new System.Drawing.Point(67, 394);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(215, 25);
-            this.label15.TabIndex = 628;
-            this.label15.Text = "Numeros Secundarios";
+            this.label15.Size = new System.Drawing.Size(206, 25);
+            this.label15.TabIndex = 702;
+            this.label15.Text = "Numero Secundarios";
             // 
             // DueConsultarDueño
             // 
@@ -492,6 +503,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.dtNumeros);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtMunicipio);
             this.Controls.Add(this.label8);
@@ -535,6 +547,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtNumeros)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,6 +589,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtMunicipio;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dtNumeros;
         private System.Windows.Forms.Label label15;
     }
 }

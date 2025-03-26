@@ -27,6 +27,7 @@ namespace VetPet_
         {
             //MessageBox.Show("Dato"+DatoEmpleado);
             MostrarDato();
+            CargarNumerosSecundarios();
         }
 
         public void MostrarDato()
@@ -167,6 +168,37 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
             parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+        }
+        private void CargarNumerosSecundarios()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número");
+                conexionDB.AbrirConexion();
+
+                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        dt.Rows.Add(reader["numero"].ToString());
+                    }
+                    reader.Close();
+                }
+                dtNumeros.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los números secundarios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
     } 
 }

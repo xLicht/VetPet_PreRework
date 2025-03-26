@@ -18,6 +18,7 @@ namespace VetPet_
     {
         public int DatoEmpleado { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
+        private List<string> numerosSecundarios = new List<string>();
         public DueModificarDueño(Form1 parent)
         {
             InitializeComponent();
@@ -29,7 +30,50 @@ namespace VetPet_
             //MessageBox.Show("Mensaje: "+ DatoEmpleado);
             CargarCB();
             MostrarDato();
+            CargarNumerosSecundarios();
 
+        }
+        private void ActualizarDataGrid()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Número");
+            foreach (var num in numerosSecundarios)
+            {
+                dt.Rows.Add(num);
+            }
+            dtNumeros.DataSource = dt;
+        }
+        private void CargarNumerosSecundarios()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número");
+
+                conexionDB.AbrirConexion();
+                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string num = reader["numero"].ToString();
+                        numerosSecundarios.Add(num);
+                        dt.Rows.Add(num);
+                    }
+                    reader.Close();
+                }
+                dtNumeros.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los números secundarios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
 
         public void MostrarDato()
@@ -158,6 +202,51 @@ namespace VetPet_
                     else
                     {
                         MessageBox.Show("No se realizaron cambios.");
+                    }
+                }
+
+                // Primero, inactivar todos los números actuales para la persona
+                string queryInactivar = "UPDATE Celular SET estado = 'I' WHERE idPersona = @idPersona";
+                using (SqlCommand cmd = new SqlCommand(queryInactivar, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Luego, para cada número en la lista actual (numerosSecundarios)
+                foreach (string num in numerosSecundarios)
+                {
+                    // Verificar si ya existe en la base de datos
+                    string queryVerificar = "SELECT COUNT(*) FROM Celular WHERE idPersona = @idPersona AND numero = @numero";
+                    int count = 0;
+                    using (SqlCommand cmd = new SqlCommand(queryVerificar, conexionDB.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                        cmd.Parameters.AddWithValue("@numero", num);
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    if (count > 0)
+                    {
+                        // Si existe, se actualiza su estado a '1'
+                        string queryActualizar = "UPDATE Celular SET estado = '1' WHERE idPersona = @idPersona AND numero = @numero";
+                        using (SqlCommand cmd = new SqlCommand(queryActualizar, conexionDB.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                            cmd.Parameters.AddWithValue("@numero", num);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        // Si no existe, se inserta un nuevo registro con estado '1'
+                        string queryInsert = "INSERT INTO Celular (idPersona, numero, estado) VALUES (@idPersona, @numero, '1')";
+                        using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                            cmd.Parameters.AddWithValue("@numero", num);
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
             }
@@ -411,6 +500,35 @@ namespace VetPet_
         {
             string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
             return Regex.IsMatch(correo, patronCorreo);
+        }
+
+        private void btnAgregarNumeroSecundario_Click(object sender, EventArgs e)
+        {
+            string numero = txtNumSec.Text.Trim();
+            if (!string.IsNullOrEmpty(numero))
+            {
+                numerosSecundarios.Add(numero);
+                ActualizarDataGrid();
+                txtNumSec.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un número válido.");
+            }
+        }
+
+        private void dtNumeros_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string num = dtNumeros.Rows[e.RowIndex].Cells["Número"].Value.ToString();
+                DialogResult result = MessageBox.Show("¿Desea eliminar el número: " + num + "?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    numerosSecundarios.Remove(num);
+                    ActualizarDataGrid();
+                }
+            }
         }
     }
 }

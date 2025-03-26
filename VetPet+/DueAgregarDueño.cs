@@ -17,6 +17,7 @@ namespace VetPet_
     public partial class DueAgregarDueño : FormPadre
     {
         private conexionDaniel conexionDB = new conexionDaniel();
+        private List<string> numerosSecundarios = new List<string>();
         public DueAgregarDueño(Form1 parent)
         {
             InitializeComponent();
@@ -78,6 +79,19 @@ namespace VetPet_
                     cmd.ExecuteNonQuery();
                 }
 
+                foreach (string numSec in numerosSecundarios)
+                {
+                    string queryCelular = @"INSERT INTO Celular (idPersona, numero, estado)
+                                    VALUES (@idPersona, @numero, @estado);";
+
+                    using (SqlCommand cmd = new SqlCommand(queryCelular, conexionDB.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@idPersona", idPersona);
+                        cmd.Parameters.AddWithValue("@numero", numSec);
+                        cmd.Parameters.AddWithValue("@estado", "A");
+                        cmd.ExecuteNonQuery();
+                    }
+                }
                 MessageBox.Show("Empleado agregado correctamente.");
                 parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
             }
@@ -308,6 +322,32 @@ namespace VetPet_
         private void txtCp_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void btnAgregarNumeroSecundario_Click(object sender, EventArgs e)
+        {
+            string numero = txtNumSec.Text.Trim();
+            if (!string.IsNullOrEmpty(numero))
+            {
+                // Puedes agregar validaciones adicionales (por ejemplo, formato del número)
+                numerosSecundarios.Add(numero);
+
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número");
+
+                foreach (var num in numerosSecundarios)
+                {
+                    dt.Rows.Add(num);
+                }
+                dtNumeros.DataSource = dt;
+
+                txtNumSec.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un número válido.");
+            }
         }
     }
 }
