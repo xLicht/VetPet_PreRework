@@ -48,6 +48,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnListaEmpleados = new System.Windows.Forms.Button();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEmpleados)).BeginInit();
@@ -122,6 +123,7 @@
             // 
             // dtEmpleados
             // 
+            this.dtEmpleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtEmpleados.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -138,7 +140,8 @@
             this.Column6,
             this.Column3,
             this.Column4,
-            this.Column5});
+            this.Column5,
+            this.Column7});
             this.dtEmpleados.EnableHeadersVisualStyles = false;
             this.dtEmpleados.Location = new System.Drawing.Point(82, 125);
             this.dtEmpleados.Name = "dtEmpleados";
@@ -274,6 +277,11 @@
             this.btnListaEmpleados.UseVisualStyleBackColor = false;
             this.btnListaEmpleados.Click += new System.EventHandler(this.btnListaEmpleados_Click);
             // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "RFC";
+            this.Column7.Name = "Column7";
+            // 
             // EmpListaEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,5 +335,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }

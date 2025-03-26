@@ -167,7 +167,7 @@ namespace VetPet_
 
             if (!Regex.IsMatch(txtRFC.Text, @"^[A-ZÑ&]{3,4}\d{6}[A-Z\d]{3}$"))
             {
-                MessageBox.Show("RFC inválido. Debe seguir el formato oficial.");
+                MessageBox.Show("RFC inválido, formato : ABC123456XYZ");
                 return false;
             }
 
