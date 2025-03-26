@@ -39,7 +39,9 @@ namespace VetPet_
                     p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
                     p.correoElectronico, 
                     pais.nombre AS pais, calle.nombre AS calle, 
-                    cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
+                    cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, 
+                    estado.nombre AS estado,
+                    municipio.nombre AS municipio
                 FROM 
                     Persona p
                 LEFT JOIN 
@@ -56,6 +58,8 @@ namespace VetPet_
                     Colonia colonia ON d.idColonia = colonia.idColonia
                 LEFT JOIN 
                     Estado estado ON d.idEstado = estado.idEstado 
+                LEFT JOIN
+                    Municipio municipio ON d.idMunicipio = municipio.idMunicipio
                 WHERE 
                     p.idPersona = @idPersona";
 
@@ -78,6 +82,7 @@ namespace VetPet_
                         txtCiudad.Text = reader["ciudad"].ToString();
                         txtColonia.Text = reader["colonia"].ToString();
                         txtEstado.Text = reader["estado"].ToString();
+                        txtMunicipio.Text = reader["municipio"].ToString();
                     }
                 }
             }

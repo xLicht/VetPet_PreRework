@@ -38,11 +38,13 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                    string query = @"SELECT 
+                string query = @"SELECT 
                         p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
                         p.correoElectronico, 
                         pais.nombre AS pais, calle.nombre AS calle, 
-                        cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
+                        cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, 
+                        estado.nombre AS estado,
+                        municipio.nombre AS municipio
                     FROM 
                         Persona p
                     LEFT JOIN 
@@ -59,6 +61,8 @@ namespace VetPet_
                         Colonia colonia ON d.idColonia = colonia.idColonia
                     LEFT JOIN 
                         Estado estado ON d.idEstado = estado.idEstado 
+                    LEFT JOIN
+                        Municipio municipio ON d.idMunicipio = municipio.idMunicipio
                     WHERE 
                         p.idPersona = @idPersona";
 
@@ -77,10 +81,11 @@ namespace VetPet_
                         txtCorreo.Text = reader["correoElectronico"].ToString();
                         cbPais.Text = reader["pais"].ToString();
                         cbCalle.Text = reader["calle"].ToString();
-                        txtCp.Text = reader["cp"].ToString();
+                        txtCP.Text = reader["cp"].ToString();
                         cbCiudad.Text = reader["ciudad"].ToString();
                         cbColonia.Text = reader["colonia"].ToString();
                         cbEstado.Text = reader["estado"].ToString();
+                        cbMunicipio.Text = reader["municipio"].ToString();
                     }
                 }
             }
@@ -101,10 +106,11 @@ namespace VetPet_
 
                 int idPais = ObtenerORegistrarIdPais(cbPais.Text);
                 int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
-                int idCp = ObtenerORegistrarIdCp(txtCp.Text);
+                int idCp = ObtenerORegistrarIdCp(txtCP.Text);
                 int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idEstado = ObtenerORegistrarIdEstado(cbEstado.Text);
+                int idMunicipio = ObtenerORegistrarIdMunicipio(cbMunicipio.Text);
 
                 string query = @"
                 UPDATE Persona 
@@ -121,7 +127,8 @@ namespace VetPet_
                     idCp = (SELECT idCp FROM Cp WHERE cp = @cp),
                     idCiudad = (SELECT idCiudad FROM Ciudad WHERE nombre = @ciudad),
                     idColonia = (SELECT idColonia FROM Colonia WHERE nombre = @colonia),
-                    idEstado = (SELECT idEstado FROM Estado WHERE nombre = @estado)
+                    idEstado = (SELECT idEstado FROM Estado WHERE nombre = @estado),
+                    idMunicipio = (SELECT idMunicipio FROM Municipio WHERE nombre = @municipio)
                 WHERE idPersona = @idPersona;
                     ";
 
@@ -135,10 +142,11 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@correo", txtCorreo.Text);
                     cmd.Parameters.AddWithValue("@pais", cbPais.Text);
                     cmd.Parameters.AddWithValue("@calle", cbCalle.Text);
-                    cmd.Parameters.AddWithValue("@cp", txtCp.Text);
+                    cmd.Parameters.AddWithValue("@cp", txtCP.Text);
                     cmd.Parameters.AddWithValue("@ciudad", cbCiudad.Text);
                     cmd.Parameters.AddWithValue("@colonia", cbColonia.Text);
                     cmd.Parameters.AddWithValue("@estado", cbEstado.Text);
+                    cmd.Parameters.AddWithValue("@municipio", cbMunicipio.Text);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -174,7 +182,21 @@ namespace VetPet_
                 return result != null ? Convert.ToInt32(result) : 0;
             }
         }
-
+        private int ObtenerORegistrarIdMunicipio(string municipio)
+        {
+            int idMunicipio = ObtenerIdPorNombre("Municipio", municipio);
+            if (idMunicipio == 0)
+            {
+                string queryInsert = "INSERT INTO Municipio (nombre) VALUES (@municipio); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@municipio", municipio);
+                    object result = cmd.ExecuteScalar();
+                    idMunicipio = Convert.ToInt32(result);
+                }
+            }
+            return idMunicipio;
+        }
         private int ObtenerIdPorCodigoPostal(string cp)
         {
             string query = "SELECT idCp FROM Cp WHERE cp = @cp";
@@ -273,6 +295,7 @@ namespace VetPet_
                 MostrarCB("SELECT nombre FROM Colonia", cbColonia);
                 MostrarCB("SELECT nombre FROM Calle", cbCalle);
                 MostrarCB("SELECT nombre FROM Estado", cbEstado);
+                MostrarCB("SELECT nombre FROM Municipio", cbMunicipio);
             }
             catch (Exception ex)
             {
@@ -366,9 +389,10 @@ namespace VetPet_
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellidoP.Text) ||
                 string.IsNullOrWhiteSpace(txtApellidoM.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) ||
-                string.IsNullOrWhiteSpace(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCp.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCP.Text) ||
                 string.IsNullOrWhiteSpace(cbPais.Text) || string.IsNullOrWhiteSpace(cbCalle.Text) ||
-                string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text))
+                string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text)||
+                string.IsNullOrWhiteSpace(cbMunicipio.Text))
          
             {
                 MessageBox.Show("Por favor, complete todos los campos.");
