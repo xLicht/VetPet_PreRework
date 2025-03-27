@@ -246,11 +246,10 @@ namespace VetPet_
                     decimal? tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
                     int idEmpleado = idPersona;
                     char estado = 'A';
-                    // Insertar la venta
                     string insertVenta = @"
                     INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado, estado)
                     VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado,@estado);
-                    SELECT SCOPE_IDENTITY();"; // Obtener el idVenta recién insertado
+                    SELECT SCOPE_IDENTITY();";
 
                     int idVenta;
                     using (SqlCommand cmd = new SqlCommand(insertVenta, mismetodos.GetConexion()))
@@ -279,7 +278,57 @@ namespace VetPet_
                     mismetodos.CerrarConexion();
                 }
 
+                // Actualizar stock 
 
+                try
+                {
+                    mismetodos.AbrirConexion();
+
+                    foreach (DataRow row in dtProductos.Rows)
+                    {
+                        int idProducto = Convert.ToInt32(row["idProducto"]);
+                        decimal precio = Convert.ToDecimal(row["Precio"]);
+                        decimal total = Convert.ToDecimal(row["Total"]);
+
+                        // Calcular la cantidad vendida (Total / Precio)
+                        int cantidadVendida = (int)Math.Round(total / precio, MidpointRounding.AwayFromZero);
+
+                        // Obtener el stock actual del producto
+                        string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
+                        int stockActual;
+
+                        using (SqlCommand cmdStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
+                        {
+                            cmdStock.Parameters.AddWithValue("@idProducto", idProducto);
+                            stockActual = Convert.ToInt32(cmdStock.ExecuteScalar());
+                        }
+
+                        // Calcular el nuevo stock
+                        int nuevoStock = stockActual - cantidadVendida;
+
+                        // Actualizar el stock en la base de datos
+                        string updateQuery = "UPDATE Producto SET stock = @nuevoStock WHERE idProducto = @idProducto;";
+
+                        using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, mismetodos.GetConexion()))
+                        {
+                            cmdUpdate.Parameters.AddWithValue("@nuevoStock", nuevoStock);
+                            cmdUpdate.Parameters.AddWithValue("@idProducto", idProducto);
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");
+                    }
+
+                    MessageBox.Show("Stock actualizado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar el stock: " + ex.Message);
+                }
+                finally
+                {
+                    mismetodos.CerrarConexion();
+                }
             }
         }
 
