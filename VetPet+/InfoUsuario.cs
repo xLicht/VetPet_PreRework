@@ -18,6 +18,7 @@ namespace VetPet_
         {
             InitializeComponent();
             parentFo = parent;
+            this.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             //Timer closeTimer = new Timer();
             //closeTimer.Interval = 400; // Verificar cada 100ms
             //closeTimer.Tick += (s, e) =>

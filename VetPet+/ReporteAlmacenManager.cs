@@ -52,7 +52,8 @@ namespace VetPet_
             DateTime fechaY = DateTime.ParseExact(fecha2, "yyyy-MM-dd", null);
             string fechaEmi2 = fechaY.ToString("dd/MM/yyyy");
             // 🔹 Agregar las fechas y el módulo
-            Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
+            if (tipoReporte != "05" && tipoReporte != "06")
+                Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Módulo: Almacén", textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Emisión: " + DateTime.Now, textoFont));
 

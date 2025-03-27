@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportesServicios));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnCirgMasRea = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,6 +44,8 @@
             this.BtnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnMenu = new System.Windows.Forms.Button();
+            this.pdfViewServ = new AxAcroPDFLib.AxAcroPDF();
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewServ)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -244,12 +247,24 @@
             this.BtnMenu.UseVisualStyleBackColor = false;
             this.BtnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
+            // pdfViewServ
+            // 
+            this.pdfViewServ.Enabled = true;
+            this.pdfViewServ.Location = new System.Drawing.Point(441, 115);
+            this.pdfViewServ.Name = "pdfViewServ";
+            this.pdfViewServ.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfViewServ.OcxState")));
+            this.pdfViewServ.Size = new System.Drawing.Size(618, 381);
+            this.pdfViewServ.TabIndex = 68;
+            this.pdfViewServ.Tag = "1";
+            this.pdfViewServ.Visible = false;
+            // 
             // ReportesServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pdfViewServ);
             this.Controls.Add(this.BtnMenu);
             this.Controls.Add(this.BtnVolver);
             this.Controls.Add(this.panel1);
@@ -267,6 +282,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ReportesServicios";
             this.Text = "ReportesServicios";
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewServ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,5 +305,6 @@
         private System.Windows.Forms.Button BtnVolver;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnMenu;
+        private AxAcroPDFLib.AxAcroPDF pdfViewServ;
     }
 }

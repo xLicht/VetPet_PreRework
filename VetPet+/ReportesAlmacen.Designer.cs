@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportesAlmacen));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnProdMasVend = new System.Windows.Forms.Button();
             this.BtnProdMenVend = new System.Windows.Forms.Button();
@@ -47,6 +48,8 @@
             this.BtnMenu = new System.Windows.Forms.Button();
             this.BtnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pdfViewAlma = new AxAcroPDFLib.AxAcroPDF();
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewAlma)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -315,12 +318,24 @@
             this.panel1.Size = new System.Drawing.Size(5, 450);
             this.panel1.TabIndex = 68;
             // 
+            // pdfViewAlma
+            // 
+            this.pdfViewAlma.Enabled = true;
+            this.pdfViewAlma.Location = new System.Drawing.Point(441, 115);
+            this.pdfViewAlma.Name = "pdfViewAlma";
+            this.pdfViewAlma.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfViewAlma.OcxState")));
+            this.pdfViewAlma.Size = new System.Drawing.Size(618, 381);
+            this.pdfViewAlma.TabIndex = 69;
+            this.pdfViewAlma.Tag = "1";
+            this.pdfViewAlma.Visible = false;
+            // 
             // ReportesAlmacen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pdfViewAlma);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BtnMenu);
             this.Controls.Add(this.BtnVolver);
@@ -343,6 +358,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReportesAlmacen";
             this.Text = "ReportesAlmacen";
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewAlma)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,5 +384,6 @@
         private System.Windows.Forms.Button BtnMenu;
         private System.Windows.Forms.Button BtnVolver;
         private System.Windows.Forms.Panel panel1;
+        private AxAcroPDFLib.AxAcroPDF pdfViewAlma;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportesCitas));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnRazonMasFrec = new System.Windows.Forms.Button();
             this.BtnRazonMenFrec = new System.Windows.Forms.Button();
@@ -41,6 +42,8 @@
             this.BtnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnMenu = new System.Windows.Forms.Button();
+            this.pdfViewCita = new AxAcroPDFLib.AxAcroPDF();
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewCita)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -214,12 +217,24 @@
             this.BtnMenu.UseVisualStyleBackColor = false;
             this.BtnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
+            // pdfViewCita
+            // 
+            this.pdfViewCita.Enabled = true;
+            this.pdfViewCita.Location = new System.Drawing.Point(441, 115);
+            this.pdfViewCita.Name = "pdfViewCita";
+            this.pdfViewCita.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfViewCita.OcxState")));
+            this.pdfViewCita.Size = new System.Drawing.Size(618, 381);
+            this.pdfViewCita.TabIndex = 69;
+            this.pdfViewCita.Tag = "1";
+            this.pdfViewCita.Visible = false;
+            // 
             // ReportesCitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pdfViewCita);
             this.Controls.Add(this.BtnMenu);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BtnVolver);
@@ -235,6 +250,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ReportesCitas";
             this.Text = "ReportesCitas";
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewCita)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +271,6 @@
         private System.Windows.Forms.Button BtnVolver;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnMenu;
+        private AxAcroPDFLib.AxAcroPDF pdfViewCita;
     }
 }

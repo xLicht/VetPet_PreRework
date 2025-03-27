@@ -88,7 +88,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"exec EXEC sp_CirugiasMasSolicitadas @fechaInicio, @fechaFin";
+                string q = @"exec sp_CirugiasMasSolicitadas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
