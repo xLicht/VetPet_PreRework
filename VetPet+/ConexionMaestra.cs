@@ -27,6 +27,8 @@ namespace VetPet_
                 cadenaConexion = "Data Source=CARLOS-DESKTOP;Initial Catalog=VetPetPlus;Integrated Security=True";
             else if (nombreDispositivo == "CARLOS-LAPTOP")
                 cadenaConexion = "Data Source=CARLOS-LAPTOP;Initial Catalog=VetPetPlus;Integrated Security=True";
+            else if (nombreDispositivo == "LAPTOP-NQM61SRI")
+                cadenaConexion = "Data Source=LAPTOP-NQM61SRI\\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True";
             return new SqlConnection(cadenaConexion);
         }
     }

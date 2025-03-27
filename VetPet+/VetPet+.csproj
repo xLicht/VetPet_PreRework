@@ -1751,6 +1751,7 @@
     <None Include="Resources\icons8-aceptar-507.png" />
     <None Include="Resources\view.png" />
     <None Include="Resources\avatar.png" />
+    <None Include="Resources\ojo.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
