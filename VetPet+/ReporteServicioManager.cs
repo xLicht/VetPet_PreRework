@@ -88,7 +88,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"exec --- @fechaInicio, @fechaFin";
+                string q = @"exec EXEC sp_CirugiasMasSolicitadas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -122,7 +122,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"exec --- @fechaInicio, @fechaFin";
+                string q = @"exec sp_CirugiasMenosSolicitadas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -152,11 +152,11 @@ namespace VetPet_
         }
         public string[,] ConsultaRep03(SqlConnection conex)
         {
-            string[,] datos = new string[10, 4];
+            string[,] datos = new string[10, 3];
             try
             {
                 conex.Open();
-                string q = @"exec --- @fechaInicio, @fechaFin";
+                string q = @"exec ObtenerServiciosMasFrecuentes @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -166,13 +166,11 @@ namespace VetPet_
                 {
                     string servicio = lector.GetString(0);
                     string tipoServicio = lector.GetString(1);
-                    string precio = lector.GetString(2);
-                    int veces = lector.GetInt32(3);
+                    int veces = lector.GetInt32(2);
 
                     datos[i, 0] = servicio;
                     datos[i, 1] = tipoServicio;
-                    datos[i, 2] = precio;
-                    datos[i, 3] = veces.ToString();
+                    datos[i, 2] = veces.ToString();
 
                     i++;
                 }
@@ -188,11 +186,11 @@ namespace VetPet_
         }
         public string[,] ConsultaRep04(SqlConnection conex)
         {
-            string[,] datos = new string[10, 4];
+            string[,] datos = new string[10, 3];
             try
             {
                 conex.Open();
-                string q = @"exec --- @fechaInicio, @fechaFin";
+                string q = @"exec ObtenerServiciosMenosFrecuentes @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -202,13 +200,11 @@ namespace VetPet_
                 {
                     string servicio = lector.GetString(0);
                     string tipoServicio = lector.GetString(1);
-                    string precio = lector.GetString(2);
-                    int veces = lector.GetInt32(3);
+                    int veces = lector.GetInt32(2);
 
                     datos[i, 0] = servicio;
                     datos[i, 1] = tipoServicio;
-                    datos[i, 2] = precio;
-                    datos[i, 3] = veces.ToString();
+                    datos[i, 2] = veces.ToString();
 
                     i++;
                 }
@@ -257,24 +253,21 @@ namespace VetPet_
         }
         public void CrearTablasServicios(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
-            tabla = new PdfPTable(4);
+            tabla = new PdfPTable(3);
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
             tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1, 1, 1});
+            tabla.SetWidths(new float[] { 1, 1, 1});
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("Servicio", tablaHeaderFont));
             PdfPCell header2 = new PdfPCell(new Phrase("Tipo de Servicio", tablaHeaderFont));
-            PdfPCell header3 = new PdfPCell(new Phrase("Precio", tablaHeaderFont));
-            PdfPCell header4 = new PdfPCell(new Phrase("Veces", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Veces", tablaHeaderFont));
             header1.HorizontalAlignment = Element.ALIGN_CENTER;
             header2.HorizontalAlignment = Element.ALIGN_CENTER;
             header3.HorizontalAlignment = Element.ALIGN_CENTER;
-            header4.HorizontalAlignment = Element.ALIGN_CENTER;
             tabla.AddCell(header1);
             tabla.AddCell(header2);
             tabla.AddCell(header3);
-            tabla.AddCell(header4);
             for (int i = 0; i < datos.GetLength(0); i++)
             {
                 if (datos[i, 0] != null || datos[i, 1] != null)
@@ -282,15 +275,12 @@ namespace VetPet_
                     PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
                     PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
                     PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
-                    PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
                     celda1.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda2.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda3.HorizontalAlignment = Element.ALIGN_CENTER;
-                    celda4.HorizontalAlignment = Element.ALIGN_CENTER;
                     tabla.AddCell(celda1);
                     tabla.AddCell(celda2);
                     tabla.AddCell(celda3);
-                    tabla.AddCell(celda4);
                 }
             }
         }

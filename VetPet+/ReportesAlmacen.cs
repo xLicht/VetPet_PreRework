@@ -110,6 +110,10 @@ namespace VetPet_
         {
             SwitchControls(sender, e);
             tipoReporte = "05";
+            dateTime1.Visible = false;
+            dateTime2.Visible = false;
+            lblA.Visible = false;
+            label3.Visible = false;
         }
 
         private void BtnMedBajoStk_Click(object sender, EventArgs e)

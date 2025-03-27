@@ -53,10 +53,10 @@ namespace VetPet_
             Documento.Add(new Paragraph("\n"));
 
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
-            PdfPTable tabla = new PdfPTable(2);
+            PdfPTable tabla = new PdfPTable(5);
             tabla.WidthPercentage = 80;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1 });
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1 });
 
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("IdVenta", tablaHeaderFont));
@@ -120,7 +120,7 @@ namespace VetPet_
                 while (lector.Read())
                 {
                     int IdVenta = lector.GetInt32(0);
-                    string fechaVenta = lector.GetString(1);
+                    string fechaVenta = lector.GetDateTime(1).ToString("dd/MM/yyyy");
                     string cliente = lector.GetString(2);
                     string empleado = lector.GetString(3);
                     decimal importe = lector.GetDecimal(4);
@@ -157,7 +157,7 @@ namespace VetPet_
                 while (lector.Read())
                 {
                     int IdVenta = lector.GetInt32(0);
-                    string fechaVenta = lector.GetString(1);
+                    string fechaVenta = lector.GetDateTime(1).ToString("dd/MM/yyyy");
                     string cliente = lector.GetString(2);
                     string empleado = lector.GetString(3);
                     decimal importe = lector.GetDecimal(4);

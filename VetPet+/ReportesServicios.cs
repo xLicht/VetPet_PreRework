@@ -61,7 +61,7 @@ namespace VetPet_
             // Nombre esta dado por esto:
             // Rep{MODULO}-{TIPO_REPORTE}_{FECHA1-FECHA2}
             string nombreReporte = "Rep" + modulo + "-" + tipoReporte + "_" + fecha1.Replace("-", "") + "-" + fecha2.Replace("-", "");
-            ReporteClienteManager reporte = new ReporteClienteManager(nombreReporte, fecha1, fecha2, tipoReporte);
+            ReporteServicioManager reporte = new ReporteServicioManager(nombreReporte, fecha1, fecha2, tipoReporte);
             reporte.GenerarReporte(tipoReporte);
 
             try
