@@ -73,5 +73,17 @@ namespace VetPet_
             }
             
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            TxtContraseña.PasswordChar = (TxtContraseña.PasswordChar == '*') ? '\0' : '*';
+            TxtConfiMiContraseña.PasswordChar = (TxtConfiMiContraseña.PasswordChar == '*') ? '\0' : '*';
+        }
+
+        private void CambiarContraseña_Load(object sender, EventArgs e)
+        {
+            TxtContraseña.PasswordChar = '*';
+            TxtConfiMiContraseña.PasswordChar = '*';
+        }
     }
 }

@@ -45,11 +45,13 @@
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,6 +72,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox4);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Controls.Add(this.BtnOlvidarContraseña);
@@ -234,6 +237,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario";
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::VetPet_.Properties.Resources.ojo;
+            this.pictureBox4.Location = new System.Drawing.Point(355, 174);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(37, 29);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 11;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
             // InicioSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,6 +258,7 @@
             this.Name = "InicioSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InicioSesion";
+            this.Load += new System.EventHandler(this.InicioSesion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -251,6 +266,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,5 +290,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
