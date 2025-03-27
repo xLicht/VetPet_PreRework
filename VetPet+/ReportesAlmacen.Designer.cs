@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.pdfViewAlma = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             this.BtnProdMasVend = new System.Windows.Forms.Button();
             this.BtnProdMenVend = new System.Windows.Forms.Button();
             this.BtnMedMasVend = new System.Windows.Forms.Button();
@@ -61,42 +60,6 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Reportes: Almacén";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // pdfViewAlma
-            // 
-            this.pdfViewAlma.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pdfViewAlma.CurrentIndex = -1;
-            this.pdfViewAlma.CurrentPageHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.pdfViewAlma.Document = null;
-            this.pdfViewAlma.FormHighlightColor = System.Drawing.Color.Transparent;
-            this.pdfViewAlma.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
-            this.pdfViewAlma.LoadingIconText = "Loading...";
-            this.pdfViewAlma.Location = new System.Drawing.Point(441, 115);
-            this.pdfViewAlma.Margin = new System.Windows.Forms.Padding(4);
-            this.pdfViewAlma.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
-            this.pdfViewAlma.Name = "pdfViewAlma";
-            this.pdfViewAlma.OptimizedLoadThreshold = 1000;
-            this.pdfViewAlma.Padding = new System.Windows.Forms.Padding(10);
-            this.pdfViewAlma.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.pdfViewAlma.PageAutoDispose = true;
-            this.pdfViewAlma.PageBackColor = System.Drawing.Color.White;
-            this.pdfViewAlma.PageBorderColor = System.Drawing.Color.Black;
-            this.pdfViewAlma.PageMargin = new System.Windows.Forms.Padding(10);
-            this.pdfViewAlma.PageSeparatorColor = System.Drawing.Color.Gray;
-            this.pdfViewAlma.RenderFlags = ((Patagames.Pdf.Enums.RenderFlags)((Patagames.Pdf.Enums.RenderFlags.FPDF_LCD_TEXT | Patagames.Pdf.Enums.RenderFlags.FPDF_NO_CATCH)));
-            this.pdfViewAlma.ShowCurrentPageHighlight = true;
-            this.pdfViewAlma.ShowLoadingIcon = true;
-            this.pdfViewAlma.ShowPageSeparator = true;
-            this.pdfViewAlma.Size = new System.Drawing.Size(618, 381);
-            this.pdfViewAlma.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
-            this.pdfViewAlma.TabIndex = 35;
-            this.pdfViewAlma.Tag = "1";
-            this.pdfViewAlma.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.pdfViewAlma.TilesCount = 2;
-            this.pdfViewAlma.UseProgressiveRender = true;
-            this.pdfViewAlma.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
-            this.pdfViewAlma.Visible = false;
-            this.pdfViewAlma.Zoom = 1F;
             // 
             // BtnProdMasVend
             // 
@@ -376,7 +339,6 @@
             this.Controls.Add(this.BtnMedMasVend);
             this.Controls.Add(this.BtnProdMenVend);
             this.Controls.Add(this.BtnProdMasVend);
-            this.Controls.Add(this.pdfViewAlma);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReportesAlmacen";
@@ -388,7 +350,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewAlma;
         private System.Windows.Forms.Button BtnProdMasVend;
         private System.Windows.Forms.Button BtnProdMenVend;
         private System.Windows.Forms.Button BtnMedMasVend;

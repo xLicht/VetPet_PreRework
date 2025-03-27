@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnRazonMasFrec = new System.Windows.Forms.Button();
             this.BtnRazonMenFrec = new System.Windows.Forms.Button();
-            this.pdfViewCita = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             this.lblPreview = new System.Windows.Forms.Label();
             this.BtnImprimir = new System.Windows.Forms.Button();
             this.BtnGenerar = new System.Windows.Forms.Button();
@@ -83,42 +82,6 @@
             this.BtnRazonMenFrec.Text = "Razón de Cita menos Frecuente";
             this.BtnRazonMenFrec.UseVisualStyleBackColor = false;
             this.BtnRazonMenFrec.Click += new System.EventHandler(this.BtnRazonMenFrec_Click);
-            // 
-            // pdfViewCita
-            // 
-            this.pdfViewCita.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pdfViewCita.CurrentIndex = -1;
-            this.pdfViewCita.CurrentPageHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.pdfViewCita.Document = null;
-            this.pdfViewCita.FormHighlightColor = System.Drawing.Color.Transparent;
-            this.pdfViewCita.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
-            this.pdfViewCita.LoadingIconText = "Loading...";
-            this.pdfViewCita.Location = new System.Drawing.Point(441, 115);
-            this.pdfViewCita.Margin = new System.Windows.Forms.Padding(4);
-            this.pdfViewCita.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
-            this.pdfViewCita.Name = "pdfViewCita";
-            this.pdfViewCita.OptimizedLoadThreshold = 1000;
-            this.pdfViewCita.Padding = new System.Windows.Forms.Padding(10);
-            this.pdfViewCita.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.pdfViewCita.PageAutoDispose = true;
-            this.pdfViewCita.PageBackColor = System.Drawing.Color.White;
-            this.pdfViewCita.PageBorderColor = System.Drawing.Color.Black;
-            this.pdfViewCita.PageMargin = new System.Windows.Forms.Padding(10);
-            this.pdfViewCita.PageSeparatorColor = System.Drawing.Color.Gray;
-            this.pdfViewCita.RenderFlags = ((Patagames.Pdf.Enums.RenderFlags)((Patagames.Pdf.Enums.RenderFlags.FPDF_LCD_TEXT | Patagames.Pdf.Enums.RenderFlags.FPDF_NO_CATCH)));
-            this.pdfViewCita.ShowCurrentPageHighlight = true;
-            this.pdfViewCita.ShowLoadingIcon = true;
-            this.pdfViewCita.ShowPageSeparator = true;
-            this.pdfViewCita.Size = new System.Drawing.Size(618, 381);
-            this.pdfViewCita.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
-            this.pdfViewCita.TabIndex = 36;
-            this.pdfViewCita.Tag = "1";
-            this.pdfViewCita.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.pdfViewCita.TilesCount = 2;
-            this.pdfViewCita.UseProgressiveRender = true;
-            this.pdfViewCita.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
-            this.pdfViewCita.Visible = false;
-            this.pdfViewCita.Zoom = 1F;
             // 
             // lblPreview
             // 
@@ -267,7 +230,6 @@
             this.Controls.Add(this.BtnGenerar);
             this.Controls.Add(this.BtnImprimir);
             this.Controls.Add(this.lblPreview);
-            this.Controls.Add(this.pdfViewCita);
             this.Controls.Add(this.BtnRazonMenFrec);
             this.Controls.Add(this.BtnRazonMasFrec);
             this.Controls.Add(this.label1);
@@ -283,7 +245,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnRazonMasFrec;
         private System.Windows.Forms.Button BtnRazonMenFrec;
-        private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewCita;
         private System.Windows.Forms.Label lblPreview;
         private System.Windows.Forms.Button BtnImprimir;
         private System.Windows.Forms.Button BtnGenerar;

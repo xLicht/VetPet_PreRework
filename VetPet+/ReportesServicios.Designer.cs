@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.BtnCirgMasRea = new System.Windows.Forms.Button();
-            this.pdfViewServ = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnCirgMenRea = new System.Windows.Forms.Button();
             this.BtnServMasFrec = new System.Windows.Forms.Button();
@@ -71,42 +70,6 @@
             this.BtnCirgMasRea.Text = "Cirugías más Realizadas";
             this.BtnCirgMasRea.UseVisualStyleBackColor = false;
             this.BtnCirgMasRea.Click += new System.EventHandler(this.BtnCirgMasRea_Click);
-            // 
-            // pdfViewServ
-            // 
-            this.pdfViewServ.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pdfViewServ.CurrentIndex = -1;
-            this.pdfViewServ.CurrentPageHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.pdfViewServ.Document = null;
-            this.pdfViewServ.FormHighlightColor = System.Drawing.Color.Transparent;
-            this.pdfViewServ.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
-            this.pdfViewServ.LoadingIconText = "Loading...";
-            this.pdfViewServ.Location = new System.Drawing.Point(441, 115);
-            this.pdfViewServ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pdfViewServ.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
-            this.pdfViewServ.Name = "pdfViewServ";
-            this.pdfViewServ.OptimizedLoadThreshold = 1000;
-            this.pdfViewServ.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.pdfViewServ.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.pdfViewServ.PageAutoDispose = true;
-            this.pdfViewServ.PageBackColor = System.Drawing.Color.White;
-            this.pdfViewServ.PageBorderColor = System.Drawing.Color.Black;
-            this.pdfViewServ.PageMargin = new System.Windows.Forms.Padding(10);
-            this.pdfViewServ.PageSeparatorColor = System.Drawing.Color.Gray;
-            this.pdfViewServ.RenderFlags = ((Patagames.Pdf.Enums.RenderFlags)((Patagames.Pdf.Enums.RenderFlags.FPDF_LCD_TEXT | Patagames.Pdf.Enums.RenderFlags.FPDF_NO_CATCH)));
-            this.pdfViewServ.ShowCurrentPageHighlight = true;
-            this.pdfViewServ.ShowLoadingIcon = true;
-            this.pdfViewServ.ShowPageSeparator = true;
-            this.pdfViewServ.Size = new System.Drawing.Size(618, 381);
-            this.pdfViewServ.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
-            this.pdfViewServ.TabIndex = 37;
-            this.pdfViewServ.Tag = "1";
-            this.pdfViewServ.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.pdfViewServ.TilesCount = 2;
-            this.pdfViewServ.UseProgressiveRender = true;
-            this.pdfViewServ.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
-            this.pdfViewServ.Visible = false;
-            this.pdfViewServ.Zoom = 1F;
             // 
             // label2
             // 
@@ -300,7 +263,6 @@
             this.Controls.Add(this.BtnServMasFrec);
             this.Controls.Add(this.BtnCirgMenRea);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.pdfViewServ);
             this.Controls.Add(this.BtnCirgMasRea);
             this.Controls.Add(this.label1);
             this.Name = "ReportesServicios";
@@ -314,7 +276,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnCirgMasRea;
-        private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewServ;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnCirgMenRea;
         private System.Windows.Forms.Button BtnServMasFrec;

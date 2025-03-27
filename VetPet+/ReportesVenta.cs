@@ -50,7 +50,7 @@ namespace VetPet_
 
                 if (File.Exists(rutaPDF))
                 {
-                    pdfViewVent.LoadDocument(rutaPDF); // Cargar el PDF en el visor
+                    //pdfViewVent.LoadDocument(rutaPDF); // Cargar el PDF en el visor
                 }
                 else
                 {

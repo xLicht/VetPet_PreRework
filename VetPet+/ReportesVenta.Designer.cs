@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.BtnVenMasAlt = new System.Windows.Forms.Button();
-            this.pdfViewVent = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             this.lblPreview = new System.Windows.Forms.Label();
             this.BtnVentMasBaj = new System.Windows.Forms.Button();
             this.BtnImprimir = new System.Windows.Forms.Button();
@@ -69,42 +68,6 @@
             this.BtnVenMasAlt.Text = "Ventas más Altas";
             this.BtnVenMasAlt.UseVisualStyleBackColor = false;
             this.BtnVenMasAlt.Click += new System.EventHandler(this.BtnVenMasAlt_Click);
-            // 
-            // pdfViewVent
-            // 
-            this.pdfViewVent.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pdfViewVent.CurrentIndex = -1;
-            this.pdfViewVent.CurrentPageHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.pdfViewVent.Document = null;
-            this.pdfViewVent.FormHighlightColor = System.Drawing.Color.Transparent;
-            this.pdfViewVent.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
-            this.pdfViewVent.LoadingIconText = "Loading...";
-            this.pdfViewVent.Location = new System.Drawing.Point(441, 115);
-            this.pdfViewVent.Margin = new System.Windows.Forms.Padding(4);
-            this.pdfViewVent.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
-            this.pdfViewVent.Name = "pdfViewVent";
-            this.pdfViewVent.OptimizedLoadThreshold = 1000;
-            this.pdfViewVent.Padding = new System.Windows.Forms.Padding(10);
-            this.pdfViewVent.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.pdfViewVent.PageAutoDispose = true;
-            this.pdfViewVent.PageBackColor = System.Drawing.Color.White;
-            this.pdfViewVent.PageBorderColor = System.Drawing.Color.Black;
-            this.pdfViewVent.PageMargin = new System.Windows.Forms.Padding(10);
-            this.pdfViewVent.PageSeparatorColor = System.Drawing.Color.Gray;
-            this.pdfViewVent.RenderFlags = ((Patagames.Pdf.Enums.RenderFlags)((Patagames.Pdf.Enums.RenderFlags.FPDF_LCD_TEXT | Patagames.Pdf.Enums.RenderFlags.FPDF_NO_CATCH)));
-            this.pdfViewVent.ShowCurrentPageHighlight = true;
-            this.pdfViewVent.ShowLoadingIcon = true;
-            this.pdfViewVent.ShowPageSeparator = true;
-            this.pdfViewVent.Size = new System.Drawing.Size(618, 381);
-            this.pdfViewVent.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
-            this.pdfViewVent.TabIndex = 37;
-            this.pdfViewVent.Tag = "1";
-            this.pdfViewVent.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.pdfViewVent.TilesCount = 2;
-            this.pdfViewVent.UseProgressiveRender = true;
-            this.pdfViewVent.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
-            this.pdfViewVent.Visible = false;
-            this.pdfViewVent.Zoom = 1F;
             // 
             // lblPreview
             // 
@@ -268,7 +231,6 @@
             this.Controls.Add(this.BtnImprimir);
             this.Controls.Add(this.BtnVentMasBaj);
             this.Controls.Add(this.lblPreview);
-            this.Controls.Add(this.pdfViewVent);
             this.Controls.Add(this.BtnVenMasAlt);
             this.Controls.Add(this.label1);
             this.Name = "ReportesVenta";
@@ -282,7 +244,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnVenMasAlt;
-        private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewVent;
         private System.Windows.Forms.Label lblPreview;
         private System.Windows.Forms.Button BtnVentMasBaj;
         private System.Windows.Forms.Button BtnImprimir;
