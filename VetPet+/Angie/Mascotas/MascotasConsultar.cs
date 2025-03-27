@@ -102,6 +102,10 @@ namespace VetPet_
                             richTextBox2.Text = string.IsNullOrEmpty(alergias)
                                 ? "Sin alergias registradas"
                                 : alergias;
+                            string enfermedades = reader["Enfermedades"].ToString();
+                            richTextBox3.Text = string.IsNullOrEmpty(enfermedades)
+                                ? "Sin enfermedades registradas"
+                                : enfermedades;
                         }
                         else
                         {
