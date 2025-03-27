@@ -253,16 +253,33 @@ namespace VetPet_
         {
             MostrarInfoUsuario();
         }
-        private void MostrarInfoUsuario()
+        private async void MostrarInfoUsuario()
         {
-            InfoUsuario infoForm = new InfoUsuario();
+            InfoUsuario infoForm = new InfoUsuario(this);
 
             // Establecer la posición en la pantalla (ejemplo: 500,300 píxeles)
             infoForm.StartPosition = FormStartPosition.Manual;
             infoForm.Location = new Point(this.Location.X + 1250, this.Location.Y + 84);
 
+            Task popupRunningTask = Task.Run(() =>
+            {
+                infoForm.ShowDialog();
+                return Task.CompletedTask;
+            });
+
             // Mostrar el formulario
-            infoForm.Show();
+            this.MouseClick += (sender, arg) =>
+            {
+                int pX = arg.X;
+                int pY = arg.Y;
+
+                if (pX < this.Location.X + 1250 && pY < this.Location.Y + 84)
+                {
+                    infoForm.Close();
+                }
+            };
+            await popupRunningTask;
+            
         }
 
     }
