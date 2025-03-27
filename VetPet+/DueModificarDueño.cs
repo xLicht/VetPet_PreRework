@@ -51,7 +51,7 @@ namespace VetPet_
                 dt.Columns.Add("Número");
 
                 conexionDB.AbrirConexion();
-                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona";
+                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona AND estado = 'I'";
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
@@ -151,7 +151,8 @@ namespace VetPet_
                 int idPais = ObtenerORegistrarIdPais(cbPais.Text);
                 int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
                 int idCp = ObtenerORegistrarIdCp(txtCP.Text);
-                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                //int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                int idCiudad = ObtenerORegistrarIdCiudad(cbCiudad.Text);
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idEstado = ObtenerORegistrarIdEstado(cbEstado.Text);
                 int idMunicipio = ObtenerORegistrarIdMunicipio(cbMunicipio.Text);
@@ -197,7 +198,7 @@ namespace VetPet_
                     if (filasAfectadas > 0)
                     {
                         MessageBox.Show("Datos actualizados correctamente.");
-                        parentForm.formularioHijo(new DueConsultarDueño(parentForm)); // Recargar vista
+                        parentForm.formularioHijo(new DueConsultarDueño(parentForm)); 
                     }
                     else
                     {
@@ -205,7 +206,6 @@ namespace VetPet_
                     }
                 }
 
-                // Primero, inactivar todos los números actuales para la persona
                 string queryInactivar = "UPDATE Celular SET estado = 'I' WHERE idPersona = @idPersona";
                 using (SqlCommand cmd = new SqlCommand(queryInactivar, conexionDB.GetConexion()))
                 {
@@ -213,10 +213,8 @@ namespace VetPet_
                     cmd.ExecuteNonQuery();
                 }
 
-                // Luego, para cada número en la lista actual (numerosSecundarios)
                 foreach (string num in numerosSecundarios)
                 {
-                    // Verificar si ya existe en la base de datos
                     string queryVerificar = "SELECT COUNT(*) FROM Celular WHERE idPersona = @idPersona AND numero = @numero";
                     int count = 0;
                     using (SqlCommand cmd = new SqlCommand(queryVerificar, conexionDB.GetConexion()))
@@ -228,7 +226,6 @@ namespace VetPet_
 
                     if (count > 0)
                     {
-                        // Si existe, se actualiza su estado a '1'
                         string queryActualizar = "UPDATE Celular SET estado = '1' WHERE idPersona = @idPersona AND numero = @numero";
                         using (SqlCommand cmd = new SqlCommand(queryActualizar, conexionDB.GetConexion()))
                         {
@@ -239,7 +236,6 @@ namespace VetPet_
                     }
                     else
                     {
-                        // Si no existe, se inserta un nuevo registro con estado '1'
                         string queryInsert = "INSERT INTO Celular (idPersona, numero, estado) VALUES (@idPersona, @numero, '1')";
                         using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
                         {
@@ -249,6 +245,10 @@ namespace VetPet_
                         }
                     }
                 }
+                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+                DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
             }
             catch (Exception ex)
             {
@@ -343,7 +343,21 @@ namespace VetPet_
             }
             return idColonia;
         }
-
+        private int ObtenerORegistrarIdCiudad(string ciudad)
+        {
+            int idCiudad = ObtenerIdPorNombre("Ciudad", ciudad);
+            if (idCiudad == 0)
+            {
+                string queryInsert = "INSERT INTO Ciudad (nombre) VALUES (@ciudad); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@ciudad", ciudad);
+                    object result = cmd.ExecuteScalar();
+                    idCiudad = Convert.ToInt32(result);
+                }
+            }
+            return idCiudad;
+        }
         private int ObtenerORegistrarIdCp(string cp)
         {
             int idCp = ObtenerIdPorCodigoPostal(cp);
@@ -429,11 +443,6 @@ namespace VetPet_
             if (ValidarCampos())
             {
                 GuardarCambios();
-                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
-                DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
-                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
-                parentForm.formularioHijo(formularioHijo);
-
                 //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
             }
 
@@ -473,6 +482,7 @@ namespace VetPet_
                 e.Handled = true;
             }
         }
+
 
         private bool ValidarCampos()
         {

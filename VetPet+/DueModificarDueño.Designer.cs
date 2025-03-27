@@ -486,7 +486,7 @@
             this.btnAgregarNumeroSecundario.Location = new System.Drawing.Point(417, 383);
             this.btnAgregarNumeroSecundario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarNumeroSecundario.Name = "btnAgregarNumeroSecundario";
-            this.btnAgregarNumeroSecundario.Size = new System.Drawing.Size(97, 32);
+            this.btnAgregarNumeroSecundario.Size = new System.Drawing.Size(113, 40);
             this.btnAgregarNumeroSecundario.TabIndex = 696;
             this.btnAgregarNumeroSecundario.Text = "Agregar";
             this.btnAgregarNumeroSecundario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
