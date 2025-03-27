@@ -111,7 +111,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT V.idVenta AS [IdVenta], V.fechaRegistro AS [Fecha de la Venta], CONCAT(P.nombre, ' ', P.apellidoP, ' ', P.apellidoM) AS Cliente, E.usuario AS Empleado, V.total AS Importe\r\nFROM Venta V LEFT JOIN Persona P ON V.idPersona = P.idPersona LEFT JOIN Empleado E ON V.idEmpleado = E.idEmpleado\r\nWHERE V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin ORDER BY V.total DESC;";
+                string q = @"EXEC ObtenerVentasMasAltas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -148,7 +148,7 @@ namespace VetPet_
             try
             {
                 conex.Open();
-                string q = @"SELECT V.idVenta AS [IdVenta], V.fechaRegistro AS [Fecha de la Venta], CONCAT(P.nombre, ' ', P.apellidoP, ' ', P.apellidoM) AS Cliente, E.usuario AS Empleado, V.total AS Importe\r\nFROM Venta V LEFT JOIN Persona P ON V.idPersona = P.idPersona LEFT JOIN Empleado E ON V.idEmpleado = E.idEmpleado\r\nWHERE V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin ORDER BY V.total ASC;";
+                string q = @"EXEC ObtenerVentasMasBajas @fechaInicio, @fechaFin";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);

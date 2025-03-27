@@ -65,6 +65,7 @@
             this.BtnVenMasAlt.Name = "BtnVenMasAlt";
             this.BtnVenMasAlt.Size = new System.Drawing.Size(262, 45);
             this.BtnVenMasAlt.TabIndex = 26;
+            this.BtnVenMasAlt.Tag = "1";
             this.BtnVenMasAlt.Text = "Ventas más Altas";
             this.BtnVenMasAlt.UseVisualStyleBackColor = false;
             this.BtnVenMasAlt.Click += new System.EventHandler(this.BtnVenMasAlt_Click);
@@ -97,10 +98,12 @@
             this.pdfViewVent.Size = new System.Drawing.Size(618, 381);
             this.pdfViewVent.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
             this.pdfViewVent.TabIndex = 37;
+            this.pdfViewVent.Tag = "1";
             this.pdfViewVent.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.pdfViewVent.TilesCount = 2;
             this.pdfViewVent.UseProgressiveRender = true;
             this.pdfViewVent.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
+            this.pdfViewVent.Visible = false;
             this.pdfViewVent.Zoom = 1F;
             // 
             // lblPreview
@@ -112,8 +115,10 @@
             this.lblPreview.Name = "lblPreview";
             this.lblPreview.Size = new System.Drawing.Size(156, 28);
             this.lblPreview.TabIndex = 49;
+            this.lblPreview.Tag = "1";
             this.lblPreview.Text = "Vista Previa";
             this.lblPreview.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblPreview.Visible = false;
             // 
             // BtnVentMasBaj
             // 
@@ -124,6 +129,7 @@
             this.BtnVentMasBaj.Name = "BtnVentMasBaj";
             this.BtnVentMasBaj.Size = new System.Drawing.Size(262, 45);
             this.BtnVentMasBaj.TabIndex = 50;
+            this.BtnVentMasBaj.Tag = "1";
             this.BtnVentMasBaj.Text = "Ventas más Bajas";
             this.BtnVentMasBaj.UseVisualStyleBackColor = false;
             this.BtnVentMasBaj.Click += new System.EventHandler(this.BtnVentMasBaj_Click);
@@ -137,8 +143,10 @@
             this.BtnImprimir.Name = "BtnImprimir";
             this.BtnImprimir.Size = new System.Drawing.Size(164, 45);
             this.BtnImprimir.TabIndex = 51;
+            this.BtnImprimir.Tag = "1";
             this.BtnImprimir.Text = "Imprimir";
             this.BtnImprimir.UseVisualStyleBackColor = false;
+            this.BtnImprimir.Visible = false;
             // 
             // BtnGenerar
             // 
@@ -149,8 +157,10 @@
             this.BtnGenerar.Name = "BtnGenerar";
             this.BtnGenerar.Size = new System.Drawing.Size(164, 45);
             this.BtnGenerar.TabIndex = 52;
+            this.BtnGenerar.Tag = "1";
             this.BtnGenerar.Text = "Generar";
             this.BtnGenerar.UseVisualStyleBackColor = false;
+            this.BtnGenerar.Visible = false;
             this.BtnGenerar.Click += new System.EventHandler(this.BtnGenerar_Click);
             // 
             // lblFecha
@@ -162,8 +172,10 @@
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(72, 28);
             this.lblFecha.TabIndex = 54;
+            this.lblFecha.Tag = "1";
             this.lblFecha.Text = "Fecha";
             this.lblFecha.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblFecha.Visible = false;
             // 
             // dateTime1
             // 
@@ -174,6 +186,8 @@
             this.dateTime1.Name = "dateTime1";
             this.dateTime1.Size = new System.Drawing.Size(120, 23);
             this.dateTime1.TabIndex = 53;
+            this.dateTime1.Tag = "1";
+            this.dateTime1.Visible = false;
             // 
             // dateTime2
             // 
@@ -184,6 +198,8 @@
             this.dateTime2.Name = "dateTime2";
             this.dateTime2.Size = new System.Drawing.Size(120, 23);
             this.dateTime2.TabIndex = 55;
+            this.dateTime2.Tag = "1";
+            this.dateTime2.Visible = false;
             // 
             // lblA
             // 
@@ -194,8 +210,10 @@
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(24, 28);
             this.lblA.TabIndex = 56;
+            this.lblA.Tag = "1";
             this.lblA.Text = "a";
             this.lblA.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblA.Visible = false;
             // 
             // panel1
             // 
@@ -216,6 +234,7 @@
             this.BtnMenu.TabIndex = 65;
             this.BtnMenu.Text = "Menu";
             this.BtnMenu.UseVisualStyleBackColor = false;
+            this.BtnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
             // BtnVolver
             // 
@@ -226,6 +245,7 @@
             this.BtnVolver.Name = "BtnVolver";
             this.BtnVolver.Size = new System.Drawing.Size(135, 39);
             this.BtnVolver.TabIndex = 64;
+            this.BtnVolver.Tag = "1";
             this.BtnVolver.Text = "Volver";
             this.BtnVolver.UseVisualStyleBackColor = false;
             this.BtnVolver.Visible = false;
