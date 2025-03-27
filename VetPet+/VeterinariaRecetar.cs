@@ -111,17 +111,18 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string query = @"SELECT 
-                                    p.nombre AS NombreCliente, 
-                                    m.nombre AS NombreMascota, 
-                                    e.nombre AS Especie, 
-                                    r.nombre AS Raza,
-                                    CONVERT(varchar, c.fechaProgramada, 103) AS FechaCita
-                                FROM Cita c
-                                INNER JOIN Mascota m ON c.idMascota = m.idMascota
-                                INNER JOIN Persona p ON m.idPersona = p.idPersona
-                                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
-                                INNER JOIN Raza r ON m.idRaza = r.idRaza
-                                WHERE c.idCita = @idCita";
+                            p.nombre AS NombreCliente, 
+                            m.nombre AS NombreMascota, 
+                            e.nombre AS Especie, 
+                            r.nombre AS Raza,
+                            CONVERT(varchar, c.fechaProgramada, 103) AS FechaCita,
+                            CONVERT(varchar, m.fechaNacimiento, 103) AS FechaNacimiento
+                        FROM Cita c
+                        INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                        INNER JOIN Persona p ON m.idPersona = p.idPersona
+                        INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                        INNER JOIN Raza r ON m.idRaza = r.idRaza
+                        WHERE c.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -135,6 +136,7 @@ namespace VetPet_
                         txtEspecie.Text = reader["Especie"].ToString();
                         txtRaza.Text = reader["Raza"].ToString();
                         txtFecha.Text = reader["FechaCita"].ToString();
+                        txtFechaNacimiento.Text = reader["FechaNacimiento"].ToString();
                     }
                 }
             }
@@ -292,6 +294,43 @@ namespace VetPet_
                     ActualizarDataGrid();
                 }
             }
+        }
+
+        private void btnGenerarReceta_Click(object sender, EventArgs e)
+        {
+            string nombreDueño = txtNombre.Text;
+            string nombreMascota = txtMascota.Text;
+            string especie = txtEspecie.Text;
+            string raza = txtRaza.Text;
+            string fechaNacimiento = txtFechaNacimiento.Text;
+            string diagnostico = rtDiagnostico.Text;
+            string peso = txtPeso.Text;
+            string temperatura = txtTemperatura.Text;
+            string indicaciones = rtIndicaciones.Text;
+
+           
+            //VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
+            //    parentForm,
+            //    nombreDueño, nombreMascota, especie, raza, fechaNacimiento,
+            //    diagnostico, peso, temperatura, indicaciones,
+            //    listaMedicamentos 
+            //);
+
+            //VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(parentForm);
+            VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
+                   parentForm,
+                   nombreDueño,
+                   nombreMascota,
+                   especie,
+                   raza,
+                   fechaNacimiento,
+                   diagnostico,
+                   peso,
+                   temperatura,
+                   indicaciones,
+                   listaMedicamentos
+               );
+            parentForm.formularioHijo(formularioHijo);
         }
     }
 }
