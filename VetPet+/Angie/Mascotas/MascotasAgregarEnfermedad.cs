@@ -278,7 +278,7 @@ namespace VetPet_.Angie.Mascotas
                             using (SqlCommand insertEspecieSensibilidadCommand = new SqlCommand(insertEspecieSensibilidadQuery, mismetodos.GetConexion()))
                             {
                                 insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idMascota", idMascota);
-                                insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idSensibilidad", idEnfermedad);
+                                insertEspecieSensibilidadCommand.Parameters.AddWithValue("@idEnfermedad", idEnfermedad);
                                 insertEspecieSensibilidadCommand.ExecuteNonQuery();
                             }
 
