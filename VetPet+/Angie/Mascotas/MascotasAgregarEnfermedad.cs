@@ -212,7 +212,7 @@ namespace VetPet_.Angie.Mascotas
             parentForm.formularioHijo(new MascotasVerEnfermedades(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
-        public void AgregarSensibilidad(string nombre, string descripcion, string tipo, string nombreSeleccionado)
+        public void AgregarEnfermedad(string nombre, string descripcion, string tipo, string nombreSeleccionado)
         {
             try
             {
@@ -373,12 +373,12 @@ namespace VetPet_.Angie.Mascotas
             if (string.IsNullOrEmpty(nombreSeleccionado))
             {
                 string nombre = comboBox2.Text;
-                AgregarSensibilidad(nombre, descripcion, "", nombreSeleccionado);
+                AgregarEnfermedad(nombre, descripcion, "", nombreSeleccionado);
             }
             else
             {
-                string nombre = comboBox1.SelectedItem?.ToString();
-                AgregarSensibilidad(nombre, "", tipo, nombreSeleccionado);
+                string nombre = comboBox1.Text;
+                AgregarEnfermedad(nombre, "", tipo, nombreSeleccionado);
             }
             parentForm.formularioHijo(new MascotasVerEnfermedades(parentForm)); // Pasamos la referencia de Form1 a
 
