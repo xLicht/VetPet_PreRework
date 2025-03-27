@@ -32,6 +32,7 @@ namespace VetPet_
         private int idCita;
         private int stock;
         private static int idDueño1;
+        private static int idPersona;
         public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();
@@ -39,13 +40,16 @@ namespace VetPet_
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
         }
-        public VentasNuevaVenta(Form1 parent, int idDueño)
+        public VentasNuevaVenta(Form1 parent, int idDueño, string tabla)
         {
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
+            if (tabla == "Dueño") 
             idDueño1 = idDueño;
+            if (tabla == "Empleado")
+            idPersona = idDueño;
         }
         public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
         {
@@ -241,13 +245,13 @@ namespace VetPet_
                     char pagado = 'S';
                     decimal? efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
                     decimal? tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
-
-                    int? idEmpleado = null;
+                    int idEmpleado = idPersona;
+                    char estado = 'A';
                     // Insertar la venta
                     string insertVenta = @"
-        INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado)
-        VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado);
-        SELECT SCOPE_IDENTITY();"; // Obtener el idVenta recién insertado
+                    INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado, estado)
+                    VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado,@estado);
+                    SELECT SCOPE_IDENTITY();"; // Obtener el idVenta recién insertado
 
                     int idVenta;
                     using (SqlCommand cmd = new SqlCommand(insertVenta, mismetodos.GetConexion()))
@@ -257,9 +261,10 @@ namespace VetPet_
                         cmd.Parameters.AddWithValue("@pagado", pagado);
                         cmd.Parameters.AddWithValue("@efectivo", (object)efectivo ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@idCita", (object)idCita ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idCita", DBNull.Value);
                         cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
-                       cmd.Parameters.AddWithValue("@idEmpleado", (object)idEmpleado ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
+                        cmd.Parameters.AddWithValue("@estado", estado);
 
                         idVenta = Convert.ToInt32(cmd.ExecuteScalar());
                     }

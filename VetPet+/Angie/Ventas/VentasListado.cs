@@ -34,6 +34,18 @@ namespace VetPet_
             PersonalizarDataGridView();
             Cargar();
         }
+        public VentasListado(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent; 
+            this.Load += VentasListado_Load;       // Evento Load
+            this.Resize += VentasListado_Resize;   // Evento Resize
+            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView();
+            Cargar();
+        }
         public void Cargar()
         {
             try
@@ -266,7 +278,7 @@ namespace VetPet_
 
         private void button4_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasNuevaVenta(parentForm, idDueño )); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new VentasNuevaVenta(parentForm, idDueño , "Empleado")); // Pasamos la referencia de Form1 a
         }
 
         private void button1_Click(object sender, EventArgs e)
