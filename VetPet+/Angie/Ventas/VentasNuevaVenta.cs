@@ -81,7 +81,6 @@ namespace VetPet_
             {
                 int idProducto = row.Field<int>("idProducto");
 
-                // Buscar si el producto ya está en la tabla
                 DataRow existingRow = dtProductos.AsEnumerable()
                     .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
 
