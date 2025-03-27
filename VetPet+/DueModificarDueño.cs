@@ -226,7 +226,7 @@ namespace VetPet_
 
                     if (count > 0)
                     {
-                        string queryActualizar = "UPDATE Celular SET estado = '1' WHERE idPersona = @idPersona AND numero = @numero";
+                        string queryActualizar = "UPDATE Celular SET estado = 'A' WHERE idPersona = @idPersona AND numero = @numero";
                         using (SqlCommand cmd = new SqlCommand(queryActualizar, conexionDB.GetConexion()))
                         {
                             cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
@@ -236,7 +236,7 @@ namespace VetPet_
                     }
                     else
                     {
-                        string queryInsert = "INSERT INTO Celular (idPersona, numero, estado) VALUES (@idPersona, @numero, '1')";
+                        string queryInsert = "INSERT INTO Celular (idPersona, numero, estado) VALUES (@idPersona, @numero, 'A')";
                         using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
                         {
                             cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
