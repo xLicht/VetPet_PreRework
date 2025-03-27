@@ -183,6 +183,9 @@ namespace VetPet_
             parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
-       
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
