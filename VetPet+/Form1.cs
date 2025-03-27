@@ -253,33 +253,53 @@ namespace VetPet_
         {
             MostrarInfoUsuario();
         }
-        private async void MostrarInfoUsuario()
+        private void MostrarInfoUsuario()
         {
-            InfoUsuario infoForm = new InfoUsuario(this);
+            InfoUsuario infoForm = new InfoUsuario(this, IDUsuario);
 
-            // Establecer la posición en la pantalla (ejemplo: 500,300 píxeles)
+            // Establecer la posición
             infoForm.StartPosition = FormStartPosition.Manual;
             infoForm.Location = new Point(this.Location.X + 1250, this.Location.Y + 84);
 
-            Task popupRunningTask = Task.Run(() =>
-            {
-                infoForm.ShowDialog();
-                return Task.CompletedTask;
-            });
+            // Manejar el cierre al hacer click fuera
+            this.MouseClick += CloseFormOutsideClick;
+            infoForm.FormClosed += (s, args) => this.MouseClick -= CloseFormOutsideClick;
 
-            // Mostrar el formulario
-            this.MouseClick += (sender, arg) =>
+            void CloseFormOutsideClick(object sender, MouseEventArgs e)
             {
-                int pX = arg.X;
-                int pY = arg.Y;
-
-                if (pX < this.Location.X + 1250 && pY < this.Location.Y + 84)
+                if (!infoForm.Bounds.Contains(this.PointToScreen(e.Location)))
                 {
                     infoForm.Close();
                 }
-            };
-            await popupRunningTask;
-            
+            }
+
+            infoForm.Show(this); // Usar Show con owner en lugar de ShowDialog
+
+            //InfoUsuario infoForm = new InfoUsuario(this, IDUsuario);
+
+            //// Establecer la posición en la pantalla (ejemplo: 500,300 píxeles)
+            //infoForm.StartPosition = FormStartPosition.Manual;
+            //infoForm.Location = new Point(this.Location.X + 1250, this.Location.Y + 84);
+
+            //Task popupRunningTask = Task.Run(() =>
+            //{
+            //    infoForm.ShowDialog();
+            //    return Task.CompletedTask;
+            //});
+
+            //// Mostrar el formulario
+            //panel1.MouseClick += (sender, arg) =>
+            //{
+            //    int pX = arg.X;
+            //    int pY = arg.Y;
+
+            //    if (pX < this.Location.X + 1250 && pY < this.Location.Y + 84)
+            //    {
+            //        infoForm.Close();
+            //    }
+            //};
+            //await popupRunningTask;
+
         }
 
     }
