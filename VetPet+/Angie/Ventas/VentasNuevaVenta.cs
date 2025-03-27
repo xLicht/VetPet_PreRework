@@ -160,12 +160,9 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
 
-            // Vincular dtProductos al DataGridView
             BindingSource bs = new BindingSource();
             bs.DataSource = dtProductos;
             dataGridView2.DataSource = bs;
-
-          
 
             ActualizarSumaTotal();
         }

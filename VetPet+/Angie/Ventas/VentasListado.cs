@@ -296,7 +296,7 @@ namespace VetPet_
                     int idCita = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idCita"].Value);
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita));
+                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, idDueño, "Empleado"));
                 }
             }
             catch (Exception ex)
