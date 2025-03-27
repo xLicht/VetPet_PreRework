@@ -140,7 +140,9 @@ namespace VetPet_
                 {
                     conexionDB.AbrirConexion();
 
-                    string query = "UPDATE Persona SET estado = 'I' WHERE idPersona = @idPersona";
+                            string query = @"
+                        UPDATE Persona SET estado = 'I' WHERE idPersona = @idPersona;
+                        UPDATE Celular SET estado = 'I' WHERE idPersona = @idPersona;";
 
                     using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                     {
