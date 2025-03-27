@@ -53,9 +53,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cascadia Mono", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(721, 85);
+            this.label1.Size = new System.Drawing.Size(891, 106);
             this.label1.TabIndex = 25;
             this.label1.Text = "Reportes: Clientes";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -65,9 +66,10 @@
             this.BtnDueñosMasFrec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnDueñosMasFrec.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDueñosMasFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnDueñosMasFrec.Location = new System.Drawing.Point(40, 115);
+            this.BtnDueñosMasFrec.Location = new System.Drawing.Point(53, 142);
+            this.BtnDueñosMasFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnDueñosMasFrec.Name = "BtnDueñosMasFrec";
-            this.BtnDueñosMasFrec.Size = new System.Drawing.Size(285, 45);
+            this.BtnDueñosMasFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnDueñosMasFrec.TabIndex = 26;
             this.BtnDueñosMasFrec.Tag = "1";
             this.BtnDueñosMasFrec.Text = "Dueños Frecuentes";
@@ -79,9 +81,10 @@
             this.BtnMascMasFrec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnMascMasFrec.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMascMasFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnMascMasFrec.Location = new System.Drawing.Point(40, 179);
+            this.BtnMascMasFrec.Location = new System.Drawing.Point(53, 220);
+            this.BtnMascMasFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnMascMasFrec.Name = "BtnMascMasFrec";
-            this.BtnMascMasFrec.Size = new System.Drawing.Size(285, 45);
+            this.BtnMascMasFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnMascMasFrec.TabIndex = 27;
             this.BtnMascMasFrec.Tag = "1";
             this.BtnMascMasFrec.Text = "Mascotas Frecuentes";
@@ -93,9 +96,10 @@
             this.BtnDueñosMenFrec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnDueñosMenFrec.Font = new System.Drawing.Font("Cascadia Mono", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDueñosMenFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnDueñosMenFrec.Location = new System.Drawing.Point(40, 243);
+            this.BtnDueñosMenFrec.Location = new System.Drawing.Point(53, 299);
+            this.BtnDueñosMenFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnDueñosMenFrec.Name = "BtnDueñosMenFrec";
-            this.BtnDueñosMenFrec.Size = new System.Drawing.Size(285, 45);
+            this.BtnDueñosMenFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnDueñosMenFrec.TabIndex = 28;
             this.BtnDueñosMenFrec.Tag = "1";
             this.BtnDueñosMenFrec.Text = "Dueños menos Frecuentes";
@@ -107,9 +111,10 @@
             this.BtnMascMenFrec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnMascMenFrec.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMascMenFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnMascMenFrec.Location = new System.Drawing.Point(40, 307);
+            this.BtnMascMenFrec.Location = new System.Drawing.Point(53, 378);
+            this.BtnMascMenFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnMascMenFrec.Name = "BtnMascMenFrec";
-            this.BtnMascMenFrec.Size = new System.Drawing.Size(285, 45);
+            this.BtnMascMenFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnMascMenFrec.TabIndex = 29;
             this.BtnMascMenFrec.Tag = "1";
             this.BtnMascMenFrec.Text = "Mascotas menos Frecuentes";
@@ -121,9 +126,10 @@
             this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnImprimir.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnImprimir.Location = new System.Drawing.Point(441, 504);
+            this.BtnImprimir.Location = new System.Drawing.Point(588, 620);
+            this.BtnImprimir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnImprimir.Name = "BtnImprimir";
-            this.BtnImprimir.Size = new System.Drawing.Size(164, 45);
+            this.BtnImprimir.Size = new System.Drawing.Size(219, 55);
             this.BtnImprimir.TabIndex = 38;
             this.BtnImprimir.Tag = "1";
             this.BtnImprimir.Text = "Imprimir";
@@ -135,9 +141,10 @@
             this.BtnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnGenerar.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnGenerar.Location = new System.Drawing.Point(895, 504);
+            this.BtnGenerar.Location = new System.Drawing.Point(1193, 620);
+            this.BtnGenerar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnGenerar.Name = "BtnGenerar";
-            this.BtnGenerar.Size = new System.Drawing.Size(164, 45);
+            this.BtnGenerar.Size = new System.Drawing.Size(219, 55);
             this.BtnGenerar.TabIndex = 39;
             this.BtnGenerar.Tag = "1";
             this.BtnGenerar.Text = "Generar";
@@ -150,9 +157,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.label2.Location = new System.Drawing.Point(903, 84);
+            this.label2.Location = new System.Drawing.Point(1204, 103);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 28);
+            this.label2.Size = new System.Drawing.Size(207, 35);
             this.label2.TabIndex = 48;
             this.label2.Tag = "1";
             this.label2.Text = "Vista Previa";
@@ -164,9 +172,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.label3.Location = new System.Drawing.Point(716, 540);
+            this.label3.Location = new System.Drawing.Point(955, 665);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 28);
+            this.label3.Size = new System.Drawing.Size(95, 35);
             this.label3.TabIndex = 50;
             this.label3.Tag = "1";
             this.label3.Text = "Fecha";
@@ -178,9 +187,10 @@
             this.dateTime1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.dateTime1.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTime1.Location = new System.Drawing.Point(611, 516);
+            this.dateTime1.Location = new System.Drawing.Point(815, 635);
+            this.dateTime1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTime1.Name = "dateTime1";
-            this.dateTime1.Size = new System.Drawing.Size(120, 23);
+            this.dateTime1.Size = new System.Drawing.Size(159, 26);
             this.dateTime1.TabIndex = 49;
             this.dateTime1.Tag = "1";
             this.dateTime1.Visible = false;
@@ -190,9 +200,10 @@
             this.dateTime2.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.dateTime2.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTime2.Location = new System.Drawing.Point(770, 516);
+            this.dateTime2.Location = new System.Drawing.Point(1027, 635);
+            this.dateTime2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTime2.Name = "dateTime2";
-            this.dateTime2.Size = new System.Drawing.Size(120, 23);
+            this.dateTime2.Size = new System.Drawing.Size(159, 26);
             this.dateTime2.TabIndex = 58;
             this.dateTime2.Tag = "1";
             this.dateTime2.Visible = false;
@@ -202,9 +213,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.label4.Location = new System.Drawing.Point(739, 510);
+            this.label4.Location = new System.Drawing.Point(985, 628);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 28);
+            this.label4.Size = new System.Drawing.Size(31, 35);
             this.label4.TabIndex = 59;
             this.label4.Tag = "1";
             this.label4.Text = "a";
@@ -216,9 +228,10 @@
             this.BtnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnMenu.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnMenu.Location = new System.Drawing.Point(27, 510);
+            this.BtnMenu.Location = new System.Drawing.Point(36, 628);
+            this.BtnMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnMenu.Name = "BtnMenu";
-            this.BtnMenu.Size = new System.Drawing.Size(135, 39);
+            this.BtnMenu.Size = new System.Drawing.Size(180, 48);
             this.BtnMenu.TabIndex = 69;
             this.BtnMenu.Text = "Menu";
             this.BtnMenu.UseVisualStyleBackColor = false;
@@ -229,9 +242,10 @@
             this.BtnVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnVolver.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVolver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.BtnVolver.Location = new System.Drawing.Point(199, 510);
+            this.BtnVolver.Location = new System.Drawing.Point(265, 628);
+            this.BtnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnVolver.Name = "BtnVolver";
-            this.BtnVolver.Size = new System.Drawing.Size(135, 39);
+            this.BtnVolver.Size = new System.Drawing.Size(180, 48);
             this.BtnVolver.TabIndex = 68;
             this.BtnVolver.Tag = "1";
             this.BtnVolver.Text = "Volver";
@@ -242,28 +256,30 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.panel1.Location = new System.Drawing.Point(369, 115);
+            this.panel1.Location = new System.Drawing.Point(492, 142);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 450);
+            this.panel1.Size = new System.Drawing.Size(7, 554);
             this.panel1.TabIndex = 70;
             // 
             // pdfViewClient
             // 
             this.pdfViewClient.Enabled = true;
-            this.pdfViewClient.Location = new System.Drawing.Point(441, 115);
+            this.pdfViewClient.Location = new System.Drawing.Point(588, 142);
+            this.pdfViewClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pdfViewClient.Name = "pdfViewClient";
             this.pdfViewClient.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfViewClient.OcxState")));
-            this.pdfViewClient.Size = new System.Drawing.Size(618, 381);
+            this.pdfViewClient.Size = new System.Drawing.Size(823, 441);
             this.pdfViewClient.TabIndex = 71;
             this.pdfViewClient.Tag = "1";
             this.pdfViewClient.Visible = false;
             // 
             // ReportesClientes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.ClientSize = new System.Drawing.Size(1443, 710);
             this.Controls.Add(this.pdfViewClient);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BtnMenu);
@@ -280,6 +296,7 @@
             this.Controls.Add(this.BtnMascMasFrec);
             this.Controls.Add(this.BtnDueñosMasFrec);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReportesClientes";
             this.Text = "ReportesClientes";
             this.Load += new System.EventHandler(this.ReportesClientes_Load);
