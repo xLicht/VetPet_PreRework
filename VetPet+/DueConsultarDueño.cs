@@ -179,7 +179,7 @@ namespace VetPet_
                 dt.Columns.Add("Número");
                 conexionDB.AbrirConexion();
 
-                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona AND estado = 'I'";
+                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona AND estado = 'A'";
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
