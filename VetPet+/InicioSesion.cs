@@ -182,6 +182,8 @@ namespace VetPet_
         private void InicioSesion_Load(object sender, EventArgs e)
         {
             Txtcontra.PasswordChar = '*';
+            Txtus.Text = "Juan.PG";
+            Txtcontra.Text = "123456789";
         }
     }
 }
