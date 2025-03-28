@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_
 {
@@ -16,22 +18,60 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-
+        Mismetodos mismetodos = new Mismetodos();   
         private Form1 parentForm;
-
-
-        public VentasHistorialdeVentas()
-        {
-            InitializeComponent();
-            this.Load += VentasHistorialdeVentas_Load;       // Evento Load
-            this.Resize += VentasHistorialdeVentas_Resize;   // Evento Resize
-
-        }
+        public int idVenta;
 
         public VentasHistorialdeVentas(Form1 parent)
         {
             InitializeComponent();
+            this.Load += VentasHistorialdeVentas_Load;       // Evento Load
+            this.Resize += VentasHistorialdeVentas_Resize;   // Event
             parentForm = parent;  // Guardamos la referencia de Form1
+            CargarVentas();
+            PersonalizarDataGridView();
+        }
+
+        public void CargarVentas()
+        {
+            try
+            {
+                mismetodos = new Mismetodos();
+                mismetodos.AbrirConexion();
+
+                string query = @"
+        SELECT 
+            V.idVenta
+            V.fechaRegistro, 
+            V.total, 
+            P.nombre AS Cliente
+        FROM 
+            Venta V
+        LEFT JOIN 
+            Persona P ON V.idPersona = P.idPersona;"
+                ;
+
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                {
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+
+                    dataGridView1.DataSource = tabla;
+
+                    dataGridView1.Columns["fechaRegistro"].HeaderText = "Fecha";
+                    dataGridView1.Columns["total"].HeaderText = "Total";
+                    dataGridView1.Columns["Cliente"].HeaderText = "Cliente";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
         }
 
         private void VentasHistorialdeVentas_Load(object sender, EventArgs e)
@@ -70,7 +110,37 @@ namespace VetPet_
                 }
             }
         }
+        public void PersonalizarDataGridView()
+        {
+            dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView1.BackgroundColor = Color.White; // Fondo blanco
 
+            // Alternar colores de filas
+            dataGridView1.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            // Bordes y alineación
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados
+            dataGridView1.ColumnHeadersHeight = 30;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 

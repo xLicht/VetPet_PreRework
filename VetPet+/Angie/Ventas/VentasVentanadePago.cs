@@ -117,7 +117,7 @@ namespace VetPet_
             }
             else
             {
-                textBox7.Text = montoRestante.ToString("0.00");  // Mostrar saldo pendiente si lo hay
+                textBox17.Text = montoRestante.ToString("0.00");  // Mostrar saldo pendiente si lo hay
             }
         }
         public void CargarServicios(int idCita)
@@ -138,6 +138,16 @@ namespace VetPet_
                         adaptador.Fill(tabla);
 
                         dataGridView1.DataSource = tabla;
+
+                        // Ocultar columnas específicas
+                        if (dataGridView1.Columns.Contains("idCita"))
+                            dataGridView1.Columns["idCita"].Visible = false;
+
+                        if (dataGridView1.Columns.Contains("idServicioRealizado"))
+                            dataGridView1.Columns["idServicioRealizado"].Visible = false;
+
+                        if (dataGridView1.Columns.Contains("ServicioPadre"))
+                            dataGridView1.Columns["ServicioPadre"].Visible = false;
 
                         // Eliminar filas vacías
                         foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -168,6 +178,7 @@ namespace VetPet_
                         }
                     }
                 }
+            
         string queryDueño = @"
                                 SELECT 
                             p.idPersona AS idPersona,

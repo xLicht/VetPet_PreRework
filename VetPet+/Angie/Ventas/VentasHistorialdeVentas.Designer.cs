@@ -34,10 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dueño = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Especie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -47,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Dueño = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -131,10 +128,7 @@
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
-            this.Dueño,
-            this.Especie,
-            this.FechaNac});
+            this.Dueño});
             this.dataGridView1.GridColor = System.Drawing.Color.Blue;
             this.dataGridView1.Location = new System.Drawing.Point(26, 196);
             this.dataGridView1.Name = "dataGridView1";
@@ -144,30 +138,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1386, 408);
             this.dataGridView1.TabIndex = 95;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Fecha";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            // 
-            // Dueño
-            // 
-            this.Dueño.HeaderText = "N. Factura";
-            this.Dueño.MinimumWidth = 6;
-            this.Dueño.Name = "Dueño";
-            // 
-            // Especie
-            // 
-            this.Especie.HeaderText = "Total";
-            this.Especie.MinimumWidth = 6;
-            this.Especie.Name = "Especie";
-            // 
-            // FechaNac
-            // 
-            this.FechaNac.HeaderText = "Cliente";
-            this.FechaNac.MinimumWidth = 6;
-            this.FechaNac.Name = "FechaNac";
             // 
             // pictureBox3
             // 
@@ -266,6 +236,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Historial de Ventas";
             // 
+            // Dueño
+            // 
+            this.Dueño.HeaderText = "N. Factura";
+            this.Dueño.MinimumWidth = 6;
+            this.Dueño.Name = "Dueño";
+            // 
             // VentasHistorialdeVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -307,10 +283,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dueño;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Especie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaNac;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -320,5 +292,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dueño;
     }
 }
