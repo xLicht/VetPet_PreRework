@@ -104,14 +104,17 @@ namespace VetPet_.Angie
                     MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
                     return;
                 }
-                
 
                 if (FormularioOrigen == "VentasNuevaVenta")
                 {
                     parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, true));
                 }
 
-                // Ocultar la ventana de confirmación para evitar que se cierre antes de completar el flujo
+                if (FormularioOrigen == "VentasVentanadePago")
+                {
+                    parentForm.formularioHijo(new VentasVentanadePago(parentForm,idCita, nuevoSubtotal, dtProductos, montoIngresado, true));
+                }
+
                 this.Hide();
             }
             catch (Exception ex)

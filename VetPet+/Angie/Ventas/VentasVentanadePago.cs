@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
 using VetPet_.Angie.Mascotas;
+using static VetPet_.CitaDueños;
 
 namespace VetPet_
 {
@@ -21,7 +22,7 @@ namespace VetPet_
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
         Mismetodos mismetodos = new Mismetodos();
-        decimal sumaTotalProductos = 0;
+        decimal totalGeneral = 0;
         decimal nuevoSubtotal = 0;
         public static decimal MontoPagadoE = 0;
         public static decimal MontoPagadoT = 0;
@@ -32,6 +33,7 @@ namespace VetPet_
         private static int idDueño1;
         private static int idPersona;
         private static decimal sumaTotal;
+        public  decimal montoRestante;
 
         public VentasVentanadePago(Form1 parent, int idCita, int idDueño, string tabla)
         {
@@ -41,8 +43,6 @@ namespace VetPet_
             parentForm = parent;  // Guardamos la referencia de Form1
             idCita1 = idCita;
             CargarServicios(idCita);
-            if (tabla == "Dueño")
-                idDueño1 = idDueño;
             if (tabla == "Empleado")
                 idPersona = idDueño;
         }
@@ -96,18 +96,20 @@ namespace VetPet_
         }
         public void ActualizarSumaTotal()
         {
-            sumaTotalProductos = dtProductos.AsEnumerable()
+            decimal sumaTotalProductos = dtProductos.AsEnumerable()
                 .Where(r => r["Total"] != DBNull.Value)
                 .Sum(r => r.Field<decimal>("Total"));
 
-            decimal totalGeneral = sumaTotalProductos + sumaTotal;  // sumaTotal es tu variable decimal adicional
+            totalGeneral = sumaTotalProductos + sumaTotal;  // sumaTotal es tu variable decimal adicional
 
             textBox8.Text = "Subtotal: " + totalGeneral.ToString("0.00");  // Formato con 2 decimales
 
             textBox9.Text = MontoPagadoE.ToString("0.00");
             textBox10.Text = MontoPagadoT.ToString("0.00");
 
-            decimal montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+            montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+
+            textBox17.Text = montoRestante.ToString();
 
             if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
             {
@@ -168,6 +170,7 @@ namespace VetPet_
                 }
         string queryDueño = @"
                                 SELECT 
+                            p.idPersona AS idPersona,
                             P.nombre AS NombrePersona,
                             P.apellidoP AS ApellidoPaterno, 
                             M.nombre AS NombreMascota
@@ -189,6 +192,7 @@ namespace VetPet_
                     {
                         if (reader.Read())
                         {
+                            idDueño1 = Convert.ToInt32(reader["idPersona"]);
                             textBox3.Text = reader["NombrePersona"].ToString();
                             textBox4.Text = reader["apellidoPaterno"].ToString();
                             textBox5.Text = reader["NombreMascota"].ToString();
@@ -311,28 +315,28 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos,idCita1);
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, montoRestante, dtProductos,idCita1);
             VentasConfirmacionEfectivo.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos, dtProductos,idCita1);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, montoRestante, dtProductos,idCita1);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, sumaTotalProductos,stock, idCita1);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, totalGeneral,stock, idCita1);
             VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
         }
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, sumaTotalProductos, stock,idCita1);
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, totalGeneral, stock,idCita1);
             ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
@@ -350,7 +354,7 @@ namespace VetPet_
                     mismetodos.AbrirConexion();
 
                     DateTime fechaRegistro = DateTime.Now;
-                    decimal total = sumaTotalProductos;
+                    decimal total = totalGeneral;
                     char pagado = 'S';
                     decimal? efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
                     decimal? tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
@@ -369,7 +373,7 @@ namespace VetPet_
                         cmd.Parameters.AddWithValue("@pagado", pagado);
                         cmd.Parameters.AddWithValue("@efectivo", (object)efectivo ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@idCita", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idCita", (object)idCita1 ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
                         cmd.Parameters.AddWithValue("@estado", estado);

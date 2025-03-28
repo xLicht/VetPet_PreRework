@@ -110,7 +110,10 @@ namespace VetPet_.Angie
                     parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, false));
                 }
 
-                // Ocultar la ventana de confirmación para evitar que se cierre antes de completar el flujo
+                if (FormularioOrigen == "VentasVentanadePago")
+                {
+                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, nuevoSubtotal, dtProductos, montoIngresado, false));
+                }
                 this.Hide();
             }
             catch (Exception ex)
