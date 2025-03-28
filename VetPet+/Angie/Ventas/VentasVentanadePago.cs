@@ -23,34 +23,35 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
         decimal sumaTotalProductos = 0;
         decimal nuevoSubtotal = 0;
-        public static decimal MontoPagadoE = 0;    
+        public static decimal MontoPagadoE = 0;
         public static decimal MontoPagadoT = 0;
         public string FormularioOrigen { get; set; }
 
-        private int idCita;
+        private static int idCita1;
         private int stock;
         private static int idDueño1;
         private static int idPersona;
+        private static decimal sumaTotal;
 
-        public VentasVentanadePago(Form1 parent,int idCita, int idDueño, string tabla)
+        public VentasVentanadePago(Form1 parent, int idCita, int idDueño, string tabla)
         {
             InitializeComponent();
             this.Load += VentasVentanadePago_Load;       // Evento Load
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
-
+            idCita1 = idCita;
             CargarServicios(idCita);
             if (tabla == "Dueño")
                 idDueño1 = idDueño;
             if (tabla == "Empleado")
                 idPersona = idDueño;
         }
-        public VentasVentanadePago(Form1 parent,int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
+        public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
         {
             InitializeComponent();
             this.Load += VentasVentanadePago_Load;       // Evento Load
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
-            this.idCita = idCita;
+            idCita1 = idCita;
             parentForm = parent;  // Guardamos la referencia de Form1
 
             CargarServicios(idCita);
@@ -95,21 +96,26 @@ namespace VetPet_
         }
         public void ActualizarSumaTotal()
         {
-            // Sumar el total de productos
             sumaTotalProductos = dtProductos.AsEnumerable()
                 .Where(r => r["Total"] != DBNull.Value)
                 .Sum(r => r.Field<decimal>("Total"));
 
-            textBox8.Text = "Subtotal: " + sumaTotalProductos.ToString("0.###");
+            decimal totalGeneral = sumaTotalProductos + sumaTotal;  // sumaTotal es tu variable decimal adicional
 
-            textBox9.Text = MontoPagadoE.ToString();
-            textBox10.Text = MontoPagadoT.ToString();
+            textBox8.Text = "Subtotal: " + totalGeneral.ToString("0.00");  // Formato con 2 decimales
 
-            decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
+            textBox9.Text = MontoPagadoE.ToString("0.00");
+            textBox10.Text = MontoPagadoT.ToString("0.00");
 
-            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos)
+            decimal montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+
+            if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
             {
                 textBox7.Text = "Pagado";
+            }
+            else
+            {
+                textBox7.Text = montoRestante.ToString("0.00");  // Mostrar saldo pendiente si lo hay
             }
         }
         public void CargarServicios(int idCita)
@@ -152,19 +158,11 @@ namespace VetPet_
                             }
                         }
 
-                        // Calcular la suma solo si hay filas en la tabla
                         if (tabla.Rows.Count > 0)
                         {
-                            decimal sumaTotal = tabla.AsEnumerable()
+                            sumaTotal = tabla.AsEnumerable()
                                 .Where(r => r["Precio"] != DBNull.Value)
                                 .Sum(r => r.Field<decimal>("Precio"));
-
-                            textBox16.Text = sumaTotal.ToString(); // Formato con 2 decimales
-
-                        }
-                        else
-                        {
-                            textBox16.Text = "0.00";
                         }
                     }
                 }
@@ -222,7 +220,7 @@ namespace VetPet_
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarServicios(idCita);
-            this.idCita = idCita;
+            idCita1 = idCita;
         }
         private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
@@ -313,28 +311,28 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos,idCita1);
             VentasConfirmacionEfectivo.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos, dtProductos,idCita1);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm, idCita, sumaTotalProductos, stock);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, sumaTotalProductos,stock, idCita1);
             VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
         }
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, idCita, sumaTotalProductos, stock);
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, sumaTotalProductos, stock,idCita1);
             ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }

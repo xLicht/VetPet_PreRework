@@ -61,7 +61,6 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -186,7 +185,7 @@
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox8.Location = new System.Drawing.Point(694, 616);
+            this.textBox8.Location = new System.Drawing.Point(694, 586);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(254, 22);
             this.textBox8.TabIndex = 189;
@@ -447,18 +446,10 @@
             this.textBox5.Size = new System.Drawing.Size(156, 34);
             this.textBox5.TabIndex = 204;
             // 
-            // textBox16
-            // 
-            this.textBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox16.Location = new System.Drawing.Point(694, 586);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(254, 22);
-            this.textBox16.TabIndex = 205;
-            // 
             // textBox17
             // 
             this.textBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox17.Location = new System.Drawing.Point(694, 644);
+            this.textBox17.Location = new System.Drawing.Point(694, 614);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(254, 22);
             this.textBox17.TabIndex = 206;
@@ -470,7 +461,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(224)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
             this.Controls.Add(this.textBox17);
-            this.Controls.Add(this.textBox16);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox12);
@@ -551,7 +541,6 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.TextBox textBox17;
     }
 }

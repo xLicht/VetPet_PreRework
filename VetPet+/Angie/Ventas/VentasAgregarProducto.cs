@@ -22,11 +22,12 @@ namespace VetPet_.Angie
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
         public string FormularioOrigen { get; set; }
-        int idCita = 0;
+        public int idCita;
         public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int idCita)
         {
             InitializeComponent();
             parentForm = parent;
+            this.idCita = idCita;
             this.Load += VentasAgregarProducto_Load;
             this.Resize += VentasAgregarProducto_Resize;
             dataGridView2.CellMouseEnter += dataGridView1_CellMouseEnter;
@@ -36,7 +37,6 @@ namespace VetPet_.Angie
             PersonalizarDataGridView(dataGridView2);
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
-            this.idCita = idCita;
 
             if (dtProductos.Rows.Count > 0)
             {
@@ -229,7 +229,7 @@ namespace VetPet_.Angie
                     //string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                    parentForm.formularioHijo(new VentasDeseaAgregarProducto(parentForm, idMedicamento));
+                    parentForm.formularioHijo(new VentasDeseaAgregarProducto(parentForm, idMedicamento,idCita));
                 }
             }
             catch (Exception ex)

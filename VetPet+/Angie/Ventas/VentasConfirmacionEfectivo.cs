@@ -32,13 +32,14 @@ namespace VetPet_.Angie
             textBox3.Text += sumaTotalProductos.ToString();
 
         }
-        public VentasConfirmacionEfectivo(VentasVentanadePago ventasVentanadePago, Form1 parent, decimal sumaTotalProductos,int idCita)
+        public VentasConfirmacionEfectivo(Form1 parent, decimal sumaTotalProductos, DataTable dtProductos,int idCita)
         {
             InitializeComponent();
             this.Load += VentasConfirmacionEfectivo_Load;       // Evento Load
             this.Resize += VentasConfirmacionEfectivo_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
-            this.sumaTotalProductos = sumaTotalProductos;
+            this.sumaTotalProductos += sumaTotalProductos;
+            textBox3.Text += sumaTotalProductos.ToString();
             this.idCita = idCita;
         }
 
