@@ -54,9 +54,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Black", 21.91304F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label2.Location = new System.Drawing.Point(447, 22);
+            this.label2.Location = new System.Drawing.Point(596, 27);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(262, 41);
+            this.label2.Size = new System.Drawing.Size(307, 47);
             this.label2.TabIndex = 18;
             this.label2.Text = "Historial Medico";
             // 
@@ -65,9 +66,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 21.91304F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(38, 31);
+            this.label1.Location = new System.Drawing.Point(51, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 41);
+            this.label1.Size = new System.Drawing.Size(126, 47);
             this.label1.TabIndex = 17;
             this.label1.Text = "Flitrar";
             // 
@@ -76,10 +78,10 @@
             this.btnRegresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnRegresar.Font = new System.Drawing.Font("Segoe UI Black", 21.91304F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnRegresar.Location = new System.Drawing.Point(45, 493);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRegresar.Location = new System.Drawing.Point(60, 607);
+            this.btnRegresar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(197, 56);
+            this.btnRegresar.Size = new System.Drawing.Size(263, 69);
             this.btnRegresar.TabIndex = 15;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -88,6 +90,7 @@
             // 
             // dtHistorial
             // 
+            this.dtHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtHistorial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -106,11 +109,12 @@
             this.Column5,
             this.Column6});
             this.dtHistorial.EnableHeadersVisualStyles = false;
-            this.dtHistorial.Location = new System.Drawing.Point(45, 130);
+            this.dtHistorial.Location = new System.Drawing.Point(60, 160);
+            this.dtHistorial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtHistorial.Name = "dtHistorial";
             this.dtHistorial.RowHeadersVisible = false;
             this.dtHistorial.RowHeadersWidth = 49;
-            this.dtHistorial.Size = new System.Drawing.Size(981, 344);
+            this.dtHistorial.Size = new System.Drawing.Size(1308, 423);
             this.dtHistorial.TabIndex = 14;
             this.dtHistorial.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtHistorial_CellClick);
             this.dtHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -118,31 +122,37 @@
             // Column1
             // 
             this.Column1.HeaderText = "idMascota";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Mascota";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Especie";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Raza";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Dueño";
+            this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             // 
             // Column6
             // 
             this.Column6.HeaderText = "Fecha de Registro";
+            this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
             // btnBuscar
@@ -150,10 +160,10 @@
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI Black", 21.91304F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnBuscar.Location = new System.Drawing.Point(847, 60);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBuscar.Location = new System.Drawing.Point(1129, 74);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(179, 56);
+            this.btnBuscar.Size = new System.Drawing.Size(239, 69);
             this.btnBuscar.TabIndex = 12;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -164,10 +174,10 @@
             this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.txtBuscar.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.txtBuscar.Location = new System.Drawing.Point(410, 73);
-            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBuscar.Location = new System.Drawing.Point(547, 90);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(311, 36);
+            this.txtBuscar.Size = new System.Drawing.Size(413, 41);
             this.txtBuscar.TabIndex = 11;
             this.txtBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -182,10 +192,10 @@
             "Dueño",
             "Especie",
             "Fecha de Nacimiento"});
-            this.cbFiltrar.Location = new System.Drawing.Point(45, 77);
-            this.cbFiltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbFiltrar.Location = new System.Drawing.Point(60, 95);
+            this.cbFiltrar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.cbFiltrar.Name = "cbFiltrar";
-            this.cbFiltrar.Size = new System.Drawing.Size(142, 33);
+            this.cbFiltrar.Size = new System.Drawing.Size(188, 39);
             this.cbFiltrar.TabIndex = 10;
             // 
             // pictureBox2
@@ -193,10 +203,10 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox2.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(192, 505);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox2.Location = new System.Drawing.Point(256, 622);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 37);
+            this.pictureBox2.Size = new System.Drawing.Size(45, 46);
             this.pictureBox2.TabIndex = 16;
             this.pictureBox2.TabStop = false;
             // 
@@ -205,19 +215,19 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox1.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaBuscar;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(969, 67);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(1292, 82);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 42);
+            this.pictureBox1.Size = new System.Drawing.Size(55, 52);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
             // VeterinariaHistorialMedico
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
-            this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.ClientSize = new System.Drawing.Size(1443, 710);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
@@ -227,6 +237,7 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.cbFiltrar);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VeterinariaHistorialMedico";
             this.Text = "VeterinariaHistorialMedico";
             this.Load += new System.EventHandler(this.VeterinariaHistorialMedico_Load_1);

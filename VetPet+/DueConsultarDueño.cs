@@ -27,6 +27,7 @@ namespace VetPet_
         {
             //MessageBox.Show("Dato"+DatoEmpleado);
             MostrarDato();
+            CargarNumerosSecundarios();
         }
 
         public void MostrarDato()
@@ -39,7 +40,9 @@ namespace VetPet_
                     p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
                     p.correoElectronico, 
                     pais.nombre AS pais, calle.nombre AS calle, 
-                    cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
+                    cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, 
+                    estado.nombre AS estado,
+                    municipio.nombre AS municipio
                 FROM 
                     Persona p
                 LEFT JOIN 
@@ -56,6 +59,8 @@ namespace VetPet_
                     Colonia colonia ON d.idColonia = colonia.idColonia
                 LEFT JOIN 
                     Estado estado ON d.idEstado = estado.idEstado 
+                LEFT JOIN
+                    Municipio municipio ON d.idMunicipio = municipio.idMunicipio
                 WHERE 
                     p.idPersona = @idPersona";
 
@@ -78,6 +83,7 @@ namespace VetPet_
                         txtCiudad.Text = reader["ciudad"].ToString();
                         txtColonia.Text = reader["colonia"].ToString();
                         txtEstado.Text = reader["estado"].ToString();
+                        txtMunicipio.Text = reader["municipio"].ToString();
                     }
                 }
             }
@@ -134,7 +140,9 @@ namespace VetPet_
                 {
                     conexionDB.AbrirConexion();
 
-                    string query = "UPDATE Persona SET estado = 'I' WHERE idPersona = @idPersona";
+                            string query = @"
+                        UPDATE Persona SET estado = 'I' WHERE idPersona = @idPersona;
+                        UPDATE Celular SET estado = 'I' WHERE idPersona = @idPersona;";
 
                     using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                     {
@@ -162,6 +170,37 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
             parentForm.formularioHijo(new DueAtencionAlCliente(parentForm));
+        }
+        private void CargarNumerosSecundarios()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número");
+                conexionDB.AbrirConexion();
+
+                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona AND estado = 'A'";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        dt.Rows.Add(reader["numero"].ToString());
+                    }
+                    reader.Close();
+                }
+                dtNumeros.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los números secundarios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
     } 
 }

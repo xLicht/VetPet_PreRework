@@ -39,6 +39,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pRegresar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEmpleados)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label16.Location = new System.Drawing.Point(439, 22);
+            this.label16.Location = new System.Drawing.Point(444, 9);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(270, 37);
             this.label16.TabIndex = 121;
@@ -84,6 +85,7 @@
             // 
             // dtEmpleados
             // 
+            this.dtEmpleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtEmpleados.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -100,12 +102,13 @@
             this.Column6,
             this.Column3,
             this.Column4,
-            this.Column5});
+            this.Column5,
+            this.Column7});
             this.dtEmpleados.EnableHeadersVisualStyles = false;
-            this.dtEmpleados.Location = new System.Drawing.Point(242, 62);
+            this.dtEmpleados.Location = new System.Drawing.Point(198, 62);
             this.dtEmpleados.Name = "dtEmpleados";
             this.dtEmpleados.RowHeadersVisible = false;
-            this.dtEmpleados.Size = new System.Drawing.Size(641, 450);
+            this.dtEmpleados.Size = new System.Drawing.Size(757, 430);
             this.dtEmpleados.TabIndex = 125;
             // 
             // Column1
@@ -137,6 +140,11 @@
             // 
             this.Column5.HeaderText = "Telefono";
             this.Column5.Name = "Column5";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "RFC";
+            this.Column7.Name = "Column7";
             // 
             // EmpListas
             // 
@@ -170,5 +178,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }

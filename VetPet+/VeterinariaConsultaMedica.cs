@@ -189,5 +189,45 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                    string query = @"
+                UPDATE Consulta
+                SET estado = 'I'
+                WHERE idConsulta = (
+                    SELECT TOP 1 idConsulta 
+                    FROM Consulta 
+                    WHERE idCita = @idCita
+                )";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Consulta eliminada (inactivada) correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la consulta para eliminar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la consulta: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
     }
 }

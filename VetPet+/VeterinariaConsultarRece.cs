@@ -299,5 +299,48 @@ namespace VetPet_
 
            // parentForm.formularioHijo(new VeterinariaModificarReceta(parentForm));
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                        string query = @"
+                    UPDATE Receta 
+                    SET estado = 'I'
+                    WHERE idReceta = (
+                        SELECT TOP 1 idReceta 
+                        FROM Receta 
+                        WHERE idConsulta = @idConsulta
+                    )";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idConsulta", datoConsulta);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Receta eliminada (inactivada) correctamente.");
+                        rtIndicaciones.Text = "";
+                        listaMedicamentos.Clear();
+                        dtMedicamentos.Rows.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la receta para eliminar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la receta: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
     }
 }
