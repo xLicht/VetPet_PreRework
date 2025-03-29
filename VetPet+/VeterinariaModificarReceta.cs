@@ -68,13 +68,6 @@ namespace VetPet_
 
                 // parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
             }
-            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            //VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
-            //formularioHijo.DatoCita = idCitaSeleccionada;
-            //parentForm.formularioHijo(formularioHijo);
-
-
-            // parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -448,6 +441,34 @@ namespace VetPet_
                     ActualizarDataGrid();
                 }
             }
+        }
+
+        private void btnGenerarReceta_Click(object sender, EventArgs e)
+        {
+            string nombreDueño = txtNombre.Text;
+            string nombreMascota = txtMascota.Text;
+            string especie = txtEspecie.Text;
+            string raza = txtRaza.Text;
+            string fechaNacimiento = txtFechaNacimiento.Text;
+            string diagnostico = rtDiagnostico.Text;
+            string peso = txtPeso.Text;
+            string temperatura = txtTemperatura.Text;
+            string indicaciones = rtIndicaciones.Text;
+
+            VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
+                   parentForm,
+                   nombreDueño,
+                   nombreMascota,
+                   especie,
+                   raza,
+                   fechaNacimiento,
+                   diagnostico,
+                   peso,
+                   temperatura,
+                   indicaciones,
+                   listaMedicamentos
+               );
+            parentForm.formularioHijo(formularioHijo);
         }
     }
 }

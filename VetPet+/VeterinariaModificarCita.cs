@@ -281,6 +281,15 @@ namespace VetPet_
                 else if (cbServicioP.SelectedItem != null)
                     nombreServicio = cbServicioP.Text;
             }
+            if (esVacuna)
+            {
+                int idMascota = Convert.ToInt32(cbMascota.SelectedValue);
+                if (VacunaYaAplicada(idMascota, idVacuna))
+                {
+                    MessageBox.Show("La mascota ya tiene aplicada esta vacuna.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
 
             if (!string.IsNullOrEmpty(nombreServicio))
             {
@@ -299,6 +308,35 @@ namespace VetPet_
             {
                 MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private bool VacunaYaAplicada(int idMascota, int idVacuna)
+        {
+            bool existe = false;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT COUNT(*) FROM Vacuna_Mascota WHERE idMascota = @idMascota AND idVacuna = @idVacuna";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idMascota", idMascota);
+                    cmd.Parameters.AddWithValue("@idVacuna", idVacuna);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    MessageBox.Show($"idMascota: {idMascota}, idVacuna: {idVacuna}, count: {count}");
+                    if (count > 0)
+                    {
+                        existe = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al validar la vacuna: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return existe;
         }
 
         private void ActualizarDataGrid()
@@ -627,15 +665,30 @@ namespace VetPet_
 
         private void dtServicio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //if (e.RowIndex >= 0)
+            //{
+            //    string servicio = dtServicio.Rows[e.RowIndex].Cells["NombreServicio"].Value.ToString();
+            //    DialogResult resultado = MessageBox.Show($"¿Deseas eliminar el servicio '{servicio}'?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            //    if (resultado == DialogResult.Yes)
+            //    {
+            //        listaServicios.RemoveAt(e.RowIndex);
+            //        ActualizarDataGrid();
+            //    }
+            //}
             if (e.RowIndex >= 0)
             {
-                string servicio = dtServicio.Rows[e.RowIndex].Cells["NombreServicio"].Value.ToString();
-                DialogResult resultado = MessageBox.Show($"¿Deseas eliminar el servicio '{servicio}'?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
+                // Obtener el objeto de la fila seleccionada
+                ServicioSeleccionado servicioSeleccionado = dtServicio.Rows[e.RowIndex].DataBoundItem as ServicioSeleccionado;
+                if (servicioSeleccionado != null)
                 {
-                    listaServicios.RemoveAt(e.RowIndex);
-                    ActualizarDataGrid();
+                    DialogResult resultado = MessageBox.Show($"¿Deseas eliminar el servicio '{servicioSeleccionado.NombreServicio}'?",
+                                                              "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (resultado == DialogResult.Yes)
+                    {
+                        listaServicios.Remove(servicioSeleccionado);
+                        ActualizarDataGrid();
+                    }
                 }
             }
         }

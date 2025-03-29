@@ -307,15 +307,6 @@ namespace VetPet_
             string temperatura = txtTemperatura.Text;
             string indicaciones = rtIndicaciones.Text;
 
-           
-            //VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
-            //    parentForm,
-            //    nombreDueño, nombreMascota, especie, raza, fechaNacimiento,
-            //    diagnostico, peso, temperatura, indicaciones,
-            //    listaMedicamentos 
-            //);
-
-            //VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(parentForm);
             VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
                    parentForm,
                    nombreDueño,
@@ -330,6 +321,11 @@ namespace VetPet_
                    listaMedicamentos
                );
             parentForm.formularioHijo(formularioHijo);
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
