@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtDiferencia = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.txtTotalVentas = new System.Windows.Forms.TextBox();
@@ -159,7 +159,7 @@
             this.txtDiferencia.Enabled = false;
             this.txtDiferencia.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiferencia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtDiferencia.Location = new System.Drawing.Point(946, 454);
+            this.txtDiferencia.Location = new System.Drawing.Point(904, 448);
             this.txtDiferencia.Name = "txtDiferencia";
             this.txtDiferencia.Size = new System.Drawing.Size(107, 24);
             this.txtDiferencia.TabIndex = 112;
@@ -169,7 +169,7 @@
             // 
             this.label25.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label25.Location = new System.Drawing.Point(928, 409);
+            this.label25.Location = new System.Drawing.Point(888, 407);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(138, 30);
             this.label25.TabIndex = 111;
@@ -183,7 +183,7 @@
             this.txtTotalVentas.Enabled = false;
             this.txtTotalVentas.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtTotalVentas.Location = new System.Drawing.Point(787, 452);
+            this.txtTotalVentas.Location = new System.Drawing.Point(740, 448);
             this.txtTotalVentas.Name = "txtTotalVentas";
             this.txtTotalVentas.Size = new System.Drawing.Size(107, 24);
             this.txtTotalVentas.TabIndex = 110;
@@ -196,7 +196,7 @@
             this.txtDocumentosVentas.Enabled = false;
             this.txtDocumentosVentas.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDocumentosVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtDocumentosVentas.Location = new System.Drawing.Point(787, 387);
+            this.txtDocumentosVentas.Location = new System.Drawing.Point(740, 383);
             this.txtDocumentosVentas.Name = "txtDocumentosVentas";
             this.txtDocumentosVentas.Size = new System.Drawing.Size(107, 24);
             this.txtDocumentosVentas.TabIndex = 107;
@@ -205,7 +205,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel3.Location = new System.Drawing.Point(777, 382);
+            this.panel3.Location = new System.Drawing.Point(730, 378);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(4, 100);
             this.panel3.TabIndex = 106;
@@ -213,7 +213,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel4.Location = new System.Drawing.Point(604, 442);
+            this.panel4.Location = new System.Drawing.Point(557, 438);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(290, 4);
             this.panel4.TabIndex = 105;
@@ -222,7 +222,7 @@
             // 
             this.label21.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label21.Location = new System.Drawing.Point(580, 412);
+            this.label21.Location = new System.Drawing.Point(533, 408);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(198, 30);
             this.label21.TabIndex = 104;
@@ -233,7 +233,7 @@
             // 
             this.label22.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label22.Location = new System.Drawing.Point(539, 382);
+            this.label22.Location = new System.Drawing.Point(492, 378);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(242, 30);
             this.label22.TabIndex = 103;
@@ -244,7 +244,7 @@
             // 
             this.label23.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label23.Location = new System.Drawing.Point(589, 352);
+            this.label23.Location = new System.Drawing.Point(542, 348);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(198, 30);
             this.label23.TabIndex = 102;
@@ -258,7 +258,7 @@
             this.txtEfectivoVentas.Enabled = false;
             this.txtEfectivoVentas.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEfectivoVentas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtEfectivoVentas.Location = new System.Drawing.Point(787, 415);
+            this.txtEfectivoVentas.Location = new System.Drawing.Point(740, 411);
             this.txtEfectivoVentas.Name = "txtEfectivoVentas";
             this.txtEfectivoVentas.Size = new System.Drawing.Size(107, 24);
             this.txtEfectivoVentas.TabIndex = 108;
@@ -268,7 +268,7 @@
             // 
             this.label24.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label24.Location = new System.Drawing.Point(575, 449);
+            this.label24.Location = new System.Drawing.Point(528, 445);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(198, 30);
             this.label24.TabIndex = 109;
@@ -282,7 +282,7 @@
             this.txtTotalCaja.Enabled = false;
             this.txtTotalCaja.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalCaja.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtTotalCaja.Location = new System.Drawing.Point(418, 453);
+            this.txtTotalCaja.Location = new System.Drawing.Point(371, 449);
             this.txtTotalCaja.Name = "txtTotalCaja";
             this.txtTotalCaja.Size = new System.Drawing.Size(107, 24);
             this.txtTotalCaja.TabIndex = 101;
@@ -295,7 +295,7 @@
             this.txtDocumentosCaja.Enabled = false;
             this.txtDocumentosCaja.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDocumentosCaja.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtDocumentosCaja.Location = new System.Drawing.Point(418, 388);
+            this.txtDocumentosCaja.Location = new System.Drawing.Point(371, 384);
             this.txtDocumentosCaja.Name = "txtDocumentosCaja";
             this.txtDocumentosCaja.Size = new System.Drawing.Size(107, 24);
             this.txtDocumentosCaja.TabIndex = 98;
@@ -340,7 +340,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel1.Location = new System.Drawing.Point(410, 383);
+            this.panel1.Location = new System.Drawing.Point(363, 379);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(4, 100);
             this.panel1.TabIndex = 93;
@@ -348,7 +348,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.panel2.Location = new System.Drawing.Point(235, 443);
+            this.panel2.Location = new System.Drawing.Point(188, 439);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(290, 4);
             this.panel2.TabIndex = 92;
@@ -357,7 +357,7 @@
             // 
             this.label19.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label19.Location = new System.Drawing.Point(216, 413);
+            this.label19.Location = new System.Drawing.Point(169, 409);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(198, 30);
             this.label19.TabIndex = 91;
@@ -368,7 +368,7 @@
             // 
             this.label18.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label18.Location = new System.Drawing.Point(81, 382);
+            this.label18.Location = new System.Drawing.Point(34, 378);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(330, 30);
             this.label18.TabIndex = 90;
@@ -379,7 +379,7 @@
             // 
             this.label17.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label17.Location = new System.Drawing.Point(216, 353);
+            this.label17.Location = new System.Drawing.Point(169, 349);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(198, 30);
             this.label17.TabIndex = 89;
@@ -390,11 +390,11 @@
             // 
             this.label16.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label16.Location = new System.Drawing.Point(257, 57);
+            this.label16.Location = new System.Drawing.Point(438, 56);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(173, 30);
             this.label16.TabIndex = 87;
-            this.label16.Text = "Fecha de corte";
+            this.label16.Text = "Fecha inicio";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtUsuario
@@ -404,9 +404,9 @@
             this.txtUsuario.Enabled = false;
             this.txtUsuario.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtUsuario.Location = new System.Drawing.Point(364, 20);
+            this.txtUsuario.Location = new System.Drawing.Point(124, 23);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(510, 24);
+            this.txtUsuario.Size = new System.Drawing.Size(288, 24);
             this.txtUsuario.TabIndex = 86;
             this.txtUsuario.Text = "Nombre de usuario";
             // 
@@ -414,7 +414,7 @@
             // 
             this.label15.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label15.Location = new System.Drawing.Point(257, 14);
+            this.label15.Location = new System.Drawing.Point(17, 17);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(198, 30);
             this.label15.TabIndex = 85;
@@ -524,22 +524,22 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn3.HeaderText = "Billete";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn5.HeaderText = "Total";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
@@ -598,22 +598,22 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn1.HeaderText = "Billete";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // Column3
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column3.HeaderText = "Total";
             this.Column3.Name = "Column3";
             // 
@@ -621,7 +621,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label5.Location = new System.Drawing.Point(17, 13);
+            this.label5.Location = new System.Drawing.Point(11, 50);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(198, 30);
             this.label5.TabIndex = 71;
@@ -697,7 +697,7 @@
             this.txtEfectivoCaja.Enabled = false;
             this.txtEfectivoCaja.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEfectivoCaja.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtEfectivoCaja.Location = new System.Drawing.Point(418, 416);
+            this.txtEfectivoCaja.Location = new System.Drawing.Point(371, 412);
             this.txtEfectivoCaja.Name = "txtEfectivoCaja";
             this.txtEfectivoCaja.Size = new System.Drawing.Size(107, 24);
             this.txtEfectivoCaja.TabIndex = 99;
@@ -707,7 +707,7 @@
             // 
             this.label20.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label20.Location = new System.Drawing.Point(216, 450);
+            this.label20.Location = new System.Drawing.Point(169, 446);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(198, 30);
             this.label20.TabIndex = 100;
@@ -1054,7 +1054,7 @@
             this.txtTotalDinero.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDinero.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalDinero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtTotalDinero.Location = new System.Drawing.Point(22, 57);
+            this.txtTotalDinero.Location = new System.Drawing.Point(223, 56);
             this.txtTotalDinero.Name = "txtTotalDinero";
             this.txtTotalDinero.Size = new System.Drawing.Size(189, 24);
             this.txtTotalDinero.TabIndex = 141;
@@ -1076,23 +1076,23 @@
             // 
             this.label11.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label11.Location = new System.Drawing.Point(562, 57);
+            this.label11.Location = new System.Drawing.Point(712, 56);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(173, 30);
             this.label11.TabIndex = 143;
-            this.label11.Text = "Fecha de corte";
+            this.label11.Text = "Fecha fin";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dtpFechaFin
             // 
-            this.dtpFechaFin.Location = new System.Drawing.Point(732, 64);
+            this.dtpFechaFin.Location = new System.Drawing.Point(826, 63);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(142, 20);
             this.dtpFechaFin.TabIndex = 145;
             // 
             // dtpFechaInicio
             // 
-            this.dtpFechaInicio.Location = new System.Drawing.Point(429, 64);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(579, 63);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(127, 20);
             this.dtpFechaInicio.TabIndex = 146;
@@ -1106,9 +1106,9 @@
             this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFiltrar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnFiltrar.Location = new System.Drawing.Point(907, 20);
+            this.btnFiltrar.Location = new System.Drawing.Point(981, 59);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(145, 64);
+            this.btnFiltrar.Size = new System.Drawing.Size(81, 30);
             this.btnFiltrar.TabIndex = 147;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = false;
