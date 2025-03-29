@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportesClientes));
             this.label1 = new System.Windows.Forms.Label();
             this.BtnDueñosMasFrec = new System.Windows.Forms.Button();
             this.BtnMascMasFrec = new System.Windows.Forms.Button();
             this.BtnDueñosMenFrec = new System.Windows.Forms.Button();
             this.BtnMascMenFrec = new System.Windows.Forms.Button();
-            this.pdfViewClient = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             this.BtnImprimir = new System.Windows.Forms.Button();
             this.BtnGenerar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +44,8 @@
             this.BtnMenu = new System.Windows.Forms.Button();
             this.BtnVolver = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pdfViewClient = new AxAcroPDFLib.AxAcroPDF();
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewClient)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +67,7 @@
             this.BtnDueñosMasFrec.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDueñosMasFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnDueñosMasFrec.Location = new System.Drawing.Point(53, 142);
-            this.BtnDueñosMasFrec.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnDueñosMasFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnDueñosMasFrec.Name = "BtnDueñosMasFrec";
             this.BtnDueñosMasFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnDueñosMasFrec.TabIndex = 26;
@@ -80,7 +82,7 @@
             this.BtnMascMasFrec.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMascMasFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnMascMasFrec.Location = new System.Drawing.Point(53, 220);
-            this.BtnMascMasFrec.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnMascMasFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnMascMasFrec.Name = "BtnMascMasFrec";
             this.BtnMascMasFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnMascMasFrec.TabIndex = 27;
@@ -95,7 +97,7 @@
             this.BtnDueñosMenFrec.Font = new System.Drawing.Font("Cascadia Mono", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnDueñosMenFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnDueñosMenFrec.Location = new System.Drawing.Point(53, 299);
-            this.BtnDueñosMenFrec.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnDueñosMenFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnDueñosMenFrec.Name = "BtnDueñosMenFrec";
             this.BtnDueñosMenFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnDueñosMenFrec.TabIndex = 28;
@@ -110,7 +112,7 @@
             this.BtnMascMenFrec.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMascMenFrec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnMascMenFrec.Location = new System.Drawing.Point(53, 378);
-            this.BtnMascMenFrec.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnMascMenFrec.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnMascMenFrec.Name = "BtnMascMenFrec";
             this.BtnMascMenFrec.Size = new System.Drawing.Size(380, 55);
             this.BtnMascMenFrec.TabIndex = 29;
@@ -119,49 +121,13 @@
             this.BtnMascMenFrec.UseVisualStyleBackColor = false;
             this.BtnMascMenFrec.Click += new System.EventHandler(this.BtnMascMenFrec_Click);
             // 
-            // pdfViewClient
-            // 
-            this.pdfViewClient.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pdfViewClient.CurrentIndex = -1;
-            this.pdfViewClient.CurrentPageHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.pdfViewClient.Document = null;
-            this.pdfViewClient.FormHighlightColor = System.Drawing.Color.Transparent;
-            this.pdfViewClient.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
-            this.pdfViewClient.LoadingIconText = "Loading...";
-            this.pdfViewClient.Location = new System.Drawing.Point(588, 142);
-            this.pdfViewClient.Margin = new System.Windows.Forms.Padding(5);
-            this.pdfViewClient.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
-            this.pdfViewClient.Name = "pdfViewClient";
-            this.pdfViewClient.OptimizedLoadThreshold = 1000;
-            this.pdfViewClient.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.pdfViewClient.PageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.pdfViewClient.PageAutoDispose = true;
-            this.pdfViewClient.PageBackColor = System.Drawing.Color.White;
-            this.pdfViewClient.PageBorderColor = System.Drawing.Color.Black;
-            this.pdfViewClient.PageMargin = new System.Windows.Forms.Padding(10);
-            this.pdfViewClient.PageSeparatorColor = System.Drawing.Color.Gray;
-            this.pdfViewClient.RenderFlags = ((Patagames.Pdf.Enums.RenderFlags)((Patagames.Pdf.Enums.RenderFlags.FPDF_LCD_TEXT | Patagames.Pdf.Enums.RenderFlags.FPDF_NO_CATCH)));
-            this.pdfViewClient.ShowCurrentPageHighlight = true;
-            this.pdfViewClient.ShowLoadingIcon = true;
-            this.pdfViewClient.ShowPageSeparator = true;
-            this.pdfViewClient.Size = new System.Drawing.Size(824, 469);
-            this.pdfViewClient.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
-            this.pdfViewClient.TabIndex = 37;
-            this.pdfViewClient.Tag = "1";
-            this.pdfViewClient.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
-            this.pdfViewClient.TilesCount = 2;
-            this.pdfViewClient.UseProgressiveRender = true;
-            this.pdfViewClient.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
-            this.pdfViewClient.Visible = false;
-            this.pdfViewClient.Zoom = 1F;
-            // 
             // BtnImprimir
             // 
             this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(91)))), ((int)(((byte)(131)))));
             this.BtnImprimir.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnImprimir.Location = new System.Drawing.Point(588, 620);
-            this.BtnImprimir.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnImprimir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnImprimir.Name = "BtnImprimir";
             this.BtnImprimir.Size = new System.Drawing.Size(219, 55);
             this.BtnImprimir.TabIndex = 38;
@@ -176,7 +142,7 @@
             this.BtnGenerar.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnGenerar.Location = new System.Drawing.Point(1193, 620);
-            this.BtnGenerar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnGenerar.Name = "BtnGenerar";
             this.BtnGenerar.Size = new System.Drawing.Size(219, 55);
             this.BtnGenerar.TabIndex = 39;
@@ -206,7 +172,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cascadia Mono", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
-            this.label3.Location = new System.Drawing.Point(954, 665);
+            this.label3.Location = new System.Drawing.Point(955, 665);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 35);
@@ -222,7 +188,7 @@
             this.dateTime1.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTime1.Location = new System.Drawing.Point(815, 635);
-            this.dateTime1.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTime1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTime1.Name = "dateTime1";
             this.dateTime1.Size = new System.Drawing.Size(159, 26);
             this.dateTime1.TabIndex = 49;
@@ -234,8 +200,8 @@
             this.dateTime2.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.dateTime2.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTime2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTime2.Location = new System.Drawing.Point(1026, 635);
-            this.dateTime2.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTime2.Location = new System.Drawing.Point(1027, 635);
+            this.dateTime2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTime2.Name = "dateTime2";
             this.dateTime2.Size = new System.Drawing.Size(159, 26);
             this.dateTime2.TabIndex = 58;
@@ -263,7 +229,7 @@
             this.BtnMenu.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnMenu.Location = new System.Drawing.Point(36, 628);
-            this.BtnMenu.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnMenu.Name = "BtnMenu";
             this.BtnMenu.Size = new System.Drawing.Size(180, 48);
             this.BtnMenu.TabIndex = 69;
@@ -277,7 +243,7 @@
             this.BtnVolver.Font = new System.Drawing.Font("Cascadia Mono", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVolver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(171)))), ((int)(((byte)(196)))));
             this.BtnVolver.Location = new System.Drawing.Point(265, 628);
-            this.BtnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnVolver.Name = "BtnVolver";
             this.BtnVolver.Size = new System.Drawing.Size(180, 48);
             this.BtnVolver.TabIndex = 68;
@@ -291,10 +257,22 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(200)))), ((int)(((byte)(214)))));
             this.panel1.Location = new System.Drawing.Point(492, 142);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(7, 554);
             this.panel1.TabIndex = 70;
+            // 
+            // pdfViewClient
+            // 
+            this.pdfViewClient.Enabled = true;
+            this.pdfViewClient.Location = new System.Drawing.Point(588, 142);
+            this.pdfViewClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pdfViewClient.Name = "pdfViewClient";
+            this.pdfViewClient.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("pdfViewClient.OcxState")));
+            this.pdfViewClient.Size = new System.Drawing.Size(823, 441);
+            this.pdfViewClient.TabIndex = 71;
+            this.pdfViewClient.Tag = "1";
+            this.pdfViewClient.Visible = false;
             // 
             // ReportesClientes
             // 
@@ -302,6 +280,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(9)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.Controls.Add(this.pdfViewClient);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BtnMenu);
             this.Controls.Add(this.BtnVolver);
@@ -312,16 +291,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnGenerar);
             this.Controls.Add(this.BtnImprimir);
-            this.Controls.Add(this.pdfViewClient);
             this.Controls.Add(this.BtnMascMenFrec);
             this.Controls.Add(this.BtnDueñosMenFrec);
             this.Controls.Add(this.BtnMascMasFrec);
             this.Controls.Add(this.BtnDueñosMasFrec);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReportesClientes";
             this.Text = "ReportesClientes";
             this.Load += new System.EventHandler(this.ReportesClientes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pdfViewClient)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,7 +313,6 @@
         private System.Windows.Forms.Button BtnMascMasFrec;
         private System.Windows.Forms.Button BtnDueñosMenFrec;
         private System.Windows.Forms.Button BtnMascMenFrec;
-        private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewClient;
         private System.Windows.Forms.Button BtnImprimir;
         private System.Windows.Forms.Button BtnGenerar;
         private System.Windows.Forms.Label label2;
@@ -345,5 +323,6 @@
         private System.Windows.Forms.Button BtnMenu;
         private System.Windows.Forms.Button BtnVolver;
         private System.Windows.Forms.Panel panel1;
+        private AxAcroPDFLib.AxAcroPDF pdfViewClient;
     }
 }

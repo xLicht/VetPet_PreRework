@@ -255,17 +255,116 @@ namespace VetPet_
         }
         private void MostrarInfoUsuario()
         {
-            InfoUsuario infoForm = new InfoUsuario();
+            InfoUsuario infoForm = new InfoUsuario(this, IDUsuario);
 
-            // Establecer la posición en la pantalla (ejemplo: 500,300 píxeles)
+            // Configurar posición
             infoForm.StartPosition = FormStartPosition.Manual;
             infoForm.Location = new Point(this.Location.X + 1250, this.Location.Y + 84);
 
-            // Mostrar el formulario
-            infoForm.Show();
+            // Para detectar clicks fuera del formulario
+            var clickObserver = new ClickObserver(this, infoForm);
+
+            // Cerrar el observador cuando se cierre el formulario
+            infoForm.FormClosed += (s, e) => clickObserver.Dispose();
+
+            infoForm.Show(this); // Mostrar como formulario no modal
         }
+        public class ClickObserver : IDisposable
+        {
+            private readonly Form _mainForm;
+            private readonly Form _popupForm;
+
+            public ClickObserver(Form mainForm, Form popupForm)
+            {
+                _mainForm = mainForm;
+                _popupForm = popupForm;
+
+                // Suscribirnos a eventos
+                _mainForm.MouseClick += HandleClickOutside;
+                _popupForm.Deactivate += HandlePopupDeactivate;
+                Application.AddMessageFilter(new ClickMessageFilter(this));
+            }
+
+            private void HandleClickOutside(object sender, MouseEventArgs e)
+            {
+                if (!_popupForm.Bounds.Contains(_mainForm.PointToScreen(e.Location)))
+                {
+                    _popupForm.Close();
+                }
+            }
+
+            private void HandlePopupDeactivate(object sender, EventArgs e)
+            {
+                _popupForm.Close();
+            }
+
+            public void Dispose()
+            {
+                _mainForm.MouseClick -= HandleClickOutside;
+                _popupForm.Deactivate -= HandlePopupDeactivate;
+            }
+
+            // Filtro de mensajes para detectar clicks en otros controles
+            private class ClickMessageFilter : IMessageFilter, IDisposable
+            {
+                private readonly ClickObserver _parent;
+
+                public ClickMessageFilter(ClickObserver parent)
+                {
+                    _parent = parent;
+                }
+
+                public bool PreFilterMessage(ref Message m)
+                {
+                    const int WM_LBUTTONDOWN = 0x0201;
+
+                    if (m.Msg == WM_LBUTTONDOWN)
+                    {
+                        // Si el click no fue en el popup ni en el form principal
+                        if (!_parent._popupForm.Bounds.Contains(Cursor.Position) &&
+                            !_parent._mainForm.Bounds.Contains(Cursor.Position))
+                        {
+                            _parent._popupForm.Close();
+                        }
+                    }
+                    return false;
+                }
+
+                public void Dispose()
+                {
+                    Application.RemoveMessageFilter(this);
+                }
+            }
+        }
+        // Usar Show con owner en lugar de ShowDialog
+
+        //InfoUsuario infoForm = new InfoUsuario(this, IDUsuario);
+
+        //// Establecer la posición en la pantalla (ejemplo: 500,300 píxeles)
+        //infoForm.StartPosition = FormStartPosition.Manual;
+        //infoForm.Location = new Point(this.Location.X + 1250, this.Location.Y + 84);
+
+        //Task popupRunningTask = Task.Run(() =>
+        //{
+        //    infoForm.ShowDialog();
+        //    return Task.CompletedTask;
+        //});
+
+        //// Mostrar el formulario
+        //panel1.MouseClick += (sender, arg) =>
+        //{
+        //    int pX = arg.X;
+        //    int pY = arg.Y;
+
+        //    if (pX < this.Location.X + 1250 && pY < this.Location.Y + 84)
+        //    {
+        //        infoForm.Close();
+        //    }
+        //};
+        //await popupRunningTask;
 
     }
+
 }
 //SEXOO
 //PENE POLLA

@@ -57,7 +57,7 @@ namespace VetPet_
 
                 if (File.Exists(rutaPDF))
                 {
-                    pdfViewAlma.LoadDocument(rutaPDF); // Cargar el PDF en el visor
+                    pdfViewAlma.LoadFile(rutaPDF); // Cargar el PDF en el visor
                 }
                 else
                 {
@@ -110,6 +110,10 @@ namespace VetPet_
         {
             SwitchControls(sender, e);
             tipoReporte = "05";
+            dateTime1.Visible = false;
+            dateTime2.Visible = false;
+            lblA.Visible = false;
+            label3.Visible = false;
         }
 
         private void BtnMedBajoStk_Click(object sender, EventArgs e)
