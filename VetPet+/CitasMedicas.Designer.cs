@@ -58,9 +58,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label2.Location = new System.Drawing.Point(468, 9);
+            this.label2.Location = new System.Drawing.Point(624, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(211, 40);
+            this.label2.Size = new System.Drawing.Size(257, 47);
             this.label2.TabIndex = 27;
             this.label2.Text = "Citas Medicas";
             // 
@@ -69,9 +70,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(75, 31);
+            this.label1.Location = new System.Drawing.Point(100, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 40);
+            this.label1.Size = new System.Drawing.Size(126, 47);
             this.label1.TabIndex = 26;
             this.label1.Text = "Flitrar";
             // 
@@ -80,10 +82,10 @@
             this.btnRegresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnRegresar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnRegresar.Location = new System.Drawing.Point(73, 507);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRegresar.Location = new System.Drawing.Point(97, 624);
+            this.btnRegresar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(205, 56);
+            this.btnRegresar.Size = new System.Drawing.Size(273, 69);
             this.btnRegresar.TabIndex = 24;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,6 +94,7 @@
             // 
             // dtCitasMedicas
             // 
+            this.dtCitasMedicas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtCitasMedicas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -111,11 +114,12 @@
             this.Column8,
             this.Column9});
             this.dtCitasMedicas.EnableHeadersVisualStyles = false;
-            this.dtCitasMedicas.Location = new System.Drawing.Point(73, 123);
+            this.dtCitasMedicas.Location = new System.Drawing.Point(97, 151);
+            this.dtCitasMedicas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtCitasMedicas.Name = "dtCitasMedicas";
             this.dtCitasMedicas.RowHeadersVisible = false;
             this.dtCitasMedicas.RowHeadersWidth = 49;
-            this.dtCitasMedicas.Size = new System.Drawing.Size(936, 374);
+            this.dtCitasMedicas.Size = new System.Drawing.Size(1248, 460);
             this.dtCitasMedicas.TabIndex = 23;
             this.dtCitasMedicas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellClick);
             this.dtCitasMedicas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitasMedicas_CellContentClick);
@@ -125,59 +129,52 @@
             this.Column5.HeaderText = "Id";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
-            this.Column5.Width = 120;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "fecha registro";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
-            this.Column3.Width = 120;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "fecha Programada";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 120;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "hora";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
-            this.Column6.Width = 120;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "duracion";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
-            this.Column7.Width = 120;
             // 
             // Column8
             // 
             this.Column8.HeaderText = "Mascota";
             this.Column8.MinimumWidth = 6;
             this.Column8.Name = "Column8";
-            this.Column8.Width = 120;
             // 
             // Column9
             // 
             this.Column9.HeaderText = "Motivo";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
-            this.Column9.Width = 120;
             // 
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnBuscar.Location = new System.Drawing.Point(818, 59);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBuscar.Location = new System.Drawing.Point(1091, 73);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(191, 56);
+            this.btnBuscar.Size = new System.Drawing.Size(255, 69);
             this.btnBuscar.TabIndex = 21;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -189,10 +186,10 @@
             this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.txtBuscar.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.txtBuscar.Location = new System.Drawing.Point(434, 72);
-            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBuscar.Location = new System.Drawing.Point(579, 89);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(376, 36);
+            this.txtBuscar.Size = new System.Drawing.Size(500, 41);
             this.txtBuscar.TabIndex = 20;
             this.txtBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -204,10 +201,10 @@
             this.cbFiltrar.Items.AddRange(new object[] {
             "Mascota",
             "Fecha"});
-            this.cbFiltrar.Location = new System.Drawing.Point(73, 76);
-            this.cbFiltrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbFiltrar.Location = new System.Drawing.Point(97, 94);
+            this.cbFiltrar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.cbFiltrar.Name = "cbFiltrar";
-            this.cbFiltrar.Size = new System.Drawing.Size(151, 33);
+            this.cbFiltrar.Size = new System.Drawing.Size(200, 39);
             this.cbFiltrar.TabIndex = 19;
             // 
             // pictureBox2
@@ -215,10 +212,10 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox2.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(222, 513);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox2.Location = new System.Drawing.Point(296, 631);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 45);
+            this.pictureBox2.Size = new System.Drawing.Size(53, 55);
             this.pictureBox2.TabIndex = 25;
             this.pictureBox2.TabStop = false;
             // 
@@ -227,10 +224,10 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox1.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaBuscar;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(946, 65);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(1261, 80);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(45, 44);
+            this.pictureBox1.Size = new System.Drawing.Size(60, 54);
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
             // 
@@ -239,10 +236,10 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaCitas;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(954, 514);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Location = new System.Drawing.Point(1272, 633);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 45);
+            this.pictureBox3.Size = new System.Drawing.Size(53, 55);
             this.pictureBox3.TabIndex = 29;
             this.pictureBox3.TabStop = false;
             // 
@@ -251,10 +248,10 @@
             this.btnAgendarCita.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnAgendarCita.Font = new System.Drawing.Font("Segoe UI Black", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgendarCita.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnAgendarCita.Location = new System.Drawing.Point(727, 509);
-            this.btnAgendarCita.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgendarCita.Location = new System.Drawing.Point(969, 626);
+            this.btnAgendarCita.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnAgendarCita.Name = "btnAgendarCita";
-            this.btnAgendarCita.Size = new System.Drawing.Size(282, 56);
+            this.btnAgendarCita.Size = new System.Drawing.Size(376, 69);
             this.btnAgendarCita.TabIndex = 28;
             this.btnAgendarCita.Text = "Agendar Cita";
             this.btnAgendarCita.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -263,10 +260,10 @@
             // 
             // CitasMedicas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
-            this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.ClientSize = new System.Drawing.Size(1443, 710);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnAgendarCita);
             this.Controls.Add(this.label2);
@@ -278,6 +275,7 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.cbFiltrar);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CitasMedicas";
             this.Text = "CitasMedicas";
             this.Load += new System.EventHandler(this.CitasMedicas_Load_1);

@@ -56,12 +56,21 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                    string query = @"
+                //    string query = @"
+                //SELECT c.idCita, c.fechaRegistro, c.fechaProgramada, c.hora, c.duracion, 
+                //       m.nombre AS NombreMascota, mo.nombre AS Motivo
+                //FROM Cita c
+                //INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                //INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
+                //ORDER BY c.fechaProgramada;";
+
+                string query = @"
                 SELECT c.idCita, c.fechaRegistro, c.fechaProgramada, c.hora, c.duracion, 
                        m.nombre AS NombreMascota, mo.nombre AS Motivo
                 FROM Cita c
                 INNER JOIN Mascota m ON c.idMascota = m.idMascota
                 INNER JOIN Motivo mo ON c.idMotivo = mo.idMotivo
+                WHERE c.estado <> 'I'
                 ORDER BY c.fechaProgramada;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
@@ -115,7 +124,7 @@ namespace VetPet_
 
         private void btnAgendarCita_Click(object sender, EventArgs e)
         {
-           VeterinariaAgendarCita formularioHijo = new VeterinariaAgendarCita(parentForm);
+            VeterinariaAgendarCita formularioHijo = new VeterinariaAgendarCita(parentForm);
             parentForm.formularioHijo(formularioHijo);
         }
     }

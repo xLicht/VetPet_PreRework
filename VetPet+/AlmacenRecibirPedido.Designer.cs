@@ -51,11 +51,6 @@
             this.txtIdProveedor = new System.Windows.Forms.TextBox();
             this.fechaRecibidoPicker = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCrearPedido = new System.Windows.Forms.Button();
             this.fechaCaducidadPicker = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,6 +59,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtPrecioVenta = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -74,11 +74,10 @@
             this.txtFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtFactura.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtFactura.Location = new System.Drawing.Point(421, 82);
-            this.txtFactura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFactura.Location = new System.Drawing.Point(316, 67);
             this.txtFactura.MaxLength = 32;
             this.txtFactura.Name = "txtFactura";
-            this.txtFactura.Size = new System.Drawing.Size(340, 49);
+            this.txtFactura.Size = new System.Drawing.Size(256, 40);
             this.txtFactura.TabIndex = 81;
             this.txtFactura.Text = "Factura";
             this.txtFactura.Enter += new System.EventHandler(this.txtFactura_Enter);
@@ -88,10 +87,9 @@
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label12.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label12.Location = new System.Drawing.Point(795, 79);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(596, 64);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(623, 49);
+            this.label12.Size = new System.Drawing.Size(467, 40);
             this.label12.TabIndex = 79;
             this.label12.Text = "Productos";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,10 +99,9 @@
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label11.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label11.Location = new System.Drawing.Point(27, 80);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(20, 65);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(373, 48);
+            this.label11.Size = new System.Drawing.Size(280, 39);
             this.label11.TabIndex = 78;
             this.label11.Text = "Numero Factura";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -114,10 +111,9 @@
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label10.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label10.Location = new System.Drawing.Point(27, 135);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(20, 110);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(373, 49);
+            this.label10.Size = new System.Drawing.Size(280, 40);
             this.label10.TabIndex = 77;
             this.label10.Text = "Fecha recibido";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -128,10 +124,9 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.label8.Location = new System.Drawing.Point(27, 11);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(20, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(657, 47);
+            this.label8.Size = new System.Drawing.Size(493, 38);
             this.label8.TabIndex = 72;
             this.label8.Text = "Rellene los datos a agregar";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,10 +136,9 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
             this.pictureBox2.Enabled = false;
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.plus;
-            this.pictureBox2.Location = new System.Drawing.Point(1344, 615);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(1008, 500);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(57, 53);
+            this.pictureBox2.Size = new System.Drawing.Size(43, 43);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 70;
             this.pictureBox2.TabStop = false;
@@ -158,10 +152,9 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnGuardar.Location = new System.Drawing.Point(1112, 604);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Location = new System.Drawing.Point(834, 491);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(304, 74);
+            this.btnGuardar.Size = new System.Drawing.Size(228, 60);
             this.btnGuardar.TabIndex = 71;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,10 +166,9 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(212)))), ((int)(((byte)(226)))));
             this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::VetPet_.Properties.Resources.arrow;
-            this.pictureBox1.Location = new System.Drawing.Point(288, 615);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(216, 500);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(57, 53);
+            this.pictureBox1.Size = new System.Drawing.Size(43, 43);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 68;
             this.pictureBox1.TabStop = false;
@@ -190,10 +182,9 @@
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegresar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnRegresar.Location = new System.Drawing.Point(53, 604);
-            this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegresar.Location = new System.Drawing.Point(40, 491);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(304, 74);
+            this.btnRegresar.Size = new System.Drawing.Size(228, 60);
             this.btnRegresar.TabIndex = 69;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -205,10 +196,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label1.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label1.Location = new System.Drawing.Point(27, 519);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(20, 422);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(373, 49);
+            this.label1.Size = new System.Drawing.Size(280, 40);
             this.label1.TabIndex = 61;
             this.label1.Text = "Cantidad";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,11 +208,10 @@
             this.txtCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtCantidad.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCantidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtCantidad.Location = new System.Drawing.Point(421, 521);
-            this.txtCantidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCantidad.Location = new System.Drawing.Point(316, 423);
             this.txtCantidad.MaxLength = 5;
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(340, 49);
+            this.txtCantidad.Size = new System.Drawing.Size(256, 40);
             this.txtCantidad.TabIndex = 60;
             this.txtCantidad.Text = "Cantidad";
             this.txtCantidad.Enter += new System.EventHandler(this.txtCantidad_Enter);
@@ -232,10 +221,9 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label3.Location = new System.Drawing.Point(27, 192);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(20, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(373, 47);
+            this.label3.Size = new System.Drawing.Size(280, 38);
             this.label3.TabIndex = 87;
             this.label3.Text = "Proveedor";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -245,10 +233,9 @@
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label5.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label5.Location = new System.Drawing.Point(27, 299);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(20, 243);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(373, 47);
+            this.label5.Size = new System.Drawing.Size(280, 38);
             this.label5.TabIndex = 89;
             this.label5.Text = "Producto";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -258,10 +245,9 @@
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label6.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label6.Location = new System.Drawing.Point(1023, 521);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(767, 423);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(160, 49);
+            this.label6.Size = new System.Drawing.Size(120, 40);
             this.label6.TabIndex = 95;
             this.label6.Text = "Total";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -269,14 +255,12 @@
             // txtTotal
             // 
             this.txtTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
-            this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtTotal.Location = new System.Drawing.Point(1191, 521);
-            this.txtTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTotal.Location = new System.Drawing.Point(893, 423);
             this.txtTotal.MaxLength = 5;
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(225, 49);
+            this.txtTotal.Size = new System.Drawing.Size(170, 40);
             this.txtTotal.TabIndex = 94;
             this.txtTotal.Text = "Total";
             this.txtTotal.Enter += new System.EventHandler(this.txtTotal_Enter);
@@ -290,10 +274,9 @@
             this.cmbProducto.Items.AddRange(new object[] {
             "Esencial",
             "No Esencial"});
-            this.cmbProducto.Location = new System.Drawing.Point(421, 297);
-            this.cmbProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProducto.Location = new System.Drawing.Point(316, 241);
             this.cmbProducto.Name = "cmbProducto";
-            this.cmbProducto.Size = new System.Drawing.Size(340, 49);
+            this.cmbProducto.Size = new System.Drawing.Size(256, 40);
             this.cmbProducto.TabIndex = 110;
             this.cmbProducto.Text = "NULL";
             this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectedIndexChanged);
@@ -307,10 +290,9 @@
             this.cmbProveedor.Items.AddRange(new object[] {
             "Esencial",
             "No Esencial"});
-            this.cmbProveedor.Location = new System.Drawing.Point(421, 192);
-            this.cmbProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProveedor.Location = new System.Drawing.Point(316, 156);
             this.cmbProveedor.Name = "cmbProveedor";
-            this.cmbProveedor.Size = new System.Drawing.Size(340, 49);
+            this.cmbProveedor.Size = new System.Drawing.Size(256, 40);
             this.cmbProveedor.TabIndex = 109;
             this.cmbProveedor.SelectedIndexChanged += new System.EventHandler(this.cmbProveedor_SelectedIndexChanged);
             // 
@@ -320,10 +302,9 @@
             this.txtIdMedicamento.Enabled = false;
             this.txtIdMedicamento.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdMedicamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdMedicamento.Location = new System.Drawing.Point(1536, 514);
-            this.txtIdMedicamento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdMedicamento.Location = new System.Drawing.Point(1152, 418);
             this.txtIdMedicamento.Name = "txtIdMedicamento";
-            this.txtIdMedicamento.Size = new System.Drawing.Size(316, 49);
+            this.txtIdMedicamento.Size = new System.Drawing.Size(238, 40);
             this.txtIdMedicamento.TabIndex = 106;
             this.txtIdMedicamento.Text = "Id Medicamento";
             this.txtIdMedicamento.Visible = false;
@@ -334,10 +315,9 @@
             this.txtIdProducto.Enabled = false;
             this.txtIdProducto.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdProducto.Location = new System.Drawing.Point(1536, 450);
-            this.txtIdProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdProducto.Location = new System.Drawing.Point(1152, 366);
             this.txtIdProducto.Name = "txtIdProducto";
-            this.txtIdProducto.Size = new System.Drawing.Size(316, 49);
+            this.txtIdProducto.Size = new System.Drawing.Size(238, 40);
             this.txtIdProducto.TabIndex = 105;
             this.txtIdProducto.Text = "Id Producto";
             this.txtIdProducto.Visible = false;
@@ -347,10 +327,9 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label2.Location = new System.Drawing.Point(1531, 357);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(1148, 290);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(323, 12);
+            this.label2.Size = new System.Drawing.Size(242, 10);
             this.label2.TabIndex = 103;
             this.label2.Text = "Informacion de Id\'s";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -362,10 +341,9 @@
             this.txtIdProveedor.Enabled = false;
             this.txtIdProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtIdProveedor.Location = new System.Drawing.Point(1536, 383);
-            this.txtIdProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdProveedor.Location = new System.Drawing.Point(1152, 311);
             this.txtIdProveedor.Name = "txtIdProveedor";
-            this.txtIdProveedor.Size = new System.Drawing.Size(316, 49);
+            this.txtIdProveedor.Size = new System.Drawing.Size(238, 40);
             this.txtIdProveedor.TabIndex = 101;
             this.txtIdProveedor.Text = "Id Proveedor";
             this.txtIdProveedor.Visible = false;
@@ -376,10 +354,9 @@
             this.fechaRecibidoPicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.fechaRecibidoPicker.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaRecibidoPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fechaRecibidoPicker.Location = new System.Drawing.Point(421, 135);
-            this.fechaRecibidoPicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fechaRecibidoPicker.Location = new System.Drawing.Point(316, 110);
             this.fechaRecibidoPicker.Name = "fechaRecibidoPicker";
-            this.fechaRecibidoPicker.Size = new System.Drawing.Size(340, 49);
+            this.fechaRecibidoPicker.Size = new System.Drawing.Size(256, 40);
             this.fechaRecibidoPicker.TabIndex = 112;
             // 
             // dataGridView1
@@ -394,43 +371,11 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(795, 132);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(596, 107);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(621, 379);
+            this.dataGridView1.Size = new System.Drawing.Size(466, 308);
             this.dataGridView1.TabIndex = 113;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Producto";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Cantidad";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Precio Proveedor";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Precio Venta";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Caducidad";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
             // 
             // btnCrearPedido
             // 
@@ -441,10 +386,9 @@
             this.btnCrearPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrearPedido.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrearPedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnCrearPedido.Location = new System.Drawing.Point(25, 244);
-            this.btnCrearPedido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCrearPedido.Location = new System.Drawing.Point(19, 198);
             this.btnCrearPedido.Name = "btnCrearPedido";
-            this.btnCrearPedido.Size = new System.Drawing.Size(737, 49);
+            this.btnCrearPedido.Size = new System.Drawing.Size(553, 40);
             this.btnCrearPedido.TabIndex = 115;
             this.btnCrearPedido.Text = "Crear Pedido";
             this.btnCrearPedido.UseVisualStyleBackColor = false;
@@ -456,10 +400,9 @@
             this.fechaCaducidadPicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.fechaCaducidadPicker.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaCaducidadPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fechaCaducidadPicker.Location = new System.Drawing.Point(421, 464);
-            this.fechaCaducidadPicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fechaCaducidadPicker.Location = new System.Drawing.Point(316, 377);
             this.fechaCaducidadPicker.Name = "fechaCaducidadPicker";
-            this.fechaCaducidadPicker.Size = new System.Drawing.Size(340, 49);
+            this.fechaCaducidadPicker.Size = new System.Drawing.Size(256, 40);
             this.fechaCaducidadPicker.TabIndex = 117;
             // 
             // label7
@@ -467,10 +410,9 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label7.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label7.Location = new System.Drawing.Point(27, 464);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(20, 377);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(373, 49);
+            this.label7.Size = new System.Drawing.Size(280, 40);
             this.label7.TabIndex = 116;
             this.label7.Text = "Fecha caducidad";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -480,10 +422,9 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label4.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label4.Location = new System.Drawing.Point(27, 410);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(20, 333);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(375, 47);
+            this.label4.Size = new System.Drawing.Size(281, 38);
             this.label4.TabIndex = 121;
             this.label4.Text = "Precio proveedor";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -493,23 +434,20 @@
             this.txtPrecioProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtPrecioProveedor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPrecioProveedor.Location = new System.Drawing.Point(421, 410);
-            this.txtPrecioProveedor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrecioProveedor.Location = new System.Drawing.Point(316, 333);
             this.txtPrecioProveedor.Name = "txtPrecioProveedor";
-            this.txtPrecioProveedor.Size = new System.Drawing.Size(340, 49);
+            this.txtPrecioProveedor.Size = new System.Drawing.Size(256, 40);
             this.txtPrecioProveedor.TabIndex = 120;
             this.txtPrecioProveedor.Text = "Precio proveedor";
-            this.txtPrecioProveedor.Enter += new System.EventHandler(this.txtPrecioProveedor_Enter);
             // 
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(153)))), ((int)(((byte)(169)))));
             this.label9.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(55)))), ((int)(((byte)(71)))));
-            this.label9.Location = new System.Drawing.Point(27, 353);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(20, 287);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(373, 47);
+            this.label9.Size = new System.Drawing.Size(280, 38);
             this.label9.TabIndex = 119;
             this.label9.Text = "Precio venta";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -519,13 +457,11 @@
             this.txtPrecioVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(233)))), ((int)(((byte)(241)))));
             this.txtPrecioVenta.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioVenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.txtPrecioVenta.Location = new System.Drawing.Point(421, 353);
-            this.txtPrecioVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrecioVenta.Location = new System.Drawing.Point(316, 287);
             this.txtPrecioVenta.Name = "txtPrecioVenta";
-            this.txtPrecioVenta.Size = new System.Drawing.Size(340, 49);
+            this.txtPrecioVenta.Size = new System.Drawing.Size(256, 40);
             this.txtPrecioVenta.TabIndex = 118;
             this.txtPrecioVenta.Text = "Precio de venta";
-            this.txtPrecioVenta.Enter += new System.EventHandler(this.txtPrecioVenta_Enter);
             // 
             // btnAgregar
             // 
@@ -536,21 +472,45 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(120)))), ((int)(((byte)(136)))));
-            this.btnAgregar.Location = new System.Drawing.Point(795, 521);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Location = new System.Drawing.Point(596, 423);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(220, 49);
+            this.btnAgregar.Size = new System.Drawing.Size(165, 40);
             this.btnAgregar.TabIndex = 122;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Producto";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Cantidad";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Precio Proveedor";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Precio Venta";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Caducidad";
+            this.Column5.Name = "Column5";
+            // 
             // AlmacenRecibirPedido
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(212)))));
-            this.ClientSize = new System.Drawing.Size(1447, 710);
+            this.ClientSize = new System.Drawing.Size(1085, 577);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPrecioProveedor);
@@ -582,7 +542,6 @@
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCantidad);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AlmacenRecibirPedido";
             this.Text = "AlmacenRecibirPedido";
             this.Load += new System.EventHandler(this.AlmacenRecibirPedido_Load);

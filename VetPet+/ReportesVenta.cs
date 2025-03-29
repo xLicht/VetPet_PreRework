@@ -38,7 +38,7 @@ namespace VetPet_
             // Nombre esta dado por esto:
             // Rep{MODULO}-{TIPO_REPORTE}_{FECHA1-FECHA2}
             string nombreReporte = "Rep" + modulo + "-" + tipoReporte + "_" + fecha1.Replace("-", "") + "-" + fecha2.Replace("-", "");
-            ReportesCitasManager reporte = new ReportesCitasManager(nombreReporte, fecha1, fecha2, tipoReporte);
+            ReporteVentasManager reporte = new ReporteVentasManager(nombreReporte, fecha1, fecha2, tipoReporte);
             reporte.GenerarReporte(tipoReporte);
 
             try
@@ -50,7 +50,7 @@ namespace VetPet_
 
                 if (File.Exists(rutaPDF))
                 {
-                    pdfViewVent.LoadDocument(rutaPDF); // Cargar el PDF en el visor
+                    pdfViewVent.LoadFile(rutaPDF); // Cargar el PDF en el visor
                 }
                 else
                 {
@@ -62,37 +62,40 @@ namespace VetPet_
                 MessageBox.Show("Error: " + er.Message);
             }
         }
-        private void MostrarComp()
+        private void SwitchControls(object sender, EventArgs e)
         {
-            pdfViewVent.Visible = true;
-            BtnImprimir.Visible = true;
-            BtnGenerar.Visible = true;
-            lblA.Visible = true;
-            lblPreview.Visible = true;
-            lblFecha.Visible = true;
-            dateTime1.Visible = true;
-            dateTime2.Visible = true;
-            BtnVolver.Visible = true;
+            if (sender is Control clickedControl) // Verifica si el emisor es un control
+            {
+                foreach (Control ctrl in this.Controls) // Itera sobre todos los controles del formulario
+                {
+                    if (ctrl != clickedControl && ctrl.Tag?.ToString() == "1") // Si no es el botón presionado y tiene Tag == 1
+                    {
+                        ctrl.Visible = !ctrl.Visible; // Invierte el estado Enabled
+                    }
+                }
+            }
         }
         private void BtnVenMasAlt_Click(object sender, EventArgs e)
         {
-            BtnVentMasBaj.Visible = false;
-            MostrarComp();
+            SwitchControls(sender, e);
             tipoReporte = "01";
         }
 
         private void BtnVentMasBaj_Click(object sender, EventArgs e)
         {
-            BtnVenMasAlt.Visible = false;
-            MostrarComp();
+            SwitchControls(sender, e);
             tipoReporte = "02";
         }
 
         private void BtnVolver_Click(object sender, EventArgs e)
         {
-            this.Controls.Clear();
-            this.InitializeComponent();
-            this.Refresh();
+            parentForm.formularioHijo(new ReportesVenta(parentForm));
+        }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            parentForm.formularioHijo(new MenuReportes(parentForm));
         }
     }
 }

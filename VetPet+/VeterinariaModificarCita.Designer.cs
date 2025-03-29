@@ -45,7 +45,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cbMotivo = new System.Windows.Forms.ComboBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnGuardarCambios = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegresar = new System.Windows.Forms.Button();
@@ -56,9 +55,10 @@
             this.cbMascota = new System.Windows.Forms.ComboBox();
             this.cbDueño = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // dtServicio
@@ -67,9 +67,8 @@
             this.dtServicio.Location = new System.Drawing.Point(695, 162);
             this.dtServicio.Name = "dtServicio";
             this.dtServicio.Size = new System.Drawing.Size(345, 213);
-            this.dtServicio.TabIndex = 436;
+            this.dtServicio.TabIndex = 463;
             this.dtServicio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtServicio_CellClick);
-            this.dtServicio.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtServicio_CellContentClick);
             // 
             // label8
             // 
@@ -79,7 +78,7 @@
             this.label8.Location = new System.Drawing.Point(326, 345);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(26, 30);
-            this.label8.TabIndex = 435;
+            this.label8.TabIndex = 462;
             this.label8.Text = "h";
             // 
             // label7
@@ -90,7 +89,7 @@
             this.label7.Location = new System.Drawing.Point(465, 363);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 30);
-            this.label7.TabIndex = 434;
+            this.label7.TabIndex = 461;
             this.label7.Text = "Empleado";
             // 
             // cbEmpleado
@@ -102,7 +101,7 @@
             this.cbEmpleado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbEmpleado.Name = "cbEmpleado";
             this.cbEmpleado.Size = new System.Drawing.Size(165, 33);
-            this.cbEmpleado.TabIndex = 433;
+            this.cbEmpleado.TabIndex = 460;
             // 
             // txtDuracion
             // 
@@ -111,7 +110,7 @@
             this.txtDuracion.Location = new System.Drawing.Point(220, 345);
             this.txtDuracion.Name = "txtDuracion";
             this.txtDuracion.Size = new System.Drawing.Size(100, 33);
-            this.txtDuracion.TabIndex = 432;
+            this.txtDuracion.TabIndex = 459;
             // 
             // dtHora
             // 
@@ -120,7 +119,7 @@
             this.dtHora.Location = new System.Drawing.Point(47, 345);
             this.dtHora.Name = "dtHora";
             this.dtHora.Size = new System.Drawing.Size(167, 33);
-            this.dtHora.TabIndex = 431;
+            this.dtHora.TabIndex = 458;
             // 
             // label6
             // 
@@ -130,7 +129,7 @@
             this.label6.Location = new System.Drawing.Point(42, 312);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(288, 30);
-            this.label6.TabIndex = 430;
+            this.label6.TabIndex = 457;
             this.label6.Text = "Hora  y duracion de la cita:";
             // 
             // label17
@@ -141,7 +140,7 @@
             this.label17.Location = new System.Drawing.Point(454, 278);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(112, 30);
-            this.label17.TabIndex = 429;
+            this.label17.TabIndex = 456;
             this.label17.Text = "Detallado";
             // 
             // label15
@@ -152,7 +151,7 @@
             this.label15.Location = new System.Drawing.Point(454, 188);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(114, 30);
-            this.label15.TabIndex = 428;
+            this.label15.TabIndex = 455;
             this.label15.Text = "Especifico";
             // 
             // label13
@@ -163,7 +162,7 @@
             this.label13.Location = new System.Drawing.Point(454, 115);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(102, 30);
-            this.label13.TabIndex = 427;
+            this.label13.TabIndex = 454;
             this.label13.Text = "Principal";
             // 
             // cbServicioNieto
@@ -175,7 +174,7 @@
             this.cbServicioNieto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbServicioNieto.Name = "cbServicioNieto";
             this.cbServicioNieto.Size = new System.Drawing.Size(196, 33);
-            this.cbServicioNieto.TabIndex = 426;
+            this.cbServicioNieto.TabIndex = 453;
             // 
             // cbServicioEspecifico
             // 
@@ -186,7 +185,7 @@
             this.cbServicioEspecifico.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbServicioEspecifico.Name = "cbServicioEspecifico";
             this.cbServicioEspecifico.Size = new System.Drawing.Size(193, 33);
-            this.cbServicioEspecifico.TabIndex = 425;
+            this.cbServicioEspecifico.TabIndex = 452;
             this.cbServicioEspecifico.SelectedIndexChanged += new System.EventHandler(this.cbServicioEspecifico_SelectedIndexChanged);
             // 
             // label23
@@ -197,7 +196,7 @@
             this.label23.Location = new System.Drawing.Point(690, 92);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(106, 30);
-            this.label23.TabIndex = 424;
+            this.label23.TabIndex = 451;
             this.label23.Text = "Servicio :";
             // 
             // cbServicioP
@@ -209,7 +208,7 @@
             this.cbServicioP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbServicioP.Name = "cbServicioP";
             this.cbServicioP.Size = new System.Drawing.Size(196, 33);
-            this.cbServicioP.TabIndex = 423;
+            this.cbServicioP.TabIndex = 450;
             this.cbServicioP.SelectedIndexChanged += new System.EventHandler(this.cbServicioP_SelectedIndexChanged);
             // 
             // btnAgregar
@@ -221,7 +220,7 @@
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(134, 45);
-            this.btnAgregar.TabIndex = 422;
+            this.btnAgregar.TabIndex = 449;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -235,7 +234,7 @@
             this.label5.Location = new System.Drawing.Point(42, 377);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 30);
-            this.label5.TabIndex = 421;
+            this.label5.TabIndex = 448;
             this.label5.Text = "Motivo";
             // 
             // cbMotivo
@@ -247,19 +246,7 @@
             this.cbMotivo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbMotivo.Name = "cbMotivo";
             this.cbMotivo.Size = new System.Drawing.Size(319, 33);
-            this.cbMotivo.TabIndex = 420;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
-            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaCitas;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(940, 493);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 45);
-            this.pictureBox3.TabIndex = 419;
-            this.pictureBox3.TabStop = false;
+            this.cbMotivo.TabIndex = 447;
             // 
             // btnGuardarCambios
             // 
@@ -270,7 +257,7 @@
             this.btnGuardarCambios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
             this.btnGuardarCambios.Size = new System.Drawing.Size(212, 56);
-            this.btnGuardarCambios.TabIndex = 418;
+            this.btnGuardarCambios.TabIndex = 446;
             this.btnGuardarCambios.Text = "Guardar";
             this.btnGuardarCambios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGuardarCambios.UseVisualStyleBackColor = false;
@@ -285,7 +272,7 @@
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(42, 40);
-            this.pictureBox2.TabIndex = 417;
+            this.pictureBox2.TabIndex = 445;
             this.pictureBox2.TabStop = false;
             // 
             // btnRegresar
@@ -297,7 +284,7 @@
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(205, 56);
-            this.btnRegresar.TabIndex = 416;
+            this.btnRegresar.TabIndex = 444;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegresar.UseVisualStyleBackColor = false;
@@ -311,7 +298,7 @@
             this.label3.Location = new System.Drawing.Point(42, 233);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(172, 30);
-            this.label3.TabIndex = 415;
+            this.label3.TabIndex = 443;
             this.label3.Text = "Fecha de la Cita";
             // 
             // dtFecha
@@ -321,7 +308,7 @@
             this.dtFecha.Location = new System.Drawing.Point(47, 266);
             this.dtFecha.Name = "dtFecha";
             this.dtFecha.Size = new System.Drawing.Size(319, 33);
-            this.dtFecha.TabIndex = 414;
+            this.dtFecha.TabIndex = 442;
             // 
             // label1
             // 
@@ -331,7 +318,7 @@
             this.label1.Location = new System.Drawing.Point(42, 142);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 30);
-            this.label1.TabIndex = 413;
+            this.label1.TabIndex = 441;
             this.label1.Text = "Mascota";
             // 
             // label4
@@ -342,7 +329,7 @@
             this.label4.Location = new System.Drawing.Point(42, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 30);
-            this.label4.TabIndex = 412;
+            this.label4.TabIndex = 440;
             this.label4.Text = "Dueño";
             // 
             // cbMascota
@@ -355,7 +342,7 @@
             this.cbMascota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbMascota.Name = "cbMascota";
             this.cbMascota.Size = new System.Drawing.Size(319, 33);
-            this.cbMascota.TabIndex = 411;
+            this.cbMascota.TabIndex = 439;
             // 
             // cbDueño
             // 
@@ -367,7 +354,7 @@
             this.cbDueño.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbDueño.Name = "cbDueño";
             this.cbDueño.Size = new System.Drawing.Size(319, 33);
-            this.cbDueño.TabIndex = 410;
+            this.cbDueño.TabIndex = 438;
             // 
             // label2
             // 
@@ -377,8 +364,20 @@
             this.label2.Location = new System.Drawing.Point(452, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(220, 40);
-            this.label2.TabIndex = 409;
+            this.label2.TabIndex = 437;
             this.label2.Text = "Modificar Cita";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaCitas;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(933, 493);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 45);
+            this.pictureBox3.TabIndex = 464;
+            this.pictureBox3.TabStop = false;
             // 
             // VeterinariaModificarCita
             // 
@@ -386,6 +385,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.dtServicio);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -403,7 +403,6 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbMotivo);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnGuardarCambios);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnRegresar);
@@ -418,8 +417,8 @@
             this.Text = "VeterinariaModificarCita";
             this.Load += new System.EventHandler(this.VeterinariaModificarCita_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,7 +443,6 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbMotivo;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnGuardarCambios;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnRegresar;
@@ -455,5 +453,6 @@
         private System.Windows.Forms.ComboBox cbMascota;
         private System.Windows.Forms.ComboBox cbDueño;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

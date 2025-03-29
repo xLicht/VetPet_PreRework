@@ -177,75 +177,54 @@ namespace VetPet_.Angie
         {
             try
             {
-                // Crear instancia de Mismetodos
-                mismetodos = new Mismetodos();
-
-                // Abrir conexión
                 mismetodos.AbrirConexion();
                 string query = @"
-            SELECT 
-                P.idProducto,
-                P.nombre AS Producto,
-                P.precioVenta AS Precio,
-                P.stock AS Inventario,
-                M.nombre AS Marca
-            FROM 
-                Producto P
-            JOIN 
-                Marca M ON P.idMarca = M.idMarca  -- Unión con la tabla Marca
-            WHERE 
-                P.idTipoProducto = 3;  -- Filtrar por tipo de producto 'Medicamento'
-        ";
+                SELECT 
+                    P.idProducto,
+                    P.nombre AS Producto,
+                    P.precioVenta AS Precio,
+                    P.stock AS Inventario,
+                    M.nombre AS Marca
+                FROM 
+                    Producto P
+                JOIN 
+                    Marca M ON P.idMarca = M.idMarca
+                WHERE 
+                    P.idTipoProducto = 3;";
 
-                // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
                 {
-
-                    // Crear un DataTable y llenar los datos
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
+
+                    // Verificar si hay cambios de stock en memoria
+                    foreach (DataRow row in tabla.Rows)
+                    {
+                        int idProducto = Convert.ToInt32(row["idProducto"]);
+                        int stockModificado = StockManager.ObtenerStockModificado(idProducto);
+
+                        if (stockModificado != -1) // Si hay cambios en el stock
+                        {
+                            row["Inventario"] = stockModificado; // Actualizar el stock en la tabla
+                        }
+                    }
 
                     // Asignar el DataTable al DataGridView
                     dataGridView2.DataSource = tabla;
                     dataGridView2.Columns["idProducto"].Visible = false; // Oculta la columna
-
-                    foreach (DataGridViewRow row in dataGridView2.Rows)
-                    {
-                        if (row.IsNewRow) continue; // No borra la fila nueva si AllowUserToAddRows = true
-
-                        bool vacia = true;
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            if (cell.Value != null && !string.IsNullOrWhiteSpace(cell.Value.ToString()))
-                            {
-                                vacia = false;
-                                break;
-                            }
-                        }
-
-                        if (vacia)
-                        {
-                            dataGridView2.Rows.Remove(row);
-                        }
-                    }
-
-
-
                 }
             }
             catch (Exception ex)
             {
-                // Manejar el error si ocurre algún problema
                 MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {
-                // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
             }
         }
-       
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -483,7 +462,40 @@ namespace VetPet_.Angie
                 parentForm.formularioHijo(new VentasNuevaVenta(parentForm,sumaTotal, dtProductos,0,true)); // Pasamos la referencia de Form1 a
             }
         }
+        public static class StockManager
+        {
+            // Diccionario para almacenar los cambios de stock
+            public static Dictionary<int, int> StockModificado { get; set; } = new Dictionary<int, int>();
 
+            // Método para actualizar el stock
+            public static void ActualizarStock(int idProducto, int nuevoStock)
+            {
+                if (StockModificado.ContainsKey(idProducto))
+                {
+                    StockModificado[idProducto] = nuevoStock;
+                }
+                else
+                {
+                    StockModificado.Add(idProducto, nuevoStock);
+                }
+            }
+
+            // Método para obtener el stock modificado
+            public static int ObtenerStockModificado(int idProducto)
+            {
+                if (StockModificado.ContainsKey(idProducto))
+                {
+                    return StockModificado[idProducto];
+                }
+                return -1; // Retorna -1 si no hay cambios en el stock
+            }
+
+            // Método para limpiar el diccionario (opcional)
+            public static void LimpiarStockModificado()
+            {
+                StockModificado.Clear();
+            }
+        }
 
     }
 }

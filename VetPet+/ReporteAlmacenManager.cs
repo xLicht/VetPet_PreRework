@@ -52,7 +52,8 @@ namespace VetPet_
             DateTime fechaY = DateTime.ParseExact(fecha2, "yyyy-MM-dd", null);
             string fechaEmi2 = fechaY.ToString("dd/MM/yyyy");
             // 🔹 Agregar las fechas y el módulo
-            Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
+            if (tipoReporte != "05" && tipoReporte != "06")
+                Documento.Add(new Paragraph("Desde: " + fechaEmi1 + " – " + fechaEmi2, textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Módulo: Almacén", textoFont) { Alignment = Element.ALIGN_LEFT });
             Documento.Add(new Paragraph("Emisión: " + DateTime.Now, textoFont));
 
@@ -81,9 +82,9 @@ namespace VetPet_
 
             }
             else if (tipoReporte == "05")
-                CrearTablasProductos(ConsultaRep05(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
+                CrearTablasStock(ConsultaRep05(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             else if (tipoReporte == "06")
-                CrearTablasMedicamentos(ConsultaRep06(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
+                CrearTablasStock(ConsultaRep06(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             else if (tipoReporte == "07")
                 CrearTablasProveedores(ConsultaRep07(ConexionSQL()), ref tabla, tablaHeaderFont, tablaFont);
             else if (tipoReporte == "08")
@@ -95,7 +96,7 @@ namespace VetPet_
         #region Consultas
         public string[,] ConsultaRep01(SqlConnection conex)
         {
-            string[,] datos = new string[10, 5];
+            string[,] datos = new string[10, 4];
             try
             {
                 conex.Open();
@@ -109,15 +110,13 @@ namespace VetPet_
                 {
                     string nombre = lector.GetString(0);
                     string descripcion = lector.GetString(1);
-                    decimal precioProveedor = lector.GetDecimal(2);
-                    decimal precioVenta = lector.GetDecimal(3);
-                    int cantidadVendida = lector.GetInt32(4);
+                    decimal precioVenta = lector.GetDecimal(2);
+                    int cantidadVendida = lector.GetInt32(3);
 
                     datos[i, 0] = nombre;
                     datos[i, 1] = descripcion;
-                    datos[i, 2] = precioProveedor.ToString();
-                    datos[i, 3] = precioVenta.ToString();
-                    datos[i, 4] = cantidadVendida.ToString();
+                    datos[i, 2] = precioVenta.ToString();
+                    datos[i, 3] = cantidadVendida.ToString();
                     
                     i++;
                 }
@@ -134,7 +133,7 @@ namespace VetPet_
 
         public string[,] ConsultaRep02(SqlConnection conex)
         {
-            string[,] datos = new string[10, 5];
+            string[,] datos = new string[10, 4];
             try
             {
                 conex.Open();
@@ -148,15 +147,13 @@ namespace VetPet_
                 {
                     string nombre = lector.GetString(0);
                     string descripcion = lector.GetString(1);
-                    decimal precioProveedor = lector.GetDecimal(2);
-                    decimal precioVenta = lector.GetDecimal(3);
-                    int cantidadVendida = lector.GetInt32(4);
+                    decimal precioVenta = lector.GetDecimal(2);
+                    int cantidadVendida = lector.GetInt32(3);
 
                     datos[i, 0] = nombre;
                     datos[i, 1] = descripcion;
-                    datos[i, 2] = precioProveedor.ToString();
-                    datos[i, 3] = precioVenta.ToString();
-                    datos[i, 4] = cantidadVendida.ToString();
+                    datos[i, 2] = precioVenta.ToString();
+                    datos[i, 3] = cantidadVendida.ToString();
 
                     i++;
                 }
@@ -172,7 +169,7 @@ namespace VetPet_
         }
         public string[,] ConsultaRep03(SqlConnection conex)
         {
-            string[,] datos = new string[10, 6];
+            string[,] datos = new string[10, 5];
             try
             {
                 conex.Open();
@@ -187,16 +184,14 @@ namespace VetPet_
                     string nombreGen = lector.GetString(0);
                     string presentacion = lector.GetString(1);
                     string viaAdmin = lector.GetString(2);
-                    decimal precioProveedor = lector.GetDecimal(3);
-                    decimal precioVenta = lector.GetDecimal(4);
-                    int cantidadVendida = lector.GetInt32(5);
+                    decimal precioVenta = lector.GetDecimal(3);
+                    int cantidadVendida = lector.GetInt32(4);
 
                     datos[i, 0] = nombreGen;
                     datos[i, 1] = presentacion;
                     datos[i, 2] = viaAdmin;
-                    datos[i, 3] = precioProveedor.ToString();
-                    datos[i, 4] = precioVenta.ToString();
-                    datos[i, 5] = cantidadVendida.ToString();
+                    datos[i, 3] = precioVenta.ToString();
+                    datos[i, 4] = cantidadVendida.ToString();
 
                     i++;
                 }
@@ -212,7 +207,7 @@ namespace VetPet_
         }
         public string[,] ConsultaRep04(SqlConnection conex)
         {
-            string[,] datos = new string[10, 6];
+            string[,] datos = new string[10, 5];
             try
             {
                 conex.Open();
@@ -227,16 +222,14 @@ namespace VetPet_
                     string nombreGen = lector.GetString(0);
                     string presentacion = lector.GetString(1);
                     string viaAdmin = lector.GetString(2);
-                    decimal precioProveedor = lector.GetDecimal(3);
-                    decimal precioVenta = lector.GetDecimal(4);
-                    int cantidadVendida = lector.GetInt32(5);
+                    decimal precioVenta = lector.GetDecimal(3);
+                    int cantidadVendida = lector.GetInt32(4);
 
                     datos[i, 0] = nombreGen;
                     datos[i, 1] = presentacion;
                     datos[i, 2] = viaAdmin;
-                    datos[i, 3] = precioProveedor.ToString();
-                    datos[i, 4] = precioVenta.ToString();
-                    datos[i, 5] = cantidadVendida.ToString();
+                    datos[i, 3] = precioVenta.ToString();
+                    datos[i, 4] = cantidadVendida.ToString();
 
                     i++;
                 }
@@ -252,29 +245,25 @@ namespace VetPet_
         }
         public string[,] ConsultaRep05(SqlConnection conex)
         {
-            string[,] datos = new string[10, 5];
+            string[,] datos = new string[10, 4];
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"exec sp_ProductosBajoStock";
                 SqlCommand comando = new SqlCommand(q, conex);
-                comando.Parameters.AddWithValue("@fechaInicio", fecha1);
-                comando.Parameters.AddWithValue("@fechaFin", fecha2);
                 SqlDataReader lector = comando.ExecuteReader();
                 int i = 0;
                 while (lector.Read())
                 {
-                    string nombre = lector.GetString(0);
+                    string nombreGen = lector.GetString(0);
                     string descripcion = lector.GetString(1);
-                    decimal precioProveedor = lector.GetDecimal(2);
-                    decimal precioVenta = lector.GetDecimal(3);
-                    int stock = lector.GetInt32(4);
+                    decimal precioVenta = lector.GetDecimal(2);
+                    int stock = lector.GetInt32(3);
 
-                    datos[i, 0] = nombre;
+                    datos[i, 0] = nombreGen;
                     datos[i, 1] = descripcion;
-                    datos[i, 2] = precioProveedor.ToString();
-                    datos[i, 3] = precioVenta.ToString();
-                    datos[i, 5] = stock.ToString();
+                    datos[i, 2] = precioVenta.ToString();
+                    datos[i, 3] = stock.ToString();
 
                     i++;
                 }
@@ -290,31 +279,25 @@ namespace VetPet_
         }
         public string[,] ConsultaRep06(SqlConnection conex)
         {
-            string[,] datos = new string[10, 5];
+            string[,] datos = new string[10, 4];
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"exec sp_MedicamentosBajoStock";
                 SqlCommand comando = new SqlCommand(q, conex);
-                comando.Parameters.AddWithValue("@fechaInicio", fecha1);
-                comando.Parameters.AddWithValue("@fechaFin", fecha2);
                 SqlDataReader lector = comando.ExecuteReader();
                 int i = 0;
                 while (lector.Read())
                 {
                     string nombreGen = lector.GetString(0);
-                    string presentacion = lector.GetString(1);
-                    string viaAdmin = lector.GetString(2);
-                    decimal precioProveedor = lector.GetDecimal(3);
-                    decimal precioVenta = lector.GetDecimal(4);
-                    int cantidadVendida = lector.GetInt32(4);
+                    string descripcion = lector.GetString(1);
+                    decimal precioVenta = lector.GetDecimal(2);
+                    int stock = lector.GetInt32(3);
 
                     datos[i, 0] = nombreGen;
-                    datos[i, 1] = presentacion;
-                    datos[i, 2] = viaAdmin;
-                    datos[i, 3] = precioProveedor.ToString();
-                    datos[i, 4] = precioVenta.ToString();
-                    datos[i, 5] = cantidadVendida.ToString();
+                    datos[i, 1] = descripcion;
+                    datos[i, 2] = precioVenta.ToString();
+                    datos[i, 3] = stock.ToString();
 
                     i++;
                 }
@@ -330,7 +313,7 @@ namespace VetPet_
         }
         public string[,] ConsultaRep07(SqlConnection conex)
         {
-            string[,] datos = new string[10, 4];
+            string[,] datos = new string[10, 5];
             try
             {
                 conex.Open();
@@ -342,15 +325,17 @@ namespace VetPet_
                 int i = 0;
                 while (lector.Read())
                 {
-                    string nombre = lector.GetString(0);
-                    string correoElectronico = lector.GetString(1);
-                    string celular = lector.GetString(2);
-                    int cantidadVenta = lector.GetInt32(3);
+                    string nombreProv = lector.GetString(0);
+                    string nombreConta = lector.GetString(1);
+                    string correoElectronico = lector.GetString(2);
+                    string celular = lector.GetString(3);
+                    int cantidadVenta = lector.GetInt32(4);
 
-                    datos[i, 0] = nombre;
-                    datos[i, 1] = correoElectronico;
-                    datos[i, 2] = celular;
-                    datos[i, 3] = cantidadVenta.ToString();
+                    datos[i, 0] = nombreProv;
+                    datos[i, 1] = nombreConta;
+                    datos[i, 2] = correoElectronico;
+                    datos[i, 3] = celular;
+                    datos[i, 4] = cantidadVenta.ToString();
 
                     i++;
                 }
@@ -366,11 +351,11 @@ namespace VetPet_
         }
         public string[,] ConsultaRep08(SqlConnection conex)
         {
-            string[,] datos = new string[10, 4];
+            string[,] datos = new string[10, 5];
             try
             {
                 conex.Open();
-                string q = @"";
+                string q = @"exec sp_ProveedoresMenosVentas @fechaInicio, @fechaFin;";
                 SqlCommand comando = new SqlCommand(q, conex);
                 comando.Parameters.AddWithValue("@fechaInicio", fecha1);
                 comando.Parameters.AddWithValue("@fechaFin", fecha2);
@@ -378,15 +363,17 @@ namespace VetPet_
                 int i = 0;
                 while (lector.Read())
                 {
-                    string nombre = lector.GetString(0);
-                    string correoElectronico = lector.GetString(1);
-                    string celular = lector.GetString(2);
-                    int cantidadVenta = lector.GetInt32(3);
+                    string nombreProv = lector.GetString(0);
+                    string nombreConta = lector.GetString(1);
+                    string correoElectronico = lector.GetString(2);
+                    string celular = lector.GetString(3);
+                    int cantidadVenta = lector.GetInt32(4);
 
-                    datos[i, 0] = nombre;
-                    datos[i, 1] = correoElectronico;
-                    datos[i, 2] = celular;
-                    datos[i, 3] = cantidadVenta.ToString();
+                    datos[i, 0] = nombreProv;
+                    datos[i, 1] = nombreConta;
+                    datos[i, 2] = correoElectronico;
+                    datos[i, 3] = celular;
+                    datos[i, 4] = cantidadVenta.ToString();
 
                     i++;
                 }
@@ -404,15 +391,92 @@ namespace VetPet_
         #region CreacionDeTablas
         public void CrearTablasProductos(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
-            tabla = new PdfPTable(5);
+            tabla = new PdfPTable(4);
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
             tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1 });
+            tabla.SetWidths(new float[] { 1, 1, 1, 1});
             // Encabezados de la tabla
             PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
             PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
-            PdfPCell header3 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
+            header1.HorizontalAlignment = Element.ALIGN_CENTER;
+            header2.HorizontalAlignment = Element.ALIGN_CENTER;
+            header3.HorizontalAlignment = Element.ALIGN_CENTER;
+            header4.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.AddCell(header1);
+            tabla.AddCell(header2);
+            tabla.AddCell(header3);
+            tabla.AddCell(header4);
+            for (int i = 0; i < datos.GetLength(0); i++)
+            {
+                if (datos[i, 0] != null || datos[i, 1] != null)
+                {
+                    PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
+                    PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
+                    PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
+                    PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
+                    celda1.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda2.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda3.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda4.HorizontalAlignment = Element.ALIGN_CENTER;
+                    tabla.AddCell(celda1);
+                    tabla.AddCell(celda2);
+                    tabla.AddCell(celda3);
+                    tabla.AddCell(celda4);
+                }
+            }
+        }
+        public void CrearTablasStock(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        {
+            tabla = new PdfPTable(4);
+            // 🔹 Crear tabla con dos columnas (Razón - Veces)
+            tabla.WidthPercentage = 100;
+            tabla.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.SetWidths(new float[] { 1, 1, 1, 1});
+            // Encabezados de la tabla
+            PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Descripción", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Stock Actual", tablaHeaderFont));
+            header1.HorizontalAlignment = Element.ALIGN_CENTER;
+            header2.HorizontalAlignment = Element.ALIGN_CENTER;
+            header3.HorizontalAlignment = Element.ALIGN_CENTER;
+            header4.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.AddCell(header1);
+            tabla.AddCell(header2);
+            tabla.AddCell(header3);
+            tabla.AddCell(header4);
+            for (int i = 0; i < datos.GetLength(0); i++)
+            {
+                if (datos[i, 0] != null || datos[i, 1] != null)
+                {
+                    PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
+                    PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
+                    PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
+                    PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
+                    celda1.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda2.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda3.HorizontalAlignment = Element.ALIGN_CENTER;
+                    celda4.HorizontalAlignment = Element.ALIGN_CENTER;
+                    tabla.AddCell(celda1);
+                    tabla.AddCell(celda2);
+                    tabla.AddCell(celda3);
+                    tabla.AddCell(celda4);
+                }
+            }
+        }
+        public void CrearTablasMedicamentos(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        {
+            tabla = new PdfPTable(5);
+            tabla.WidthPercentage = 100;
+            tabla.HorizontalAlignment = Element.ALIGN_CENTER;
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1});
+            // Encabezados de la tabla
+            PdfPCell header1 = new PdfPCell(new Phrase("Nombre Generico", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Presentación", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Vía de Administración", tablaHeaderFont));
             PdfPCell header4 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
             PdfPCell header5 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
             header1.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -447,31 +511,28 @@ namespace VetPet_
                 }
             }
         }
-        public void CrearTablasMedicamentos(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
+        public void CrearTablasProveedores(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
         {
-            tabla = new PdfPTable(6);
+            tabla = new PdfPTable(5);
             tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1, 1 });
+            tabla.SetWidths(new float[] { 1, 1, 1, 1, 1});
             // Encabezados de la tabla
-            PdfPCell header1 = new PdfPCell(new Phrase("Nombre Generico", tablaHeaderFont));
-            PdfPCell header2 = new PdfPCell(new Phrase("Presentación", tablaHeaderFont));
-            PdfPCell header3 = new PdfPCell(new Phrase("Vía de Administración", tablaHeaderFont));
-            PdfPCell header4 = new PdfPCell(new Phrase("Precio del Proveedor", tablaHeaderFont));
-            PdfPCell header5 = new PdfPCell(new Phrase("Precio a la Venta", tablaHeaderFont));
-            PdfPCell header6 = new PdfPCell(new Phrase("Cantidad Vendida", tablaHeaderFont));
+            PdfPCell header1 = new PdfPCell(new Phrase("Nombre del Proveedor", tablaHeaderFont));
+            PdfPCell header2 = new PdfPCell(new Phrase("Nombre del Contacto", tablaHeaderFont));
+            PdfPCell header3 = new PdfPCell(new Phrase("Correo Electronico", tablaHeaderFont));
+            PdfPCell header4 = new PdfPCell(new Phrase("Celular", tablaHeaderFont));
+            PdfPCell header5 = new PdfPCell(new Phrase("Numero de Pedidos", tablaHeaderFont));
             header1.HorizontalAlignment = Element.ALIGN_CENTER;
             header2.HorizontalAlignment = Element.ALIGN_CENTER;
             header3.HorizontalAlignment = Element.ALIGN_CENTER;
             header4.HorizontalAlignment = Element.ALIGN_CENTER;
             header5.HorizontalAlignment = Element.ALIGN_CENTER;
-            header6.HorizontalAlignment = Element.ALIGN_CENTER;
             tabla.AddCell(header1);
             tabla.AddCell(header2);
             tabla.AddCell(header3);
             tabla.AddCell(header4);
             tabla.AddCell(header5);
-            tabla.AddCell(header6);
             for (int i = 0; i < datos.GetLength(0); i++)
             {
                 if (datos[i, 0] != null || datos[i, 1] != null)
@@ -481,57 +542,16 @@ namespace VetPet_
                     PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
                     PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
                     PdfPCell celda5 = new PdfPCell(new Phrase(datos[i, 4], tablaFont));
-                    PdfPCell celda6 = new PdfPCell(new Phrase(datos[i, 5], tablaFont));
                     celda1.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda2.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda3.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda4.HorizontalAlignment = Element.ALIGN_CENTER;
                     celda5.HorizontalAlignment = Element.ALIGN_CENTER;
-                    celda6.HorizontalAlignment = Element.ALIGN_CENTER;
                     tabla.AddCell(celda1);
                     tabla.AddCell(celda2);
                     tabla.AddCell(celda3);
                     tabla.AddCell(celda4);
                     tabla.AddCell(celda5);
-                    tabla.AddCell(celda6);
-                }
-            }
-        }
-        public void CrearTablasProveedores(string[,] datos, ref PdfPTable tabla, Font tablaHeaderFont, Font tablaFont)
-        {
-            tabla = new PdfPTable(4);
-            tabla.WidthPercentage = 100;
-            tabla.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.SetWidths(new float[] { 1, 1, 1, 1 });
-            // Encabezados de la tabla
-            PdfPCell header1 = new PdfPCell(new Phrase("Nombre", tablaHeaderFont));
-            PdfPCell header2 = new PdfPCell(new Phrase("Correo Electronico", tablaHeaderFont));
-            PdfPCell header3 = new PdfPCell(new Phrase("Celular", tablaHeaderFont));
-            PdfPCell header4 = new PdfPCell(new Phrase("Cantidad de Ventas", tablaHeaderFont));
-            header1.HorizontalAlignment = Element.ALIGN_CENTER;
-            header2.HorizontalAlignment = Element.ALIGN_CENTER;
-            header3.HorizontalAlignment = Element.ALIGN_CENTER;
-            header4.HorizontalAlignment = Element.ALIGN_CENTER;
-            tabla.AddCell(header1);
-            tabla.AddCell(header2);
-            tabla.AddCell(header3);
-            tabla.AddCell(header4);
-            for (int i = 0; i < datos.GetLength(0); i++)
-            {
-                if (datos[i, 0] != null || datos[i, 1] != null)
-                {
-                    PdfPCell celda1 = new PdfPCell(new Phrase(datos[i, 0], tablaFont));
-                    PdfPCell celda2 = new PdfPCell(new Phrase(datos[i, 1], tablaFont));
-                    PdfPCell celda3 = new PdfPCell(new Phrase(datos[i, 2], tablaFont));
-                    PdfPCell celda4 = new PdfPCell(new Phrase(datos[i, 3], tablaFont));
-                    celda1.HorizontalAlignment = Element.ALIGN_CENTER;
-                    celda2.HorizontalAlignment = Element.ALIGN_CENTER;
-                    celda3.HorizontalAlignment = Element.ALIGN_CENTER;
-                    celda4.HorizontalAlignment = Element.ALIGN_CENTER;
-                    tabla.AddCell(celda1);
-                    tabla.AddCell(celda2);
-                    tabla.AddCell(celda3);
-                    tabla.AddCell(celda4);
                 }
             }
         }

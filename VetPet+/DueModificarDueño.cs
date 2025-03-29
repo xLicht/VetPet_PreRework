@@ -18,6 +18,7 @@ namespace VetPet_
     {
         public int DatoEmpleado { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
+        private List<string> numerosSecundarios = new List<string>();
         public DueModificarDueño(Form1 parent)
         {
             InitializeComponent();
@@ -29,7 +30,50 @@ namespace VetPet_
             //MessageBox.Show("Mensaje: "+ DatoEmpleado);
             CargarCB();
             MostrarDato();
+            CargarNumerosSecundarios();
 
+        }
+        private void ActualizarDataGrid()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Número");
+            foreach (var num in numerosSecundarios)
+            {
+                dt.Rows.Add(num);
+            }
+            dtNumeros.DataSource = dt;
+        }
+        private void CargarNumerosSecundarios()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número");
+
+                conexionDB.AbrirConexion();
+                string query = "SELECT numero FROM Celular WHERE idPersona = @idPersona AND estado = 'A'";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string num = reader["numero"].ToString();
+                        numerosSecundarios.Add(num);
+                        dt.Rows.Add(num);
+                    }
+                    reader.Close();
+                }
+                dtNumeros.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los números secundarios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
 
         public void MostrarDato()
@@ -38,11 +82,13 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                    string query = @"SELECT 
+                string query = @"SELECT 
                         p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
                         p.correoElectronico, 
                         pais.nombre AS pais, calle.nombre AS calle, 
-                        cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
+                        cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, 
+                        estado.nombre AS estado,
+                        municipio.nombre AS municipio
                     FROM 
                         Persona p
                     LEFT JOIN 
@@ -59,6 +105,8 @@ namespace VetPet_
                         Colonia colonia ON d.idColonia = colonia.idColonia
                     LEFT JOIN 
                         Estado estado ON d.idEstado = estado.idEstado 
+                    LEFT JOIN
+                        Municipio municipio ON d.idMunicipio = municipio.idMunicipio
                     WHERE 
                         p.idPersona = @idPersona";
 
@@ -77,10 +125,11 @@ namespace VetPet_
                         txtCorreo.Text = reader["correoElectronico"].ToString();
                         cbPais.Text = reader["pais"].ToString();
                         cbCalle.Text = reader["calle"].ToString();
-                        txtCp.Text = reader["cp"].ToString();
+                        txtCP.Text = reader["cp"].ToString();
                         cbCiudad.Text = reader["ciudad"].ToString();
                         cbColonia.Text = reader["colonia"].ToString();
                         cbEstado.Text = reader["estado"].ToString();
+                        cbMunicipio.Text = reader["municipio"].ToString();
                     }
                 }
             }
@@ -101,10 +150,12 @@ namespace VetPet_
 
                 int idPais = ObtenerORegistrarIdPais(cbPais.Text);
                 int idCalle = ObtenerORegistrarIdCalle(cbCalle.Text);
-                int idCp = ObtenerORegistrarIdCp(txtCp.Text);
-                int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                int idCp = ObtenerORegistrarIdCp(txtCP.Text);
+                //int idCiudad = ObtenerIdPorNombre("Ciudad", cbCiudad.Text);
+                int idCiudad = ObtenerORegistrarIdCiudad(cbCiudad.Text);
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idEstado = ObtenerORegistrarIdEstado(cbEstado.Text);
+                int idMunicipio = ObtenerORegistrarIdMunicipio(cbMunicipio.Text);
 
                 string query = @"
                 UPDATE Persona 
@@ -121,7 +172,8 @@ namespace VetPet_
                     idCp = (SELECT idCp FROM Cp WHERE cp = @cp),
                     idCiudad = (SELECT idCiudad FROM Ciudad WHERE nombre = @ciudad),
                     idColonia = (SELECT idColonia FROM Colonia WHERE nombre = @colonia),
-                    idEstado = (SELECT idEstado FROM Estado WHERE nombre = @estado)
+                    idEstado = (SELECT idEstado FROM Estado WHERE nombre = @estado),
+                    idMunicipio = (SELECT idMunicipio FROM Municipio WHERE nombre = @municipio)
                 WHERE idPersona = @idPersona;
                     ";
 
@@ -135,23 +187,68 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@correo", txtCorreo.Text);
                     cmd.Parameters.AddWithValue("@pais", cbPais.Text);
                     cmd.Parameters.AddWithValue("@calle", cbCalle.Text);
-                    cmd.Parameters.AddWithValue("@cp", txtCp.Text);
+                    cmd.Parameters.AddWithValue("@cp", txtCP.Text);
                     cmd.Parameters.AddWithValue("@ciudad", cbCiudad.Text);
                     cmd.Parameters.AddWithValue("@colonia", cbColonia.Text);
                     cmd.Parameters.AddWithValue("@estado", cbEstado.Text);
+                    cmd.Parameters.AddWithValue("@municipio", cbMunicipio.Text);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
                     {
                         MessageBox.Show("Datos actualizados correctamente.");
-                        parentForm.formularioHijo(new DueConsultarDueño(parentForm)); // Recargar vista
+                        parentForm.formularioHijo(new DueConsultarDueño(parentForm)); 
                     }
                     else
                     {
                         MessageBox.Show("No se realizaron cambios.");
                     }
                 }
+
+                string queryInactivar = "UPDATE Celular SET estado = 'I' WHERE idPersona = @idPersona";
+                using (SqlCommand cmd = new SqlCommand(queryInactivar, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                    cmd.ExecuteNonQuery();
+                }
+
+                foreach (string num in numerosSecundarios)
+                {
+                    string queryVerificar = "SELECT COUNT(*) FROM Celular WHERE idPersona = @idPersona AND numero = @numero";
+                    int count = 0;
+                    using (SqlCommand cmd = new SqlCommand(queryVerificar, conexionDB.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                        cmd.Parameters.AddWithValue("@numero", num);
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    if (count > 0)
+                    {
+                        string queryActualizar = "UPDATE Celular SET estado = 'A' WHERE idPersona = @idPersona AND numero = @numero";
+                        using (SqlCommand cmd = new SqlCommand(queryActualizar, conexionDB.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                            cmd.Parameters.AddWithValue("@numero", num);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        string queryInsert = "INSERT INTO Celular (idPersona, numero, estado) VALUES (@idPersona, @numero, 'A')";
+                        using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                        {
+                            cmd.Parameters.AddWithValue("@idPersona", DatoEmpleado);
+                            cmd.Parameters.AddWithValue("@numero", num);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
+                DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
+                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
+                parentForm.formularioHijo(formularioHijo);
             }
             catch (Exception ex)
             {
@@ -174,7 +271,21 @@ namespace VetPet_
                 return result != null ? Convert.ToInt32(result) : 0;
             }
         }
-
+        private int ObtenerORegistrarIdMunicipio(string municipio)
+        {
+            int idMunicipio = ObtenerIdPorNombre("Municipio", municipio);
+            if (idMunicipio == 0)
+            {
+                string queryInsert = "INSERT INTO Municipio (nombre) VALUES (@municipio); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@municipio", municipio);
+                    object result = cmd.ExecuteScalar();
+                    idMunicipio = Convert.ToInt32(result);
+                }
+            }
+            return idMunicipio;
+        }
         private int ObtenerIdPorCodigoPostal(string cp)
         {
             string query = "SELECT idCp FROM Cp WHERE cp = @cp";
@@ -232,7 +343,21 @@ namespace VetPet_
             }
             return idColonia;
         }
-
+        private int ObtenerORegistrarIdCiudad(string ciudad)
+        {
+            int idCiudad = ObtenerIdPorNombre("Ciudad", ciudad);
+            if (idCiudad == 0)
+            {
+                string queryInsert = "INSERT INTO Ciudad (nombre) VALUES (@ciudad); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@ciudad", ciudad);
+                    object result = cmd.ExecuteScalar();
+                    idCiudad = Convert.ToInt32(result);
+                }
+            }
+            return idCiudad;
+        }
         private int ObtenerORegistrarIdCp(string cp)
         {
             int idCp = ObtenerIdPorCodigoPostal(cp);
@@ -273,6 +398,7 @@ namespace VetPet_
                 MostrarCB("SELECT nombre FROM Colonia", cbColonia);
                 MostrarCB("SELECT nombre FROM Calle", cbCalle);
                 MostrarCB("SELECT nombre FROM Estado", cbEstado);
+                MostrarCB("SELECT nombre FROM Municipio", cbMunicipio);
             }
             catch (Exception ex)
             {
@@ -317,11 +443,6 @@ namespace VetPet_
             if (ValidarCampos())
             {
                 GuardarCambios();
-                int idEmpleadoSeleccionado = Convert.ToInt32(DatoEmpleado);
-                DueConsultarDueño formularioHijo = new DueConsultarDueño(parentForm);
-                formularioHijo.DatoEmpleado = idEmpleadoSeleccionado;
-                parentForm.formularioHijo(formularioHijo);
-
                 //parentForm.formularioHijo(new DueConsultarDueño(parentForm));
             }
 
@@ -362,13 +483,15 @@ namespace VetPet_
             }
         }
 
+
         private bool ValidarCampos()
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellidoP.Text) ||
                 string.IsNullOrWhiteSpace(txtApellidoM.Text) || string.IsNullOrWhiteSpace(txtCelular.Text) ||
-                string.IsNullOrWhiteSpace(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCp.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCP.Text) ||
                 string.IsNullOrWhiteSpace(cbPais.Text) || string.IsNullOrWhiteSpace(cbCalle.Text) ||
-                string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text))
+                string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text)||
+                string.IsNullOrWhiteSpace(cbMunicipio.Text))
          
             {
                 MessageBox.Show("Por favor, complete todos los campos.");
@@ -387,6 +510,35 @@ namespace VetPet_
         {
             string patronCorreo = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
             return Regex.IsMatch(correo, patronCorreo);
+        }
+
+        private void btnAgregarNumeroSecundario_Click(object sender, EventArgs e)
+        {
+            string numero = txtNumSec.Text.Trim();
+            if (!string.IsNullOrEmpty(numero))
+            {
+                numerosSecundarios.Add(numero);
+                ActualizarDataGrid();
+                txtNumSec.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un número válido.");
+            }
+        }
+
+        private void dtNumeros_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string num = dtNumeros.Rows[e.RowIndex].Cells["Número"].Value.ToString();
+                DialogResult result = MessageBox.Show("¿Desea eliminar el número: " + num + "?", "Confirmar eliminación", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    numerosSecundarios.Remove(num);
+                    ActualizarDataGrid();
+                }
+            }
         }
     }
 }

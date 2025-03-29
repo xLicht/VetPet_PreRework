@@ -45,7 +45,7 @@ namespace VetPet_
                 MostrarDatosConsulta();
                 MostrarReceta();
                 CargarMedicamentos();
-                //CargarMedicamentosRecetados();
+                CargarMedicamentosRecetados();
             }
             else
             {
@@ -260,15 +260,9 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"
-                SELECT 
-                    con.diagnostico, 
-                    con.peso, 
-                    con.temperatura,
-                    c.fechaProgramada AS FechaCita
-                FROM Consulta con
-                INNER JOIN Cita c ON con.idCita = c.idCita
-                WHERE con.idConsulta = @idConsulta";
+                string query = @"SELECT diagnostico, peso, temperatura, FechaConsulta 
+                         FROM Consulta 
+                         WHERE idConsulta = @idConsulta";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -280,7 +274,7 @@ namespace VetPet_
                         rtDiagnostico.Text = reader["diagnostico"].ToString();
                         txtPeso.Text = reader["peso"].ToString();
                         txtTemperatura.Text = reader["temperatura"].ToString();
-                        txtFecha.Text = reader["FechaCita"].ToString();
+                        txtFecha.Text = reader["FechaConsulta"].ToString(); // NUEVO: Mostrar FechaConsulta
                     }
                 }
             }

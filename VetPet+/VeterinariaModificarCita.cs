@@ -34,8 +34,6 @@ namespace VetPet_
             CargarServiciosPadre();
             CargarServiciosCita();
         }
-    
-
         private void CargarDatosCita()
         {
             try
@@ -67,7 +65,7 @@ namespace VetPet_
                         TimeSpan hora = (TimeSpan)reader["hora"];
                         dtHora.Value = DateTime.Today.Add(hora);
 
-                        idMotivoCita = Convert.ToInt32(reader["idMotivo"]); 
+                        idMotivoCita = Convert.ToInt32(reader["idMotivo"]);
                         cbDueño.Text = reader["NombreCompleto"].ToString();
                         cbMascota.Text = reader["NombreMascota"].ToString();
                         txtDuracion.Text = reader["duracion"].ToString();
@@ -84,7 +82,7 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
-    
+
         private void CargarMotivos()
         {
             try
@@ -256,51 +254,6 @@ namespace VetPet_
 
         private void AgregarServicioSeleccionado()
         {
-            //string nombreServicio = "";
-            //bool esVacuna = false;
-            //int idVacuna = 0;
-
-            //if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    if (cbServicioNieto.SelectedItem != null)
-            //    {
-            //        nombreServicio = cbServicioNieto.Text;
-            //        idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
-            //        esVacuna = true;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Seleccione una vacuna.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    if (cbServicioNieto.SelectedItem != null)
-            //        nombreServicio = cbServicioNieto.Text;
-            //    else if (cbServicioEspecifico.SelectedItem != null)
-            //        nombreServicio = cbServicioEspecifico.Text;
-            //    else if (cbServicioP.SelectedItem != null)
-            //        nombreServicio = cbServicioP.Text;
-            //}
-
-            //if (!string.IsNullOrEmpty(nombreServicio))
-            //{
-            //    string empleadoSeleccionado = cbEmpleado.Text;
-            //    if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
-            //    {
-            //        listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, esVacuna, idVacuna));
-            //        ActualizarDataGrid();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Este servicio ya ha sido agregado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
             string nombreServicio = "";
             bool esVacuna = false;
             int idVacuna = 0;
@@ -347,7 +300,7 @@ namespace VetPet_
                 MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-   
+
         private void ActualizarDataGrid()
         {
             dtServicio.DataSource = null;
@@ -365,7 +318,7 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                    string query = @"
+                string query = @"
                 SELECT sen.nombre AS NombreServicio, e.usuario AS Empleado
                 FROM Servicio_Cita sc
                 INNER JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
@@ -506,6 +459,7 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             AgregarServicioSeleccionado();
@@ -513,7 +467,6 @@ namespace VetPet_
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
         {
-
             SqlTransaction transaction = null;
             try
             {
@@ -600,7 +553,7 @@ namespace VetPet_
             }
         }
 
-        private void dtServicio_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dtServicio_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -615,14 +568,8 @@ namespace VetPet_
             }
         }
 
-        private void dtServicio_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-
             DialogResult resultado = MessageBox.Show($"Los datos no guardados seran eliminados", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
@@ -632,7 +579,6 @@ namespace VetPet_
                 formularioHijo.DatoCita = idCitaSeleccionada;
                 parentForm.formularioHijo(formularioHijo);
             }
-           
         }
     }
 }

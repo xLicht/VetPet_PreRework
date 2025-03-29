@@ -6,10 +6,10 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_;
-using System.Text.RegularExpressions;
 
 namespace VetPet_
 {
@@ -38,6 +38,7 @@ namespace VetPet_
 
             return Regex.IsMatch(contraseña, patron);
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string nuevaContraseña = TxtContraseña.Text;
@@ -85,7 +86,19 @@ namespace VetPet_
                 MessageBox.Show("La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            TxtContraseña.PasswordChar = (TxtContraseña.PasswordChar == '*') ? '\0' : '*';
+            TxtConfiMiContraseña.PasswordChar = (TxtConfiMiContraseña.PasswordChar == '*') ? '\0' : '*';
+        }
+
+        private void CambiarContraseña_Load(object sender, EventArgs e)
+        {
+            TxtContraseña.PasswordChar = '*';
+            TxtConfiMiContraseña.PasswordChar = '*';
             
         }
 
@@ -93,7 +106,7 @@ namespace VetPet_
         {
             int progreso = 0;
             string contraseña = TxtContraseña.Text;
-            
+
             // Comprobar cada condición y aumentar la barra de progreso
             if (contraseña.Length >= 8) progreso += 33;   // Longitud mínima de 8 caracteres
             if (contraseña.Any(char.IsUpper)) progreso += 33; // Al menos una mayúscula
@@ -121,18 +134,6 @@ namespace VetPet_
                 label4.ForeColor = Color.Green;
             }
             progressBarSeguridad.Value = progreso;
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            TxtContraseña.PasswordChar = (TxtContraseña.PasswordChar == '*') ? '\0' : '*';
-            TxtConfiMiContraseña.PasswordChar = (TxtConfiMiContraseña.PasswordChar == '*') ? '\0' : '*';
-        }
-
-        private void CambiarContraseña_Load(object sender, EventArgs e)
-        {
-            TxtContraseña.PasswordChar = '*';
-            TxtConfiMiContraseña.PasswordChar = '*';
         }
     }
 }

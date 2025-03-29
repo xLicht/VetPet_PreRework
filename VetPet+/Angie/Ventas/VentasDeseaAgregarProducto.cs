@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie.Mascotas;
+using static VetPet_.Angie.VentasAgregarProducto;
 
 namespace VetPet_.Angie
 {
@@ -20,10 +21,6 @@ namespace VetPet_.Angie
         Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         int idCita = 0;
-        private decimal subtotal;
-        private int stock;
-        private decimal precio;  
-
         public VentasDeseaAgregarProducto(Form1 parent, int idProducto, int idCita)
         {
             InitializeComponent();
@@ -33,22 +30,32 @@ namespace VetPet_.Angie
             CargarMedicamento(idProducto);
             this.idCita = idCita;
         }
+
+        public VentasDeseaAgregarProducto(Form1 parent, int idProducto)
+        {
+            InitializeComponent();
+            this.Load += VentasDeseaAgregarProducto_Load;       // Evento Load
+            this.Resize += VentasDeseaAgregarProducto_Resize;   // Evento Resize
+            parentForm = parent;  // Guardamos la referencia de Form1
+            CargarMedicamento(idProducto);
+        }
+
         public void CargarMedicamento(int idMedicamento)
         {
             try
             {
                 mismetodos.AbrirConexion();
                 string query = @"
-            SELECT 
-                idProducto AS idProducto,
-                nombre AS NombreMedicamento,
-                precioVenta AS Precio
-            FROM 
-                Producto
-            WHERE 
-                idProducto = @idProducto
-                AND (idTipoProducto = 1 OR idTipoProducto = 2);";
+                SELECT 
+                    idProducto AS idProducto,
+                    nombre AS NombreMedicamento
+                FROM 
+                    Producto
+                WHERE 
+                    idProducto = @idProducto
+                    AND (idTipoProducto = 1 OR idTipoProducto = 2);";
 
+                // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando2 = new SqlCommand(query, mismetodos.GetConexion()))
                 {
                     comando2.Parameters.AddWithValue("@idProducto", idMedicamento);
@@ -58,52 +65,28 @@ namespace VetPet_.Angie
                         if (reader.Read())
                         {
                             textBox5.Text = reader["NombreMedicamento"].ToString();
-                            label3.Text = reader["idProducto"].ToString();
-                            precio = reader.GetDecimal(reader.GetOrdinal("Precio"));
-
+                            label4.Text = reader["idProducto"].ToString();
                         }
                         else
                         {
-                            textBox5.Text = "No se encontró el medicamento.";
-                            label3.Text = "";
+                            // Si no se encuentra la cita, mostrar un mensaje o dejar el TextBox vacío
+                            textBox5.Text = "No se encontró el producto.";
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Manejar el error si ocurre algún problema
                 MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {
+                // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
             }
         }
 
-
-        private void VentasDeseaAgregarMedicamento_Resize(object sender, EventArgs e)
-        {
-            // Calcular el factor de escala
-            float scaleX = this.ClientSize.Width / originalWidth;
-            float scaleY = this.ClientSize.Height / originalHeight;
-
-            foreach (Control control in this.Controls)
-            {
-                if (controlInfo.ContainsKey(control))
-                {
-                    var info = controlInfo[control];
-
-                    // Ajustar las dimensiones
-                    control.Width = (int)(info.width * scaleX);
-                    control.Height = (int)(info.height * scaleY);
-                    control.Left = (int)(info.left * scaleX);
-                    control.Top = (int)(info.top * scaleY);
-
-                    // Ajustar el tamaño de la fuente
-                    control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
-                }
-            }
-        }
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -114,6 +97,9 @@ namespace VetPet_.Angie
                     return;
                 }
 
+                int idProducto = int.Parse(label4.Text);
+                decimal precio = ObtenerPrecioProducto(idProducto);
+
                 if (precio == -1)
                 {
                     MessageBox.Show("No se pudo obtener el precio del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -122,34 +108,14 @@ namespace VetPet_.Angie
 
                 // Calcular el total
                 decimal total = cantidad * precio;
-                mismetodos.AbrirConexion();
-
-                // Consulta para obtener el stock actual del producto
-                string queryStock = @"
-                    SELECT stock 
-                    FROM Producto 
-                    WHERE idProducto = @idProducto;
-                ";
-
-                int stockActual = 0;
 
                 // Obtener el stock actual del producto
-                using (SqlCommand comandoStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
-                {
-                    comandoStock.Parameters.AddWithValue("@idProducto", label3.Text);
+                int stockActual = ObtenerStockActual(idProducto);
 
-                    using (SqlDataReader reader = comandoStock.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            stockActual = Convert.ToInt32(reader["stock"]);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
+                if (stockActual == -1)
+                {
+                    MessageBox.Show("No se encontró el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 // Validar que haya suficiente stock
@@ -162,49 +128,55 @@ namespace VetPet_.Angie
                 // Calcular el nuevo stock
                 int nuevoStock = stockActual - cantidad;
 
-                // Consulta para actualizar el stock del producto
-                string queryActualizarStock = @"
-                    UPDATE Producto 
-                    SET stock = @nuevoStock 
-                    WHERE idProducto = @idProducto;
-                ";
+                // Actualizar el stock en memoria usando StockManager
+                StockManager1.ActualizarStock(idProducto, nuevoStock);
 
-                // Ejecutar la actualización del stock
-                using (SqlCommand comandoActualizar = new SqlCommand(queryActualizarStock, mismetodos.GetConexion()))
+                // Mostrar el nuevo stock en la interfaz de usuario
+                MessageBox.Show($"Stock actual: {stockActual}\nStock después de la venta: {nuevoStock}", "Stock Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Pasar al siguiente formulario
+                if (idCita != 0)
                 {
-                    comandoActualizar.Parameters.AddWithValue("@nuevoStock", nuevoStock);
-                    comandoActualizar.Parameters.AddWithValue("@idProducto", label3.Text);
+                    parentForm.formularioHijo(new VentasAgregarProducto(parentForm, idProducto, total, nuevoStock, idCita));
+                }
+                else
+                {
+                    parentForm.formularioHijo(new VentasAgregarProducto(parentForm, idProducto, total, nuevoStock));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                    int filasAfectadas = comandoActualizar.ExecuteNonQuery();
+        private int ObtenerStockActual(int idProducto)
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+                string query = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
 
-                    if (filasAfectadas > 0)
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    comando.Parameters.AddWithValue("@idProducto", idProducto);
+                    object result = comando.ExecuteScalar();
+
+                    if (result != null)
                     {
-                        MessageBox.Show("Stock actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (idCita != 0)
-                        {
-                            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, int.Parse(label3.Text), total, nuevoStock, idCita));
-                        }
-                        else
-                        {
-                            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, int.Parse(label3.Text), total, nuevoStock));
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo actualizar el stock.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return Convert.ToInt32(result);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejar el error si ocurre algún problema
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener el stock: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
-            }      
+            }
+            return -1; // Retorna -1 si hay un error
         }
 
         private decimal ObtenerPrecioProducto(int idProducto)
@@ -217,9 +189,9 @@ namespace VetPet_.Angie
                 mismetodos.AbrirConexion();
 
                 string query = @"
-            SELECT precioVenta 
-            FROM Producto 
-            WHERE idProducto = @idProducto AND idTipoProducto = 1 OR idTipoProducto = 2";
+                SELECT precioVenta 
+                FROM Producto 
+                WHERE idProducto = @idProducto AND (idTipoProducto = 1 OR idTipoProducto = 2);";
 
                 // Usar `using` para manejar recursos correctamente
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -247,6 +219,7 @@ namespace VetPet_.Angie
 
             return precio;
         }
+
         private void VentasDeseaAgregarProducto_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
@@ -259,6 +232,7 @@ namespace VetPet_.Angie
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
         }
+
         private void VentasDeseaAgregarProducto_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
@@ -282,10 +256,11 @@ namespace VetPet_.Angie
                 }
             }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasAgregarProducto(parentForm, idCita,subtotal,stock));
+            parentForm.formularioHijo(new VentasAgregarProducto(parentForm));
         }
-
     }
 }
+

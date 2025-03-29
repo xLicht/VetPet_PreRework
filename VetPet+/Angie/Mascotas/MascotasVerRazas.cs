@@ -34,28 +34,23 @@ namespace VetPet_.Angie.Ventas
             originalWidth = this.ClientSize.Width;
             originalHeight = this.ClientSize.Height;
 
-            // Guardar información original de cada control
             foreach (Control control in this.Controls)
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
-
             try
             {
-                // Crear instancia de Mismetodos
                 mismetodos = new Mismetodos();
 
-                // Abrir conexión
                 mismetodos.AbrirConexion();
 
-                // Consulta SQL con nombres personalizados
                 string query = @"
-            SELECT 
-                R.nombre AS [Nombre], 
-                E.nombre AS [Especie], 
-                R.descripcion AS [Descripción de la Raza] 
-            FROM Raza R
-            INNER JOIN Especie E ON R.idEspecie = E.idEspecie";
+                SELECT 
+                    idRaza, 
+                    nombre AS [Nombre], 
+                    descripcion AS [Descripción de la Raza] 
+                FROM Raza
+                WHERE estado <> 'D'";
 
                 // Usar `using` para asegurar la correcta liberación de recursos
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
@@ -64,7 +59,6 @@ namespace VetPet_.Angie.Ventas
                     // Crear un DataTable y llenar los datos
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
-
                     // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
                 }
@@ -78,6 +72,7 @@ namespace VetPet_.Angie.Ventas
             {
                 // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
+                dataGridView1.Columns["idRaza"].Visible = false; // Oculta la columna
             }
         }
 
@@ -145,11 +140,26 @@ namespace VetPet_.Angie.Ventas
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
+          
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
             {
-                dataGridView1.Columns["idMascota"].Visible = false;
+                if (e.RowIndex >= 0)
+                {
+                    // Obtener el idAlergia de la fila seleccionada
+                    int idRaza = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idRaza"].Value);
+
+                    // Pasar el idAlergia al nuevo formulario
+                    parentForm.formularioHijo(new MascotasVerRaza(parentForm, idRaza));
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }           
         }
     }
 }

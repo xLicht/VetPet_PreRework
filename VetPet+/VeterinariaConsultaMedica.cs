@@ -166,63 +166,14 @@ namespace VetPet_
             }
         }
 
-        
         private void MostrarServicios()
         {
-
-            int idConsulta = 0;
-
             try
             {
                 conexionDB.AbrirConexion();
-                string queryIdConsulta = "SELECT TOP 1 idConsulta FROM Consulta WHERE idCita = @idCita ORDER BY idConsulta DESC";
-                using (SqlCommand cmd = new SqlCommand(queryIdConsulta, conexionDB.GetConexion()))
+                using (SqlCommand cmd = new SqlCommand("EXEC sp_ObtenerServiciosCita @idCita", conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        idConsulta = Convert.ToInt32(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener el idConsulta: " + ex.Message);
-                return;
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-
-            if (idConsulta == 0)
-            {
-                dtServicio.DataSource = null;
-                return;
-            }
-
-            try
-            {
-                conexionDB.AbrirConexion();
-
-                string query = @"
-            SELECT 
-                sc.observacion,
-                CASE 
-                    WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
-                    ELSE sen.nombre 
-                END AS Servicio,
-                CASE 
-                    WHEN sc.idVacuna IS NOT NULL THEN 'Vacuna'
-                    ELSE 'Servicio'
-                END AS Tipo
-            FROM Servicio_Consulta sc
-            LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-            LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-            WHERE sc.idConsulta = @idConsulta";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@idConsulta", idConsulta);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -231,7 +182,47 @@ namespace VetPet_
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener los servicios de la consulta: " + ex.Message);
+                MessageBox.Show("Error al obtener los servicios de la cita: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                    string query = @"
+                UPDATE Consulta
+                SET estado = 'I'
+                WHERE idConsulta = (
+                    SELECT TOP 1 idConsulta 
+                    FROM Consulta 
+                    WHERE idCita = @idCita
+                )";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Consulta eliminada (inactivada) correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la consulta para eliminar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la consulta: " + ex.Message);
             }
             finally
             {

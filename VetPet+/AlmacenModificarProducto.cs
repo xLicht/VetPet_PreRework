@@ -51,8 +51,6 @@ namespace VetPet_
 
             // Cargar los laboratorios
             CargarComboBoxProveedor();
-
-            CargarComboBoxEstadoProducto();
         }
         private void CargarComboBoxMarca()
         {
@@ -82,41 +80,6 @@ namespace VetPet_
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error al cargar las Marcas: " + ex.Message);
-                }
-                finally
-                {
-                    conexion.GetConexion().Close(); // Cerrar la conexión
-                }
-            }
-        }
-        private void CargarComboBoxEstadoProducto()
-        {
-            // Crear la instancia de la clase conexionBrandon
-            conexionBrandon conexion = new conexionBrandon();
-            conexion.AbrirConexion();
-
-            // Crear la consulta para obtener los posibles valores de estado (suponiendo que estén en una tabla o definidos como constantes)
-            string query = "SELECT DISTINCT estado FROM Producto";
-
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
-            {
-                try
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    // Limpiar cualquier valor previo del ComboBox
-                    cmbEstadoProducto.Items.Clear();
-
-                    // Llenar el ComboBox con los valores de estado
-                    while (reader.Read())
-                    {
-                        // Agregar el estado al ComboBox
-                        cmbEstadoProducto.Items.Add(reader["estado"].ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar los estados de producto: " + ex.Message);
                 }
                 finally
                 {
@@ -343,13 +306,10 @@ namespace VetPet_
                         conexionBrandon conexion = new conexionBrandon();
                         conexion.AbrirConexion();
 
-
-
-                        // Consulta SQL para actualizar el estado de los productos a inactivo (estado = 'I')
+                        // Consulta SQL para eliminar el medicamento
                         string query = @"
-                        UPDATE Producto
-                        SET estado = 'I'
-                        WHERE nombre = @NombreProducto;";
+                        DELETE FROM Producto
+                        WHERE nombre = @NombreProducto";
 
                         using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
                         {
@@ -357,24 +317,24 @@ namespace VetPet_
 
                             try
                             {
-                                // Ejecutar la consulta de actualización
+                                // Ejecutar la consulta de eliminación
                                 int rowsAffected = cmd.ExecuteNonQuery();
 
-                                // Verificar si la actualización fue exitosa
+                                // Verificar si la eliminación fue exitosa
                                 if (rowsAffected > 0)
                                 {
-                                    MessageBox.Show("El Producto fue marcado como inactivo correctamente.");
-                                    // Redirigir al formulario de inventario después de la actualización
+                                    MessageBox.Show("El Producto fue eliminado correctamente.");
+                                    // Redirigir al formulario de inventario después de la eliminación
                                     parentForm.formularioHijo(new AlmacenInventarioProductos(parentForm));
                                 }
                                 else
                                 {
-                                    MessageBox.Show("No se pudo actualizar el estado del Producto.");
+                                    MessageBox.Show("No se pudo eliminar el Producto.");
                                 }
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show("Error al actualizar el estado del Producto: " + ex.Message);
+                                MessageBox.Show("Error al eliminar el Producto: " + ex.Message);
                             }
                             finally
                             {
@@ -389,7 +349,6 @@ namespace VetPet_
                 }
             }
         }
-
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
@@ -441,8 +400,7 @@ namespace VetPet_
                     fechaCaducidad = @FechaVencimiento,
                     idMarca = @IdMarca,
                     idTipoProducto = @IdTipoProducto,
-                    idProveedor = @IdProveedor,
-                    estado = @Estado
+                    idProveedor = @IdProveedor
                 WHERE nombre = @NombreProducto";
 
                 // Crear el comando SQL
@@ -460,7 +418,6 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@IdTipoProducto", txtIdTipoProducto.Text);
                     cmd.Parameters.AddWithValue("@IdProveedor", txtIdProveedor.Text);
                     cmd.Parameters.AddWithValue("@NombreProducto", nombreProducto);
-                    cmd.Parameters.AddWithValue("@Estado", cmbEstadoProducto.SelectedItem.ToString());
 
                     // Ejecutar el comando de actualización
                     int rowsAffected = cmd.ExecuteNonQuery();

@@ -58,33 +58,26 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT  e.usuario,e.contraseña, e.palabraClave, 
-                        p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
-                        p.correoElectronico, t.nombre AS tipoEmpleado, pais.nombre AS pais,  calle.nombre AS calle, 
-                        cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, estado.nombre AS estado  
-                    FROM 
-                        Empleado e
-                    JOIN 
-                        Persona p ON e.idPersona = p.idPersona
-                    JOIN 
-                        TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                    LEFT JOIN 
-                        Direccion d ON e.idEmpleado = d.idPersona
-                    LEFT JOIN 
-                        Pais pais ON d.idPais = pais.idPais
-                    LEFT JOIN 
-                        Calle calle ON d.idCalle = calle.idCalle
-                    LEFT JOIN 
-                        Cp cp ON d.idCp = cp.idCp
-                    LEFT JOIN 
-                        Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
-                    LEFT JOIN 
-                        Colonia colonia ON d.idColonia = colonia.idColonia
-                    LEFT JOIN 
-                        Estado estado ON d.idEstado = estado.idEstado -- Hacer el LEFT JOIN con la tabla Estado
-                    WHERE 
-                     e.idEmpleado = @idEmpleado";
-
+                string query = @"
+                    SELECT e.usuario, e.contraseña, e.palabraClave, e.rfc,
+                           p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, 
+                           p.correoElectronico, t.nombre AS tipoEmpleado, 
+                           pais.nombre AS pais, calle.nombre AS calle, 
+                           cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia, 
+                           estado.nombre AS estado,
+                           municipio.nombre AS municipio
+                    FROM Empleado e
+                    JOIN Persona p ON e.idPersona = p.idPersona
+                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
+                    LEFT JOIN Direccion d ON e.idEmpleado = d.idPersona
+                    LEFT JOIN Pais pais ON d.idPais = pais.idPais
+                    LEFT JOIN Calle calle ON d.idCalle = calle.idCalle
+                    LEFT JOIN Cp cp ON d.idCp = cp.idCp
+                    LEFT JOIN Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
+                    LEFT JOIN Colonia colonia ON d.idColonia = colonia.idColonia
+                    LEFT JOIN Estado estado ON d.idEstado = estado.idEstado 
+                    LEFT JOIN Municipio municipio ON d.idMunicipio = municipio.idMunicipio
+                    WHERE e.idEmpleado = @idEmpleado";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -97,6 +90,7 @@ namespace VetPet_
                         txtUsuario.Text = reader["usuario"].ToString();
                         txtContraseña.Text = reader["contraseña"].ToString();
                         txtPalabraClave.Text = reader["palabraClave"].ToString();
+                        txtRFC.Text = reader["rfc"].ToString();
                         txtNombre.Text = reader["nombre"].ToString();
                         txtApellidoP.Text = reader["apellidoP"].ToString();
                         txtApellidoM.Text = reader["apellidoM"].ToString();
@@ -109,6 +103,7 @@ namespace VetPet_
                         txtCiudad.Text = reader["ciudad"].ToString();
                         txtColonia.Text = reader["colonia"].ToString();
                         textBox1.Text = reader["estado"].ToString();
+                        txtMunicipio.Text = reader["municipio"].ToString();
                     }
                 }
             }

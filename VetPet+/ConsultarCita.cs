@@ -244,7 +244,41 @@ namespace VetPet_
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("¿Estás seguro de que deseas eliminar la cita?", "Confirmación",
+      MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
 
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "UPDATE Cita SET estado = 'I' WHERE idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("La cita ha sido eliminada correctamente.");
+                        parentForm.formularioHijo(new CitasMedicas(parentForm)); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la cita para eliminar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la cita: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
     }
 }
