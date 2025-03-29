@@ -194,9 +194,16 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT diagnostico, peso, temperatura, FechaConsulta 
-                         FROM Consulta 
-                         WHERE idConsulta = @idConsulta";
+                // Se realiza un join entre Consulta y Cita para obtener la fecha de la cita
+                string query = @"
+                SELECT 
+                    con.diagnostico, 
+                    con.peso, 
+                    con.temperatura,
+                    c.fechaProgramada AS FechaCita
+                FROM Consulta con
+                INNER JOIN Cita c ON con.idCita = c.idCita
+                WHERE con.idConsulta = @idConsulta";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -208,7 +215,8 @@ namespace VetPet_
                         rtDiagnostico.Text = reader["diagnostico"].ToString();
                         txtPeso.Text = reader["peso"].ToString();
                         txtTemperatura.Text = reader["temperatura"].ToString();
-                        txtFecha.Text = reader["FechaConsulta"].ToString(); // NUEVO: Mostrar FechaConsulta
+                        // Se muestra la fecha obtenida de la cita en lugar de FechaConsulta de la consulta
+                        txtFecha.Text = reader["FechaCita"].ToString();
                     }
                 }
             }
@@ -223,45 +231,6 @@ namespace VetPet_
         }
         private void MostrarDatosMascota()
         {
-            //try
-            //{
-            //    conexionDB.AbrirConexion();
-
-            //    string query = @"SELECT 
-            //        p.nombre AS NombreCliente, 
-            //        m.nombre AS NombreMascota, 
-            //        e.nombre AS Especie, 
-            //        r.nombre AS Raza
-            //    FROM Cita c
-            //    INNER JOIN Mascota m ON c.idMascota = m.idMascota
-            //    INNER JOIN Persona p ON m.idPersona = p.idPersona
-            //    INNER JOIN Especie e ON m.idEspecie = e.idEspecie
-            //    INNER JOIN Raza r ON m.idRaza = r.idRaza
-            //    WHERE c.idCita = @idCita";
-
-            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-            //    {
-            //        cmd.Parameters.AddWithValue("@idCita", DatoCita);
-            //        SqlDataReader reader = cmd.ExecuteReader();
-
-            //        if (reader.Read())
-            //        {
-            //            txtNombre.Text = reader["NombreCliente"].ToString();
-            //            txtMascota.Text = reader["NombreMascota"].ToString();
-            //            txtEspecie.Text = reader["Especie"].ToString();
-            //            txtRaza.Text = reader["Raza"].ToString();
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al obtener los datos de la mascota: " + ex.Message);
-            //}
-            //finally
-            //{
-            //    conexionDB.CerrarConexion();
-            //}
-
             try
             {
                 conexionDB.AbrirConexion();
