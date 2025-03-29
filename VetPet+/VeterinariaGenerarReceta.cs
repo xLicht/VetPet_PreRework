@@ -32,9 +32,6 @@ namespace VetPet_
         string nombreDueño, string nombreMascota, string especie, string raza, string fechaNacimiento,
         string diagnostico, string peso, string temperatura, string indicaciones,
         List<Tuple<int, string, int>> listaMedicamentos)
-        string fecha = DateTime.Now.ToString("dd-MM-yyyy");
-        string hora = DateTime.Now.ToString("m-H");
-        public VeterinariaGenerarReceta()
         {
             InitializeComponent();
             parentForm = parent;
@@ -56,11 +53,18 @@ namespace VetPet_
             //    dtMedicamentos.Rows.Add(med.Item1, med.Item2, med.Item3);
             //}
         }
+        string fecha = DateTime.Now.ToString("dd-MM-yyyy");
+        string hora = DateTime.Now.ToString("H-m");
 
         private void VeterinariaGenerarReceta_Load(object sender, EventArgs e)
         {
+            GenerarReceta();
+        }
+        private void GenerarReceta()
+        {
             string nombreReceta = "Receta_" + fecha.Replace("-", "") + "-" + hora.Replace("-", "");
-            RecetaManager receta = new RecetaManager(nombreReceta);
+            RecetaManager receta = new RecetaManager(nombreReceta, NombreDueño, NombreMascota, Especie, Raza, FechaNacimiento, Diagnostico,
+                Peso, Temperatura, Indicaciones, ListaMedicamentos);
             receta.GenerarReporte();
 
             try

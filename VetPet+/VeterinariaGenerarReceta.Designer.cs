@@ -59,7 +59,6 @@
             this.pdfViewReceta.Size = new System.Drawing.Size(945, 484);
             this.pdfViewReceta.TabIndex = 70;
             this.pdfViewReceta.Tag = "1";
-            this.pdfViewReceta.Visible = false;
             // 
             // BtnVolver
             // 
@@ -74,7 +73,6 @@
             this.BtnVolver.Tag = "1";
             this.BtnVolver.Text = "Volver";
             this.BtnVolver.UseVisualStyleBackColor = false;
-            this.BtnVolver.Visible = false;
             // 
             // panel1
             // 
@@ -95,7 +93,7 @@
             this.Controls.Add(this.BtnVolver);
             this.Controls.Add(this.pdfViewReceta);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VeterinariaGenerarReceta";
             this.Text = "VeterinariaGenerarReceta";
             this.Load += new System.EventHandler(this.VeterinariaGenerarReceta_Load);
