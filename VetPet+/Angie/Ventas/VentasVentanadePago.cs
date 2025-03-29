@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
 using VetPet_.Angie.Mascotas;
+using VetPet_.Angie.Ventas;
 using static VetPet_.CitaDueños;
 
 namespace VetPet_
@@ -20,19 +21,27 @@ namespace VetPet_
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
-        private static DataTable dtProductos = new DataTable();
-        Mismetodos mismetodos = new Mismetodos();
-        decimal totalGeneral = 0;
-        decimal nuevoSubtotal = 0;
-        public static decimal MontoPagadoE = 0;
-        public static decimal MontoPagadoT = 0;
         public string FormularioOrigen { get; set; }
-
-        private static int idCita1;
+        private int idCita1;
         private int stock;
         private static int idDueño1;
         private static int idPersona;
-        private static decimal sumaTotal;
+        public DateTime fechaRegistro;
+        public string nombreRecepcionista;
+        public decimal total;
+        public decimal? efectivo;
+        public decimal? tarjeta;
+        decimal sumaTotal = 0;
+        decimal nuevoSubtotal = 0;
+        decimal totalGeneral = 0;
+        public int idVenta;
+        public static decimal MontoPagadoE = 0;
+        public static decimal MontoPagadoT = 0;
+        private static DataTable dtProductos = new DataTable();
+        List<Tuple<string, decimal, int>> ListaProductos = new List<Tuple<string, decimal, int>>();
+
+        List<Tuple<string, decimal, int>> ListaServicios = new List<Tuple<string, decimal, int>>();
+        Mismetodos mismetodos = new Mismetodos();
         public  decimal montoRestante;
 
         public VentasVentanadePago(Form1 parent, int idCita, int idDueño, string tabla)
@@ -364,12 +373,11 @@ namespace VetPet_
                 {
                     mismetodos.AbrirConexion();
 
-                    DateTime fechaRegistro = DateTime.Now;
-                    decimal total = totalGeneral;
+                    fechaRegistro = DateTime.Now;
+                    total = totalGeneral;
                     char pagado = 'S';
-                    decimal? efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
-                    decimal? tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
-                    int idEmpleado = idPersona;
+                    efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
+                    tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
                     char estado = 'A';
                     string insertVenta = @"
                     INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado, estado)
@@ -412,6 +420,7 @@ namespace VetPet_
                     foreach (DataRow row in dtProductos.Rows)
                     {
                         int idProducto = Convert.ToInt32(row["idProducto"]);
+                        string nombre = Convert.ToString(row["Producto"]);
                         decimal precio = Convert.ToDecimal(row["Precio"]);
                         decimal total = Convert.ToDecimal(row["Total"]);
 
@@ -421,6 +430,7 @@ namespace VetPet_
                         // Obtener el stock actual del producto
                         string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
                         int stockActual;
+                        ListaProductos.Add(Tuple.Create(nombre, precio, cantidadVendida));
 
                         using (SqlCommand cmdStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
                         {
@@ -453,6 +463,8 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
+                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
+                        ListaServicios, ListaProductos, total.ToString(), efectivo, ToString(), tarjeta.ToString(), total.ToString())); // Pasamos la referencia de Form1 a |
                 }
             }
         }

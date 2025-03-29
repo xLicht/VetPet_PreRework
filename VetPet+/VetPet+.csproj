@@ -276,6 +276,12 @@
     <Compile Include="Angie\Mascotas\MascotasVerEnfermedades.Designer.cs">
       <DependentUpon>MascotasVerEnfermedades.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Ventas\VentasVerTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Ventas\VentasVerTicket.Designer.cs">
+      <DependentUpon>VentasVerTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConexionMaestra.cs" />
     <Compile Include="Angie\Mascotas\MascotasAgregarAlergia.cs">
       <SubType>Form</SubType>

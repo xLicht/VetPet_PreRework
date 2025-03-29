@@ -41,7 +41,7 @@ namespace VetPet_
 
                 string query = @"
         SELECT 
-            V.idVenta
+            V.idVenta,
             V.fechaRegistro, 
             V.total, 
             P.nombre AS Cliente
@@ -150,5 +150,6 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm)); // Pasamos la referencia de Form1 a 
         }
+
     }
 }

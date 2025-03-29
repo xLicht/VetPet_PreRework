@@ -21,18 +21,27 @@ namespace VetPet_
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
-        private static DataTable dtProductos = new DataTable();
-        Mismetodos mismetodos = new Mismetodos();
-        decimal sumaTotalProductos = 0;
-        decimal nuevoSubtotal = 0;
-        public static decimal MontoPagadoE = 0;    
-        public static decimal MontoPagadoT = 0;
         public string FormularioOrigen { get; set; }
 
         private int idCita;
         private int stock;
         private static int idDueño1;
         private static int idPersona;
+        public DateTime fechaRegistro;
+        public string nombreRecepcionista;
+        public decimal total;
+        public decimal? efectivo;
+        public decimal? tarjeta;
+        decimal sumaTotalProductos = 0;
+        decimal nuevoSubtotal = 0;
+        public int idVenta;
+        public static decimal MontoPagadoE = 0;
+        public static decimal MontoPagadoT = 0;
+        private static DataTable dtProductos = new DataTable();
+        List<Tuple<string, decimal, int>> ListaProductos = new List<Tuple<string, decimal, int>>();
+
+        List<Tuple<string, decimal, int>> ListaServicios = new List<Tuple<string, decimal, int>>();
+        Mismetodos mismetodos = new Mismetodos();
         public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();
@@ -149,6 +158,23 @@ namespace VetPet_
                         }
                     }
                 }
+
+                string query1 = "SELECT nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
+
+                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    // Agregar parámetro a la consulta
+                    comando.Parameters.AddWithValue("@idPersona", idPersona);
+
+                    // Ejecutar consulta
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read()) // Si hay resultados
+                        {
+                            nombreRecepcionista = lector["nombre"].ToString();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -221,7 +247,7 @@ namespace VetPet_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new VentasListado(parentForm));
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -236,19 +262,17 @@ namespace VetPet_
                 {
                     mismetodos.AbrirConexion();
 
-                    DateTime fechaRegistro = DateTime.Now;
-                    decimal total = sumaTotalProductos;
+                    fechaRegistro = DateTime.Now;
+                    total = sumaTotalProductos;
                     char pagado = 'S';
-                    decimal? efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
-                    decimal? tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
-                    int idEmpleado = idPersona;
+                    efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
+                    tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
                     char estado = 'A';
                     string insertVenta = @"
                     INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado, estado)
                     VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado,@estado);
                     SELECT SCOPE_IDENTITY();";
 
-                    int idVenta;
                     using (SqlCommand cmd = new SqlCommand(insertVenta, mismetodos.GetConexion()))
                     {
                         cmd.Parameters.AddWithValue("@fechaRegistro", fechaRegistro);
@@ -285,12 +309,14 @@ namespace VetPet_
                     {
                         int idProducto = Convert.ToInt32(row["idProducto"]);
                         decimal precio = Convert.ToDecimal(row["Precio"]);
+                        string nombre = Convert.ToString(row["Producto"]);
                         decimal total = Convert.ToDecimal(row["Total"]);
 
                         // Calcular la cantidad vendida (Total / Precio)
                         int cantidadVendida = (int)Math.Round(total / precio, MidpointRounding.AwayFromZero);
 
-                        // Obtener el stock actual del producto
+                        ListaProductos.Add(Tuple.Create(nombre, precio, cantidadVendida));
+
                         string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
                         int stockActual;
 
@@ -315,8 +341,8 @@ namespace VetPet_
 
                         MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");
                     }
-
-                    MessageBox.Show("Stock actualizado correctamente.");
+                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
+                        ListaServicios, ListaProductos, total.ToString(), efectivo, ToString(), tarjeta.ToString(), total.ToString()));
                 }
                 catch (Exception ex)
                 {
