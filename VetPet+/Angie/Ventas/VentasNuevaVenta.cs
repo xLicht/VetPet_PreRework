@@ -25,7 +25,7 @@ namespace VetPet_
 
         private int idCita;
         private int stock;
-        private static int? idDueño1;
+        private int idDueño1;
         private static int idPersona;
         public DateTime fechaRegistro;
         public string nombreRecepcionista;
