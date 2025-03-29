@@ -99,6 +99,7 @@ namespace VetPet_
         {
             TxtContraseña.PasswordChar = '*';
             TxtConfiMiContraseña.PasswordChar = '*';
+            
         }
 
         private void TxtContraseña_TextChanged(object sender, EventArgs e)
