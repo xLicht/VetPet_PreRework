@@ -447,7 +447,15 @@ namespace VetPet_
                 else if (cbServicioP.SelectedItem != null)
                     nombreServicio = cbServicioP.Text;
             }
-
+            if (esVacuna)
+            {
+                int idMascota = Convert.ToInt32(cbMascota.SelectedValue);
+                if (VacunaYaAplicada(idMascota, idVacuna))
+                {
+                    MessageBox.Show("La mascota ya tiene aplicada esta vacuna.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             if (!string.IsNullOrEmpty(nombreServicio))
             {
                 string empleadoSeleccionado = cbEmpleado.Text;
@@ -538,6 +546,34 @@ namespace VetPet_
                 dtServicio.Columns["EsVacuna"].Visible = false;
             if (dtServicio.Columns.Contains("IdVacuna"))
                 dtServicio.Columns["IdVacuna"].Visible = false;
+        }
+        private bool VacunaYaAplicada(int idMascota, int idVacuna)
+        {
+            bool existe = false;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT COUNT(*) FROM Vacuna_Mascota WHERE idMascota = @idMascota AND idVacuna = @idVacuna";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idMascota", idMascota);
+                    cmd.Parameters.AddWithValue("@idVacuna", idVacuna);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        existe = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al validar la vacuna: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return existe;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
