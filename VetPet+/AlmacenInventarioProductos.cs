@@ -54,10 +54,11 @@ namespace VetPet_
                 // Definir la consulta
                 string query = @"SELECT 
                     p.nombre AS Nombre,
-                    p.precioVenta AS Precio,
-                    p.cantidad AS Cantidad,
+                    dp.precioVenta AS Precio,
+                    dp.cantidad AS Cantidad,
                     m.nombre AS Marca
                 FROM Producto p
+                FULL JOIN detalles_pedido dp ON p.idproducto = dp.idproducto
                 JOIN Marca m ON p.idMarca = m.idMarca
                 JOIN TipoProducto tp ON p.idTipoProducto = tp.idTipoProducto
                 WHERE tp.nombre <> 'Medicamento';
@@ -232,10 +233,11 @@ namespace VetPet_
                 string query = @"
                 SELECT 
                 p.nombre AS Nombre,
-                p.precioVenta AS Precio,
-                p.cantidad AS Cantidad,
+                dp.precioVenta AS Precio,
+                dp.cantidad AS Cantidad,
                 m.nombre AS Marca
                 FROM Producto p
+                FULL JOIN detalles_pedido dp ON p.idproducto = dp.idproducto
                 JOIN Marca m ON p.idMarca = m.idMarca
                 JOIN TipoProducto tp ON p.idTipoProducto = tp.idTipoProducto";
 
@@ -297,10 +299,11 @@ namespace VetPet_
                 // Definir la consulta con un filtro de búsqueda
                 string query = @"SELECT 
                     p.nombre AS Nombre,
-                    p.precioVenta AS Precio,
-                    p.cantidad AS Cantidad,
+                    dp.precioVenta AS Precio,
+                    dp.cantidad AS Cantidad,
                     m.nombre AS Marca
                 FROM Producto p
+                FULL JOIN detalles_pedido dp ON p.idproducto = dp.idproducto
                 JOIN Marca m ON p.idMarca = m.idMarca
                 JOIN TipoProducto tp ON p.idTipoProducto = tp.idTipoProducto
                 WHERE p.nombre LIKE @nombreProducto"; // Usar LIKE para hacer la búsqueda
@@ -361,10 +364,11 @@ namespace VetPet_
                 string query = @"
                 SELECT 
                     p.nombre AS Nombre,
-                    p.precioVenta AS Precio,
-                    p.cantidad AS Cantidad,
+                    dp.precioVenta AS Precio,
+                    dp.cantidad AS Cantidad,
                     m.nombre AS Marca
                 FROM Producto p
+                FULL JOIN detalles_pedido dp ON p.idproducto = dp.idproducto
                 JOIN Marca m ON p.idMarca = m.idMarca
                 WHERE CAST(p.fechaRegistro AS DATE) = @fechaSeleccionada;";
 
