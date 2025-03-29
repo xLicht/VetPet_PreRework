@@ -55,14 +55,14 @@ namespace VetPet_
         }
         private void CargarComboBoxPresentacion()
         {
-            // Crear la instancia de la clase conexionBrandon
-            conexionBrandon conexion = new conexionBrandon();
-            conexion.AbrirConexion();
+            // Crear la instancia de ConexionMaestra
+            ConexionMaestra conexionMaestra = new ConexionMaestra();
+            SqlConnection conexion = conexionMaestra.CrearConexion();
 
             // Crear la consulta para obtener los nombres de las presentaciones
             string query = "SELECT idPresentacion, nombre FROM Presentacion";
 
-            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            using (SqlCommand cmd = new SqlCommand(query, conexion))
             {
                 try
                 {
@@ -84,7 +84,7 @@ namespace VetPet_
                 }
                 finally
                 {
-                    conexion.GetConexion().Close(); // Cerrar la conexión
+                    conexion.Close(); // Cerrar la conexión
                 }
             }
         }
