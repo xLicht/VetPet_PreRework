@@ -942,6 +942,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RecetaManager.cs" />
     <Compile Include="ReporteAlmacenManager.cs" />
     <Compile Include="ReporteBase.cs" />
     <Compile Include="ReporteCitasManager.cs" />
@@ -1760,6 +1761,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Recetas-Arch\" />
     <Folder Include="Reportes-Arch\" />
   </ItemGroup>
   <ItemGroup>
