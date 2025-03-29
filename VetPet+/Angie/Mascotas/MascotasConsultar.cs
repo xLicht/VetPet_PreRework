@@ -46,7 +46,7 @@ namespace VetPet_
         {
             try
             {
-                string query = @"Exec ObtenerDatosMascota @idMascota, @Resultado OUTPUT";
+                string query = @"Exec ObtenerInformacionMascota @idMascota, @Resultado OUTPUT";
 
                 // Obtener la conexión desde metodosDeConexion
                 using (SqlConnection cn = mismetodos.GetConexion())

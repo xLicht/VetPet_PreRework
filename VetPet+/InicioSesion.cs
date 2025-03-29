@@ -88,7 +88,7 @@ namespace VetPet_
         private void BtnOlvidarContraseña_Click(object sender, EventArgs e)
         {
             this.Hide(); // Ocultamos el formulario de login
-            OpcionesInicioSesion recuperarForm = new OpcionesInicioSesion();
+            xd recuperarForm = new xd();
             if (recuperarForm.ShowDialog() == DialogResult.OK)
             {
                 // Lógica adicional si es necesario después de recuperar la contraseña
@@ -174,14 +174,16 @@ namespace VetPet_
             }
         }
 
-        private void InicioSesion_Load(object sender, EventArgs e)
-        {
-            Txtcontra.PasswordChar = '*';
-        }
-
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             Txtcontra.PasswordChar = (Txtcontra.PasswordChar == '*') ? '\0' : '*';
+        }
+
+        private void InicioSesion_Load(object sender, EventArgs e)
+        {
+            Txtcontra.PasswordChar = '*';
+            Txtus.Text = "Juan.PG";
+            Txtcontra.Text = "123456789";
         }
     }
 }

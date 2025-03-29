@@ -16,15 +16,34 @@ namespace VetPet_
 {
     public partial class xd : FormPadre
     {
-        string codigo;
+        string cod;
         int idUsuario;
         bool correoEncontrado = false;
+        string RFCUsuario;
         public xd()
         {
             InitializeComponent();
             BtnEnviarCodigo.Enabled = false;
+            
         }
 
+        private void btnCorreo_Click(object sender, EventArgs e)
+        {
+            panel3.BringToFront();
+            panel3.Visible = true;
+        }
+
+        private void BtnPalabraClave_Click(object sender, EventArgs e)
+        {
+            panel4.BringToFront();
+            panel4.Visible = true;
+        }
+
+        private void xd_Load(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            panel4.Visible = false;
+        }
         public static void EnviarCodigo(string emailDestino, string codigo)
         {
             try
@@ -46,7 +65,7 @@ namespace VetPet_
                 mail.To.Add(emailDestino);
                 smtp.Send(mail);
 
-                MessageBox.Show("Correo enviado correctamente.");
+                //MessageBox.Show("Correo enviado correctamente.");
             }
             catch (Exception ex)
             {
@@ -89,45 +108,37 @@ namespace VetPet_
 
             return smtp;
         }
+
         private void BtnEnviarCodigo_Click(object sender, EventArgs e)
         {
-
-            if (TxtCodigo.Text == codigo)
+            if (TxtCodigo.Text == cod)
             {
-                MessageBox.Show("Código correcto. Puede cambiar su contraseña.");
+                MessageBox.Show("Codigo Correcto. Puede cambiar su contraseña");
                 CambiarContraseña recuperarForm = new CambiarContraseña(parentForm, idUsuario);
                 if (recuperarForm.ShowDialog() == DialogResult.OK)
                 {
-                    // Lógica adicional si es necesario después de recuperar la contraseña
+
                 }
-                // Abrir formulario para nueva contraseña
             }
             else
-            {
-                MessageBox.Show("Código incorrecto. Intente de nuevo.");
-            }
-
+                MessageBox.Show("Codigo Incorrecto. Intente de nuevo");
         }
 
-        private void BtnIngresar_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {           
             correoEncontrado = false;
             idUsuario = ObtenerIdUsuario(TxtCorreo.Text);
-                Random random = new Random();
-                codigo = random.Next(100000, 999999).ToString();
-                EnviarCodigo(TxtCorreo.Text, codigo);
-                BtnEnviarCodigo.Enabled = true;
+            Random random = new Random();
+            cod = random.Next(100000, 999999).ToString();
+            EnviarCodigo(TxtCorreo.Text, cod);
+            BtnEnviarCodigo.Enabled = true;
             if (correoEncontrado)
             {
+                MessageBox.Show("Correo enviado correctamente.");
             }
             else
             {
-
+                MessageBox.Show("No se encontró al empleado asociado con ese Correo Electronico.");
             }
         }
         private int ObtenerIdUsuario(string nombre)
@@ -154,7 +165,7 @@ namespace VetPet_
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró al empleado asociado con ese Correo Electronico.");
+                        //MessageBox.Show("No se encontró al empleado asociado con ese Correo Electronico.");
                         correoEncontrado = false;
 
                     }
@@ -171,39 +182,170 @@ namespace VetPet_
                 }
             }
         }
-        private int ObtenerCorreo(string nombre)
+
+        private void BtnRegresarCorreo_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnRegresarPalabraC_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnOlvideMiPalabraClave_Click(object sender, EventArgs e)
+        {
+            string usuario = TxtUsuario.Text;
+
+            if (string.IsNullOrWhiteSpace(TxtUsuario.Text))
+            {
+                MessageBox.Show("Ingrese su usuario");
+
+                return;
+            }
+            idUsuario = ObtenerIdUsuario(usuario, "Empleado");
+            RFCUsuario = ObtenerRFC(idUsuario);
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "UPDATE empleado SET contraseña = @RFC WHERE idEmpleado = @idEmpleado";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                try
+                {
+                    //cmd.Parameters.AddWithValue("@nuevaContraseña", nuevaContraseña);
+                    cmd.Parameters.AddWithValue("@RFC", RFCUsuario);
+                    cmd.Parameters.AddWithValue("@idEmpleado", idUsuario);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Contraseña ha sido cambiada por su RFC", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close(); // Cerrar el formulario
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+
+        private void BtnPalabraClaveIngresar_Click(object sender, EventArgs e)
+        {
+            string usuario = TxtUsuario.Text;
+            string palbraClave = TxtPalabraClave.Text;
+
+            if (ValidarCredenciales(usuario, palbraClave))
+            {
+
+                CambiarContraseña cambiarContraseñaForm = new CambiarContraseña(idUsuario);
+                cambiarContraseñaForm.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o palabra clave incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public int ObtenerIdUsuario(string nombre, string tabla)
         {
 
             conexionAlex conexion = new conexionAlex();
             conexion.AbrirConexion();
 
             // Obtener el idServicioEspecificoHijo a partir del nombre
-            string queryGetIdServicioHijo = "SELECT E.idEmpleado \r\nFROM Empleado E\r\nINNER JOIN Persona P ON E.idPersona = P.idPersona\r\nWHERE P.correoElectronico = @correo";
+            string queryGetIdServicioHijo = "SELECT id" + tabla + " FROM " + tabla + " WHERE usuario = @NombreServicioHijo";
             int idServicioHijo = 0;
 
             using (SqlCommand cmd = new SqlCommand(queryGetIdServicioHijo, conexion.GetConexion()))
             {
                 try
                 {
-                    cmd.Parameters.AddWithValue("@correo", nombre);
+                    cmd.Parameters.AddWithValue("@NombreServicioHijo", nombre);
                     object result = cmd.ExecuteScalar(); // Ejecutar la consulta y obtener el primer valor de la primera columna
 
                     if (result != null)
                     {
                         idServicioHijo = Convert.ToInt32(result);
-                        correoEncontrado = true;
                     }
                     else
                     {
-                        MessageBox.Show("No se encontró al empleado asociado con ese Correo Electronico.");
-                        correoEncontrado = false;
+                        MessageBox.Show("No se encontró el servicio hijo con ese nombre.");
 
                     }
                     return idServicioHijo;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error inesperado " + ex.Message);
+                    MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+                    return idServicioHijo;
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+        }
+        private bool ValidarCredenciales(string usuario, string palabraClave)
+        {
+            bool valido = false;
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+            string query = "SELECT COUNT(1) FROM Empleado WHERE usuario = @usuario AND palabraClave = @palabraClave";
+            using (SqlCommand cmd = new SqlCommand(query, conexion.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+                cmd.Parameters.AddWithValue("@palabraClave", palabraClave);
+
+                try
+                {
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    valido = count > 0;
+                    idUsuario = ObtenerIdUsuario(usuario, "Empleado");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error de conexión: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.CerrarConexion();
+                }
+            }
+            return valido;
+        }
+        private string ObtenerRFC(int id)
+        {
+
+            conexionAlex conexion = new conexionAlex();
+            conexion.AbrirConexion();
+
+            // Obtener el idServicioEspecificoHijo a partir del nombre
+            string queryGetIdServicioHijo = "SELECT rfc FROM empleado WHERE idEmpleado = @idEmpleado";
+            string idServicioHijo = "";
+
+            using (SqlCommand cmd = new SqlCommand(queryGetIdServicioHijo, conexion.GetConexion()))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue("@idEmpleado", id);
+                    object result = cmd.ExecuteScalar(); // Ejecutar la consulta y obtener el primer valor de la primera columna
+
+                    if (result != null)
+                    {
+                        idServicioHijo = Convert.ToString(result);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el servicio hijo con ese nombre.");
+
+                    }
+                    return idServicioHijo;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar el registro: " + ex.Message);
                     return idServicioHijo;
                 }
                 finally
@@ -213,20 +355,9 @@ namespace VetPet_
             }
         }
 
-        private void xd_Load(object sender, EventArgs e)
+        private void BtnRegresar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
-
-        //MailMessage mail = new MailMessage();
-        //SmtpClient smtp = new SmtpClient("smtp.gmail.com"); // Servidor SMTP
-        //smtp.Port = 587; // Puerto (ejemplo: 587 para Gmail)
-        //        smtp.Credentials = new NetworkCredential("androidemoc@gmail.com", "trwb eyge kyco pygb");
-        //smtp.EnableSsl = true;
-
-        //        mail.From = new MailAddress("androidemoc@gmail.com");
-        //mail.To.Add(emailDestino);
-        //        mail.Subject = "Código de recuperación de contraseña";
-        //        mail.Body = $"Tu código de verificación es: {codigo}";
     }
 }

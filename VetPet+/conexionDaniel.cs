@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VetPet_
 {
-    internal class conexionDaniel
+    internal class conexionDaniel : ConexionMaestra
     {
         //private readonly string cadenaConexion = @"Server=DESKTOP-7PPM2OB\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
         private readonly string cadenaConexion = @"Server=LAPTOP-NQM61SRI\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
@@ -16,7 +16,7 @@ namespace VetPet_
        
         public conexionDaniel()
         {
-            conexion = new SqlConnection(cadenaConexion);
+            conexion = CrearConexion();
         }
 
        

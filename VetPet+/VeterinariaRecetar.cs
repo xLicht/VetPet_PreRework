@@ -103,7 +103,6 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
-
         private void MostrarDatosMacota()
         {
             try
