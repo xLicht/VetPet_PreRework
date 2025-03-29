@@ -284,7 +284,14 @@ namespace VetPet_
                         cmd.Parameters.AddWithValue("@efectivo", (object)efectivo ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idCita", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
+                        if (idDueño1 != 0)
+                        {
+                            cmd.Parameters.AddWithValue("@idPersona", idDueño1);
+                        }
+                        else 
+                        { 
+                            cmd.Parameters.AddWithValue("@idPersona", DBNull.Value);                             
+                        }
                         cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
                         cmd.Parameters.AddWithValue("@estado", estado);
 
