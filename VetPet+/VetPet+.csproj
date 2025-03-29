@@ -258,6 +258,7 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConexionMaestra.cs" />
     <Compile Include="Angie\Mascotas\MascotasAgregarAlergia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,17 +295,41 @@
     <Compile Include="Angie\Mascotas\MascotasListado.Designer.cs">
       <DependentUpon>MascotasListado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerAlergia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerAlergia.Designer.cs">
+      <DependentUpon>MascotasVerAlergia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Mascotas\MascotasVerAlergias.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Angie\Mascotas\MascotasVerAlergias.Designer.cs">
       <DependentUpon>MascotasVerAlergias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEspecie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEspecie.Designer.cs">
+      <DependentUpon>MascotasVerEspecie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Angie\Mascotas\MascotasVerEspecies.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Angie\Mascotas\MascotasVerEspecies.Designer.cs">
       <DependentUpon>MascotasVerEspecies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerRaza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerRaza.Designer.cs">
+      <DependentUpon>MascotasVerRaza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerSensibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerSensibilidad.Designer.cs">
+      <DependentUpon>MascotasVerSensibilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Angie\Mascotas\MascotasVerSensibilidades.cs">
       <SubType>Form</SubType>
@@ -360,6 +385,12 @@
     </Compile>
     <Compile Include="Angie\Ventas\VentasDeseaAgregarProducto.Designer.cs">
       <DependentUpon>VentasDeseaAgregarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Ventas\VentasSeleccionarDueño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Ventas\VentasSeleccionarDueño.Designer.cs">
+      <DependentUpon>VentasSeleccionarDueño.cs</DependentUpon>
     </Compile>
     <Compile Include="AvisoCirugia.cs">
       <SubType>Form</SubType>
@@ -742,6 +773,12 @@
     <Compile Include="FormPadre.Designer.cs">
       <DependentUpon>FormPadre.cs</DependentUpon>
     </Compile>
+    <Compile Include="InfoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoUsuario.Designer.cs">
+      <DependentUpon>InfoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="InicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -898,14 +935,13 @@
     <Compile Include="OlvideConstraseña.Designer.cs">
       <DependentUpon>OlvideConstraseña.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpcionesInicioSesion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OpcionesInicioSesion.Designer.cs">
-      <DependentUpon>OpcionesInicioSesion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReporteAlmacenManager.cs" />
     <Compile Include="ReporteBase.cs" />
     <Compile Include="ReporteCitasManager.cs" />
@@ -1031,12 +1067,6 @@
     </Compile>
     <Compile Include="VeterinariaMenu.Designer.cs">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VeterinariaModificarCita.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VeterinariaModificarCita.Designer.cs">
-      <DependentUpon>VeterinariaModificarCita.cs</DependentUpon>
     </Compile>
     <Compile Include="VeterinariaModificarConsultaM.cs">
       <SubType>Form</SubType>
@@ -1194,14 +1224,26 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasModificar.resx">
       <DependentUpon>MascotasModificar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerAlergia.resx">
+      <DependentUpon>MascotasVerAlergia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerAlergias.resx">
       <DependentUpon>MascotasVerAlergias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerEspecie.resx">
+      <DependentUpon>MascotasVerEspecie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerEspecies.resx">
       <DependentUpon>MascotasVerEspecies.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerRaza.resx">
+      <DependentUpon>MascotasVerRaza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerRazas.resx">
       <DependentUpon>MascotasVerRazas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerSensibilidad.resx">
+      <DependentUpon>MascotasVerSensibilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerSensibilidades.resx">
       <DependentUpon>MascotasVerSensibilidades.cs</DependentUpon>
@@ -1235,6 +1277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasNuevaVenta.resx">
       <DependentUpon>VentasNuevaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Ventas\VentasSeleccionarDueño.resx">
+      <DependentUpon>VentasSeleccionarDueño.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasVentanadePago.resx">
       <DependentUpon>VentasVentanadePago.cs</DependentUpon>
@@ -1407,6 +1452,9 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InfoUsuario.resx">
+      <DependentUpon>InfoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.cs</DependentUpon>
     </EmbeddedResource>
@@ -1476,21 +1524,13 @@
     <EmbeddedResource Include="OlvideConstraseña.resx">
       <DependentUpon>OlvideConstraseña.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OpcionesInicioSesion.resx">
-      <DependentUpon>OpcionesInicioSesion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="ReportesAlmacen.resx">
       <DependentUpon>ReportesAlmacen.cs</DependentUpon>
     </EmbeddedResource>
@@ -1532,9 +1572,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaMenu.resx">
       <DependentUpon>VeterinariaMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VeterinariaModificarCita.resx">
-      <DependentUpon>VeterinariaModificarCita.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VeterinariaModificarConsultaM.resx">
       <DependentUpon>VeterinariaModificarConsultaM.cs</DependentUpon>
@@ -1709,7 +1746,12 @@
     <Content Include="icudt.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-pasado-243.png" />
+    <None Include="Resources\icons8-pasado-244.png" />
+    <None Include="Resources\icons8-aceptar-507.png" />
     <None Include="Resources\view.png" />
+    <None Include="Resources\avatar.png" />
+    <None Include="Resources\ojo.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

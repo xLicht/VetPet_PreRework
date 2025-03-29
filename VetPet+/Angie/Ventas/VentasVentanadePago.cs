@@ -96,7 +96,7 @@ namespace VetPet_
             {
                 mismetodos.AbrirConexion();
 
-                string query = "EXEC sp_ObtenerServiciosCita @idCita = @idCita;";
+                string query = "EXEC sp_ObtenerServiciosCito @idCita = @idCita;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {

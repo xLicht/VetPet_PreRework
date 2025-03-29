@@ -225,7 +225,7 @@
             // 
             // txtMotivo
             // 
-            this.txtMotivo.BackColor = System.Drawing.Color.Silver;
+            this.txtMotivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMotivo.Location = new System.Drawing.Point(333, 390);
             this.txtMotivo.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);

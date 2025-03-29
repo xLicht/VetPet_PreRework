@@ -89,12 +89,12 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::VetPet_.Properties.Resources.view;
-            this.pictureBox4.Location = new System.Drawing.Point(356, 113);
+            this.pictureBox4.Image = global::VetPet_.Properties.Resources.ojo;
+            this.pictureBox4.Location = new System.Drawing.Point(359, 120);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(40, 42);
+            this.pictureBox4.Size = new System.Drawing.Size(37, 29);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 9;
+            this.pictureBox4.TabIndex = 10;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
@@ -102,18 +102,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(73, 239);
+            this.label4.Location = new System.Drawing.Point(64, 239);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 15);
-            this.label4.TabIndex = 8;
+            this.label4.TabIndex = 9;
             this.label4.Text = "Seguridad";
             // 
             // progressBarSeguridad
             // 
-            this.progressBarSeguridad.Location = new System.Drawing.Point(70, 260);
+            this.progressBarSeguridad.Location = new System.Drawing.Point(68, 260);
             this.progressBarSeguridad.Name = "progressBarSeguridad";
-            this.progressBarSeguridad.Size = new System.Drawing.Size(267, 27);
-            this.progressBarSeguridad.TabIndex = 3;
+            this.progressBarSeguridad.Size = new System.Drawing.Size(267, 25);
+            this.progressBarSeguridad.TabIndex = 8;
             // 
             // pictureBox3
             // 
@@ -128,9 +128,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.VetPet_Logo1;
-            this.pictureBox2.Location = new System.Drawing.Point(93, 304);
+            this.pictureBox2.Location = new System.Drawing.Point(93, 310);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(220, 143);
+            this.pictureBox2.Size = new System.Drawing.Size(220, 147);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
@@ -283,7 +283,7 @@
         private System.Windows.Forms.Label Contraseña;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.ProgressBar progressBarSeguridad;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label4;
     }
 }

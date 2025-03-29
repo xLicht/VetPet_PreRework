@@ -159,7 +159,7 @@ namespace VetPet_.Angie.Mascotas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MenuMascotas(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new MascotasVerEspecies(parentForm)); // Pasamos la referencia de Form1 a 
         }
         public void InsertarSensibilidades(int idMascota, string sensibilidadesStr)
         {
@@ -182,7 +182,7 @@ namespace VetPet_.Angie.Mascotas
                         var result = getIdCommand.ExecuteScalar();
                         idSensibilidad = result != null ? Convert.ToInt32(result) : -1;
                     }
-                    string insertMascotaSensQuery = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad);";
+                    string insertMascotaSensQuery = "INSERT INTO Especie_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad);";
                     using (SqlCommand insertMascotaSensCommand = new SqlCommand(insertMascotaSensQuery, mismetodos.GetConexion()))
                     {
                         insertMascotaSensCommand.Parameters.AddWithValue("@idMascota", idMascota);
@@ -224,7 +224,7 @@ namespace VetPet_.Angie.Mascotas
                         idAlergia = result != null ? Convert.ToInt32(result) : -1;
                     }
 
-                    string insertMascotaAlergQuery = "INSERT INTO Mascota_Alergia (idMascota, idAlergia) VALUES (@idMascota, @idAlergia);";
+                    string insertMascotaAlergQuery = "INSERT INTO Especie_Alergia (idMascota, idAlergia) VALUES (@idMascota, @idAlergia);";
                     using (SqlCommand insertMascotaAlergCommand = new SqlCommand(insertMascotaAlergQuery, mismetodos.GetConexion()))
                     {
                         insertMascotaAlergCommand.Parameters.AddWithValue("@idMascota", idMascota);

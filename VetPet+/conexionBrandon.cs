@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace VetPet_
 {
-    internal class conexionBrandon
+    internal class conexionBrandon : ConexionMaestra
     {
-        public readonly string cadenaConexion = @"Data Source=DESKTOP-0434B1E;Initial Catalog=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
         public conexionBrandon()
         {
-            conexion = new SqlConnection(cadenaConexion);
+            conexion = CrearConexion();
         }
 
         public void AbrirConexion()

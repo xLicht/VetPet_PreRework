@@ -5,11 +5,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
 using VetPet_.Angie.Mascotas;
+using VetPet_.Angie.Ventas;
 
 namespace VetPet_
 {
@@ -20,6 +22,7 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
         private static DataTable dtProductos = new DataTable();
+        Mismetodos mismetodos = new Mismetodos();
         decimal sumaTotalProductos = 0;
         decimal nuevoSubtotal = 0;
         public static decimal MontoPagadoE = 0;    
@@ -28,12 +31,21 @@ namespace VetPet_
 
         private int idCita;
         private int stock;
+        private static int idDueño1;
         public VentasNuevaVenta(Form1 parent)
         {
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
+        }
+        public VentasNuevaVenta(Form1 parent, int idDueño)
+        {
+            InitializeComponent();
+            this.Load += VentasNuevaVenta_Load;       // Evento Load
+            this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
+            parentForm = parent;  // Guardamos la referencia de Form1
+            idDueño1 = idDueño;
         }
         public VentasNuevaVenta(Form1 parent, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
         {
@@ -42,6 +54,14 @@ namespace VetPet_
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nuevoSubtotal = nuevoSubtotal;
+            if (bandera == true)
+            {
+                MontoPagadoE = montoPagado;
+            }
+            if (bandera == false)
+            {
+                MontoPagadoT = montoPagado;
+            }
             if (dtProductos.Columns.Count == 0)
             {
                 dtProductos = dt.Clone();
@@ -49,22 +69,6 @@ namespace VetPet_
 
             // Agregar los nuevos productos o medicamentos sin perder los anteriores
             AgregarProductosAMedicamentos(dt);
-
-            // Vincular dtProductos al DataGridView
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dtProductos;
-            dataGridView2.DataSource = bs;
-
-            if (bandera == true)
-            {
-                MontoPagadoE = montoPagado;
-            }
-            if (bandera == false)
-            {
-                MontoPagadoT = montoPagado; 
-            }
-                
-            ActualizarSumaTotal();
         }
         
         private void AgregarProductosAMedicamentos(DataTable dtNuevos)
@@ -103,8 +107,10 @@ namespace VetPet_
 
             decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
             textBox2.Text = montoRestante.ToString();
-
-
+            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos)
+            {
+                textBox7.Text = "Pagado";
+            }
         }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
         {
@@ -117,6 +123,48 @@ namespace VetPet_
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+            try
+            {
+                // Crear instancia de la conexión
+                mismetodos.AbrirConexion();
+
+                // Consulta SQL para obtener el nombre y apellidoP de la persona
+                string query = "SELECT nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
+
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    // Agregar parámetro a la consulta
+                    comando.Parameters.AddWithValue("@idPersona", idDueño1);
+
+                    // Ejecutar consulta
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read()) // Si hay resultados
+                        {
+                            textBox3.Text = lector["nombre"].ToString();
+                            textBox4.Text = lector["apellidoP"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener los datos: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar conexión
+                mismetodos.CerrarConexion();
+            }
+
+            // Vincular dtProductos al DataGridView
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dtProductos;
+            dataGridView2.DataSource = bs;
+
+          
+
+            ActualizarSumaTotal();
         }
 
         private void VentasNuevaVenta_Resize(object sender, EventArgs e)
@@ -176,5 +224,64 @@ namespace VetPet_
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox7.Text != "Pagado")
+            {
+                MessageBox.Show("No se ha terminado de pagar");
+            }
+            else
+            {
+                try
+                {
+                    mismetodos.AbrirConexion();
+
+                    DateTime fechaRegistro = DateTime.Now;
+                    decimal total = sumaTotalProductos;
+                    char pagado = 'S';
+                    decimal? efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
+                    decimal? tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
+
+                    int? idEmpleado = null;
+                    // Insertar la venta
+                    string insertVenta = @"
+        INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado)
+        VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado);
+        SELECT SCOPE_IDENTITY();"; // Obtener el idVenta recién insertado
+
+                    int idVenta;
+                    using (SqlCommand cmd = new SqlCommand(insertVenta, mismetodos.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@fechaRegistro", fechaRegistro);
+                        cmd.Parameters.AddWithValue("@total", total);
+                        cmd.Parameters.AddWithValue("@pagado", pagado);
+                        cmd.Parameters.AddWithValue("@efectivo", (object)efectivo ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idCita", (object)idCita ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
+                       cmd.Parameters.AddWithValue("@idEmpleado", (object)idEmpleado ?? DBNull.Value);
+
+                        idVenta = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al registrar la venta: " + ex.Message);
+                }
+                finally
+                {
+                    mismetodos.CerrarConexion();
+                }
+
+
+            }
+        }
+
+        private void textBox5_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new VentasSeleccionarDueño(parentForm)); // Pasamos la referencia de Form1 a 
+        }
     }
 }
