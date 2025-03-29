@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,10 +53,40 @@ namespace VetPet_
             //    dtMedicamentos.Rows.Add(med.Item1, med.Item2, med.Item3);
             //}
         }
+        string fecha = DateTime.Now.ToString("dd-MM-yyyy");
+        string hora = DateTime.Now.ToString("H-m");
 
         private void VeterinariaGenerarReceta_Load(object sender, EventArgs e)
         {
-        
+            GenerarReceta();
+        }
+        private void GenerarReceta()
+        {
+            string nombreReceta = "Receta_" + fecha.Replace("-", "") + "-" + hora.Replace("-", "");
+            RecetaManager receta = new RecetaManager(nombreReceta, NombreDueño, NombreMascota, Especie, Raza, FechaNacimiento, Diagnostico,
+                Peso, Temperatura, Indicaciones, ListaMedicamentos);
+            receta.GenerarReporte();
+
+            try
+            {
+                string DirectorioProyecto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
+                string carpetaReportes = Path.Combine(DirectorioProyecto, "Recetas-Arch");
+
+                string rutaPDF = Path.Combine(carpetaReportes, nombreReceta + ".pdf");
+
+                if (File.Exists(rutaPDF))
+                {
+                    pdfViewReceta.LoadFile(rutaPDF); // Cargar el PDF en el visor
+                }
+                else
+                {
+                    MessageBox.Show("El archivo PDF no se encontró en la ruta especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("Error: " + er.Message);
+            }
         }
     }
 }
