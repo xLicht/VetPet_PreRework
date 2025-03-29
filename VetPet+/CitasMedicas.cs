@@ -124,7 +124,8 @@ namespace VetPet_
 
         private void btnAgendarCita_Click(object sender, EventArgs e)
         {
-
+            VeterinariaAgendarCita formularioHijo = new VeterinariaAgendarCita(parentForm);
+            parentForm.formularioHijo(formularioHijo);
         }
     }
    
