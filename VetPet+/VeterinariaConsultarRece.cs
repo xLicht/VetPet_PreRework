@@ -194,9 +194,16 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT diagnostico, peso, temperatura, FechaConsulta 
-                         FROM Consulta 
-                         WHERE idConsulta = @idConsulta";
+                // Se realiza un join entre Consulta y Cita para obtener la fecha de la cita
+                string query = @"
+                SELECT 
+                    con.diagnostico, 
+                    con.peso, 
+                    con.temperatura,
+                    c.fechaProgramada AS FechaCita
+                FROM Consulta con
+                INNER JOIN Cita c ON con.idCita = c.idCita
+                WHERE con.idConsulta = @idConsulta";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -208,7 +215,8 @@ namespace VetPet_
                         rtDiagnostico.Text = reader["diagnostico"].ToString();
                         txtPeso.Text = reader["peso"].ToString();
                         txtTemperatura.Text = reader["temperatura"].ToString();
-                        txtFecha.Text = reader["FechaConsulta"].ToString(); // NUEVO: Mostrar FechaConsulta
+                        // Se muestra la fecha obtenida de la cita en lugar de FechaConsulta de la consulta
+                        txtFecha.Text = reader["FechaCita"].ToString();
                     }
                 }
             }
@@ -228,16 +236,18 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string query = @"SELECT 
-                    p.nombre AS NombreCliente, 
-                    m.nombre AS NombreMascota, 
-                    e.nombre AS Especie, 
-                    r.nombre AS Raza
-                FROM Cita c
-                INNER JOIN Mascota m ON c.idMascota = m.idMascota
-                INNER JOIN Persona p ON m.idPersona = p.idPersona
-                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
-                INNER JOIN Raza r ON m.idRaza = r.idRaza
-                WHERE c.idCita = @idCita";
+                            p.nombre AS NombreCliente, 
+                            m.nombre AS NombreMascota, 
+                            e.nombre AS Especie, 
+                            r.nombre AS Raza,
+                            CONVERT(varchar, c.fechaProgramada, 103) AS FechaCita,
+                            CONVERT(varchar, m.fechaNacimiento, 103) AS FechaNacimiento
+                        FROM Cita c
+                        INNER JOIN Mascota m ON c.idMascota = m.idMascota
+                        INNER JOIN Persona p ON m.idPersona = p.idPersona
+                        INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                        INNER JOIN Raza r ON m.idRaza = r.idRaza
+                        WHERE c.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -250,12 +260,14 @@ namespace VetPet_
                         txtMascota.Text = reader["NombreMascota"].ToString();
                         txtEspecie.Text = reader["Especie"].ToString();
                         txtRaza.Text = reader["Raza"].ToString();
+                        txtFecha.Text = reader["FechaCita"].ToString();
+                        txtFechaNacimiento.Text = reader["FechaNacimiento"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener los datos de la mascota: " + ex.Message);
+                MessageBox.Show("Error al obtener los datos básicos de la cita: " + ex.Message);
             }
             finally
             {
@@ -341,6 +353,34 @@ namespace VetPet_
             {
                 conexionDB.CerrarConexion();
             }
+        }
+
+        private void btnGenerarReceta_Click(object sender, EventArgs e)
+        {
+            string nombreDueño = txtNombre.Text;
+            string nombreMascota = txtMascota.Text;
+            string especie = txtEspecie.Text;
+            string raza = txtRaza.Text;
+            string fechaNacimiento = txtFechaNacimiento.Text;
+            string diagnostico = rtDiagnostico.Text;
+            string peso = txtPeso.Text;
+            string temperatura = txtTemperatura.Text;
+            string indicaciones = rtIndicaciones.Text;
+
+            VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
+                   parentForm,
+                   nombreDueño,
+                   nombreMascota,
+                   especie,
+                   raza,
+                   fechaNacimiento,
+                   diagnostico,
+                   peso,
+                   temperatura,
+                   indicaciones,
+                   listaMedicamentos
+               );
+            parentForm.formularioHijo(formularioHijo);
         }
     }
 }

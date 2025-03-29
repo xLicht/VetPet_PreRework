@@ -31,6 +31,9 @@ namespace VetPet_
             MostrarDatosMascota();
             MostrarCitasMascota();
             MostrarConsultas();
+            MostrarVacunasMascota();
+            MostrarAlergiasMascota();
+            MostrarSensibilidadesMascota();
         }
 
         private void VeterianiaGestionarHistorialM_Resize(object sender, EventArgs e)
@@ -100,6 +103,34 @@ namespace VetPet_
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener los datos de la mascota: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private void MostrarVacunasMascota()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"
+            SELECT v.nombre AS Vacuna
+            FROM Vacuna v
+            INNER JOIN Vacuna_Mascota vm ON v.idVacuna = vm.idVacuna
+            WHERE vm.idMascota = @idMascota";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idMascota", DatoMascota);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dtVacunas.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener las vacunas de la mascota: " + ex.Message);
             }
             finally
             {
@@ -185,7 +216,63 @@ namespace VetPet_
                 }
             }
         }
+        private void MostrarAlergiasMascota()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"
+            SELECT a.nombre AS Alergia
+            FROM Alergia a
+            INNER JOIN Mascota_Alergia ma ON a.idAlergia = ma.idAlergia
+            WHERE ma.idMascota = @idMascota";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idMascota", DatoMascota);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dtAlergias.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener las alergias de la mascota: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
 
+        private void MostrarSensibilidadesMascota()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"
+            SELECT s.nombre AS Sensibilidad
+            FROM Sensibilidad s
+            INNER JOIN Mascota_Sensibilidad ms ON s.idSensibilidad = ms.idSensibilidad
+            WHERE ms.idMascota = @idMascota";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idMascota", DatoMascota);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dtSensibilidades.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener las sensibilidades de la mascota: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
         private void dtConsultas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

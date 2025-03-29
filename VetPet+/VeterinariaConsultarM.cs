@@ -776,6 +776,11 @@ namespace VetPet_
                 parentForm.formularioHijo(formularioHijo);
             }
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class ServicioSeleccionadoConsulta
     {
