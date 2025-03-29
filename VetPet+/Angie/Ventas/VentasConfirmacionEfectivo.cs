@@ -32,13 +32,14 @@ namespace VetPet_.Angie
             textBox3.Text += sumaTotalProductos.ToString();
 
         }
-        public VentasConfirmacionEfectivo(VentasVentanadePago ventasVentanadePago, Form1 parent, decimal sumaTotalProductos,int idCita)
+        public VentasConfirmacionEfectivo(Form1 parent, decimal sumaTotalProductos, DataTable dtProductos,int idCita)
         {
             InitializeComponent();
             this.Load += VentasConfirmacionEfectivo_Load;       // Evento Load
             this.Resize += VentasConfirmacionEfectivo_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
-            this.sumaTotalProductos = sumaTotalProductos;
+            this.sumaTotalProductos += sumaTotalProductos;
+            textBox3.Text += sumaTotalProductos.ToString();
             this.idCita = idCita;
         }
 
@@ -103,14 +104,17 @@ namespace VetPet_.Angie
                     MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
                     return;
                 }
-                
 
                 if (FormularioOrigen == "VentasNuevaVenta")
                 {
                     parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, true));
                 }
 
-                // Ocultar la ventana de confirmación para evitar que se cierre antes de completar el flujo
+                if (FormularioOrigen == "VentasVentanadePago")
+                {
+                    parentForm.formularioHijo(new VentasVentanadePago(parentForm,idCita, nuevoSubtotal, dtProductos, montoIngresado, true));
+                }
+
                 this.Hide();
             }
             catch (Exception ex)

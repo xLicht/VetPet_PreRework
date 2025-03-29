@@ -73,7 +73,6 @@ namespace VetPet_
                         }
                     }
                 }
-
                 string query = @"
                                    SELECT 
                 Mascota.idMascota,
@@ -365,6 +364,42 @@ namespace VetPet_
                                 insertMascotaSensCommand.ExecuteNonQuery();
                             }
                         }
+
+                        string[] enfermedades = richTextBox3.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (string enfermedad in enfermedades)
+                        {
+                            string enfermedadess = enfermedad.Trim();
+
+                            string getIdQuery = "SELECT idEnfermedad FROM Enfermedad WHERE nombre = @enfermedad;";
+                            int idEnfermedad;
+
+                            using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, mismetodos.GetConexion()))
+                            {
+                                getIdCommand.Parameters.AddWithValue("@enfermedad", enfermedadess);
+                                var result = getIdCommand.ExecuteScalar();
+                                idEnfermedad = result != null ? Convert.ToInt32(result) : -1;
+                            }
+
+                            // Si la sensibilidad no existe, insertarla y obtener su nuevo id
+                            if (idEnfermedad == -1)
+                            {
+                                string insertSensQuery = "INSERT INTO Enfermedad (nombre) OUTPUT INSERTED.idEnfermedad VALUES (@enfermedad);";
+                                using (SqlCommand insertSensCommand = new SqlCommand(insertSensQuery, mismetodos.GetConexion()))
+                                {
+                                    insertSensCommand.Parameters.AddWithValue("@enfermedad", enfermedadess);
+                                    idEnfermedad = (int)insertSensCommand.ExecuteScalar();
+                                }
+                            }
+
+                            // Insertar en Mascota_Sensibilidad
+                            string insertMascotaSensQuery = "INSERT INTO Mascota_Enfermedad (idMascota, idEnfermedad) VALUES (@idMascota, @idEnfermedad);";
+                            using (SqlCommand insertMascotaSensCommand = new SqlCommand(insertMascotaSensQuery, mismetodos.GetConexion()))
+                            {
+                                insertMascotaSensCommand.Parameters.AddWithValue("@idMascota", idMascota);
+                                insertMascotaSensCommand.Parameters.AddWithValue("@idEnfermedad", idEnfermedad);
+                                insertMascotaSensCommand.ExecuteNonQuery();
+                            }
+                        }
                     }
                     else
                     {
@@ -476,6 +511,12 @@ namespace VetPet_
         private void button5_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new MascotasAgregarAlergia(parentForm, "Mascota",idMascota));
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+            parentForm.formularioHijo(new MascotasAgregarEnfermedad(parentForm, "Mascota", idMascota));
         }
     }
 }

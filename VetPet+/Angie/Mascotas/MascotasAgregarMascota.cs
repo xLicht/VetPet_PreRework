@@ -27,8 +27,7 @@ namespace VetPet_.Angie.Mascotas
             InitializeComponent();
             this.Load += MascotasAgregarMascota_Load;       // Evento Load
             this.Resize += MascotasAgregarMascota_Resize;   // Evento Resize
-            comboBox1.KeyDown += comboBox1_KeyDown;
-            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);                                          
+            comboBox1.KeyDown += comboBox1_KeyDown;                                        
             parentForm = parent;  // Guardamos la referencia de Form1
             mismetodos = new Mismetodos();
 
@@ -41,19 +40,18 @@ namespace VetPet_.Angie.Mascotas
             {
                 mismetodos.AbrirConexion();
 
-                string querySens = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
-                using (SqlCommand comandoSens = new SqlCommand(querySens, mismetodos.GetConexion()))
-                {
-                    using (SqlDataReader readerSens = comandoSens.ExecuteReader())
-                    {
-                        listBox1.Items.Clear();
-                        while (readerSens.Read())
-                        {
-                            listBox1.Items.Add(readerSens["nombre"].ToString());
-                        }
-                    }
-                }
-                // 🔹 Cargar Dueños
+                //string querySens = "SELECT nombre FROM Sensibilidad ORDER BY nombre";
+                //using (SqlCommand comandoSens = new SqlCommand(querySens, mismetodos.GetConexion()))
+                //{
+                //    using (SqlDataReader readerSens = comandoSens.ExecuteReader())
+                //    {
+                //        listBox1.Items.Clear();
+                //        while (readerSens.Read())
+                //        {
+                //            listBox1.Items.Add(readerSens["nombre"].ToString());
+                //        }
+                //    }
+                //}
                 string queryPersona = "SELECT nombre FROM Persona ORDER BY nombre";
                 using (SqlCommand comando = new SqlCommand(queryPersona, mismetodos.GetConexion()))
                 {
@@ -119,7 +117,6 @@ namespace VetPet_.Angie.Mascotas
                 string sexo = radioButton1.Checked ? "M" : "F"; // M para macho, F para hembra
                 string esterilizado = radioButton6.Checked ? "S" : "N"; // S para sí, N para no
                 string dueño = comboBox1.SelectedItem?.ToString()?.Trim();
-                string sensibilidades = richTextBox1.Text.Trim();
 
                 if (string.IsNullOrEmpty(nombreMascota) || string.IsNullOrEmpty(dueño) || string.IsNullOrEmpty(especie) || string.IsNullOrEmpty(raza))
                 {
@@ -179,47 +176,47 @@ namespace VetPet_.Angie.Mascotas
                 }
 
                 // Insertar sensibilidades
-                if (!string.IsNullOrEmpty(richTextBox1.Text) && richTextBox1.Text != "Sin sensibilidades registradas")
-                {
-                    string[] sensibilidadesArray = richTextBox1.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string sensibilidad in sensibilidadesArray)
-                    {
-                        string sensibilidadTrim = sensibilidad.Trim();
-                        if (string.IsNullOrEmpty(sensibilidadTrim)) continue;
+                //if (!string.IsNullOrEmpty(richTextBox1.Text) && richTextBox1.Text != "Sin sensibilidades registradas")
+                //{
+                //    string[] sensibilidadesArray = richTextBox1.Text.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                //    foreach (string sensibilidad in sensibilidadesArray)
+                //    {
+                //        string sensibilidadTrim = sensibilidad.Trim();
+                //        if (string.IsNullOrEmpty(sensibilidadTrim)) continue;
 
-                        // Obtener idSensibilidad
-                        int idSensibilidad;
-                        string querySensibilidad = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @nombre";
-                        using (SqlCommand cmd = new SqlCommand(querySensibilidad, mismetodos.GetConexion()))
-                        {
-                            cmd.Parameters.AddWithValue("@nombre", sensibilidadTrim);
-                            object result = cmd.ExecuteScalar();
-                            if (result != null)
-                            {
-                                idSensibilidad = Convert.ToInt32(result);
-                            }
-                            else
-                            {
-                                // Insertar sensibilidad si no existe
-                                string insertSensibilidad = "INSERT INTO Sensibilidad (nombre) OUTPUT INSERTED.idSensibilidad VALUES (@nombre)";
-                                using (SqlCommand insertCmd = new SqlCommand(insertSensibilidad, mismetodos.GetConexion()))
-                                {
-                                    insertCmd.Parameters.AddWithValue("@nombre", sensibilidadTrim);
-                                    idSensibilidad = (int)insertCmd.ExecuteScalar();
-                                }
-                            }
-                        }
+                //        // Obtener idSensibilidad
+                //        int idSensibilidad;
+                //        string querySensibilidad = "SELECT idSensibilidad FROM Sensibilidad WHERE nombre = @nombre";
+                //        using (SqlCommand cmd = new SqlCommand(querySensibilidad, mismetodos.GetConexion()))
+                //        {
+                //            cmd.Parameters.AddWithValue("@nombre", sensibilidadTrim);
+                //            object result = cmd.ExecuteScalar();
+                //            if (result != null)
+                //            {
+                //                idSensibilidad = Convert.ToInt32(result);
+                //            }
+                //            else
+                //            {
+                //                // Insertar sensibilidad si no existe
+                //                string insertSensibilidad = "INSERT INTO Sensibilidad (nombre) OUTPUT INSERTED.idSensibilidad VALUES (@nombre)";
+                //                using (SqlCommand insertCmd = new SqlCommand(insertSensibilidad, mismetodos.GetConexion()))
+                //                {
+                //                    insertCmd.Parameters.AddWithValue("@nombre", sensibilidadTrim);
+                //                    idSensibilidad = (int)insertCmd.ExecuteScalar();
+                //                }
+                //            }
+                //        }
 
-                        // Insertar relación en Mascota_Sensibilidad
-                        string insertMascotaSensibilidad = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad)";
-                        using (SqlCommand cmd = new SqlCommand(insertMascotaSensibilidad, mismetodos.GetConexion()))
-                        {
-                            cmd.Parameters.AddWithValue("@idMascota", idMascota);
-                            cmd.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
+                //        // Insertar relación en Mascota_Sensibilidad
+                //        string insertMascotaSensibilidad = "INSERT INTO Mascota_Sensibilidad (idMascota, idSensibilidad) VALUES (@idMascota, @idSensibilidad)";
+                //        using (SqlCommand cmd = new SqlCommand(insertMascotaSensibilidad, mismetodos.GetConexion()))
+                //        {
+                //            cmd.Parameters.AddWithValue("@idMascota", idMascota);
+                //            cmd.Parameters.AddWithValue("@idSensibilidad", idSensibilidad);
+                //            cmd.ExecuteNonQuery();
+                //        }
+                //    }
+                //}
 
                 MessageBox.Show("Mascota registrada correctamente.", "Éxito");
                 parentForm.formularioHijo(new MascotasListado(parentForm)); // Pasamos la referencia de Form1 a 
@@ -269,28 +266,6 @@ namespace VetPet_.Angie.Mascotas
                 }
             }
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedItem != null)
-            {
-                // Obtener el ítem seleccionado
-                string selectedItem = listBox1.SelectedItem.ToString();
-
-                // Agregar el ítem al RichTextBox
-                if (!richTextBox1.Text.Contains(selectedItem))
-                {
-                    if (richTextBox1.Text.Length > 0)
-                    {
-                        richTextBox1.AppendText(", " + selectedItem);
-                    }
-                    else
-                    {
-                        richTextBox1.AppendText(selectedItem);
-                    }
-                }
-            }
-        }
-
         private void comboBox1_KeyDown(object sender, KeyEventArgs e)
         {
             // Verificar si la tecla presionada es "Enter"

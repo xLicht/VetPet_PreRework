@@ -258,6 +258,30 @@
     <Compile Include="AlmacenVerProveedor.Designer.cs">
       <DependentUpon>AlmacenVerProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarEnfermedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasAgregarEnfermedad.Designer.cs">
+      <DependentUpon>MascotasAgregarEnfermedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEnfermedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEnfermedad.Designer.cs">
+      <DependentUpon>MascotasVerEnfermedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEnfermedades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Mascotas\MascotasVerEnfermedades.Designer.cs">
+      <DependentUpon>MascotasVerEnfermedades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Angie\Ventas\VentasVerTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Angie\Ventas\VentasVerTicket.Designer.cs">
+      <DependentUpon>VentasVerTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConexionMaestra.cs" />
     <Compile Include="Angie\Mascotas\MascotasAgregarAlergia.cs">
       <SubType>Form</SubType>
@@ -1207,6 +1231,9 @@
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarAlergia.resx">
       <DependentUpon>MascotasAgregarAlergia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarEnfermedad.resx">
+      <DependentUpon>MascotasAgregarEnfermedad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasAgregarEspecie.resx">
       <DependentUpon>MascotasAgregarEspecie.cs</DependentUpon>
     </EmbeddedResource>
@@ -1236,6 +1263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerAlergias.resx">
       <DependentUpon>MascotasVerAlergias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerEnfermedad.resx">
+      <DependentUpon>MascotasVerEnfermedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Mascotas\MascotasVerEnfermedades.resx">
+      <DependentUpon>MascotasVerEnfermedades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Mascotas\MascotasVerEspecie.resx">
       <DependentUpon>MascotasVerEspecie.cs</DependentUpon>
