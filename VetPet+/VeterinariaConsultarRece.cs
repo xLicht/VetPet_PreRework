@@ -354,5 +354,33 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
+        private void btnGenerarReceta_Click(object sender, EventArgs e)
+        {
+            string nombreDueño = txtNombre.Text;
+            string nombreMascota = txtMascota.Text;
+            string especie = txtEspecie.Text;
+            string raza = txtRaza.Text;
+            string fechaNacimiento = txtFechaNacimiento.Text;
+            string diagnostico = rtDiagnostico.Text;
+            string peso = txtPeso.Text;
+            string temperatura = txtTemperatura.Text;
+            string indicaciones = rtIndicaciones.Text;
+
+            VeterinariaGenerarReceta formularioHijo = new VeterinariaGenerarReceta(
+                   parentForm,
+                   nombreDueño,
+                   nombreMascota,
+                   especie,
+                   raza,
+                   fechaNacimiento,
+                   diagnostico,
+                   peso,
+                   temperatura,
+                   indicaciones,
+                   listaMedicamentos
+               );
+            parentForm.formularioHijo(formularioHijo);
+        }
     }
 }

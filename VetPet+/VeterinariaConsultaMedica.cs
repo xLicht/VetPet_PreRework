@@ -277,5 +277,14 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
+        private void btnRecetar_Click_1(object sender, EventArgs e)
+        {
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaRecetar formularioHijo = new VeterinariaRecetar(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //formularioHijo.DatoConsulta = idConsulta;
+            //parentForm.formularioHijo(formularioHijo);
+        }
     }
 }
