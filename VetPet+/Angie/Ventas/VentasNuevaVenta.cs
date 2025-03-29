@@ -327,6 +327,7 @@ namespace VetPet_
 
                         ListaProductos.Add(Tuple.Create(nombre, precio, cantidadVendida));
 
+                        // Consultar stock actual
                         string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
                         int stockActual;
 
@@ -336,10 +337,10 @@ namespace VetPet_
                             stockActual = Convert.ToInt32(cmdStock.ExecuteScalar());
                         }
 
-                        // Calcular el nuevo stock
+                        // Calcular nuevo stock
                         int nuevoStock = stockActual - cantidadVendida;
 
-                        // Actualizar el stock en la base de datos
+                        // Actualizar stock en la base de datos
                         string updateQuery = "UPDATE Producto SET stock = @nuevoStock WHERE idProducto = @idProducto;";
 
                         using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, mismetodos.GetConexion()))
@@ -347,6 +348,18 @@ namespace VetPet_
                             cmdUpdate.Parameters.AddWithValue("@nuevoStock", nuevoStock);
                             cmdUpdate.Parameters.AddWithValue("@idProducto", idProducto);
                             cmdUpdate.ExecuteNonQuery();
+                        }
+
+                        // Insertar en Venta_Producto (relación entre venta y producto)
+                        string insertVentaProducto = @"
+    INSERT INTO Venta_Producto (idVenta, estado, idProducto)
+    VALUES (@idVenta, 'A', @idProducto);";
+
+                        using (SqlCommand cmdVentaProducto = new SqlCommand(insertVentaProducto, mismetodos.GetConexion()))
+                        {
+                            cmdVentaProducto.Parameters.AddWithValue("@idVenta", idVenta); // Asegúrate de que idVenta esté definido
+                            cmdVentaProducto.Parameters.AddWithValue("@idProducto", idProducto);
+                            cmdVentaProducto.ExecuteNonQuery();
                         }
 
                         MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");

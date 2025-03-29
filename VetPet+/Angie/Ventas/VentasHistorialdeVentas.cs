@@ -48,8 +48,7 @@ namespace VetPet_
         FROM 
             Venta V
         LEFT JOIN 
-            Persona P ON V.idPersona = P.idPersona;"
-                ;
+            Persona P ON V.idPersona = P.idPersona;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
@@ -59,9 +58,13 @@ namespace VetPet_
 
                     dataGridView1.DataSource = tabla;
 
+                    // Configurar nombres de columnas
                     dataGridView1.Columns["fechaRegistro"].HeaderText = "Fecha";
                     dataGridView1.Columns["total"].HeaderText = "Total";
                     dataGridView1.Columns["Cliente"].HeaderText = "Cliente";
+
+                    // Ocultar columna idVenta (opcional)
+                    dataGridView1.Columns["idVenta"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -148,7 +151,13 @@ namespace VetPet_
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm)); // Pasamos la referencia de Form1 a 
+            if (e.RowIndex >= 0) // Asegurarse de que no se haga clic en el encabezado
+            {
+                DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
+                idVenta = Convert.ToInt32(fila.Cells["idVenta"].Value);
+
+            }
+            parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm,idVenta)); // Pasamos la referencia de Form1 a 
         }
 
     }

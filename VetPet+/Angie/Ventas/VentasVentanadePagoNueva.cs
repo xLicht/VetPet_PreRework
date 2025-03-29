@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
+using VetPet_.Angie.Mascotas;
 
 namespace VetPet_
 {
@@ -18,20 +20,61 @@ namespace VetPet_
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
 
         private Form1 parentForm;
+        Mismetodos mismetodos = new Mismetodos();
 
-
-        public VentasVentanadePagoNueva()
+        int idVenta;
+        public VentasVentanadePagoNueva(Form1 parent, int idVenta)
         {
             InitializeComponent();
             this.Load += VentasVentanadePagoNueva_Load;       // Evento Load
             this.Resize += VentasVentanadePagoNueva_Resize;   // Evento Resize
-
+            parentForm = parent;  // Guardamos la referencia de Form1
+            this.idVenta = idVenta; 
+            CargarVenta();
         }
 
-        public VentasVentanadePagoNueva(Form1 parent)
+        public void CargarVenta()
         {
-            InitializeComponent();
-            parentForm = parent;  // Guardamos la referencia de Form1
+            string query = @"
+    SELECT 
+        ISNULL(V.efectivo, 0) AS totalEfectivo,
+        ISNULL(V.tarjeta, 0) AS totalTarjeta,
+        V.total,
+        P.nombre,
+        P.apellidoP
+    FROM Venta V
+    LEFT JOIN Persona P ON V.idPersona = P.idPersona
+    WHERE V.idVenta = @idVenta;";
+
+            using (SqlConnection conexion = mismetodos.GetConexion())
+            {
+                try
+                {
+                    conexion.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@idVenta", idVenta);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                textBox9.Text = reader["totalEfectivo"].ToString();
+                                textBox10.Text = reader["totalTarjeta"].ToString();
+                                textBox8.Text = "Subtotal: " + reader["total"].ToString();
+
+                                textBox3.Text = reader["nombre"] != DBNull.Value ? reader["nombre"].ToString() : "";
+                                textBox4.Text = reader["apellidoP"] != DBNull.Value ? reader["apellidoP"].ToString() : "";
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al cargar venta: {ex.Message}");
+                }
+            }
         }
 
         private void VentasVentanadePagoNueva_Load(object sender, EventArgs e)
