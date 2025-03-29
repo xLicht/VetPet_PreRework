@@ -34,12 +34,12 @@ namespace VetPet_
                 conexionDB.AbrirConexion();
 
                 string query = $@"
-                    SELECT e.idEmpleado, p.nombre, p.apellidoP, p.apellidoM, 
-                           t.nombre AS tipoEmpleado, p.Celular
-                    FROM Empleado e
-                    JOIN Persona p ON e.idPersona = p.idPersona
-                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                    ORDER BY idEmpleado;";
+            SELECT e.idEmpleado, e.rfc, p.nombre, p.apellidoP, p.apellidoM, 
+                   t.nombre AS tipoEmpleado, p.celularPrincipal
+            FROM Empleado e
+            JOIN Persona p ON e.idPersona = p.idPersona
+            JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
+            ORDER BY idEmpleado;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -58,7 +58,8 @@ namespace VetPet_
                             row["apellidoP"],
                             row["apellidoM"],
                             row["tipoEmpleado"],
-                            row["celular"]
+                            row["celularPrincipal"],
+                            row["rfc"]
                         );
                     }
                 }

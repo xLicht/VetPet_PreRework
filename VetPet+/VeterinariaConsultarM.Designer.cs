@@ -105,6 +105,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(57, 47);
             this.pictureBox3.TabIndex = 318;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // btnRecetar
             // 
@@ -571,6 +572,7 @@
             // 
             // dtServicios
             // 
+            this.dtServicios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtServicios.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -597,13 +599,13 @@
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.label12.Location = new System.Drawing.Point(24, 272);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(195, 25);
+            this.label12.Size = new System.Drawing.Size(80, 25);
             this.label12.TabIndex = 277;
-            this.label12.Text = "Motivo de Consulta";
+            this.label12.Text = "Motivo";
             // 
             // rtMotivo
             // 
-            this.rtMotivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtMotivo.BackColor = System.Drawing.Color.Silver;
             this.rtMotivo.Location = new System.Drawing.Point(29, 295);
             this.rtMotivo.Name = "rtMotivo";
             this.rtMotivo.Size = new System.Drawing.Size(255, 53);
@@ -684,7 +686,7 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VeterinariaConsultarM";
             this.Text = "VeterinariaConsultarM";
             this.Load += new System.EventHandler(this.VeterinariaConsultarM_Load);

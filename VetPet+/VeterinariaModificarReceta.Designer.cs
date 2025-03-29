@@ -57,11 +57,13 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtFecha = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).BeginInit();
@@ -139,7 +141,7 @@
             // 
             this.txtTemperatura.BackColor = System.Drawing.Color.Silver;
             this.txtTemperatura.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTemperatura.Location = new System.Drawing.Point(377, 170);
+            this.txtTemperatura.Location = new System.Drawing.Point(368, 223);
             this.txtTemperatura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTemperatura.Name = "txtTemperatura";
             this.txtTemperatura.ReadOnly = true;
@@ -150,7 +152,7 @@
             // 
             this.txtPeso.BackColor = System.Drawing.Color.Silver;
             this.txtPeso.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPeso.Location = new System.Drawing.Point(115, 170);
+            this.txtPeso.Location = new System.Drawing.Point(106, 223);
             this.txtPeso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.ReadOnly = true;
@@ -254,6 +256,7 @@
             // 
             // dtMedicamentos
             // 
+            this.dtMedicamentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtMedicamentos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -272,6 +275,7 @@
             this.dtMedicamentos.Location = new System.Drawing.Point(25, 340);
             this.dtMedicamentos.Name = "dtMedicamentos";
             this.dtMedicamentos.RowHeadersVisible = false;
+            this.dtMedicamentos.RowHeadersWidth = 49;
             this.dtMedicamentos.Size = new System.Drawing.Size(576, 218);
             this.dtMedicamentos.TabIndex = 403;
             this.dtMedicamentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtMedicamentos_CellClick);
@@ -280,16 +284,19 @@
             // columm1
             // 
             this.columm1.HeaderText = "id";
+            this.columm1.MinimumWidth = 6;
             this.columm1.Name = "columm1";
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Nombre";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Cantidad";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
             // rtDiagnostico
@@ -345,7 +352,7 @@
             this.rtIndicaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.rtIndicaciones.Location = new System.Drawing.Point(637, 202);
             this.rtIndicaciones.Name = "rtIndicaciones";
-            this.rtIndicaciones.Size = new System.Drawing.Size(423, 282);
+            this.rtIndicaciones.Size = new System.Drawing.Size(423, 218);
             this.rtIndicaciones.TabIndex = 398;
             this.rtIndicaciones.Text = "";
             // 
@@ -376,7 +383,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label11.Location = new System.Drawing.Point(245, 170);
+            this.label11.Location = new System.Drawing.Point(236, 223);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(134, 25);
             this.label11.TabIndex = 395;
@@ -387,22 +394,11 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label9.Location = new System.Drawing.Point(52, 170);
+            this.label9.Location = new System.Drawing.Point(43, 223);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 25);
             this.label9.TabIndex = 394;
             this.label9.Text = "Peso";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label8.Location = new System.Drawing.Point(24, 218);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 25);
-            this.label8.TabIndex = 393;
-            this.label8.Text = "Fecha";
             // 
             // label6
             // 
@@ -437,16 +433,49 @@
             this.label2.TabIndex = 390;
             this.label2.Text = "Mascota";
             // 
+            // txtFechaNacimiento
+            // 
+            this.txtFechaNacimiento.BackColor = System.Drawing.Color.Silver;
+            this.txtFechaNacimiento.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaNacimiento.Location = new System.Drawing.Point(496, 178);
+            this.txtFechaNacimiento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
+            this.txtFechaNacimiento.ReadOnly = true;
+            this.txtFechaNacimiento.Size = new System.Drawing.Size(128, 29);
+            this.txtFechaNacimiento.TabIndex = 421;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label7.Location = new System.Drawing.Point(314, 178);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(178, 25);
+            this.label7.TabIndex = 420;
+            this.label7.Text = "Fecha Nacimiento";
+            // 
             // txtFecha
             // 
             this.txtFecha.BackColor = System.Drawing.Color.Silver;
             this.txtFecha.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(96, 218);
+            this.txtFecha.Location = new System.Drawing.Point(179, 174);
             this.txtFecha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.ReadOnly = true;
-            this.txtFecha.Size = new System.Drawing.Size(134, 29);
-            this.txtFecha.TabIndex = 415;
+            this.txtFecha.Size = new System.Drawing.Size(128, 29);
+            this.txtFecha.TabIndex = 419;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label8.Location = new System.Drawing.Point(20, 174);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(152, 25);
+            this.label8.TabIndex = 418;
+            this.label8.Text = "Fecha Consulta";
             // 
             // VeterinariaModificarReceta
             // 
@@ -454,7 +483,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.txtFechaNacimiento);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtFecha);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtTemperatura);
             this.Controls.Add(this.txtPeso);
             this.Controls.Add(this.txtEspecie);
@@ -475,7 +507,6 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -526,10 +557,12 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtFechaNacimiento;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtFecha;
+        private System.Windows.Forms.Label label8;
     }
 }

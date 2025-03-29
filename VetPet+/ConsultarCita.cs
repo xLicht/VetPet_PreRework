@@ -40,20 +40,79 @@ namespace VetPet_
 
         private void btnVerConsulta_Click(object sender, EventArgs e)
         {
-            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
-            parentForm.formularioHijo(formularioHijo);
+            try
+            {
+                conexionDB.AbrirConexion();
+                string consultaQuery = "SELECT COUNT(*) FROM Consulta WHERE idCita = @idCita";
+                using (SqlCommand cmdConsulta = new SqlCommand(consultaQuery, conexionDB.GetConexion()))
+                {
+                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
+                    int cantidadConsultas = (int)cmdConsulta.ExecuteScalar();
 
-           // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
+                    if (cantidadConsultas == 0)
+                    {
+                        MessageBox.Show("Debe de consultar primero porque no hay consultas", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultaMedica formularioHijo = new VeterinariaConsultaMedica(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //parentForm.formularioHijo(formularioHijo);
+
+            // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm)); 
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
-            formularioHijo.DatoCita = idCitaSeleccionada;
-            parentForm.formularioHijo(formularioHijo);
+
+            try
+            {
+                conexionDB.AbrirConexion();
+                string consultaQuery = "SELECT COUNT(*) FROM Consulta WHERE idCita = @idCita";
+                using (SqlCommand cmdConsulta = new SqlCommand(consultaQuery, conexionDB.GetConexion()))
+                {
+                    cmdConsulta.Parameters.AddWithValue("@idCita", DatoCita);
+                    int cantidadConsultas = (int)cmdConsulta.ExecuteScalar();
+
+                    if (cantidadConsultas > 0)
+                    {
+                        MessageBox.Show("Esta cita ya tiene una consulta registrada, no es necesario consultarla nuevamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
+                int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+                VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
+                formularioHijo.DatoCita = idCitaSeleccionada;
+                parentForm.formularioHijo(formularioHijo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultarM formularioHijo = new VeterinariaConsultarM(parentForm);
+            //formularioHijo.DatoCita = idCitaSeleccionada;
+            //parentForm.formularioHijo(formularioHijo);
 
 
 
@@ -141,7 +200,22 @@ namespace VetPet_
             try
             {
                 conexionDB.AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand("EXEC sp_ObtenerServiciosCita @idCita", conexionDB.GetConexion()))
+                string query = @"
+            SELECT 
+                sc.hora, 
+                sen.nombre AS Servicio, 
+                v.descripcion AS Vacuna, 
+                e.usuario AS Empleado
+            FROM Servicio_Cita sc
+            LEFT JOIN ServicioEspecificoNieto sen 
+                ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            LEFT JOIN vacuna v 
+                ON sc.idVacuna = v.idvacuna
+            LEFT JOIN Empleado e
+                ON sc.idEmpleado = e.idEmpleado
+            WHERE sc.idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -153,6 +227,53 @@ namespace VetPet_
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener los servicios de la cita: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int idCita = Convert.ToInt32(DatoCita);
+            VeterinariaModificarCita formularioHijo = new VeterinariaModificarCita(parentForm);
+            formularioHijo.DatoCita = idCita;
+            parentForm.formularioHijo(formularioHijo);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Estás seguro de que deseas eliminar la cita?", "Confirmación",
+      MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "UPDATE Cita SET estado = 'I' WHERE idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("La cita ha sido eliminada correctamente.");
+                        parentForm.formularioHijo(new CitasMedicas(parentForm)); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la cita para eliminar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la cita: " + ex.Message);
             }
             finally
             {

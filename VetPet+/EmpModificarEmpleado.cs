@@ -87,23 +87,26 @@ namespace VetPet_
             try
             {
                 conexionDB.AbrirConexion();
-
                 string query = @"
-                       SELECT e.usuario, e.contraseña, e.palabraClave, 
-                       p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, p.correoElectronico,
-                       t.nombre AS tipoEmpleado,
-                       pais.nombre AS pais, calle.nombre AS calle, 
-                       cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia
-                    FROM Empleado e
-                    JOIN Persona p ON e.idPersona = p.idPersona
-                    JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
-                    LEFT JOIN Direccion d ON e.idEmpleado = d.idPersona
-                    LEFT JOIN Pais pais ON d.idPais = pais.idPais
-                    LEFT JOIN Calle calle ON d.idCalle = calle.idCalle
-                    LEFT JOIN Cp cp ON d.idCp = cp.idCp
-                    LEFT JOIN Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
-                    LEFT JOIN Colonia colonia ON d.idColonia = colonia.idColonia
-                    WHERE e.idEmpleado = @idEmpleado";
+                   SELECT e.usuario, e.contraseña, e.palabraClave, e.rfc,
+                          p.nombre, p.apellidoP, p.apellidoM, p.celularPrincipal, p.correoElectronico,
+                          t.nombre AS tipoEmpleado,
+                          pais.nombre AS pais, calle.nombre AS calle, 
+                          cp.cp, ciudad.nombre AS ciudad, colonia.nombre AS colonia,
+                          estado.nombre AS estado,
+                          municipio.nombre AS municipio
+                   FROM Empleado e
+                   JOIN Persona p ON e.idPersona = p.idPersona
+                   JOIN TipoEmpleado t ON e.idTipoEmpleado = t.idTipoEmpleado
+                   LEFT JOIN Direccion d ON e.idEmpleado = d.idPersona
+                   LEFT JOIN Pais pais ON d.idPais = pais.idPais
+                   LEFT JOIN Calle calle ON d.idCalle = calle.idCalle
+                   LEFT JOIN Cp cp ON d.idCp = cp.idCp
+                   LEFT JOIN Ciudad ciudad ON d.idCiudad = ciudad.idCiudad
+                   LEFT JOIN Colonia colonia ON d.idColonia = colonia.idColonia
+                   LEFT JOIN Estado estado ON d.idEstado = estado.idEstado
+                   LEFT JOIN Municipio municipio ON d.idMunicipio = municipio.idMunicipio
+                   WHERE e.idEmpleado = @idEmpleado";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -127,7 +130,9 @@ namespace VetPet_
                         txtCP.Text = reader["cp"].ToString();
                         cbCiudad.SelectedItem = reader["ciudad"].ToString();
                         cbColonia.SelectedItem = reader["colonia"].ToString();
-                        
+                        cbEstado.SelectedItem = reader["estado"].ToString();
+                        cbMunicipio.SelectedItem = reader["municipio"].ToString();
+                        txtRFC.Text = reader["rfc"].ToString();
                     }
                 }
             }
@@ -151,6 +156,7 @@ namespace VetPet_
                 MostrarCB("SELECT nombre FROM Calle", cbCalle);
                 MostrarCB("SELECT nombre FROM TipoEmpleado", cbTipo);
                 MostrarCB("SELECT nombre FROM Estado", cbEstado);
+                MostrarCB("SELECT nombre FROM Municipio", cbMunicipio);
             }
             catch (Exception ex)
             {
@@ -292,12 +298,14 @@ namespace VetPet_
                 int idColonia = ObtenerORegistrarIdColonia(cbColonia.Text);
                 int idTipoEmpleado = ObtenerIdPorNombre("TipoEmpleado", cbTipo.Text);
                 int idEstado = ObtenerORegistrarIdEstado( cbEstado.Text);
-                
+                int idMunicipio = ObtenerORegistrarIdMunicipio(cbMunicipio.Text);
+
                 string query = @"
                     UPDATE Empleado
                     SET usuario = @usuario, 
                         contraseña = @contraseña, 
                         palabraClave = @palabraClave,
+                        rfc = @rfc,
                         idTipoEmpleado = @idTipoEmpleado  
                     WHERE idEmpleado = @idEmpleado;
 
@@ -315,8 +323,10 @@ namespace VetPet_
                         idCp = @idCp,
                         idCiudad = @idCiudad,
                         idColonia = @idColonia,
-                        idEstado = @idEstado 
+                        idEstado = @idEstado,
+                        idMunicipio = @idMunicipio
                     WHERE idPersona = (SELECT idPersona FROM Empleado WHERE idEmpleado = @idEmpleado);";
+
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -324,6 +334,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
                     cmd.Parameters.AddWithValue("@contraseña", txtContraseña.Text);
                     cmd.Parameters.AddWithValue("@palabraClave", txtPalabraClave.Text);
+                    cmd.Parameters.AddWithValue("@rfc", txtRFC.Text);
                     cmd.Parameters.AddWithValue("@idTipoEmpleado", idTipoEmpleado);
                     cmd.Parameters.AddWithValue("@nombre", txtNombre.Text);
                     cmd.Parameters.AddWithValue("@apellidoP", txtApellidoP.Text);
@@ -336,6 +347,7 @@ namespace VetPet_
                     cmd.Parameters.AddWithValue("@idCiudad", idCiudad);
                     cmd.Parameters.AddWithValue("@idColonia", idColonia);
                     cmd.Parameters.AddWithValue("@idEstado", idEstado);
+                    cmd.Parameters.AddWithValue("@idMunicipio", idMunicipio);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -368,6 +380,21 @@ namespace VetPet_
                 object result = cmd.ExecuteScalar();
                 return result != null ? Convert.ToInt32(result) : 0;
             }
+        }
+        private int ObtenerORegistrarIdMunicipio(string municipio)
+        {
+            int idMunicipio = ObtenerIdPorNombre("Municipio", municipio);
+            if (idMunicipio == 0)
+            {
+                string queryInsert = "INSERT INTO Municipio (nombre) VALUES (@municipio); SELECT SCOPE_IDENTITY();";
+                using (SqlCommand cmd = new SqlCommand(queryInsert, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@municipio", municipio);
+                    object result = cmd.ExecuteScalar();
+                    idMunicipio = Convert.ToInt32(result);
+                }
+            }
+            return idMunicipio;
         }
 
         private int ObtenerIdPorCodigoPostal(string cp)
@@ -404,12 +431,26 @@ namespace VetPet_
                 string.IsNullOrWhiteSpace(txtCorreo.Text) ||string.IsNullOrWhiteSpace(txtCP.Text) ||
                 string.IsNullOrWhiteSpace(cbPais.Text) || string.IsNullOrWhiteSpace(cbCalle.Text) ||
                 string.IsNullOrWhiteSpace(cbCiudad.Text) || string.IsNullOrWhiteSpace(cbColonia.Text) ||
-                string.IsNullOrWhiteSpace(txtContraseña.Text) ||  string.IsNullOrWhiteSpace(txtPalabraClave.Text))
+                string.IsNullOrWhiteSpace(txtContraseña.Text) ||  string.IsNullOrWhiteSpace(txtPalabraClave.Text)||
+                string.IsNullOrWhiteSpace(txtRFC.Text) || string.IsNullOrWhiteSpace(cbMunicipio.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.");
                 return false;
             }
-         
+
+
+            if (!Regex.IsMatch(txtRFC.Text, @"^[A-ZÑ&]{3,4}\d{6}[A-Z\d]{3}$"))
+            {
+                MessageBox.Show("RFC inválido, formato: ABC123456XYZ");
+                return false;
+            }
+
+            if (txtCP.Text.Length != 5 || !int.TryParse(txtCP.Text, out _))
+            {
+                MessageBox.Show("Código Postal inválido. Debe contener exactamente 5 dígitos.");
+                return false;
+            }
+
             if (!ValidarCorreo(txtCorreo.Text))
             {
                 MessageBox.Show("Correo electronico invalido, Por favor, ingrese un correo electrónico válido.");
