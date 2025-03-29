@@ -311,19 +311,85 @@ namespace VetPet_
                 dtServicio.Columns["EsVacuna"].Visible = false;
             if (dtServicio.Columns.Contains("IdVacuna"))
                 dtServicio.Columns["IdVacuna"].Visible = false;
+            if (dtServicio.Columns.Contains("hora"))
+                dtServicio.Columns["hora"].Visible = false;
         }
         private void CargarServiciosCita()
         {
+            //try
+            //{
+            //    conexionDB.AbrirConexion();
+
+            //    string query = @"
+            //    SELECT sen.nombre AS NombreServicio, e.usuario AS Empleado
+            //    FROM Servicio_Cita sc
+            //    INNER JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            //    INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+            //    WHERE sc.idCita = @idCita";
+
+            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            //    {
+            //        cmd.Parameters.AddWithValue("@idCita", DatoCita);
+            //        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //        DataTable dt = new DataTable();
+            //        adapter.Fill(dt);
+            //        dtServicio.DataSource = dt;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al cargar los servicios de la cita: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    conexionDB.CerrarConexion();
+            //}
+            //try
+            //{
+            //    conexionDB.AbrirConexion();
+
+            //    string query = @"
+            //SELECT 
+            //    sc.hora, 
+            //    COALESCE(v.nombre, sen.nombre) AS NombreServicio, 
+            //    e.usuario AS Empleado
+            //FROM Servicio_Cita sc
+            //LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+            //LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            //INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+            //WHERE sc.idCita = @idCita";
+
+            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            //    {
+            //        cmd.Parameters.AddWithValue("@idCita", DatoCita);
+            //        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //        DataTable dt = new DataTable();
+            //        adapter.Fill(dt);
+            //        dtServicio.DataSource = dt;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al cargar los servicios de la cita: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    conexionDB.CerrarConexion();
+            //}
             try
             {
                 conexionDB.AbrirConexion();
 
                 string query = @"
-                SELECT sen.nombre AS NombreServicio, e.usuario AS Empleado
-                FROM Servicio_Cita sc
-                INNER JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
-                WHERE sc.idCita = @idCita";
+            SELECT 
+                sc.hora, 
+                COALESCE(v.nombre, sen.nombre) AS NombreServicio, 
+                e.usuario AS Empleado
+            FROM Servicio_Cita sc
+            LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+            LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+            WHERE sc.idCita = @idCita";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -332,6 +398,12 @@ namespace VetPet_
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
                     dtServicio.DataSource = dt;
+
+                    // Ocultar la columna "hora"
+                    if (dtServicio.Columns.Contains("hora"))
+                    {
+                        dtServicio.Columns["hora"].Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
