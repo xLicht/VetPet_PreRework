@@ -163,6 +163,11 @@ namespace VetPet_
                         {
                             if (row.IsNewRow) continue;
 
+                            string nombre = Convert.ToString(row.Cells["Servicio"].Value);
+                            decimal precio = Convert.ToDecimal(row.Cells["Precio"].Value);
+
+                            ListaServicios.Add(Tuple.Create(nombre, precio, 1));
+
                             bool vacia = true;
                             foreach (DataGridViewCell cell in row.Cells)
                             {
@@ -281,6 +286,23 @@ namespace VetPet_
                         }
                     }
                 }
+
+                string query1 = "SELECT nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
+
+                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    // Agregar parámetro a la consulta
+                    comando.Parameters.AddWithValue("@idPersona", idPersona);
+
+                    // Ejecutar consulta
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read()) // Si hay resultados
+                        {
+                            nombreRecepcionista = lector["nombre"].ToString();
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -384,7 +406,6 @@ namespace VetPet_
                     VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado,@estado);
                     SELECT SCOPE_IDENTITY();";
 
-                    int idVenta;
                     using (SqlCommand cmd = new SqlCommand(insertVenta, mismetodos.GetConexion()))
                     {
                         cmd.Parameters.AddWithValue("@fechaRegistro", fechaRegistro);
@@ -463,8 +484,8 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
-                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
-                        ListaServicios, ListaProductos, total.ToString(), efectivo, ToString(), tarjeta.ToString(), total.ToString())); // Pasamos la referencia de Form1 a |
+                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
+                        ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString(), total.ToString())); // Pasamos la referencia de Form1 a |
                 }
             }
         }

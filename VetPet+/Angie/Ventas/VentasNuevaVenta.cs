@@ -25,7 +25,7 @@ namespace VetPet_
 
         private int idCita;
         private int stock;
-        private static int idDueño1;
+        private static int? idDueño1;
         private static int idPersona;
         public DateTime fechaRegistro;
         public string nombreRecepcionista;
@@ -141,7 +141,7 @@ namespace VetPet_
                 mismetodos.AbrirConexion();
 
                 // Consulta SQL para obtener el nombre y apellidoP de la persona
-                string query = "SELECT nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
+                string query = "SELECT idPersona,nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
@@ -153,6 +153,8 @@ namespace VetPet_
                     {
                         if (lector.Read()) // Si hay resultados
                         {
+
+                            textBox15.Text = lector["idPersona"].ToString();
                             textBox3.Text = lector["nombre"].ToString();
                             textBox4.Text = lector["apellidoP"].ToString();
                         }
@@ -191,6 +193,7 @@ namespace VetPet_
             dataGridView2.DataSource = bs;
 
             ActualizarSumaTotal();
+
         }
 
         private void VentasNuevaVenta_Resize(object sender, EventArgs e)
@@ -342,7 +345,7 @@ namespace VetPet_
                         MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");
                     }
                     parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
-                        ListaServicios, ListaProductos, total.ToString(), efectivo, ToString(), tarjeta.ToString(), total.ToString()));
+                        ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString(), total.ToString()));
                 }
                 catch (Exception ex)
                 {

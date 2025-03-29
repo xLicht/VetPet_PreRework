@@ -17,9 +17,9 @@ namespace VetPet_.Angie.Ventas
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
 
-        public VentasVerTicket(Form1 parent,int idVenta, int idDueño, string nombreRecepcionista, string nombreDueño, string nombreMascota,
+        public VentasVerTicket(Form1 parent,int idVenta, int? idDueño, string nombreRecepcionista, string nombreDueño, string nombreMascota,
             string fechaVenta, List<Tuple<string , decimal, int>> ListaServicios, List<Tuple<string, decimal, int>> ListaProductos, 
-            string total, decimal? efectivo, string totalEfectivo, string totalTarjeta, string totalPagado)
+            string total, decimal? efectivo, string? totalEfectivo, string? totalTarjeta, string totalPagado)
         {
             InitializeComponent();
         }
