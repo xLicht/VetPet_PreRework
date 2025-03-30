@@ -155,28 +155,36 @@ namespace VetPet_.Angie
             try
             {
                 mismetodos.AbrirConexion();
-                string query = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
+                string query = @"
+            SELECT SUM(stock) 
+            FROM Lote_Producto 
+            WHERE idProducto = @idProducto
+              AND estado = 'A'
+              AND (fechaCaducidad IS NULL OR fechaCaducidad >= GETDATE());";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
                     comando.Parameters.AddWithValue("@idProducto", idProducto);
                     object result = comando.ExecuteScalar();
 
-                    if (result != null)
+                    // Si hay stock disponible (puede ser NULL si no hay lotes válidos)
+                    if (result != null && result != DBNull.Value)
                     {
                         return Convert.ToInt32(result);
                     }
+                    return 0; // Retorna 0 si no hay lotes válidos
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener el stock: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener el stock: " + ex.Message, "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1; // Retorna -1 si hay un error
             }
             finally
             {
                 mismetodos.CerrarConexion();
             }
-            return -1; // Retorna -1 si hay un error
         }
 
         private decimal ObtenerPrecioProducto(int idProducto)
