@@ -1009,6 +1009,7 @@
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </Compile>
     <Compile Include="ReporteVentasManager.cs" />
+    <Compile Include="TicketsManager.cs" />
     <Compile Include="VeterianiaGestionarHistorialM.cs">
       <SubType>Form</SubType>
     </Compile>
