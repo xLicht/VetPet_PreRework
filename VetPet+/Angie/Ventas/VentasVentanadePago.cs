@@ -352,7 +352,7 @@ namespace VetPet_
 
         private void textBox15_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new ConsultarCita(parentForm,idCita1)); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox13_Click(object sender, EventArgs e)
@@ -432,9 +432,6 @@ namespace VetPet_
                     mismetodos.CerrarConexion();
                 }
 
-                // Actualizar stock 
-
-                // Actualizar stock 
                 try
                 {
                     mismetodos.AbrirConexion();
@@ -536,5 +533,6 @@ namespace VetPet_
                 }
             }
         }
+
     }
 }

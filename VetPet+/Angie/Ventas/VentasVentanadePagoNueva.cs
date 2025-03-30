@@ -23,6 +23,7 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
 
         int idVenta;
+        int? idCita = null;
 
         decimal totalCalculado = 0;
         decimal totalProducto = 0;
@@ -42,13 +43,10 @@ namespace VetPet_
             {
                 mismetodos.AbrirConexion();
 
-                // 1. Primero cargar los datos básicos de la venta
                 CargarDatosVenta();
 
-                // 2. Luego cargar los servicios asociados (si existe cita)
                 CargarServiciosDeCita();
 
-                // 3. Finalmente cargar los productos vendidos
                 CargarProductosVenta(); 
             }
             catch (Exception ex)
@@ -105,7 +103,6 @@ WHERE V.idVenta = @idVenta";
         private void CargarServiciosDeCita()
         {
             string queryCita = "SELECT idCita FROM Venta WHERE idVenta = @idVenta";
-            int? idCita = null;
 
             using (SqlCommand cmd = new SqlCommand(queryCita, mismetodos.GetConexion()))
             {
@@ -212,7 +209,8 @@ WHERE VP.idVenta = @idVenta";
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new ConsultarCita(parentForm,idCita)); // Pasamos la referencia de Form1 a 
         }
+
     }
 }
