@@ -16,35 +16,35 @@ namespace VetPet_.Angie.Ventas
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
         private Form1 parentForm;
+
         private int idVenta;
-        private int? idDueño1;
+        private int? idDueño;
+        private string nombreTicket;
         private string nombreRecepcionista;
-        private string v1;
-        private string v2;
+        private string nombreDueño;
+        private string nombreMascota;
+        private string fechaVenta;
         private List<Tuple<string, decimal, int>> listaServicios;
         private List<Tuple<string, decimal, int>> listaProductos;
-        private string v3;
-        private string v4;
-        private string v5;
-        private string v6;
+        private string totalVenta;
+        private string totalEfectivo;
+        private string totalTarjeta;
 
-        public VentasVerTicket(Form1 parentForm, int idVenta, int? idDueño1, string nombreRecepcionista, 
-            string text, string v1, string v2, List<Tuple<string, decimal, int>> listaServicios, List<Tuple<string, decimal, int>> listaProductos, 
-            string v3, string v4, string v5, string v6)
+        public VentasVerTicket(Form1 parentForm, int IdVenta, int IdDueño, string NombreTicket, string NombreRecepcionista, string NombreDueño, string NombreMascota, string FechaVenta, List<Tuple<string, decimal, int>> ListaServicios, List<Tuple<string, decimal, int>> ListaProductos, string TotalVenta, string TotalEfectivo, string TotalTarjeta)
         {
             this.parentForm = parentForm;
-            this.idVenta = idVenta;
-            this.idDueño1 = idDueño1;
-            this.nombreRecepcionista = nombreRecepcionista;
-            Text = text;
-            this.v1 = v1;
-            this.v2 = v2;
-            this.listaServicios = listaServicios;
-            this.listaProductos = listaProductos;
-            this.v3 = v3;
-            this.v4 = v4;
-            this.v5 = v5;
-            this.v6 = v6;
+            this.idVenta = IdVenta;
+            this.idDueño = IdDueño;
+            this.nombreTicket = NombreTicket;
+            this.nombreRecepcionista = NombreRecepcionista;
+            this.nombreDueño = NombreDueño;
+            this.nombreMascota = NombreMascota;
+            this.fechaVenta = FechaVenta;
+            this.listaServicios = ListaServicios;
+            this.listaProductos = ListaProductos;
+            this.totalVenta = TotalVenta;
+            this.totalTarjeta = TotalTarjeta;
+            this.totalEfectivo = TotalEfectivo;
         }
 
     }

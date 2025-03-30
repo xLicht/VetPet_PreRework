@@ -1328,6 +1328,9 @@
     <EmbeddedResource Include="Angie\Ventas\VentasVentanadePagoNueva.resx">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Ventas\VentasVerTicket.resx">
+      <DependentUpon>VentasVerTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseña.resx">
       <DependentUpon>CambiarContraseña.cs</DependentUpon>
     </EmbeddedResource>

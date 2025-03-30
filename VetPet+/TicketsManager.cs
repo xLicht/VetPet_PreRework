@@ -30,7 +30,6 @@ namespace VetPet_
         string totalVenta;
         string totalEfectivo;
         string totalTarjeta;
-        string totalPagado;
 
         int idFactura;
         string direccionDueño;
@@ -38,7 +37,7 @@ namespace VetPet_
         string correoDueño;
         List<Tuple<string, decimal, int>> listaVenta;
 
-        public TicketsManager(int idVenta, int idDueño, string nombreTicket, string nombreRecepcionista, string nombreDueño, string nombreMascota, string fechaVenta, List<Tuple<string, decimal, int>> listaServicios, List<Tuple<string, decimal, int>> listaProductos, string totalVenta, string totalEfectivo, string totalTarjeta, string totalPagado)
+        public TicketsManager(int idVenta, int idDueño, string nombreTicket, string nombreRecepcionista, string nombreDueño, string nombreMascota, string fechaVenta, List<Tuple<string, decimal, int>> listaServicios, List<Tuple<string, decimal, int>> listaProductos, string totalVenta, string totalEfectivo, string totalTarjeta)
         {
             DirectorioProyecto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
             string carpetaReportes = Path.Combine(DirectorioProyecto, "Tickets-Arch");
@@ -64,7 +63,6 @@ namespace VetPet_
             this.totalVenta = totalVenta;
             this.totalEfectivo = totalEfectivo;
             this.totalTarjeta = totalTarjeta;
-            this.totalPagado = totalPagado;
 
 
 
@@ -257,12 +255,12 @@ namespace VetPet_
             Documento.Add(tarjeta);
             Documento.Add(new Paragraph("\n"));
 
-            Paragraph totalPag = new Paragraph("Total: $" + totalPagado, fontText);
+            Paragraph totalPag = new Paragraph("Total: $" + totalVenta, fontText);
             totalPag.Alignment = Element.ALIGN_LEFT;
             Documento.Add(totalPag);
             Documento.Add(new Paragraph("\n"));
 
-            Paragraph gracias = new Paragraph("¡GRACIAS POR SU PREFERENCIA!" + totalPagado, fontBold);
+            Paragraph gracias = new Paragraph("¡GRACIAS POR SU PREFERENCIA!" + totalVenta, fontBold);
             gracias.Alignment = Element.ALIGN_CENTER;
             Documento.Add(gracias);
         }
