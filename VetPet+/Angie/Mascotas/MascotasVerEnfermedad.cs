@@ -116,6 +116,7 @@ namespace VetPet_.Angie.Mascotas
         {
             label1.Text = "Modificar Enfermedad";
             button4.Visible = true;
+            button3.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
