@@ -119,7 +119,7 @@ namespace VetPet_
 
             decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
             textBox2.Text = montoRestante.ToString();
-            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos)
+            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos && sumaTotalProductos != 0) 
             {
                 textBox7.Text = "Pagado";
             }

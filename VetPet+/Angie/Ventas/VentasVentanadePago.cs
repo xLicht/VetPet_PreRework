@@ -120,7 +120,7 @@ namespace VetPet_
 
             textBox17.Text = montoRestante.ToString();
 
-            if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
+            if (MontoPagadoE + MontoPagadoT >= totalGeneral && sumaTotalProductos != 0)  // >= para cubrir posibles redondeos
             {
                 textBox7.Text = "Pagado";
             }
