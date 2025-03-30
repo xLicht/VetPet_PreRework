@@ -82,8 +82,17 @@ namespace VetPet_
 
         private void btnRecetar_Click(object sender, EventArgs e)
         {
-            
+
             int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            int idConsulta = ObtenerIdConsulta(idCitaSeleccionada);
+
+            // Verificar si la consulta tiene receta; si no, se muestra un mensaje y se detiene el proceso.
+            if (!ConsultaTieneReceta(idConsulta))
+            {
+                MessageBox.Show("Primero debe existir una receta creada para poder consultarla.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
             if (DatoCitaT == 0 && DatoCita2T != 0)
             {
@@ -93,11 +102,22 @@ namespace VetPet_
             {
                 formularioHijo.DatoCita = idCitaSeleccionada;
             }
+            //formularioHijo.DatoConsulta = idConsulta; // Asigna el id de la consulta obtenida
             parentForm.formularioHijo(formularioHijo);
 
+            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            //VeterinariaConsultarRece formularioHijo = new VeterinariaConsultarRece(parentForm);
+            //if (DatoCitaT == 0 && DatoCita2T != 0)
+            //{
+            //    formularioHijo.DatoCita2 = idCitaSeleccionada;
+            //}
+            //else
+            //{
+            //    formularioHijo.DatoCita = idCitaSeleccionada;
+            //}
+            //parentForm.formularioHijo(formularioHijo);
 
-
-            //parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
+            ////parentForm.formularioHijo(new VeterinariaConsultarRece(parentForm));
         }
     
         private void MostrarDatosCita()
@@ -277,14 +297,70 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+        private int ObtenerIdConsulta(int idCita)
+        {
+            int idConsulta = 0;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT TOP 1 idConsulta FROM Consulta WHERE idCita = @idCita ORDER BY idConsulta DESC";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", idCita);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        idConsulta = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el idConsulta: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return idConsulta;
+        }
 
         private void btnRecetar_Click_1(object sender, EventArgs e)
         {
-            //int idCitaSeleccionada = Convert.ToInt32(DatoCita);
-            //VeterinariaRecetar formularioHijo = new VeterinariaRecetar(parentForm);
-            //formularioHijo.DatoCita = idCitaSeleccionada;
-            //formularioHijo.DatoConsulta = idConsulta;
-            //parentForm.formularioHijo(formularioHijo);
+            int idCitaSeleccionada = Convert.ToInt32(DatoCita);
+            int idConsulta = ObtenerIdConsulta(idCitaSeleccionada);
+            VeterinariaRecetar formularioHijo = new VeterinariaRecetar(parentForm);
+            formularioHijo.DatoCita = idCitaSeleccionada;
+            formularioHijo.DatoConsulta = idConsulta;
+            parentForm.formularioHijo(formularioHijo);
         }
+        private bool ConsultaTieneReceta(int idConsulta)
+        {
+            bool tieneReceta = false;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT COUNT(*) FROM Receta WHERE idConsulta = @idConsulta";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idConsulta", idConsulta);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        tieneReceta = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar la receta: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return tieneReceta;
+        }
+        
     }
 }
