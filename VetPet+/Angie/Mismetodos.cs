@@ -442,9 +442,6 @@ WHERE
             }
             catch (Exception ex)
             {
-                // Si hay un error, intentar con la otra conexión
-                Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
-                AlternarConexion(); // Cambiar a la otra cadena de conexión
                 conexion.Open();   // Intentar abrir la nueva conexión
             }
         }

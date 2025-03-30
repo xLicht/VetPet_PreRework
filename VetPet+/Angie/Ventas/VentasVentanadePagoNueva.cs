@@ -23,119 +23,147 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
 
         int idVenta;
+
+        decimal totalCalculado = 0;
+        decimal totalProducto = 0;
+        decimal totalServicio = 0;
         public VentasVentanadePagoNueva(Form1 parent, int idVenta)
         {
             InitializeComponent();
             this.Load += VentasVentanadePagoNueva_Load;       // Evento Load
             this.Resize += VentasVentanadePagoNueva_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
-            this.idVenta = idVenta; 
-            CargarVenta();
+            this.idVenta = idVenta;
+            CargarVentaCompleta();
+        }
+        public void CargarVentaCompleta()
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                // 1. Primero cargar los datos básicos de la venta
+                CargarDatosVenta();
+
+                // 2. Luego cargar los servicios asociados (si existe cita)
+                CargarServiciosDeCita();
+
+                // 3. Finalmente cargar los productos vendidos
+                CargarProductosVenta(); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar venta completa: {ex.Message}");
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
         }
 
-        public void CargarVenta()
+        private void CargarDatosVenta()
         {
             string query = @"
-    SELECT 
-        -- Datos de la venta
-        ISNULL(V.efectivo, 0) AS totalEfectivo,
-        ISNULL(V.tarjeta, 0) AS totalTarjeta,
-        V.total,
-        V.fechaRegistro,
-        
-        -- Datos del cliente
-        P.nombre AS nombreCliente,
-        P.apellidoP AS apellidoCliente,
-        
-        -- Datos de la mascota
-        M.nombre AS nombreMascota,
-        
-        -- Datos de productos vendidos
-        VP.idProducto,
-        PR.nombre AS nombreProducto,
-        MA.nombre AS marcaProducto,
-        PR.precioVenta AS precioProducto
-    FROM Venta V
-    LEFT JOIN Persona P ON V.idPersona = P.idPersona
-    LEFT JOIN Marca MA ON MA.idMarca = P.idMarca
-    LEFT JOIN Cita C ON C.idCita = V.idVenta
-    LEFT JOIN Mascota M ON M.idMascota = C.idMascota
-    LEFT JOIN Venta_Producto VP ON V.idVenta = VP.idVenta
-    LEFT JOIN Producto PR ON VP.idProducto = PR.idProducto
-    WHERE V.idVenta = @idVenta
-    ORDER BY PR.nombre;";
+SELECT 
+    ISNULL(V.efectivo, 0) AS totalEfectivo,
+    ISNULL(V.tarjeta, 0) AS totalTarjeta,
+    V.total,
+    V.fechaRegistro,
+    P.nombre AS nombreCliente,
+    P.apellidoP AS apellidoCliente,
+    M.nombre AS nombreMascota
+FROM Venta V
+LEFT JOIN Persona P ON V.idPersona = P.idPersona
+LEFT JOIN Cita C ON C.idCita = V.idCita
+LEFT JOIN Mascota M ON M.idMascota = C.idMascota
+WHERE V.idVenta = @idVenta";
 
-            using (SqlConnection conexion = mismetodos.GetConexion())
+            using (SqlCommand cmd = new SqlCommand(query, mismetodos.GetConexion()))
             {
-                try
+                cmd.Parameters.AddWithValue("@idVenta", idVenta);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    conexion.Open();
-
-                    using (SqlCommand cmd = new SqlCommand(query, conexion))
+                    if (reader.Read())
                     {
-                        cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                        textBox9.Text = reader["totalEfectivo"].ToString();
+                        textBox10.Text = reader["totalTarjeta"].ToString();
+                        textBox8.Text = $"Subtotal: {reader["total"]}";
+                        totalProducto = Convert.ToDecimal(reader["total"]);
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            // Limpiar controles existentes
-                            textBox9.Text = "0";
-                            textBox10.Text = "0";
-                            textBox8.Text = "Subtotal: 0";
-                            textBox3.Text = "";
-                            textBox4.Text = "";
-                            textBox5.Text = "";
-
-                            // Lista para productos
-                            var productos = new List<string>();
-                            decimal totalCalculado = 0;
-
-                            while (reader.Read())
-                            {
-                                // Solo asignar una vez los datos de venta/cliente/mascota
-                                if (!reader.HasRows || reader.IsDBNull(0))
-                                {
-                                    MessageBox.Show("No se encontró la venta con el ID especificado.");
-                                    return;
-                                }
-
-                                // Datos de pago (solo primera fila)
-                                if (productos.Count == 0)
-                                {
-                                    textBox9.Text = reader["totalEfectivo"].ToString();
-                                    textBox10.Text = reader["totalTarjeta"].ToString();
-                                    textBox8.Text = $"Subtotal: {reader["total"]}";
-
-                                    // Datos del cliente
-                                    textBox3.Text = reader["nombreCliente"] != DBNull.Value ?
-                                                   reader["nombreCliente"].ToString() : "";
-                                    textBox4.Text = reader["apellidoCliente"] != DBNull.Value ?
-                                                  reader["apellidoCliente"].ToString() : "";
-
-                                    // Datos de la mascota
-                                    textBox5.Text = reader["nombreMascota"] != DBNull.Value ?
-                                                         reader["nombreMascota"].ToString() : "Sin mascota";
-                                }
-
-                                // Procesar productos (todas las filas)
-                                if (reader["idProducto"] != DBNull.Value)
-                                {
-                                    string productoInfo = $"{reader["nombreProducto"]} ({reader["marcaProducto"]}) - " +
-                                                       $"${reader["precioProducto"]}";
-                                    productos.Add(productoInfo);
-                                    totalCalculado += Convert.ToDecimal(reader["precioProducto"]);
-                                }
-                            }
-
-                            // Mostrar productos en un ListBox o DataGridView
-                            dataGridView1.DataSource = productos;
-                            // O alternativamente en un TextBox multilínea:
-                            // textBoxProductos.Text = string.Join(Environment.NewLine, productos);
-                        }
+                        textBox3.Text = reader["nombreCliente"] != DBNull.Value
+                            ? reader["nombreCliente"].ToString() : "";
+                        textBox4.Text = reader["apellidoCliente"] != DBNull.Value
+                            ? reader["apellidoCliente"].ToString() : "";
+                        textBox5.Text = reader["nombreMascota"] != DBNull.Value
+                            ? reader["nombreMascota"].ToString() : "Sin mascota";
                     }
                 }
-                catch (Exception ex)
+            }
+        }
+
+        private void CargarServiciosDeCita()
+        {
+            string queryCita = "SELECT idCita FROM Venta WHERE idVenta = @idVenta";
+            int? idCita = null;
+
+            using (SqlCommand cmd = new SqlCommand(queryCita, mismetodos.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                object result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
                 {
-                    MessageBox.Show($"Error al cargar venta: {ex.Message}\n\nDetalles:\n{ex.StackTrace}");
+                    idCita = Convert.ToInt32(result);
+                }
+            }
+
+            if (idCita.HasValue)
+            {
+                using (SqlCommand cmd = new SqlCommand("EXEC sp_ObtenerServiciosCitaConId @idCita", mismetodos.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", idCita.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Load(cmd.ExecuteReader());
+
+                    dataGridView1.DataSource = dt;
+                    if (dt.Columns.Contains("NombreServicio"))
+                        dataGridView1.Columns["NombreServicio"].HeaderText = "Servicio";
+                    if (dt.Columns.Contains("Precio"))
+                        dataGridView1.Columns["Precio"].HeaderText = "Precio";
+                }
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+            }
+        }
+
+        private void CargarProductosVenta()
+        {
+            string query = @"
+SELECT 
+    PR.nombre AS Producto,
+    MA.nombre AS Marca,
+    PR.precioVenta AS Precio
+FROM Venta_Producto VP
+JOIN Producto PR ON VP.idProducto = PR.idProducto
+LEFT JOIN Marca MA ON PR.idMarca = MA.idMarca
+WHERE VP.idVenta = @idVenta";
+
+            using (SqlCommand cmd = new SqlCommand(query, mismetodos.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@idVenta", idVenta);
+
+                DataTable dt = new DataTable();
+                dt.Load(cmd.ExecuteReader());
+
+                dataGridView2.DataSource = dt;
+
+                // Formatear columna de precio
+                if (dataGridView2.Columns["Precio"] != null)
+                {
+                    dataGridView2.Columns["Precio"].DefaultCellStyle.Format = "C2";
                 }
             }
         }

@@ -228,7 +228,7 @@ namespace VetPet_.Angie.Mascotas
 
                             using (SqlCommand obtenerIdSensibilidadCommand = new SqlCommand(querySensibilidad, mismetodos.GetConexion()))
                             {
-                                obtenerIdSensibilidadCommand.Parameters.AddWithValue("@nombreSensibilidad", nombreSeleccionado);
+                                obtenerIdSensibilidadCommand.Parameters.AddWithValue("@nombreEnfermedad", nombreSeleccionado);
                                 idEnfermedad = (int)obtenerIdSensibilidadCommand.ExecuteScalar();
                             }
 
@@ -319,15 +319,15 @@ namespace VetPet_.Angie.Mascotas
                             using (SqlCommand insertRazaSensibilidadCommand = new SqlCommand(insertRazaSensibilidadQuery, mismetodos.GetConexion()))
                             {
                                 insertRazaSensibilidadCommand.Parameters.AddWithValue("@idRaza", idRaza);
-                                insertRazaSensibilidadCommand.Parameters.AddWithValue("@idSensibilidad", idEnfermedad);
+                                insertRazaSensibilidadCommand.Parameters.AddWithValue("@idEnfermedad", idEnfermedad);
                                 insertRazaSensibilidadCommand.ExecuteNonQuery();
                             }
 
-                            MessageBox.Show("Sensibilidad asociada a la raza correctamente.");
+                            MessageBox.Show("Enfermedad asociada a la raza correctamente.");
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"Error al asociar la sensibilidad a la raza: {ex.Message}");
+                            MessageBox.Show($"Error al asociar la Enfermedad a la raza: {ex.Message}");
                         }
                         break;
 
@@ -345,7 +345,7 @@ namespace VetPet_.Angie.Mascotas
                                 idEnfermedad = (int)insertSensibilidadCommand.ExecuteScalar(); // Obtener el idSensibilidad generado
                             }
 
-                            MessageBox.Show("Sensibilidad agregada correctamente.");
+                            MessageBox.Show("Enfermedad agregada correctamente.");
                         }
                         catch (Exception ex)
                         {
