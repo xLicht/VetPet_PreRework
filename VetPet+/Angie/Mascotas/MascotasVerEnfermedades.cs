@@ -8,73 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VetPet_.Angie;
-using VetPet_.Angie.Mascotas;
+using VetPet_.Angie.Ventas;
 
-namespace VetPet_
+namespace VetPet_.Angie.Mascotas
 {
-    public partial class VentasHistorialdeVentas : Form
+    public partial class MascotasVerEnfermedades : Form
     {
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();   
+        private Mismetodos mismetodos;
+        string tipo = "";
         private Form1 parentForm;
-        public int idVenta;
-
-        public VentasHistorialdeVentas(Form1 parent)
+        public MascotasVerEnfermedades(Form1 parent)
         {
             InitializeComponent();
-            this.Load += VentasHistorialdeVentas_Load;       // Evento Load
-            this.Resize += VentasHistorialdeVentas_Resize;   // Event
-            parentForm = parent;  // Guardamos la referencia de Form1
-            CargarVentas();
+            this.Load += MascotasVerEnfermedades_Load;       // Evento Load
+            this.Resize += MascotasVerEnfermedades_Resize;   // Evento Resize
             PersonalizarDataGridView();
+            parentForm = parent;  // Guardamos la referencia de Form
         }
-
-        public void CargarVentas()
-        {
-            try
-            {
-                mismetodos = new Mismetodos();
-                mismetodos.AbrirConexion();
-
-                string query = @"
-        SELECT 
-            V.idVenta,
-            V.fechaRegistro, 
-            V.total, 
-            P.nombre AS Cliente
-        FROM 
-            Venta V
-        LEFT JOIN 
-            Persona P ON V.idPersona = P.idPersona;"
-                ;
-
-                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
-                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
-                {
-                    DataTable tabla = new DataTable();
-                    adaptador.Fill(tabla);
-
-                    dataGridView1.DataSource = tabla;
-
-                    dataGridView1.Columns["fechaRegistro"].HeaderText = "Fecha";
-                    dataGridView1.Columns["total"].HeaderText = "Total";
-                    dataGridView1.Columns["Cliente"].HeaderText = "Cliente";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                mismetodos.CerrarConexion();
-            }
-        }
-
-        private void VentasHistorialdeVentas_Load(object sender, EventArgs e)
+        private void MascotasVerEnfermedades_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
             originalWidth = this.ClientSize.Width;
@@ -85,9 +39,53 @@ namespace VetPet_
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+            foreach (Control control in this.Controls)
+            {
+                controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
+            }
+            try
+            {
+                // Crear instancia de Mismetodos
+                mismetodos = new Mismetodos();
+
+                // Abrir conexión
+                mismetodos.AbrirConexion();
+
+                // Consulta SQL con nombres personalizados
+                string query = @"
+                SELECT 
+                    idEnfermedad, 
+                    nombre AS [Nombre], 
+                    descripcion AS [Descripción de Enfermedad] 
+                FROM Enfermedad
+                WHERE estado <> 'D'";
+
+                // Usar `using` para asegurar la correcta liberación de recursos
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                {
+                    // Crear un DataTable y llenar los datos
+                    DataTable tabla = new DataTable();
+                    adaptador.Fill(tabla);
+                    // Asignar el DataTable al DataGridView
+                    dataGridView1.DataSource = tabla;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error si ocurre algún problema
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión al finalizar
+                mismetodos.CerrarConexion();
+                dataGridView1.Columns["idEnfermedad"].Visible = false; // Oculta la columna
+            }
+
         }
 
-        private void VentasHistorialdeVentas_Resize(object sender, EventArgs e)
+        private void MascotasVerEnfermedades_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
             float scaleX = this.ClientSize.Width / originalWidth;
@@ -109,6 +107,28 @@ namespace VetPet_
                     control.Font = new Font(control.Font.FontFamily, info.fontSize * Math.Min(scaleX, scaleY));
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MascotasAgregarEnfermedad(parentForm, tipo)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tipo = "Raza";
+            parentForm.formularioHijo(new MascotasAgregarEnfermedad(parentForm, tipo)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            tipo = "Especie";
+            parentForm.formularioHijo(new MascotasAgregarEnfermedad(parentForm, tipo)); // Pasamos la referencia de Form1 a
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parentForm.formularioHijo(new MenuMascotas(parentForm)); // Pasamos la referencia de Form1 a
         }
         public void PersonalizarDataGridView()
         {
@@ -140,16 +160,26 @@ namespace VetPet_
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
-        }
 
+        }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm)); // Pasamos la referencia de Form1 a 
-        }
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    // Obtener el idAlergia de la fila seleccionada
+                    int idEnfermedad = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idEnfermedad"].Value);
 
+                    // Pasar el idAlergia al nuevo formulario
+                    parentForm.formularioHijo(new MascotasVerEnfermedad(parentForm, idEnfermedad));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error");
+            }
+        }
     }
 }
+

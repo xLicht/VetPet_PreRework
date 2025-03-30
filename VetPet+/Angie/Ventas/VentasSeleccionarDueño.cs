@@ -150,7 +150,7 @@ namespace VetPet_.Angie.Ventas
 
                 // Obtiene el valor de la columna "idPersona"
                 int idPersona = Convert.ToInt32(filaSeleccionada.Cells["idPersona"].Value);
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm,idPersona)); // Pasamos la referencia de Form1 a 
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm,idPersona,"Dueño")); // Pasamos la referencia de Form1 a 
             }
         }
     }

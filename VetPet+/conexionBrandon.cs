@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace VetPet_
 {
-    internal class conexionBrandon
+    internal class conexionBrandon : ConexionMaestra
     {
         //conexion pc brandon
-        //public readonly string cadenaConexion = @"Data Source=DESKTOP-0434B1E;Initial Catalog=VetPetPlus;Integrated Security=True;";
+        public readonly string cadenaConexion = @"Data Source=DESKTOP-0434B1E;Initial Catalog=VetPetPlus;Integrated Security=True;";
+
+        
         //conexion laptop brandon
-        public readonly string cadenaConexion = @"Data Source=BRANDONWROK\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
+        //public readonly string cadenaConexion = @"Data Source=BRANDONWROK\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
         private SqlConnection conexion;
 
         public conexionBrandon()

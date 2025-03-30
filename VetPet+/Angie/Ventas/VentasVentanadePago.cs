@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VetPet_.Angie;
 using VetPet_.Angie.Mascotas;
+using VetPet_.Angie.Ventas;
+using static VetPet_.CitaDueños;
 
 namespace VetPet_
 {
@@ -18,24 +20,59 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
-        private int idCita;
-        private decimal subtotal;
+        public string FormularioOrigen { get; set; }
+        private int idCita1;
         private int stock;
-        private static decimal totalServicios = -1; // -1 indica que aún no se ha calculado
+        private static int idDueño1;
+        private static int idPersona;
+        public DateTime fechaRegistro;
+        public string nombreRecepcionista;
+        public decimal total;
+        public decimal? efectivo;
+        public decimal? tarjeta;
+        decimal sumaTotal = 0;
+        decimal nuevoSubtotal = 0;
+        decimal totalGeneral = 0;
+        public int idVenta;
+        public static decimal MontoPagadoE = 0;
+        public static decimal MontoPagadoT = 0;
         private static DataTable dtProductos = new DataTable();
+        List<Tuple<string, decimal, int>> ListaProductos = new List<Tuple<string, decimal, int>>();
 
-        public VentasVentanadePago(Form1 parent, int idCita, decimal total, DataTable dt)
+        List<Tuple<string, decimal, int>> ListaServicios = new List<Tuple<string, decimal, int>>();
+        Mismetodos mismetodos = new Mismetodos();
+        public  decimal montoRestante;
+
+        public VentasVentanadePago(Form1 parent, int idCita, int idDueño, string tabla)
         {
             InitializeComponent();
-            this.Load += VentasVentanadePago_Load;
-            this.Resize += VentasVentanadePago_Resize;
+            this.Load += VentasVentanadePago_Load;       // Evento Load
+            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            parentForm = parent;  // Guardamos la referencia de Form1
+            idCita1 = idCita;
             CargarServicios(idCita);
-            this.idCita = idCita;
-            parentForm = parent;
+            if (tabla == "Empleado")
+                idPersona = idDueño;
+        }
+        public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
+        {
+            InitializeComponent();
+            this.Load += VentasVentanadePago_Load;       // Evento Load
+            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            idCita1 = idCita;
+            parentForm = parent;  // Guardamos la referencia de Form1
 
-            // Si es la primera vez, clonar la estructura
+            CargarServicios(idCita);
+            this.nuevoSubtotal = nuevoSubtotal;
+            if (bandera == true)
+            {
+                MontoPagadoE = montoPagado;
+            }
+            if (bandera == false)
+            {
+                MontoPagadoT = montoPagado;
+            }
             if (dtProductos.Columns.Count == 0)
             {
                 dtProductos = dt.Clone();
@@ -43,24 +80,14 @@ namespace VetPet_
 
             // Agregar los nuevos productos o medicamentos sin perder los anteriores
             AgregarProductosAMedicamentos(dt);
-
-            // Vincular dtProductos al DataGridView
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dtProductos;
-            dataGridView2.DataSource = bs;
-
-            // Actualizar la suma total
-            ActualizarSumaTotal();
         }
 
-        // 🔹 Método para agregar productos o medicamentos a la tabla sin eliminar los anteriores
         private void AgregarProductosAMedicamentos(DataTable dtNuevos)
         {
             foreach (DataRow row in dtNuevos.Rows)
             {
                 int idProducto = row.Field<int>("idProducto");
 
-                // Buscar si el producto ya está en la tabla
                 DataRow existingRow = dtProductos.AsEnumerable()
                     .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
 
@@ -76,27 +103,39 @@ namespace VetPet_
                 }
             }
         }
-
-        private void ActualizarSumaTotal()
+        public void ActualizarSumaTotal()
         {
-            // Sumar el total de productos
             decimal sumaTotalProductos = dtProductos.AsEnumerable()
                 .Where(r => r["Total"] != DBNull.Value)
                 .Sum(r => r.Field<decimal>("Total"));
 
-            // Calcular la suma total de productos y servicios
-            decimal sumaFinal = sumaTotalProductos + (totalServicios > -1 ? totalServicios : 0);
+            totalGeneral = sumaTotalProductos + sumaTotal;  // sumaTotal es tu variable decimal adicional
 
-            textBox8.Text = "Subtotal: "+sumaFinal.ToString("0.##");
+            textBox8.Text = "Subtotal: " + totalGeneral.ToString("0.00");  // Formato con 2 decimales
+
+            textBox9.Text = MontoPagadoE.ToString("0.00");
+            textBox10.Text = MontoPagadoT.ToString("0.00");
+
+            montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+
+            textBox17.Text = montoRestante.ToString();
+
+            if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
+            {
+                textBox7.Text = "Pagado";
+            }
+            else
+            {
+                textBox17.Text = montoRestante.ToString("0.00");  // Mostrar saldo pendiente si lo hay
+            }
         }
-
         public void CargarServicios(int idCita)
         {
             try
             {
                 mismetodos.AbrirConexion();
 
-                string query = "EXEC sp_ObtenerServiciosCito @idCita = @idCita;";
+                string query = "EXEC sp_ObtenerServiciosCitaConId @idCita = @idCita;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 {
@@ -109,10 +148,25 @@ namespace VetPet_
 
                         dataGridView1.DataSource = tabla;
 
+                        // Ocultar columnas específicas
+                        if (dataGridView1.Columns.Contains("idCita"))
+                            dataGridView1.Columns["idCita"].Visible = false;
+
+                        if (dataGridView1.Columns.Contains("idServicioRealizado"))
+                            dataGridView1.Columns["idServicioRealizado"].Visible = false;
+
+                        if (dataGridView1.Columns.Contains("ServicioPadre"))
+                            dataGridView1.Columns["ServicioPadre"].Visible = false;
+
                         // Eliminar filas vacías
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             if (row.IsNewRow) continue;
+
+                            string nombre = Convert.ToString(row.Cells["Servicio"].Value);
+                            decimal precio = Convert.ToDecimal(row.Cells["Precio"].Value);
+
+                            ListaServicios.Add(Tuple.Create(nombre, precio, 1));
 
                             bool vacia = true;
                             foreach (DataGridViewCell cell in row.Cells)
@@ -130,21 +184,18 @@ namespace VetPet_
                             }
                         }
 
-                        // Calcular la suma del total de la consulta solo si no se ha calculado antes
-                        if (totalServicios == -1)
+                        if (tabla.Rows.Count > 0)
                         {
-                            totalServicios = tabla.AsEnumerable()
+                            sumaTotal = tabla.AsEnumerable()
                                 .Where(r => r["Precio"] != DBNull.Value)
                                 .Sum(r => r.Field<decimal>("Precio"));
                         }
-
-                        // Sumar este total al `textBox8`
-                        ActualizarSumaTotal();
                     }
                 }
-
-                string queryDueño = @"
+            
+        string queryDueño = @"
                                 SELECT 
+                            p.idPersona AS idPersona,
                             P.nombre AS NombrePersona,
                             P.apellidoP AS ApellidoPaterno, 
                             M.nombre AS NombreMascota
@@ -166,6 +217,7 @@ namespace VetPet_
                     {
                         if (reader.Read())
                         {
+                            idDueño1 = Convert.ToInt32(reader["idPersona"]);
                             textBox3.Text = reader["NombrePersona"].ToString();
                             textBox4.Text = reader["apellidoPaterno"].ToString();
                             textBox5.Text = reader["NombreMascota"].ToString();
@@ -197,7 +249,7 @@ namespace VetPet_
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarServicios(idCita);
-            this.idCita = idCita;
+            idCita1 = idCita;
         }
         private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
@@ -210,6 +262,63 @@ namespace VetPet_
             {
                 controlInfo[control] = (control.Width, control.Height, control.Left, control.Top, control.Font.Size);
             }
+
+            try
+            {
+                // Crear instancia de la conexión
+                mismetodos.AbrirConexion();
+
+                // Consulta SQL para obtener el nombre y apellidoP de la persona
+                string query = "SELECT nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
+
+                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    // Agregar parámetro a la consulta
+                    comando.Parameters.AddWithValue("@idPersona", idDueño1);
+
+                    // Ejecutar consulta
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read()) // Si hay resultados
+                        {
+                            textBox3.Text = lector["nombre"].ToString();
+                            textBox4.Text = lector["apellidoP"].ToString();
+                        }
+                    }
+                }
+
+                string query1 = "SELECT nombre, apellidoP FROM Persona WHERE idPersona = @idPersona";
+
+                using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
+                {
+                    // Agregar parámetro a la consulta
+                    comando.Parameters.AddWithValue("@idPersona", idPersona);
+
+                    // Ejecutar consulta
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read()) // Si hay resultados
+                        {
+                            nombreRecepcionista = lector["nombre"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener los datos: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar conexión
+                mismetodos.CerrarConexion();
+            }
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dtProductos;
+            dataGridView2.DataSource = bs;
+
+            ActualizarSumaTotal();
         }
 
         private void VentasVentanadePago_Resize(object sender, EventArgs e)
@@ -248,30 +357,137 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            //VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(this,parentForm, subtotal, dtProductos);
-            //VentasConfirmacionEfectivo.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
-            //parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, montoRestante, dtProductos,idCita1);
+            VentasConfirmacionEfectivo.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
+            parentForm.formularioHijo(VentasConfirmacionEfectivo); // Usar la misma instancia
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm,subtotal,dtProductos);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, montoRestante, dtProductos,idCita1);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm, idCita, subtotal, stock);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, totalGeneral,stock, idCita1);
             VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
         }
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, idCita, subtotal,stock);
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, totalGeneral, stock,idCita1);
+            ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox7.Text != "Pagado")
+            {
+                MessageBox.Show("No se ha terminado de pagar");
+            }
+            else
+            {
+                try
+                {
+                    mismetodos.AbrirConexion();
+
+                    fechaRegistro = DateTime.Now;
+                    total = totalGeneral;
+                    char pagado = 'S';
+                    efectivo = string.IsNullOrWhiteSpace(textBox9.Text) ? (decimal?)null : Convert.ToDecimal(textBox9.Text.Trim());
+                    tarjeta = string.IsNullOrWhiteSpace(textBox10.Text) ? (decimal?)null : Convert.ToDecimal(textBox10.Text.Trim());
+                    char estado = 'A';
+                    string insertVenta = @"
+                    INSERT INTO Venta (fechaRegistro, total, pagado, efectivo, tarjeta, idCita, idPersona, idEmpleado, estado)
+                    VALUES (@fechaRegistro, @total, @pagado, @efectivo, @tarjeta, @idCita, @idPersona, @idEmpleado,@estado);
+                    SELECT SCOPE_IDENTITY();";
+
+                    using (SqlCommand cmd = new SqlCommand(insertVenta, mismetodos.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@fechaRegistro", fechaRegistro);
+                        cmd.Parameters.AddWithValue("@total", total);
+                        cmd.Parameters.AddWithValue("@pagado", pagado);
+                        cmd.Parameters.AddWithValue("@efectivo", (object)efectivo ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idCita", (object)idCita1 ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
+                        cmd.Parameters.AddWithValue("@estado", estado);
+
+                        idVenta = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al registrar la venta: " + ex.Message);
+                }
+                finally
+                {
+                    mismetodos.CerrarConexion();
+                }
+
+                // Actualizar stock 
+
+                try
+                {
+                    mismetodos.AbrirConexion();
+
+                    foreach (DataRow row in dtProductos.Rows)
+                    {
+                        int idProducto = Convert.ToInt32(row["idProducto"]);
+                        string nombre = Convert.ToString(row["Producto"]);
+                        decimal precio = Convert.ToDecimal(row["Precio"]);
+                        decimal total = Convert.ToDecimal(row["Total"]);
+
+                        // Calcular la cantidad vendida (Total / Precio)
+                        int cantidadVendida = (int)Math.Round(total / precio, MidpointRounding.AwayFromZero);
+
+                        // Obtener el stock actual del producto
+                        string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
+                        int stockActual;
+                        ListaProductos.Add(Tuple.Create(nombre, precio, cantidadVendida));
+
+                        using (SqlCommand cmdStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
+                        {
+                            cmdStock.Parameters.AddWithValue("@idProducto", idProducto);
+                            stockActual = Convert.ToInt32(cmdStock.ExecuteScalar());
+                        }
+
+                        // Calcular el nuevo stock
+                        int nuevoStock = stockActual - cantidadVendida;
+
+                        // Actualizar el stock en la base de datos
+                        string updateQuery = "UPDATE Producto SET stock = @nuevoStock WHERE idProducto = @idProducto;";
+
+                        using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, mismetodos.GetConexion()))
+                        {
+                            cmdUpdate.Parameters.AddWithValue("@nuevoStock", nuevoStock);
+                            cmdUpdate.Parameters.AddWithValue("@idProducto", idProducto);
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");
+                    }
+
+                    MessageBox.Show("Stock actualizado correctamente.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar el stock: " + ex.Message);
+                }
+                finally
+                {
+                    mismetodos.CerrarConexion();
+                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
+                        ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString(), total.ToString())); // Pasamos la referencia de Form1 a |
+                }
+            }
+        }
     }
 }

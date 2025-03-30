@@ -102,6 +102,10 @@ namespace VetPet_
                             richTextBox2.Text = string.IsNullOrEmpty(alergias)
                                 ? "Sin alergias registradas"
                                 : alergias;
+                            string enfermedades = reader["Enfermedades"].ToString();
+                            richTextBox3.Text = string.IsNullOrEmpty(enfermedades)
+                                ? "Sin enfermedades registradas"
+                                : enfermedades;
                         }
                         else
                         {
@@ -183,6 +187,9 @@ namespace VetPet_
             parentForm.formularioHijo(new CitaAgendar(parentForm)); // Pasamos la referencia de Form1 a 
         }
 
-       
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

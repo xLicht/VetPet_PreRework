@@ -24,6 +24,14 @@ namespace VetPet_
         int FondoCaja;
         string NombreUsuario;
         string TipoEmpleado;
+
+        public static class DatosGlobales
+        {
+            public static int FondoCaja { get; set; }
+            public static string NombreUsuario { get; set; }
+
+            public static int IDUsuario { get; set; }
+        }
         public Form1(int iDUsuario, int iDTEmpleado, int fondoCaja, string tipoEmpleado, string nombreUsuario)
         {
             InitializeComponent();
@@ -37,6 +45,10 @@ namespace VetPet_
             FondoCaja = fondoCaja;
             NombreUsuario = nombreUsuario;
             TipoEmpleado = tipoEmpleado;
+
+            DatosGlobales.FondoCaja = FondoCaja;
+            DatosGlobales.NombreUsuario = NombreUsuario;
+            DatosGlobales.IDUsuario = IDUsuario;
         }
         private void StoreControlInfo(Control parent)
         {
@@ -152,7 +164,7 @@ namespace VetPet_
 
         private void BtnAtencionClient_Click(object sender, EventArgs e)
         {
-            formularioHijo(new MenuAtencionaCliente(this)); // Pasamos la referencia de Form1
+            formularioHijo(new MenuAtencionaCliente(this, IDUsuario)); // Pasamos la referencia de Form1
         }
 
         private void Form1_Load_1(object sender, EventArgs e)

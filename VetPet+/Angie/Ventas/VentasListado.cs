@@ -18,13 +18,26 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();   
-
+        Mismetodos mismetodos = new Mismetodos();
+        int idDueño;
         private Form1 parentForm;
-        public VentasListado(Form1 parent)
+        public VentasListado(Form1 parent, int idDueño)
         {
             InitializeComponent();
             parentForm = parent;  // Guardamos la referencia de Form1
+            this.idDueño = idDueño;
+            this.Load += VentasListado_Load;       // Evento Load
+            this.Resize += VentasListado_Resize;   // Evento Resize
+            dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
+            dataGridView1.CellMouseLeave += dataGridView1_CellMouseLeave;
+            dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
+            PersonalizarDataGridView();
+            Cargar();
+        }
+        public VentasListado(Form1 parent)
+        {
+            InitializeComponent();
+            parentForm = parent; 
             this.Load += VentasListado_Load;       // Evento Load
             this.Resize += VentasListado_Resize;   // Evento Resize
             dataGridView1.CellMouseEnter += dataGridView1_CellMouseEnter;
@@ -265,12 +278,12 @@ namespace VetPet_
 
         private void button4_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new VentasNuevaVenta(parentForm)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new VentasNuevaVenta(parentForm, idDueño , "Empleado")); // Pasamos la referencia de Form1 a
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new MenuAtencionaCliente(parentForm)); // Pasamos la referencia de Form1 a
+            parentForm.formularioHijo(new MenuAtencionaCliente(parentForm, idDueño)); // Pasamos la referencia de Form1 a
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -283,7 +296,7 @@ namespace VetPet_
                     int idCita = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idCita"].Value);
 
                     // Abrir el formulario de detalles de la mascota con el idMascota correcto
-                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita));
+                    parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, idDueño, "Empleado"));
                 }
             }
             catch (Exception ex)
