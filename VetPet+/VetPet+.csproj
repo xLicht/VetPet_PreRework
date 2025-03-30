@@ -1033,6 +1033,7 @@
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
     </Compile>
     <Compile Include="ReporteVentasManager.cs" />
+    <Compile Include="TicketsManager.cs" />
     <Compile Include="VeterianiaGestionarHistorialM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1326,6 +1327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Angie\Ventas\VentasVentanadePagoNueva.resx">
       <DependentUpon>VentasVentanadePagoNueva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Angie\Ventas\VentasVerTicket.resx">
+      <DependentUpon>VentasVerTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CambiarContraseña.resx">
       <DependentUpon>CambiarContraseña.cs</DependentUpon>
@@ -1804,8 +1808,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Facturas-Arch\" />
     <Folder Include="Recetas-Arch\" />
     <Folder Include="Reportes-Arch\" />
+    <Folder Include="Tickets-Arch\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AcroPDFLib">

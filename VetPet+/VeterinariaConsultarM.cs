@@ -19,6 +19,7 @@ namespace VetPet_
         private conexionDaniel conexionDB = new conexionDaniel();
         private List<ServicioSeleccionadoConsulta> listaServicios = new List<ServicioSeleccionadoConsulta>();
         int idConsultaCreada = 0;
+        int validador = 0;
         public VeterinariaConsultarM(Form1 parent)
         {
             InitializeComponent();
@@ -27,11 +28,17 @@ namespace VetPet_
 
         private void btnRecetar_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("Debe guardar la consulta antes de recetar. ¿Ya la ha guardado?","Advertencia",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            //DialogResult resultado = MessageBox.Show("Debe guardar la consulta antes de recetar. ¿Ya la ha guardado?","Advertencia",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
 
-            if (resultado == DialogResult.No)
+            //if (resultado == DialogResult.No)
+            //{
+            //    MessageBox.Show("Por favor, guarde la consulta antes de proceder.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
+
+            if (idConsultaCreada == 0)
             {
-                MessageBox.Show("Por favor, guarde la consulta antes de proceder.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Primero se debe guardar la consulta.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -317,58 +324,6 @@ namespace VetPet_
         }
 
 
-        //private void AgregarServicioALista()
-        //{
-        //    if (cbServicioP.SelectedItem == null)
-        //    {
-        //        MessageBox.Show("Debe seleccionar al menos un servicio padre.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        return;
-        //    }
-
-        //    int idPadre = Convert.ToInt32(cbServicioP.SelectedValue);
-        //    string nombrePadre = cbServicioP.Text;
-
-        //    int idHijo = -1;
-        //    string nombreHijo = "";
-        //    int idNieto = -1;
-        //    string nombreNieto = "";
-
-        //    if (nombrePadre == "Consulta General")
-        //    {
-        //        idNieto = 4;
-        //        nombreNieto = "Consulta General";
-        //    }
-        //    else
-        //    {
-        //        if (cbServicioEspecifico.SelectedItem == null)
-        //        {
-        //            MessageBox.Show("Debe seleccionar un servicio hijo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
-        //        nombreHijo = cbServicioEspecifico.Text;
-
-        //        if (cbServicioNieto.SelectedItem != null)
-        //        {
-        //            idNieto = Convert.ToInt32(cbServicioNieto.SelectedValue);
-        //            nombreNieto = cbServicioNieto.Text;
-        //        }
-        //    }
-
-
-        //    string observacion = rtObservacion.Text.Trim();
-
-        //    string nombreServicioFinal = !string.IsNullOrEmpty(nombreNieto) ? nombreNieto : nombrePadre;
-
-
-        //    string empleado = "Ninguno";
-
-        //    listaServicios.Add(new ServicioSeleccionadoConsulta(nombreServicioFinal, empleado, false, 0, observacion));
-
-        //    ActualizarDataGrid();
-        //}
-
         private void AgregarServicioALista()
         {
             if (cbServicioP.SelectedItem == null)
@@ -382,7 +337,7 @@ namespace VetPet_
             string empleado = "Ninguno";
             string observacion = rtObservacion.Text.Trim();
 
-            // Verifica si el servicio seleccionado es "Vacunas"
+        
             if (nombrePadre.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
             {
                 if (cbServicioNieto.SelectedItem == null)
@@ -394,12 +349,12 @@ namespace VetPet_
                 int idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
                 string nombreVacuna = cbServicioNieto.Text;
 
-                // Agrega el servicio especificando que es vacuna
+              
                 listaServicios.Add(new ServicioSeleccionadoConsulta(nombreVacuna, empleado, true, idVacuna, observacion));
             }
             else if (nombrePadre == "Consulta General")
             {
-                // Caso especial para "Consulta General"
+               
                 listaServicios.Add(new ServicioSeleccionadoConsulta("Consulta General", empleado, false, 0, observacion));
             }
             else
@@ -412,12 +367,12 @@ namespace VetPet_
 
                 int idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
                 string nombreHijo = cbServicioEspecifico.Text;
-                string nombreFinal = nombreHijo; // Se puede ajustar según la lógica de negocio
+                string nombreFinal = nombreHijo; 
 
-                // Si se selecciona un servicio nieto (para otros servicios que no son vacunas)
+         
                 if (cbServicioNieto.SelectedItem != null)
                 {
-                    // Podrías realizar validación o asignación del id del nieto aquí si es necesario.
+                    
                     nombreFinal = cbServicioNieto.Text;
                 }
 
@@ -426,21 +381,6 @@ namespace VetPet_
 
             ActualizarDataGrid();
         }
-
-
-
-        //private void ActualizarDataGrid()
-        //{
-        //    dtServicios.DataSource = null;
-        //    dtServicios.DataSource = listaServicios;
-        //    dtServicios.Refresh();
-
-        //    if (dtServicios.Columns.Contains("EsVacuna"))
-        //        dtServicios.Columns["EsVacuna"].Visible = false;
-        //    if (dtServicios.Columns.Contains("IdVacuna"))
-        //        dtServicios.Columns["IdVacuna"].Visible = false;
-        //    // La columna "Observacion" se dejará visible para mostrar el detalle.
-        //}
 
         private void ActualizarDataGrid()
         {
@@ -513,66 +453,6 @@ namespace VetPet_
         {
             AgregarServicioALista();
         }
-
-        //private void InsertarConsulta()
-        //{
-        //    try
-        //    {
-        //        conexionDB.AbrirConexion();
-        //        //string query = @"INSERT INTO Consulta (diagnostico, peso, temperatura, idCita, FechaConsulta, MotivoConsulta, EstudioEspecial) 
-        //        //         VALUES (@diagnostico, @peso, @temperatura, @idCita, @fechaConsulta, @motivoConsulta, @estudioEspecial)";
-        //        string query = @"INSERT INTO Consulta (diagnostico, peso, temperatura, idCita, FechaConsulta, MotivoConsulta, EstudioEspecial) 
-        //                 VALUES (@diagnostico, @peso, @temperatura, @idCita, @fechaConsulta, @motivoConsulta, @estudioEspecial);
-        //                 SELECT SCOPE_IDENTITY();"; 
-
-        //        using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-        //        {
-        //            cmd.Parameters.AddWithValue("@diagnostico", rtDiagnostico.Text.Trim());
-        //            cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
-        //            cmd.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
-        //            cmd.Parameters.AddWithValue("@idCita", DatoCita);
-        //            cmd.Parameters.AddWithValue("@fechaConsulta", dtFechaConsulta.Value.Date);
-        //            cmd.Parameters.AddWithValue("@motivoConsulta", rtMotivo.Text.Trim());
-
-        //            if (string.IsNullOrWhiteSpace(rtEstudioEspecial.Text))
-        //                cmd.Parameters.AddWithValue("@estudioEspecial", DBNull.Value);
-        //            else
-        //                cmd.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text.Trim());
-
-        //            int filasAfectadas = cmd.ExecuteNonQuery();
-
-        //            if (filasAfectadas > 0)
-        //            {
-        //                MessageBox.Show("Consulta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                // Ejecuta la consulta y obtiene el ID de la consulta insertada
-        //                object result = cmd.ExecuteScalar();
-        //                if (result != null)
-        //                {
-        //                    idConsultaCreada = Convert.ToInt32(result);
-        //                    MessageBox.Show("Consulta guardada con éxito. ID: " + idConsultaCreada, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                    //MessageBox.Show("consulta:"+idConsultaCreada);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("No se pudo registrar la consulta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            }
-        //        }
-        //    }
-        //    catch (FormatException)
-        //    {
-        //        MessageBox.Show("Error en el formato de los valores numéricos. Verifique los datos ingresados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al insertar la consulta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //    finally
-        //    {
-        //        conexionDB.CerrarConexion();
-        //    }
-        //}
-
         private void InsertarConsulta()
         {
             try
@@ -598,7 +478,8 @@ namespace VetPet_
                     if (result != null)
                     {
                         idConsultaCreada = Convert.ToInt32(result);
-                        MessageBox.Show("Consulta guardada con éxito. ID: " + idConsultaCreada, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Consulta guardada con éxito. ID: " + idConsultaCreada, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        validador ++;
                     }
                     else
                     {
@@ -640,60 +521,10 @@ namespace VetPet_
 
         }
 
-        //private void InsertarServiciosEnConsulta()
-        //{
-        //    if (listaServicios.Count == 0)
-        //        return; // No hay servicios para insertar
-
-        //    try
-        //    {
-        //        conexionDB.AbrirConexion();
-
-        //        foreach (var servicio in listaServicios)
-        //        {
-        //            string query = string.Empty;
-        //            SqlCommand cmd = null;
-
-        //            if (servicio.EsVacuna)
-        //            {
-        //                // Para vacunas: se inserta el idVacuna y se deja nulo el idServicioEspecificoNieto
-        //                query = @"INSERT INTO Servicio_Consulta (idConsulta, observacion, idServicioEspecificoNieto, idVacuna)
-        //                  VALUES (@idConsulta, @observacion, NULL, @idVacuna)";
-        //                cmd = new SqlCommand(query, conexionDB.GetConexion());
-        //                cmd.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
-        //            }
-        //            else
-        //            {
-        //                // Para otros servicios: se obtiene el idServicioEspecificoNieto en base al nombre del servicio
-        //                int idServicioNieto = ObtenerIdServicioNieto(servicio.NombreServicio);
-        //                query = @"INSERT INTO Servicio_Consulta (idConsulta, observacion, idServicioEspecificoNieto, idVacuna)
-        //                  VALUES (@idConsulta, @observacion, @idServicioNieto, NULL)";
-        //                cmd = new SqlCommand(query, conexionDB.GetConexion());
-        //                cmd.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
-        //            }
-
-        //            // Parámetros comunes
-        //            cmd.Parameters.AddWithValue("@idConsulta", idConsultaCreada);
-        //            cmd.Parameters.AddWithValue("@observacion", servicio.Observacion ?? string.Empty);
-
-        //            cmd.ExecuteNonQuery();
-        //        }
-
-        //        MessageBox.Show("Servicios y observaciones registrados en la consulta.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al insertar servicios en consulta: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        conexionDB.CerrarConexion();
-        //    }
-        //}
         private void InsertarServiciosEnConsulta()
         {
             if (listaServicios.Count == 0)
-                return; // No hay servicios para insertar
+                return; 
 
             try
             {
@@ -733,6 +564,7 @@ namespace VetPet_
                 }
 
                 MessageBox.Show("Servicios y observaciones registrados en la consulta.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                validador++;
             }
             catch (Exception ex)
             {
@@ -747,7 +579,11 @@ namespace VetPet_
         {
             InsertarConsulta();
             InsertarServiciosEnConsulta();
-            LimpiarCampos();
+            if (validador == 2)
+            {
+                LimpiarCampos();
+            }
+            
         }
 
         private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)

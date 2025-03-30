@@ -63,7 +63,7 @@ namespace VetPet_
         {
             InitializeComponent();
         }
-
+        int dineroenlacaja = 0;
         public CortesCaja(Form1 parent)
         {
             InitializeComponent();
@@ -71,6 +71,10 @@ namespace VetPet_
 
             txtTotalDinero.Text = DatosGlobales.FondoCaja.ToString();  // Muestra el FondoCaja
             txtUsuario.Text = DatosGlobales.NombreUsuario;     // Muestra el NombreUsuario
+            dineroenlacaja = Convert.ToInt32(txtTotalDinero.Text);
+            // Añadir el FondoCaja al total de caja inicial
+            totalefectivo = DatosGlobales.FondoCaja; // Inicializamos con el fondo de caja
+            txtTotalCaja.Text = totalefectivo.ToString("N2"); // Mostramos el total inicial
 
             // Establecer valores por defecto para los DateTimePicker
             dtpFechaInicio.Value = DateTime.Today;
@@ -248,14 +252,25 @@ namespace VetPet_
                 dataGridView2.Rows[6].Cells[2].Value = dgv1total + " MXN";
             }
 
-            dgv2total = dgv2totalprecio20 + dgv2totalprecio10 + dgv2totalprecio5 +
-                        dgv2totalprecio2 + dgv2totalprecio1 + dgv2totalpreciocentavos;
+             dgv2total = dgv2totalprecio20 + dgv2totalprecio10 + dgv2totalprecio5 +
+                dgv2totalprecio2 + dgv2totalprecio1 + dgv2totalpreciocentavos;
 
             txtEfectivoCaja.Text = (dgv1total + dgv2total).ToString("N2");
             totalefectivo = dgv1total + dgv2total;
 
             totalGeneral = totalefectivo + totaltarjeta;
-            txtTotalCaja.Text = totalGeneral.ToString();
+
+            double totalparacaja = totalGeneral + dineroenlacaja;
+
+            txtTotalCaja.Text = totalparacaja.ToString();
+
+
+
+
+     
+
+            CalcularDiferencia();
+
 
             CalcularDiferencia();
 
@@ -306,14 +321,96 @@ namespace VetPet_
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new CortesMenus(parentForm)); // Pasamos la referencia de Form1 a 
+            try
+            {
+                // Obtener el idEmpleado desde DatosGlobales (asumo que está disponible)
+                int idEmpleado = DatosGlobales.IDUsuario; // Asegúrate de tener esta propiedad
+
+                // Obtener las fechas de los DateTimePicker
+                DateTime fechaInicio = dtpFechaInicio.Value;
+                DateTime fechaFin = dtpFechaFin.Value;
+
+                // Obtener el fondo de caja
+                decimal fondoDeCaja = Convert.ToDecimal(txtTotalDinero.Text);
+
+                // Obtener totales
+                decimal totalEfectivo = Convert.ToDecimal(totalefectivo);
+                decimal totalTarjeta = Convert.ToDecimal(totaltarjeta);
+
+                // Determinar si el corte es correcto (diferencia = 0)
+                bool correcto = (diferencia == 0);
+
+                using (SqlConnection connection = conexion.CrearConexion())
+                {
+                    connection.Open();
+
+                    string query = @"INSERT INTO Corte (
+                            idEmpleado, 
+                            fechaInicio, 
+                            fechaFin, 
+                            fondoDeCaja, 
+                            totalEfectivo, 
+                            totalTarjeta, 
+                            correcto)
+                        VALUES (
+                            @idEmpleado, 
+                            @fechaInicio, 
+                            @fechaFin, 
+                            @fondoDeCaja, 
+                            @totalEfectivo, 
+                            @totalTarjeta, 
+                            @correcto)";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                        command.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                        command.Parameters.AddWithValue("@fechaFin", fechaFin);
+                        command.Parameters.AddWithValue("@fondoDeCaja", fondoDeCaja);
+                        command.Parameters.AddWithValue("@totalEfectivo", totalEfectivo);
+                        command.Parameters.AddWithValue("@totalTarjeta", totalTarjeta);
+                        command.Parameters.AddWithValue("@correcto", correcto ? 0 : 1); // 0=correcto, 1=incorrecto
+
+                        int result = command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Corte de caja registrado exitosamente", "Éxito",
+                                          MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Redirigir al menú de cortes
+                            parentForm.formularioHijo(new CortesMenus(parentForm));
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo registrar el corte de caja", "Error",
+                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Error de base de datos al registrar corte: {sqlEx.Message}", "Error SQL",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al registrar corte: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new CortesMenus(parentForm)); // Pasamos la referencia de Form1 a 
         }
-
+        private bool PuedeReducirEfectivo(double cantidadAReducir)
+        {
+            double totalTODO = dgv1total + dgv2total + dineroenlacaja;
+            double resultante = totalTODO - cantidadAReducir;
+            return resultante >= dineroenlacaja;
+        }
         private void btnsubir1000_Click(object sender, EventArgs e)
         {
             dgv1subirprecio1000 += 1;
@@ -325,11 +422,18 @@ namespace VetPet_
 
         private void btnbajar1000_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio1000 -= 1;
-            dgv1totalprecio1000 -= 1000;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(1000))
+            {
+                dgv1subirprecio1000 -= 1;
+                dgv1totalprecio1000 -= 1000;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir500_Click(object sender, EventArgs e)
@@ -343,11 +447,18 @@ namespace VetPet_
 
         private void btnbajar500_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio500 -= 1;
-            dgv1totalprecio500 -= 500;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(500))
+            {
+                dgv1subirprecio500 -= 1;
+                dgv1totalprecio500 -= 500;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir200_Click(object sender, EventArgs e)
@@ -361,11 +472,18 @@ namespace VetPet_
 
         private void btnbajar200_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio200 -= 1;
-            dgv1totalprecio200 -= 200;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(200))
+            {
+                dgv1subirprecio200 -= 1;
+                dgv1totalprecio200 -= 200;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir100_Click(object sender, EventArgs e)
@@ -379,11 +497,18 @@ namespace VetPet_
 
         private void btnbajar100_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio100 -= 1;
-            dgv1totalprecio100 -= 100;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(100))
+            {
+                dgv1subirprecio100 -= 1;
+                dgv1totalprecio100 -= 100;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir50_Click(object sender, EventArgs e)
@@ -397,11 +522,18 @@ namespace VetPet_
 
         private void btnbajar50_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio50 -= 1;
-            dgv1totalprecio50 -= 50;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(50))
+            {
+                dgv1subirprecio50 -= 1;
+                dgv1totalprecio50 -= 50;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir20_Click(object sender, EventArgs e)
@@ -415,11 +547,18 @@ namespace VetPet_
 
         private void btnbajar20_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio20 -= 1;
-            dgv1totalprecio20 -= 20;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(20))
+            {
+                dgv1subirprecio20 -= 1;
+                dgv1totalprecio20 -= 20;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btn2subir20_Click(object sender, EventArgs e)
@@ -433,11 +572,18 @@ namespace VetPet_
 
         private void btn2bajar20_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio20 -= 1;
-            dgv2totalprecio20 -= 20;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(20))
+            {
+                dgv2subirprecio20 -= 1;
+                dgv2totalprecio20 -= 20;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir10_Click(object sender, EventArgs e)
@@ -451,11 +597,18 @@ namespace VetPet_
 
         private void btnbajar10_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio10 -= 1;
-            dgv2totalprecio10 -= 10;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(10))
+            {
+                dgv2subirprecio10 -= 1;
+                dgv2totalprecio10 -= 10;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir5_Click(object sender, EventArgs e)
@@ -469,11 +622,18 @@ namespace VetPet_
 
         private void btnbajar5_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio5 -= 1;
-            dgv2totalprecio5 -= 5;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(5))
+            {
+                dgv2subirprecio5 -= 1;
+                dgv2totalprecio5 -= 5;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir2_Click(object sender, EventArgs e)
@@ -487,11 +647,18 @@ namespace VetPet_
 
         private void btnbajar2_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio2 -= 1;
-            dgv2totalprecio2 -= 2;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(2))
+            {
+                dgv2subirprecio2 -= 1;
+                dgv2totalprecio2 -= 2;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir1_Click(object sender, EventArgs e)
@@ -505,11 +672,18 @@ namespace VetPet_
 
         private void btnbajar1_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio1 -= 1;
-            dgv2totalprecio1 -= 1;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(1))
+            {
+                dgv2subirprecio1 -= 1;
+                dgv2totalprecio1 -= 1;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubircentavos_Click(object sender, EventArgs e)
@@ -523,11 +697,18 @@ namespace VetPet_
 
         private void btnbajarcentavos_Click(object sender, EventArgs e)
         {
-            dgv2subirpreciocentavos -= 1;
-            dgv2totalpreciocentavos -= .50;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(0.50))
+            {
+                dgv2subirpreciocentavos -= 1;
+                dgv2totalpreciocentavos -= 0.50;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnAgregarMonto_Click_1(object sender, EventArgs e)
@@ -560,7 +741,9 @@ namespace VetPet_
             totalGeneral = totalefectivo + totaltarjeta;
 
             txtDocumentosCaja.Text = totaltarjeta.ToString();
-            txtTotalCaja.Text = totalGeneral.ToString();
+
+            double totalparaCaja = totalGeneral + dineroenlacaja;
+            txtTotalCaja.Text = totalparaCaja.ToString();
             ActualizarTotalDocumentos();
 
             CalcularDiferencia();
@@ -677,8 +860,83 @@ namespace VetPet_
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            ReiniciarValores();
 
             CargarVentasPorRangoFechas(fechaInicio, fechaFin);
+        }
+
+        private void ReiniciarValores()
+        {
+            // Reiniciar variables de denominaciones grandes
+            dgv1subirprecio1000 = 0;
+            dgv1totalprecio1000 = 0;
+            dgv1subirprecio500 = 0;
+            dgv1totalprecio500 = 0;
+            dgv1subirprecio200 = 0;
+            dgv1totalprecio200 = 0;
+            dgv1subirprecio100 = 0;
+            dgv1totalprecio100 = 0;
+            dgv1subirprecio50 = 0;
+            dgv1totalprecio50 = 0;
+            dgv1subirprecio20 = 0;
+            dgv1totalprecio20 = 0;
+            dgv1cantidad = 0;
+            dgv1total = 0;
+
+            // Reiniciar variables de denominaciones pequeñas
+            dgv2subirprecio20 = 0;
+            dgv2totalprecio20 = 0;
+            dgv2subirprecio10 = 0;
+            dgv2totalprecio10 = 0;
+            dgv2subirprecio5 = 0;
+            dgv2totalprecio5 = 0;
+            dgv2subirprecio2 = 0;
+            dgv2totalprecio2 = 0;
+            dgv2subirprecio1 = 0;
+            dgv2totalprecio1 = 0;
+            dgv2subirprecio50 = 0;
+            dgv2totalprecio50 = 0;
+            dgv2subirpreciocentavos = 0;
+            dgv2totalpreciocentavos = 0;
+            dgv2cantidad = 0;
+            dgv2total = 0;
+
+            // Reiniciar totales
+            totalGeneral = 0;
+            totalefectivo = DatosGlobales.FondoCaja; // Mantener solo el fondo de caja
+            totaltarjeta = 0;
+            diferencia = 0;
+
+            // Limpiar DataGridViews
+            dataGridView2.Rows.Clear();
+            dataGridView3.Rows.Clear();
+            dataGridView1.Rows.Clear();
+            contadorMontos = 0;
+
+            // Reconstruir las filas iniciales
+            dataGridView2.Rows.Add("1000 MXN", dgv1subirprecio1000, dgv1totalprecio1000 + " MXN");
+            dataGridView2.Rows.Add("500 MXN", dgv1subirprecio500, dgv1totalprecio500 + " MXN");
+            dataGridView2.Rows.Add("200 MXN", dgv1subirprecio200, dgv1totalprecio200 + " MXN");
+            dataGridView2.Rows.Add("100 MXN", dgv1subirprecio100, dgv1totalprecio100 + " MXN");
+            dataGridView2.Rows.Add("50 MXN", dgv1subirprecio50, dgv1totalprecio50 + " MXN");
+            dataGridView2.Rows.Add("20 MXN", dgv1subirprecio20, dgv1totalprecio20 + " MXN");
+            dataGridView2.Rows.Add("Total", dgv1cantidad, dgv1total + " MXN");
+
+            dataGridView3.Rows.Add("20 MXN", dgv2subirprecio20, dgv2totalprecio20 + " MXN");
+            dataGridView3.Rows.Add("10 MXN", dgv2subirprecio10, dgv2totalprecio10 + " MXN");
+            dataGridView3.Rows.Add("5 MXN", dgv2subirprecio5, dgv2totalprecio5 + " MXN");
+            dataGridView3.Rows.Add("2 MXN", dgv2subirprecio2, dgv2totalprecio2 + " MXN");
+            dataGridView3.Rows.Add("1 MXN", dgv2subirprecio1, dgv2totalprecio1 + " MXN");
+            dataGridView3.Rows.Add(".50 MXN", dgv2subirprecio50, dgv2totalprecio50 + " MXN");
+            dataGridView3.Rows.Add("Total", dgv2cantidad, dgv2total + " MXN");
+
+            // Actualizar controles de texto
+            txtEfectivoCaja.Text = "0.00";
+            txtDocumentosCaja.Text = "0.00";
+            txtTotalCaja.Text = DatosGlobales.FondoCaja.ToString("N2"); // Mostrar solo el fondo de caja
+            txtDiferencia.Text = "0.00";
+            txtDiferencia.BackColor = SystemColors.Window;
+            txtMonto.Clear();
         }
     }
 }

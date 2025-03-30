@@ -29,6 +29,8 @@ namespace VetPet_
         {
             public static int FondoCaja { get; set; }
             public static string NombreUsuario { get; set; }
+
+            public static int IDUsuario { get; set; }
         }
         public Form1(int iDUsuario, int iDTEmpleado, int fondoCaja, string tipoEmpleado, string nombreUsuario)
         {
@@ -46,6 +48,7 @@ namespace VetPet_
 
             DatosGlobales.FondoCaja = FondoCaja;
             DatosGlobales.NombreUsuario = NombreUsuario;
+            DatosGlobales.IDUsuario = IDUsuario;
         }
         private void StoreControlInfo(Control parent)
         {
