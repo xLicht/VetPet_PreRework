@@ -38,7 +38,6 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -64,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -117,7 +118,7 @@
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label10.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(975, 497);
+            this.label10.Location = new System.Drawing.Point(975, 520);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 25);
             this.label10.TabIndex = 219;
@@ -129,7 +130,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label9.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(975, 423);
+            this.label9.Location = new System.Drawing.Point(975, 446);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 25);
             this.label9.TabIndex = 218;
@@ -161,59 +162,55 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(1127, 497);
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(1127, 520);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(213, 22);
+            this.textBox10.Size = new System.Drawing.Size(213, 30);
             this.textBox10.TabIndex = 215;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(1127, 423);
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(1127, 446);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(213, 22);
+            this.textBox9.Size = new System.Drawing.Size(213, 30);
             this.textBox9.TabIndex = 214;
             // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox8.Location = new System.Drawing.Point(688, 583);
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(688, 596);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(254, 22);
+            this.textBox8.Size = new System.Drawing.Size(254, 30);
             this.textBox8.TabIndex = 213;
             this.textBox8.Text = "Subtotal:   ";
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox7.Location = new System.Drawing.Point(980, 570);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(360, 22);
-            this.textBox7.TabIndex = 212;
-            this.textBox7.Text = "Pagado";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(980, 379);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(360, 22);
+            this.textBox6.Size = new System.Drawing.Size(360, 30);
             this.textBox6.TabIndex = 211;
             this.textBox6.Text = "Pago";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox5
             // 
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(1184, 314);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(156, 22);
+            this.textBox5.Size = new System.Drawing.Size(156, 30);
             this.textBox5.TabIndex = 210;
             // 
             // textBox4
             // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(1184, 248);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(156, 22);
+            this.textBox4.Size = new System.Drawing.Size(156, 30);
             this.textBox4.TabIndex = 209;
             // 
             // textBox3
@@ -239,9 +236,10 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox2.Location = new System.Drawing.Point(39, 158);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(39, 152);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(903, 22);
+            this.textBox2.Size = new System.Drawing.Size(903, 30);
             this.textBox2.TabIndex = 206;
             this.textBox2.Text = "Servicios";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -249,9 +247,10 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox1.Location = new System.Drawing.Point(45, 392);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(45, 400);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(897, 22);
+            this.textBox1.Size = new System.Drawing.Size(897, 30);
             this.textBox1.TabIndex = 205;
             this.textBox1.Text = "Accesorios/Medicamentos";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -268,9 +267,11 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
+            this.dataGridViewTextBoxColumn3,
+            this.Column1,
+            this.Column2});
             this.dataGridView2.GridColor = System.Drawing.Color.Blue;
-            this.dataGridView2.Location = new System.Drawing.Point(39, 423);
+            this.dataGridView2.Location = new System.Drawing.Point(39, 436);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 60;
@@ -448,6 +449,18 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Venta";
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Cantidad";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Subtotal";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
             // VentasVentanadePagoNueva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -464,7 +477,6 @@
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
@@ -507,7 +519,6 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
@@ -533,5 +544,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

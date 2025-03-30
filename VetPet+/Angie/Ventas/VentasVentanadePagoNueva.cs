@@ -35,16 +35,27 @@ namespace VetPet_
 
         public void CargarVenta()
         {
+        
             string query = @"
-    SELECT 
-        ISNULL(V.efectivo, 0) AS totalEfectivo,
-        ISNULL(V.tarjeta, 0) AS totalTarjeta,
-        V.total,
-        P.nombre,
-        P.apellidoP
-    FROM Venta V
-    LEFT JOIN Persona P ON V.idPersona = P.idPersona
-    WHERE V.idVenta = @idVenta;";
+        SELECT 
+            V.idVenta,
+            ISNULL(V.efectivo, 0) AS totalEfectivo,
+            ISNULL(V.tarjeta, 0) AS totalTarjeta,
+            V.total,
+            V.idCita,
+            P.nombre AS nombreCliente,
+            P.apellido AS apellidoCliente,
+            C.nombre AS nombreMascota,
+            PR.idProducto,
+            PR.nombre AS nombreProducto,
+            PR.precio AS precioProducto,
+            VP.cantidad AS cantidadProducto
+        FROM Venta V
+        LEFT JOIN Persona P ON V.idPersona = P.idPersona
+        LEFT JOIN Cita C ON V.idCita = C.idCita
+        LEFT JOIN Venta_Producto VP ON V.idVenta = VP.idVenta
+        LEFT JOIN Producto PR ON VP.idProducto = PR.idProducto
+        WHERE V.idVenta = @idVenta;";
 
             using (SqlConnection conexion = mismetodos.GetConexion())
             {
@@ -58,15 +69,49 @@ namespace VetPet_
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
-                            {
-                                textBox9.Text = reader["totalEfectivo"].ToString();
-                                textBox10.Text = reader["totalTarjeta"].ToString();
-                                textBox8.Text = "Subtotal: " + reader["total"].ToString();
+                            var productos = new List<(int id, string nombre, decimal precio, int cantidad)>();
 
-                                textBox3.Text = reader["nombre"] != DBNull.Value ? reader["nombre"].ToString() : "";
-                                textBox4.Text = reader["apellidoP"] != DBNull.Value ? reader["apellidoP"].ToString() : "";
+                            bool primeraFila = true;
+
+                            while (reader.Read())
+                            {
+
+                                if (primeraFila)
+                                {
+                                    textBox9.Text = reader["totalEfectivo"].ToString();
+                                    textBox10.Text = reader["totalTarjeta"].ToString();
+                                    textBox8.Text = "Subtotal: " + reader["total"].ToString();
+
+                                    textBox3.Text = reader["nombreCliente"] != DBNull.Value ?
+                                                  reader["nombreCliente"].ToString() : "";
+                                    textBox4.Text = reader["apellidoCliente"] != DBNull.Value ?
+                                                  reader["apellidoCliente"].ToString() : "";
+
+                                    textBox5.Text = reader["nombreMascota"] != DBNull.Value ?
+                                                    reader["nombreMascota"].ToString() : "Sin mascota";
+
+                                    primeraFila = false;
+                                }
+
+                                if (reader["idProducto"] != DBNull.Value)
+                                {
+                                    productos.Add((
+                                        Convert.ToInt32(reader["idProducto"]),
+                                        reader["nombreProducto"].ToString(),
+                                        Convert.ToDecimal(reader["precioProducto"]),
+                                        Convert.ToInt32(reader["cantidadProducto"])
+                                    ));
+                                }
                             }
+
+                            dataGridView1.DataSource = productos.Select(p => new
+                            {
+                                ID = p.id,
+                                Producto = p.nombre,
+                                Precio = p.precio,
+                                Cantidad = p.cantidad,
+                                Subtotal = p.precio * p.cantidad
+                            }).ToList();
                         }
                     }
                 }
