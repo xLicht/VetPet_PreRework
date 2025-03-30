@@ -35,27 +35,35 @@ namespace VetPet_
 
         public void CargarVenta()
         {
-        
             string query = @"
-        SELECT 
-            V.idVenta,
-            ISNULL(V.efectivo, 0) AS totalEfectivo,
-            ISNULL(V.tarjeta, 0) AS totalTarjeta,
-            V.total,
-            V.idCita,
-            P.nombre AS nombreCliente,
-            P.apellido AS apellidoCliente,
-            C.nombre AS nombreMascota,
-            PR.idProducto,
-            PR.nombre AS nombreProducto,
-            PR.precio AS precioProducto,
-            VP.cantidad AS cantidadProducto
-        FROM Venta V
-        LEFT JOIN Persona P ON V.idPersona = P.idPersona
-        LEFT JOIN Cita C ON V.idCita = C.idCita
-        LEFT JOIN Venta_Producto VP ON V.idVenta = VP.idVenta
-        LEFT JOIN Producto PR ON VP.idProducto = PR.idProducto
-        WHERE V.idVenta = @idVenta;";
+    SELECT 
+        -- Datos de la venta
+        ISNULL(V.efectivo, 0) AS totalEfectivo,
+        ISNULL(V.tarjeta, 0) AS totalTarjeta,
+        V.total,
+        V.fechaRegistro,
+        
+        -- Datos del cliente
+        P.nombre AS nombreCliente,
+        P.apellidoP AS apellidoCliente,
+        
+        -- Datos de la mascota
+        M.nombre AS nombreMascota,
+        
+        -- Datos de productos vendidos
+        VP.idProducto,
+        PR.nombre AS nombreProducto,
+        MA.nombre AS marcaProducto,
+        PR.precioVenta AS precioProducto
+    FROM Venta V
+    LEFT JOIN Persona P ON V.idPersona = P.idPersona
+    LEFT JOIN Marca MA ON MA.idMarca = P.idMarca
+    LEFT JOIN Cita C ON C.idCita = V.idVenta
+    LEFT JOIN Mascota M ON M.idMascota = C.idMascota
+    LEFT JOIN Venta_Producto VP ON V.idVenta = VP.idVenta
+    LEFT JOIN Producto PR ON VP.idProducto = PR.idProducto
+    WHERE V.idVenta = @idVenta
+    ORDER BY PR.nombre;";
 
             using (SqlConnection conexion = mismetodos.GetConexion())
             {
@@ -69,59 +77,68 @@ namespace VetPet_
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            var productos = new List<(int id, string nombre, decimal precio, int cantidad)>();
+                            // Limpiar controles existentes
+                            textBox9.Text = "0";
+                            textBox10.Text = "0";
+                            textBox8.Text = "Subtotal: 0";
+                            textBox3.Text = "";
+                            textBox4.Text = "";
+                            textBox5.Text = "";
 
-                            bool primeraFila = true;
+                            // Lista para productos
+                            var productos = new List<string>();
+                            decimal totalCalculado = 0;
 
                             while (reader.Read())
                             {
+                                // Solo asignar una vez los datos de venta/cliente/mascota
+                                if (!reader.HasRows || reader.IsDBNull(0))
+                                {
+                                    MessageBox.Show("No se encontró la venta con el ID especificado.");
+                                    return;
+                                }
 
-                                if (primeraFila)
+                                // Datos de pago (solo primera fila)
+                                if (productos.Count == 0)
                                 {
                                     textBox9.Text = reader["totalEfectivo"].ToString();
                                     textBox10.Text = reader["totalTarjeta"].ToString();
-                                    textBox8.Text = "Subtotal: " + reader["total"].ToString();
+                                    textBox8.Text = $"Subtotal: {reader["total"]}";
 
+                                    // Datos del cliente
                                     textBox3.Text = reader["nombreCliente"] != DBNull.Value ?
-                                                  reader["nombreCliente"].ToString() : "";
+                                                   reader["nombreCliente"].ToString() : "";
                                     textBox4.Text = reader["apellidoCliente"] != DBNull.Value ?
                                                   reader["apellidoCliente"].ToString() : "";
 
+                                    // Datos de la mascota
                                     textBox5.Text = reader["nombreMascota"] != DBNull.Value ?
-                                                    reader["nombreMascota"].ToString() : "Sin mascota";
-
-                                    primeraFila = false;
+                                                         reader["nombreMascota"].ToString() : "Sin mascota";
                                 }
 
+                                // Procesar productos (todas las filas)
                                 if (reader["idProducto"] != DBNull.Value)
                                 {
-                                    productos.Add((
-                                        Convert.ToInt32(reader["idProducto"]),
-                                        reader["nombreProducto"].ToString(),
-                                        Convert.ToDecimal(reader["precioProducto"]),
-                                        Convert.ToInt32(reader["cantidadProducto"])
-                                    ));
+                                    string productoInfo = $"{reader["nombreProducto"]} ({reader["marcaProducto"]}) - " +
+                                                       $"${reader["precioProducto"]}";
+                                    productos.Add(productoInfo);
+                                    totalCalculado += Convert.ToDecimal(reader["precioProducto"]);
                                 }
                             }
 
-                            dataGridView1.DataSource = productos.Select(p => new
-                            {
-                                ID = p.id,
-                                Producto = p.nombre,
-                                Precio = p.precio,
-                                Cantidad = p.cantidad,
-                                Subtotal = p.precio * p.cantidad
-                            }).ToList();
+                            // Mostrar productos en un ListBox o DataGridView
+                            dataGridView1.DataSource = productos;
+                            // O alternativamente en un TextBox multilínea:
+                            // textBoxProductos.Text = string.Join(Environment.NewLine, productos);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al cargar venta: {ex.Message}");
+                    MessageBox.Show($"Error al cargar venta: {ex.Message}\n\nDetalles:\n{ex.StackTrace}");
                 }
             }
         }
-
         private void VentasVentanadePagoNueva_Load(object sender, EventArgs e)
         {
             // Guardar el tamaño original del formulario
