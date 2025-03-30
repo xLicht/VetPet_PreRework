@@ -405,7 +405,12 @@ namespace VetPet_
         {
             parentForm.formularioHijo(new CortesMenus(parentForm)); // Pasamos la referencia de Form1 a 
         }
-
+        private bool PuedeReducirEfectivo(double cantidadAReducir)
+        {
+            double totalTODO = dgv1total + dgv2total + dineroenlacaja;
+            double resultante = totalTODO - cantidadAReducir;
+            return resultante >= dineroenlacaja;
+        }
         private void btnsubir1000_Click(object sender, EventArgs e)
         {
             dgv1subirprecio1000 += 1;
@@ -417,11 +422,18 @@ namespace VetPet_
 
         private void btnbajar1000_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio1000 -= 1;
-            dgv1totalprecio1000 -= 1000;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(1000))
+            {
+                dgv1subirprecio1000 -= 1;
+                dgv1totalprecio1000 -= 1000;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir500_Click(object sender, EventArgs e)
@@ -435,11 +447,18 @@ namespace VetPet_
 
         private void btnbajar500_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio500 -= 1;
-            dgv1totalprecio500 -= 500;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(500))
+            {
+                dgv1subirprecio500 -= 1;
+                dgv1totalprecio500 -= 500;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir200_Click(object sender, EventArgs e)
@@ -453,11 +472,18 @@ namespace VetPet_
 
         private void btnbajar200_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio200 -= 1;
-            dgv1totalprecio200 -= 200;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(200))
+            {
+                dgv1subirprecio200 -= 1;
+                dgv1totalprecio200 -= 200;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir100_Click(object sender, EventArgs e)
@@ -471,11 +497,18 @@ namespace VetPet_
 
         private void btnbajar100_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio100 -= 1;
-            dgv1totalprecio100 -= 100;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(100))
+            {
+                dgv1subirprecio100 -= 1;
+                dgv1totalprecio100 -= 100;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir50_Click(object sender, EventArgs e)
@@ -489,11 +522,18 @@ namespace VetPet_
 
         private void btnbajar50_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio50 -= 1;
-            dgv1totalprecio50 -= 50;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(50))
+            {
+                dgv1subirprecio50 -= 1;
+                dgv1totalprecio50 -= 50;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir20_Click(object sender, EventArgs e)
@@ -507,11 +547,18 @@ namespace VetPet_
 
         private void btnbajar20_Click(object sender, EventArgs e)
         {
-            dgv1subirprecio20 -= 1;
-            dgv1totalprecio20 -= 20;
-
-            dgv1cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(20))
+            {
+                dgv1subirprecio20 -= 1;
+                dgv1totalprecio20 -= 20;
+                dgv1cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btn2subir20_Click(object sender, EventArgs e)
@@ -525,11 +572,18 @@ namespace VetPet_
 
         private void btn2bajar20_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio20 -= 1;
-            dgv2totalprecio20 -= 20;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(20))
+            {
+                dgv2subirprecio20 -= 1;
+                dgv2totalprecio20 -= 20;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir10_Click(object sender, EventArgs e)
@@ -543,11 +597,18 @@ namespace VetPet_
 
         private void btnbajar10_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio10 -= 1;
-            dgv2totalprecio10 -= 10;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(10))
+            {
+                dgv2subirprecio10 -= 1;
+                dgv2totalprecio10 -= 10;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir5_Click(object sender, EventArgs e)
@@ -561,11 +622,18 @@ namespace VetPet_
 
         private void btnbajar5_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio5 -= 1;
-            dgv2totalprecio5 -= 5;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(5))
+            {
+                dgv2subirprecio5 -= 1;
+                dgv2totalprecio5 -= 5;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir2_Click(object sender, EventArgs e)
@@ -579,11 +647,18 @@ namespace VetPet_
 
         private void btnbajar2_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio2 -= 1;
-            dgv2totalprecio2 -= 2;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(2))
+            {
+                dgv2subirprecio2 -= 1;
+                dgv2totalprecio2 -= 2;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubir1_Click(object sender, EventArgs e)
@@ -597,11 +672,18 @@ namespace VetPet_
 
         private void btnbajar1_Click(object sender, EventArgs e)
         {
-            dgv2subirprecio1 -= 1;
-            dgv2totalprecio1 -= 1;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(1))
+            {
+                dgv2subirprecio1 -= 1;
+                dgv2totalprecio1 -= 1;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnsubircentavos_Click(object sender, EventArgs e)
@@ -615,11 +697,18 @@ namespace VetPet_
 
         private void btnbajarcentavos_Click(object sender, EventArgs e)
         {
-            dgv2subirpreciocentavos -= 1;
-            dgv2totalpreciocentavos -= .50;
-
-            dgv2cantidad -= 1;
-            ActualizarTablas();
+            if (PuedeReducirEfectivo(0.50))
+            {
+                dgv2subirpreciocentavos -= 1;
+                dgv2totalpreciocentavos -= 0.50;
+                dgv2cantidad -= 1;
+                ActualizarTablas();
+            }
+            else
+            {
+                MessageBox.Show("No puede reducir el efectivo por debajo del fondo de caja inicial",
+                              "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnAgregarMonto_Click_1(object sender, EventArgs e)
