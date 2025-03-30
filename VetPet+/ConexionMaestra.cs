@@ -11,7 +11,6 @@ namespace VetPet_
     public class ConexionMaestra
     {
         public string cadenaConexion;
-
         public SqlConnection CrearConexion()
         {
             string nombreDispositivo = Environment.MachineName;
@@ -19,6 +18,8 @@ namespace VetPet_
                 cadenaConexion = "Server=DESKTOP-7PPM2OB\\SQLEXPRESS;Database=VetPetPlus;Integrated Security=True;";
             else if (nombreDispositivo == "DESKTOP-0434B1E")
                 cadenaConexion = "Data Source=DESKTOP-0434B1E;Initial Catalog=VetPetPlus;Integrated Security=True;";
+            else if (nombreDispositivo == "BRANDONWROK")
+                cadenaConexion = "Data Source=BRANDONWROK\\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
             else if (nombreDispositivo == "DESKTOP-GQ6Q9HG")
                 cadenaConexion = "Data Source=DESKTOP-GQ6Q9HG\\SQLEXPRESS;Initial Catalog=VetPetPlus;Integrated Security=True;";
             else if (nombreDispositivo == "ROGSTRIXANGIE")
