@@ -19,7 +19,7 @@ namespace VetPet_
         protected string DirectorioProyecto { get; private set; }
 
         int idVenta;
-        int idDueño;
+        int? idDueño;
         string nombreRecepcionista;
         string nombreDueño;
         string nombreMascota;
@@ -31,13 +31,13 @@ namespace VetPet_
         string totalEfectivo;
         string totalTarjeta;
 
-        int idFactura;
+        string idFactura;
         string direccionDueño;
         string celularDueño;
         string correoDueño;
         List<Tuple<string, decimal, int>> listaVenta;
 
-        public TicketsManager(int idVenta, int idDueño, string nombreTicket, string nombreRecepcionista, string nombreDueño, string nombreMascota, string fechaVenta, List<Tuple<string, decimal, int>> listaServicios, List<Tuple<string, decimal, int>> listaProductos, string totalVenta, string totalEfectivo, string totalTarjeta)
+        public TicketsManager(int idVenta, int? idDueño, string nombreTicket, string nombreRecepcionista, string nombreDueño, string nombreMascota, string fechaVenta, List<Tuple<string, decimal, int>> listaServicios, List<Tuple<string, decimal, int>> listaProductos, string totalVenta, string totalEfectivo, string totalTarjeta)
         {
             DirectorioProyecto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
             string carpetaReportes = Path.Combine(DirectorioProyecto, "Tickets-Arch");
@@ -50,7 +50,7 @@ namespace VetPet_
             // Genera el nombre dinámico del PDF
             RutaPDF = Path.Combine(carpetaReportes, nombreTicket + ".pdf");
 
-            Documento = new Document(PageSize.DEMY_OCTAVO);
+            Documento = new Document(new Rectangle(283.5f, 567f));
 
             this.idVenta = idVenta;
             this.idDueño = idDueño;
@@ -67,7 +67,7 @@ namespace VetPet_
 
 
         }
-        public TicketsManager(string NombreFactura, int IdVenta, int IdFactura, string FechaVenta, string NombreDueño, string DireccionDueño, string CelularDueño, string CorreoDueño, List<Tuple<string, decimal, int>> ListaVenta, string Total)
+        public TicketsManager(string NombreFactura, int IdVenta, string IdFactura, string FechaVenta, string NombreDueño, string DireccionDueño, string CelularDueño, string CorreoDueño, List<Tuple<string, decimal, int>> ListaVenta, string Total)
         {
             DirectorioProyecto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
             string carpetaReportes = Path.Combine(DirectorioProyecto, "Facturas-Arch");
@@ -80,7 +80,7 @@ namespace VetPet_
             // Genera el nombre dinámico del PDF
             RutaPDF = Path.Combine(carpetaReportes, NombreFactura + ".pdf");
 
-            Documento = new Document(PageSize.LETTER.Rotate());
+            Documento = new Document(new Rectangle(538.65f, 708.75f).Rotate());
 
             this.idVenta = IdVenta;
             this.idFactura = IdFactura;
@@ -118,6 +118,7 @@ namespace VetPet_
         {
             try
             {
+                
                 Writer = PdfWriter.GetInstance(Documento, new FileStream(RutaPDF, FileMode.Create));
                 Documento.Open();
 
@@ -149,15 +150,14 @@ namespace VetPet_
                     MessageBox.Show("La imagen VetPetLogo.png no se encontró en la carpeta Resources.");
                     return;
                 }
-                Font fontText = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+                Font fontText = FontFactory.GetFont(FontFactory.HELVETICA, 7);
                 Font fontBold = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
                 iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(imagenPath);
-                img.ScaleAbsolute(40f, 40f);
+                img.ScaleAbsolute(70f, 70f);
                 img.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(img);
-                Documento.Add(new Paragraph("\n"));
 
-                Paragraph informacion = new Paragraph("VetPet+ S.A de C.V\n\nLa Paz, Baja California Sur, México\n\nBlvd. Forjadores de Sudcalifornia\n\ncontacto.vetpetplus@vetpet.com\n\n+52 6121948332", fontText);
+                Paragraph informacion = new Paragraph("VetPet+ S.A de C.V\nLa Paz, Baja California Sur, México\nBlvd. Forjadores de Sudcalifornia\ncontacto.vetpetplus@vetpet.com\n+52 6121948332", fontText);
                 informacion.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(informacion);
                 Documento.Add(new Paragraph("\n"));
@@ -165,7 +165,7 @@ namespace VetPet_
                 Paragraph titulo = new Paragraph("TICKET DE VENTA", fontBold);
                 titulo.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(titulo);
-                Documento.Add(new Paragraph("\n"));
+                //Documento.Add(new Paragraph("\n"));
             }
             catch (Exception ex)
             {
@@ -182,45 +182,40 @@ namespace VetPet_
             Paragraph idVen = new Paragraph("Id Venta: " + idVenta.ToString(), fontText);
             idVen.Alignment = Element.ALIGN_CENTER;
             Documento.Add(idVen);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
             Paragraph recepcionista = new Paragraph("Recepcionista: " + nombreRecepcionista, fontText);
             recepcionista.Alignment = Element.ALIGN_CENTER;
             Documento.Add(recepcionista);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
             if (nombreDueño != "")
             {
                 Paragraph dueño = new Paragraph("Dueño: " + nombreDueño, fontText);
                 dueño.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(dueño);
-                Documento.Add(new Paragraph("\n"));
+                //Documento.Add(new Paragraph("\n"));
             }
-            if (nombreMascota != "")
+            if (nombreMascota != " ")
             {
                 Paragraph mascota = new Paragraph("Mascota: " + nombreMascota, fontText);
                 mascota.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(mascota);
-                Documento.Add(new Paragraph("\n"));
+                //Documento.Add(new Paragraph("\n"));
             }
 
             Paragraph fechaVen = new Paragraph(fechaVenta, fontText);
             fechaVen.Alignment = Element.ALIGN_CENTER;
             Documento.Add(fechaVen);
-            Documento.Add(new Paragraph("\n"));
-
-            Paragraph horaVen = new Paragraph(horaVenta, fontText);
-            fechaVen.Alignment = Element.ALIGN_CENTER;
-            Documento.Add(fechaVen);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
             // Tabla de Información
             if (listaServicios != null)
             {
-                Paragraph servicios = new Paragraph("Servicios", fontText);
+                Paragraph servicios = new Paragraph("Servicios", fontBold);
                 servicios.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(servicios);
-                Documento.Add(new Paragraph("\n"));
+                //Documento.Add(new Paragraph("\n"));
 
                 PdfPTable tablaServ = null;
                 CrearTablaServ(ref tablaServ, fontText);
@@ -229,10 +224,10 @@ namespace VetPet_
             }
             if (listaProductos != null)
             {
-                Paragraph productos = new Paragraph("Productos", fontText);
+                Paragraph productos = new Paragraph("Productos", fontBold);
                 productos.Alignment = Element.ALIGN_CENTER;
                 Documento.Add(productos);
-                Documento.Add(new Paragraph("\n"));
+                //Documento.Add(new Paragraph("\n"));
 
                 PdfPTable tablaProd = null;
                 CrearTablaProd(ref tablaProd, fontText);
@@ -240,27 +235,27 @@ namespace VetPet_
                 Documento.Add(new Paragraph("\n"));
             }
 
-            Paragraph total = new Paragraph("TOTAL: $" + totalVenta + "MXN", fontBold);
+            Paragraph total = new Paragraph("TOTAL: $" + totalVenta + " MXN", fontBold);
             total.Alignment = Element.ALIGN_CENTER;
             Documento.Add(total);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
-            Paragraph efectivo = new Paragraph("Efectivo: $" + totalEfectivo + "MXN", fontText);
+            Paragraph efectivo = new Paragraph("Efectivo: $" + totalEfectivo + " MXN", fontText);
             efectivo.Alignment = Element.ALIGN_LEFT;
             Documento.Add(efectivo);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
             Paragraph tarjeta = new Paragraph("Tarjeta: $" + totalTarjeta, fontText);
             tarjeta.Alignment = Element.ALIGN_LEFT;
             Documento.Add(tarjeta);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
             Paragraph totalPag = new Paragraph("Total: $" + totalVenta, fontText);
             totalPag.Alignment = Element.ALIGN_LEFT;
             Documento.Add(totalPag);
             Documento.Add(new Paragraph("\n"));
 
-            Paragraph gracias = new Paragraph("¡GRACIAS POR SU PREFERENCIA!" + totalVenta, fontBold);
+            Paragraph gracias = new Paragraph("¡GRACIAS POR SU PREFERENCIA!", fontBold);
             gracias.Alignment = Element.ALIGN_CENTER;
             Documento.Add(gracias);
         }
@@ -272,6 +267,7 @@ namespace VetPet_
             {
                 Font textoFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
                 Font fontBold = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+                Font facturaFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20);
 
                 string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPet_Logo1.png");
                 if (!File.Exists(imagenPath))
@@ -295,7 +291,7 @@ namespace VetPet_
 
                 PdfPCell celdaFactura = new PdfPCell
                 (
-                    new Phrase("FACTURA", fontBold)
+                    new Phrase("FACTURA", facturaFont)
                 );
                 celdaFactura.Border = PdfPCell.NO_BORDER;
                 celdaFactura.HorizontalAlignment = Element.ALIGN_RIGHT;
@@ -310,8 +306,8 @@ namespace VetPet_
         }
         private void AgregarContenidoFactura()
         {
-            Font fontText = FontFactory.GetFont(FontFactory.HELVETICA, 10);
-            Font fontBold = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+            Font fontText = FontFactory.GetFont(FontFactory.HELVETICA, 14);
+            Font fontBold = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
 
             PdfPTable tablaInfo = null;
             CrearTablaInfo(ref tablaInfo, fontText, fontBold);
@@ -323,7 +319,7 @@ namespace VetPet_
             Documento.Add(tablaDesc);
             Documento.Add(new Paragraph("\n"));
 
-            Paragraph total = new Paragraph("Total: " + totalVenta, fontText);
+            Paragraph total = new Paragraph("Total: $" + totalVenta, fontBold);
             total.Alignment = Element.ALIGN_RIGHT;
             Documento.Add(total);
 
@@ -339,24 +335,27 @@ namespace VetPet_
             float[] columnWidths = { 20, 40, 40 };
             tabla.SetWidths(columnWidths);
 
-            Phrase informacionFactura = new Phrase(
-                "Numero de Factura\n"
-                +idFactura+
-                "--------"+
-                "Fecha\n"
-                +fechaVenta+
-                "--------" +
-                "Numero de Venta\n"
-                +idVenta, fontBold);
+            // Crear una tabla anidada para la primera celda
+            PdfPTable subTabla = new PdfPTable(1);
+            subTabla.WidthPercentage = 100;
+
+            // Agregar las filas individuales
+            subTabla.AddCell(new PdfPCell(new Phrase("Número de Factura: \n" + idFactura, fontBold)) { Border = PdfPCell.BOTTOM_BORDER });
+            subTabla.AddCell(new PdfPCell(new Phrase("Fecha: \n" + fechaVenta, fontBold)) { Border = PdfPCell.BOTTOM_BORDER });
+            subTabla.AddCell(new PdfPCell(new Phrase("Número de Venta: \n" + idVenta, fontBold)) { Border = PdfPCell.NO_BORDER });
+
+            // Crear la celda con la tabla anidada
+            PdfPCell celda1 = new PdfPCell(subTabla);
+            celda1.Border = PdfPCell.NO_BORDER;
+
+            // Crear las demás celdas
             Phrase informacionDueño = new Phrase(
                 "Para\n"
-                +nombreDueño+
-                "\n"
-                +direccionDueño+
-                "\n"
-                +celularDueño+
-                "\n"
-                +correoDueño, fontText);
+                + nombreDueño + "\n"
+                + direccionDueño + "\n"
+                + celularDueño + "\n"
+                + correoDueño, fontText);
+
             Phrase informacionVetPet = new Phrase(
                 "De\n" +
                 "VetPet+, S.A de C.V\n" +
@@ -364,22 +363,27 @@ namespace VetPet_
                 "Blvd. Forjadores de Sudcalifornia\n" +
                 "contacto.vetpetplus@vetpet.com\n" +
                 "+52 6121948332", fontText);
-            PdfPCell celda1 = new PdfPCell(informacionFactura);
-            PdfPCell celda2 = new PdfPCell(informacionVetPet);
-            PdfPCell celda3 = new PdfPCell(informacionDueño);
-            celda1.HorizontalAlignment = Element.ALIGN_LEFT;
-            celda2.HorizontalAlignment = Element.ALIGN_LEFT;
-            celda3.HorizontalAlignment = Element.ALIGN_LEFT;
+
+            PdfPCell celda2 = new PdfPCell(informacionVetPet) { Border = PdfPCell.NO_BORDER };
+            PdfPCell celda3 = new PdfPCell(informacionDueño) { Border = PdfPCell.NO_BORDER };
+
+            // Agregar celdas a la tabla principal
+            celda1.Border = PdfPCell.TOP_BORDER | PdfPCell.BOTTOM_BORDER;
+            celda2.Border = PdfPCell.TOP_BORDER | PdfPCell.BOTTOM_BORDER;
+            celda3.Border = PdfPCell.TOP_BORDER | PdfPCell.BOTTOM_BORDER;
+            celda1.BorderWidth = 2f;
+            celda2.BorderWidth = 2f;
+            celda3.BorderWidth = 2f;
+
             tabla.AddCell(celda1);
             tabla.AddCell(celda2);
             tabla.AddCell(celda3);
-
         }
         public void CrearTablaDesc(ref PdfPTable tabla, Font fontText, Font fontBold)
         {
             tabla = new PdfPTable(3);
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
-            tabla.WidthPercentage = 45;
+            tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_LEFT;
             float[] columnWidths = { 50, 25, 25 };
             tabla.SetWidths(columnWidths);
@@ -418,10 +422,13 @@ namespace VetPet_
             // Encabezados de la tabla
             for (int i = 0; i < listaServicios.Count; i++)
             {
-                PdfPCell celda1 = new PdfPCell(new Phrase(listaServicios[i].Item1.ToString()+".......................", fontText));
-                PdfPCell celda2 = new PdfPCell(new Phrase("$"+listaServicios[i].Item2.ToString(), fontText));
+                decimal totalServicio = listaServicios[i].Item2 * listaServicios[i].Item3;
+                PdfPCell celda1 = new PdfPCell(new Phrase(listaServicios[i].Item1.ToString(), fontText));
+                PdfPCell celda2 = new PdfPCell(new Phrase("$"+totalServicio.ToString(), fontText));
                 celda1.HorizontalAlignment = Element.ALIGN_LEFT;
                 celda2.HorizontalAlignment = Element.ALIGN_RIGHT;
+                celda1.Border = PdfPCell.NO_BORDER;
+                celda2.Border = PdfPCell.NO_BORDER;
                 tabla.AddCell(celda1);
                 tabla.AddCell(celda2);
             }
@@ -437,10 +444,13 @@ namespace VetPet_
             // Encabezados de la tabla
             for (int i = 0; i < listaProductos.Count; i++)
             {
-                PdfPCell celda1 = new PdfPCell(new Phrase(listaProductos[i].Item1.ToString()+ ".......................", fontText));
-                PdfPCell celda2 = new PdfPCell(new Phrase("$"+listaProductos[i].Item2.ToString(), fontText));
+                decimal totalProducto = listaProductos[i].Item2 * listaProductos[i].Item3;
+                PdfPCell celda1 = new PdfPCell(new Phrase(listaProductos[i].Item1.ToString(), fontText));
+                PdfPCell celda2 = new PdfPCell(new Phrase("$"+totalProducto.ToString(), fontText));
                 celda1.HorizontalAlignment = Element.ALIGN_LEFT;
                 celda2.HorizontalAlignment = Element.ALIGN_RIGHT;
+                celda1.Border = PdfPCell.NO_BORDER;
+                celda2.Border = PdfPCell.NO_BORDER;
                 tabla.AddCell(celda1);
                 tabla.AddCell(celda2);
             }

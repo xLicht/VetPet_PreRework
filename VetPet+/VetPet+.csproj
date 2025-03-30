@@ -1808,8 +1808,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Facturas-Arch\" />
     <Folder Include="Recetas-Arch\" />
     <Folder Include="Reportes-Arch\" />
+    <Folder Include="Tickets-Arch\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AcroPDFLib">
