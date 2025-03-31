@@ -537,11 +537,6 @@ namespace VetPet_
                 {
                     mismetodos.CerrarConexion();
                     dtProductos.Dispose();
-                    string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
-                    string nombreTicket = "Ticket_1-" + fechaLimpia.Replace("-", "");
-                    parentForm.formularioHijo(new 
-                        VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
-                        ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
 
                 }
             }

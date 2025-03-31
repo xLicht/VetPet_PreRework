@@ -25,7 +25,7 @@ namespace VetPet_
 
         private int idCita;
         private int stock;
-        private int idDueño1;
+        private static int idDueño1;
         private static int idPersona;
         public DateTime fechaRegistro;
         public string nombreRecepcionista;
@@ -37,6 +37,8 @@ namespace VetPet_
         public int idVenta;
         public static decimal MontoPagadoE = 0;
         public static decimal MontoPagadoT = 0;
+
+        public static decimal montoRestante = 0;
         private static DataTable dtProductos = new DataTable();
         List<Tuple<string, decimal, int>> ListaProductos = new List<Tuple<string, decimal, int>>();
 
@@ -105,6 +107,16 @@ namespace VetPet_
                 }
 
             }
+
+            if (dtProductos.Rows.Count > 0)
+            {
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dtProductos;
+                dataGridView2.DataSource = bs;
+            }
+
+            ActualizarSumaTotal();
+
         }
         public void ActualizarSumaTotal()
         {
@@ -118,7 +130,7 @@ namespace VetPet_
             textBox9.Text = MontoPagadoE.ToString();
             textBox10.Text = MontoPagadoT.ToString();
 
-            decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
+            montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
             textBox2.Text = montoRestante.ToString();
             if (MontoPagadoE + MontoPagadoT == sumaTotalProductos && sumaTotalProductos != 0) 
             {
@@ -189,12 +201,7 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
 
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dtProductos;
-            dataGridView2.DataSource = bs;
-
-            ActualizarSumaTotal();
-
+           
             if (dataGridView2.Columns.Contains("idProducto"))
                 dataGridView2.Columns["idProducto"].Visible = false;
 
@@ -240,14 +247,14 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, montoRestante, dtProductos);
             VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta";
             parentForm.formularioHijo(VentasConfirmacionEfectivo);
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos,dtProductos);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, montoRestante,dtProductos);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
@@ -401,6 +408,8 @@ namespace VetPet_
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
 
+                    dtProductos.Dispose();
+
                     parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
                  ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
                 }
@@ -411,7 +420,6 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
-                    dtProductos.Dispose();
                 }
             }
         }
