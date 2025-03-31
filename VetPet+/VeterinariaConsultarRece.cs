@@ -378,7 +378,7 @@ namespace VetPet_
                    peso,
                    temperatura,
                    indicaciones,
-                   listaMedicamentos
+                   listaMedicamentos, DatoCita
                );
             parentForm.formularioHijo(formularioHijo);
         }
