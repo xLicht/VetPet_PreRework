@@ -23,7 +23,8 @@ namespace VetPet_.Angie
         private static DataTable dtProductos = new DataTable();
         public string FormularioOrigen { get; set; }
         public int idCita;
-        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int idCita)
+        public int cantidad;
+        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int idCita, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;
@@ -35,6 +36,7 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView1);
             PersonalizarDataGridView(dataGridView2);
+            this.cantidad = cantidad;
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
 
@@ -47,7 +49,7 @@ namespace VetPet_.Angie
             }
 
         }
-        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock)
+        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;
@@ -58,6 +60,7 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView1);
             PersonalizarDataGridView(dataGridView2);
+            this.cantidad = cantidad;
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
 
@@ -138,14 +141,14 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
                             DataRow rowToAdd = dtProductos.NewRow();
                             rowToAdd.ItemArray = newRow.ItemArray;
                             rowToAdd["Total"] = subTotal;
-                            rowToAdd["Cantidad"] = 1; 
+                            rowToAdd["Cantidad"] = cantidad; 
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
                     else
                     {
                         existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + subTotal;
-                        existingRow["Cantidad"] = Convert.ToInt32(existingRow["Cantidad"]) + 1;
+                        existingRow["Cantidad"] = Convert.ToInt32(existingRow["Cantidad"]) + cantidad;
                     }
 
                     BindingSource bs = new BindingSource();
@@ -265,11 +268,7 @@ ORDER BY
             {
                 if (e.RowIndex >= 0)
                 {
-                    // Obtener el idMascota y nombre de la mascota seleccionada
-                    int idMedicamento = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idProducto"].Value);
-                    //string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
-
-                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
+                        int idMedicamento = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idProducto"].Value);
                     parentForm.formularioHijo(new VentasDeseaAgregarProducto(parentForm, idMedicamento,idCita));
                 }
             }

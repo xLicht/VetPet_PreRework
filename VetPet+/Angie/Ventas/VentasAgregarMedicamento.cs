@@ -22,7 +22,8 @@ namespace VetPet_.Angie
         private static DataTable dtProductos = new DataTable();
         public string FormularioOrigen {get;set;}
         int idCita = 0; 
-        public VentasAgregarMedicamento(Form1 parent,int idProducto,decimal subTotal,int stock, int idCita)
+        int cantidad = 0;
+        public VentasAgregarMedicamento(Form1 parent,int idProducto,decimal subTotal,int stock, int idCita, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;  
@@ -33,9 +34,11 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView2);
             PersonalizarDataGridView(dataGridView3);
+            this.idCita = idCita;
+            this.cantidad = cantidad;
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
-            this.idCita = idCita;
+          
 
             if (dtProductos.Rows.Count > 0)
             {
@@ -46,7 +49,7 @@ namespace VetPet_.Angie
             }
 
         }
-        public VentasAgregarMedicamento(Form1 parent, int idProducto, decimal subTotal, int stock)
+        public VentasAgregarMedicamento(Form1 parent, int idProducto, decimal subTotal, int stock, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;  
@@ -57,7 +60,10 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView2);
             PersonalizarDataGridView(dataGridView3);
+
+            this.cantidad = cantidad;
             Cargar();
+
             CargarProductosEnDataGridView(idProducto, subTotal);
 
             if (dtProductos.Rows.Count > 0)
@@ -142,14 +148,14 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
                             DataRow rowToAdd = dtProductos.NewRow();
                             rowToAdd.ItemArray = newRow.ItemArray;
                             rowToAdd["Total"] = subTotal;
-                            rowToAdd["Cantidad"] = 1;
+                            rowToAdd["Cantidad"] = cantidad;
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
                     else
                     {
                         existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + subTotal;
-                        existingRow["Cantidad"] = Convert.ToInt32(existingRow["Cantidad"]) + 1;
+                        existingRow["Cantidad"] = Convert.ToInt32(existingRow["Cantidad"]) + cantidad;
                     }
 
                     BindingSource bs = new BindingSource();

@@ -371,14 +371,14 @@ namespace VetPet_
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, totalGeneral,stock, idCita1);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, totalGeneral,stock, idCita1,0);
             VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
         }
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, totalGeneral, stock,idCita1);
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, totalGeneral, stock,idCita1,0);
             ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
@@ -530,6 +530,7 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
+                    dtProductos.Dispose();
                 }
             }
         }

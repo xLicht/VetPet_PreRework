@@ -176,11 +176,11 @@ namespace VetPet_.Angie
                 // Pasar al siguiente formulario
                 if (idCita != 0)
                 {
-                    parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, idProducto, total, nuevoStock, idCita));
+                    parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, idProducto, total, nuevoStock, idCita, cantidad));
                 }
                 else
                 {
-                    parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, idProducto, total, nuevoStock));
+                    parentForm.formularioHijo(new VentasAgregarMedicamento(parentForm, idProducto, total, nuevoStock, cantidad));
                 }
             }
             catch (Exception ex)

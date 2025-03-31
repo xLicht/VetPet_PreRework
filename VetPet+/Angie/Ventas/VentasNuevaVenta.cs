@@ -103,6 +103,7 @@ namespace VetPet_
                     // Si ya existe, actualizar el total sumando el nuevo subtotal
                     existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + Convert.ToDecimal(row["Total"]);
                 }
+
             }
         }
         public void ActualizarSumaTotal()
@@ -194,6 +195,9 @@ namespace VetPet_
 
             ActualizarSumaTotal();
 
+            if (dataGridView2.Columns.Contains("idProducto"))
+                dataGridView2.Columns["idProducto"].Visible = false;
+
         }
 
         private void VentasNuevaVenta_Resize(object sender, EventArgs e)
@@ -229,7 +233,7 @@ namespace VetPet_
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,idCita,sumaTotalProductos,stock);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm);
             VentasAgregarProducto.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOri
             parentForm.formularioHijo(VentasAgregarProducto); // Pasamos la referencia de Form1 a 
         }
@@ -407,6 +411,7 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
+                    dtProductos.Dispose();
                 }
             }
         }
