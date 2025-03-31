@@ -133,7 +133,7 @@ namespace VetPet_
                 {
                     textBox7.Text = "Pagado";
                 }
-            }          
+            } 
         }
         public void CargarServicios(int idCita)
         {
