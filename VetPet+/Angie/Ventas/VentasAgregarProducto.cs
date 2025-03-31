@@ -138,7 +138,7 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
                             DataRow rowToAdd = dtProductos.NewRow();
                             rowToAdd.ItemArray = newRow.ItemArray;
                             rowToAdd["Total"] = subTotal;
-                            rowToAdd["Cantidad"] = 1; // Inicializar cantidad
+                            rowToAdd["Cantidad"] = 1; 
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
@@ -153,6 +153,14 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
                     bs.Filter = "[Total] IS NOT NULL";
                     dataGridView2.DataSource = bs;
                     ActualizarTotal();
+
+
+                    if (dataGridView2.Columns.Contains("idProducto"))
+                        dataGridView2.Columns["idProducto"].Visible = false;
+
+                    if (dataGridView2.Columns.Contains("StockDisponible"))
+                        dataGridView2.Columns["StockDisponible"].Visible = false;
+
                 }
             }
             catch (Exception ex)
@@ -233,6 +241,13 @@ ORDER BY
                     {
                         dataGridView1.Columns["ProximaCaducidad"].DefaultCellStyle.Format = "d";
                     }
+
+                    if (dataGridView2.Columns.Contains("idProducto"))
+                        dataGridView2.Columns["idProducto"].Visible = false;
+
+                    if (dataGridView2.Columns.Contains("ProximaCaducidad"))
+                        dataGridView2.Columns["ProximaCaducidad"].Visible = false;
+
                 }
             }
             catch (Exception ex)
@@ -515,5 +530,6 @@ ORDER BY
                 StockModificado.Clear();
             }
         }
+
     }
 }

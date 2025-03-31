@@ -127,7 +127,6 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
                         dtProductos = dt.Clone();
                         dtProductos.Columns.Add("Total", typeof(decimal));
                         dtProductos.Columns.Add("Cantidad", typeof(int));
-                        dtProductos.Columns.Add("TipoProducto", typeof(string));
                     }
 
                     DataRow existingRow = dtProductos.AsEnumerable()
@@ -144,7 +143,6 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
                             rowToAdd.ItemArray = newRow.ItemArray;
                             rowToAdd["Total"] = subTotal;
                             rowToAdd["Cantidad"] = 1;
-                            rowToAdd["TipoProducto"] = "Tipo 3"; // Identificador para este tipo
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
@@ -156,9 +154,15 @@ GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
 
                     BindingSource bs = new BindingSource();
                     bs.DataSource = dtProductos;
-                    bs.Filter = "[Total] IS NOT NULL AND [TipoProducto] = 'Tipo 3'";
+                    bs.Filter = "[Total] IS NOT NULL";
                     dataGridView3.DataSource = bs;
                     ActualizarTotal();
+
+                    if (dataGridView3.Columns.Contains("idProducto"))
+                        dataGridView3.Columns["idProducto"].Visible = false;
+
+                    if (dataGridView3.Columns.Contains("StockDisponible"))
+                        dataGridView3.Columns["StockDisponible"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -237,6 +241,12 @@ ORDER BY
                     {
                         dataGridView2.Columns["Inventario"].HeaderText = "Stock Total";
                     }
+
+                    if (dataGridView2.Columns.Contains("ProximaCaducidad"))
+                        dataGridView2.Columns["ProximaCaducidad"].Visible = false;
+
+                    if (dataGridView2.Columns.Contains("TipoProducto"))
+                        dataGridView2.Columns["TipoProducto"].Visible = false;
                 }
             }
             catch (Exception ex)

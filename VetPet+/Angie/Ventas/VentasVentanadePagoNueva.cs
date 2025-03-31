@@ -128,6 +128,15 @@ WHERE V.idVenta = @idVenta";
                         dataGridView1.Columns["NombreServicio"].HeaderText = "Servicio";
                     if (dt.Columns.Contains("Precio"))
                         dataGridView1.Columns["Precio"].HeaderText = "Precio";
+
+                    if (dataGridView1.Columns.Contains("idCita"))
+                        dataGridView1.Columns["idCita"].Visible = false;
+
+                    if (dataGridView1.Columns.Contains("idServicioRealizado"))
+                        dataGridView1.Columns["idServicioRealizado"].Visible = false;
+
+                    if (dataGridView1.Columns.Contains("ServicioPadre"))
+                        dataGridView1.Columns["ServicioPadre"].Visible = false;
                 }
             }
             else

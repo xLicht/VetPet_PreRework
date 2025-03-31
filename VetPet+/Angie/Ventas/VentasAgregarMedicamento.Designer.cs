@@ -104,7 +104,7 @@
             "Precio",
             "Inventario",
             "Marca"});
-            this.comboBox1.Location = new System.Drawing.Point(350, 131);
+            this.comboBox1.Location = new System.Drawing.Point(179, 131);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(320, 43);
             this.comboBox1.TabIndex = 112;
@@ -115,7 +115,7 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.button2.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(1253, 123);
+            this.button2.Location = new System.Drawing.Point(1082, 123);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(178, 60);
             this.button2.TabIndex = 111;
@@ -127,7 +127,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft JhengHei", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(731, 131);
+            this.textBox1.Location = new System.Drawing.Point(560, 131);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(516, 43);
             this.textBox1.TabIndex = 109;
@@ -214,7 +214,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
             this.pictureBox3.Image = global::VetPet_.Properties.Resources.buscar_ang;
-            this.pictureBox3.Location = new System.Drawing.Point(1372, 128);
+            this.pictureBox3.Location = new System.Drawing.Point(1201, 128);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(48, 49);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -225,7 +225,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(221)))));
             this.pictureBox2.Image = global::VetPet_.Properties.Resources.filtrar_ang;
-            this.pictureBox2.Location = new System.Drawing.Point(676, 131);
+            this.pictureBox2.Location = new System.Drawing.Point(505, 131);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(45, 46);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
