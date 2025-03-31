@@ -26,12 +26,13 @@ namespace VetPet_
         public string Peso { get; set; }
         public string Temperatura { get; set; }
         public string Indicaciones { get; set; }
+        int DatoCita;
         public List<Tuple<int, string, int>> ListaMedicamentos { get; set; }
 
         public VeterinariaGenerarReceta(Form1 parent, 
         string nombreDueño, string nombreMascota, string especie, string raza, string fechaNacimiento,
         string diagnostico, string peso, string temperatura, string indicaciones,
-        List<Tuple<int, string, int>> listaMedicamentos)
+        List<Tuple<int, string, int>> listaMedicamentos, int datoCita)
         {
             InitializeComponent();
             parentForm = parent;
@@ -47,7 +48,7 @@ namespace VetPet_
             Temperatura = temperatura;
             Indicaciones = indicaciones;
             ListaMedicamentos = listaMedicamentos;
-
+            DatoCita = datoCita;
             //foreach (var med in ListaMedicamentos)
             //{
             //    dtMedicamentos.Rows.Add(med.Item1, med.Item2, med.Item3);
@@ -87,6 +88,13 @@ namespace VetPet_
             {
                 MessageBox.Show("Error: " + er.Message);
             }
+        }
+
+        private void BtnVolver_Click(object sender, EventArgs e)
+        {
+            VeterinariaConsultarRece formPasado = new VeterinariaConsultarRece(parentForm);
+            formPasado.DatoCita = DatoCita;
+            parentForm.formularioHijo(formPasado);
         }
     }
 }

@@ -136,7 +136,7 @@ namespace VetPet_
             PdfPTable tablaInfo = null;
             CrearTablaInfo(ref tablaInfo, fontBold, fontText);
             Documento.Add(tablaInfo);
-            Documento.Add(new Paragraph("\n"));
+            //Documento.Add(new Paragraph("\n"));
 
             // Diagnóstico
             Paragraph diagnostico = new Paragraph("Diagnóstico: " + Diagnostico, fontText);
