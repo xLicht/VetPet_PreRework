@@ -31,7 +31,6 @@ namespace VetPet_
         public decimal total;
         public decimal? efectivo;
         public decimal? tarjeta;
-        decimal sumaTotal = 0;
         decimal nuevoSubtotal = 0;
         decimal totalGeneral = 0;
         public int idVenta;
@@ -55,32 +54,25 @@ namespace VetPet_
             if (tabla == "Empleado")
                 idPersona = idDueño;
         }
-        public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
+     public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool tipoPago)
+    {
+        InitializeComponent();
+        this.Load += VentasVentanadePago_Load;
+        this.Resize += VentasVentanadePago_Resize;
+    
+        idCita1 = idCita;
+        parentForm = parent;  
+        AgregarProductos(dt);
+        CargarServicios(idCita);
+        this.montoRestante = nuevoSubtotal;
+        ActualizarPago(montoPagado, tipoPago);
+        if (dtProductos.Columns.Count == 0)
         {
-            InitializeComponent();
-            this.Load += VentasVentanadePago_Load;       // Evento Load
-            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
-            idCita1 = idCita;
-            parentForm = parent;  
-
-            AgregarProductosAMedicamentos(dt);
-            CargarServicios(idCita);
-            this.nuevoSubtotal = nuevoSubtotal;
-            if (bandera == true)
-            {
-                MontoPagadoE = montoPagado;
-            }
-            if (bandera == false)
-            {
-                MontoPagadoT = montoPagado;
-            }
-            if (dtProductos.Columns.Count == 0)
-            {
-                dtProductos = dt.Clone();
-            }
+            dtProductos = dt.Clone();
         }
+    }
 
-        private void AgregarProductosAMedicamentos(DataTable dtNuevos)
+        private void AgregarProductos(DataTable dtNuevos)
         {
             foreach (DataRow row in dtNuevos.Rows)
             {
@@ -96,67 +88,50 @@ namespace VetPet_
                 }
                 else
                 {
-                    // Si ya existe, actualizar el total sumando el nuevo subtotal
+                    // Sumar cantidad y total
+                    existingRow["cantidad"] = Convert.ToInt32(existingRow["cantidad"]) + Convert.ToInt32(row["cantidad"]);
                     existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + Convert.ToDecimal(row["Total"]);
                 }
             }
         }
+
 
         public void CargarServicios(int idCita)
         {
             try
             {
                 mismetodos.AbrirConexion();
-
-                // 1. Cargar medicamentos de la receta
                 string queryMedicamentos = @"SELECT 
             P.idProducto,
             M.nombreGenérico AS Producto,
-            P.precioVenta AS Precio,
             RM.cantidad,
-            (P.precioVenta * RM.cantidad) AS Total,
-            R.indicaciones
-        FROM 
-            Receta_Medicamento RM
+            P.precioVenta AS Precio,
+            (P.precioVenta * RM.cantidad) AS Total
+        FROM Receta_Medicamento RM
         INNER JOIN Medicamento M ON RM.idMedicamento = M.idMedicamento
         INNER JOIN Producto P ON M.idProducto = P.idProducto
         INNER JOIN Receta R ON RM.idReceta = R.idReceta
         INNER JOIN Consulta C ON R.idConsulta = C.idConsulta
-        WHERE 
-            C.idCita = @idCita
-            AND RM.estado = 'A'";
+        WHERE C.idCita = @idCita AND RM.estado = 'A'";
 
-                // Inicializar dtProductos si es null
-                if (dtProductos == null)
+                using (SqlDataAdapter da = new SqlDataAdapter(queryMedicamentos, mismetodos.GetConexion()))
                 {
-                    dtProductos = new DataTable();
-                    using (SqlDataAdapter da = new SqlDataAdapter(queryMedicamentos, mismetodos.GetConexion()))
-                    {
-                        da.SelectCommand.Parameters.AddWithValue("@idCita", idCita);
-                        da.Fill(dtProductos);
-                    }
-                }
-                else
-                {
+                    da.SelectCommand.Parameters.AddWithValue("@idCita", idCita);
                     DataTable tempMedicamentos = new DataTable();
-                    using (SqlDataAdapter da = new SqlDataAdapter(queryMedicamentos, mismetodos.GetConexion()))
-                    {
-                        da.SelectCommand.Parameters.AddWithValue("@idCita", idCita);
-                        da.Fill(tempMedicamentos);
+                    da.Fill(tempMedicamentos);
 
-                        // Agregar solo los nuevos medicamentos
-                        foreach (DataRow row in tempMedicamentos.Rows)
-                        {
-                            dtProductos.ImportRow(row);
-                        }
+                    if (dtProductos == null || dtProductos.Columns.Count == 0)
+                    {
+                        // Si dtProductos no existe o está vacío, copia la estructura de tempMedicamentos
+                        dtProductos = tempMedicamentos.Clone();
+
+                        AgregarProductos(tempMedicamentos);
                     }
                 }
 
-                // Configurar DataGridView2 para productos/medicamentos
                 dataGridView2.DataSource = dtProductos;
                 ConfigurarGridMedicamentos(dataGridView2);
 
-                // 2. Cargar servicios de la cita
                 string queryServicios = "EXEC sp_ObtenerServiciosCitaConId @idCita = @idCita;";
                 DataTable tablaServicios = new DataTable();
 
@@ -166,14 +141,12 @@ namespace VetPet_
                     da.Fill(tablaServicios);
                 }
 
-                // Configurar DataGridView1 para servicios
                 dataGridView1.DataSource = tablaServicios;
                 ConfigurarGridServicios(dataGridView1);
 
                 // Actualizar lista de servicios
                 ActualizarListaServicios(tablaServicios);
 
-                // 3. Obtener información del dueño y mascota
                 ObtenerInfoDueñoYMascota(idCita);
 
                 // 4. Calcular totales
@@ -188,22 +161,17 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
         }
-
-        // Métodos auxiliares
         private void ConfigurarGridMedicamentos(DataGridView grid)
         {
-            string[] columnasOcultar = { "indicaciones" };
-            foreach (string columna in columnasOcultar)
-            {
-                if (grid.Columns.Contains(columna))
-                    grid.Columns[columna].Visible = false;
-            }
-
-            if (grid.Columns.Contains("Producto"))
-                grid.Columns["Producto"].HeaderText = "Medicamento/Producto";
-
+          
             if (grid.Columns.Contains("cantidad"))
                 grid.Columns["cantidad"].HeaderText = "Cantidad";
+
+            grid.Columns["Precio"].DefaultCellStyle.Format = "C2";
+            if (dataGridView2.Columns.Contains("Total"))
+            {
+                dataGridView2.Columns["Total"].DefaultCellStyle.Format = "C2";
+            }
 
         }
 
@@ -263,19 +231,59 @@ namespace VetPet_
                 }
             }
         }
+        public void ActualizarPago(decimal monto, bool tipoPago)
+        {
+            if (tipoPago == true)
+            {
+                MontoPagadoE += monto;
+            }
+            if (tipoPago ==  false)
+            {
+                MontoPagadoT += monto;
+            }
 
+            CalcularTotalesCompletos(); // Actualizar la interfaz
+        }
         private void CalcularTotalesCompletos()
         {
-            decimal totalServicios = ListaServicios.Sum(s => s.Item2);
-            decimal totalProductos = dtProductos?.AsEnumerable()
-                                   .Where(r => r["Total"] != DBNull.Value)
-                                   .Sum(r => Convert.ToDecimal(r["Total"])) ?? 0;
+            try
+            {
+                // Calcular totales
+                decimal totalServicios = ListaServicios.Sum(s => s.Item2);
+                decimal totalProductos = dtProductos?.AsEnumerable()
+                                       .Where(r => r["Total"] != DBNull.Value)
+                                       .Sum(r => Convert.ToDecimal(r["Total"])) ?? 0;
 
-            decimal totalGeneral = totalServicios + totalProductos;
-            textBox8.Text = totalGeneral.ToString("C2");
+               totalGeneral = totalServicios + totalProductos;
+
+                // Actualizar controles
+                textBox8.Text = "Subtotal: " + totalGeneral.ToString("C2");
+                textBox9.Text = MontoPagadoE.ToString("0.00");
+                textBox10.Text = MontoPagadoT.ToString("0.00");
+
+                // Calcular monto restante
+                montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+                textBox17.Text = montoRestante.ToString("0.00");
+
+                // Determinar estado del pago
+                if (totalGeneral > 0)
+                {
+                    bool estaPagado = (MontoPagadoE + MontoPagadoT) >= totalGeneral;
+                    textBox7.Text = estaPagado ? "Pagado" : "Pendiente";
+                    textBox7.BackColor = estaPagado ? Color.LightGreen : Color.LightPink;
+                }
+                else
+                {
+                    textBox7.Text = "Sin cargos";
+                    textBox7.BackColor = SystemColors.Control;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al calcular totales: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-       
-
         public VentasVentanadePago(Form1 parent, int idCita)
         {
             InitializeComponent();
@@ -348,9 +356,6 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
 
-            //BindingSource bs = new BindingSource();
-            //bs.DataSource = dtProductos;
-            //dataGridView2.DataSource = bs;
         }
         private void VentasVentanadePago_Resize(object sender, EventArgs e)
         {
@@ -379,6 +384,20 @@ namespace VetPet_
         private void button1_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            mismetodos.CerrarConexion();
+            idDueño1 = 0;
+            idPersona = 0;
+            MontoPagadoE = 0;
+            MontoPagadoT = 0;
+            montoRestante = 0;
+            dtProductos = new DataTable();
+
+            ListaProductos.Clear();
+            ListaServicios.Clear();
+
+            nuevoSubtotal = 0;
+            efectivo = null;
+            tarjeta = null;
         }
 
         private void textBox15_Click(object sender, EventArgs e)
@@ -571,7 +590,6 @@ namespace VetPet_
                     ListaProductos.Clear();
                     ListaServicios.Clear();
 
-                    sumaTotal = 0;
                     nuevoSubtotal = 0;
                     efectivo = null;
                     tarjeta = null;

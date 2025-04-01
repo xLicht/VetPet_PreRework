@@ -444,7 +444,6 @@
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(254, 22);
             this.textBox17.TabIndex = 206;
-            this.textBox17.Visible = false;
             // 
             // VentasVentanadePago
             // 
