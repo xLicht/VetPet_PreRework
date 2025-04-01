@@ -686,7 +686,7 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VeterinariaConsultarM";
             this.Text = "VeterinariaConsultarM";
             this.Load += new System.EventHandler(this.VeterinariaConsultarM_Load);
