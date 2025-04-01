@@ -25,6 +25,12 @@ namespace VetPet_
             InitializeComponent(); 
             parentForm = parent;  
         }
+        public ConsultarCita(Form1 parent, int? idCita)
+        {
+            InitializeComponent();
+            parentForm = parent;
+            DatoCita = (int)idCita;
+        }
 
         private void ConsultarCita_Load(object sender, EventArgs e)
         {

@@ -23,7 +23,8 @@ namespace VetPet_.Angie
         private static DataTable dtProductos = new DataTable();
         public string FormularioOrigen { get; set; }
         public int idCita;
-        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int idCita)
+        public int cantidad;
+        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int idCita, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;
@@ -35,6 +36,7 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView1);
             PersonalizarDataGridView(dataGridView2);
+            this.cantidad = cantidad;
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
 
@@ -47,7 +49,7 @@ namespace VetPet_.Angie
             }
 
         }
-        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock)
+        public VentasAgregarProducto(Form1 parent, int idProducto, decimal subTotal, int stock, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;
@@ -58,6 +60,7 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView1);
             PersonalizarDataGridView(dataGridView2);
+            this.cantidad = cantidad;
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
 
@@ -99,13 +102,18 @@ namespace VetPet_.Angie
                 mismetodos.AbrirConexion();
 
                 string query = @"
-        SELECT 
-            p.idProducto AS idProducto,
-            p.nombre AS Producto,
-            p.precioVenta AS Precio
-        FROM Producto p
-        INNER JOIN Marca m ON p.idMarca = m.idMarca
-        WHERE P.idTipoProducto = 1 OR P.idTipoProducto = 2;";
+SELECT 
+    p.idProducto,
+    p.nombre AS Producto,
+    lp.precioVenta AS Precio,
+    SUM(lp.stock) AS StockDisponible
+FROM Producto p
+INNER JOIN Lote_Producto lp ON p.idProducto = lp.idProducto
+INNER JOIN Marca m ON p.idMarca = m.idMarca
+WHERE (p.idTipoProducto = 1 OR p.idTipoProducto = 2)
+  AND lp.estado = 'A'
+  AND (lp.fechaCaducidad IS NULL OR lp.fechaCaducidad >= GETDATE())
+GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter da = new SqlDataAdapter(comando))
@@ -113,20 +121,18 @@ namespace VetPet_.Angie
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Si es la primera vez que se usa, inicializar dtProductos y agregar la columna "Total"
                     if (dtProductos.Columns.Count == 0)
                     {
-                        dtProductos = dt.Clone(); // Clonar estructura sin datos
-                        dtProductos.Columns.Add("Total", typeof(decimal)); // Agregar columna Total
+                        dtProductos = dt.Clone();
+                        dtProductos.Columns.Add("Total", typeof(decimal));
+                        dtProductos.Columns.Add("Cantidad", typeof(int));
                     }
 
-                    // Buscar si el producto ya existe en dtProductos
                     DataRow existingRow = dtProductos.AsEnumerable()
                         .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
 
                     if (existingRow == null)
                     {
-                        // Buscar el producto en dt y agregarlo a dtProductos
                         DataRow newRow = dt.AsEnumerable()
                             .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
 
@@ -134,27 +140,39 @@ namespace VetPet_.Angie
                         {
                             DataRow rowToAdd = dtProductos.NewRow();
                             rowToAdd.ItemArray = newRow.ItemArray;
-                            rowToAdd["Total"] = subTotal; // Asignar el total
+                            rowToAdd["Total"] = subTotal;
+                            rowToAdd["Cantidad"] = cantidad; 
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
                     else
                     {
-                        // Si el producto ya está en la tabla, sumarle el subtotal
                         existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + subTotal;
+                        existingRow["Cantidad"] = Convert.ToInt32(existingRow["Cantidad"]) + cantidad;
                     }
 
-                    // Filtrar y actualizar el DataGridView
                     BindingSource bs = new BindingSource();
                     bs.DataSource = dtProductos;
                     bs.Filter = "[Total] IS NOT NULL";
                     dataGridView2.DataSource = bs;
                     ActualizarTotal();
+
+
+                    if (dataGridView2.Columns.Contains("idProducto"))
+                        dataGridView2.Columns["idProducto"].Visible = false;
+
+                    if (dataGridView2.Columns.Contains("StockDisponible"))
+                        dataGridView2.Columns["StockDisponible"].Visible = false;
+
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar productos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
             }
         }
         // Método para calcular la suma y mostrarla en textBox2
@@ -173,18 +191,27 @@ namespace VetPet_.Angie
             {
                 mismetodos.AbrirConexion();
                 string query = @"
-            SELECT 
-                P.idProducto,
-                P.nombre AS Producto,
-                P.precioVenta AS Precio,
-                P.stock AS Inventario,
-                M.nombre AS Marca
-            FROM 
-                Producto P
-            JOIN 
-                Marca M ON P.idMarca = M.idMarca
-            WHERE 
-                (P.idTipoProducto = 1 OR P.idTipoProducto = 2);";
+SELECT 
+    p.idProducto,
+    p.nombre AS Producto,
+    lp.precioVenta AS Precio,
+    SUM(lp.stock) AS Inventario,
+    m.nombre AS Marca,
+    MIN(lp.fechaCaducidad) AS ProximaCaducidad
+FROM 
+    Producto p
+INNER JOIN 
+    Lote_Producto lp ON p.idProducto = lp.idProducto
+INNER JOIN 
+    Marca m ON p.idMarca = m.idMarca
+WHERE 
+    (p.idTipoProducto = 1 OR p.idTipoProducto = 2)
+    AND lp.estado = 'A'
+    AND (lp.fechaCaducidad IS NULL OR lp.fechaCaducidad >= GETDATE())
+GROUP BY 
+    p.idProducto, p.nombre, lp.precioVenta, m.nombre
+ORDER BY 
+    p.nombre;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
@@ -192,21 +219,38 @@ namespace VetPet_.Angie
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
 
-                    // Verificar si hay cambios de stock en memoria
                     foreach (DataRow row in tabla.Rows)
                     {
                         int idProducto = Convert.ToInt32(row["idProducto"]);
                         int stockModificado = StockManager1.ObtenerStockModificado(idProducto);
 
-                        if (stockModificado != -1) // Si hay cambios en el stock
+                        if (stockModificado != -1)
                         {
-                            row["Inventario"] = stockModificado; // Actualizar el stock en la tabla
+                            row["Inventario"] = stockModificado;
                         }
                     }
 
-                    // Asignar el DataTable al DataGridView
                     dataGridView1.DataSource = tabla;
-                    dataGridView1.Columns["idProducto"].Visible = false; // Oculta la columna
+                    dataGridView1.Columns["idProducto"].Visible = false;
+
+                    // Formatear columna de precio
+                    if (dataGridView1.Columns["Precio"] != null)
+                    {
+                        dataGridView1.Columns["Precio"].DefaultCellStyle.Format = "C2";
+                    }
+
+                    // Formatear columna de fecha de caducidad
+                    if (dataGridView1.Columns["ProximaCaducidad"] != null)
+                    {
+                        dataGridView1.Columns["ProximaCaducidad"].DefaultCellStyle.Format = "d";
+                    }
+
+                    if (dataGridView2.Columns.Contains("idProducto"))
+                        dataGridView2.Columns["idProducto"].Visible = false;
+
+                    if (dataGridView2.Columns.Contains("ProximaCaducidad"))
+                        dataGridView2.Columns["ProximaCaducidad"].Visible = false;
+
                 }
             }
             catch (Exception ex)
@@ -224,11 +268,7 @@ namespace VetPet_.Angie
             {
                 if (e.RowIndex >= 0)
                 {
-                    // Obtener el idMascota y nombre de la mascota seleccionada
-                    int idMedicamento = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idProducto"].Value);
-                    //string nombreMascota = dataGridView1.Rows[e.RowIndex].Cells["Mascota"].Value.ToString();
-
-                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
+                        int idMedicamento = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idProducto"].Value);
                     parentForm.formularioHijo(new VentasDeseaAgregarProducto(parentForm, idMedicamento,idCita));
                 }
             }
@@ -489,5 +529,6 @@ namespace VetPet_.Angie
                 StockModificado.Clear();
             }
         }
+
     }
 }

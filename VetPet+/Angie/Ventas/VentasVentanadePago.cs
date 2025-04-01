@@ -120,14 +120,20 @@ namespace VetPet_
 
             textBox17.Text = montoRestante.ToString();
 
-            if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
+            if (sumaTotalProductos != 0)  // >= para cubrir posibles redondeos
             {
-                textBox7.Text = "Pagado";
+                if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
+                {
+                    textBox7.Text = "Pagado";
+                }
             }
-            else
+            else 
             {
-                textBox17.Text = montoRestante.ToString("0.00");  // Mostrar saldo pendiente si lo hay
-            }
+                if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
+                {
+                    textBox7.Text = "Pagado";
+                }
+            } 
         }
         public void CargarServicios(int idCita)
         {
@@ -352,7 +358,7 @@ namespace VetPet_
 
         private void textBox15_Click(object sender, EventArgs e)
         {
-            parentForm.formularioHijo(new ConsultarCita(parentForm)); // Pasamos la referencia de Form1 a 
+            parentForm.formularioHijo(new ConsultarCita(parentForm,idCita1)); // Pasamos la referencia de Form1 a 
         }
 
         private void textBox13_Click(object sender, EventArgs e)
@@ -371,14 +377,14 @@ namespace VetPet_
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, totalGeneral,stock, idCita1);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,0, totalGeneral,stock, idCita1,0);
             VentasAgregarProducto.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasAgregarProducto); // Usar la misma instancia
         }
 
         private void textBox11_Click(object sender, EventArgs e)
         {
-            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, totalGeneral, stock,idCita1);
+            VentasAgregarMedicamento ventasAgregarMedicamento = new VentasAgregarMedicamento(parentForm, 0, totalGeneral, stock,idCita1,0);
             ventasAgregarMedicamento.FormularioOrigen = "VentasVentanadePago"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(ventasAgregarMedicamento); // Usar la misma instancia
         }
@@ -432,8 +438,6 @@ namespace VetPet_
                     mismetodos.CerrarConexion();
                 }
 
-                // Actualizar stock 
-
                 try
                 {
                     mismetodos.AbrirConexion();
@@ -441,41 +445,89 @@ namespace VetPet_
                     foreach (DataRow row in dtProductos.Rows)
                     {
                         int idProducto = Convert.ToInt32(row["idProducto"]);
-                        string nombre = Convert.ToString(row["Producto"]);
                         decimal precio = Convert.ToDecimal(row["Precio"]);
+                        string nombre = Convert.ToString(row["Producto"]);
                         decimal total = Convert.ToDecimal(row["Total"]);
 
                         // Calcular la cantidad vendida (Total / Precio)
                         int cantidadVendida = (int)Math.Round(total / precio, MidpointRounding.AwayFromZero);
 
-                        // Obtener el stock actual del producto
-                        string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
-                        int stockActual;
                         ListaProductos.Add(Tuple.Create(nombre, precio, cantidadVendida));
 
-                        using (SqlCommand cmdStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
+                        // Obtener lotes disponibles ordenados por fecha de caducidad (los que caducan primero)
+                        string queryLotes = @"
+                        SELECT idLote_Producto, stock 
+                        FROM Lote_Producto 
+                        WHERE idProducto = @idProducto
+                          AND estado = 'A'
+                          AND (fechaCaducidad IS NULL OR fechaCaducidad >= GETDATE())
+                        ORDER BY ISNULL(fechaCaducidad, '9999-12-31') ASC;";
+
+                        DataTable lotes = new DataTable();
+                        using (SqlCommand cmdLotes = new SqlCommand(queryLotes, mismetodos.GetConexion()))
                         {
-                            cmdStock.Parameters.AddWithValue("@idProducto", idProducto);
-                            stockActual = Convert.ToInt32(cmdStock.ExecuteScalar());
+                            cmdLotes.Parameters.AddWithValue("@idProducto", idProducto);
+                            using (SqlDataAdapter da = new SqlDataAdapter(cmdLotes))
+                            {
+                                da.Fill(lotes);
+                            }
                         }
 
-                        // Calcular el nuevo stock
-                        int nuevoStock = stockActual - cantidadVendida;
+                        int cantidadRestante = cantidadVendida;
 
-                        // Actualizar el stock en la base de datos
-                        string updateQuery = "UPDATE Producto SET stock = @nuevoStock WHERE idProducto = @idProducto;";
-
-                        using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, mismetodos.GetConexion()))
+                        // Procesar cada lote hasta cubrir la cantidad vendida
+                        foreach (DataRow lote in lotes.Rows)
                         {
-                            cmdUpdate.Parameters.AddWithValue("@nuevoStock", nuevoStock);
-                            cmdUpdate.Parameters.AddWithValue("@idProducto", idProducto);
-                            cmdUpdate.ExecuteNonQuery();
+                            int idLote = Convert.ToInt32(lote["idLote_Producto"]);
+                            int stockLote = Convert.ToInt32(lote["stock"]);
+
+                            if (cantidadRestante <= 0) break;
+
+                            int cantidadADescontar = Math.Min(stockLote, cantidadRestante);
+                            int nuevoStockLote = stockLote - cantidadADescontar;
+
+                            // Actualizar el lote específico
+                            string updateLoteQuery = @"
+                            UPDATE Lote_Producto 
+                            SET stock = @nuevoStock 
+                            WHERE idLote_Producto = @idLote;";
+
+                            using (SqlCommand cmdUpdateLote = new SqlCommand(updateLoteQuery, mismetodos.GetConexion()))
+                            {
+                                cmdUpdateLote.Parameters.AddWithValue("@nuevoStock", nuevoStockLote);
+                                cmdUpdateLote.Parameters.AddWithValue("@idLote", idLote);
+                                cmdUpdateLote.ExecuteNonQuery();
+                            }
+
+                            cantidadRestante -= cantidadADescontar;
                         }
 
-                        MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");
+                        if (cantidadRestante > 0)
+                        {
+                            MessageBox.Show($"Advertencia: No hay suficiente stock para el producto {nombre}. Faltaron {cantidadRestante} unidades.");
+                        }
+
+                        // Insertar en Venta_Producto (relación entre venta y producto)
+                        string insertVentaProducto = @"
+                        INSERT INTO Venta_Producto (idVenta, idProducto, estado)
+                        VALUES (@idVenta, @idProducto, 'A');";
+
+                        using (SqlCommand cmdVentaProducto = new SqlCommand(insertVentaProducto, mismetodos.GetConexion()))
+                        {
+                            cmdVentaProducto.Parameters.AddWithValue("@idVenta", idVenta);
+                            cmdVentaProducto.Parameters.AddWithValue("@idProducto", idProducto);
+                            cmdVentaProducto.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show($"Producto: {nombre} - Unidades vendidas: {cantidadVendida}");
                     }
 
-                    MessageBox.Show("Stock actualizado correctamente.");
+
+                    string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
+                    string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
+
+                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
+                       ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -484,14 +536,16 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
+                    dtProductos.Dispose();
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_1-" + fechaLimpia.Replace("-", "");
-                    parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
+                    parentForm.formularioHijo(new 
+                        VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
                         ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
-                    //parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
-                    //ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString(), total.ToString())); // Pasamos la referencia de Form1 a |
+
                 }
             }
         }
+
     }
 }

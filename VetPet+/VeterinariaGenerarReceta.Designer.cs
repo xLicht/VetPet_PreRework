@@ -73,6 +73,7 @@
             this.BtnVolver.Tag = "1";
             this.BtnVolver.Text = "Volver";
             this.BtnVolver.UseVisualStyleBackColor = false;
+            this.BtnVolver.Click += new System.EventHandler(this.BtnVolver_Click);
             // 
             // panel1
             // 

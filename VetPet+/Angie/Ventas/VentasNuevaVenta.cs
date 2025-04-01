@@ -103,6 +103,7 @@ namespace VetPet_
                     // Si ya existe, actualizar el total sumando el nuevo subtotal
                     existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + Convert.ToDecimal(row["Total"]);
                 }
+
             }
         }
         public void ActualizarSumaTotal()
@@ -119,7 +120,7 @@ namespace VetPet_
 
             decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
             textBox2.Text = montoRestante.ToString();
-            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos)
+            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos && sumaTotalProductos != 0) 
             {
                 textBox7.Text = "Pagado";
             }
@@ -194,6 +195,9 @@ namespace VetPet_
 
             ActualizarSumaTotal();
 
+            if (dataGridView2.Columns.Contains("idProducto"))
+                dataGridView2.Columns["idProducto"].Visible = false;
+
         }
 
         private void VentasNuevaVenta_Resize(object sender, EventArgs e)
@@ -229,7 +233,7 @@ namespace VetPet_
 
         private void textBox12_Click(object sender, EventArgs e)
         {
-            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm,idCita,sumaTotalProductos,stock);
+            VentasAgregarProducto VentasAgregarProducto = new VentasAgregarProducto(parentForm);
             VentasAgregarProducto.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOri
             parentForm.formularioHijo(VentasAgregarProducto); // Pasamos la referencia de Form1 a 
         }
@@ -284,7 +288,14 @@ namespace VetPet_
                         cmd.Parameters.AddWithValue("@efectivo", (object)efectivo ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idCita", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
+                        if (idDueño1 != 0)
+                        {
+                            cmd.Parameters.AddWithValue("@idPersona", idDueño1);
+                        }
+                        else 
+                        { 
+                            cmd.Parameters.AddWithValue("@idPersona", DBNull.Value);                             
+                        }
                         cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
                         cmd.Parameters.AddWithValue("@estado", estado);
 
@@ -303,7 +314,6 @@ namespace VetPet_
                 }
 
                 // Actualizar stock 
-
                 try
                 {
                     mismetodos.AbrirConexion();
@@ -320,42 +330,88 @@ namespace VetPet_
 
                         ListaProductos.Add(Tuple.Create(nombre, precio, cantidadVendida));
 
-                        string queryStock = "SELECT stock FROM Producto WHERE idProducto = @idProducto;";
-                        int stockActual;
+                        // Obtener lotes disponibles ordenados por fecha de caducidad (los que caducan primero)
+                        string queryLotes = @"
+                        SELECT idLote_Producto, stock 
+                        FROM Lote_Producto 
+                        WHERE idProducto = @idProducto
+                          AND estado = 'A'
+                          AND (fechaCaducidad IS NULL OR fechaCaducidad >= GETDATE())
+                        ORDER BY ISNULL(fechaCaducidad, '9999-12-31') ASC;";
 
-                        using (SqlCommand cmdStock = new SqlCommand(queryStock, mismetodos.GetConexion()))
+                        DataTable lotes = new DataTable();
+                        using (SqlCommand cmdLotes = new SqlCommand(queryLotes, mismetodos.GetConexion()))
                         {
-                            cmdStock.Parameters.AddWithValue("@idProducto", idProducto);
-                            stockActual = Convert.ToInt32(cmdStock.ExecuteScalar());
+                            cmdLotes.Parameters.AddWithValue("@idProducto", idProducto);
+                            using (SqlDataAdapter da = new SqlDataAdapter(cmdLotes))
+                            {
+                                da.Fill(lotes);
+                            }
                         }
 
-                        // Calcular el nuevo stock
-                        int nuevoStock = stockActual - cantidadVendida;
+                        int cantidadRestante = cantidadVendida;
 
-                        // Actualizar el stock en la base de datos
-                        string updateQuery = "UPDATE Producto SET stock = @nuevoStock WHERE idProducto = @idProducto;";
-
-                        using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, mismetodos.GetConexion()))
+                        // Procesar cada lote hasta cubrir la cantidad vendida
+                        foreach (DataRow lote in lotes.Rows)
                         {
-                            cmdUpdate.Parameters.AddWithValue("@nuevoStock", nuevoStock);
-                            cmdUpdate.Parameters.AddWithValue("@idProducto", idProducto);
-                            cmdUpdate.ExecuteNonQuery();
+                            int idLote = Convert.ToInt32(lote["idLote_Producto"]);
+                            int stockLote = Convert.ToInt32(lote["stock"]);
+
+                            if (cantidadRestante <= 0) break;
+
+                            int cantidadADescontar = Math.Min(stockLote, cantidadRestante);
+                            int nuevoStockLote = stockLote - cantidadADescontar;
+
+                            // Actualizar el lote específico
+                            string updateLoteQuery = @"
+                            UPDATE Lote_Producto 
+                            SET stock = @nuevoStock 
+                            WHERE idLote_Producto = @idLote;";
+
+                            using (SqlCommand cmdUpdateLote = new SqlCommand(updateLoteQuery, mismetodos.GetConexion()))
+                            {
+                                cmdUpdateLote.Parameters.AddWithValue("@nuevoStock", nuevoStockLote);
+                                cmdUpdateLote.Parameters.AddWithValue("@idLote", idLote);
+                                cmdUpdateLote.ExecuteNonQuery();
+                            }
+
+                            cantidadRestante -= cantidadADescontar;
                         }
 
-                        MessageBox.Show($"Producto ID: {idProducto} - Stock actualizado: {nuevoStock} (Se vendieron {cantidadVendida} unidades)");
+                        if (cantidadRestante > 0)
+                        {
+                            MessageBox.Show($"Advertencia: No hay suficiente stock para el producto {nombre}. Faltaron {cantidadRestante} unidades.");
+                        }
+
+                        // Insertar en Venta_Producto (relación entre venta y producto)
+                        string insertVentaProducto = @"
+                        INSERT INTO Venta_Producto (idVenta, idProducto, estado)
+                        VALUES (@idVenta, @idProducto, 'A');";
+
+                        using (SqlCommand cmdVentaProducto = new SqlCommand(insertVentaProducto, mismetodos.GetConexion()))
+                        {
+                            cmdVentaProducto.Parameters.AddWithValue("@idVenta", idVenta);
+                            cmdVentaProducto.Parameters.AddWithValue("@idProducto", idProducto);
+                            cmdVentaProducto.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show($"Producto: {nombre} - Unidades vendidas: {cantidadVendida}");
                     }
+
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
+
                     parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
-                        ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
+                 ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al actualizar el stock: " + ex.Message);
+                    MessageBox.Show("Error al procesar la venta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
                     mismetodos.CerrarConexion();
+                    dtProductos.Dispose();
                 }
             }
         }

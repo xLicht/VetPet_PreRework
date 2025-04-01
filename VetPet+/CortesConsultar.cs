@@ -37,7 +37,7 @@ namespace VetPet_
             ConfigurarDataGridViewMontos();
         }
 
-        
+
 
         private void CargarDatosCorte()
         {
@@ -47,7 +47,6 @@ namespace VetPet_
                 {
                     connection.Open();
 
-                    // Consulta para obtener los datos principales del corte
                     string queryCorte = @"
                     SELECT 
                         c.fechaInicio,
@@ -75,25 +74,29 @@ namespace VetPet_
                                 dtpFechaInicio.Value = Convert.ToDateTime(reader["fechaInicio"]);
                                 dtpFechaFin.Value = Convert.ToDateTime(reader["fechaFin"]);
 
-                                // Mostrar totales
-                                txtEfectivoCaja.Text = Convert.ToDecimal(reader["totalEfectivo"]).ToString("N2");
-                                txtDocumentosCaja.Text = Convert.ToDecimal(reader["totalTarjeta"]).ToString("N2");
-                                double totalGeneral = Convert.ToDouble(reader["totalEfectivo"]) + Convert.ToDouble(reader["totalTarjeta"]);
-                                txtTotalCaja.Text = totalGeneral.ToString("N2");
+                                // Mostrar fondo de caja
+                                decimal fondoDeCaja = Convert.ToDecimal(reader["fondoDeCaja"]);
+                                txtCantidadCajaCajas.Text = fondoDeCaja.ToString("N2");
+                                txtCantidadCajaVentas.Text = fondoDeCaja.ToString("N2");
+
+                                // Mostrar totales de caja (efectivo + tarjeta + fondo)
+                                decimal totalEfectivo = Convert.ToDecimal(reader["totalEfectivo"]);
+                                decimal totalTarjeta = Convert.ToDecimal(reader["totalTarjeta"]);
+
+                                txtEfectivoCaja.Text = totalEfectivo.ToString("N2");
+                                txtDocumentosCaja.Text = totalTarjeta.ToString("N2");
+
+                                // Total Caja = Efectivo contado + Documentos + Fondo
+                                decimal totalCaja = totalEfectivo + totalTarjeta + fondoDeCaja;
+                                txtTotalCaja.Text = totalCaja.ToString("N2");
 
                                 // Cargar ventas del periodo
-                                CargarVentasPorRangoFechas(Convert.ToDateTime(reader["fechaInicio"]), Convert.ToDateTime(reader["fechaFin"]));
-
-                                // Calcular diferencia
-                                CalcularDiferencia();
+                                CargarVentasPorRangoFechas(
+                                    Convert.ToDateTime(reader["fechaInicio"]),
+                                    Convert.ToDateTime(reader["fechaFin"]));
                             }
                         }
                     }
-
-                  
-
-                    // Aquí deberías cargar también los detalles de billetes y monedas
-                    // (Necesitarías tablas adicionales en tu base de datos para esto)
                 }
             }
             catch (SqlException sqlEx)
@@ -116,7 +119,6 @@ namespace VetPet_
                 {
                     connection.Open();
 
-                    // Ajustar las fechas para incluir todo el día
                     DateTime fechaInicioAjustada = fechaInicio.Date;
                     DateTime fechaFinAjustada = fechaFin.Date.AddDays(1).AddSeconds(-1);
 
@@ -147,72 +149,65 @@ namespace VetPet_
                     CalcularTotalesVentas(ventas);
                 }
             }
-            catch (SqlException sqlEx)
-            {
-                MessageBox.Show($"Error de base de datos: {sqlEx.Message}", "Error SQL",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: {ex.Message}", "Error",
+                MessageBox.Show($"Error al cargar ventas: {ex.Message}", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ConfigurarDataGridViewCentrado()
         {
-            // Configuración básica
             dataGridView4.AutoGenerateColumns = true;
             dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Centrar todo el contenido de las celdas
             dataGridView4.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Configuración específica para columnas
             if (dataGridView4.Columns["Monto"] != null)
             {
                 dataGridView4.Columns["Monto"].DefaultCellStyle.Format = "N2";
                 dataGridView4.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
-            // Estilo de las cabeceras
             dataGridView4.EnableHeadersVisualStyles = false;
             dataGridView4.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
             dataGridView4.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView4.Font, FontStyle.Bold);
-
-            // Ocultar encabezados de fila
             dataGridView4.RowHeadersVisible = false;
-
-            // Alternar colores de filas para mejor legibilidad
             dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
         }
 
         private void CalcularTotalesVentas(DataTable ventas)
         {
-            double totalEfectivo = 0;
-            double totalTarjeta = 0;
-            double totalGeneral = 0;
+            decimal totalEfectivo = 0;
+            decimal totalTarjeta = 0;
+            decimal fondoDeCaja = Convert.ToDecimal(txtCantidadCajaVentas.Text);
 
             foreach (DataRow row in ventas.Rows)
             {
-                totalGeneral += Convert.ToDouble(row["Monto"]);
-
                 string tipoPago = row["Tipo de Pago"].ToString();
+                decimal monto = Convert.ToDecimal(row["Monto"]);
+
                 if (tipoPago == "Efectivo")
-                    totalEfectivo += Convert.ToDouble(row["Monto"]);
+                    totalEfectivo += monto;
                 else if (tipoPago == "Tarjeta")
-                    totalTarjeta += Convert.ToDouble(row["Monto"]);
+                    totalTarjeta += monto;
                 else if (tipoPago == "Mixto")
                 {
-                    totalEfectivo += Convert.ToDouble(row["Monto"]) / 2;
-                    totalTarjeta += Convert.ToDouble(row["Monto"]) / 2;
+                    totalEfectivo += monto / 2;
+                    totalTarjeta += monto / 2;
                 }
             }
 
+            // Mostrar valores parciales
             txtEfectivoVentas.Text = totalEfectivo.ToString("N2");
             txtDocumentosVentas.Text = totalTarjeta.ToString("N2");
-            txtTotalVentas.Text = totalGeneral.ToString("N2");
+
+            // Total Ventas = Efectivo + Tarjeta + Fondo de Caja
+            decimal totalVentas = totalEfectivo + totalTarjeta + fondoDeCaja;
+            txtTotalVentas.Text = totalVentas.ToString("N2");
+
+            // Calcular diferencia
+            CalcularDiferencia();
         }
 
         private void CalcularDiferencia()
@@ -223,17 +218,21 @@ namespace VetPet_
                 decimal diferencia = totalVentas - totalCaja;
                 txtDiferencia.Text = diferencia.ToString("N2");
 
+                // Color según resultado
                 if (diferencia > 0)
                 {
-                    txtDiferencia.BackColor = Color.LightPink;
+                    txtDiferencia.BackColor = Color.LightPink; // Faltante
+                    txtDiferencia.ForeColor = Color.Black;
                 }
                 else if (diferencia < 0)
                 {
-                    txtDiferencia.BackColor = Color.LightGreen;
+                    txtDiferencia.BackColor = Color.LightGreen; // Sobrante
+                    txtDiferencia.ForeColor = Color.Black;
                 }
                 else
                 {
-                    txtDiferencia.BackColor = SystemColors.Window;
+                    txtDiferencia.BackColor = SystemColors.Window; // Exacto
+                    txtDiferencia.ForeColor = SystemColors.WindowText;
                 }
             }
         }

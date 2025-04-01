@@ -71,7 +71,7 @@
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label10.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(1002, 469);
+            this.label10.Location = new System.Drawing.Point(1002, 459);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 25);
             this.label10.TabIndex = 169;
@@ -83,7 +83,7 @@
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label9.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(1002, 395);
+            this.label9.Location = new System.Drawing.Point(1002, 375);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 25);
             this.label9.TabIndex = 168;
@@ -95,7 +95,7 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label8.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(1010, 244);
+            this.label8.Location = new System.Drawing.Point(1010, 229);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(176, 25);
             this.label8.TabIndex = 166;
@@ -104,9 +104,10 @@
             // textBox14
             // 
             this.textBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox14.Location = new System.Drawing.Point(1239, 500);
+            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox14.Location = new System.Drawing.Point(1239, 490);
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(128, 22);
+            this.textBox14.Size = new System.Drawing.Size(128, 30);
             this.textBox14.TabIndex = 165;
             this.textBox14.Text = "Tarjeta";
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -115,9 +116,10 @@
             // textBox13
             // 
             this.textBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox13.Location = new System.Drawing.Point(1239, 426);
+            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox13.Location = new System.Drawing.Point(1239, 408);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(128, 22);
+            this.textBox13.Size = new System.Drawing.Size(128, 30);
             this.textBox13.TabIndex = 164;
             this.textBox13.Text = "Efectivo";
             this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -126,11 +128,11 @@
             // textBox12
             // 
             this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox12.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox12.Location = new System.Drawing.Point(39, 570);
+            this.textBox12.Location = new System.Drawing.Point(39, 535);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(254, 22);
+            this.textBox12.Size = new System.Drawing.Size(254, 30);
             this.textBox12.TabIndex = 163;
             this.textBox12.Text = "Agregar Productos";
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -139,11 +141,11 @@
             // textBox11
             // 
             this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox11.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox11.Location = new System.Drawing.Point(299, 570);
+            this.textBox11.Location = new System.Drawing.Point(299, 535);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(254, 22);
+            this.textBox11.Size = new System.Drawing.Size(254, 30);
             this.textBox11.TabIndex = 162;
             this.textBox11.Text = "Agregar Medicamentos";
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -151,33 +153,39 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(1154, 469);
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(1154, 454);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(213, 22);
+            this.textBox10.Size = new System.Drawing.Size(213, 30);
             this.textBox10.TabIndex = 161;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(1154, 395);
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(1154, 372);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(213, 22);
+            this.textBox9.Size = new System.Drawing.Size(213, 30);
             this.textBox9.TabIndex = 160;
             // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox8.Location = new System.Drawing.Point(688, 570);
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(688, 535);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(254, 22);
+            this.textBox8.Size = new System.Drawing.Size(254, 30);
             this.textBox8.TabIndex = 159;
             this.textBox8.Text = "Subtotal:   ";
             // 
             // textBox7
             // 
             this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox7.Location = new System.Drawing.Point(1007, 542);
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(1007, 535);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(360, 22);
+            this.textBox7.Size = new System.Drawing.Size(360, 30);
             this.textBox7.TabIndex = 158;
             this.textBox7.Text = "NoPagado";
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -185,9 +193,10 @@
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox6.Location = new System.Drawing.Point(1007, 351);
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(1007, 314);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(360, 22);
+            this.textBox6.Size = new System.Drawing.Size(360, 30);
             this.textBox6.TabIndex = 157;
             this.textBox6.Text = "Pago";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -195,7 +204,7 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(1219, 244);
+            this.textBox4.Location = new System.Drawing.Point(1219, 229);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(156, 30);
             this.textBox4.TabIndex = 155;
@@ -203,7 +212,7 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(1219, 176);
+            this.textBox3.Location = new System.Drawing.Point(1221, 172);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(156, 34);
             this.textBox3.TabIndex = 154;
@@ -214,7 +223,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(1010, 179);
+            this.label3.Location = new System.Drawing.Point(1010, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 25);
             this.label3.TabIndex = 153;
@@ -235,7 +244,7 @@
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 60;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(903, 356);
+            this.dataGridView2.Size = new System.Drawing.Size(903, 319);
             this.dataGridView2.TabIndex = 150;
             // 
             // button4
@@ -325,28 +334,30 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(210)))), ((int)(((byte)(255)))));
-            this.textBox1.Location = new System.Drawing.Point(39, 180);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(39, 172);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(903, 22);
+            this.textBox1.Size = new System.Drawing.Size(903, 30);
             this.textBox1.TabIndex = 151;
             this.textBox1.Text = "Productos/Medicamentos";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(746, 598);
+            this.textBox2.Location = new System.Drawing.Point(746, 571);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(196, 22);
             this.textBox2.TabIndex = 170;
+            this.textBox2.Visible = false;
             // 
             // textBox5
             // 
             this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(175)))), ((int)(((byte)(204)))));
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox5.Location = new System.Drawing.Point(1007, 285);
+            this.textBox5.Location = new System.Drawing.Point(1007, 265);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(368, 22);
+            this.textBox5.Size = new System.Drawing.Size(368, 30);
             this.textBox5.TabIndex = 171;
             this.textBox5.Text = "Seleccionar Dueño";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -377,7 +388,7 @@
             // textBox15
             // 
             this.textBox15.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.Location = new System.Drawing.Point(1221, 128);
+            this.textBox15.Location = new System.Drawing.Point(1221, 119);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(156, 34);
             this.textBox15.TabIndex = 172;

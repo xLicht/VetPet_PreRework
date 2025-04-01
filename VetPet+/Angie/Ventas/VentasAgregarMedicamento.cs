@@ -22,7 +22,8 @@ namespace VetPet_.Angie
         private static DataTable dtProductos = new DataTable();
         public string FormularioOrigen {get;set;}
         int idCita = 0; 
-        public VentasAgregarMedicamento(Form1 parent,int idProducto,decimal subTotal,int stock, int idCita)
+        int cantidad = 0;
+        public VentasAgregarMedicamento(Form1 parent,int idProducto,decimal subTotal,int stock, int idCita, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;  
@@ -33,9 +34,11 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView2);
             PersonalizarDataGridView(dataGridView3);
+            this.idCita = idCita;
+            this.cantidad = cantidad;
             Cargar();
             CargarProductosEnDataGridView(idProducto, subTotal);
-            this.idCita = idCita;
+          
 
             if (dtProductos.Rows.Count > 0)
             {
@@ -46,7 +49,7 @@ namespace VetPet_.Angie
             }
 
         }
-        public VentasAgregarMedicamento(Form1 parent, int idProducto, decimal subTotal, int stock)
+        public VentasAgregarMedicamento(Form1 parent, int idProducto, decimal subTotal, int stock, int cantidad)
         {
             InitializeComponent();
             parentForm = parent;  
@@ -57,7 +60,10 @@ namespace VetPet_.Angie
             dataGridView2.DataBindingComplete += dataGridView1_DataBindingComplete;
             PersonalizarDataGridView(dataGridView2);
             PersonalizarDataGridView(dataGridView3);
+
+            this.cantidad = cantidad;
             Cargar();
+
             CargarProductosEnDataGridView(idProducto, subTotal);
 
             if (dtProductos.Rows.Count > 0)
@@ -103,13 +109,18 @@ namespace VetPet_.Angie
                 mismetodos.AbrirConexion();
 
                 string query = @"
-        SELECT 
-            p.idProducto AS idProducto,
-            p.nombre AS Producto,
-            p.precioVenta AS Precio
-        FROM Producto p
-        INNER JOIN Marca m ON p.idMarca = m.idMarca
-        WHERE P.idTipoProducto = 3;";
+SELECT 
+    p.idProducto,
+    p.nombre AS Producto,
+    lp.precioVenta AS Precio,
+    SUM(lp.stock) AS StockDisponible
+FROM Producto p
+INNER JOIN Lote_Producto lp ON p.idProducto = lp.idProducto
+INNER JOIN Marca m ON p.idMarca = m.idMarca
+WHERE p.idTipoProducto = 3
+  AND lp.estado = 'A'
+  AND (lp.fechaCaducidad IS NULL OR lp.fechaCaducidad >= GETDATE())
+GROUP BY p.idProducto, p.nombre, lp.precioVenta;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter da = new SqlDataAdapter(comando))
@@ -117,20 +128,18 @@ namespace VetPet_.Angie
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Si es la primera vez que se usa, inicializar dtProductos y agregar la columna "Total"
                     if (dtProductos.Columns.Count == 0)
                     {
-                        dtProductos = dt.Clone(); // Clonar estructura sin datos
-                        dtProductos.Columns.Add("Total", typeof(decimal)); // Agregar columna Total
+                        dtProductos = dt.Clone();
+                        dtProductos.Columns.Add("Total", typeof(decimal));
+                        dtProductos.Columns.Add("Cantidad", typeof(int));
                     }
 
-                    // Buscar si el producto ya existe en dtProductos
                     DataRow existingRow = dtProductos.AsEnumerable()
                         .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
 
                     if (existingRow == null)
                     {
-                        // Buscar el producto en dt y agregarlo a dtProductos
                         DataRow newRow = dt.AsEnumerable()
                             .FirstOrDefault(r => r.Field<int>("idProducto") == idProducto);
 
@@ -138,32 +147,39 @@ namespace VetPet_.Angie
                         {
                             DataRow rowToAdd = dtProductos.NewRow();
                             rowToAdd.ItemArray = newRow.ItemArray;
-                            rowToAdd["Total"] = subTotal; // Asignar el total
+                            rowToAdd["Total"] = subTotal;
+                            rowToAdd["Cantidad"] = cantidad;
                             dtProductos.Rows.Add(rowToAdd);
                         }
                     }
                     else
                     {
-                        // Si el producto ya está en la tabla, sumarle el subtotal
                         existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + subTotal;
+                        existingRow["Cantidad"] = Convert.ToInt32(existingRow["Cantidad"]) + cantidad;
                     }
 
-                    // Filtrar y actualizar el DataGridView
                     BindingSource bs = new BindingSource();
                     bs.DataSource = dtProductos;
                     bs.Filter = "[Total] IS NOT NULL";
                     dataGridView3.DataSource = bs;
                     ActualizarTotal();
+
+                    if (dataGridView3.Columns.Contains("idProducto"))
+                        dataGridView3.Columns["idProducto"].Visible = false;
+
+                    if (dataGridView3.Columns.Contains("StockDisponible"))
+                        dataGridView3.Columns["StockDisponible"].Visible = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar productos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar productos tipo 3: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
             }
         }
-
-
-        // Método para calcular la suma y mostrarla en textBox2
         private void ActualizarTotal()
         {
             decimal sumaTotal = dtProductos.AsEnumerable()
@@ -179,18 +195,30 @@ namespace VetPet_.Angie
             {
                 mismetodos.AbrirConexion();
                 string query = @"
-                SELECT 
-                    P.idProducto,
-                    P.nombre AS Producto,
-                    P.precioVenta AS Precio,
-                    P.stock AS Inventario,
-                    M.nombre AS Marca
-                FROM 
-                    Producto P
-                JOIN 
-                    Marca M ON P.idMarca = M.idMarca
-                WHERE 
-                    P.idTipoProducto = 3;";
+SELECT 
+    p.idProducto,
+    p.nombre AS Producto,
+    lp.precioVenta AS Precio,
+    SUM(lp.stock) AS Inventario,
+    m.nombre AS Marca,
+    MIN(lp.fechaCaducidad) AS ProximaCaducidad,
+    tp.nombre AS TipoProducto
+FROM 
+    Producto p
+INNER JOIN 
+    Lote_Producto lp ON p.idProducto = lp.idProducto
+INNER JOIN 
+    Marca m ON p.idMarca = m.idMarca
+INNER JOIN
+    TipoProducto tp ON p.idTipoProducto = tp.idTipoProducto
+WHERE 
+    p.idTipoProducto = 3
+    AND lp.estado = 'A'
+    AND (lp.fechaCaducidad IS NULL OR lp.fechaCaducidad >= GETDATE())
+GROUP BY 
+    p.idProducto, p.nombre, lp.precioVenta, m.nombre, tp.nombre
+ORDER BY 
+    p.nombre;";
 
                 using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
                 using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
@@ -198,33 +226,44 @@ namespace VetPet_.Angie
                     DataTable tabla = new DataTable();
                     adaptador.Fill(tabla);
 
-                    // Verificar si hay cambios de stock en memoria
-                    foreach (DataRow row in tabla.Rows)
-                    {
-                        int idProducto = Convert.ToInt32(row["idProducto"]);
-                        int stockModificado = StockManager.ObtenerStockModificado(idProducto);
+                    // Configurar DataGridView
+                    dataGridView2.DataSource = tabla;
+                    dataGridView2.Columns["idProducto"].Visible = false;
 
-                        if (stockModificado != -1) // Si hay cambios en el stock
-                        {
-                            row["Inventario"] = stockModificado; // Actualizar el stock en la tabla
-                        }
+                    // Formatear columnas
+                    if (dataGridView2.Columns["Precio"] != null)
+                    {
+                        dataGridView2.Columns["Precio"].DefaultCellStyle.Format = "C2";
+                        dataGridView2.Columns["Precio"].HeaderText = "Precio Unitario";
                     }
 
-                    // Asignar el DataTable al DataGridView
-                    dataGridView2.DataSource = tabla;
-                    dataGridView2.Columns["idProducto"].Visible = false; // Oculta la columna
+                    if (dataGridView2.Columns["ProximaCaducidad"] != null)
+                    {
+                        dataGridView2.Columns["ProximaCaducidad"].DefaultCellStyle.Format = "d";
+                        dataGridView2.Columns["ProximaCaducidad"].HeaderText = "Próx. Caducidad";
+                    }
+
+                    if (dataGridView2.Columns["Inventario"] != null)
+                    {
+                        dataGridView2.Columns["Inventario"].HeaderText = "Stock Total";
+                    }
+
+                    if (dataGridView2.Columns.Contains("ProximaCaducidad"))
+                        dataGridView2.Columns["ProximaCaducidad"].Visible = false;
+
+                    if (dataGridView2.Columns.Contains("TipoProducto"))
+                        dataGridView2.Columns["TipoProducto"].Visible = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error al cargar productos tipo 3: " + ex.Message);
             }
             finally
             {
                 mismetodos.CerrarConexion();
             }
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
