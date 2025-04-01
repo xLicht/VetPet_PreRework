@@ -69,12 +69,15 @@ namespace VetPet_
             InitializeComponent();
             parentForm = parent;
 
-            txtTotalDinero.Text = DatosGlobales.FondoCaja.ToString();  // Muestra el FondoCaja
+            txtCantidadCajaCajas.Text = DatosGlobales.FondoCaja.ToString();
+            txtCantidadCajaVentas.Text = DatosGlobales.FondoCaja.ToString();
+
             txtUsuario.Text = DatosGlobales.NombreUsuario;     // Muestra el NombreUsuario
-            dineroenlacaja = Convert.ToInt32(txtTotalDinero.Text);
+            dineroenlacaja = Convert.ToInt32(txtCantidadCajaCajas.Text);
             // Añadir el FondoCaja al total de caja inicial
             totalefectivo = DatosGlobales.FondoCaja; // Inicializamos con el fondo de caja
             txtTotalCaja.Text = totalefectivo.ToString("N2"); // Mostramos el total inicial
+            txtTotalVentas.Text = totalefectivo.ToString("N2"); // Mostramos el total inicial
 
             // Establecer valores por defecto para los DateTimePicker
             dtpFechaInicio.Value = DateTime.Today;
@@ -175,30 +178,33 @@ namespace VetPet_
         {
             double totalEfectivo = 0;
             double totalTarjeta = 0;
-            double totalGeneral = 0;
+            double fondoInicial = DatosGlobales.FondoCaja; // Obtenemos el fondo de caja
 
             foreach (DataRow row in ventas.Rows)
             {
-                totalGeneral += Convert.ToDouble(row["Monto"]);
-
                 string tipoPago = row["Tipo de Pago"].ToString();
+                double monto = Convert.ToDouble(row["Monto"]);
+
                 if (tipoPago == "Efectivo")
-                    totalEfectivo += Convert.ToDouble(row["Monto"]);
+                    totalEfectivo += monto;
                 else if (tipoPago == "Tarjeta")
-                    totalTarjeta += Convert.ToDouble(row["Monto"]);
+                    totalTarjeta += monto;
                 else if (tipoPago == "Mixto")
                 {
-                    totalEfectivo += Convert.ToDouble(row["Monto"]) / 2;
-                    totalTarjeta += Convert.ToDouble(row["Monto"]) / 2;
+                    totalEfectivo += monto / 2;
+                    totalTarjeta += monto / 2;
                 }
             }
 
+            // Mostramos los parciales (sin fondo)
             txtEfectivoVentas.Text = totalEfectivo.ToString("N2");
             txtDocumentosVentas.Text = totalTarjeta.ToString("N2");
-            txtTotalVentas.Text = totalGeneral.ToString("N2");
 
-            // Actualizar diferencia automáticamente
-            CalcularDiferencia();
+            // Total Ventas = Efectivo + Tarjeta + Fondo de Caja
+            double totalVentas = totalEfectivo + totalTarjeta + fondoInicial;
+            txtTotalVentas.Text = totalVentas.ToString("N2");
+
+            CalcularDiferencia(); // Actualizamos la diferencia
         }
 
         // Variable para llevar el conteo de montos agregados
@@ -255,21 +261,12 @@ namespace VetPet_
              dgv2total = dgv2totalprecio20 + dgv2totalprecio10 + dgv2totalprecio5 +
                 dgv2totalprecio2 + dgv2totalprecio1 + dgv2totalpreciocentavos;
 
-            txtEfectivoCaja.Text = (dgv1total + dgv2total).ToString("N2");
             totalefectivo = dgv1total + dgv2total;
+            txtEfectivoCaja.Text = totalefectivo.ToString("N2");
 
-            totalGeneral = totalefectivo + totaltarjeta;
-
-            double totalparacaja = totalGeneral + dineroenlacaja;
-
-            txtTotalCaja.Text = totalparacaja.ToString();
-
-
-
-
-     
-
-            CalcularDiferencia();
+            // Total Caja = Efectivo contado + Documentos + Fondo
+            double totalCaja = totalefectivo + totaltarjeta + dineroenlacaja;
+            txtTotalCaja.Text = totalCaja.ToString("N2");
 
 
             CalcularDiferencia();
@@ -295,23 +292,26 @@ namespace VetPet_
 
         private void CalcularDiferencia()
         {
-            // Obtener el total de ventas (convertirlo a double si es necesario)
+            // Obtener total de ventas (incluyendo fondo de caja)
             double totalVentas = Convert.ToDouble(txtTotalVentas.Text);
 
-            // Calcular diferencia
-            diferencia = totalVentas - totalGeneral;
+            // Obtener total en caja (efectivo + documentos + fondo de caja)
+            double totalCaja = Convert.ToDouble(txtTotalCaja.Text);
+
+            // Calcular diferencia (deberían ser iguales si todo cuadra)
+            diferencia = totalVentas - totalCaja;
 
             // Mostrar en el TextBox
             txtDiferencia.Text = diferencia.ToString("N2");
 
-            // Opcional: Cambiar color según si hay sobrante o faltante
+            // Cambiar color según el resultado
             if (diferencia > 0)
             {
-                txtDiferencia.BackColor = Color.LightPink; // Faltante
+                txtDiferencia.BackColor = Color.LightPink; // Faltante (hay más en ventas que en caja)
             }
             else if (diferencia < 0)
             {
-                txtDiferencia.BackColor = Color.LightGreen; // Sobrante
+                txtDiferencia.BackColor = Color.LightGreen; // Sobrante (hay más en caja que en ventas)
             }
             else
             {
@@ -331,7 +331,7 @@ namespace VetPet_
                 DateTime fechaFin = dtpFechaFin.Value;
 
                 // Obtener el fondo de caja
-                decimal fondoDeCaja = Convert.ToDecimal(txtTotalDinero.Text);
+                decimal fondoDeCaja = Convert.ToDecimal(txtCantidadCajaCajas.Text);
 
                 // Obtener totales
                 decimal totalEfectivo = Convert.ToDecimal(totalefectivo);
@@ -740,10 +740,10 @@ namespace VetPet_
             totaltarjeta += monto;
             totalGeneral = totalefectivo + totaltarjeta;
 
-            txtDocumentosCaja.Text = totaltarjeta.ToString();
+            txtDocumentosCaja.Text = totaltarjeta.ToString("N2");
 
             double totalparaCaja = totalGeneral + dineroenlacaja;
-            txtTotalCaja.Text = totalparaCaja.ToString();
+            txtTotalCaja.Text = totalparaCaja.ToString("N2");
             ActualizarTotalDocumentos();
 
             CalcularDiferencia();
@@ -755,35 +755,36 @@ namespace VetPet_
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Verificar que se hizo clic en una fila válida
+            // Verificar que se hizo clic en una fila válida (no en encabezados)
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 // Confirmar eliminación
                 DialogResult result = MessageBox.Show("¿Eliminar este monto?", "Confirmar",
-                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                                  MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     try
                     {
-                        // Obtener el monto de la columna correcta (verificar el nombre exacto)
-                        double montoEliminar = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[1].Value); // Usar índice o nombre exacto
+                        // Obtener el monto a eliminar
+                        double montoEliminar = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells["Monto"].Value);
 
                         // Eliminar la fila
                         dataGridView1.Rows.RemoveAt(e.RowIndex);
 
-                        // Actualizar total
+                        // Actualizar totales
                         totaltarjeta -= montoEliminar;
-                        ActualizarTotalDocumentos();
+                        totalGeneral = totalefectivo + totaltarjeta; // Recalcular el total general
 
-                        totalGeneral -= montoEliminar;
-                        txtTotalCaja.Text = totalGeneral.ToString();
-
-                        CalcularDiferencia();
-
+                        // Actualizar controles de interfaz
+                        txtDocumentosCaja.Text = totaltarjeta.ToString("N2");
+                        txtTotalCaja.Text = (totalGeneral + dineroenlacaja).ToString("N2");
 
                         // Renumerar filas
                         RenumerarFilas();
+
+                        // Recalcular diferencia
+                        CalcularDiferencia();
                     }
                     catch (Exception ex)
                     {
@@ -834,10 +835,10 @@ namespace VetPet_
 
         private void ActualizarTotalDocumentos()
         {
-            txtDocumentosCaja.Text = totaltarjeta.ToString();
+            txtDocumentosCaja.Text = totaltarjeta.ToString("N2");
         }
 
-        
+
 
         private void LimpiarMontos()
         {
@@ -933,7 +934,7 @@ namespace VetPet_
             // Actualizar controles de texto
             txtEfectivoCaja.Text = "0.00";
             txtDocumentosCaja.Text = "0.00";
-            txtTotalCaja.Text = DatosGlobales.FondoCaja.ToString("N2"); // Mostrar solo el fondo de caja
+            txtTotalCaja.Text = DatosGlobales.FondoCaja.ToString("N2");
             txtDiferencia.Text = "0.00";
             txtDiferencia.BackColor = SystemColors.Window;
             txtMonto.Clear();
