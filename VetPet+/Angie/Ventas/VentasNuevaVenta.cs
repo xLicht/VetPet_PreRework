@@ -262,6 +262,20 @@ namespace VetPet_
         private void button1_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasListado(parentForm));
+            idDueño1 = 0;
+            idPersona = 0;
+            MontoPagadoE = 0;
+            MontoPagadoT = 0;
+            montoRestante = 0;
+            dtProductos = new DataTable();
+
+            ListaProductos.Clear();
+            ListaServicios.Clear();
+
+            sumaTotalProductos = 0;
+            nuevoSubtotal = 0;
+            efectivo = null;
+            tarjeta = null;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -408,7 +422,6 @@ namespace VetPet_
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
 
-                    dtProductos.Dispose();
 
                     parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
                  ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
@@ -420,6 +433,21 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
+
+                    idDueño1 = 0;
+                    idPersona = 0;
+                    MontoPagadoE = 0;
+                    MontoPagadoT = 0;
+                    montoRestante = 0;
+                    dtProductos = new DataTable(); 
+
+                    ListaProductos.Clear();
+                    ListaServicios.Clear();
+
+                    sumaTotalProductos = 0;
+                    nuevoSubtotal = 0;
+                    efectivo = null;
+                    tarjeta = null;
                 }
             }
         }

@@ -238,7 +238,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(903, 30);
             this.textBox2.TabIndex = 182;
-            this.textBox2.Text = "Servicios";
+            this.textBox2.Text = "Cita";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox1
