@@ -34,8 +34,6 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.dtServicio = new System.Windows.Forms.DataGridView();
             this.rtEstudioEspecial = new System.Windows.Forms.RichTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.cbCastrado = new System.Windows.Forms.CheckBox();
@@ -66,9 +64,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
+            this.dtServicios = new System.Windows.Forms.DataGridView();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cbServicioNieto = new System.Windows.Forms.ComboBox();
+            this.cbServicioEspecifico = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cbServicioP = new System.Windows.Forms.ComboBox();
+            this.rtObservacion = new System.Windows.Forms.RichTextBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtServicios)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -137,45 +146,11 @@
             this.label16.TabIndex = 307;
             this.label16.Text = "Modificar Consulta Medica";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label13.Location = new System.Drawing.Point(620, 274);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(144, 36);
-            this.label13.TabIndex = 393;
-            this.label13.Text = "Servicios :";
-            // 
-            // dtServicio
-            // 
-            this.dtServicio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtServicio.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtServicio.EnableHeadersVisualStyles = false;
-            this.dtServicio.Location = new System.Drawing.Point(627, 319);
-            this.dtServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dtServicio.Name = "dtServicio";
-            this.dtServicio.RowHeadersVisible = false;
-            this.dtServicio.RowHeadersWidth = 49;
-            this.dtServicio.Size = new System.Drawing.Size(765, 276);
-            this.dtServicio.TabIndex = 392;
-            // 
             // rtEstudioEspecial
             // 
             this.rtEstudioEspecial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.rtEstudioEspecial.Location = new System.Drawing.Point(69, 523);
-            this.rtEstudioEspecial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtEstudioEspecial.Margin = new System.Windows.Forms.Padding(4);
             this.rtEstudioEspecial.Name = "rtEstudioEspecial";
             this.rtEstudioEspecial.Size = new System.Drawing.Size(399, 106);
             this.rtEstudioEspecial.TabIndex = 391;
@@ -197,7 +172,7 @@
             // 
             this.cbCastrado.AutoSize = true;
             this.cbCastrado.Location = new System.Drawing.Point(1337, 169);
-            this.cbCastrado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCastrado.Margin = new System.Windows.Forms.Padding(4);
             this.cbCastrado.Name = "cbCastrado";
             this.cbCastrado.Size = new System.Drawing.Size(15, 14);
             this.cbCastrado.TabIndex = 389;
@@ -207,7 +182,7 @@
             // 
             this.cbFallecido.AutoSize = true;
             this.cbFallecido.Location = new System.Drawing.Point(1328, 126);
-            this.cbFallecido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFallecido.Margin = new System.Windows.Forms.Padding(4);
             this.cbFallecido.Name = "cbFallecido";
             this.cbFallecido.Size = new System.Drawing.Size(15, 14);
             this.cbFallecido.TabIndex = 388;
@@ -227,7 +202,7 @@
             // 
             this.txtMotivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotivo.Location = new System.Drawing.Point(333, 390);
+            this.txtMotivo.Location = new System.Drawing.Point(308, 390);
             this.txtMotivo.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.Size = new System.Drawing.Size(227, 33);
@@ -237,7 +212,7 @@
             // 
             this.txtTemperatura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.txtTemperatura.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTemperatura.Location = new System.Drawing.Point(469, 332);
+            this.txtTemperatura.Location = new System.Drawing.Point(455, 332);
             this.txtTemperatura.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtTemperatura.Name = "txtTemperatura";
             this.txtTemperatura.Size = new System.Drawing.Size(131, 33);
@@ -503,14 +478,168 @@
             this.txtNombre.Size = new System.Drawing.Size(227, 33);
             this.txtNombre.TabIndex = 361;
             // 
+            // dtServicios
+            // 
+            this.dtServicios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtServicios.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtServicios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtServicios.EnableHeadersVisualStyles = false;
+            this.dtServicios.Location = new System.Drawing.Point(920, 398);
+            this.dtServicios.Margin = new System.Windows.Forms.Padding(4);
+            this.dtServicios.Name = "dtServicios";
+            this.dtServicios.RowHeadersVisible = false;
+            this.dtServicios.RowHeadersWidth = 49;
+            this.dtServicios.Size = new System.Drawing.Size(520, 198);
+            this.dtServicios.TabIndex = 404;
+            this.dtServicios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtServicios_CellClick);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label17.Location = new System.Drawing.Point(1102, 291);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(140, 36);
+            this.label17.TabIndex = 403;
+            this.label17.Text = "Detallado";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label15.Location = new System.Drawing.Point(884, 291);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(143, 36);
+            this.label15.TabIndex = 402;
+            this.label15.Text = "Especifico";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label13.Location = new System.Drawing.Point(640, 291);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(128, 36);
+            this.label13.TabIndex = 401;
+            this.label13.Text = "Principal";
+            // 
+            // cbServicioNieto
+            // 
+            this.cbServicioNieto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.cbServicioNieto.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbServicioNieto.FormattingEnabled = true;
+            this.cbServicioNieto.Location = new System.Drawing.Point(1076, 334);
+            this.cbServicioNieto.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.cbServicioNieto.Name = "cbServicioNieto";
+            this.cbServicioNieto.Size = new System.Drawing.Size(204, 39);
+            this.cbServicioNieto.TabIndex = 400;
+            // 
+            // cbServicioEspecifico
+            // 
+            this.cbServicioEspecifico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.cbServicioEspecifico.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbServicioEspecifico.FormattingEnabled = true;
+            this.cbServicioEspecifico.Location = new System.Drawing.Point(848, 334);
+            this.cbServicioEspecifico.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.cbServicioEspecifico.Name = "cbServicioEspecifico";
+            this.cbServicioEspecifico.Size = new System.Drawing.Size(204, 39);
+            this.cbServicioEspecifico.TabIndex = 399;
+            this.cbServicioEspecifico.SelectedIndexChanged += new System.EventHandler(this.cbServicioEspecifico_SelectedIndexChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label25.Location = new System.Drawing.Point(601, 381);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(217, 36);
+            this.label25.TabIndex = 398;
+            this.label25.Text = "Observaciones :";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label23.Location = new System.Drawing.Point(918, 255);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(144, 36);
+            this.label23.TabIndex = 397;
+            this.label23.Text = "Servicios :";
+            // 
+            // cbServicioP
+            // 
+            this.cbServicioP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
+            this.cbServicioP.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbServicioP.FormattingEnabled = true;
+            this.cbServicioP.Location = new System.Drawing.Point(616, 334);
+            this.cbServicioP.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.cbServicioP.Name = "cbServicioP";
+            this.cbServicioP.Size = new System.Drawing.Size(204, 39);
+            this.cbServicioP.TabIndex = 396;
+            this.cbServicioP.SelectedIndexChanged += new System.EventHandler(this.cbServicioP_SelectedIndexChanged);
+            // 
+            // rtObservacion
+            // 
+            this.rtObservacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.rtObservacion.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtObservacion.ForeColor = System.Drawing.Color.Black;
+            this.rtObservacion.Location = new System.Drawing.Point(608, 421);
+            this.rtObservacion.Margin = new System.Windows.Forms.Padding(4);
+            this.rtObservacion.Name = "rtObservacion";
+            this.rtObservacion.Size = new System.Drawing.Size(295, 173);
+            this.rtObservacion.TabIndex = 395;
+            this.rtObservacion.Text = "";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnAgregar.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnAgregar.Location = new System.Drawing.Point(1292, 299);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(148, 75);
+            this.btnAgregar.TabIndex = 394;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // VeterinariaModificarConsultaM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1443, 710);
+            this.Controls.Add(this.dtServicios);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.dtServicio);
+            this.Controls.Add(this.cbServicioNieto);
+            this.Controls.Add(this.cbServicioEspecifico);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.cbServicioP);
+            this.Controls.Add(this.rtObservacion);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.rtEstudioEspecial);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.cbCastrado);
@@ -546,13 +675,13 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label16);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VeterinariaModificarConsultaM";
             this.Text = "VeterinariaModificarConsultaM";
             this.Load += new System.EventHandler(this.VeterinariaModificarConsultaM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtServicios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -564,8 +693,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DataGridView dtServicio;
         private System.Windows.Forms.RichTextBox rtEstudioEspecial;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.CheckBox cbCastrado;
@@ -596,5 +723,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.DataGridView dtServicios;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cbServicioNieto;
+        private System.Windows.Forms.ComboBox cbServicioEspecifico;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox cbServicioP;
+        private System.Windows.Forms.RichTextBox rtObservacion;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }

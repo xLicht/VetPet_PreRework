@@ -17,6 +17,8 @@ namespace VetPet_
         public int DatoCita { get; set; }
         public int DatoCita2 { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
+        private List<ServicioSeleccionadoConsulta> listaServicios = new List<ServicioSeleccionadoConsulta>();
+        private int guardadosCount = 0;
         int DatoCitaT = 0;
         int DatoCita2T = 0;
         public VeterinariaModificarConsultaM(Form1 parent)
@@ -34,7 +36,9 @@ namespace VetPet_
             {
                 DatoCita = DatoCita2;
             }
-            MostrarServicios();
+            CargarServiciosPadre();
+            //MostrarServicios();
+            CargarServiciosConsulta();
             MostrarDatosCita();
         }
 
@@ -214,7 +218,7 @@ namespace VetPet_
 
             if (idConsulta == 0)
             {
-                dtServicio.DataSource = null;
+                dtServicios.DataSource = null;
                 return;
             }
 
@@ -244,7 +248,7 @@ namespace VetPet_
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
-                    dtServicio.DataSource = dt;
+                    dtServicios.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -256,5 +260,395 @@ namespace VetPet_
                 conexionDB.CerrarConexion();
             }
         }
+
+        private void CargarServiciosConsulta()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string query = @"
+                SELECT 
+                    sc.hora,
+                    CASE 
+                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
+                        WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
+                        ELSE 'Sin servicio'
+                    END AS Servicio,
+                    sc.estado,
+                    sc.observacion
+                FROM Servicio_Cita sc
+                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                WHERE sc.idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dtServicios.DataSource = dt;
+                    dtServicios.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los servicios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private void CargarServiciosPadre()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"SELECT sp.idServicioPadre, sp.nombre FROM ServicioPadre sp
+                                  INNER JOIN ClaseServicio cs ON sp.idClaseServicio = cs.idClaseServicio
+                                  WHERE cs.nombre <> 'Estético'";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    cbServicioP.DataSource = dt;
+                    cbServicioP.DisplayMember = "nombre";
+                    cbServicioP.ValueMember = "idServicioPadre";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar servicios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void cbServicioEspecifico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbServicioEspecifico.SelectedItem != null)
+            {
+                string nombreServicioEspecifico = cbServicioEspecifico.Text;
+
+                int idServicioEspecificoHijo = ObtenerIdServicioEspecificoHijo(nombreServicioEspecifico);
+
+
+                if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
+                {
+                    CargarVacunas(idServicioEspecificoHijo);
+                }
+                else
+                {
+                    CargarServiciosNietos(idServicioEspecificoHijo);
+                }
+            }
+        }
+        private int ObtenerIdServicioEspecificoHijo(string nombreServicioEspecifico)
+        {
+            int id = 0;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT idServicioEspecificoHijo FROM ServicioEspecificoHijo WHERE nombre = @nombre";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombreServicioEspecifico);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                        id = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el id del servicio específico: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return id;
+        }
+        private void CargarVacunas(int idServicioEspecificoHijo)
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT idVacuna, nombre FROM Vacuna WHERE idServicioEspecificoHijo = @idServicioEspecificoHijo";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idServicioEspecificoHijo", idServicioEspecificoHijo);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        cbServicioNieto.DataSource = dt;
+                        cbServicioNieto.DisplayMember = "nombre";
+                        cbServicioNieto.ValueMember = "idVacuna";
+                    }
+                    else
+                    {
+                        cbServicioNieto.DataSource = null;
+                        cbServicioNieto.Items.Clear();
+                        cbServicioNieto.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las vacunas: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private void CargarServiciosNietos(int idServicioHijo)
+        {
+            string query = "SELECT idServicioEspecificoNieto, nombre FROM ServicioEspecificoNieto WHERE idServicioEspecificoHijo = @idServicioHijo";
+
+            try
+            {
+                conexionDB.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idServicioHijo", idServicioHijo);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    cbServicioNieto.DataSource = dt;
+                    cbServicioNieto.DisplayMember = "nombre";
+                    cbServicioNieto.ValueMember = "idServicioEspecificoNieto";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los servicios nietos: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void cbServicioP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbServicioEspecifico.Text = "";
+            if (cbServicioP.SelectedItem != null)
+            {
+                string servicioSeleccionado = cbServicioP.Text;
+
+                string query = "SELECT idServicioPadre FROM ServicioPadre WHERE nombre = @nombre";
+
+                try
+                {
+                    conexionDB.AbrirConexion();
+                    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", servicioSeleccionado);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            int idServicioPadre = Convert.ToInt32(result);
+
+                            CargarServiciosHijos(idServicioPadre);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al obtener el ID del servicio padre: " + ex.Message);
+                }
+                finally
+                {
+                    conexionDB.CerrarConexion();
+                }
+            }
+        }
+        private void CargarServiciosHijos(int idServicioPadre)
+        {
+            string query = "SELECT idServicioEspecificoHijo, nombre FROM ServicioEspecificoHijo WHERE idServicioPadre = @idServicioPadre";
+
+            try
+            {
+                conexionDB.AbrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idServicioPadre", idServicioPadre);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    cbServicioEspecifico.DataSource = dt;
+                    cbServicioEspecifico.DisplayMember = "nombre";
+                    cbServicioEspecifico.ValueMember = "idServicioEspecificoHijo";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los servicios específicos hijos: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarServicioALista();
+        }
+        private void AgregarServicioALista()
+        {
+            if (cbServicioP.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar al menos un servicio padre.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idPadre = Convert.ToInt32(cbServicioP.SelectedValue);
+            string nombrePadre = cbServicioP.Text;
+            string empleado = "Ninguno";
+            string observacion = rtObservacion.Text.Trim();
+
+
+            if (nombrePadre.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
+            {
+                if (cbServicioNieto.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar una vacuna.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
+                string nombreVacuna = cbServicioNieto.Text;
+
+
+                listaServicios.Add(new ServicioSeleccionadoConsulta(nombreVacuna, empleado, true, idVacuna, observacion));
+            }
+            else if (nombrePadre == "Consulta General")
+            {
+
+                listaServicios.Add(new ServicioSeleccionadoConsulta("Consulta General", empleado, false, 0, observacion));
+            }
+            else
+            {
+                if (cbServicioEspecifico.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar un servicio hijo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
+                string nombreHijo = cbServicioEspecifico.Text;
+                string nombreFinal = nombreHijo;
+
+
+                if (cbServicioNieto.SelectedItem != null)
+                {
+
+                    nombreFinal = cbServicioNieto.Text;
+                }
+
+                listaServicios.Add(new ServicioSeleccionadoConsulta(nombreFinal, empleado, false, 0, observacion));
+            }
+
+            ActualizarDataGrid();
+        }
+
+        private void ActualizarDataGrid()
+        {
+            DataTable dtGuardados = new DataTable();
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"
+                SELECT 
+                    sc.hora,
+                    CASE 
+                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
+                        WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
+                        ELSE 'Sin servicio'
+                    END AS Servicio,
+                    sc.estado,
+                    sc.observacion
+                FROM Servicio_Cita sc
+                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                WHERE sc.idCita = @idCita";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dtGuardados);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar servicios guardados: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            guardadosCount = dtGuardados.Rows.Count;
+
+            DataTable dtPendientes = new DataTable();
+            dtPendientes.Columns.Add("hora", typeof(TimeSpan));
+            dtPendientes.Columns.Add("Servicio", typeof(string));
+            dtPendientes.Columns.Add("estado", typeof(string));
+            dtPendientes.Columns.Add("observacion", typeof(string));
+
+            foreach (var servicio in listaServicios)
+            {
+                dtPendientes.Rows.Add(DateTime.Now.TimeOfDay, servicio.NombreServicio, "A", servicio.Observacion);
+            }
+
+            DataTable dtCombined = dtGuardados.Clone();
+            foreach (DataRow row in dtGuardados.Rows)
+            {
+                dtCombined.ImportRow(row);
+            }
+            foreach (DataRow row in dtPendientes.Rows)
+            {
+                dtCombined.ImportRow(row);
+            }
+
+            dtServicios.DataSource = dtCombined;
+            dtServicios.Refresh();
+        }
+
+        private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.RowIndex < guardadosCount)
+                {
+                    MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    int pendingIndex = e.RowIndex - guardadosCount;
+                    DialogResult confirmacion = MessageBox.Show("¿Desea eliminar este servicio pendiente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmacion == DialogResult.Yes)
+                    {
+                        listaServicios.RemoveAt(pendingIndex);
+                        ActualizarDataGrid();
+                    }
+                }
+            }
+        }
     }
 }
+
