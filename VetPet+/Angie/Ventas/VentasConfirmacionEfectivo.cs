@@ -98,12 +98,6 @@ namespace VetPet_.Angie
             {
                 decimal montoIngresado = decimal.Parse(textBox4.Text);
 
-                if (montoIngresado > sumaTotalProductos)
-                {
-                    MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
-                    return;
-                }
-
                 if (FormularioOrigen == "VentasNuevaVenta")
                 {
                     parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, true));

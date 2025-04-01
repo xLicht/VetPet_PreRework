@@ -134,7 +134,7 @@ namespace VetPet_
 
             montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
             textBox2.Text = montoRestante.ToString();
-            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos && sumaTotalProductos != 0) 
+            if (MontoPagadoE + MontoPagadoT = sumaTotalProductos && sumaTotalProductos != 0) 
             {
                 textBox7.Text = "Pagado";
             }
@@ -325,7 +325,7 @@ namespace VetPet_
                         idVenta = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
-                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}");
+                    MessageBox.Show($"Venta registrada con éxito. Dar cambio de: $"+ Math.Abs(montoRestante));
                 }
                 catch (Exception ex)
                 {
