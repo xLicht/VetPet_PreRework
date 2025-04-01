@@ -48,29 +48,32 @@ namespace VetPet_
             InitializeComponent();
             this.Load += VentasVentanadePago_Load;       // Evento Load
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            PersonalizarDataGridView(dataGridView1);
+            PersonalizarDataGridView(dataGridView2);
             parentForm = parent;  // Guardamos la referencia de Form1
             idCita1 = idCita;
             CargarServicios(idCita);
             if (tabla == "Empleado")
                 idPersona = idDueño;
         }
-     public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool tipoPago)
-    {
-        InitializeComponent();
-        this.Load += VentasVentanadePago_Load;
-        this.Resize += VentasVentanadePago_Resize;
-    
-        idCita1 = idCita;
-        parentForm = parent;  
-        AgregarProductos(dt);
-        CargarServicios(idCita);
-        this.montoRestante = nuevoSubtotal;
-        ActualizarPago(montoPagado, tipoPago);
-        if (dtProductos.Columns.Count == 0)
+        public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool tipoPago)
         {
-            dtProductos = dt.Clone();
+            InitializeComponent();
+            this.Load += VentasVentanadePago_Load;
+            this.Resize += VentasVentanadePago_Resize;
+                PersonalizarDataGridView(dataGridView1);
+                PersonalizarDataGridView(dataGridView2);
+                idCita1 = idCita;
+            parentForm = parent;  
+            AgregarProductos(dt);
+            CargarServicios(idCita);
+            this.montoRestante = nuevoSubtotal;
+            ActualizarPago(montoPagado, tipoPago);
+            if (dtProductos.Columns.Count == 0)
+            {
+                dtProductos = dt.Clone();
+            }
         }
-    }
 
         private void AgregarProductos(DataTable dtNuevos)
         {
@@ -597,6 +600,41 @@ namespace VetPet_
                 }
             }
         }
+        public void PersonalizarDataGridView(DataGridView dataGridView2)
+        {
+            dataGridView2.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView2.BackgroundColor = Color.White; // Fondo blanco
 
+            // Configurar fuente más grande para las celdas
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView2.RowTemplate.Height = 30; // Altura de fila aumentada
+
+            // Alternar colores de filas
+            dataGridView2.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
+
+            // Bordes y alineación
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView2.ColumnHeadersHeight = 40;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
     }
 }

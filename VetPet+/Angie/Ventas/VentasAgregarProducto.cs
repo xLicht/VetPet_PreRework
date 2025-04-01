@@ -106,7 +106,7 @@ SELECT
     p.idProducto,
     p.nombre AS Producto,
     lp.precioVenta AS Precio,
-    SUM(lp.stock) AS StockDisponible
+    SUM(lp.stock) AS Stock
 FROM Producto p
 INNER JOIN Lote_Producto lp ON p.idProducto = lp.idProducto
 INNER JOIN Marca m ON p.idMarca = m.idMarca
@@ -366,6 +366,12 @@ ORDER BY
             dataGridView2.BorderStyle = BorderStyle.None; // Elimina bordes
             dataGridView2.BackgroundColor = Color.White; // Fondo blanco
 
+            // Configurar fuente más grande para las celdas
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView2.RowTemplate.Height = 30; // Altura de fila aumentada
+
             // Alternar colores de filas
             dataGridView2.DefaultCellStyle.BackColor = Color.White;
 
@@ -377,7 +383,7 @@ ORDER BY
             dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
 
             // Bordes y alineación
             dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -385,12 +391,11 @@ ORDER BY
             dataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView2.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Ajustar el alto de los encabezados
-            dataGridView2.ColumnHeadersHeight = 30;
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView2.ColumnHeadersHeight = 40;
 
             // Autoajustar el tamaño de las columnas
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
         }
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)

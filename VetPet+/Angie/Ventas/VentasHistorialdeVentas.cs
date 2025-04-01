@@ -18,7 +18,7 @@ namespace VetPet_
         private float originalWidth;
         private float originalHeight;
         private Dictionary<Control, (float width, float height, float left, float top, float fontSize)> controlInfo = new Dictionary<Control, (float width, float height, float left, float top, float fontSize)>();
-        Mismetodos mismetodos = new Mismetodos();   
+        Mismetodos mismetodos = new Mismetodos();
         private Form1 parentForm;
         public int idVenta;
 
@@ -27,6 +27,7 @@ namespace VetPet_
             InitializeComponent();
             this.Load += VentasHistorialdeVentas_Load;       // Evento Load
             this.Resize += VentasHistorialdeVentas_Resize;   // Event
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarVentas();
             PersonalizarDataGridView();
@@ -118,6 +119,12 @@ namespace VetPet_
             dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
             dataGridView1.BackgroundColor = Color.White; // Fondo blanco
 
+            // Configurar fuente más grande para las celdas
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView1.RowTemplate.Height = 30; // Altura de fila aumentada
+
             // Alternar colores de filas
             dataGridView1.DefaultCellStyle.BackColor = Color.White;
 
@@ -129,7 +136,7 @@ namespace VetPet_
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
 
             // Bordes y alineación
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -137,12 +144,11 @@ namespace VetPet_
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Ajustar el alto de los encabezados
-            dataGridView1.ColumnHeadersHeight = 30;
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView1.ColumnHeadersHeight = 40;
 
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
         }
         private void button1_Click(object sender, EventArgs e)
         {

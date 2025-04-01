@@ -56,6 +56,7 @@ namespace VetPet_
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form1
             if (tabla == "Dueño") 
             idDueño1 = idDueño;
@@ -67,6 +68,7 @@ namespace VetPet_
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nuevoSubtotal = nuevoSubtotal;
             if (bandera == true)
@@ -451,7 +453,42 @@ namespace VetPet_
                 }
             }
         }
+        public void PersonalizarDataGridView()
+        {
+            dataGridView2.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView2.BackgroundColor = Color.White; // Fondo blanco
 
+            // Configurar fuente más grande para las celdas
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView2.RowTemplate.Height = 30; // Altura de fila aumentada
+
+            // Alternar colores de filas
+            dataGridView2.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
+
+            // Bordes y alineación
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView2.ColumnHeadersHeight = 40;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         private void textBox5_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasSeleccionarDueño(parentForm)); // Pasamos la referencia de Form1 a 

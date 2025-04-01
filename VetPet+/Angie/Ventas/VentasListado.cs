@@ -304,11 +304,16 @@ namespace VetPet_
                 MessageBox.Show("Error: " + ex.Message, "Error");
             }
         }
-
         public void PersonalizarDataGridView()
         {
             dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
             dataGridView1.BackgroundColor = Color.White; // Fondo blanco
+
+            // Configurar fuente más grande para las celdas
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView1.RowTemplate.Height = 30; // Altura de fila aumentada
 
             // Alternar colores de filas
             dataGridView1.DefaultCellStyle.BackColor = Color.White;
@@ -321,7 +326,7 @@ namespace VetPet_
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
 
             // Bordes y alineación
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -329,19 +334,12 @@ namespace VetPet_
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Ajustar el alto de los encabezados
-            dataGridView1.ColumnHeadersHeight = 30;
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView1.ColumnHeadersHeight = 40;
 
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
-            {
-                dataGridView1.Columns["idMascota"].Visible = false;
-            }
         }
-
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
