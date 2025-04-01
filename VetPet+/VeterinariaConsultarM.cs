@@ -563,61 +563,9 @@ namespace VetPet_
 
         private void InsertarServiciosEnConsulta()
         {
-            //if (listaServicios.Count == 0)
-            //    return;
-            //conexionDaniel conexionDB = new conexionDaniel();
-            //try
-            //{
-            //    conexionDB.AbrirConexion();
-
-            //    foreach (var servicio in listaServicios)
-            //    {
-            //        string query = string.Empty;
-            //        SqlCommand cmd = null;
-
-            //        DateTime horaDefault = DateTime.Now;
-            //        string estadoDefault = "A";
-
-            //        if (servicio.EsVacuna)
-            //        {
-            //            query = @"INSERT INTO Servicio_Cita 
-            //              (idCita, hora, idServicioEspecificoNieto, idVacuna, estado, observacion)
-            //              VALUES (@idCita, @hora, NULL, @idVacuna, @estado, @observacion)";
-            //            cmd = new SqlCommand(query, conexionDB.GetConexion());
-            //            cmd.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
-            //        }
-            //        else
-            //        {
-            //            int idServicioNieto = ObtenerIdServicioNieto(servicio.NombreServicio);
-            //            query = @"INSERT INTO Servicio_Cita 
-            //              (idCita, hora, idServicioEspecificoNieto, idVacuna, estado, observacion)
-            //              VALUES (@idCita, @hora, @idServicioNieto, NULL, @estado, @observacion)";
-            //            cmd = new SqlCommand(query, conexionDB.GetConexion());
-            //            cmd.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
-            //        }
-
-            //        cmd.Parameters.AddWithValue("@idCita", idConsultaCreada);
-            //        cmd.Parameters.AddWithValue("@hora", horaDefault);
-            //        cmd.Parameters.AddWithValue("@estado", estadoDefault);
-            //        cmd.Parameters.AddWithValue("@observacion", servicio.Observacion ?? string.Empty);
-
-            //        cmd.ExecuteNonQuery();
-            //    }
-
-            //    MessageBox.Show("Servicios y observaciones registrados en la consulta.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    validador++;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al insertar servicios en consulta: " + ex.Message);
-            //}
-            //finally
-            //{
-            //    conexionDB.CerrarConexion();
-            //}
             if (listaServicios.Count == 0)
                 return;
-            // Nota: Si usas una nueva instancia de conexión aquí, ten cuidado de no tener conflictos con la instancia principal.
+
             conexionDaniel conexionDB = new conexionDaniel();
             try
             {
@@ -630,14 +578,13 @@ namespace VetPet_
 
                     DateTime horaDefault = DateTime.Now;
                     string estadoDefault = "A";
-                    // Valor por defecto para idEmpleado: 1
-                    int idEmpleadoDefault = 1;
+                    int idEmpleadoDefault = 1; // Asegúrate de que este ID exista en la tabla Empleado
 
                     if (servicio.EsVacuna)
                     {
                         query = @"INSERT INTO Servicio_Cita 
-                          (idCita, hora, idServicioEspecificoNieto, idVacuna, estado, observacion, idEmpleado)
-                          VALUES (@idCita, @hora, NULL, @idVacuna, @estado, @observacion, @idEmpleado)";
+                      (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
+                      VALUES (@idCita, @hora, NULL, @idVacuna, @idEmpleado, @estado, @observacion)";
                         cmd = new SqlCommand(query, conexionDB.GetConexion());
                         cmd.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
                     }
@@ -645,15 +592,15 @@ namespace VetPet_
                     {
                         int idServicioNieto = ObtenerIdServicioNieto(servicio.NombreServicio);
                         query = @"INSERT INTO Servicio_Cita 
-                          (idCita, hora, idServicioEspecificoNieto, idVacuna, estado, observacion, idEmpleado)
-                          VALUES (@idCita, @hora, @idServicioNieto, NULL, @estado, @observacion, @idEmpleado)";
+                      (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
+                      VALUES (@idCita, @hora, @idServicioNieto, NULL, @idEmpleado, @estado, @observacion)";
                         cmd = new SqlCommand(query, conexionDB.GetConexion());
-                        cmd.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
+                        cmd.Parameters.AddWithValue("@idServicioNieto", idServicioNieto != -1 ? (object)idServicioNieto : DBNull.Value);
                     }
 
                     // Parámetros comunes
-                    cmd.Parameters.AddWithValue("@idCita", idConsultaCreada);
-                    cmd.Parameters.AddWithValue("@hora", horaDefault);
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita); // Usar DatoCita en lugar de idConsultaCreada
+                    cmd.Parameters.AddWithValue("@hora", horaDefault.TimeOfDay);
                     cmd.Parameters.AddWithValue("@estado", estadoDefault);
                     cmd.Parameters.AddWithValue("@observacion", servicio.Observacion ?? string.Empty);
                     cmd.Parameters.AddWithValue("@idEmpleado", idEmpleadoDefault);
@@ -661,12 +608,12 @@ namespace VetPet_
                     cmd.ExecuteNonQuery();
                 }
 
-                MessageBox.Show("Servicios y observaciones registrados en la consulta.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Servicios guardados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 validador++;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar servicios en consulta: " + ex.Message);
+                MessageBox.Show("Error al guardar servicios: " + ex.Message);
             }
             finally
             {
