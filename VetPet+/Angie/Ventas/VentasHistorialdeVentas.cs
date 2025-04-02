@@ -164,5 +164,215 @@ namespace VetPet_
             parentForm.formularioHijo(new VentasVentanadePagoNueva(parentForm,idVenta)); // Pasamos la referencia de Form1 a 
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificar si se seleccionó la opción de fecha
+            if (comboBox1.SelectedItem?.ToString() == "Fecha")
+            {
+                MostrarSelectorFechas();
+
+                // Opcional: Limpiar el TextBox de filtro
+                textBox1.Text = "";
+                textBox1.Enabled = false; // Deshabilitar ya que usaremos calendarios
+            }
+            else
+            {
+                textBox1.Enabled = true;
+            }
+        }
+
+        private void MostrarSelectorFechas()
+        {
+            using (var formFechas = new Form())
+            {
+                formFechas.Text = "Seleccione el rango de fechas";
+                formFechas.StartPosition = FormStartPosition.CenterParent;
+                formFechas.FormBorderStyle = FormBorderStyle.FixedDialog;
+                formFechas.MaximizeBox = false;
+                formFechas.MinimizeBox = false;
+                formFechas.ClientSize = new Size(300, 150);
+
+                var dtpInicio = new DateTimePicker()
+                {
+                    Location = new Point(20, 30),
+                    Width = 260,
+                    Format = DateTimePickerFormat.Short,
+                    Value = DateTime.Today.AddMonths(-1)
+                };
+
+                var dtpFin = new DateTimePicker()
+                {
+                    Location = new Point(20, 70),
+                    Width = 260,
+                    Format = DateTimePickerFormat.Short,
+                    Value = DateTime.Today
+                };
+
+                var btnAceptar = new Button()
+                {
+                    Text = "Filtrar",
+                    DialogResult = DialogResult.OK,
+                    Location = new Point(120, 110)
+                };
+
+                formFechas.Controls.Add(new Label()
+                {
+                    Text = "Fecha inicial:",
+                    Location = new Point(20, 10)
+                });
+                formFechas.Controls.Add(dtpInicio);
+
+                formFechas.Controls.Add(new Label()
+                {
+                    Text = "Fecha final:",
+                    Location = new Point(20, 50)
+                });
+                formFechas.Controls.Add(dtpFin);
+
+                formFechas.Controls.Add(btnAceptar);
+                formFechas.AcceptButton = btnAceptar;
+
+                if (formFechas.ShowDialog(this) == DialogResult.OK)
+                {
+                    FiltrarVentasConCitasPorFecha(dtpInicio.Value, dtpFin.Value);
+                }
+            }
+        }
+
+        private void FiltrarVentasConCitasPorFecha(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                // Ajustar las fechas para cubrir todo el día
+                fechaInicio = fechaInicio.Date;
+                fechaFin = fechaFin.Date.AddDays(1).AddSeconds(-1);
+
+                mismetodos.AbrirConexion();
+
+                string query = @"SELECT 
+                        V.idVenta,
+                        PE.nombre AS Cliente,
+                        V.total AS Total,
+                        V.fechaRegistro AS Fecha
+                    FROM 
+                        Venta V
+                        INNER JOIN Persona PE ON V.idPersona = PE.idPersona
+                    WHERE 
+                        V.fechaRegistro BETWEEN @fechaInicio AND @fechaFin
+                        AND V.estado = 'A'
+                    ORDER BY 
+                        V.fechaRegistro DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaFin", fechaFin);
+
+                    DataTable dt = new DataTable();
+                    new SqlDataAdapter(cmd).Fill(dt);
+
+                    dataGridView1.DataSource = dt;
+                    if (dataGridView1.Columns.Contains("idVenta"))
+                        dataGridView1.Columns["idVenta"].Visible = false;
+
+                    if (dataGridView1.Columns.Contains("Fecha"))
+                        dataGridView1.Columns["Fecha"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    MessageBox.Show($"Filtrado: {fechaInicio:dd/MM/yyyy} - {fechaFin:dd/MM/yyyy}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar ventas: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
+        }
+
+        private void FiltrarDatos()
+        {
+            try
+            {
+                mismetodos.AbrirConexion();
+
+                string columnaSeleccionada = comboBox1.SelectedItem?.ToString();
+
+                string query = @"
+        SELECT 
+            V.idVenta,
+            PE.nombre AS Cliente,
+            V.total AS Total,
+            V.fechaRegistro AS Fecha
+        FROM 
+            Venta V
+            INNER JOIN Persona PE ON V.idPersona = PE.idPersona
+        WHERE 
+            V.estado = 'A'";
+
+                // Diccionario para mapear columnas
+                Dictionary<string, string> mapaColumnas = new Dictionary<string, string>
+        {
+            { "Cliente", "PE.nombre" },
+            { "Total", "V.total" },
+            { "Fecha", " V.fechaRegistro" }
+        };
+
+                SqlCommand cmd = new SqlCommand("", mismetodos.GetConexion());
+
+                // Filtro por texto (si hay texto y columna seleccionada)
+                if (!string.IsNullOrEmpty(textBox1.Text.Trim()))
+                {
+                    if (!string.IsNullOrEmpty(columnaSeleccionada))
+                    {
+                        if (columnaSeleccionada == "Fecha")
+                        {
+                            MostrarSelectorFechas();
+                            return;
+                        }
+                        else if (mapaColumnas.ContainsKey(columnaSeleccionada))
+                        {
+                            query += $" AND {mapaColumnas[columnaSeleccionada]} LIKE @filtro";
+                            cmd.Parameters.AddWithValue("@filtro", "%" + textBox1.Text.Trim() + "%");
+                        }
+                    }
+                }
+
+                query += " ORDER BY V.fechaRegistro DESC";
+                cmd.CommandText = query;
+
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adaptador.Fill(dt);
+
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar: " + ex.Message);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
+            }
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarDatos();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem?.ToString() == "FechaCita")
+            {
+                MostrarSelectorFechas();
+            }
+            else
+            {
+                FiltrarDatos();
+            }
+        }
     }
 }
+
