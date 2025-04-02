@@ -566,7 +566,96 @@ namespace VetPet_
 
         private void InsertarServiciosEnConsulta()
         {
+            SqlTransaction transaction = null;
+            try
+            {
+                conexionDB.AbrirConexion();
+                transaction = conexionDB.GetConexion().BeginTransaction();
+                
+                // Actualizar a 'I' los servicios existentes marcados para inactivación
+                foreach (ServicioCitaKey key in serviciosInactivados)
+                {
+                    // Armamos la condición dependiendo si es vacuna o no.
+                    string queryUpdateInactivo = "UPDATE Servicio_Cita SET estado = 'I' WHERE idCita = @idCita AND hora = @hora AND idEmpleado = @idEmpleado AND ";
+                    if (key.IdVacuna.HasValue)
+                    {
+                        queryUpdateInactivo += "idVacuna = @idVacuna";
+                    }
+                    else
+                    {
+                        queryUpdateInactivo += "idServicioEspecificoNieto = @idServicioEspecificoNieto";
+                    }
 
+                    using (SqlCommand cmdUpdateInactivo = new SqlCommand(queryUpdateInactivo, conexionDB.GetConexion(), transaction))
+                    {
+                        cmdUpdateInactivo.Parameters.AddWithValue("@idCita", key.IdCita);
+                        cmdUpdateInactivo.Parameters.Add("@hora", SqlDbType.Time).Value = key.Hora;
+                        cmdUpdateInactivo.Parameters.AddWithValue("@idEmpleado", key.IdEmpleado);
+                        if (key.IdVacuna.HasValue)
+                        {
+                            cmdUpdateInactivo.Parameters.AddWithValue("@idVacuna", key.IdVacuna.Value);
+                        }
+                        else
+                        {
+                            cmdUpdateInactivo.Parameters.AddWithValue("@idServicioEspecificoNieto", key.IdServicioEspecificoNieto.Value);
+                        }
+                        cmdUpdateInactivo.ExecuteNonQuery();
+                    }
+                }
+
+                // Insertar los nuevos servicios agregados en listaServicios
+                foreach (var servicio in listaServicios)
+                {
+                    int idEmpleado = ObtenerIdEmpleado2(servicio.Empleado, transaction);
+
+                    if (servicio.EsVacuna)
+                    {
+                        string queryInsertVacuna = @"
+                    INSERT INTO Servicio_Cita (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
+                    VALUES (@idCita, @hora, NULL, @idVacuna, @idEmpleado, 'A', '')";
+                        using (SqlCommand cmdInsert = new SqlCommand(queryInsertVacuna, conexionDB.GetConexion(), transaction))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
+                            //cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
+                            cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = DateTime.Now.TimeOfDay;
+                            cmdInsert.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
+                            cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        int idServicioNieto = ObtenerIdServicioNieto2(servicio.NombreServicio, transaction);
+                        string queryInsert = @"
+                    INSERT INTO Servicio_Cita (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
+                    VALUES (@idCita, @hora, @idServicioNieto, NULL, @idEmpleado, 'A', '')";
+                        using (SqlCommand cmdInsert = new SqlCommand(queryInsert, conexionDB.GetConexion(), transaction))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
+                            //cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
+                            cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = DateTime.Now.TimeOfDay;
+                            cmdInsert.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
+                            cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                transaction.Commit();
+                MessageBox.Show("Servicios Guardados Correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                if (transaction != null)
+                {
+                    try { transaction.Rollback(); } catch { }
+                }
+                MessageBox.Show("Error al guardar los servicios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -577,6 +666,24 @@ namespace VetPet_
                 LimpiarCampos();
             }
             
+        }
+
+        private int ObtenerIdEmpleado2(string nombreEmpleado, SqlTransaction transaction)
+        {
+            string query = "SELECT idEmpleado FROM Empleado WHERE usuario = @usuario";
+            SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion(), transaction);
+            cmd.Parameters.AddWithValue("@usuario", nombreEmpleado);
+            object result = cmd.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+
+        private int ObtenerIdServicioNieto2(string nombreServicio, SqlTransaction transaction)
+        {
+            string query = "SELECT idServicioEspecificoNieto FROM ServicioEspecificoNieto WHERE nombre = @nombre";
+            SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion(), transaction);
+            cmd.Parameters.AddWithValue("@nombre", nombreServicio);
+            object result = cmd.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : 0;
         }
 
         private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)
