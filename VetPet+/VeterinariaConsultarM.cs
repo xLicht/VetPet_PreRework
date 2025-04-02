@@ -581,21 +581,86 @@ namespace VetPet_
 
         private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //if (e.RowIndex >= 0)
+            //{
+            //    if (e.RowIndex < guardadosCount)
+            //    {
+            //        ////MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        //EliminarServicioDeBD();
+            //    }
+            //    else
+            //    {
+            //        int pendingIndex = e.RowIndex - guardadosCount;
+            //        DialogResult confirmacion = MessageBox.Show("¿Desea eliminar este servicio pendiente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //        if (confirmacion == DialogResult.Yes)
+            //        {
+            //            listaServicios.RemoveAt(pendingIndex);
+            //            ActualizarDataGrid();
+            //        }
+            //    }
+            //}
+
+
             if (e.RowIndex >= 0)
             {
-                if (e.RowIndex < guardadosCount)
+                var fila = dtServicio.Rows[e.RowIndex].DataBoundItem;
+                // Primero, verificamos si es un objeto DataRowView
+                if (fila is DataRowView filaDatos)
                 {
-                    ////MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //EliminarServicioDeBD();
-                }
-                else
-                {
-                    int pendingIndex = e.RowIndex - guardadosCount;
-                    DialogResult confirmacion = MessageBox.Show("¿Desea eliminar este servicio pendiente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (confirmacion == DialogResult.Yes)
+                    // Verificamos si la columna "Indice" existe y contiene un valor
+                    if (filaDatos.Row.Table.Columns.Contains("Indice") && filaDatos["Indice"] != DBNull.Value)
                     {
-                        listaServicios.RemoveAt(pendingIndex);
-                        ActualizarDataGrid();
+                        int indice = Convert.ToInt32(filaDatos["Indice"]);
+                        // Confirmamos eliminación para servicios nuevos
+                        DialogResult resultado = MessageBox.Show(
+                            $"¿Deseas eliminar el servicio '{filaDatos["NombreServicio"]}'?",
+                            "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            // Eliminamos el servicio de la lista utilizando el índice obtenido
+                            // Es importante verificar que el índice sea válido
+                            if (indice >= 0 && indice < listaServicios.Count)
+                            {
+                                listaServicios.RemoveAt(indice);
+                                // Actualizamos el DataGrid para reflejar los cambios
+                                ActualizarDataGrid();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Si la fila no contiene la columna "Indice", se trata de un servicio existente.
+                        DialogResult resultado = MessageBox.Show(
+                            $"¿Deseas inactivar el servicio '{filaDatos["NombreServicio"]}'?",
+                            "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            ServicioCitaKey key = new ServicioCitaKey
+                            {
+                                IdCita = Convert.ToInt32(filaDatos["idCita"]),
+                                Hora = TimeSpan.Parse(filaDatos["hora"].ToString()),
+                                IdEmpleado = Convert.ToInt32(filaDatos["idEmpleado"]),
+                                IdServicioEspecificoNieto = filaDatos["idServicioEspecificoNieto"] != DBNull.Value
+                                                              ? Convert.ToInt32(filaDatos["idServicioEspecificoNieto"])
+                                                              : (int?)null,
+                                IdVacuna = filaDatos["idVacuna"] != DBNull.Value
+                                           ? Convert.ToInt32(filaDatos["idVacuna"])
+                                           : (int?)null
+                            };
+
+                            if (!serviciosInactivados.Any(s =>
+                                    s.IdCita == key.IdCita &&
+                                    s.Hora == key.Hora &&
+                                    s.IdEmpleado == key.IdEmpleado &&
+                                    s.IdServicioEspecificoNieto == key.IdServicioEspecificoNieto &&
+                                    s.IdVacuna == key.IdVacuna))
+                            {
+                                serviciosInactivados.Add(key);
+                            }
+
+                            // Remover la fila del DataGrid
+                            filaDatos.Row.Delete();
+                        }
                     }
                 }
             }
