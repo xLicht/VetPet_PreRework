@@ -359,21 +359,21 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
                 string query = @"
-            SELECT 
-                sc.idCita, 
-                sc.hora, 
-                sc.idServicioEspecificoNieto,
-                sc.idVacuna,
-                sc.idEmpleado,
-                sc.estado,
-                sc.observacion,
-                COALESCE(v.nombre, sen.nombre) AS NombreServicio,
-                e.usuario AS Empleado
-            FROM Servicio_Cita sc
-            LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-            LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-            INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
-            WHERE sc.idCita = @idCita AND sc.estado = 'A'";
+                SELECT 
+                    sc.idCita, 
+                    sc.hora, 
+                    sc.idServicioEspecificoNieto,
+                    sc.idVacuna,
+                    sc.idEmpleado,
+                    sc.estado,
+                    sc.observacion,
+                    COALESCE(v.nombre, sen.nombre) AS NombreServicio,
+                    e.usuario AS Empleado
+                FROM Servicio_Cita sc
+                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+                WHERE sc.idCita = @idCita AND sc.estado = 'A'";
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
@@ -778,10 +778,17 @@ namespace VetPet_
                             serviciosInactivados.Add(key);
                         }
 
+                        if (dtServicio.DataSource is DataTable dt)
+                        {
+                            dt.Rows.Remove(filaDatos.Row);
+                        }
                         // Actualizamos el DataTable para que el usuario vea el cambio (opcional)
                         filaDatos["estado"] = "I";
+
+                         // dtServicio.Rows.Remove(filaDatos.Row);
                         //ActualizarDataGrid();
                         //dtServicio.Refresh();
+
                     }
                 }
             }
