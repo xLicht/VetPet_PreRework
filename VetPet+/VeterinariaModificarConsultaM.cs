@@ -17,7 +17,9 @@ namespace VetPet_
         public int DatoCita { get; set; }
         public int DatoCita2 { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
-        private List<ServicioSeleccionadoConsulta> listaServicios = new List<ServicioSeleccionadoConsulta>();
+        //private List<ServicioSeleccionadoConsulta> listaServicios = new List<ServicioSeleccionadoConsulta>();
+        private List<ServicioSeleccionado> listaServicios = new List<ServicioSeleccionado>();
+        private List<ServicioCitaKey> serviciosInactivados = new List<ServicioCitaKey>();
         private int guardadosCount = 0;
         int DatoCitaT = 0;
         int DatoCita2T = 0;
@@ -38,7 +40,9 @@ namespace VetPet_
             }
             CargarServiciosPadre();
             //MostrarServicios();
-            CargarServiciosConsulta();
+            //CargarServiciosConsulta();
+            CargarEmpleados();
+            CargarServiciosCita();
             MostrarDatosCita();
         }
 
@@ -72,11 +76,10 @@ namespace VetPet_
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
             ActualizarConsulta();
+            InsertarServiciosEnConsulta();
 
-
-           // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
+            // parentForm.formularioHijo(new VeterinariaConsultaMedica(parentForm));
         }
 
         private void MostrarDatosCita()
@@ -218,7 +221,7 @@ namespace VetPet_
 
             if (idConsulta == 0)
             {
-                dtServicios.DataSource = null;
+                dtServicio.DataSource = null;
                 return;
             }
 
@@ -248,7 +251,7 @@ namespace VetPet_
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
-                    dtServicios.DataSource = dt;
+                    dtServicio.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -261,48 +264,7 @@ namespace VetPet_
             }
         }
 
-        private void CargarServiciosConsulta()
-        {
-            try
-            {
-                conexionDB.AbrirConexion();
-
-                string query = @"
-                SELECT 
-                    sc.hora,
-                    CASE 
-                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
-                        WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
-                        ELSE 'Sin servicio'
-                    END AS Servicio,
-                    sc.estado,
-                    sc.observacion
-                FROM Servicio_Cita sc
-                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                WHERE sc.idCita = @idCita";
-
-                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-                    dtServicios.DataSource = dt;
-                    dtServicios.Refresh();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los servicios: " + ex.Message);
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-        }
+      
         private void CargarServiciosPadre()
         {
             try
@@ -506,149 +468,467 @@ namespace VetPet_
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AgregarServicioALista();
+            //AgregarServicioALista();
+            AgregarServicioSeleccionado();
         }
-        private void AgregarServicioALista()
-        {
-            if (cbServicioP.SelectedItem == null)
-            {
-                MessageBox.Show("Debe seleccionar al menos un servicio padre.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idPadre = Convert.ToInt32(cbServicioP.SelectedValue);
-            string nombrePadre = cbServicioP.Text;
-            string empleado = "Ninguno";
-            string observacion = rtObservacion.Text.Trim();
-
-
-            if (nombrePadre.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
-            {
-                if (cbServicioNieto.SelectedItem == null)
-                {
-                    MessageBox.Show("Debe seleccionar una vacuna.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
-                string nombreVacuna = cbServicioNieto.Text;
-
-
-                listaServicios.Add(new ServicioSeleccionadoConsulta(nombreVacuna, empleado, true, idVacuna, observacion));
-            }
-            else if (nombrePadre == "Consulta General")
-            {
-
-                listaServicios.Add(new ServicioSeleccionadoConsulta("Consulta General", empleado, false, 0, observacion));
-            }
-            else
-            {
-                if (cbServicioEspecifico.SelectedItem == null)
-                {
-                    MessageBox.Show("Debe seleccionar un servicio hijo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int idHijo = Convert.ToInt32(cbServicioEspecifico.SelectedValue);
-                string nombreHijo = cbServicioEspecifico.Text;
-                string nombreFinal = nombreHijo;
-
-
-                if (cbServicioNieto.SelectedItem != null)
-                {
-
-                    nombreFinal = cbServicioNieto.Text;
-                }
-
-                listaServicios.Add(new ServicioSeleccionadoConsulta(nombreFinal, empleado, false, 0, observacion));
-            }
-
-            ActualizarDataGrid();
-        }
+        
 
         private void ActualizarDataGrid()
         {
-            DataTable dtGuardados = new DataTable();
+            DataTable dt = new DataTable();
             try
             {
                 conexionDB.AbrirConexion();
                 string query = @"
-                SELECT 
-                    sc.hora,
-                    CASE 
-                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
-                        WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
-                        ELSE 'Sin servicio'
-                    END AS Servicio,
-                    sc.estado,
-                    sc.observacion
-                FROM Servicio_Cita sc
-                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                WHERE sc.idCita = @idCita";
-
+            SELECT 
+                sc.idCita, 
+                sc.hora, 
+                sc.idServicioEspecificoNieto,
+                sc.idVacuna,
+                sc.idEmpleado,
+                sc.estado,
+                sc.observacion,
+                COALESCE(v.nombre, sen.nombre) AS NombreServicio,
+                e.usuario AS Empleado
+            FROM Servicio_Cita sc
+            LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+            LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+            WHERE sc.idCita = @idCita AND sc.estado = 'A'";
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(dtGuardados);
+                    adapter.Fill(dt);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar servicios guardados: " + ex.Message);
+                MessageBox.Show("Error al cargar servicios existentes: " + ex.Message);
             }
             finally
             {
                 conexionDB.CerrarConexion();
             }
-            guardadosCount = dtGuardados.Rows.Count;
 
-            DataTable dtPendientes = new DataTable();
-            dtPendientes.Columns.Add("hora", typeof(TimeSpan));
-            dtPendientes.Columns.Add("Servicio", typeof(string));
-            dtPendientes.Columns.Add("estado", typeof(string));
-            dtPendientes.Columns.Add("observacion", typeof(string));
+            // Filtrar los registros que están marcados para inactivación (serviciosInactivados)
+            // Se recorre el DataTable y se elimina la fila si coincide con algún servicio marcado
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+                DataRow row = dt.Rows[i];
+                // Se crea un objeto clave a partir de los valores de la fila
+                int idCita = Convert.ToInt32(row["idCita"]);
+                TimeSpan hora = TimeSpan.Parse(row["hora"].ToString());
+                int idEmpleado = Convert.ToInt32(row["idEmpleado"]);
+                int? idServicioNieto = row["idServicioEspecificoNieto"] != DBNull.Value ? Convert.ToInt32(row["idServicioEspecificoNieto"]) : (int?)null;
+                int? idVacuna = row["idVacuna"] != DBNull.Value ? Convert.ToInt32(row["idVacuna"]) : (int?)null;
 
+                // Si existe un servicio en la lista de eliminados que coincide, se elimina la fila
+                bool eliminado = serviciosInactivados.Any(s =>
+                                s.IdCita == idCita &&
+                                s.Hora == hora &&
+                                s.IdEmpleado == idEmpleado &&
+                                s.IdServicioEspecificoNieto == idServicioNieto &&
+                                s.IdVacuna == idVacuna);
+                if (eliminado)
+                {
+                    dt.Rows.RemoveAt(i);
+                }
+            }
+
+            // Asegurarse de que existan las columnas necesarias
+            if (!dt.Columns.Contains("NombreServicio"))
+                dt.Columns.Add("NombreServicio", typeof(string));
+            if (!dt.Columns.Contains("Empleado"))
+                dt.Columns.Add("Empleado", typeof(string));
+
+            // Agregar columna oculta para identificar el servicio en la lista (solo para servicios nuevos)
+            if (!dt.Columns.Contains("Indice"))
+                dt.Columns.Add("Indice", typeof(int));
+
+            // Agregar los nuevos servicios (almacenados en listaServicios) al DataTable
             foreach (var servicio in listaServicios)
             {
-                dtPendientes.Rows.Add(DateTime.Now.TimeOfDay, servicio.NombreServicio, "A", servicio.Observacion);
+                DataRow row = dt.NewRow();
+                row["idCita"] = DatoCita;
+                row["hora"] = DateTime.Now.TimeOfDay; //aqui tambien le movi 
+                row["idServicioEspecificoNieto"] = servicio.EsVacuna ? (object)DBNull.Value : (object)0;
+                row["idVacuna"] = servicio.EsVacuna ? servicio.IdVacuna : (object)DBNull.Value;
+                row["idEmpleado"] = 0;
+                row["estado"] = "A";
+                row["observacion"] = rtObservacion.Text.Trim(); //aqui le movi
+                row["NombreServicio"] = servicio.NombreServicio;
+                row["Empleado"] = servicio.Empleado;
+                int indice = listaServicios.IndexOf(servicio);
+                row["Indice"] = indice;
+                dt.Rows.Add(row);
             }
 
-            DataTable dtCombined = dtGuardados.Clone();
-            foreach (DataRow row in dtGuardados.Rows)
-            {
-                dtCombined.ImportRow(row);
-            }
-            foreach (DataRow row in dtPendientes.Rows)
-            {
-                dtCombined.ImportRow(row);
-            }
+            // Asignar el DataTable al DataGridView y refrescar
+            dtServicio.DataSource = dt;
+            dtServicio.Refresh();
 
-            dtServicios.DataSource = dtCombined;
-            dtServicios.Refresh();
+            // Ocultar columnas de control
+            if (dtServicio.Columns.Contains("hora"))
+                dtServicio.Columns["hora"].Visible = false;
+            if (dtServicio.Columns.Contains("estado"))
+                dtServicio.Columns["estado"].Visible = false;
+            if (dtServicio.Columns.Contains("idCita"))
+                dtServicio.Columns["idCita"].Visible = false;
+            if (dtServicio.Columns.Contains("idServicioEspecificoNieto"))
+                dtServicio.Columns["idServicioEspecificoNieto"].Visible = false;
+            if (dtServicio.Columns.Contains("idVacuna"))
+                dtServicio.Columns["idVacuna"].Visible = false;
+            if (dtServicio.Columns.Contains("idEmpleado"))
+                dtServicio.Columns["idEmpleado"].Visible = false;
+            //if (dtServicio.Columns.Contains("observacion"))
+            //    dtServicio.Columns["observacion"].Visible = false;
+            if (dtServicio.Columns.Contains("Indice"))
+                dtServicio.Columns["Indice"].Visible = false;
         }
 
         private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                if (e.RowIndex < guardadosCount)
+                var fila = dtServicio.Rows[e.RowIndex].DataBoundItem;
+                // Primero, verificamos si es un objeto DataRowView
+                if (fila is DataRowView filaDatos)
                 {
-                    MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    int pendingIndex = e.RowIndex - guardadosCount;
-                    DialogResult confirmacion = MessageBox.Show("¿Desea eliminar este servicio pendiente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (confirmacion == DialogResult.Yes)
+                    // Verificamos si la columna "Indice" existe y contiene un valor
+                    if (filaDatos.Row.Table.Columns.Contains("Indice") && filaDatos["Indice"] != DBNull.Value)
                     {
-                        listaServicios.RemoveAt(pendingIndex);
-                        ActualizarDataGrid();
+                        int indice = Convert.ToInt32(filaDatos["Indice"]);
+                        // Confirmamos eliminación para servicios nuevos
+                        DialogResult resultado = MessageBox.Show(
+                            $"¿Deseas eliminar el servicio '{filaDatos["NombreServicio"]}'?",
+                            "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            // Eliminamos el servicio de la lista utilizando el índice obtenido
+                            // Es importante verificar que el índice sea válido
+                            if (indice >= 0 && indice < listaServicios.Count)
+                            {
+                                listaServicios.RemoveAt(indice);
+                                // Actualizamos el DataGrid para reflejar los cambios
+                                ActualizarDataGrid();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Si la fila no contiene la columna "Indice", se trata de un servicio existente.
+                        DialogResult resultado = MessageBox.Show(
+                            $"¿Deseas inactivar el servicio '{filaDatos["NombreServicio"]}'?",
+                            "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultado == DialogResult.Yes)
+                        {
+                            ServicioCitaKey key = new ServicioCitaKey
+                            {
+                                IdCita = Convert.ToInt32(filaDatos["idCita"]),
+                                Hora = TimeSpan.Parse(filaDatos["hora"].ToString()),
+                                IdEmpleado = Convert.ToInt32(filaDatos["idEmpleado"]),
+                                IdServicioEspecificoNieto = filaDatos["idServicioEspecificoNieto"] != DBNull.Value
+                                                              ? Convert.ToInt32(filaDatos["idServicioEspecificoNieto"])
+                                                              : (int?)null,
+                                IdVacuna = filaDatos["idVacuna"] != DBNull.Value
+                                           ? Convert.ToInt32(filaDatos["idVacuna"])
+                                           : (int?)null
+                            };
+
+                            if (!serviciosInactivados.Any(s =>
+                                    s.IdCita == key.IdCita &&
+                                    s.Hora == key.Hora &&
+                                    s.IdEmpleado == key.IdEmpleado &&
+                                    s.IdServicioEspecificoNieto == key.IdServicioEspecificoNieto &&
+                                    s.IdVacuna == key.IdVacuna))
+                            {
+                                serviciosInactivados.Add(key);
+                            }
+
+                            // Remover la fila del DataGrid
+                            filaDatos.Row.Delete();
+                        }
                     }
                 }
             }
         }
+        
+        //--------------------------------
+        private void CargarServiciosCita()
+        {
+
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string query = @"
+                SELECT 
+                    sc.idCita, 
+                    sc.hora, 
+                    sc.idServicioEspecificoNieto,
+                    sc.idVacuna,
+                    sc.idEmpleado,
+                    sc.estado,
+                    sc.observacion,
+                    COALESCE(v.nombre, sen.nombre) AS NombreServicio,
+                    e.usuario AS Empleado
+                FROM Servicio_Cita sc
+                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                INNER JOIN Empleado e ON sc.idEmpleado = e.idEmpleado
+                WHERE sc.idCita = @idCita AND sc.estado = 'A'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dtServicio.DataSource = dt;
+
+                    // Ocultar columnas de control si no deseas mostrarlas al usuario.
+                    if (dtServicio.Columns.Contains("hora"))
+                        dtServicio.Columns["hora"].Visible = false;
+                    if (dtServicio.Columns.Contains("estado"))
+                        dtServicio.Columns["estado"].Visible = false;
+                    if (dtServicio.Columns.Contains("idCita"))
+                        dtServicio.Columns["idCita"].Visible = false;
+                    if (dtServicio.Columns.Contains("idServicioEspecificoNieto"))
+                        dtServicio.Columns["idServicioEspecificoNieto"].Visible = false;
+                    if (dtServicio.Columns.Contains("idVacuna"))
+                        dtServicio.Columns["idVacuna"].Visible = false;
+                    if (dtServicio.Columns.Contains("idEmpleado"))
+                        dtServicio.Columns["idEmpleado"].Visible = false;
+                    //if (dtServicio.Columns.Contains("observacion"))
+                    //    dtServicio.Columns["observacion"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los servicios de la cita: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void CargarEmpleados()
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT idEmpleado, usuario FROM Empleado WHERE idTipoEmpleado IN (1,3)";
+                SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion());
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                cbEmpleado.DataSource = dt;
+                cbEmpleado.DisplayMember = "usuario";
+                cbEmpleado.ValueMember = "idEmpleado";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar empleados: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void AgregarServicioSeleccionado()
+        {
+            string nombreServicio = "";
+            bool esVacuna = false;
+            int idVacuna = 0;
+
+            if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
+            {
+                if (cbServicioNieto.SelectedItem != null)
+                {
+                    nombreServicio = cbServicioNieto.Text;
+                    idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
+                    esVacuna = true;
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una vacuna.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                if (cbServicioNieto.SelectedItem != null)
+                    nombreServicio = cbServicioNieto.Text;
+                else if (cbServicioEspecifico.SelectedItem != null)
+                    nombreServicio = cbServicioEspecifico.Text;
+                else if (cbServicioP.SelectedItem != null)
+                    nombreServicio = cbServicioP.Text;
+            }
+
+            if (!string.IsNullOrEmpty(nombreServicio))
+            {
+                string empleadoSeleccionado = cbEmpleado.Text;
+                // Aquí se valida si el servicio ya ha sido agregado
+                if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
+                {
+                    // Se crea el servicio con la observación del control rtObservacion
+                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, rtObservacion.Text.Trim(), esVacuna, idVacuna));
+                    ActualizarDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Este servicio ya ha sido agregado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private bool VacunaYaAplicada(int idMascota, int idVacuna)
+        {
+            bool existe = false;
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = "SELECT COUNT(*) FROM Vacuna_Mascota WHERE idMascota = @idMascota AND idVacuna = @idVacuna";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idMascota", idMascota);
+                    cmd.Parameters.AddWithValue("@idVacuna", idVacuna);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    //MessageBox.Show($"idMascota: {idMascota}, idVacuna: {idVacuna}, count: {count}");
+                    if (count > 0)
+                    {
+                        existe = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al validar la vacuna: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+            return existe;
+        }
+
+        private void InsertarServiciosEnConsulta()
+        {
+            SqlTransaction transaction = null;
+            try
+            {
+                conexionDB.AbrirConexion();
+                transaction = conexionDB.GetConexion().BeginTransaction();
+
+                // Actualizar a 'I' los servicios existentes marcados para inactivación
+                foreach (ServicioCitaKey key in serviciosInactivados)
+                {
+                    // Armamos la condición dependiendo si es vacuna o no.
+                    string queryUpdateInactivo = "UPDATE Servicio_Cita SET estado = 'I' WHERE idCita = @idCita AND hora = @hora AND idEmpleado = @idEmpleado AND ";
+                    if (key.IdVacuna.HasValue)
+                    {
+                        queryUpdateInactivo += "idVacuna = @idVacuna";
+                    }
+                    else
+                    {
+                        queryUpdateInactivo += "idServicioEspecificoNieto = @idServicioEspecificoNieto";
+                    }
+
+                    using (SqlCommand cmdUpdateInactivo = new SqlCommand(queryUpdateInactivo, conexionDB.GetConexion(), transaction))
+                    {
+                        cmdUpdateInactivo.Parameters.AddWithValue("@idCita", key.IdCita);
+                        cmdUpdateInactivo.Parameters.Add("@hora", SqlDbType.Time).Value = key.Hora;
+                        cmdUpdateInactivo.Parameters.AddWithValue("@idEmpleado", key.IdEmpleado);
+                        if (key.IdVacuna.HasValue)
+                        {
+                            cmdUpdateInactivo.Parameters.AddWithValue("@idVacuna", key.IdVacuna.Value);
+                        }
+                        else
+                        {
+                            cmdUpdateInactivo.Parameters.AddWithValue("@idServicioEspecificoNieto", key.IdServicioEspecificoNieto.Value);
+                        }
+                        cmdUpdateInactivo.ExecuteNonQuery();
+                    }
+                }
+
+                // Insertar los nuevos servicios agregados en listaServicios
+                foreach (var servicio in listaServicios)
+                {
+                    int idEmpleado = ObtenerIdEmpleado2(servicio.Empleado, transaction);
+
+                    if (servicio.EsVacuna)
+                    {
+                        string queryInsertVacuna = @"
+                    INSERT INTO Servicio_Cita (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
+                    VALUES (@idCita, @hora, NULL, @idVacuna, @idEmpleado, 'A', '')";
+                        using (SqlCommand cmdInsert = new SqlCommand(queryInsertVacuna, conexionDB.GetConexion(), transaction))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
+                            //cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
+                            cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = DateTime.Now.TimeOfDay;
+                            cmdInsert.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
+                            cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        int idServicioNieto = ObtenerIdServicioNieto2(servicio.NombreServicio, transaction);
+                        string queryInsert = @"
+                    INSERT INTO Servicio_Cita (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
+                    VALUES (@idCita, @hora, @idServicioNieto, NULL, @idEmpleado, 'A', '')";
+                        using (SqlCommand cmdInsert = new SqlCommand(queryInsert, conexionDB.GetConexion(), transaction))
+                        {
+                            cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
+                            //cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = hora;
+                            cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = DateTime.Now.TimeOfDay;
+                            cmdInsert.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
+                            cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                transaction.Commit();
+                MessageBox.Show("Servicios Guardados Correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                if (transaction != null)
+                {
+                    try { transaction.Rollback(); } catch { }
+                }
+                MessageBox.Show("Error al guardar los servicios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+        private int ObtenerIdEmpleado2(string nombreEmpleado, SqlTransaction transaction)
+        {
+            string query = "SELECT idEmpleado FROM Empleado WHERE usuario = @usuario";
+            SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion(), transaction);
+            cmd.Parameters.AddWithValue("@usuario", nombreEmpleado);
+            object result = cmd.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+
+        private int ObtenerIdServicioNieto2(string nombreServicio, SqlTransaction transaction)
+        {
+            string query = "SELECT idServicioEspecificoNieto FROM ServicioEspecificoNieto WHERE nombre = @nombre";
+            SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion(), transaction);
+            cmd.Parameters.AddWithValue("@nombre", nombreServicio);
+            object result = cmd.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+
     }
 }
 

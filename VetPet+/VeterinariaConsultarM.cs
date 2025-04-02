@@ -688,26 +688,6 @@ namespace VetPet_
 
         private void dtServicios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex >= 0)
-            //{
-            //    if (e.RowIndex < guardadosCount)
-            //    {
-            //        ////MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        //EliminarServicioDeBD();
-            //    }
-            //    else
-            //    {
-            //        int pendingIndex = e.RowIndex - guardadosCount;
-            //        DialogResult confirmacion = MessageBox.Show("¿Desea eliminar este servicio pendiente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //        if (confirmacion == DialogResult.Yes)
-            //        {
-            //            listaServicios.RemoveAt(pendingIndex);
-            //            ActualizarDataGrid();
-            //        }
-            //    }
-            //}
-
-
             if (e.RowIndex >= 0)
             {
                 var fila = dtServicio.Rows[e.RowIndex].DataBoundItem;
@@ -906,62 +886,6 @@ namespace VetPet_
         }
         private void AgregarServicioSeleccionado()
         {
-            //string nombreServicio = "";
-            //bool esVacuna = false;
-            //int idVacuna = 0;
-            //string obser = "";// aqui le Movi
-
-            //if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    if (cbServicioNieto.SelectedItem != null)
-            //    {
-            //        nombreServicio = cbServicioNieto.Text;
-            //        idVacuna = Convert.ToInt32(cbServicioNieto.SelectedValue);
-            //        esVacuna = true;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Seleccione una vacuna.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    if (cbServicioNieto.SelectedItem != null)
-            //        nombreServicio = cbServicioNieto.Text;
-            //    else if (cbServicioEspecifico.SelectedItem != null)
-            //        nombreServicio = cbServicioEspecifico.Text;
-            //    else if (cbServicioP.SelectedItem != null)
-            //        nombreServicio = cbServicioP.Text;
-            //}
-            //if (esVacuna)
-            //{
-            //    //int idMascota = Convert.ToInt32(cbMascota.SelectedValue);
-            //    //if (VacunaYaAplicada(idMascota, idVacuna))
-            //    //{
-            //    //    MessageBox.Show("La mascota ya tiene aplicada esta vacuna.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    //    return;
-            //    //}
-            //}
-
-            //if (!string.IsNullOrEmpty(nombreServicio))
-            //{
-            //    string empleadoSeleccionado = cbEmpleado.Text;
-            //    if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
-            //    {
-            //        listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, obser, esVacuna, idVacuna));
-            //        ActualizarDataGrid();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Este servicio ya ha sido agregado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Seleccione un servicio antes de agregarlo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
             string nombreServicio = "";
             bool esVacuna = false;
             int idVacuna = 0;
