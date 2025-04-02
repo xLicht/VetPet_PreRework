@@ -474,7 +474,7 @@ namespace VetPet_
                         idVenta = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
-                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}");
+                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}. Dar cambio de $"+ Math.Abs(montoRestante));
                 }
                 catch (Exception ex)
                 {

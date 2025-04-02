@@ -120,23 +120,52 @@ namespace VetPet_
             ActualizarSumaTotal();
 
         }
+        public void ActualizarPago(decimal monto, bool tipoPago)
+        {
+            if (tipoPago == true)
+            {
+                MontoPagadoE += monto;
+            }
+            if (tipoPago == false)
+            {
+                MontoPagadoT += monto;
+            }
+
+            ActualizarSumaTotal();
+        }
         public void ActualizarSumaTotal()
         {
-            // Sumar el total de productos
-            sumaTotalProductos = dtProductos.AsEnumerable()
-                .Where(r => r["Total"] != DBNull.Value)
-                .Sum(r => r.Field<decimal>("Total"));
-
-            textBox8.Text = "Subtotal: " + sumaTotalProductos.ToString("0.###");
-
-            textBox9.Text = MontoPagadoE.ToString();
-            textBox10.Text = MontoPagadoT.ToString();
-
-            montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
-            textBox2.Text = montoRestante.ToString();
-            if (MontoPagadoE + MontoPagadoT = sumaTotalProductos && sumaTotalProductos != 0) 
+            try
             {
-                textBox7.Text = "Pagado";
+                sumaTotalProductos = dtProductos?.AsEnumerable()
+                    .Where(r => r["Total"] != DBNull.Value)
+                    .Sum(r => r.Field<decimal>("Total")) ?? 0;
+
+                decimal totalGeneral = sumaTotalProductos; 
+
+                textBox8.Text = $"Subtotal: {totalGeneral.ToString("C2")}";
+                textBox9.Text = MontoPagadoE.ToString("0.00");
+                textBox10.Text = MontoPagadoT.ToString("0.00");
+
+                montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+                textBox2.Text = montoRestante.ToString("0.00");
+
+                if (totalGeneral > 0)
+                {
+                    bool estaPagado = (MontoPagadoE + MontoPagadoT)  >= totalGeneral;
+                    textBox7.Text = estaPagado ? "Pagado" : "Pendiente";
+                    textBox7.BackColor = estaPagado ? Color.LightGreen : Color.LightPink;
+                }
+                else
+                {
+                    textBox7.Text = "Sin cargos";
+                    textBox7.BackColor = SystemColors.Control;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar totales: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
