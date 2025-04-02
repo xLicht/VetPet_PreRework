@@ -144,10 +144,8 @@ namespace VetPet_
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
             dataGridView1.ColumnHeadersHeight = 40;
 
-            // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void button1_Click(object sender, EventArgs e)
@@ -157,7 +155,7 @@ namespace VetPet_
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Asegurarse de que no se haga clic en el encabezado
+            if (e.RowIndex >= 0) 
             {
                 DataGridViewRow fila = dataGridView1.Rows[e.RowIndex];
                 idVenta = Convert.ToInt32(fila.Cells["idVenta"].Value);

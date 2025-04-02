@@ -25,7 +25,6 @@ namespace VetPet_
         private int idCita1;
         private int stock;
         private static int idDueño1;
-        private static int idPersona;
         public DateTime fechaRegistro;
         public string nombreRecepcionista;
         public decimal total;
@@ -43,6 +42,21 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
         public  decimal montoRestante;
 
+        public static class Sesion
+        {
+            public static int IdPersona { get; private set; }
+            public static bool IsPersonaSet { get; private set; } = false;
+
+            public static void SetIdPersona(int id)
+            {
+                if (!IsPersonaSet)
+                {
+                    IdPersona = id;
+                    IsPersonaSet = true;
+                }
+            }
+        }
+
         public VentasVentanadePago(Form1 parent, int idCita, int idDueño, string tabla)
         {
             InitializeComponent();
@@ -53,8 +67,10 @@ namespace VetPet_
             parentForm = parent;  // Guardamos la referencia de Form1
             idCita1 = idCita;
             CargarServicios(idCita);
-            if (tabla == "Empleado")
-                idPersona = idDueño;
+            if (tabla == "Empleado" && !Sesion.IsPersonaSet)
+            {
+                Sesion.SetIdPersona(idDueño);
+            }
         }
         public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool tipoPago)
         {
@@ -295,6 +311,8 @@ namespace VetPet_
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarServicios(idCita);
             idCita1 = idCita;
+            PersonalizarDataGridView(dataGridView1);
+            PersonalizarDataGridView(dataGridView2);
         }
         private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
@@ -337,7 +355,7 @@ namespace VetPet_
                 using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
                 {
                     // Agregar parámetro a la consulta
-                    comando.Parameters.AddWithValue("@idPersona", idPersona);
+                    comando.Parameters.AddWithValue("@idPersona", Sesion.IdPersona);
 
                     // Ejecutar consulta
                     using (SqlDataReader lector = comando.ExecuteReader())
@@ -389,7 +407,6 @@ namespace VetPet_
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
             mismetodos.CerrarConexion();
             idDueño1 = 0;
-            idPersona = 0;
             MontoPagadoE = 0;
             MontoPagadoT = 0;
             montoRestante = 0;
@@ -468,7 +485,7 @@ namespace VetPet_
                         cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idCita", (object)idCita1 ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
+                        cmd.Parameters.AddWithValue("@idEmpleado", Sesion.IdPersona);
                         cmd.Parameters.AddWithValue("@estado", estado);
 
                         idVenta = Convert.ToInt32(cmd.ExecuteScalar());
@@ -565,11 +582,7 @@ namespace VetPet_
                             cmdVentaProducto.Parameters.AddWithValue("@idProducto", idProducto);
                             cmdVentaProducto.ExecuteNonQuery();
                         }
-
-                        MessageBox.Show($"Producto: {nombre} - Unidades vendidas: {cantidadVendida}");
                     }
-
-
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
 
@@ -584,7 +597,6 @@ namespace VetPet_
                 {
                     mismetodos.CerrarConexion();
                     idDueño1 = 0;
-                    idPersona = 0;
                     MontoPagadoE = 0;
                     MontoPagadoT = 0;
                     montoRestante = 0;
@@ -636,5 +648,6 @@ namespace VetPet_
             // Autoajustar el tamaño de las columnas
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+       
     }
 }
