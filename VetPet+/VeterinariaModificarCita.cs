@@ -951,7 +951,7 @@ namespace VetPet_
                                 serviciosInactivados.Add(key);
                             }
 
-                            // Remover la fila del DataGrid
+                            // Remover la fila del DataGridd
                             filaDatos.Row.Delete();
                         }
                     }
