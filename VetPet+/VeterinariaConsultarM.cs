@@ -378,25 +378,85 @@ namespace VetPet_
       
         private void ActualizarDataGrid()
         {
+            //DataTable dtGuardados = new DataTable();
+            //try
+            //{
+            //    conexionDB.AbrirConexion();
+            //    string query = @"
+            //    SELECT 
+            //        sc.hora,
+            //        CASE 
+            //            WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
+            //            WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
+            //            ELSE 'Sin servicio'
+            //        END AS Servicio,
+            //        sc.estado,
+            //        sc.observacion
+            //    FROM Servicio_Cita sc
+            //    LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+            //    LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            //    WHERE sc.idCita = @idCita";
+
+            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            //    {
+            //        cmd.Parameters.AddWithValue("@idCita", DatoCita);
+            //        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //        adapter.Fill(dtGuardados);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al cargar servicios guardados: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    conexionDB.CerrarConexion();
+            //}
+            //guardadosCount = dtGuardados.Rows.Count;
+
+            //DataTable dtPendientes = new DataTable();
+            //dtPendientes.Columns.Add("hora", typeof(TimeSpan));
+            //dtPendientes.Columns.Add("Servicio", typeof(string));
+            //dtPendientes.Columns.Add("estado", typeof(string));
+            //dtPendientes.Columns.Add("observacion", typeof(string));
+
+            //foreach (var servicio in listaServicios)
+            //{
+            //    dtPendientes.Rows.Add(DateTime.Now.TimeOfDay, servicio.NombreServicio, "A", servicio.Observacion);
+            //}
+
+            //DataTable dtCombined = dtGuardados.Clone();
+            //foreach (DataRow row in dtGuardados.Rows)
+            //{
+            //    dtCombined.ImportRow(row);
+            //}
+            //foreach (DataRow row in dtPendientes.Rows)
+            //{
+            //    dtCombined.ImportRow(row);
+            //}
+
+            //dtServicios.DataSource = dtCombined;
+            //dtServicios.Refresh();
+
+            // Cargar servicios guardados desde la BD
             DataTable dtGuardados = new DataTable();
             try
             {
                 conexionDB.AbrirConexion();
                 string query = @"
-                SELECT 
-                    sc.hora,
-                    CASE 
-                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
-                        WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
-                        ELSE 'Sin servicio'
-                    END AS Servicio,
-                    sc.estado,
-                    sc.observacion
-                FROM Servicio_Cita sc
-                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                WHERE sc.idCita = @idCita";
-
+            SELECT 
+                sc.hora,
+                CASE 
+                    WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
+                    WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
+                    ELSE 'Sin servicio'
+                END AS Servicio,
+                sc.estado,
+                sc.observacion
+            FROM Servicio_Cita sc
+            LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+            LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+            WHERE sc.idCita = @idCita";
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
@@ -412,24 +472,38 @@ namespace VetPet_
             {
                 conexionDB.CerrarConexion();
             }
-            guardadosCount = dtGuardados.Rows.Count;
 
+            // Agregar la columna "Tipo" si no existe y asignar el valor "Guardado"
+            if (!dtGuardados.Columns.Contains("Tipo"))
+            {
+                dtGuardados.Columns.Add("Tipo", typeof(string));
+            }
+            foreach (DataRow row in dtGuardados.Rows)
+            {
+                row["Tipo"] = "Guardado";
+            }
+
+            // Crear tabla para los servicios pendientes (locales)
             DataTable dtPendientes = new DataTable();
             dtPendientes.Columns.Add("hora", typeof(TimeSpan));
             dtPendientes.Columns.Add("Servicio", typeof(string));
             dtPendientes.Columns.Add("estado", typeof(string));
             dtPendientes.Columns.Add("observacion", typeof(string));
+            dtPendientes.Columns.Add("Tipo", typeof(string));
 
             foreach (var servicio in listaServicios)
             {
-                dtPendientes.Rows.Add(DateTime.Now.TimeOfDay, servicio.NombreServicio, "A", servicio.Observacion);
+                DataRow newRow = dtPendientes.NewRow();
+                newRow["hora"] = DateTime.Now.TimeOfDay;
+                newRow["Servicio"] = servicio.NombreServicio;
+                newRow["estado"] = "A";
+                newRow["observacion"] = servicio.Observacion;
+                newRow["Tipo"] = "Pendiente";
+                dtPendientes.Rows.Add(newRow);
             }
 
-            DataTable dtCombined = dtGuardados.Clone(); 
-            foreach (DataRow row in dtGuardados.Rows)
-            {
-                dtCombined.ImportRow(row);
-            }
+            // Combinar ambas tablas usando Copy() para conservar el esquema (incluyendo la columna "Tipo")
+            DataTable dtCombined = dtGuardados.Copy();
             foreach (DataRow row in dtPendientes.Rows)
             {
                 dtCombined.ImportRow(row);
@@ -437,6 +511,8 @@ namespace VetPet_
 
             dtServicios.DataSource = dtCombined;
             dtServicios.Refresh();
+            dtServicios.Refresh();
+
         }
         private int ObtenerIdServicioNieto(string nombreServicioNieto)
         {
@@ -637,7 +713,10 @@ namespace VetPet_
             {
                 if (e.RowIndex < guardadosCount)
                 {
-                    MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ////MessageBox.Show("No se puede eliminar un servicio ya guardado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //EliminarServicioDeBD();
+
+
                 }
                 else
                 {
@@ -650,6 +729,7 @@ namespace VetPet_
                     }
                 }
             }
+
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -688,7 +768,7 @@ namespace VetPet_
                 FROM Servicio_Cita sc
                 LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
                 LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-                WHERE sc.idCita = @idCita";
+                WHERE sc.idCita = @idCita AND sc.estado = 'A'";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -705,6 +785,56 @@ namespace VetPet_
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los servicios: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        private void EliminarServicioDeBD(int idCita, TimeSpan hora, int? idVacuna, int? idServicioNieto)
+        {
+            try
+            {
+                conexionDB.AbrirConexion();
+                string query = @"
+            UPDATE Servicio_Cita 
+            SET estado = 'I'
+            WHERE idCita = @idCita 
+              AND hora = @hora 
+              AND estado = 'A'
+              AND (
+                    (@idVacuna IS NOT NULL AND idVacuna = @idVacuna)
+                 OR (@idVacuna IS NULL AND @idServicioNieto IS NOT NULL AND idServicioEspecificoNieto = @idServicioNieto)
+              )";
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@idCita", idCita);
+                    cmd.Parameters.AddWithValue("@hora", hora);
+                    // Si el servicio es una vacuna, idVacuna tendrá valor; de lo contrario, se utiliza el id del servicio nieto.
+                    if (idVacuna.HasValue)
+                        cmd.Parameters.AddWithValue("@idVacuna", idVacuna.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@idVacuna", DBNull.Value);
+                    if (idServicioNieto.HasValue)
+                        cmd.Parameters.AddWithValue("@idServicioNieto", idServicioNieto.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@idServicioNieto", DBNull.Value);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Servicio eliminado exitosamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el servicio o ya fue eliminado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el servicio: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
