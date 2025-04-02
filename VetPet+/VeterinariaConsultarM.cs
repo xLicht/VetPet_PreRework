@@ -434,8 +434,8 @@ namespace VetPet_
                 dtServicio.Columns["idVacuna"].Visible = false;
             if (dtServicio.Columns.Contains("idEmpleado"))
                 dtServicio.Columns["idEmpleado"].Visible = false;
-            if (dtServicio.Columns.Contains("observacion"))
-                dtServicio.Columns["observacion"].Visible = false;
+            //if (dtServicio.Columns.Contains("observacion"))
+            //    dtServicio.Columns["observacion"].Visible = false;
             if (dtServicio.Columns.Contains("Indice"))
                 dtServicio.Columns["Indice"].Visible = false;
 
