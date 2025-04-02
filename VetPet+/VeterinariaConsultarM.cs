@@ -676,6 +676,7 @@ namespace VetPet_
 
         private void CargarServiciosCita()
         {
+            
             try
             {
                 conexionDB.AbrirConexion();
@@ -736,6 +737,7 @@ namespace VetPet_
             string nombreServicio = "";
             bool esVacuna = false;
             int idVacuna = 0;
+            string obser = "";// aqui le Movi
 
             if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
             {
@@ -775,7 +777,7 @@ namespace VetPet_
                 string empleadoSeleccionado = cbEmpleado.Text;
                 if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
                 {
-                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, esVacuna, idVacuna));
+                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, obser, esVacuna, idVacuna));
                     ActualizarDataGrid();
                 }
                 else

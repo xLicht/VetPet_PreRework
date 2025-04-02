@@ -423,6 +423,7 @@ namespace VetPet_
             string nombreServicio = "";
             bool esVacuna = false;
             int idVacuna = 0;
+            string obser = "";// aqui le Movi
 
             if (cbServicioP.Text.Equals("Vacunas", StringComparison.OrdinalIgnoreCase))
             {
@@ -461,7 +462,7 @@ namespace VetPet_
                 string empleadoSeleccionado = cbEmpleado.Text;
                 if (!listaServicios.Any(s => s.NombreServicio.Equals(nombreServicio, StringComparison.OrdinalIgnoreCase)))
                 {
-                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, esVacuna, idVacuna));
+                    listaServicios.Add(new ServicioSeleccionado(nombreServicio, empleadoSeleccionado, obser, esVacuna, idVacuna));
                     ActualizarDataGrid();
                 }
                 else
@@ -603,12 +604,15 @@ namespace VetPet_
         public bool EsVacuna { get; set; }
         public int IdVacuna { get; set; }
 
-        public ServicioSeleccionado(string nombre, string empleado, bool esVacuna = false, int idVacuna = 0)
+        public string Observacion { get; set; }
+
+        public ServicioSeleccionado(string nombre, string empleado, string observacion, bool esVacuna = false, int idVacuna = 0)
         {
             NombreServicio = nombre;
             Empleado = empleado;
             EsVacuna = esVacuna;
             IdVacuna = idVacuna;
+            Observacion = observacion;
         }
     }
 }
