@@ -207,19 +207,19 @@ namespace VetPet_
             {
                 conexionDB.AbrirConexion();
                 string query = @"
-            SELECT 
-                sc.hora, 
-                sen.nombre AS Servicio, 
-                v.descripcion AS Vacuna, 
-                e.usuario AS Empleado
-            FROM Servicio_Cita sc
-            LEFT JOIN ServicioEspecificoNieto sen 
-                ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-            LEFT JOIN vacuna v 
-                ON sc.idVacuna = v.idvacuna
-            LEFT JOIN Empleado e
-                ON sc.idEmpleado = e.idEmpleado
-            WHERE sc.idCita = @idCita";
+                SELECT 
+                    sc.hora, 
+                    sen.nombre AS Servicio, 
+                    v.descripcion AS Vacuna, 
+                    e.usuario AS Empleado
+                FROM Servicio_Cita sc
+                LEFT JOIN ServicioEspecificoNieto sen 
+                    ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                LEFT JOIN vacuna v 
+                    ON sc.idVacuna = v.idvacuna
+                LEFT JOIN Empleado e
+                    ON sc.idEmpleado = e.idEmpleado
+                WHERE sc.idCita = @idCita AND sc.estado = 'A'";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {

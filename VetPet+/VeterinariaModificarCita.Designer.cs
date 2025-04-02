@@ -63,6 +63,8 @@
             // 
             // dtServicio
             // 
+            this.dtServicio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtServicio.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(245)))), ((int)(((byte)(231)))));
             this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtServicio.Location = new System.Drawing.Point(695, 162);
             this.dtServicio.Name = "dtServicio";
@@ -193,7 +195,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label23.Location = new System.Drawing.Point(690, 92);
+            this.label23.Location = new System.Drawing.Point(705, 115);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(106, 30);
             this.label23.TabIndex = 451;
