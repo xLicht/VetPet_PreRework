@@ -19,7 +19,9 @@ namespace VetPet_
         int DatoCitaT = 0;
         int DatoCita2T = 0;
         private int datoConsulta;
-        private List<Tuple<int, string, int>> listaMedicamentos = new List<Tuple<int, string, int>>();
+        private List<Tuple<int, string, int>> listaMedicamentos2 = new List<Tuple<int, string, int>>();
+        private List<Tuple<int, string, int, string, string>> listaMedicamentos = new List<Tuple<int, string, int, string, string>>();
+
         private conexionDaniel conexionDB = new conexionDaniel();
 
         public VeterinariaConsultarRece(Form1 parent)
@@ -55,15 +57,55 @@ namespace VetPet_
         }
         private void CargarMedicamentosRecetados()
         {
+            //try
+            //{
+            //    conexionDB.AbrirConexion();
+
+            //    string query = @"SELECT rm.idMedicamento, m.nombreGenérico, rm.cantidad
+            //             FROM Receta_Medicamento rm
+            //             INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
+            //             INNER JOIN Receta r ON rm.idReceta = r.idReceta
+            //             WHERE r.idConsulta = @idConsulta";
+
+            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            //    {
+            //        cmd.Parameters.AddWithValue("@idConsulta", datoConsulta);
+            //        SqlDataReader reader = cmd.ExecuteReader();
+
+            //        listaMedicamentos.Clear();
+
+            //        while (reader.Read())
+            //        {
+            //            int idMedicamento = reader["idMedicamento"] != DBNull.Value ? Convert.ToInt32(reader["idMedicamento"]) : 0;
+            //            string nombreMedicamento = reader["nombreGenérico"] != DBNull.Value ? reader["nombreGenérico"].ToString() : "Desconocido";
+            //            int cantidad = reader["cantidad"] != DBNull.Value ? Convert.ToInt32(reader["cantidad"]) : 0;
+
+            //            listaMedicamentos.Add(new Tuple<int, string, int>(idMedicamento, nombreMedicamento, cantidad));
+            //        }
+
+            //        ActualizarDataGrid();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al cargar los medicamentos recetados: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    conexionDB.CerrarConexion();
+            //}
+
             try
             {
                 conexionDB.AbrirConexion();
 
-                string query = @"SELECT rm.idMedicamento, m.nombreGenérico, rm.cantidad
-                         FROM Receta_Medicamento rm
-                         INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
-                         INNER JOIN Receta r ON rm.idReceta = r.idReceta
-                         WHERE r.idConsulta = @idConsulta";
+                // Consulta actualizada para incluir rm.dosis y rm.observacion.
+                string query = @"
+            SELECT rm.idMedicamento, m.[nombreGenérico], rm.cantidad, rm.dosis, rm.observacion
+            FROM Receta_Medicamento rm
+            INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
+            INNER JOIN Receta r ON rm.idReceta = r.idReceta
+            WHERE r.idConsulta = @idConsulta and rm.estado = 'A'";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
@@ -77,8 +119,10 @@ namespace VetPet_
                         int idMedicamento = reader["idMedicamento"] != DBNull.Value ? Convert.ToInt32(reader["idMedicamento"]) : 0;
                         string nombreMedicamento = reader["nombreGenérico"] != DBNull.Value ? reader["nombreGenérico"].ToString() : "Desconocido";
                         int cantidad = reader["cantidad"] != DBNull.Value ? Convert.ToInt32(reader["cantidad"]) : 0;
+                        string dosis = reader["dosis"] != DBNull.Value ? reader["dosis"].ToString() : "";
+                        string observacion = reader["observacion"] != DBNull.Value ? reader["observacion"].ToString() : "";
 
-                        listaMedicamentos.Add(new Tuple<int, string, int>(idMedicamento, nombreMedicamento, cantidad));
+                        listaMedicamentos.Add(new Tuple<int, string, int, string, string>(idMedicamento, nombreMedicamento, cantidad, dosis, observacion));
                     }
 
                     ActualizarDataGrid();
@@ -97,6 +141,21 @@ namespace VetPet_
         private void ActualizarDataGrid()
         {
 
+            //dtMedicamentos.Rows.Clear();
+            //dtMedicamentos.Columns.Clear();
+
+            //if (dtMedicamentos.Columns.Count == 0)
+            //{
+            //    dtMedicamentos.Columns.Add("ID", "ID Medicamento");
+            //    dtMedicamentos.Columns.Add("Nombre", "Nombre del Medicamento");
+            //    dtMedicamentos.Columns.Add("Cantidad", "Cantidad");
+            //}
+
+            //foreach (var medicamento in listaMedicamentos)
+            //{
+            //    dtMedicamentos.Rows.Add(medicamento.Item1, medicamento.Item2, medicamento.Item3);
+            //}
+
             dtMedicamentos.Rows.Clear();
             dtMedicamentos.Columns.Clear();
 
@@ -105,12 +164,21 @@ namespace VetPet_
                 dtMedicamentos.Columns.Add("ID", "ID Medicamento");
                 dtMedicamentos.Columns.Add("Nombre", "Nombre del Medicamento");
                 dtMedicamentos.Columns.Add("Cantidad", "Cantidad");
+                dtMedicamentos.Columns.Add("Dosis", "Dosis");
+                dtMedicamentos.Columns.Add("Observacion", "Observacion");
             }
 
             foreach (var medicamento in listaMedicamentos)
             {
-                dtMedicamentos.Rows.Add(medicamento.Item1, medicamento.Item2, medicamento.Item3);
+                dtMedicamentos.Rows.Add(
+                    medicamento.Item1,
+                    medicamento.Item2,
+                    medicamento.Item3,
+                    medicamento.Item4,
+                    medicamento.Item5
+                );
             }
+
         }
         private void ObtenerDatoConsulta()
         {
@@ -378,7 +446,7 @@ namespace VetPet_
                    peso,
                    temperatura,
                    indicaciones,
-                   listaMedicamentos, DatoCita
+                   listaMedicamentos2, DatoCita
                );
             parentForm.formularioHijo(formularioHijo);
         }
