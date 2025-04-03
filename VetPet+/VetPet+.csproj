@@ -1800,6 +1800,14 @@
     <None Include="Resources\view.png" />
     <None Include="Resources\avatar.png" />
     <None Include="Resources\ojo.png" />
+    <None Include="Resources\leftBarBg.png" />
+    <None Include="Resources\BtnAlmacen_BG_Clean.png" />
+    <None Include="Resources\BtnAClientes_BG_Clean.png" />
+    <None Include="Resources\BtnVeterinaria_BG_Clean.png" />
+    <None Include="Resources\BtnCortes_BG_Clean.png" />
+    <None Include="Resources\BtnServicios_BG_Clean.png" />
+    <None Include="Resources\BtnEmpleados_BG_Clean.png" />
+    <None Include="Resources\BtnReportes_BG_Clean.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

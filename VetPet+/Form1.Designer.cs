@@ -29,21 +29,14 @@
         private void InitializeComponent()
         {
             this.pnlForms = new System.Windows.Forms.Panel();
-            this.BtnAlmacen = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.BtnReportes = new System.Windows.Forms.Button();
-            this.BtnAtencionClient = new System.Windows.Forms.Button();
-            this.BtnEmpleados = new System.Windows.Forms.Button();
-            this.BtnServicios = new System.Windows.Forms.Button();
-            this.BtnCortes = new System.Windows.Forms.Button();
-            this.BtnVeterinaria = new System.Windows.Forms.Button();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BtnAlmacen = new System.Windows.Forms.PictureBox();
+            this.BtnVeterinaria = new System.Windows.Forms.PictureBox();
+            this.BtnCortes = new System.Windows.Forms.PictureBox();
+            this.BtnReportes = new System.Windows.Forms.PictureBox();
+            this.BtnEmpleados = new System.Windows.Forms.PictureBox();
+            this.BtnServicios = new System.Windows.Forms.PictureBox();
+            this.BtnAClientes = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnInfoUsuario = new System.Windows.Forms.PictureBox();
             this.lblUser = new System.Windows.Forms.Label();
@@ -55,13 +48,13 @@
             this.BtnMax = new System.Windows.Forms.PictureBox();
             this.BtnMin = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAlmacen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnVeterinaria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnCortes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnReportes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnEmpleados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnServicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAClientes)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BtnInfoUsuario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -73,232 +66,120 @@
             // pnlForms
             // 
             this.pnlForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlForms.Location = new System.Drawing.Point(225, 84);
-            this.pnlForms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlForms.Location = new System.Drawing.Point(192, 68);
             this.pnlForms.Name = "pnlForms";
-            this.pnlForms.Size = new System.Drawing.Size(1456, 750);
+            this.pnlForms.Size = new System.Drawing.Size(1069, 610);
             this.pnlForms.TabIndex = 5;
-            // 
-            // BtnAlmacen
-            // 
-            this.BtnAlmacen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnAlmacen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAlmacen.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAlmacen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnAlmacen.Location = new System.Drawing.Point(0, 66);
-            this.BtnAlmacen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BtnAlmacen.Name = "BtnAlmacen";
-            this.BtnAlmacen.Size = new System.Drawing.Size(221, 66);
-            this.BtnAlmacen.TabIndex = 2;
-            this.BtnAlmacen.Text = "Almacen";
-            this.BtnAlmacen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnAlmacen.UseVisualStyleBackColor = false;
-            this.BtnAlmacen.Click += new System.EventHandler(this.BtnAlmacen_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.panel2.Controls.Add(this.pictureBox8);
-            this.panel2.Controls.Add(this.pictureBox5);
-            this.panel2.Controls.Add(this.pictureBox6);
-            this.panel2.Controls.Add(this.pictureBox7);
-            this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.BackgroundImage = global::VetPet_.Properties.Resources.leftBarBg;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.BtnAlmacen);
+            this.panel2.Controls.Add(this.BtnVeterinaria);
+            this.panel2.Controls.Add(this.BtnCortes);
             this.panel2.Controls.Add(this.BtnReportes);
-            this.panel2.Controls.Add(this.BtnAtencionClient);
             this.panel2.Controls.Add(this.BtnEmpleados);
             this.panel2.Controls.Add(this.BtnServicios);
-            this.panel2.Controls.Add(this.BtnCortes);
-            this.panel2.Controls.Add(this.BtnVeterinaria);
-            this.panel2.Controls.Add(this.BtnAlmacen);
+            this.panel2.Controls.Add(this.BtnAClientes);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(4, 84);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(3, 68);
             this.panel2.Name = "panel2";
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panel2.Size = new System.Drawing.Size(221, 750);
+            this.panel2.Size = new System.Drawing.Size(189, 610);
             this.panel2.TabIndex = 4;
+            // 
+            // BtnAlmacen
+            // 
+            this.BtnAlmacen.BackColor = System.Drawing.Color.Transparent;
+            this.BtnAlmacen.BackgroundImage = global::VetPet_.Properties.Resources.BtnAlmacen_BG_Clean;
+            this.BtnAlmacen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnAlmacen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAlmacen.Location = new System.Drawing.Point(3, 76);
+            this.BtnAlmacen.Name = "BtnAlmacen";
+            this.BtnAlmacen.Size = new System.Drawing.Size(180, 53);
+            this.BtnAlmacen.TabIndex = 6;
+            this.BtnAlmacen.TabStop = false;
+            this.BtnAlmacen.Click += new System.EventHandler(this.BtnAlmacen_Click);
+            // 
+            // BtnVeterinaria
+            // 
+            this.BtnVeterinaria.BackColor = System.Drawing.Color.Transparent;
+            this.BtnVeterinaria.BackgroundImage = global::VetPet_.Properties.Resources.BtnVeterinaria_BG_Clean;
+            this.BtnVeterinaria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnVeterinaria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVeterinaria.Location = new System.Drawing.Point(3, 146);
+            this.BtnVeterinaria.Name = "BtnVeterinaria";
+            this.BtnVeterinaria.Size = new System.Drawing.Size(180, 53);
+            this.BtnVeterinaria.TabIndex = 5;
+            this.BtnVeterinaria.TabStop = false;
+            this.BtnVeterinaria.Click += new System.EventHandler(this.BtnVeterinaria_Click);
+            // 
+            // BtnCortes
+            // 
+            this.BtnCortes.BackColor = System.Drawing.Color.Transparent;
+            this.BtnCortes.BackgroundImage = global::VetPet_.Properties.Resources.BtnCortes_BG_Clean;
+            this.BtnCortes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnCortes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCortes.Location = new System.Drawing.Point(3, 216);
+            this.BtnCortes.Name = "BtnCortes";
+            this.BtnCortes.Size = new System.Drawing.Size(180, 53);
+            this.BtnCortes.TabIndex = 4;
+            this.BtnCortes.TabStop = false;
+            this.BtnCortes.Click += new System.EventHandler(this.BtnCortes_Click);
             // 
             // BtnReportes
             // 
-            this.BtnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnReportes.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReportes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnReportes.Location = new System.Drawing.Point(0, 399);
-            this.BtnReportes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnReportes.BackColor = System.Drawing.Color.Transparent;
+            this.BtnReportes.BackgroundImage = global::VetPet_.Properties.Resources.BtnReportes_BG_Clean;
+            this.BtnReportes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnReportes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnReportes.Location = new System.Drawing.Point(3, 426);
             this.BtnReportes.Name = "BtnReportes";
-            this.BtnReportes.Size = new System.Drawing.Size(221, 66);
-            this.BtnReportes.TabIndex = 12;
-            this.BtnReportes.Text = "Reportes";
-            this.BtnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnReportes.UseVisualStyleBackColor = false;
+            this.BtnReportes.Size = new System.Drawing.Size(180, 53);
+            this.BtnReportes.TabIndex = 3;
+            this.BtnReportes.TabStop = false;
             this.BtnReportes.Click += new System.EventHandler(this.BtnReportes_Click);
-            // 
-            // BtnAtencionClient
-            // 
-            this.BtnAtencionClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnAtencionClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAtencionClient.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAtencionClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnAtencionClient.Location = new System.Drawing.Point(0, 0);
-            this.BtnAtencionClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BtnAtencionClient.Name = "BtnAtencionClient";
-            this.BtnAtencionClient.Size = new System.Drawing.Size(221, 66);
-            this.BtnAtencionClient.TabIndex = 4;
-            this.BtnAtencionClient.Text = "Atencion\r\na Clientes";
-            this.BtnAtencionClient.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.BtnAtencionClient.UseVisualStyleBackColor = false;
-            this.BtnAtencionClient.Click += new System.EventHandler(this.BtnAtencionClient_Click);
             // 
             // BtnEmpleados
             // 
-            this.BtnEmpleados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnEmpleados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEmpleados.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEmpleados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnEmpleados.Location = new System.Drawing.Point(0, 332);
-            this.BtnEmpleados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnEmpleados.BackColor = System.Drawing.Color.Transparent;
+            this.BtnEmpleados.BackgroundImage = global::VetPet_.Properties.Resources.BtnEmpleados_BG_Clean;
+            this.BtnEmpleados.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnEmpleados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnEmpleados.Location = new System.Drawing.Point(3, 356);
             this.BtnEmpleados.Name = "BtnEmpleados";
-            this.BtnEmpleados.Size = new System.Drawing.Size(221, 66);
-            this.BtnEmpleados.TabIndex = 11;
-            this.BtnEmpleados.Text = "Empleados";
-            this.BtnEmpleados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnEmpleados.UseVisualStyleBackColor = false;
+            this.BtnEmpleados.Size = new System.Drawing.Size(180, 53);
+            this.BtnEmpleados.TabIndex = 2;
+            this.BtnEmpleados.TabStop = false;
             this.BtnEmpleados.Click += new System.EventHandler(this.BtnEmpleados_Click);
             // 
             // BtnServicios
             // 
-            this.BtnServicios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnServicios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnServicios.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnServicios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnServicios.Location = new System.Drawing.Point(0, 266);
-            this.BtnServicios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnServicios.BackColor = System.Drawing.Color.Transparent;
+            this.BtnServicios.BackgroundImage = global::VetPet_.Properties.Resources.BtnServicios_BG_Clean;
+            this.BtnServicios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnServicios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnServicios.Location = new System.Drawing.Point(3, 286);
             this.BtnServicios.Name = "BtnServicios";
-            this.BtnServicios.Size = new System.Drawing.Size(221, 66);
-            this.BtnServicios.TabIndex = 10;
-            this.BtnServicios.Text = "Servicios";
-            this.BtnServicios.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnServicios.UseVisualStyleBackColor = true;
+            this.BtnServicios.Size = new System.Drawing.Size(180, 53);
+            this.BtnServicios.TabIndex = 1;
+            this.BtnServicios.TabStop = false;
             this.BtnServicios.Click += new System.EventHandler(this.BtnServicios_Click);
             // 
-            // BtnCortes
+            // BtnAClientes
             // 
-            this.BtnCortes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnCortes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCortes.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCortes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnCortes.Location = new System.Drawing.Point(0, 199);
-            this.BtnCortes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BtnCortes.Name = "BtnCortes";
-            this.BtnCortes.Size = new System.Drawing.Size(221, 66);
-            this.BtnCortes.TabIndex = 8;
-            this.BtnCortes.Text = "Cortes";
-            this.BtnCortes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnCortes.UseVisualStyleBackColor = false;
-            this.BtnCortes.Click += new System.EventHandler(this.BtnCortes_Click);
-            // 
-            // BtnVeterinaria
-            // 
-            this.BtnVeterinaria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.BtnVeterinaria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnVeterinaria.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVeterinaria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(0)))), ((int)(((byte)(76)))));
-            this.BtnVeterinaria.Location = new System.Drawing.Point(0, 133);
-            this.BtnVeterinaria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BtnVeterinaria.Name = "BtnVeterinaria";
-            this.BtnVeterinaria.Size = new System.Drawing.Size(221, 66);
-            this.BtnVeterinaria.TabIndex = 6;
-            this.BtnVeterinaria.Text = "Veterinaria";
-            this.BtnVeterinaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnVeterinaria.UseVisualStyleBackColor = false;
-            this.BtnVeterinaria.Click += new System.EventHandler(this.BtnVeterinaria_Click_1);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox8.Image = global::VetPet_.Properties.Resources.reporte_de_negocios;
-            this.pictureBox8.Location = new System.Drawing.Point(155, 406);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 18;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox5.Image = global::VetPet_.Properties.Resources.papel_de_empresario_de_la_solicitud_de_empleo;
-            this.pictureBox5.Location = new System.Drawing.Point(155, 340);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 17;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox6.Image = global::VetPet_.Properties.Resources.cuidado_de_la_salud;
-            this.pictureBox6.Location = new System.Drawing.Point(155, 276);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 16;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox7.Image = global::VetPet_.Properties.Resources.caja_registradora;
-            this.pictureBox7.Location = new System.Drawing.Point(155, 207);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 15;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox4.Image = global::VetPet_.Properties.Resources.veterinario;
-            this.pictureBox4.Location = new System.Drawing.Point(155, 140);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 14;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox3.Image = global::VetPet_.Properties.Resources.quitar_caja;
-            this.pictureBox3.Location = new System.Drawing.Point(155, 76);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 13;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(135)))), ((int)(((byte)(255)))));
-            this.pictureBox1.Image = global::VetPet_.Properties.Resources.usuario;
-            this.pictureBox1.Location = new System.Drawing.Point(155, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(53, 49);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.BtnAClientes.BackColor = System.Drawing.Color.Transparent;
+            this.BtnAClientes.BackgroundImage = global::VetPet_.Properties.Resources.BtnAClientes_BG_Clean;
+            this.BtnAClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnAClientes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAClientes.Location = new System.Drawing.Point(3, 6);
+            this.BtnAClientes.Name = "BtnAClientes";
+            this.BtnAClientes.Size = new System.Drawing.Size(180, 53);
+            this.BtnAClientes.TabIndex = 0;
+            this.BtnAClientes.TabStop = false;
+            this.BtnAClientes.Click += new System.EventHandler(this.BtnAtencionClient_Click);
             // 
             // panel1
             // 
@@ -315,10 +196,9 @@
             this.panel1.Controls.Add(this.BtnMax);
             this.panel1.Controls.Add(this.BtnMin);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(4, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1677, 80);
+            this.panel1.Size = new System.Drawing.Size(1258, 65);
             this.panel1.TabIndex = 3;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
@@ -327,9 +207,10 @@
             this.BtnInfoUsuario.BackColor = System.Drawing.Color.Transparent;
             this.BtnInfoUsuario.BackgroundImage = global::VetPet_.Properties.Resources.avatar;
             this.BtnInfoUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BtnInfoUsuario.Location = new System.Drawing.Point(1280, 21);
+            this.BtnInfoUsuario.Location = new System.Drawing.Point(960, 17);
+            this.BtnInfoUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.BtnInfoUsuario.Name = "BtnInfoUsuario";
-            this.BtnInfoUsuario.Size = new System.Drawing.Size(50, 50);
+            this.BtnInfoUsuario.Size = new System.Drawing.Size(38, 41);
             this.BtnInfoUsuario.TabIndex = 8;
             this.BtnInfoUsuario.TabStop = false;
             this.BtnInfoUsuario.Click += new System.EventHandler(this.BtnInfoUsuario_Click);
@@ -340,9 +221,10 @@
             this.lblUser.BackColor = System.Drawing.Color.Transparent;
             this.lblUser.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.Color.White;
-            this.lblUser.Location = new System.Drawing.Point(1431, 25);
+            this.lblUser.Location = new System.Drawing.Point(1073, 20);
+            this.lblUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(86, 23);
+            this.lblUser.Size = new System.Drawing.Size(70, 18);
             this.lblUser.TabIndex = 7;
             this.lblUser.Text = "Usuario";
             // 
@@ -352,9 +234,10 @@
             this.lblTipoEmpleado.BackColor = System.Drawing.Color.Transparent;
             this.lblTipoEmpleado.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipoEmpleado.ForeColor = System.Drawing.Color.White;
-            this.lblTipoEmpleado.Location = new System.Drawing.Point(1431, 48);
+            this.lblTipoEmpleado.Location = new System.Drawing.Point(1073, 39);
+            this.lblTipoEmpleado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTipoEmpleado.Name = "lblTipoEmpleado";
-            this.lblTipoEmpleado.Size = new System.Drawing.Size(151, 23);
+            this.lblTipoEmpleado.Size = new System.Drawing.Size(121, 18);
             this.lblTipoEmpleado.TabIndex = 6;
             this.lblTipoEmpleado.Text = "TipoEmpleado";
             // 
@@ -364,9 +247,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1378, 50);
+            this.label2.Location = new System.Drawing.Point(1034, 41);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 23);
+            this.label2.Size = new System.Drawing.Size(39, 18);
             this.label2.TabIndex = 5;
             this.label2.Text = "Rol:";
             // 
@@ -376,19 +260,19 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1333, 25);
+            this.label1.Location = new System.Drawing.Point(1000, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 23);
+            this.label1.Size = new System.Drawing.Size(75, 18);
             this.label1.TabIndex = 4;
             this.label1.Text = "Usuario:";
             // 
             // pictureBox11
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox11.Location = new System.Drawing.Point(20, 4);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox11.Location = new System.Drawing.Point(15, 3);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(88, 76);
+            this.pictureBox11.Size = new System.Drawing.Size(66, 62);
             this.pictureBox11.TabIndex = 3;
             this.pictureBox11.TabStop = false;
             this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
@@ -396,10 +280,9 @@
             // BtnClose
             // 
             this.BtnClose.BackColor = System.Drawing.Color.Transparent;
-            this.BtnClose.Location = new System.Drawing.Point(1647, 4);
-            this.BtnClose.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnClose.Location = new System.Drawing.Point(1235, 3);
             this.BtnClose.Name = "BtnClose";
-            this.BtnClose.Size = new System.Drawing.Size(23, 33);
+            this.BtnClose.Size = new System.Drawing.Size(17, 27);
             this.BtnClose.TabIndex = 2;
             this.BtnClose.TabStop = false;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
@@ -407,10 +290,9 @@
             // BtnMax
             // 
             this.BtnMax.BackColor = System.Drawing.Color.Transparent;
-            this.BtnMax.Location = new System.Drawing.Point(1613, 4);
-            this.BtnMax.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnMax.Location = new System.Drawing.Point(1210, 3);
             this.BtnMax.Name = "BtnMax";
-            this.BtnMax.Size = new System.Drawing.Size(23, 33);
+            this.BtnMax.Size = new System.Drawing.Size(17, 27);
             this.BtnMax.TabIndex = 1;
             this.BtnMax.TabStop = false;
             this.BtnMax.Click += new System.EventHandler(this.BtnMax_Click);
@@ -418,38 +300,36 @@
             // BtnMin
             // 
             this.BtnMin.BackColor = System.Drawing.Color.Transparent;
-            this.BtnMin.Location = new System.Drawing.Point(1580, 4);
-            this.BtnMin.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnMin.Location = new System.Drawing.Point(1185, 3);
             this.BtnMin.Name = "BtnMin";
-            this.BtnMin.Size = new System.Drawing.Size(23, 33);
+            this.BtnMin.Size = new System.Drawing.Size(17, 27);
             this.BtnMin.TabIndex = 0;
             this.BtnMin.TabStop = false;
             this.BtnMin.Click += new System.EventHandler(this.BtnMin_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1685, 838);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.pnlForms);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load_1);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAlmacen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnVeterinaria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnCortes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnReportes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnEmpleados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnServicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAClientes)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BtnInfoUsuario)).EndInit();
@@ -464,21 +344,7 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlForms;
-        private System.Windows.Forms.Button BtnAlmacen;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button BtnAtencionClient;
-        private System.Windows.Forms.Button BtnEmpleados;
-        private System.Windows.Forms.Button BtnServicios;
-        private System.Windows.Forms.Button BtnCortes;
-        private System.Windows.Forms.Button BtnVeterinaria;
-        private System.Windows.Forms.Button BtnReportes;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox BtnClose;
         private System.Windows.Forms.PictureBox BtnMax;
@@ -488,6 +354,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox BtnInfoUsuario;
+        private System.Windows.Forms.PictureBox BtnAClientes;
+        private System.Windows.Forms.PictureBox BtnAlmacen;
+        private System.Windows.Forms.PictureBox BtnVeterinaria;
+        private System.Windows.Forms.PictureBox BtnCortes;
+        private System.Windows.Forms.PictureBox BtnReportes;
+        private System.Windows.Forms.PictureBox BtnEmpleados;
+        private System.Windows.Forms.PictureBox BtnServicios;
     }
 }
 
