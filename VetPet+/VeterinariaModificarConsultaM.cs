@@ -156,7 +156,6 @@ namespace VetPet_
                 string query = @"UPDATE Consulta 
                         SET peso = @peso, 
                             temperatura = @temperatura, 
-                            MotivoConsulta = @motivo, 
                             diagnostico = @diagnostico, 
                             EstudioEspecial = @estudioEspecial
                         WHERE idCita = @idCita";
@@ -165,7 +164,7 @@ namespace VetPet_
                 {
                     cmd.Parameters.AddWithValue("@peso", Convert.ToDecimal(txtPeso.Text));
                     cmd.Parameters.AddWithValue("@temperatura", Convert.ToDecimal(txtTemperatura.Text));
-                    cmd.Parameters.AddWithValue("@motivo", txtMotivo.Text);
+                    //cmd.Parameters.AddWithValue("@motivo", txtMotivo.Text);
                     cmd.Parameters.AddWithValue("@diagnostico", txtDiagnostico.Text);
                     cmd.Parameters.AddWithValue("@estudioEspecial", rtEstudioEspecial.Text);
                     cmd.Parameters.AddWithValue("@idCita", DatoCita);
