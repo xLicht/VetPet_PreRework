@@ -26,11 +26,11 @@ namespace VetPet_
         string Peso;
         string Temperatura;
         string Indicaciones;
-        List<Tuple<int, string, int>> ListaMedicamentos;
+        List<Tuple<int, string, int, string, string>> ListaMedicamentos;
 
         public RecetaManager(string nombreReceta, string nombreDueño, string nombreMascota, string especie, string raza, string fechaNacimiento,
         string diagnostico, string peso, string temperatura, string indicaciones,
-        List<Tuple<int, string, int>> listaMedicamentos)
+        List<Tuple<int, string, int, string, string>> listaMedicamentos)
         {
             DirectorioProyecto = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName;
             string carpetaReportes = Path.Combine(DirectorioProyecto, "Recetas-Arch");
@@ -84,10 +84,10 @@ namespace VetPet_
             {
                 Font textoFont = FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7);
 
-                string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPet_Logo1.png");
+                string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPetLogoNew.png");
                 if (!File.Exists(imagenPath))
                 {
-                    MessageBox.Show("La imagen VetPetLogo.png no se encontró en la carpeta Resources.");
+                    MessageBox.Show("La imagen VetPetLogoNew.png no se encontró en la carpeta Resources.");
                     return;
                 }
 
@@ -147,7 +147,7 @@ namespace VetPet_
             // Tabla para la sección de Medicamentos e Indicaciones
             PdfPTable tablaContenedor = new PdfPTable(2);
             tablaContenedor.WidthPercentage = 100;
-            float[] columnWidths = { 50, 50 };
+            float[] columnWidths = { 70, 30 };
             tablaContenedor.SetWidths(columnWidths);
 
             // Crear la tabla de medicamentos
@@ -162,7 +162,7 @@ namespace VetPet_
             PdfPCell celdaIndicaciones = new PdfPCell(indicaciones);
             celdaIndicaciones.Border = PdfPCell.NO_BORDER;
             celdaIndicaciones.VerticalAlignment = Element.ALIGN_TOP;
-            celdaIndicaciones.PaddingLeft = 30f; // Espacio de 10 puntos entre la tabla y el texto
+            celdaIndicaciones.PaddingLeft = 20f; // Espacio de 10 puntos entre la tabla y el texto
 
             tablaContenedor.AddCell(celdaIndicaciones);
 
@@ -233,33 +233,45 @@ namespace VetPet_
         }
         public void CrearTablaMedic(ref PdfPTable tabla, Font fontBold, Font fontText)
         {
-            tabla = new PdfPTable(3);
+            tabla = new PdfPTable(5);
             // 🔹 Crear tabla con dos columnas (Razón - Veces)
-            tabla.WidthPercentage = 45;
+            tabla.WidthPercentage = 100;
             tabla.HorizontalAlignment = Element.ALIGN_LEFT;
-            tabla.SetWidths(new float[] { 1, 1, 1});
+            tabla.SetWidths(new float[] { 10, 30, 15, 25, 20});
             // Encabezados de la tabla
             PdfPCell idMed = new PdfPCell(new Phrase("Id", fontBold));
             PdfPCell nombre = new PdfPCell(new Phrase("Medicamento", fontBold));
             PdfPCell cantidad = new PdfPCell(new Phrase("Cantidad", fontBold));
+            PdfPCell indicaciones = new PdfPCell(new Phrase("Indicaciones", fontBold));
+            PdfPCell dosis = new PdfPCell(new Phrase("Dosis", fontBold));
             idMed.HorizontalAlignment = Element.ALIGN_CENTER;
             nombre.HorizontalAlignment = Element.ALIGN_CENTER;
             cantidad.HorizontalAlignment = Element.ALIGN_CENTER;
+            indicaciones.HorizontalAlignment = Element.ALIGN_CENTER;
+            dosis.HorizontalAlignment = Element.ALIGN_CENTER;
             tabla.AddCell(idMed);
             tabla.AddCell(nombre);
             tabla.AddCell(cantidad);
+            tabla.AddCell(indicaciones);
+            tabla.AddCell(dosis);
 
             for (int i = 0; i < ListaMedicamentos.Count; i++)
             {
                 PdfPCell celda1 = new PdfPCell(new Phrase(ListaMedicamentos[i].Item1.ToString(), fontText));
                 PdfPCell celda2 = new PdfPCell(new Phrase(ListaMedicamentos[i].Item2.ToString(), fontText));
                 PdfPCell celda3 = new PdfPCell(new Phrase(ListaMedicamentos[i].Item3.ToString(), fontText));
+                PdfPCell celda4 = new PdfPCell(new Phrase(ListaMedicamentos[i].Item4.ToString(), fontText));
+                PdfPCell celda5 = new PdfPCell(new Phrase(ListaMedicamentos[i].Item5.ToString(), fontText));
                 celda1.HorizontalAlignment = Element.ALIGN_CENTER;
                 celda2.HorizontalAlignment = Element.ALIGN_CENTER;
                 celda3.HorizontalAlignment = Element.ALIGN_CENTER;
+                celda4.HorizontalAlignment = Element.ALIGN_CENTER;
+                celda5.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabla.AddCell(celda1);
                 tabla.AddCell(celda2);
                 tabla.AddCell(celda3);
+                tabla.AddCell(celda4);
+                tabla.AddCell(celda5);
             }
 
         }

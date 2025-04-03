@@ -133,6 +133,106 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BtnAClientes_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnAClientes_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnAlmacen_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnAlmacen_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnCortes_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnCortes_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnEmpleados_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnEmpleados_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnNuevaCita_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnNuevaCita_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnNuevaVenta_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnNuevaVenta_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnNuevoCorte_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnNuevoCorte_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnReportes_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnReportes_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnServicios_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnServicios_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnVeterinaria_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnVeterinaria_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap buscar_ang {
             get {
                 object obj = ResourceManager.GetObject("buscar-ang", resourceCulture);
@@ -186,6 +286,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap cita2 {
             get {
                 object obj = ResourceManager.GetObject("cita2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CitasDeHoy_Clean {
+            get {
+                object obj = ResourceManager.GetObject("CitasDeHoy_Clean", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -744,6 +854,16 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leftBarBg {
+            get {
+                object obj = ResourceManager.GetObject("leftBarBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap list {
             get {
                 object obj = ResourceManager.GetObject("list", resourceCulture);
@@ -767,6 +887,26 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap menu_bar {
             get {
                 object obj = ResourceManager.GetObject("menu-bar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MenuDesp_Clean {
+            get {
+                object obj = ResourceManager.GetObject("MenuDesp_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MenuDesp_CleanF {
+            get {
+                object obj = ResourceManager.GetObject("MenuDesp_CleanF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1078,6 +1218,26 @@ namespace VetPet_.Properties {
             get {
                 object obj = ResourceManager.GetObject("VetPet_Logo1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VetPetLogoNew {
+            get {
+                object obj = ResourceManager.GetObject("VetPetLogoNew", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon VetPetLogoNew1 {
+            get {
+                object obj = ResourceManager.GetObject("VetPetLogoNew1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

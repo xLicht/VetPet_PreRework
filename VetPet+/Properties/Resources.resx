@@ -121,6 +121,9 @@
   <data name="icons8-aceptar-503" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-aceptar-503.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BtnNuevaVenta_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnNuevaVenta_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-factura-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-factura-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,17 +142,23 @@
   <data name="VeterinariaBuscar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VeterinariaBuscar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-mascotas-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-mascotas-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kit-de-primeros-auxilios (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kit-de-primeros-auxilios (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="drugs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\drugs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-aceptar-504" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-aceptar-504.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Hoja" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Hoja1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CitasDeHoy_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CitasDeHoy_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="list1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\list1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,6 +193,12 @@
   <data name="icons8-informe-gráfico-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-informe-gráfico-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="menu-bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu-bar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BtnAClientes_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnAClientes_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DueAgregarMascota" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DueAgregarMascota.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -201,9 +216,6 @@
   </data>
   <data name="supplier" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\supplier.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-dinero-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-dinero-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-para-ti-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-para-ti-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,8 +247,8 @@
   <data name="EmpAceptar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EmpAceptar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnNuevoCorte_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnNuevoCorte_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-fursona-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-fursona-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,8 +256,14 @@
   <data name="icons8-virus-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-virus-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DueAgregarMascota1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DueAgregarMascota1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hospital" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hospital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tool-and-utensils" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tool-and-utensils.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,23 +277,29 @@
   <data name="owner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\owner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="registration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\registration.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-add-button-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add-button-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="VetPet_Logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VetPet_Logo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-cancelar-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-cancelar-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="quitar-caja" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quitar-caja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MenuDesp_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuDesp_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BtnReportes_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnReportes_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-aceptar-505" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-aceptar-505.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="avatar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\avatar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,8 +310,8 @@
   <data name="historia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\historia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="menu-bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\menu-bar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-add-button-251" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-add-button-251.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="checklist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checklist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -301,32 +325,41 @@
   <data name="icons8-aceptar-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-aceptar-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="caja-del-paquete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\caja-del-paquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plus1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-pasado-244" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-pasado-244.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="VetPet_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VetPet_Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ojo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="VetPet_Logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VetPet_Logo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnAlmacen_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnAlmacen_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="diskette" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\diskette.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="leftBarBg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\leftBarBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="people" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-3d-touch-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-3d-touch-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnVeterinaria_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnVeterinaria_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="history" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\history.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BtnServicios_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnServicios_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-cancelar-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-cancelar-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-3d-touch-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-3d-touch-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="topBar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\topBar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -337,8 +370,11 @@
   <data name="EmpTipo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EmpTipo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="registration" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\registration.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-clínica-externa-veterinaria-y-mascotas-creatype-contorno-colorcreatype-3-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VetPetLogoNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VetPetLogoNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -361,11 +397,14 @@
   <data name="icons8-pasado-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-pasado-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BtnNuevaCita_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnNuevaCita_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="caja-registradora" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\caja-registradora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hospital" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hospital.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-dinero-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-dinero-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -373,14 +412,17 @@
   <data name="icons8-aceptar-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-aceptar-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="caja-del-paquete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\caja-del-paquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-pasado-242" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-pasado-242.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="quitar-caja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quitar-caja.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="drugs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\drugs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -390,6 +432,9 @@
   </data>
   <data name="VeterinariaRecetar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VeterinariaRecetar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BtnCortes_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnCortes_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -406,17 +451,17 @@
   <data name="usuario-ang" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\usuario-ang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-add-button-251" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-add-button-251.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnEmpleados_BG_Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnEmpleados_BG_Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barraTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barraTop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="kit-de-primeros-auxilios (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kit-de-primeros-auxilios (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="avatar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\avatar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="VetPet_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VetPet_Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-medical-file-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-medical-file-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -430,7 +475,10 @@
   <data name="icons8-mascota-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-mascota-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ojo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MenuDesp_CleanF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuDesp_CleanF.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VetPetLogoNew1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VetPetLogoNew.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

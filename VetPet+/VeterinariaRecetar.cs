@@ -19,7 +19,8 @@ namespace VetPet_
         public int DatoCita { get; set; }
         public int DatoConsulta { get; set; }
         private conexionDaniel conexionDB = new conexionDaniel();
-        private List<Tuple<int, string, int>> listaMedicamentos = new List<Tuple<int, string, int>>();
+        private List<Tuple<int, string, int>> listaMedicamentos2 = new List<Tuple<int, string, int>>();
+        private List<Tuple<int, string, int, string, string>> listaMedicamentos = new List<Tuple<int, string, int, string, string>>();
 
         public VeterinariaRecetar(Form1 parent)
         {
@@ -177,14 +178,16 @@ namespace VetPet_
                 {
                     foreach (var medicamento in listaMedicamentos)
                     {
-                        string queryMedicamento = @"INSERT INTO Receta_Medicamento (idReceta, idMedicamento, cantidad) 
-                                                    VALUES (@idReceta, @idMedicamento, @cantidad);";
+                        string queryMedicamento = @"INSERT INTO Receta_Medicamento (idReceta, idMedicamento, cantidad, dosis, observacion) 
+                                    VALUES (@idReceta, @idMedicamento, @cantidad, @dosis, @observacion);";
 
                         using (SqlCommand cmd = new SqlCommand(queryMedicamento, conexionDB.GetConexion()))
                         {
                             cmd.Parameters.AddWithValue("@idReceta", idReceta);
                             cmd.Parameters.AddWithValue("@idMedicamento", medicamento.Item1);
                             cmd.Parameters.AddWithValue("@cantidad", medicamento.Item3);
+                            cmd.Parameters.AddWithValue("@dosis", medicamento.Item4);
+                            cmd.Parameters.AddWithValue("@observacion", medicamento.Item5);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -224,7 +227,6 @@ namespace VetPet_
 
         private void ActualizarDataGrid()
         {
-
             dtMedicamentos.Rows.Clear();
             dtMedicamentos.Columns.Clear();
 
@@ -233,11 +235,19 @@ namespace VetPet_
                 dtMedicamentos.Columns.Add("ID", "ID Medicamento");
                 dtMedicamentos.Columns.Add("Nombre", "Nombre del Medicamento");
                 dtMedicamentos.Columns.Add("Cantidad", "Cantidad");
+                dtMedicamentos.Columns.Add("Dosis", "Dosis");
+                dtMedicamentos.Columns.Add("Observacion", "Observacion");
             }
 
             foreach (var medicamento in listaMedicamentos)
             {
-                dtMedicamentos.Rows.Add(medicamento.Item1, medicamento.Item2, medicamento.Item3);
+                dtMedicamentos.Rows.Add(
+                    medicamento.Item1,
+                    medicamento.Item2,
+                    medicamento.Item3,
+                    medicamento.Item4,
+                    medicamento.Item5
+                );
             }
         }
         private void btnAgregarMedicamentos_Click(object sender, EventArgs e)
@@ -259,19 +269,38 @@ namespace VetPet_
                 return;
             }
 
-            var medicamentoExistente = listaMedicamentos.FirstOrDefault(m => m.Item1 == idMedicamento);
+            // Obtener datos adicionales: dosis y observaciones.
+            if (cbDosis.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione una dosis.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string dosis = cbDosis.SelectedItem.ToString();
+            string observaciones = dtObservaciones.Text.Trim();
 
+            // Evitar duplicados en la lista.
+            var medicamentoExistente = listaMedicamentos.FirstOrDefault(m => m.Item1 == idMedicamento);
             if (medicamentoExistente != null)
             {
                 MessageBox.Show("El medicamento ya está en la lista.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            listaMedicamentos.Add(new Tuple<int, string, int>(idMedicamento, nombreMedicamento, cantidad));
+            // Agregar a la lista con los datos completos.
+            listaMedicamentos.Add(new Tuple<int, string, int, string, string>(
+                idMedicamento,
+                nombreMedicamento,
+                cantidad,
+                dosis,
+                observaciones
+            ));
 
             ActualizarDataGrid();
 
-            //parentForm.formularioHijo(new VeterinariaVentaMedicamentos(parentForm, "VeterinariaRecetar"));
+            // Opcional: limpiar controles si lo deseas
+            nupCantidad.Value = 1;
+            cbDosis.SelectedIndex = -1;
+            dtObservaciones.Clear();
         }
 
        

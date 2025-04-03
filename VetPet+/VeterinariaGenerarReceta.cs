@@ -27,12 +27,12 @@ namespace VetPet_
         public string Temperatura { get; set; }
         public string Indicaciones { get; set; }
         int DatoCita;
-        public List<Tuple<int, string, int>> ListaMedicamentos { get; set; }
-
+        //public List<Tuple<int, string, int>> ListaMedicamentos { get; set; }
+        public List<Tuple<int, string, int, string, string>> ListaMedicamentos { get; set; }
         public VeterinariaGenerarReceta(Form1 parent, 
         string nombreDueño, string nombreMascota, string especie, string raza, string fechaNacimiento,
         string diagnostico, string peso, string temperatura, string indicaciones,
-        List<Tuple<int, string, int>> listaMedicamentos, int datoCita)
+         List<Tuple<int, string, int, string, string>> listaMedicamentos, int datoCita)
         {
             InitializeComponent();
             parentForm = parent;

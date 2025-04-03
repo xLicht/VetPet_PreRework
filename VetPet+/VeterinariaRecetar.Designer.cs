@@ -30,9 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtMedicamentos = new System.Windows.Forms.DataGridView();
-            this.columm1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rtDiagnostico = new System.Windows.Forms.RichTextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnAgregarMedicamentos = new System.Windows.Forms.Button();
@@ -66,6 +63,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnGenerarReceta = new System.Windows.Forms.Button();
+            this.dtObservaciones = new System.Windows.Forms.RichTextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbDosis = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtMedicamentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -87,36 +88,14 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dtMedicamentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtMedicamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtMedicamentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.columm1,
-            this.Column2,
-            this.Column3});
             this.dtMedicamentos.EnableHeadersVisualStyles = false;
-            this.dtMedicamentos.Location = new System.Drawing.Point(25, 332);
+            this.dtMedicamentos.Location = new System.Drawing.Point(17, 384);
             this.dtMedicamentos.Name = "dtMedicamentos";
             this.dtMedicamentos.RowHeadersVisible = false;
             this.dtMedicamentos.RowHeadersWidth = 49;
-            this.dtMedicamentos.Size = new System.Drawing.Size(576, 218);
+            this.dtMedicamentos.Size = new System.Drawing.Size(597, 175);
             this.dtMedicamentos.TabIndex = 329;
             this.dtMedicamentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtMedicamentos_CellClick);
-            // 
-            // columm1
-            // 
-            this.columm1.HeaderText = "id";
-            this.columm1.MinimumWidth = 6;
-            this.columm1.Name = "columm1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Nombre";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Cantidad";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
             // 
             // rtDiagnostico
             // 
@@ -133,7 +112,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox3.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaRecetar;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(543, 280);
+            this.pictureBox3.Location = new System.Drawing.Point(424, 276);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(39, 29);
@@ -145,10 +124,10 @@
             this.btnAgregarMedicamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.btnAgregarMedicamentos.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarMedicamentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.btnAgregarMedicamentos.Location = new System.Drawing.Point(449, 265);
+            this.btnAgregarMedicamentos.Location = new System.Drawing.Point(332, 267);
             this.btnAgregarMedicamentos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarMedicamentos.Name = "btnAgregarMedicamentos";
-            this.btnAgregarMedicamentos.Size = new System.Drawing.Size(152, 59);
+            this.btnAgregarMedicamentos.Size = new System.Drawing.Size(152, 44);
             this.btnAgregarMedicamentos.TabIndex = 325;
             this.btnAgregarMedicamentos.Text = "Agregar";
             this.btnAgregarMedicamentos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -237,9 +216,9 @@
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
             this.label24.Location = new System.Drawing.Point(639, 166);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(133, 25);
+            this.label24.Size = new System.Drawing.Size(231, 25);
             this.label24.TabIndex = 317;
-            this.label24.Text = "Indicaciones ";
+            this.label24.Text = "Indicaciones  Generales";
             // 
             // label14
             // 
@@ -334,7 +313,7 @@
             this.cbMedicamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.cbMedicamentos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMedicamentos.FormattingEnabled = true;
-            this.cbMedicamentos.Location = new System.Drawing.Point(33, 287);
+            this.cbMedicamentos.Location = new System.Drawing.Point(17, 276);
             this.cbMedicamentos.Name = "cbMedicamentos";
             this.cbMedicamentos.Size = new System.Drawing.Size(179, 29);
             this.cbMedicamentos.TabIndex = 331;
@@ -343,14 +322,14 @@
             // 
             this.nupCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             this.nupCantidad.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nupCantidad.Location = new System.Drawing.Point(268, 287);
+            this.nupCantidad.Location = new System.Drawing.Point(222, 276);
             this.nupCantidad.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nupCantidad.Name = "nupCantidad";
-            this.nupCantidad.Size = new System.Drawing.Size(120, 29);
+            this.nupCantidad.Size = new System.Drawing.Size(65, 29);
             this.nupCantidad.TabIndex = 333;
             this.nupCantidad.Value = new decimal(new int[] {
             1,
@@ -363,7 +342,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label3.Location = new System.Drawing.Point(37, 259);
+            this.label3.Location = new System.Drawing.Point(20, 248);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 25);
             this.label3.TabIndex = 334;
@@ -374,7 +353,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label4.Location = new System.Drawing.Point(276, 259);
+            this.label4.Location = new System.Drawing.Point(217, 248);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 25);
             this.label4.TabIndex = 335;
@@ -507,12 +486,72 @@
             this.btnGenerarReceta.UseVisualStyleBackColor = false;
             this.btnGenerarReceta.Click += new System.EventHandler(this.btnGenerarReceta_Click);
             // 
+            // dtObservaciones
+            // 
+            this.dtObservaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.dtObservaciones.Font = new System.Drawing.Font("Segoe UI", 16.27826F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtObservaciones.Location = new System.Drawing.Point(405, 329);
+            this.dtObservaciones.Name = "dtObservaciones";
+            this.dtObservaciones.Size = new System.Drawing.Size(226, 42);
+            this.dtObservaciones.TabIndex = 395;
+            this.dtObservaciones.Text = "";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label10.Location = new System.Drawing.Point(166, 336);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(233, 25);
+            this.label10.TabIndex = 396;
+            this.label10.Text = "Indicaciones Especificas";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label12.Location = new System.Drawing.Point(20, 308);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 25);
+            this.label12.TabIndex = 398;
+            this.label12.Text = "Dosis";
+            // 
+            // cbDosis
+            // 
+            this.cbDosis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            this.cbDosis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDosis.FormattingEnabled = true;
+            this.cbDosis.Items.AddRange(new object[] {
+            "5 mg/kg",
+            "10 mg/kg",
+            "15 mg/kg",
+            "20 mg/kg",
+            "25 mg/kg",
+            "30 mg/kg",
+            "50 mg/kg",
+            "1 ml/kg",
+            "2 ml/kg",
+            "0.5 mg/kg",
+            "0.05 mg/kg",
+            "1 gota/kg",
+            "2 gotas/kg"});
+            this.cbDosis.Location = new System.Drawing.Point(25, 336);
+            this.cbDosis.Name = "cbDosis";
+            this.cbDosis.Size = new System.Drawing.Size(135, 29);
+            this.cbDosis.TabIndex = 397;
+            // 
             // VeterinariaRecetar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cbDosis);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.dtObservaciones);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.btnGenerarReceta);
             this.Controls.Add(this.txtFechaNacimiento);
@@ -592,13 +631,14 @@
         private System.Windows.Forms.TextBox txtEspecie;
         private System.Windows.Forms.TextBox txtTemperatura;
         private System.Windows.Forms.TextBox txtPeso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columm1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.TextBox txtFechaNacimiento;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btnGenerarReceta;
+        private System.Windows.Forms.RichTextBox dtObservaciones;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbDosis;
     }
 }
