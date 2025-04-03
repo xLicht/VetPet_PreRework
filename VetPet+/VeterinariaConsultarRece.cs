@@ -57,43 +57,6 @@ namespace VetPet_
         }
         private void CargarMedicamentosRecetados()
         {
-            //try
-            //{
-            //    conexionDB.AbrirConexion();
-
-            //    string query = @"SELECT rm.idMedicamento, m.nombreGenérico, rm.cantidad
-            //             FROM Receta_Medicamento rm
-            //             INNER JOIN Medicamento m ON rm.idMedicamento = m.idMedicamento
-            //             INNER JOIN Receta r ON rm.idReceta = r.idReceta
-            //             WHERE r.idConsulta = @idConsulta";
-
-            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
-            //    {
-            //        cmd.Parameters.AddWithValue("@idConsulta", datoConsulta);
-            //        SqlDataReader reader = cmd.ExecuteReader();
-
-            //        listaMedicamentos.Clear();
-
-            //        while (reader.Read())
-            //        {
-            //            int idMedicamento = reader["idMedicamento"] != DBNull.Value ? Convert.ToInt32(reader["idMedicamento"]) : 0;
-            //            string nombreMedicamento = reader["nombreGenérico"] != DBNull.Value ? reader["nombreGenérico"].ToString() : "Desconocido";
-            //            int cantidad = reader["cantidad"] != DBNull.Value ? Convert.ToInt32(reader["cantidad"]) : 0;
-
-            //            listaMedicamentos.Add(new Tuple<int, string, int>(idMedicamento, nombreMedicamento, cantidad));
-            //        }
-
-            //        ActualizarDataGrid();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al cargar los medicamentos recetados: " + ex.Message);
-            //}
-            //finally
-            //{
-            //    conexionDB.CerrarConexion();
-            //}
 
             try
             {
@@ -140,21 +103,6 @@ namespace VetPet_
 
         private void ActualizarDataGrid()
         {
-
-            //dtMedicamentos.Rows.Clear();
-            //dtMedicamentos.Columns.Clear();
-
-            //if (dtMedicamentos.Columns.Count == 0)
-            //{
-            //    dtMedicamentos.Columns.Add("ID", "ID Medicamento");
-            //    dtMedicamentos.Columns.Add("Nombre", "Nombre del Medicamento");
-            //    dtMedicamentos.Columns.Add("Cantidad", "Cantidad");
-            //}
-
-            //foreach (var medicamento in listaMedicamentos)
-            //{
-            //    dtMedicamentos.Rows.Add(medicamento.Item1, medicamento.Item2, medicamento.Item3);
-            //}
 
             dtMedicamentos.Rows.Clear();
             dtMedicamentos.Columns.Clear();
