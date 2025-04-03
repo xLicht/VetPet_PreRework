@@ -135,7 +135,7 @@ namespace VetPet_
 
         private void BtnNuevaVenta_Click(object sender, EventArgs e)
         {
-            //parentForm.formularioHijo(new VentasNuevaVenta(parentForm, 0, dtProductos, 0, true));
+            parentForm.formularioHijo(new VentasNuevaVenta(parentForm,DatosGlobales.IDUsuario,"Empleado"));
         }
     }
 }
