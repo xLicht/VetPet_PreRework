@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -49,6 +50,15 @@ namespace VetPet_
             DatosGlobales.FondoCaja = FondoCaja;
             DatosGlobales.NombreUsuario = NombreUsuario;
             DatosGlobales.IDUsuario = IDUsuario;
+            string iconPath = Path.Combine(Application.StartupPath, @"..\..\Resources\VetPetLogoNew.ico");
+            if (File.Exists(iconPath))
+            {
+                this.Icon = new Icon(iconPath);
+            }
+            else
+            {
+                MessageBox.Show("No se encontró el archivo de icono en la ruta: " + iconPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void StoreControlInfo(Control parent)
         {

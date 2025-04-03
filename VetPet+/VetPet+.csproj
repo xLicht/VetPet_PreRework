@@ -1815,6 +1815,7 @@
     <None Include="Resources\VetPetLogoNew.png" />
     <None Include="Resources\MenuDesp_Clean.png" />
     <None Include="Resources\MenuDesp_CleanF.png" />
+    <None Include="Resources\VetPetLogoNew.ico" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
