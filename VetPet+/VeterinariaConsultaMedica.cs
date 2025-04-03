@@ -188,75 +188,48 @@ namespace VetPet_
 
         private void MostrarServicios()
         {
-
-            int idConsulta = 0;
-
-            try
-            {
-                conexionDB.AbrirConexion();
-                string queryIdConsulta = "SELECT TOP 1 idConsulta FROM Consulta WHERE idCita = @idCita ORDER BY idConsulta DESC";
-                using (SqlCommand cmd = new SqlCommand(queryIdConsulta, conexionDB.GetConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        idConsulta = Convert.ToInt32(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener el idConsulta: " + ex.Message);
-                return;
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-
-            if (idConsulta == 0)
-            {
-                dtServicio.DataSource = null;
-                return;
-            }
-
+         
             try
             {
                 conexionDB.AbrirConexion();
 
                 string query = @"
-            SELECT 
-                sc.observacion,
-                CASE 
-                    WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
-                    ELSE sen.nombre 
-                END AS Servicio,
-                CASE 
-                    WHEN sc.idVacuna IS NOT NULL THEN 'Vacuna'
-                    ELSE 'Servicio'
-                END AS Tipo
-            FROM Servicio_Consulta sc
-            LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
-            LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
-            WHERE sc.idConsulta = @idConsulta";
+                SELECT 
+                    sc.hora,
+                    CASE 
+                        WHEN sc.idVacuna IS NOT NULL THEN v.nombre 
+                        WHEN sc.idServicioEspecificoNieto IS NOT NULL THEN sen.nombre 
+                        ELSE 'Sin servicio'
+                    END AS Servicio,
+                    sc.estado,
+                    sc.observacion
+                FROM Servicio_Cita sc
+                LEFT JOIN Vacuna v ON sc.idVacuna = v.idVacuna
+                LEFT JOIN ServicioEspecificoNieto sen ON sc.idServicioEspecificoNieto = sen.idServicioEspecificoNieto
+                WHERE sc.idCita = @idCita and sc.estado = 'A'";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
-                    cmd.Parameters.AddWithValue("@idConsulta", idConsulta);
+                    cmd.Parameters.AddWithValue("@idCita", DatoCita);
+
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
+
                     dtServicio.DataSource = dt;
+                    dtServicio.Refresh();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener los servicios de la consulta: " + ex.Message);
+                MessageBox.Show("Error al cargar los servicios: " + ex.Message);
             }
             finally
             {
                 conexionDB.CerrarConexion();
             }
         }
+    
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {

@@ -71,6 +71,7 @@
             // 
             // dtMedicamentos
             // 
+            this.dtMedicamentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtMedicamentos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
@@ -89,22 +90,26 @@
             this.dtMedicamentos.Location = new System.Drawing.Point(25, 280);
             this.dtMedicamentos.Name = "dtMedicamentos";
             this.dtMedicamentos.RowHeadersVisible = false;
-            this.dtMedicamentos.Size = new System.Drawing.Size(585, 268);
+            this.dtMedicamentos.RowHeadersWidth = 49;
+            this.dtMedicamentos.Size = new System.Drawing.Size(566, 268);
             this.dtMedicamentos.TabIndex = 359;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Id";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
             this.Column2.HeaderText = "nombre";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
             // Column3
             // 
             this.Column3.HeaderText = "cantidad";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
             // pictureBox2
