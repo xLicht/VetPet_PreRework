@@ -1812,6 +1812,7 @@
     <None Include="Resources\BtnNuevoCorte_BG_Clean.png" />
     <None Include="Resources\BtnNuevaVenta_BG_Clean.png" />
     <None Include="Resources\CitasDeHoy_Clean.png" />
+    <None Include="Resources\VetPetLogoNew.png" />
     <Content Include="x64\pdfium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
