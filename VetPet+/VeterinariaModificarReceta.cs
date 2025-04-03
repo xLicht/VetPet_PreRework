@@ -21,7 +21,7 @@ namespace VetPet_
         int DatoCita2T = 0;
         private conexionDaniel conexionDB = new conexionDaniel();
         private int datoConsulta;
-        private List<Tuple<int, string, int>> listaMedicamentos2 = new List<Tuple<int, string, int>>();
+        private List<Tuple<int, string, int, string, string>> listaMedicamentos2 = new List<Tuple<int, string, int, string, string>>();
         private List<Tuple<int, string, int, string, string>> listaMedicamentos = new List<Tuple<int, string, int, string, string>>();
         private List<Tuple<int, string, int, string, string>> listaMedicamentosOriginal = new List<Tuple<int, string, int, string, string>>();
         public VeterinariaModificarReceta(Form1 parent)
