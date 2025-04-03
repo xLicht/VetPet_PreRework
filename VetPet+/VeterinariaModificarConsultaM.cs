@@ -861,12 +861,13 @@ namespace VetPet_
                 foreach (var servicio in listaServicios)
                 {
                     int idEmpleado = ObtenerIdEmpleado2(servicio.Empleado, transaction);
+                    string observacionTexto = servicio.Observacion;
 
                     if (servicio.EsVacuna)
                     {
                         string queryInsertVacuna = @"
                     INSERT INTO Servicio_Cita (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
-                    VALUES (@idCita, @hora, NULL, @idVacuna, @idEmpleado, 'A', '')";
+                    VALUES (@idCita, @hora, NULL, @idVacuna, @idEmpleado, 'A', @observacion)";
                         using (SqlCommand cmdInsert = new SqlCommand(queryInsertVacuna, conexionDB.GetConexion(), transaction))
                         {
                             cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
@@ -874,6 +875,7 @@ namespace VetPet_
                             cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = DateTime.Now.TimeOfDay;
                             cmdInsert.Parameters.AddWithValue("@idVacuna", servicio.IdVacuna);
                             cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.Parameters.AddWithValue("@observacion", observacionTexto);
                             cmdInsert.ExecuteNonQuery();
                         }
                     }
@@ -882,7 +884,7 @@ namespace VetPet_
                         int idServicioNieto = ObtenerIdServicioNieto2(servicio.NombreServicio, transaction);
                         string queryInsert = @"
                     INSERT INTO Servicio_Cita (idCita, hora, idServicioEspecificoNieto, idVacuna, idEmpleado, estado, observacion)
-                    VALUES (@idCita, @hora, @idServicioNieto, NULL, @idEmpleado, 'A', '')";
+                    VALUES (@idCita, @hora, @idServicioNieto, NULL, @idEmpleado, 'A', @observacion)";
                         using (SqlCommand cmdInsert = new SqlCommand(queryInsert, conexionDB.GetConexion(), transaction))
                         {
                             cmdInsert.Parameters.AddWithValue("@idCita", DatoCita);
@@ -890,6 +892,7 @@ namespace VetPet_
                             cmdInsert.Parameters.Add("@hora", SqlDbType.Time).Value = DateTime.Now.TimeOfDay;
                             cmdInsert.Parameters.AddWithValue("@idServicioNieto", idServicioNieto);
                             cmdInsert.Parameters.AddWithValue("@idEmpleado", idEmpleado);
+                            cmdInsert.Parameters.AddWithValue("@observacion", observacionTexto);
                             cmdInsert.ExecuteNonQuery();
                         }
                     }
