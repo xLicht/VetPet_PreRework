@@ -555,7 +555,7 @@ namespace VetPet_
                 row["idVacuna"] = servicio.EsVacuna ? servicio.IdVacuna : (object)DBNull.Value;
                 row["idEmpleado"] = 0;
                 row["estado"] = "A";
-                row["observacion"] = rtObservacion.Text.Trim(); //aqui le movi
+                row["observacion"] = servicio.Observacion; //aqui le movi
                 row["NombreServicio"] = servicio.NombreServicio;
                 row["Empleado"] = servicio.Empleado;
                 int indice = listaServicios.IndexOf(servicio);
