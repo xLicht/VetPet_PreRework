@@ -144,10 +144,10 @@ namespace VetPet_
             {
                 Font textoFont = FontFactory.GetFont(FontFactory.TIMES_ROMAN, 7);
 
-                string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPet_Logo1.png");
+                string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPetLogoNew.png");
                 if (!File.Exists(imagenPath))
                 {
-                    MessageBox.Show("La imagen VetPetLogo.png no se encontró en la carpeta Resources.");
+                    MessageBox.Show("La imagen VetPetLogoNew.png no se encontró en la carpeta Resources.");
                     return;
                 }
                 Font fontText = FontFactory.GetFont(FontFactory.HELVETICA, 7);
@@ -269,10 +269,10 @@ namespace VetPet_
                 Font fontBold = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
                 Font facturaFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20);
 
-                string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPet_Logo1.png");
+                string imagenPath = Path.Combine(DirectorioProyecto, "Resources", "VetPetLogoNew.png");
                 if (!File.Exists(imagenPath))
                 {
-                    MessageBox.Show("La imagen VetPetLogo.png no se encontró en la carpeta Resources.");
+                    MessageBox.Show("La imagen VetPetLogoNew.png no se encontró en la carpeta Resources.");
                     return;
                 }
 
