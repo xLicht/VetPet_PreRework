@@ -173,6 +173,36 @@ namespace VetPet_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BtnNuevaCita_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnNuevaCita_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnNuevaVenta_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnNuevaVenta_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BtnNuevoCorte_BG_Clean {
+            get {
+                object obj = ResourceManager.GetObject("BtnNuevoCorte_BG_Clean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BtnReportes_BG_Clean {
             get {
                 object obj = ResourceManager.GetObject("BtnReportes_BG_Clean", resourceCulture);
@@ -256,6 +286,16 @@ namespace VetPet_.Properties {
         internal static System.Drawing.Bitmap cita2 {
             get {
                 object obj = ResourceManager.GetObject("cita2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CitasDeHoy_Clean {
+            get {
+                object obj = ResourceManager.GetObject("CitasDeHoy_Clean", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
