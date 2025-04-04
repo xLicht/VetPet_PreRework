@@ -28,17 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.dtCitas = new System.Windows.Forms.DataGridView();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtDueño = new System.Windows.Forms.TextBox();
             this.txtRaza = new System.Windows.Forms.TextBox();
@@ -57,27 +53,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtConsultas = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMascota = new System.Windows.Forms.TextBox();
             this.txtFechaNac = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dtSensibilidades = new System.Windows.Forms.DataGridView();
+            this.dtConsultaDes = new System.Windows.Forms.DataGridView();
+            this.btnVerReceta = new System.Windows.Forms.Button();
+            this.dtServicio = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.dtVacunas = new System.Windows.Forms.DataGridView();
-            this.label19 = new System.Windows.Forms.Label();
-            this.dtAlergias = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtCitas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtConsultas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSensibilidades)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtVacunas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtAlergias)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtConsultaDes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRegresar
@@ -88,7 +76,7 @@
             this.btnRegresar.Location = new System.Drawing.Point(34, 503);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(182, 55);
+            this.btnRegresar.Size = new System.Drawing.Size(215, 55);
             this.btnRegresar.TabIndex = 29;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,46 +99,12 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
             this.pictureBox2.BackgroundImage = global::VetPet_.Properties.Resources.VeterinariaAtras;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(166, 514);
+            this.pictureBox2.Location = new System.Drawing.Point(185, 514);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(39, 32);
             this.pictureBox2.TabIndex = 30;
             this.pictureBox2.TabStop = false;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label17.Location = new System.Drawing.Point(521, 242);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(211, 30);
-            this.label17.TabIndex = 402;
-            this.label17.Text = "Citas de la Mascota";
-            // 
-            // dtCitas
-            // 
-            this.dtCitas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtCitas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtCitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dtCitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtCitas.EnableHeadersVisualStyles = false;
-            this.dtCitas.Location = new System.Drawing.Point(462, 275);
-            this.dtCitas.Name = "dtCitas";
-            this.dtCitas.RowHeadersVisible = false;
-            this.dtCitas.RowHeadersWidth = 49;
-            this.dtCitas.Size = new System.Drawing.Size(340, 101);
-            this.dtCitas.TabIndex = 401;
-            this.dtCitas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitas_CellContentClick);
-            this.dtCitas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCitas_CellContentClick);
             // 
             // txtNumero
             // 
@@ -346,40 +300,6 @@
             this.label2.TabIndex = 380;
             this.label2.Text = "Mascota";
             // 
-            // dtConsultas
-            // 
-            this.dtConsultas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtConsultas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtConsultas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dtConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtConsultas.EnableHeadersVisualStyles = false;
-            this.dtConsultas.Location = new System.Drawing.Point(808, 275);
-            this.dtConsultas.Name = "dtConsultas";
-            this.dtConsultas.RowHeadersVisible = false;
-            this.dtConsultas.RowHeadersWidth = 49;
-            this.dtConsultas.Size = new System.Drawing.Size(241, 271);
-            this.dtConsultas.TabIndex = 379;
-            this.dtConsultas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConsultas_CellContentClick);
-            this.dtConsultas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConsultas_CellContentClick);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label5.Location = new System.Drawing.Point(880, 242);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 30);
-            this.label5.TabIndex = 378;
-            this.label5.Text = "Consultas";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -396,7 +316,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(15, 48);
+            this.label1.Location = new System.Drawing.Point(23, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(286, 30);
             this.label1.TabIndex = 375;
@@ -435,122 +355,102 @@
             this.label3.TabIndex = 376;
             this.label3.Text = "Informacion Medica";
             // 
-            // dtSensibilidades
+            // dtConsultaDes
             // 
-            this.dtSensibilidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtSensibilidades.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtSensibilidades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dtSensibilidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtSensibilidades.EnableHeadersVisualStyles = false;
-            this.dtSensibilidades.Location = new System.Drawing.Point(439, 426);
-            this.dtSensibilidades.Name = "dtSensibilidades";
-            this.dtSensibilidades.RowHeadersVisible = false;
-            this.dtSensibilidades.RowHeadersWidth = 49;
-            this.dtSensibilidades.Size = new System.Drawing.Size(110, 95);
-            this.dtSensibilidades.TabIndex = 404;
+            this.dtConsultaDes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtConsultaDes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtConsultaDes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtConsultaDes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtConsultaDes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dtConsultaDes.EnableHeadersVisualStyles = false;
+            this.dtConsultaDes.Location = new System.Drawing.Point(34, 258);
+            this.dtConsultaDes.Name = "dtConsultaDes";
+            this.dtConsultaDes.RowHeadersVisible = false;
+            this.dtConsultaDes.RowHeadersWidth = 49;
+            this.dtConsultaDes.Size = new System.Drawing.Size(401, 237);
+            this.dtConsultaDes.TabIndex = 410;
+            this.dtConsultaDes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConsultaDes_CellClick);
+            this.dtConsultaDes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConsultaDes_CellContentClick);
+            // 
+            // btnVerReceta
+            // 
+            this.btnVerReceta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(216)))), ((int)(((byte)(177)))));
+            this.btnVerReceta.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerReceta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.btnVerReceta.Location = new System.Drawing.Point(807, 275);
+            this.btnVerReceta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVerReceta.Name = "btnVerReceta";
+            this.btnVerReceta.Size = new System.Drawing.Size(146, 40);
+            this.btnVerReceta.TabIndex = 411;
+            this.btnVerReceta.Text = "Ver Receta";
+            this.btnVerReceta.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVerReceta.UseVisualStyleBackColor = false;
+            this.btnVerReceta.Click += new System.EventHandler(this.btnVerReceta_Click);
+            // 
+            // dtServicio
+            // 
+            this.dtServicio.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtServicio.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtServicio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dtServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtServicio.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dtServicio.EnableHeadersVisualStyles = false;
+            this.dtServicio.Location = new System.Drawing.Point(467, 258);
+            this.dtServicio.Name = "dtServicio";
+            this.dtServicio.RowHeadersVisible = false;
+            this.dtServicio.RowHeadersWidth = 49;
+            this.dtServicio.Size = new System.Drawing.Size(308, 237);
+            this.dtServicio.TabIndex = 412;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
+            this.label5.Location = new System.Drawing.Point(577, 225);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 30);
+            this.label5.TabIndex = 413;
+            this.label5.Text = "Servicios";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label14.Location = new System.Drawing.Point(424, 393);
+            this.label14.Location = new System.Drawing.Point(165, 225);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(150, 30);
-            this.label14.TabIndex = 405;
-            this.label14.Text = "Sesibilidades ";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label18.Location = new System.Drawing.Point(677, 393);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(98, 30);
-            this.label18.TabIndex = 406;
-            this.label18.Text = "Vacunas";
-            // 
-            // dtVacunas
-            // 
-            this.dtVacunas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtVacunas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtVacunas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dtVacunas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtVacunas.EnableHeadersVisualStyles = false;
-            this.dtVacunas.Location = new System.Drawing.Point(677, 426);
-            this.dtVacunas.Name = "dtVacunas";
-            this.dtVacunas.RowHeadersVisible = false;
-            this.dtVacunas.RowHeadersWidth = 49;
-            this.dtVacunas.Size = new System.Drawing.Size(125, 87);
-            this.dtVacunas.TabIndex = 407;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            this.label19.Location = new System.Drawing.Point(568, 393);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(97, 30);
-            this.label19.TabIndex = 408;
-            this.label19.Text = "Alergias";
-            // 
-            // dtAlergias
-            // 
-            this.dtAlergias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtAlergias.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtAlergias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.dtAlergias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtAlergias.EnableHeadersVisualStyles = false;
-            this.dtAlergias.Location = new System.Drawing.Point(561, 426);
-            this.dtAlergias.Name = "dtAlergias";
-            this.dtAlergias.RowHeadersVisible = false;
-            this.dtAlergias.RowHeadersWidth = 49;
-            this.dtAlergias.Size = new System.Drawing.Size(110, 95);
-            this.dtAlergias.TabIndex = 409;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(234)))), ((int)(((byte)(216)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(114)))), ((int)(((byte)(125)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(44, 264);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 49;
-            this.dataGridView1.Size = new System.Drawing.Size(287, 231);
-            this.dataGridView1.TabIndex = 410;
+            this.label14.Size = new System.Drawing.Size(112, 30);
+            this.label14.TabIndex = 414;
+            this.label14.Text = "Consultas";
             // 
             // VeterianiaGestionarHistorialM
             // 
@@ -558,16 +458,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(219)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(1082, 577);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.dtAlergias);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.dtVacunas);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.dtSensibilidades);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dtServicio);
+            this.Controls.Add(this.btnVerReceta);
+            this.Controls.Add(this.dtConsultaDes);
             this.Controls.Add(this.txtFechaNac);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.dtCitas);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtDueño);
             this.Controls.Add(this.txtRaza);
@@ -586,8 +482,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dtConsultas);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -600,12 +494,8 @@
             this.Load += new System.EventHandler(this.VeterianiaGestionarHistorialM_Load);
             this.Resize += new System.EventHandler(this.VeterianiaGestionarHistorialM_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtCitas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtConsultas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSensibilidades)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtVacunas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtAlergias)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtConsultaDes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtServicio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -615,8 +505,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DataGridView dtCitas;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtDueño;
         private System.Windows.Forms.TextBox txtRaza;
@@ -635,19 +523,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dtConsultas;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMascota;
         private System.Windows.Forms.TextBox txtFechaNac;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dtSensibilidades;
+        private System.Windows.Forms.DataGridView dtConsultaDes;
+        private System.Windows.Forms.Button btnVerReceta;
+        private System.Windows.Forms.DataGridView dtServicio;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DataGridView dtVacunas;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.DataGridView dtAlergias;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
