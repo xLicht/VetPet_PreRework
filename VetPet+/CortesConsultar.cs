@@ -37,8 +37,6 @@ namespace VetPet_
             ConfigurarDataGridViewMontos();
         }
 
-
-
         private void CargarDatosCorte()
         {
             try
@@ -48,18 +46,18 @@ namespace VetPet_
                     connection.Open();
 
                     string queryCorte = @"
-                    SELECT 
-                        c.fechaInicio,
-                        c.fechaFin,
-                        c.fondoDeCaja,
-                        c.totalEfectivo,
-                        c.totalTarjeta,
-                        c.correcto,
-                        p.nombre + ' ' + p.apellidoP AS nombreEmpleado
-                    FROM Corte c
-                    INNER JOIN Empleado e ON c.idEmpleado = e.idEmpleado
-                    INNER JOIN Persona p ON e.idPersona = p.idPersona
-                    WHERE c.idCorte = @idCorte";
+            SELECT 
+                c.fechaInicio,
+                c.fechaFin,
+                c.fondoDeCaja,
+                c.totalEfectivo,
+                c.totalTarjeta,
+                c.correcto,
+                p.nombre + ' ' + p.apellidoP AS nombreEmpleado
+            FROM Corte c
+            INNER JOIN Empleado e ON c.idEmpleado = e.idEmpleado
+            INNER JOIN Persona p ON e.idPersona = p.idPersona
+            WHERE c.idCorte = @idCorte";
 
                     using (SqlCommand command = new SqlCommand(queryCorte, connection))
                     {
@@ -74,20 +72,19 @@ namespace VetPet_
                                 dtpFechaInicio.Value = Convert.ToDateTime(reader["fechaInicio"]);
                                 dtpFechaFin.Value = Convert.ToDateTime(reader["fechaFin"]);
 
-                                // Mostrar fondo de caja
+                                // Mostrar fondo de caja SOLO en Ventas (no en Caja)
                                 decimal fondoDeCaja = Convert.ToDecimal(reader["fondoDeCaja"]);
-                                txtCantidadCajaCajas.Text = fondoDeCaja.ToString("N2");
                                 txtCantidadCajaVentas.Text = fondoDeCaja.ToString("N2");
 
-                                // Mostrar totales de caja (efectivo + tarjeta + fondo)
+                                // Mostrar totales de caja (solo efectivo + tarjeta, SIN fondo)
                                 decimal totalEfectivo = Convert.ToDecimal(reader["totalEfectivo"]);
                                 decimal totalTarjeta = Convert.ToDecimal(reader["totalTarjeta"]);
 
                                 txtEfectivoCaja.Text = totalEfectivo.ToString("N2");
                                 txtDocumentosCaja.Text = totalTarjeta.ToString("N2");
 
-                                // Total Caja = Efectivo contado + Documentos + Fondo
-                                decimal totalCaja = totalEfectivo + totalTarjeta + fondoDeCaja;
+                                // Total Caja = Solo Efectivo + Tarjeta (sin fondo)
+                                decimal totalCaja = totalEfectivo + totalTarjeta;
                                 txtTotalCaja.Text = totalCaja.ToString("N2");
 
                                 // Cargar ventas del periodo
@@ -215,25 +212,38 @@ namespace VetPet_
             if (decimal.TryParse(txtTotalVentas.Text, out decimal totalVentas) &&
                 decimal.TryParse(txtTotalCaja.Text, out decimal totalCaja))
             {
+                // Diferencia = (EfectivoVentas + TarjetaVentas + Fondo) - (EfectivoCaja + TarjetaCaja)
                 decimal diferencia = totalVentas - totalCaja;
                 txtDiferencia.Text = diferencia.ToString("N2");
 
+                // Mensaje detallado (sin considerar el fondo en las diferencias parciales)
+                decimal diferenciaEfectivo = Convert.ToDecimal(txtEfectivoVentas.Text) - Convert.ToDecimal(txtEfectivoCaja.Text);
+                decimal diferenciaTarjeta = Convert.ToDecimal(txtDocumentosVentas.Text) - Convert.ToDecimal(txtDocumentosCaja.Text);
+
+                string mensaje = "";
+
+                if (diferenciaTarjeta > 0)
+                    mensaje += $"Faltan tarjetas: {diferenciaTarjeta.ToString("N2")}\n";
+                else if (diferenciaTarjeta < 0)
+                    mensaje += $"Sobran tarjetas: {Math.Abs(diferenciaTarjeta).ToString("N2")}\n";
+                else
+                    mensaje += "Tarjetas cuadran perfectamente\n";
+
+                if (diferenciaEfectivo > 0)
+                    mensaje += $"Falta efectivo: {diferenciaEfectivo.ToString("N2")}";
+                else if (diferenciaEfectivo < 0)
+                    mensaje += $"Sobra efectivo: {Math.Abs(diferenciaEfectivo).ToString("N2")}";
+                else
+                    mensaje += "Efectivo cuadra perfectamente";
+
+
                 // Color según resultado
                 if (diferencia > 0)
-                {
-                    txtDiferencia.BackColor = Color.LightPink; // Faltante
-                    txtDiferencia.ForeColor = Color.Black;
-                }
+                    txtDiferencia.BackColor = Color.LightPink;
                 else if (diferencia < 0)
-                {
-                    txtDiferencia.BackColor = Color.LightGreen; // Sobrante
-                    txtDiferencia.ForeColor = Color.Black;
-                }
+                    txtDiferencia.BackColor = Color.LightGreen;
                 else
-                {
-                    txtDiferencia.BackColor = SystemColors.Window; // Exacto
-                    txtDiferencia.ForeColor = SystemColors.WindowText;
-                }
+                    txtDiferencia.BackColor = SystemColors.Window;
             }
         }
 
