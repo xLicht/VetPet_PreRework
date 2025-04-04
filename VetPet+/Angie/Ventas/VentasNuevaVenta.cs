@@ -25,7 +25,7 @@ namespace VetPet_
 
         private int idCita;
         private int stock;
-        private int idDueño1;
+        private static int idDueño1;
         private static int idPersona;
         public DateTime fechaRegistro;
         public string nombreRecepcionista;
@@ -37,6 +37,8 @@ namespace VetPet_
         public int idVenta;
         public static decimal MontoPagadoE = 0;
         public static decimal MontoPagadoT = 0;
+
+        public static decimal montoRestante = 0;
         private static DataTable dtProductos = new DataTable();
         List<Tuple<string, decimal, int>> ListaProductos = new List<Tuple<string, decimal, int>>();
 
@@ -54,6 +56,7 @@ namespace VetPet_
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form1
             if (tabla == "Dueño") 
             idDueño1 = idDueño;
@@ -65,6 +68,7 @@ namespace VetPet_
             InitializeComponent();
             this.Load += VentasNuevaVenta_Load;       // Evento Load
             this.Resize += VentasNuevaVenta_Resize;   // Evento Resize
+            PersonalizarDataGridView();
             parentForm = parent;  // Guardamos la referencia de Form1
             this.nuevoSubtotal = nuevoSubtotal;
             if (bandera == true)
@@ -105,24 +109,63 @@ namespace VetPet_
                 }
 
             }
+
+            if (dtProductos.Rows.Count > 0)
+            {
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dtProductos;
+                dataGridView2.DataSource = bs;
+            }
+
+            ActualizarSumaTotal();
+
+        }
+        public void ActualizarPago(decimal monto, bool tipoPago)
+        {
+            if (tipoPago == true)
+            {
+                MontoPagadoE += monto;
+            }
+            if (tipoPago == false)
+            {
+                MontoPagadoT += monto;
+            }
+
+            ActualizarSumaTotal();
         }
         public void ActualizarSumaTotal()
         {
-            // Sumar el total de productos
-            sumaTotalProductos = dtProductos.AsEnumerable()
-                .Where(r => r["Total"] != DBNull.Value)
-                .Sum(r => r.Field<decimal>("Total"));
-
-            textBox8.Text = "Subtotal: " + sumaTotalProductos.ToString("0.###");
-
-            textBox9.Text = MontoPagadoE.ToString();
-            textBox10.Text = MontoPagadoT.ToString();
-
-            decimal montoRestante = sumaTotalProductos - (MontoPagadoE + MontoPagadoT);
-            textBox2.Text = montoRestante.ToString();
-            if (MontoPagadoE + MontoPagadoT == sumaTotalProductos && sumaTotalProductos != 0) 
+            try
             {
-                textBox7.Text = "Pagado";
+                sumaTotalProductos = dtProductos?.AsEnumerable()
+                    .Where(r => r["Total"] != DBNull.Value)
+                    .Sum(r => r.Field<decimal>("Total")) ?? 0;
+
+                decimal totalGeneral = sumaTotalProductos; 
+
+                textBox8.Text = $"Subtotal: {totalGeneral.ToString("C2")}";
+                textBox9.Text = MontoPagadoE.ToString("0.00");
+                textBox10.Text = MontoPagadoT.ToString("0.00");
+
+                montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+                textBox2.Text = montoRestante.ToString("0.00");
+
+                if (totalGeneral > 0)
+                {
+                    bool estaPagado = (MontoPagadoE + MontoPagadoT)  >= totalGeneral;
+                    textBox7.Text = estaPagado ? "Pagado" : "Pendiente";
+                    textBox7.BackColor = estaPagado ? Color.LightGreen : Color.LightPink;
+                }
+                else
+                {
+                    textBox7.Text = "Sin cargos";
+                    textBox7.BackColor = SystemColors.Control;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar totales: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void VentasNuevaVenta_Load(object sender, EventArgs e)
@@ -189,12 +232,7 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
 
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dtProductos;
-            dataGridView2.DataSource = bs;
-
-            ActualizarSumaTotal();
-
+           
             if (dataGridView2.Columns.Contains("idProducto"))
                 dataGridView2.Columns["idProducto"].Visible = false;
 
@@ -240,14 +278,14 @@ namespace VetPet_
 
         private void textBox13_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, sumaTotalProductos, dtProductos);
+            VentasConfirmacionEfectivo VentasConfirmacionEfectivo = new VentasConfirmacionEfectivo(parentForm, montoRestante, dtProductos);
             VentasConfirmacionEfectivo.FormularioOrigen = "VentasNuevaVenta";
             parentForm.formularioHijo(VentasConfirmacionEfectivo);
         }
 
         private void textBox14_Click(object sender, EventArgs e)
         {
-            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, sumaTotalProductos,dtProductos);
+            VentasConfirmacionTarjeta VentasConfirmacionTarjeta = new VentasConfirmacionTarjeta(parentForm, montoRestante,dtProductos);
             VentasConfirmacionTarjeta.FormularioOrigen = "VentasNuevaVenta"; // Asignar FormularioOrigen a la instancia correcta
             parentForm.formularioHijo(VentasConfirmacionTarjeta); // Usar la misma instancia
         }
@@ -255,6 +293,20 @@ namespace VetPet_
         private void button1_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasListado(parentForm));
+            idDueño1 = 0;
+            idPersona = 0;
+            MontoPagadoE = 0;
+            MontoPagadoT = 0;
+            montoRestante = 0;
+            dtProductos = new DataTable();
+
+            ListaProductos.Clear();
+            ListaServicios.Clear();
+
+            sumaTotalProductos = 0;
+            nuevoSubtotal = 0;
+            efectivo = null;
+            tarjeta = null;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -302,7 +354,7 @@ namespace VetPet_
                         idVenta = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
-                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}");
+                    MessageBox.Show($"Venta registrada con éxito. Dar cambio de: $"+ Math.Abs(montoRestante));
                 }
                 catch (Exception ex)
                 {
@@ -401,6 +453,7 @@ namespace VetPet_
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
 
+
                     parentForm.formularioHijo(new VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, " ", fechaRegistro.ToString(),
                  ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
                 }
@@ -411,11 +464,60 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
-                    dtProductos.Dispose();
+
+                    idDueño1 = 0;
+                    idPersona = 0;
+                    MontoPagadoE = 0;
+                    MontoPagadoT = 0;
+                    montoRestante = 0;
+                    dtProductos = new DataTable(); 
+
+                    ListaProductos.Clear();
+                    ListaServicios.Clear();
+
+                    sumaTotalProductos = 0;
+                    nuevoSubtotal = 0;
+                    efectivo = null;
+                    tarjeta = null;
                 }
             }
         }
+        public void PersonalizarDataGridView()
+        {
+            dataGridView2.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView2.BackgroundColor = Color.White; // Fondo blanco
 
+            // Configurar fuente más grande para las celdas
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView2.RowTemplate.Height = 30; // Altura de fila aumentada
+
+            // Alternar colores de filas
+            dataGridView2.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
+
+            // Bordes y alineación
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView2.ColumnHeadersHeight = 40;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         private void textBox5_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasSeleccionarDueño(parentForm)); // Pasamos la referencia de Form1 a 

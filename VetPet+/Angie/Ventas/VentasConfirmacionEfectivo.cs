@@ -82,10 +82,9 @@ namespace VetPet_.Angie
 
         private void button1_Click(object sender, EventArgs e)
         {
-            decimal montoIngresado = decimal.Parse(textBox4.Text);
             if (FormularioOrigen == "VentasNuevaVenta")
             {
-                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, montoIngresado, true)); // Pasamos la referencia de Form1 a
+                parentForm.formularioHijo(new VentasNuevaVenta(parentForm, nuevoSubtotal, dtProductos, 0, true)); // Pasamos la referencia de Form1 a
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -98,12 +97,6 @@ namespace VetPet_.Angie
             try
             {
                 decimal montoIngresado = decimal.Parse(textBox4.Text);
-
-                if (montoIngresado > sumaTotalProductos)
-                {
-                    MessageBox.Show("El monto pagado no puede ser mayor que el subtotal.");
-                    return;
-                }
 
                 if (FormularioOrigen == "VentasNuevaVenta")
                 {

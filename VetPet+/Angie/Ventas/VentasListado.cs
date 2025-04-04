@@ -121,109 +121,68 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
         }
-        public void FiltrarDatos()
+        private void FiltrarDatos()
         {
             try
             {
-                mismetodos.AbrirConexion(); // Abre la conexión usando Mismetodos
-                string filtroTexto = textBox1.Text.Trim();
-                string columnaSeleccionada = comboBox1.SelectedItem?.ToString(); // Puede ser null
+                mismetodos.AbrirConexion();
 
-                if (string.IsNullOrEmpty(filtroTexto))
-                {
-                    Cargar(); // Recarga los datos sin filtro si el campo de búsqueda está vacío
-                    return;
-                }
+                string columnaSeleccionada = comboBox1.SelectedItem?.ToString();
 
-                // Mapeo de nombres visibles a nombres reales de columnas
+                // Consulta base para ventas
+                string query = @"
+            SELECT 
+                C.idCita,
+                PE.nombre AS Dueño,
+                PE.apellidoP AS ApellidoPaterno,
+                PE.celularPrincipal AS Telefono,
+                M.nombre AS Mascota,
+                C.fechaProgramada AS FechaCita
+            FROM 
+                Cita C
+                LEFT JOIN Mascota M ON C.idMascota = M.idMascota
+                LEFT JOIN Persona PE ON M.idPersona = PE.idPersona
+            WHERE 1=1";
+
+                // Diccionario para mapear columnas
                 Dictionary<string, string> mapaColumnas = new Dictionary<string, string>
         {
-            { "Dueño", "Persona.nombre" },
-            { "ApellidoPaterno", "Persona.apellidoP" },
-            { "Telefono", "Persona.celularPrincipal" },
-            { "Mascota", "Mascota.nombre" },
-            { "FechaCita", "Cita.fechaProgramada" }
+            { "Dueño", "PE.nombre" },
+            { "ApellidoPaterno", "PE.apellidoP" },
+            { "Telefono", "PE.celularPrincipal" },
+            { "Mascota", "M.nombre" },
+            { "FechaCita", "C.fechaProgramada" }
         };
 
-                string query;
+                SqlCommand cmd = new SqlCommand("", mismetodos.GetConexion());
 
-                if (string.IsNullOrEmpty(columnaSeleccionada) || !mapaColumnas.ContainsKey(columnaSeleccionada))
+                // Filtro por texto (si hay texto y columna seleccionada)
+                if (!string.IsNullOrEmpty(textBox1.Text.Trim()))
                 {
-                    // Si no hay columna seleccionada, busca en todas las columnas relevantes
-                    query = @"
-                SELECT 
-                    CI.idCita AS idCita,
-                    P.nombre AS Dueño,
-                    P.apellidoP AS ApellidoPaterno,
-                    P.celularPrincipal AS Telefono,
-                    M.nombre AS Mascota,
-                    CI.fechaProgramada AS FechaCita
-                FROM 
-                    Cita CI
-                INNER JOIN 
-                    Mascota M ON CI.idMascota = M.idMascota
-                INNER JOIN 
-                    Persona P ON M.idPersona = P.idPersona
-                WHERE 
-                    P.nombre LIKE @filtro 
-                    OR P.apellidoP LIKE @filtro 
-                    OR P.celularPrincipal LIKE @filtro 
-                    OR M.nombre LIKE @filtro 
-                    OR CONVERT(VARCHAR, CI.fechaProgramada, 103) LIKE @filtro";
-                }
-                else
-                {
-                    string columnaReal = mapaColumnas[columnaSeleccionada];
-
-                    if (columnaSeleccionada == "FechaCita")
+                    if (!string.IsNullOrEmpty(columnaSeleccionada))
                     {
-                        query = $@"
-                    SELECT 
-                        CI.idCita AS idCita,
-                        P.nombre AS Dueño,
-                        P.apellidoP AS ApellidoPaterno,
-                        P.celularPrincipal AS Telefono,
-                        M.nombre AS Mascota,
-                        CI.fechaProgramada AS FechaCita
-                    FROM 
-                        Cita CI
-                    INNER JOIN 
-                        Mascota M ON CI.idMascota = M.idMascota
-                    INNER JOIN 
-                        Persona P ON M.idPersona = P.idPersona
-                    WHERE 
-                        CONVERT(VARCHAR, {columnaReal}, 103) LIKE @filtro";
-                    }
-                    else
-                    {
-                        query = $@"
-                    SELECT 
-                        CI.idCita AS idCita,
-                        P.nombre AS Dueño,
-                        P.apellidoP AS ApellidoPaterno,
-                        P.celularPrincipal AS Telefono,
-                        M.nombre AS Mascota,
-                        CI.fechaProgramada AS FechaCita
-                    FROM 
-                        Cita CI
-                    INNER JOIN 
-                        Mascota M ON CI.idMascota = M.idMascota
-                    INNER JOIN 
-                        Persona P ON M.idPersona = P.idPersona
-                    WHERE 
-                        {columnaReal} LIKE @filtro";
+                        if (columnaSeleccionada == "FechaCita")
+                        {
+                            // Mostrar calendarios para selección de rango de fechas
+                            MostrarSelectorFechas();
+                            return;
+                        }
+                        else if (mapaColumnas.ContainsKey(columnaSeleccionada))
+                        {
+                            query += $" AND {mapaColumnas[columnaSeleccionada]} LIKE @filtro";
+                            cmd.Parameters.AddWithValue("@filtro", "%" + textBox1.Text.Trim() + "%");
+                        }
                     }
                 }
 
-                // Ejecutar la consulta
-                SqlDataAdapter adaptador = new SqlDataAdapter(query, mismetodos.GetConexion());
-                adaptador.SelectCommand.Parameters.AddWithValue("@filtro", "%" + filtroTexto + "%");
+                cmd.CommandText = query;
 
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adaptador.Fill(dt);
 
                 dataGridView1.DataSource = dt;
-                dataGridView1.Columns["idCita"].Visible = false; // Oculta la columna ID
+                dataGridView1.Columns["idCita"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -231,7 +190,141 @@ namespace VetPet_
             }
             finally
             {
-                mismetodos.CerrarConexion(); // Cierra la conexión para evitar bloqueos en la base de datos
+                mismetodos.CerrarConexion();
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificar si se seleccionó la opción de fecha
+            if (comboBox1.SelectedItem?.ToString() == "FechaCita")
+            {
+                MostrarSelectorFechas();
+
+                // Opcional: Limpiar el TextBox de filtro
+                textBox1.Text = "";
+                textBox1.Enabled = false; // Deshabilitar ya que usaremos calendarios
+            }
+            else
+            {
+                textBox1.Enabled = true;
+            }
+        }
+
+        private void MostrarSelectorFechas()
+        {
+            using (var formFechas = new Form())
+            {
+                formFechas.Text = "Seleccione el rango de fechas";
+                formFechas.StartPosition = FormStartPosition.CenterParent;
+                formFechas.FormBorderStyle = FormBorderStyle.FixedDialog;
+                formFechas.MaximizeBox = false;
+                formFechas.MinimizeBox = false;
+                formFechas.ClientSize = new Size(300, 150);
+
+                var dtpInicio = new DateTimePicker()
+                {
+                    Location = new Point(20, 30),
+                    Width = 260,
+                    Format = DateTimePickerFormat.Short,
+                    Value = DateTime.Today.AddMonths(-1) // Fecha inicial: hace 1 mes
+                };
+
+                var dtpFin = new DateTimePicker()
+                {
+                    Location = new Point(20, 70),
+                    Width = 260,
+                    Format = DateTimePickerFormat.Short,
+                    Value = DateTime.Today // Fecha final: hoy
+                };
+
+                var btnAceptar = new Button()
+                {
+                    Text = "Filtrar",
+                    DialogResult = DialogResult.OK,
+                    Location = new Point(120, 110)
+                };
+
+                formFechas.Controls.Add(new Label()
+                {
+                    Text = "Fecha inicial:",
+                    Location = new Point(20, 10)
+                });
+                formFechas.Controls.Add(dtpInicio);
+
+                formFechas.Controls.Add(new Label()
+                {
+                    Text = "Fecha final:",
+                    Location = new Point(20, 50)
+                });
+                formFechas.Controls.Add(dtpFin);
+
+                formFechas.Controls.Add(btnAceptar);
+                formFechas.AcceptButton = btnAceptar;
+
+                if (formFechas.ShowDialog(this) == DialogResult.OK)
+                {
+                    FiltrarPorRangoFechas(dtpInicio.Value, dtpFin.Value);
+                }
+            }
+        }
+
+        private void FiltrarPorRangoFechas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                // Ajustar las fechas para cubrir todo el día
+                fechaInicio = fechaInicio.Date;
+                fechaFin = fechaFin.Date.AddDays(1).AddSeconds(-1);
+
+                mismetodos.AbrirConexion();
+
+                string query = @"SELECT 
+                            C.idCita,
+                            PE.nombre AS Dueño,
+                            PE.apellidoP AS ApellidoPaterno,
+                            PE.celularPrincipal AS Telefono,
+                            M.nombre AS Mascota,
+                            C.fechaProgramada AS FechaCita
+                        FROM 
+                            Cita C
+                            INNER JOIN Mascota M ON C.idMascota = M.idMascota
+                            INNER JOIN Persona PE ON M.idPersona = PE.idPersona
+                        WHERE 
+                            C.fechaProgramada BETWEEN @fechaInicio AND @fechaFin
+                            AND C.estado = 'A' 
+                        ORDER BY 
+                            C.fechaProgramada DESC";  // Orden descendente por fe
+
+                using (SqlCommand cmd = new SqlCommand(query, mismetodos.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@fechaFin", fechaFin);
+
+                    DataTable dt = new DataTable();
+                    new SqlDataAdapter(cmd).Fill(dt);
+
+                    dataGridView1.DataSource = dt;
+
+                    // Configurar columnas
+                    if (dataGridView1.Columns.Contains("idVenta"))
+                        dataGridView1.Columns["idVenta"].Visible = false;
+
+                    if (dataGridView1.Columns.Contains("FechaCita"))
+                        dataGridView1.Columns["FechaCita"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                }
+
+                // Mostrar el rango aplicado
+                MessageBox.Show($"Filtrado: {fechaInicio:dd/MM/yyyy} - {fechaFin:dd/MM/yyyy}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar por fechas: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                mismetodos.CerrarConexion();
             }
         }
         private void VentasListado_Load(object sender, EventArgs e)
@@ -292,10 +385,8 @@ namespace VetPet_
             {
                 if (e.RowIndex >= 0)
                 {
-                    // Obtener el idMascota y nombre de la mascota seleccionada
                     int idCita = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["idCita"].Value);
 
-                    // Abrir el formulario de detalles de la mascota con el idMascota correcto
                     parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, idDueño, "Empleado"));
                 }
             }
@@ -304,11 +395,16 @@ namespace VetPet_
                 MessageBox.Show("Error: " + ex.Message, "Error");
             }
         }
-
         public void PersonalizarDataGridView()
         {
             dataGridView1.BorderStyle = BorderStyle.None; // Elimina bordes
             dataGridView1.BackgroundColor = Color.White; // Fondo blanco
+
+            // Configurar fuente más grande para las celdas
+            dataGridView1.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView1.RowTemplate.Height = 30; // Altura de fila aumentada
 
             // Alternar colores de filas
             dataGridView1.DefaultCellStyle.BackColor = Color.White;
@@ -321,7 +417,7 @@ namespace VetPet_
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
 
             // Bordes y alineación
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -329,19 +425,12 @@ namespace VetPet_
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Ajustar el alto de los encabezados
-            dataGridView1.ColumnHeadersHeight = 30;
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView1.ColumnHeadersHeight = 40;
 
             // Autoajustar el tamaño de las columnas
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Ocultar la columna del ID
-            if (dataGridView1.Columns.Contains("idMascota"))
-            {
-                dataGridView1.Columns["idMascota"].Visible = false;
-            }
         }
-
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -371,5 +460,7 @@ namespace VetPet_
         {
             FiltrarDatos();
         }
+
+     
     }
 }

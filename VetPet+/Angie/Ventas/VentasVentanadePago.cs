@@ -25,13 +25,11 @@ namespace VetPet_
         private int idCita1;
         private int stock;
         private static int idDueño1;
-        private static int idPersona;
         public DateTime fechaRegistro;
         public string nombreRecepcionista;
         public decimal total;
         public decimal? efectivo;
         public decimal? tarjeta;
-        decimal sumaTotal = 0;
         decimal nuevoSubtotal = 0;
         decimal totalGeneral = 0;
         public int idVenta;
@@ -44,45 +42,56 @@ namespace VetPet_
         Mismetodos mismetodos = new Mismetodos();
         public  decimal montoRestante;
 
+        public static class Sesion
+        {
+            public static int IdPersona { get; private set; }
+            public static bool IsPersonaSet { get; private set; } = false;
+
+            public static void SetIdPersona(int id)
+            {
+                if (!IsPersonaSet)
+                {
+                    IdPersona = id;
+                    IsPersonaSet = true;
+                }
+            }
+        }
+
         public VentasVentanadePago(Form1 parent, int idCita, int idDueño, string tabla)
         {
             InitializeComponent();
             this.Load += VentasVentanadePago_Load;       // Evento Load
             this.Resize += VentasVentanadePago_Resize;   // Evento Resize
+            PersonalizarDataGridView(dataGridView1);
+            PersonalizarDataGridView(dataGridView2);
             parentForm = parent;  // Guardamos la referencia de Form1
             idCita1 = idCita;
             CargarServicios(idCita);
-            if (tabla == "Empleado")
-                idPersona = idDueño;
+            if (tabla == "Empleado" && !Sesion.IsPersonaSet)
+            {
+                Sesion.SetIdPersona(idDueño);
+            }
         }
-        public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool bandera)
+        public VentasVentanadePago(Form1 parent, int idCita, decimal nuevoSubtotal, DataTable dt, decimal montoPagado, bool tipoPago)
         {
             InitializeComponent();
-            this.Load += VentasVentanadePago_Load;       // Evento Load
-            this.Resize += VentasVentanadePago_Resize;   // Evento Resize
-            idCita1 = idCita;
-            parentForm = parent;  // Guardamos la referencia de Form1
-
+            this.Load += VentasVentanadePago_Load;
+            this.Resize += VentasVentanadePago_Resize;
+                PersonalizarDataGridView(dataGridView1);
+                PersonalizarDataGridView(dataGridView2);
+                idCita1 = idCita;
+            parentForm = parent;  
+            AgregarProductos(dt);
             CargarServicios(idCita);
-            this.nuevoSubtotal = nuevoSubtotal;
-            if (bandera == true)
-            {
-                MontoPagadoE = montoPagado;
-            }
-            if (bandera == false)
-            {
-                MontoPagadoT = montoPagado;
-            }
+            this.montoRestante = nuevoSubtotal;
+            ActualizarPago(montoPagado, tipoPago);
             if (dtProductos.Columns.Count == 0)
             {
                 dtProductos = dt.Clone();
             }
-
-            // Agregar los nuevos productos o medicamentos sin perder los anteriores
-            AgregarProductosAMedicamentos(dt);
         }
 
-        private void AgregarProductosAMedicamentos(DataTable dtNuevos)
+        private void AgregarProductos(DataTable dtNuevos)
         {
             foreach (DataRow row in dtNuevos.Rows)
             {
@@ -98,154 +107,200 @@ namespace VetPet_
                 }
                 else
                 {
-                    // Si ya existe, actualizar el total sumando el nuevo subtotal
+                    // Sumar cantidad y total
+                    existingRow["cantidad"] = Convert.ToInt32(existingRow["cantidad"]) + Convert.ToInt32(row["cantidad"]);
                     existingRow["Total"] = Convert.ToDecimal(existingRow["Total"]) + Convert.ToDecimal(row["Total"]);
                 }
             }
         }
-        public void ActualizarSumaTotal()
-        {
-            decimal sumaTotalProductos = dtProductos.AsEnumerable()
-                .Where(r => r["Total"] != DBNull.Value)
-                .Sum(r => r.Field<decimal>("Total"));
 
-            totalGeneral = sumaTotalProductos + sumaTotal;  // sumaTotal es tu variable decimal adicional
 
-            textBox8.Text = "Subtotal: " + totalGeneral.ToString("0.00");  // Formato con 2 decimales
-
-            textBox9.Text = MontoPagadoE.ToString("0.00");
-            textBox10.Text = MontoPagadoT.ToString("0.00");
-
-            montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
-
-            textBox17.Text = montoRestante.ToString();
-
-            if (sumaTotalProductos != 0)  // >= para cubrir posibles redondeos
-            {
-                if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
-                {
-                    textBox7.Text = "Pagado";
-                }
-            }
-            else 
-            {
-                if (MontoPagadoE + MontoPagadoT >= totalGeneral)  // >= para cubrir posibles redondeos
-                {
-                    textBox7.Text = "Pagado";
-                }
-            } 
-        }
         public void CargarServicios(int idCita)
         {
             try
             {
                 mismetodos.AbrirConexion();
+                string queryMedicamentos = @"SELECT 
+            P.idProducto,
+            M.nombreGenérico AS Producto,
+            RM.cantidad,
+            P.precioVenta AS Precio,
+            (P.precioVenta * RM.cantidad) AS Total
+        FROM Receta_Medicamento RM
+        INNER JOIN Medicamento M ON RM.idMedicamento = M.idMedicamento
+        INNER JOIN Producto P ON M.idProducto = P.idProducto
+        INNER JOIN Receta R ON RM.idReceta = R.idReceta
+        INNER JOIN Consulta C ON R.idConsulta = C.idConsulta
+        WHERE C.idCita = @idCita AND RM.estado = 'A'";
 
-                string query = "EXEC sp_ObtenerServiciosCitaConId @idCita = @idCita;";
-
-                using (SqlCommand comando = new SqlCommand(query, mismetodos.GetConexion()))
+                using (SqlDataAdapter da = new SqlDataAdapter(queryMedicamentos, mismetodos.GetConexion()))
                 {
-                    comando.Parameters.AddWithValue("@idCita", idCita);
+                    da.SelectCommand.Parameters.AddWithValue("@idCita", idCita);
+                    DataTable tempMedicamentos = new DataTable();
+                    da.Fill(tempMedicamentos);
 
-                    using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                    if (dtProductos == null || dtProductos.Columns.Count == 0)
                     {
-                        DataTable tabla = new DataTable();
-                        adaptador.Fill(tabla);
+                        // Si dtProductos no existe o está vacío, copia la estructura de tempMedicamentos
+                        dtProductos = tempMedicamentos.Clone();
 
-                        dataGridView1.DataSource = tabla;
-
-                        // Ocultar columnas específicas
-                        if (dataGridView1.Columns.Contains("idCita"))
-                            dataGridView1.Columns["idCita"].Visible = false;
-
-                        if (dataGridView1.Columns.Contains("idServicioRealizado"))
-                            dataGridView1.Columns["idServicioRealizado"].Visible = false;
-
-                        if (dataGridView1.Columns.Contains("ServicioPadre"))
-                            dataGridView1.Columns["ServicioPadre"].Visible = false;
-
-                        // Eliminar filas vacías
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-                        {
-                            if (row.IsNewRow) continue;
-
-                            string nombre = Convert.ToString(row.Cells["Servicio"].Value);
-                            decimal precio = Convert.ToDecimal(row.Cells["Precio"].Value);
-
-                            ListaServicios.Add(Tuple.Create(nombre, precio, 1));
-
-                            bool vacia = true;
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                if (cell.Value != null && !string.IsNullOrWhiteSpace(cell.Value.ToString()))
-                                {
-                                    vacia = false;
-                                    break;
-                                }
-                            }
-
-                            if (vacia)
-                            {
-                                dataGridView1.Rows.Remove(row);
-                            }
-                        }
-
-                        if (tabla.Rows.Count > 0)
-                        {
-                            sumaTotal = tabla.AsEnumerable()
-                                .Where(r => r["Precio"] != DBNull.Value)
-                                .Sum(r => r.Field<decimal>("Precio"));
-                        }
+                        AgregarProductos(tempMedicamentos);
                     }
                 }
-            
-        string queryDueño = @"
-                                SELECT 
-                            p.idPersona AS idPersona,
-                            P.nombre AS NombrePersona,
-                            P.apellidoP AS ApellidoPaterno, 
-                            M.nombre AS NombreMascota
-                        FROM 
-                            Cita C
-                        JOIN 
-                            Mascota M ON C.idMascota = M.idMascota
-                        JOIN 
-                            Persona P ON M.idPersona = P.idPersona
-                        WHERE 
-                            C.idCita = @idCita;
-                            ";
 
-                using (SqlCommand comando2 = new SqlCommand(queryDueño, mismetodos.GetConexion()))
+                dataGridView2.DataSource = dtProductos;
+                ConfigurarGridMedicamentos(dataGridView2);
+
+                string queryServicios = "EXEC sp_ObtenerServiciosCitaConId @idCita = @idCita;";
+                DataTable tablaServicios = new DataTable();
+
+                using (SqlDataAdapter da = new SqlDataAdapter(queryServicios, mismetodos.GetConexion()))
                 {
-                    comando2.Parameters.AddWithValue("@idCita", idCita);
-
-                    using (SqlDataReader reader = comando2.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            idDueño1 = Convert.ToInt32(reader["idPersona"]);
-                            textBox3.Text = reader["NombrePersona"].ToString();
-                            textBox4.Text = reader["apellidoPaterno"].ToString();
-                            textBox5.Text = reader["NombreMascota"].ToString();
-                        }
-                        else
-                        {
-                            // Si no se encuentra la cita, mostrar un mensaje o dejar el TextBox vacío
-                            textBox3.Text = "No se encontró la cita.";
-                        }
-                    }
+                    da.SelectCommand.Parameters.AddWithValue("@idCita", idCita);
+                    da.Fill(tablaServicios);
                 }
+
+                dataGridView1.DataSource = tablaServicios;
+                ConfigurarGridServicios(dataGridView1);
+
+                // Actualizar lista de servicios
+                ActualizarListaServicios(tablaServicios);
+
+                ObtenerInfoDueñoYMascota(idCita);
+
+                // 4. Calcular totales
+                CalcularTotalesCompletos();
             }
-
             catch (Exception ex)
             {
-                // Manejar el error si ocurre algún problema
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error al cargar servicios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // Cerrar la conexión al finalizar
                 mismetodos.CerrarConexion();
+            }
+        }
+        private void ConfigurarGridMedicamentos(DataGridView grid)
+        {
+          
+            if (grid.Columns.Contains("cantidad"))
+                grid.Columns["cantidad"].HeaderText = "Cantidad";
+
+            grid.Columns["Precio"].DefaultCellStyle.Format = "C2";
+            if (dataGridView2.Columns.Contains("Total"))
+            {
+                dataGridView2.Columns["Total"].DefaultCellStyle.Format = "C2";
+            }
+
+        }
+
+        private void ConfigurarGridServicios(DataGridView grid)
+        {
+            string[] columnasOcultar = { "idCita", "idServicioRealizado", "ServicioPadre" };
+            foreach (string columna in columnasOcultar)
+            {
+                if (grid.Columns.Contains(columna))
+                    grid.Columns[columna].Visible = false;
+            }
+        }
+
+        private void ActualizarListaServicios(DataTable tablaServicios)
+        {
+            ListaServicios.Clear();
+            foreach (DataRow row in tablaServicios.Rows)
+            {
+                if (row["Servicio"] != DBNull.Value)
+                {
+                    string nombre = row["Servicio"].ToString();
+                    decimal precio = Convert.ToDecimal(row["Precio"]);
+                    ListaServicios.Add(Tuple.Create(nombre, precio, 1));
+                }
+            }
+        }
+
+        private void ObtenerInfoDueñoYMascota(int idCita)
+        {
+            string query = @"SELECT 
+        p.idPersona,
+        P.nombre AS NombrePersona,
+        P.apellidoP AS ApellidoPaterno, 
+        M.nombre AS NombreMascota
+    FROM 
+        Cita C
+    JOIN Mascota M ON C.idMascota = M.idMascota
+    JOIN Persona P ON M.idPersona = P.idPersona
+    WHERE C.idCita = @idCita";
+
+            using (SqlCommand cmd = new SqlCommand(query, mismetodos.GetConexion()))
+            {
+                cmd.Parameters.AddWithValue("@idCita", idCita);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        idDueño1 = Convert.ToInt32(reader["idPersona"]);
+                        textBox3.Text = reader["NombrePersona"].ToString();
+                        textBox4.Text = reader["ApellidoPaterno"].ToString();
+                        textBox5.Text = reader["NombreMascota"].ToString();
+                    }
+                    else
+                    {
+                        textBox3.Text = "No se encontró la cita";
+                    }
+                }
+            }
+        }
+        public void ActualizarPago(decimal monto, bool tipoPago)
+        {
+            if (tipoPago == true)
+            {
+                MontoPagadoE += monto;
+            }
+            if (tipoPago ==  false)
+            {
+                MontoPagadoT += monto;
+            }
+
+            CalcularTotalesCompletos(); // Actualizar la interfaz
+        }
+        private void CalcularTotalesCompletos()
+        {
+            try
+            {
+                // Calcular totales
+                decimal totalServicios = ListaServicios.Sum(s => s.Item2);
+                decimal totalProductos = dtProductos?.AsEnumerable()
+                                       .Where(r => r["Total"] != DBNull.Value)
+                                       .Sum(r => Convert.ToDecimal(r["Total"])) ?? 0;
+
+               totalGeneral = totalServicios + totalProductos;
+
+                // Actualizar controles
+                textBox8.Text = "Subtotal: " + totalGeneral.ToString("C2");
+                textBox9.Text = MontoPagadoE.ToString("0.00");
+                textBox10.Text = MontoPagadoT.ToString("0.00");
+
+                // Calcular monto restante
+                montoRestante = totalGeneral - (MontoPagadoE + MontoPagadoT);
+                textBox17.Text = montoRestante.ToString("0.00");
+
+                // Determinar estado del pago
+                if (totalGeneral > 0)
+                {
+                    bool estaPagado = (MontoPagadoE + MontoPagadoT) >= totalGeneral;
+                    textBox7.Text = estaPagado ? "Pagado" : "Pendiente";
+                    textBox7.BackColor = estaPagado ? Color.LightGreen : Color.LightPink;
+                }
+                else
+                {
+                    textBox7.Text = "Sin cargos";
+                    textBox7.BackColor = SystemColors.Control;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al calcular totales: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public VentasVentanadePago(Form1 parent, int idCita)
@@ -256,6 +311,8 @@ namespace VetPet_
             parentForm = parent;  // Guardamos la referencia de Form1
             CargarServicios(idCita);
             idCita1 = idCita;
+            PersonalizarDataGridView(dataGridView1);
+            PersonalizarDataGridView(dataGridView2);
         }
         private void VentasVentanadePago_Load(object sender, EventArgs e)
         {
@@ -298,7 +355,7 @@ namespace VetPet_
                 using (SqlCommand comando = new SqlCommand(query1, mismetodos.GetConexion()))
                 {
                     // Agregar parámetro a la consulta
-                    comando.Parameters.AddWithValue("@idPersona", idPersona);
+                    comando.Parameters.AddWithValue("@idPersona", Sesion.IdPersona);
 
                     // Ejecutar consulta
                     using (SqlDataReader lector = comando.ExecuteReader())
@@ -320,13 +377,7 @@ namespace VetPet_
                 mismetodos.CerrarConexion();
             }
 
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dtProductos;
-            dataGridView2.DataSource = bs;
-
-            ActualizarSumaTotal();
         }
-
         private void VentasVentanadePago_Resize(object sender, EventArgs e)
         {
             // Calcular el factor de escala
@@ -354,6 +405,19 @@ namespace VetPet_
         private void button1_Click(object sender, EventArgs e)
         {
             parentForm.formularioHijo(new VentasListado(parentForm)); // Pasamos la referencia de Form1 a 
+            mismetodos.CerrarConexion();
+            idDueño1 = 0;
+            MontoPagadoE = 0;
+            MontoPagadoT = 0;
+            montoRestante = 0;
+            dtProductos = new DataTable();
+
+            ListaProductos.Clear();
+            ListaServicios.Clear();
+
+            nuevoSubtotal = 0;
+            efectivo = null;
+            tarjeta = null;
         }
 
         private void textBox15_Click(object sender, EventArgs e)
@@ -421,13 +485,13 @@ namespace VetPet_
                         cmd.Parameters.AddWithValue("@tarjeta", (object)tarjeta ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idCita", (object)idCita1 ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@idPersona", (object)idDueño1 ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@idEmpleado", idPersona);
+                        cmd.Parameters.AddWithValue("@idEmpleado", Sesion.IdPersona);
                         cmd.Parameters.AddWithValue("@estado", estado);
 
                         idVenta = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
-                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}");
+                    MessageBox.Show($"Venta registrada con éxito. ID: {idVenta}. Dar cambio de $"+ Math.Abs(montoRestante));
                 }
                 catch (Exception ex)
                 {
@@ -518,11 +582,7 @@ namespace VetPet_
                             cmdVentaProducto.Parameters.AddWithValue("@idProducto", idProducto);
                             cmdVentaProducto.ExecuteNonQuery();
                         }
-
-                        MessageBox.Show($"Producto: {nombre} - Unidades vendidas: {cantidadVendida}");
                     }
-
-
                     string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
                     string nombreTicket = "Ticket_0-" + fechaLimpia.Replace("-", "");
 
@@ -536,16 +596,58 @@ namespace VetPet_
                 finally
                 {
                     mismetodos.CerrarConexion();
-                    dtProductos.Dispose();
-                    string fechaLimpia = DateTime.Now.ToString("dd-MM-yyyy-H-m");
-                    string nombreTicket = "Ticket_1-" + fechaLimpia.Replace("-", "");
-                    parentForm.formularioHijo(new 
-                        VentasVerTicket(parentForm, idVenta, idDueño1, nombreTicket, nombreRecepcionista, textBox3.Text, textBox5.Text, fechaRegistro.ToString(),
-                        ListaServicios, ListaProductos, total.ToString(), efectivo.ToString(), tarjeta.ToString()));
+                    idDueño1 = 0;
+                    MontoPagadoE = 0;
+                    MontoPagadoT = 0;
+                    montoRestante = 0;
+                    dtProductos = new DataTable();
+
+                    ListaProductos.Clear();
+                    ListaServicios.Clear();
+
+                    nuevoSubtotal = 0;
+                    efectivo = null;
+                    tarjeta = null;
 
                 }
             }
         }
+        public void PersonalizarDataGridView(DataGridView dataGridView2)
+        {
+            dataGridView2.BorderStyle = BorderStyle.None; // Elimina bordes
+            dataGridView2.BackgroundColor = Color.White; // Fondo blanco
 
+            // Configurar fuente más grande para las celdas
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // Tamaño 12
+
+            // Aumentar el alto de las filas para que el texto sea legible
+            dataGridView2.RowTemplate.Height = 30; // Altura de fila aumentada
+
+            // Alternar colores de filas
+            dataGridView2.DefaultCellStyle.BackColor = Color.White;
+
+            // Color de la selección
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.Pink;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Encabezados más elegantes
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Bold); // Tamaño aumentado a 14
+
+            // Bordes y alineación
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView2.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Ajustar el alto de los encabezados (aumentado para la nueva fuente)
+            dataGridView2.ColumnHeadersHeight = 40;
+
+            // Autoajustar el tamaño de las columnas
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+       
     }
 }
