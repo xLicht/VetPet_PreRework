@@ -1249,15 +1249,15 @@
             // 
             // lblFaltante
             // 
-            this.lblFaltante.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaltante.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFaltante.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(88)))), ((int)(((byte)(104)))));
-            this.lblFaltante.Location = new System.Drawing.Point(519, 621);
+            this.lblFaltante.Location = new System.Drawing.Point(1136, 557);
             this.lblFaltante.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFaltante.Name = "lblFaltante";
-            this.lblFaltante.Size = new System.Drawing.Size(552, 37);
+            this.lblFaltante.Size = new System.Drawing.Size(304, 53);
             this.lblFaltante.TabIndex = 153;
             this.lblFaltante.Text = "Diferencia";
-            this.lblFaltante.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblFaltante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CortesCaja
             // 
