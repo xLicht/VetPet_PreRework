@@ -110,6 +110,50 @@ namespace VetPet_
             }
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string textoBusqueda = txtBuscar.Text.Trim();
+
+            try
+            {
+                conexionDB.AbrirConexion();
+
+                string query = @"
+                SELECT m.idMascota, m.nombre AS NombreMascota, e.nombre AS Especie, 
+                       r.nombre AS Raza, p.nombre AS Dueño, m.fechaRegistro 
+                FROM Mascota m
+                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                INNER JOIN Raza r ON m.idRaza = r.idRaza
+                INNER JOIN Persona p ON m.idPersona = p.idPersona
+                WHERE p.nombre LIKE @textoBusqueda
+                ORDER BY m.fechaRegistro DESC;";
+
+                using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@textoBusqueda", "%" + textoBusqueda + "%");
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dtHistorial.Rows.Clear();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dtHistorial.Rows.Add(row["idMascota"], row["NombreMascota"], row["Especie"],
+                                               row["Raza"], row["Dueño"], row["fechaRegistro"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar: " + ex.Message);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
         //private void btnRegresar_Click(object sender, EventArgs e)
         //{
         //    parentForm.formularioHijo(new VeterinariaMenu(parentForm));

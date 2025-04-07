@@ -110,7 +110,7 @@
             this.Column6});
             this.dtHistorial.EnableHeadersVisualStyles = false;
             this.dtHistorial.Location = new System.Drawing.Point(60, 160);
-            this.dtHistorial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtHistorial.Margin = new System.Windows.Forms.Padding(4);
             this.dtHistorial.Name = "dtHistorial";
             this.dtHistorial.RowHeadersVisible = false;
             this.dtHistorial.RowHeadersWidth = 49;
@@ -168,6 +168,7 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtBuscar
             // 
@@ -237,7 +238,7 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.cbFiltrar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VeterinariaHistorialMedico";
             this.Text = "VeterinariaHistorialMedico";
             this.Load += new System.EventHandler(this.VeterinariaHistorialMedico_Load_1);
