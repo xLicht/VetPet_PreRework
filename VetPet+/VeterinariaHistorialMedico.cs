@@ -125,7 +125,7 @@ namespace VetPet_
                 INNER JOIN Especie e ON m.idEspecie = e.idEspecie
                 INNER JOIN Raza r ON m.idRaza = r.idRaza
                 INNER JOIN Persona p ON m.idPersona = p.idPersona
-                WHERE p.nombre LIKE @textoBusqueda
+                WgHERE p.nombre LIKE @textoBusqueda
                 ORDER BY m.fechaRegistro DESC;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
@@ -156,7 +156,7 @@ namespace VetPet_
 
         //private void btnRegresar_Click(object sender, EventArgs e)
         //{
-        //    parentForm.formularioHijo(new VeterinariaMenu(parentForm));
+        //    parentForm.formularioHijo(new VeterinariaMenu(parentForm));a
         //}
     }
 }
