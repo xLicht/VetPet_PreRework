@@ -112,25 +112,118 @@ namespace VetPet_
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            //string textoBusqueda = txtBuscar.Text.Trim();
+
+            //try
+            //{
+            //    conexionDB.AbrirConexion();
+
+            //    string query = @"
+            //    SELECT m.idMascota, m.nombre AS NombreMascota, e.nombre AS Especie, 
+            //           r.nombre AS Raza, p.nombre AS Dueño, m.fechaRegistro 
+            //    FROM Mascota m
+            //    INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+            //    INNER JOIN Raza r ON m.idRaza = r.idRaza
+            //    INNER JOIN Persona p ON m.idPersona = p.idPersona
+            //    WHERE p.nombre LIKE @textoBusqueda
+            //    ORDER BY m.fechaRegistro DESC;";
+
+            //    using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
+            //    {
+            //        cmd.Parameters.AddWithValue("@textoBusqueda", "%" + textoBusqueda + "%");
+
+            //        SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //        DataTable dt = new DataTable();
+            //        da.Fill(dt);
+
+            //        dtHistorial.Rows.Clear();
+            //        foreach (DataRow row in dt.Rows)
+            //        {
+            //            dtHistorial.Rows.Add(row["idMascota"], row["NombreMascota"], row["Especie"],
+            //                                   row["Raza"], row["Dueño"], row["fechaRegistro"]);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error al buscar: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    conexionDB.CerrarConexion();
+            //}
+
             string textoBusqueda = txtBuscar.Text.Trim();
+            string query = "";
 
-            try
+            // Si no hay ningún texto, se muestran todos los registros
+            if (string.IsNullOrEmpty(textoBusqueda))
             {
-                conexionDB.AbrirConexion();
-
-                string query = @"
+                query = @"
+            SELECT m.idMascota, m.nombre AS NombreMascota, e.nombre AS Especie, 
+                   r.nombre AS Raza, p.nombre AS Dueño, m.fechaRegistro 
+            FROM Mascota m
+            INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+            INNER JOIN Raza r ON m.idRaza = r.idRaza
+            INNER JOIN Persona p ON m.idPersona = p.idPersona
+            ORDER BY m.fechaRegistro DESC;";
+            }
+            else
+            {
+                // Validar la selección del ComboBox. Se asume que las opciones son "Mascota" y "Dueño".
+                if (cbFiltrar.SelectedItem != null && cbFiltrar.SelectedItem.ToString() == "Mascota")
+                {
+                    // Consulta por nombre de la mascota
+                    query = @"
                 SELECT m.idMascota, m.nombre AS NombreMascota, e.nombre AS Especie, 
                        r.nombre AS Raza, p.nombre AS Dueño, m.fechaRegistro 
                 FROM Mascota m
                 INNER JOIN Especie e ON m.idEspecie = e.idEspecie
                 INNER JOIN Raza r ON m.idRaza = r.idRaza
                 INNER JOIN Persona p ON m.idPersona = p.idPersona
-                WgHERE p.nombre LIKE @textoBusqueda
+                WHERE m.nombre LIKE @textoBusqueda
                 ORDER BY m.fechaRegistro DESC;";
+                }
+                else if (cbFiltrar.SelectedItem != null && cbFiltrar.SelectedItem.ToString() == "Dueño")
+                {
+                    // Consulta por nombre del dueño
+                    query = @"
+                SELECT m.idMascota, m.nombre AS NombreMascota, e.nombre AS Especie, 
+                       r.nombre AS Raza, p.nombre AS Dueño, m.fechaRegistro 
+                FROM Mascota m
+                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                INNER JOIN Raza r ON m.idRaza = r.idRaza
+                INNER JOIN Persona p ON m.idPersona = p.idPersona
+                WHERE p.nombre LIKE @textoBusqueda
+                ORDER BY m.fechaRegistro DESC;";
+                }
+                else
+                {
+                    // En caso de que no se haya seleccionado opción o se tenga un valor no esperado,
+                    // por defecto se realiza la consulta por dueño.
+                    query = @"
+                SELECT m.idMascota, m.nombre AS NombreMascota, e.nombre AS Especie, 
+                       r.nombre AS Raza, p.nombre AS Dueño, m.fechaRegistro 
+                FROM Mascota m
+                INNER JOIN Especie e ON m.idEspecie = e.idEspecie
+                INNER JOIN Raza r ON m.idRaza = r.idRaza
+                INNER JOIN Persona p ON m.idPersona = p.idPersona
+                WHERE p.nombre LIKE @textoBusqueda
+                ORDER BY m.fechaRegistro DESC;";
+                }
+            }
+
+            try
+            {
+                conexionDB.AbrirConexion();
 
                 using (SqlCommand cmd = new SqlCommand(query, conexionDB.GetConexion()))
                 {
-                    cmd.Parameters.AddWithValue("@textoBusqueda", "%" + textoBusqueda + "%");
+                    // Si se está realizando búsqueda, se agregan parámetros.
+                    if (!string.IsNullOrEmpty(textoBusqueda))
+                    {
+                        cmd.Parameters.AddWithValue("@textoBusqueda", "%" + textoBusqueda + "%");
+                    }
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -139,8 +232,14 @@ namespace VetPet_
                     dtHistorial.Rows.Clear();
                     foreach (DataRow row in dt.Rows)
                     {
-                        dtHistorial.Rows.Add(row["idMascota"], row["NombreMascota"], row["Especie"],
-                                               row["Raza"], row["Dueño"], row["fechaRegistro"]);
+                        dtHistorial.Rows.Add(
+                            row["idMascota"],
+                            row["NombreMascota"],
+                            row["Especie"],
+                            row["Raza"],
+                            row["Dueño"],
+                            row["fechaRegistro"]
+                        );
                     }
                 }
             }
