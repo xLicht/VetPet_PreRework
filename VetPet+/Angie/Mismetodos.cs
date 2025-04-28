@@ -23,35 +23,99 @@ namespace VetPet_.Angie.Mascotas
             // Inicializar la conexión con la primera cadena de conexión
                 conexion = CrearConexion();
             }
-        public void EliminarEnCascadaPlus(int idRaza, string proc )
+        public void EliminarEnCascadaPlus(int idEspecie)
         {
             try
             {
                 AbrirConexion();
-                using (SqlCommand cmd = new SqlCommand(proc, GetConexion()))
+                string query = @"
+            UPDATE Especie
+            SET estado = 'D'
+            WHERE idEspecie = @ID;
+
+            UPDATE Raza
+            SET estado = 'D'
+            WHERE idEspecie = @ID;
+
+            UPDATE Mascota
+            SET estado = 'D'
+            WHERE idRaza IN (SELECT idRaza FROM Raza WHERE idEspecie = @ID);
+
+            UPDATE Raza_Sensibilidad
+            SET Estado = 'D'
+            WHERE idRaza IN (SELECT idRaza FROM Raza WHERE idEspecie = @ID);
+
+            UPDATE Raza_Alergia
+            SET estado = 'D'
+            WHERE idRaza IN (SELECT idRaza FROM Raza WHERE idEspecie = @ID);
+        ";
+
+                using (SqlCommand cmd = new SqlCommand(query, GetConexion()))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.Text;
 
-                    // Parámetro de entrada
-                    cmd.Parameters.AddWithValue("@ID", idRaza);
+                    // Agregar parámetro
+                    cmd.Parameters.AddWithValue("@ID", idEspecie);
 
-                    // Parámetro de salida
-                    SqlParameter resultadoParam = new SqlParameter("@Resultado", SqlDbType.NVarChar, -1);
-                    resultadoParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(resultadoParam);
-
-                    // Abrir la conexión
+                    // Ejecutar el comando
                     cmd.ExecuteNonQuery();
 
-                    // Obtener el resultado
-                    string resultado = resultadoParam.Value.ToString();
-                    MessageBox.Show(resultado);
+                    MessageBox.Show("Eliminación en cascada realizada correctamente.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al ejecutar el procedimiento almacenado: {ex.Message}");
+                MessageBox.Show("Error al eliminar en cascada: " + ex.Message);
             }
+        
+            finally { CerrarConexion(); }
+        }
+
+        public void EliminarEnCascadaPlus1(int idEspecie)
+        {
+            try
+            {
+                AbrirConexion();
+                string query = @"
+            UPDATE Raza
+        SET estado = 'D'
+        WHERE idRaza = @ID;
+
+        -- Marcar todas las mascotas relacionadas con la raza como eliminadas
+        UPDATE Mascota
+        SET estado = 'D'
+        WHERE idRaza = @ID;
+
+        -- Marcar todas las sensibilidades relacionadas con la raza como eliminadas
+        UPDATE Raza_Sensibilidad
+        SET estado = 'D'
+        WHERE idRaza = @ID;
+
+        -- Marcar todas las alergias relacionadas con la raza como eliminadas
+        UPDATE Raza_Alergia
+        SET estado = 'D'
+        WHERE idRaza = @ID;
+
+        ";
+
+                using (SqlCommand cmd = new SqlCommand(query, GetConexion()))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    // Agregar parámetro
+                    cmd.Parameters.AddWithValue("@ID", idEspecie);
+
+                    // Ejecutar el comando
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Eliminación en cascada realizada correctamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar en cascada: " + ex.Message);
+            }
+
             finally { CerrarConexion(); }
         }
         public void EliminarRegistro(string nombreTabla, string nombreColumna, string nombreRegistro)

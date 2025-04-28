@@ -56,7 +56,7 @@ namespace VetPet_.Angie.Mascotas
 
         public void EliminarEnCascada()
         {
-            mismetodos.EliminarEnCascadaPlus( idEspecie, "EliminarEspecieEnCascada");
+            mismetodos.EliminarEnCascadaPlus( idEspecie);
         }
 
         private void button2_Click(object sender, EventArgs e)
