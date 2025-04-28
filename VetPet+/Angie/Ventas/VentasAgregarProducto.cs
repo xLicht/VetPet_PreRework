@@ -471,6 +471,7 @@ ORDER BY
               .Where(r => r["Total"] != DBNull.Value)
               .Sum(r => r.Field<decimal>("Total"));
                 parentForm.formularioHijo(new VentasNuevaVenta(parentForm, sumaTotal ,dtProductos,0,true)); // Pasamos la referencia de Form1 a
+                dtProductos = new DataTable();
             }
             if (FormularioOrigen == "VentasVentanadePago")
             {
@@ -478,6 +479,7 @@ ORDER BY
                .Where(r => r["Total"] != DBNull.Value)
                .Sum(r => r.Field<decimal>("Total"));
                 parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, sumaTotal, dtProductos, 0, true)); // Pasamos la referencia de Form1 a
+                dtProductos = new DataTable();
             }
         }
 
@@ -489,6 +491,7 @@ ORDER BY
               .Where(r => r["Total"] != DBNull.Value)
               .Sum(r => r.Field<decimal>("Total"));
                 parentForm.formularioHijo(new VentasVentanadePago(parentForm, idCita, sumaTotal, dtProductos, 0, true));
+                dtProductos = new DataTable();
 
             }
             else
@@ -497,6 +500,7 @@ ORDER BY
                .Where(r => r["Total"] != DBNull.Value)
                .Sum(r => r.Field<decimal>("Total"));
                 parentForm.formularioHijo(new VentasNuevaVenta(parentForm, sumaTotal, dtProductos, 0, true)); // Pasamos la referencia de Form1 a
+                dtProductos = new DataTable();
             }
         }
 
