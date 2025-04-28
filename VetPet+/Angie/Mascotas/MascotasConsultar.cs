@@ -46,7 +46,93 @@ namespace VetPet_
         {
             try
             {
-                string query = @"Exec ObtenerInformacionMascota @idMascota, @Resultado OUTPUT";
+                string query = @" SELECT 
+            Mascota.idMascota,
+            Mascota.nombre AS Nombre,
+            Especie.nombre AS Especie,
+            Raza.nombre AS Raza,
+            Mascota.fechaNacimiento AS FechaNacimiento,
+            Mascota.peso AS Peso,
+            Mascota.sexo AS Sexo,
+            Mascota.esterilizado AS Esterilizado,
+            STUFF((
+                SELECT DISTINCT ', ' + Sensibilidad.nombre
+                FROM (
+                    SELECT Sensibilidad.nombre
+                    FROM Mascota_Sensibilidad
+                    INNER JOIN Sensibilidad ON Mascota_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+                    WHERE Mascota_Sensibilidad.idMascota = Mascota.idMascota
+                    UNION
+                    SELECT Sensibilidad.nombre
+                    FROM Especie_Sensibilidad
+                    INNER JOIN Sensibilidad ON Especie_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+                    WHERE Especie_Sensibilidad.idEspecie = Especie.idEspecie
+                    UNION
+                    SELECT Sensibilidad.nombre
+                    FROM Raza_Sensibilidad
+                    INNER JOIN Sensibilidad ON Raza_Sensibilidad.idSensibilidad = Sensibilidad.idSensibilidad
+                    WHERE Raza_Sensibilidad.idRaza = Raza.idRaza
+                ) AS Sensibilidad
+                FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Sensibilidades,
+			STUFF((
+                SELECT DISTINCT ', ' + Enfermedad.nombre
+                FROM (
+                    SELECT Enfermedad.nombre
+                    FROM Mascota_Enfermedad
+                    INNER JOIN Enfermedad ON Mascota_Enfermedad.idEnfermedad = Enfermedad.idEnfermedad
+                    WHERE Mascota_Enfermedad.idMascota = Mascota.idMascota
+                    UNION
+                    SELECT Enfermedad.nombre
+                    FROM Especie_Enfermedad
+                    INNER JOIN Enfermedad ON Especie_Enfermedad.idEnfermedad = Enfermedad.idEnfermedad
+                    WHERE Especie_Enfermedad.idEspecie = Especie.idEspecie
+                    UNION
+                    SELECT Enfermedad.nombre
+                    FROM Raza_Enfermedad
+                    INNER JOIN Enfermedad ON Raza_Enfermedad.idEnfermedad = Enfermedad.idEnfermedad
+                    WHERE Raza_Enfermedad.idRaza = Raza.idRaza
+                ) AS Enfermedad
+                FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Enfermedades,
+            STUFF((
+                SELECT DISTINCT ', ' + Alergia.nombre
+                FROM (
+                    SELECT Alergia.nombre
+                    FROM Mascota_Alergia
+                    INNER JOIN Alergia ON Mascota_Alergia.idAlergia = Alergia.idAlergia
+                    WHERE Mascota_Alergia.idMascota = Mascota.idMascota
+                    UNION
+                    SELECT Alergia.nombre
+                    FROM Especie_Alergia
+                    INNER JOIN Alergia ON Especie_Alergia.idAlergia = Alergia.idAlergia
+                    WHERE Especie_Alergia.idEspecie = Especie.idEspecie
+                    UNION
+                    SELECT Alergia.nombre
+                    FROM Raza_Alergia
+                    INNER JOIN Alergia ON Raza_Alergia.idAlergia = Alergia.idAlergia
+                    WHERE Raza_Alergia.idRaza = Raza.idRaza
+                ) AS Alergia
+                FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS Alergias
+        FROM 
+            Mascota
+        INNER JOIN 
+            Especie ON Mascota.idEspecie = Especie.idEspecie
+        INNER JOIN 
+            Raza ON Mascota.idRaza = Raza.idRaza
+        WHERE 
+            Mascota.idMascota = @idMascota
+        GROUP BY 
+            Mascota.idMascota, 
+            Mascota.nombre, 
+            Especie.nombre, 
+            Raza.nombre, 
+            Mascota.fechaNacimiento, 
+            Mascota.peso, 
+            Mascota.sexo, 
+            Mascota.esterilizado,
+            Especie.idEspecie,  -- Añadido al GROUP BY
+            Raza.idRaza;        -- Añadido al GROUP BY
+
+       ";
 
                 // Obtener la conexión desde metodosDeConexion
                 using (SqlConnection cn = mismetodos.GetConexion())
