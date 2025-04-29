@@ -73,19 +73,19 @@ namespace VetPet_.Angie.Mascotas
 
         private void button3_Click(object sender, EventArgs e)
         {
-            label1.Text = "Modificar Alergia";
+            label1.Text = "Modificar Sensibilidad";
             button4.Visible = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (label1.Text == "Modificar Alergia")
+            if (label1.Text == "Modificar Sensibilidad")
             {
                 Modificar();
                 parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
 
             }
-            if (label1.Text == "Consultar Alergia")
+            if (label1.Text == "Consultar Sensibilidad")
             {
                 parentForm.formularioHijo(new MascotasVerSensibilidades(parentForm)); // Pasamos la referencia de Form1 a
             }
